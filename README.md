@@ -6,6 +6,14 @@ Jednoplikowy system szkoleniowy dla pracownikow Citronex Siechnice.
 
 https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
+## Link awaryjny, jesli GitHub Pages pokazuje 404
+
+https://raw.githack.com/OleksandrKiris/citronex-siechnice-szkolenie/main/index.html
+
+## Ustawienie GitHub Pages
+
+Settings -> Pages -> Deploy from a branch -> `gh-pages` -> `/root` -> Save.
+
 ## Co ma byc w repozytorium
 
 - `index.html` - aktualna wersja produkcyjna
