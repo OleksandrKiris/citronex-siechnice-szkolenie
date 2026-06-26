@@ -19,6 +19,7 @@ function renderModes(x){const items=[['first',x.workFirst],['rows',x.workRows],[
 function mapLabel(x,m){return (x.mapLabels&&x.mapLabels[m.id])?x.mapLabels[m.id]:[m.name,m.desc]}
 function renderMyPath(x){let m=MAPS.find(v=>v.id===stage)||MAPS[0];let ml=mapLabel(x,m);let arr=[[ml[0],`${x.openMap}: ${ml[1]}`],[x.companies[company][0],x.companies[company][1]]];if(mode==='first')arr=arr.concat(x.firstSteps.slice(0,4));if(mode==='rows')arr=arr.concat(x.readerStart.slice(0,4),x.rows.slice(0,5));if(mode==='outside')arr=arr.concat(x.readerStart.slice(0,4),x.outside);if(mode==='warehouse')arr=arr.concat(x.rules.slice(0,3));steps('myPath',arr)}
 
+function stepHtml(a){return a.map((s,i)=>`<div class="step"><div class="num">${i+1}</div><div><b>${s[0]}</b>${s[1]}</div></div>`).join('')}
 function miniQuiz(q,id){return `<div class="miniQuiz"><b>${q[0]}</b>${q[1].map((a,i)=>`<button onclick="this.parentNode.querySelectorAll('button').forEach((b,j)=>b.classList.add(j===${q[2]}?'ok':'no'))">${a}</button>`).join('')}</div>`}
 function renderGuide(x){
  const names=[x.quickMap,x.quickRules,x.quickReader,x.quickFinish];
