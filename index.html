@@ -8,6 +8,7 @@
   <title>Szkolenie Citronex Siechnice</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f7a3b'/%3E%3Ctext x='32' y='42' font-size='32' text-anchor='middle' fill='white' font-family='Arial'%3EC%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stage-location.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdz do tresci</a>
@@ -41,6 +42,30 @@
       <p class="hint" data-i18n="phoneHint">Najlepiej otworzyc link w przegladarce telefonu.</p>
     </section>
 
+    <section class="card stage-location" id="stageLocationSection">
+      <span class="pill" id="stageLocationPill">MOJA LOKALIZACJA</span>
+      <h2 id="stageLocationTitle">Gdzie mam isc?</h2>
+      <p class="hint" id="stageLocationHint">Wybierz swoje miejsce pracy. System pokaze wlasciwe wejscie i doda etap do potwierdzenia szkolenia.</p>
+
+      <div class="stage-buttons" id="stageButtons" aria-label="Wybierz etap">
+        <button type="button" data-stage="office">Office</button>
+        <button type="button" data-stage="e1">Etap 1</button>
+        <button type="button" data-stage="e2">Etap 2</button>
+        <button type="button" data-stage="e3">Etap 3</button>
+        <button type="button" data-stage="e4">Etap 4</button>
+        <button type="button" data-stage="e5">Etap 5</button>
+        <button type="button" data-stage="e6">Etap 6</button>
+      </div>
+
+      <div class="selected-stage-card" id="selectedStageCard" hidden>
+        <div>
+          <strong id="selectedStageName">Etap</strong>
+          <p id="selectedStageDescription">Opis</p>
+        </div>
+        <a class="map-link" id="selectedStageMap" href="#" target="_blank" rel="noopener noreferrer">Otworz mape</a>
+      </div>
+    </section>
+
     <section class="progress card" aria-label="Progress">
       <div class="progress-top">
         <strong data-i18n="progressTitle">Postep szkolenia</strong>
@@ -70,6 +95,7 @@
         <div><span data-i18n="dateLabel">Data</span><strong id="doneDate"></strong></div>
         <div><span data-i18n="langLabel">Jezyk</span><strong id="doneLang"></strong></div>
         <div><span data-i18n="placeLabel">Lokalizacja</span><strong>Siechnice</strong></div>
+        <div><span id="stageSummaryLabel">Etap</span><strong id="doneStage">Nie wybrano</strong></div>
       </div>
       <button class="primary full" id="copyBtn" data-i18n="copyBtn">Kopiuj potwierdzenie</button>
       <p class="hint" data-i18n="showCoordinator">Pokaz ten ekran koordynatorowi.</p>
@@ -88,5 +114,6 @@
   <script src="data/en.js"></script>
   <script src="data/az.js"></script>
   <script src="app.js"></script>
+  <script src="stage-location.js"></script>
 </body>
 </html>
