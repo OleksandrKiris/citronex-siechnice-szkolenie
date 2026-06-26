@@ -21,7 +21,7 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           p = Path('index.html')
-          t = p.read_text(encoding='utf-8')
+          t = p.read_text(encoding='utf-8').replace('\r\n', '\n')
           original = t
 
           if 'id="langTop"' not in t:
@@ -57,7 +57,7 @@ jobs:
               )
 
           if t != original:
-              p.write_text(t, encoding='utf-8')
+              p.write_text(t, encoding='utf-8', newline='\n')
               print('index.html patched')
           else:
               print('no changes needed')
@@ -74,4 +74,4 @@ jobs:
             git push origin HEAD:main
             git push -f origin HEAD:gh-pages
           fi
-# trigger: language-selector-top
+# trigger: crlf-fixed
