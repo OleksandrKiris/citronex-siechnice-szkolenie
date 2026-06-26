@@ -32,7 +32,8 @@ function loadState() {
 }
 
 function saveState(patch) {
-  Object.assign(state, patch);
+  const latestState = loadState();
+  Object.assign(state, latestState, patch);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
