@@ -4,7 +4,7 @@ CEL:
 Pracownik ma dostac jeden link i otworzyc szkolenie w przegladarce telefonu.
 
 LINK GLOWNY PO PUBLIKACJI:
-https://okiris.github.io/citronex-siechnice-szkolenie/
+https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
 STRUKTURA:
 index.html
@@ -17,19 +17,17 @@ wersje/2026-06-26.html
 .nojekyll
 - plik techniczny dla GitHub Pages. Nie usuwac.
 
-JAK UTWORZYC REPO:
-1. Wejdz na GitHub.
-2. Utworz nowe publiczne repozytorium:
-   citronex-siechnice-szkolenie
-3. Wgraj do niego pliki z tego folderu.
-4. Wejdz w Settings -> Pages.
-5. Source: Deploy from a branch.
-6. Branch: main albo master.
-7. Folder: /root.
-8. Zapisz.
+JAK WLACZYC GITHUB PAGES:
+1. Wejdz w repozytorium citronex-siechnice-szkolenie.
+2. Wejdz w Settings -> Pages.
+3. Source: Deploy from a branch.
+4. Branch: main.
+5. Folder: /root.
+6. Zapisz.
+7. Poczekaj 1-3 minuty.
 
 JAKI LINK WYSYLAC PRACOWNIKOM:
-https://okiris.github.io/citronex-siechnice-szkolenie/
+https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
 JAK DODAC DO TELEFONU:
 Android:
@@ -48,4 +46,3 @@ AKTUALIZACJA:
 3. Podmien index.html w repo.
 4. Poczekaj 1-3 minuty.
 5. Otworz link glowny i sprawdz na telefonie.
-
