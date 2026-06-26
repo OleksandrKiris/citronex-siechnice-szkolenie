@@ -1,72 +1,52 @@
-SYSTEM INFORMACYJNO-UCZACY CITRONEX - INSTRUKCJA ADMINISTRATORA
+SYSTEM INFORMACYJNO-UCZACY CITRONEX - JAK AKTUALIZOWAC
 
 CEL
-Pracownik ma dostac jeden link, otworzyc szkolenie w telefonie, przejsc tresc, odpowiedziec na test i pokazac koordynatorowi ekran potwierdzenia.
+Pracownik ma dostac jeden link i otworzyc szkolenie w przegladarce telefonu.
+System ma prowadzic czlowieka krok po kroku: mapa, wejscie, zasady, reader, rzed, wozek, przerwa, restart i test.
 
 LINK DLA PRACOWNIKOW
 https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
-JAK DZIALA STRONA
-1. Pracownik wybiera jezyk: PL / UA / RU / EN / AZ.
-2. Klika: Rozpocznij szkolenie.
-3. Czyta karty szkoleniowe.
-4. Odpowiada na pytania testowe.
-5. Wpisuje imie i nazwisko.
-6. Klika: Kopiuj potwierdzenie.
-7. Pokazuje ekran koordynatorowi.
+CO JEST WAZNE
+1. To ma byc jedna strona: index.html.
+2. Nie dodawac pol: imie, nazwisko, wybor etapu / miejsce jako formularz.
+3. Nie dodawac gotowych prosb o pomoc do kopiowania.
+4. Magazyn / sortownia nie ma readerow.
+5. Nie zmieniac logiki instrukcji readera bez sprawdzenia z materialami zrodlowymi.
+6. Jezyki maja zostac na gorze strony: PL / EN / UA / RU / AZ.
+7. Strona musi dobrze dzialac na malych telefonach.
 
-GDZIE EDYTOWAC TRESCI
-Tresci sa w folderze data:
-- data/pl.js - polski
-- data/ua.js - ukrainski
-- data/ru.js - rosyjski
-- data/en.js - angielski
-- data/az.js - azerski
-
-Nie edytuj wszystkiego w index.html. Index.html ma tylko strukture strony.
-
-GDZIE EDYTOWAC WYGLAD
-Wyglad strony jest w pliku:
-style.css
-
-GDZIE EDYTOWAC LOGIKE
-Logika szkolenia, testu, zapisu lokalnego i kopiowania jest w pliku:
-app.js
-
-JAK ZROBIC ARCHIWUM PRZED AKTUALIZACJA
-Przed duza zmiana utworz kopie aktualnej wersji w folderze wersje.
+JAK ZROBIC ARCHIWUM PRZED ZMIANA
+Przed duza zmiana skopiuj aktualny index.html do folderu wersje.
 Przyklad:
 wersje/2026-07-01.html
 
-Archiwum nie powinno byc przekierowaniem do index.html.
-Ma byc osobna wersja, zeby mozna bylo sprawdzic, co bylo wczesniej.
-
 JAK WGRAC ZMIANY
-1. Zmien odpowiednie pliki.
-2. Zrob commit.
-3. Wgraj zmiany do galezi main.
-4. GitHub Actions opublikuje strone automatycznie.
-5. Poczekaj 1-3 minuty.
+1. Zmien index.html.
+2. Sprawdz lokalnie na telefonowym rozmiarze ekranu.
+3. Zrob commit na galezi main.
+4. Wgraj main na GitHub.
+5. Wgraj ta sama wersje na gh-pages.
+6. Poczekaj 1-3 minuty.
+7. Sprawdz publiczny link.
 
 JAK SPRAWDZIC PO AKTUALIZACJI
-Otworz link glowny na telefonie:
-https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
+- Strona sie otwiera.
+- PL / EN / UA / RU / AZ dzialaja.
+- Mapy sa widoczne na poczatku.
+- Zdjecia sie laduja.
+- Reader jest zgodny z instrukcjami.
+- Magazyn nie ma readera.
+- Nie ma poziomego przewijania na telefonie.
+- Nie ma pol imie / nazwisko.
+- Nie ma gotowej prosby o pomoc.
 
-Sprawdz:
-- czy strona sie otwiera,
-- czy przyciski jezykow dzialaja,
-- czy widac karty szkolenia,
-- czy test dziala,
-- czy po dobrych odpowiedziach pojawia sie ekran ukonczenia,
-- czy przycisk Kopiuj potwierdzenie dziala,
-- czy na telefonie nie ma poziomego przewijania.
-
-JAK DODAC DO TELEFONU
+JAK DODAC DO EKRANU TELEFONU
 Android:
-Otworzyc link w Chrome -> trzy kropki -> Dodaj do ekranu glownego.
+Otworz link w Chrome -> trzy kropki -> Dodaj do ekranu glownego.
 
 iPhone:
-Otworzyc link w Safari -> Udostepnij -> Do ekranu poczatkowego.
+Otworz link w Safari -> Udostepnij -> Do ekranu poczatkowego.
 
-WAZNE
-Dane pracownika nie sa wysylane do internetu. Sa zapisane tylko lokalnie w telefonie przez localStorage.
+UWAGA
+To jest strona w przegladarce. Przy pierwszym otwarciu potrzebny jest internet.
