@@ -16,3 +16,7 @@ https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 ## Cel
 
 Pracownik dostaje jeden link, otwiera go w przegladarce telefonu i przechodzi szkolenie.
+
+## Status publikacji
+
+GitHub Pages: https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
