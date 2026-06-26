@@ -1,87 +1,46 @@
-# SYSTEM INFORMACYJNO-UCZACY CITRONEX
+# SYSTEM INFORMACYJNO-UCZĄCY CITRONEX
 
-Mobilny system szkoleniowy dla pracownikow Citronex Siechnice.
+Mobilny system informacyjno-szkoleniowy dla pracowników Citronex Siechnice.
 
-Pracownik dostaje jeden link, wybiera jezyk, przechodzi szkolenie, odpowiada na krotki test i pokazuje koordynatorowi ekran potwierdzenia.
+Pracownik dostaje jeden link, wybiera język i od razu widzi proste opcje:
 
-## Link glowny
+- mapa i wejście,
+- Reader,
+- krótki test,
+- dodanie linku do telefonu,
+- problem / pomoc.
+
+## Link dla pracowników
 
 https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
 ## Publikacja
 
-Projekt dziala jako statyczna strona na GitHub Pages.
-Publikacja powinna byc ustawiona w GitHub jako:
-
-Settings -> Pages -> Deploy from a branch -> `main` -> `/root` -> Save
-
-Workflow `.github/workflows/pages.yml` zostal wylaczony dla pushy, bo poprzedni tryb `actions/deploy-pages` powodowal serie bledow `Failed to deploy to github-pages`.
-
-## Struktura plikow
+GitHub Pages powinien publikować z:
 
 ```text
-index.html              - glowna strona dla pracownika
-style.css               - wyglad strony i wersja mobilna
-stage-location.css      - wyglad modulu wyboru etapu
-app.js                  - logika szkolenia, testu, localStorage i kopiowania
-stage-location.js       - logika wyboru etapu i map
-data/locations.js       - linki do biura i wejsc E1-E6
-data/pl.js              - tresci po polsku
-data/ua.js              - tresci po ukrainsku
-data/ru.js              - tresci po rosyjsku
-data/en.js              - tresci po angielsku
-data/az.js              - tresci po azersku
-wersje/                 - archiwum poprzednich wersji
-.nojekyll               - plik techniczny dla GitHub Pages
-JAK_AKTUALIZOWAC.txt    - instrukcja administratora
+Settings -> Pages -> Deploy from a branch -> main -> /root
 ```
 
-## Funkcje
+Główna wersja produkcyjna jest na gałęzi `main` w pliku `index.html`.
 
-- wybor jezyka: PL / UA / RU / EN / AZ
-- modul `Moja lokalizacja / Moj etap`
-- wybor Office albo Etap 1-6
-- przycisk mapy dla wybranego etapu
-- szkolenie podzielone na czytelne karty
-- test kontrolny na koncu
-- ekran: `Szkolenie ukonczone`
-- pole na imie i nazwisko
-- automatyczna data ukonczenia
-- etap na ekranie potwierdzenia
-- przycisk `Kopiuj potwierdzenie`
-- zapis lokalny w telefonie przez `localStorage`
-- brak backendu i brak wysylania danych na zewnatrz
+## Co jest ważne
 
-## Aktualizacja tresci
+- Języki są tylko na górze strony.
+- System jest przygotowany pod telefon.
+- Nie ma pól dla koordynatora ani wpisywania imienia i nazwiska.
+- Mapy są jako duże przyciski: biuro, mapa wejść, etap 1-6.
+- Reader jest opisany krok po kroku dla pracy w rzędach i poza rzędami.
+- Teksty są krótkie i proste dla pracownika.
 
-1. Edytuj odpowiedni plik w folderze `data`, np. `data/ua.js`.
-2. Przed wieksza zmiana zrob kopie aktualnej wersji w folderze `wersje`, np. `wersje/2026-07-01.html`.
-3. Wgraj zmiany do galezi `main`.
-4. Sprawdz zakladke Settings -> Pages.
-5. Otworz link glowny na telefonie i sprawdz:
-   - czy strona sie otwiera,
-   - czy dziala wybor jezyka,
-   - czy dziala wybor etapu,
-   - czy dziala przycisk mapy,
-   - czy dziala test,
-   - czy dziala kopiowanie potwierdzenia.
+## Aktualizacja
 
-## Testowanie lokalne
+Najprościej aktualizować `index.html` na gałęzi `main`.
 
-Mozna otworzyc `index.html` bezposrednio w przegladarce albo uruchomic prosty serwer lokalny:
+Po zmianie sprawdź publiczny link na telefonie:
 
-```bash
-python -m http.server 8000
-```
-
-Potem wejsc na:
-
-```text
-http://localhost:8000
-```
-
-## Link dla pracownikow
-
-Wysylamy zawsze:
-
-https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
+- czy otwiera się strona,
+- czy działa wybór języka,
+- czy działają mapy,
+- czy działa Reader,
+- czy działa test.
