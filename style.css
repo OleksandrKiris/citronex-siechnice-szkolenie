@@ -116,6 +116,25 @@ button { cursor: pointer; }
 .training-card h2 { margin: 8px 0 8px; font-size: 24px; }
 .training-card ul { padding-left: 20px; margin: 10px 0 0; }
 .training-card li + li { margin-top: 8px; }
+.training-card a {
+  color: var(--primary-dark);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+.training-card .map-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(15, 122, 59, .18);
+}
 .notice { background: var(--warning); border-left: 4px solid #d99900; padding: 12px; border-radius: 14px; margin-top: 12px; }
 .quiz-item { border: 1px solid var(--line); border-radius: 18px; padding: 14px; margin-top: 12px; }
 .quiz-item strong { display: block; margin-bottom: 10px; }
@@ -164,4 +183,5 @@ input {
   .language-switch button { flex: 1; }
   .summary-grid { grid-template-columns: 1fr; }
   .primary, .secondary { width: 100%; }
+  .training-card ul { padding-left: 0; list-style: none; }
 }
