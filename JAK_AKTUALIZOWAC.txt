@@ -1,48 +1,72 @@
 SYSTEM INFORMACYJNO-UCZACY CITRONEX - INSTRUKCJA ADMINISTRATORA
 
-CEL:
-Pracownik ma dostac jeden link i otworzyc szkolenie w przegladarce telefonu.
+CEL
+Pracownik ma dostac jeden link, otworzyc szkolenie w telefonie, przejsc tresc, odpowiedziec na test i pokazac koordynatorowi ekran potwierdzenia.
 
-LINK GLOWNY PO PUBLIKACJI:
+LINK DLA PRACOWNIKOW
 https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
-STRUKTURA:
-index.html
-- aktualna wersja produkcyjna, to ten plik otwiera pracownik.
+JAK DZIALA STRONA
+1. Pracownik wybiera jezyk: PL / UA / RU / EN / AZ.
+2. Klika: Rozpocznij szkolenie.
+3. Czyta karty szkoleniowe.
+4. Odpowiada na pytania testowe.
+5. Wpisuje imie i nazwisko.
+6. Klika: Kopiuj potwierdzenie.
+7. Pokazuje ekran koordynatorowi.
 
-wersje/2026-06-26.html
-- kopia archiwalna obecnej wersji.
-- przy kolejnej aktualizacji dodaj nowy plik, np. wersje/2026-07-01.html.
+GDZIE EDYTOWAC TRESCI
+Tresci sa w folderze data:
+- data/pl.js - polski
+- data/ua.js - ukrainski
+- data/ru.js - rosyjski
+- data/en.js - angielski
+- data/az.js - azerski
 
-.nojekyll
-- plik techniczny dla GitHub Pages. Nie usuwac.
+Nie edytuj wszystkiego w index.html. Index.html ma tylko strukture strony.
 
-JAK WLACZYC GITHUB PAGES:
-1. Wejdz w repozytorium citronex-siechnice-szkolenie.
-2. Wejdz w Settings -> Pages.
-3. Source: Deploy from a branch.
-4. Branch: main.
-5. Folder: /root.
-6. Zapisz.
-7. Poczekaj 1-3 minuty.
+GDZIE EDYTOWAC WYGLAD
+Wyglad strony jest w pliku:
+style.css
 
-JAKI LINK WYSYLAC PRACOWNIKOM:
+GDZIE EDYTOWAC LOGIKE
+Logika szkolenia, testu, zapisu lokalnego i kopiowania jest w pliku:
+app.js
+
+JAK ZROBIC ARCHIWUM PRZED AKTUALIZACJA
+Przed duza zmiana utworz kopie aktualnej wersji w folderze wersje.
+Przyklad:
+wersje/2026-07-01.html
+
+Archiwum nie powinno byc przekierowaniem do index.html.
+Ma byc osobna wersja, zeby mozna bylo sprawdzic, co bylo wczesniej.
+
+JAK WGRAC ZMIANY
+1. Zmien odpowiednie pliki.
+2. Zrob commit.
+3. Wgraj zmiany do galezi main.
+4. GitHub Actions opublikuje strone automatycznie.
+5. Poczekaj 1-3 minuty.
+
+JAK SPRAWDZIC PO AKTUALIZACJI
+Otworz link glowny na telefonie:
 https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
-JAK DODAC DO TELEFONU:
+Sprawdz:
+- czy strona sie otwiera,
+- czy przyciski jezykow dzialaja,
+- czy widac karty szkolenia,
+- czy test dziala,
+- czy po dobrych odpowiedziach pojawia sie ekran ukonczenia,
+- czy przycisk Kopiuj potwierdzenie dziala,
+- czy na telefonie nie ma poziomego przewijania.
+
+JAK DODAC DO TELEFONU
 Android:
 Otworzyc link w Chrome -> trzy kropki -> Dodaj do ekranu glownego.
 
 iPhone:
 Otworzyc link w Safari -> Udostepnij -> Do ekranu poczatkowego.
 
-LINK AWARYJNY:
-Jesli GitHub Pages nie dziala, wyslij pracownikowi sam plik index.html albo wrzuc go jako kopie na Google Drive / Netlify / Vercel.
-Najwazniejsze: pracownik ma otworzyc index.html w przegladarce.
-
-AKTUALIZACJA:
-1. Zrob nowy index.html.
-2. Przed podmiana skopiuj stary index.html do folderu wersje z data.
-3. Podmien index.html w repo.
-4. Poczekaj 1-3 minuty.
-5. Otworz link glowny i sprawdz na telefonie.
+WAZNE
+Dane pracownika nie sa wysylane do internetu. Sa zapisane tylko lokalnie w telefonie przez localStorage.
