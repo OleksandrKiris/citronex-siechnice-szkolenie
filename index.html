@@ -135,7 +135,7 @@ const CITY_LINKS={
 function renderCityInfo(x){
  const open=el('cityOpen'), panel=el('cityPanel'); if(!open||!panel)return;
  open.innerHTML=`${x.cityOpenTitle}<small>${x.cityOpenLead}</small>`;
- open.onclick=()=>{cityOpen=!cityOpen;localStorage.cx_cityOpen=cityOpen?'1':'0';renderCityInfo(x)};
+ open.onclick=()=>{cityOpen=!cityOpen;localStorage.cx_cityOpen=cityOpen?'1':'0';apply()};
  panel.classList.toggle('active',cityOpen);
  panel.innerHTML=`<h2>${x.cityTitle}</h2><p class="lead">${x.cityLead}</p><div class="cityGrid">
  <div class="cityCard"><h3>${x.cityOfficeTitle}</h3><p>${x.cityOfficeText}</p><a class="cityLink" target="_blank" rel="noopener" href="${CITY_LINKS.office}">${x.openOffice}</a></div>
@@ -174,7 +174,7 @@ function helperMessage(x,p){
 function renderFirstDayHelper(x){
  const panel=el('firstDayPanel'); const btn=el('firstDayOpen'); if(!panel||!btn)return;
  btn.innerHTML=`${x.firstDayWhereTitle}<small>${x.firstDayWhereLead}</small>`;
- btn.onclick=()=>{firstDayOpen=!firstDayOpen;localStorage.cx_firstDayOpen=firstDayOpen?'1':'0';renderFirstDayHelper(x)};
+ btn.onclick=()=>{firstDayOpen=!firstDayOpen;localStorage.cx_firstDayOpen=firstDayOpen?'1':'0';apply()};
  panel.classList.toggle('active',firstDayOpen);
  el('placeGrid').innerHTML=HELPER_PLACES.map(p=>`<button class="placeBtn ${helperPlace===p.id?'active':''}" onclick="helperPlace='${p.id}';localStorage.cx_helperPlace=helperPlace;stage='${p.id==='hotel'?'office':p.id}';localStorage.cx_stage=stage;renderFirstDayHelper(T[lang]||T.PL)">${helperPlaceLabel(x,p)}</button>`).join('');
  const p=HELPER_PLACES.find(v=>v.id===helperPlace)||HELPER_PLACES[0];
@@ -190,7 +190,7 @@ function copyHelperMessage(){
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fail)}else{try{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();done()}catch(e){fail()}}
 }
 
-function renderFullToggle(x){let btn=el('fullToggle');let box=el('fullContent');if(btn&&box){btn.textContent=showFull?x.hideFull:x.showFull;box.classList.toggle('isHidden',!showFull);btn.onclick=()=>{showFull=!showFull;localStorage.cx_showFull=showFull?'1':'0';renderFullToggle(x)}}}
+function renderFullToggle(x){let btn=el('fullToggle');let box=el('fullContent');if(btn&&box){btn.textContent=showFull?x.hideFull:x.showFull;box.classList.toggle('isHidden',!showFull);btn.onclick=()=>{showFull=!showFull;localStorage.cx_showFull=showFull?'1':'0';apply()}}}
 function renderGuide(x){
  const names=[x.quickMap,x.quickRules,x.quickReader,x.quickFinish];
  guideStep=Math.max(0,Math.min(3,guideStep));
