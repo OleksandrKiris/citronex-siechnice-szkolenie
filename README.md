@@ -1,1 +1,19 @@
-# citronex-siechnice-szkolenie
+# SYSTEM INFORMACYJNO-UCZACY CITRONEX
+
+Jednoplikowy system szkoleniowy dla pracownikow Citronex Siechnice.
+
+## Link glowny po publikacji
+
+https://okiris.github.io/citronex-siechnice-szkolenie/
+
+## Co ma byc w repozytorium
+
+- `index.html` - aktualna wersja produkcyjna
+- `wersje/2026-06-26.html` - archiwum wersji
+- `.nojekyll` - plik techniczny dla GitHub Pages
+- `JAK_AKTUALIZOWAC.txt` - instrukcja administratora
+
+## Cel
+
+Pracownik dostaje jeden link, otwiera go w przegladarce telefonu i przechodzi szkolenie.
+

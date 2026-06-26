@@ -1,0 +1,51 @@
+SYSTEM INFORMACYJNO-UCZACY CITRONEX - INSTRUKCJA ADMINISTRATORA
+
+CEL:
+Pracownik ma dostac jeden link i otworzyc szkolenie w przegladarce telefonu.
+
+LINK GLOWNY PO PUBLIKACJI:
+https://okiris.github.io/citronex-siechnice-szkolenie/
+
+STRUKTURA:
+index.html
+- aktualna wersja produkcyjna, to ten plik otwiera pracownik.
+
+wersje/2026-06-26.html
+- kopia archiwalna obecnej wersji.
+- przy kolejnej aktualizacji dodaj nowy plik, np. wersje/2026-07-01.html.
+
+.nojekyll
+- plik techniczny dla GitHub Pages. Nie usuwac.
+
+JAK UTWORZYC REPO:
+1. Wejdz na GitHub.
+2. Utworz nowe publiczne repozytorium:
+   citronex-siechnice-szkolenie
+3. Wgraj do niego pliki z tego folderu.
+4. Wejdz w Settings -> Pages.
+5. Source: Deploy from a branch.
+6. Branch: main albo master.
+7. Folder: /root.
+8. Zapisz.
+
+JAKI LINK WYSYLAC PRACOWNIKOM:
+https://okiris.github.io/citronex-siechnice-szkolenie/
+
+JAK DODAC DO TELEFONU:
+Android:
+Otworzyc link w Chrome -> trzy kropki -> Dodaj do ekranu glownego.
+
+iPhone:
+Otworzyc link w Safari -> Udostepnij -> Do ekranu poczatkowego.
+
+LINK AWARYJNY:
+Jesli GitHub Pages nie dziala, wyslij pracownikowi sam plik index.html albo wrzuc go jako kopie na Google Drive / Netlify / Vercel.
+Najwazniejsze: pracownik ma otworzyc index.html w przegladarce.
+
+AKTUALIZACJA:
+1. Zrob nowy index.html.
+2. Przed podmiana skopiuj stary index.html do folderu wersje z data.
+3. Podmien index.html w repo.
+4. Poczekaj 1-3 minuty.
+5. Otworz link glowny i sprawdz na telefonie.
+
