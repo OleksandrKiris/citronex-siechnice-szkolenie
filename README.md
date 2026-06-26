@@ -1,46 +1,40 @@
-# SYSTEM INFORMACYJNO-UCZĄCY CITRONEX
+# SYSTEM INFORMACYJNO-UCZACY CITRONEX
 
-Mobilny system informacyjno-szkoleniowy dla pracowników Citronex Siechnice.
+Mobilny system szkoleniowy dla pracownikow Citronex Siechnice.
 
-Pracownik dostaje jeden link, wybiera język i od razu widzi proste opcje:
+Pracownik dostaje jeden link, otwiera go w przegladarce telefonu, wybiera jezyk i przechodzi instrukcje krok po kroku.
 
-- mapa i wejście,
-- Reader,
-- krótki test,
-- dodanie linku do telefonu,
-- problem / pomoc.
-
-## Link dla pracowników
+## Link dla pracownikow
 
 https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
+## Najwazniejsze
+
+- Jedna strona: `index.html`.
+- Jezyki sa tylko na gorze strony: PL / EN / UA / RU / AZ.
+- System jest przygotowany pod telefony.
+- Nie ma wpisywania imienia i nazwiska.
+- Nie ma gotowych prosb o pomoc do kopiowania.
+- Mapy i wejscia sa na poczatku szkolenia.
+- Magazyn / sortownia nie ma readerow.
+- Reader, rzed, przerwa, wozek i restart sa opisane wedlug instrukcji.
+- Jest instrukcja dodania linku do ekranu telefonu.
+
 ## Publikacja
 
-GitHub Pages powinien publikować z:
+Publiczna strona dziala z GitHub Pages:
 
-```text
-Settings -> Pages -> Deploy from a branch -> main -> /root
-```
+https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
-Główna wersja produkcyjna jest na gałęzi `main` w pliku `index.html`.
+Aktualna produkcja jest w `index.html`.
+Archiwum wersji jest w folderze `wersje`.
 
-## Co jest ważne
+## Szybki test po zmianie
 
-- Języki są tylko na górze strony.
-- System jest przygotowany pod telefon.
-- Nie ma pól dla koordynatora ani wpisywania imienia i nazwiska.
-- Mapy są jako duże przyciski: biuro, mapa wejść, etap 1-6.
-- Reader jest opisany krok po kroku dla pracy w rzędach i poza rzędami.
-- Teksty są krótkie i proste dla pracownika.
-
-## Aktualizacja
-
-Najprościej aktualizować `index.html` na gałęzi `main`.
-
-Po zmianie sprawdź publiczny link na telefonie:
-
-- czy otwiera się strona,
-- czy działa wybór języka,
-- czy działają mapy,
-- czy działa Reader,
-- czy działa test.
+- Strona otwiera sie na telefonie.
+- Nie ma poziomego przewijania.
+- Przyciski jezykow dzialaja.
+- Mapy otwieraja sie poprawnie.
+- Reader nie pokazuje sie jako procedura magazynu.
+- Test dziala.
+- Zdjecia sa widoczne.
