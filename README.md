@@ -28,3 +28,7 @@ Pracownik dostaje jeden link, otwiera go w przegladarce telefonu i przechodzi sz
 ## Status publikacji
 
 GitHub Pages: https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
+
+## Ostatnia zmiana
+
+Jezyk jest przenoszony na gore strony.
