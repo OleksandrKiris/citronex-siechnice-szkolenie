@@ -74,3 +74,4 @@ jobs:
             git push origin HEAD:main
             git push -f origin HEAD:gh-pages
           fi
+# trigger: language-selector-top
