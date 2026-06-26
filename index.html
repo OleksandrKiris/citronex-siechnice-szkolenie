@@ -1,119 +1,42 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mobilny system szkoleniowy dla pracownikow Citronex Siechnice. Szkolenie, test i potwierdzenie ukonczenia.">
-  <meta name="theme-color" content="#0f7a3b">
-  <title>Szkolenie Citronex Siechnice</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f7a3b'/%3E%3Ctext x='32' y='42' font-size='32' text-anchor='middle' fill='white' font-family='Arial'%3EC%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="stage-location.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f4b35">
+<title>System Informacyjno-Uczący Citronex</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#e8f0eb;color:#102018}body{line-height:1.42}.app{max-width:760px;margin:0 auto;min-height:100vh;background:#f6f9f7}.top{position:sticky;top:0;z-index:10;background:linear-gradient(145deg,#071f17,#0f4b35 62%,#187047);color:#fff;border-bottom:5px solid #f4c945;padding:calc(10px + env(safe-area-inset-top)) 12px 12px;box-shadow:0 12px 28px rgba(8,28,20,.3)}.brand{display:grid;grid-template-columns:46px 1fr auto;gap:10px;align-items:center}.mark{width:46px;height:46px;border-radius:14px;background:#f4c945;color:#17311f;display:grid;place-items:center;font-weight:900}.brand strong{display:block;font-size:16px;line-height:1.05}.brand span{font-size:11px;color:#e4f0e8;font-weight:900}.panic{min-height:40px;border:0;border-radius:12px;background:#b7332f;color:#fff;font-weight:900;padding:0 12px}.langs,.nav{display:grid;gap:6px;margin-top:9px}.langs{grid-template-columns:repeat(5,1fr)}.nav{grid-template-columns:repeat(4,1fr)}button{font-family:inherit}.langs button,.nav button{min-height:42px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-weight:900}.langs button.active,.nav button.active{background:#f4c945;color:#17311f}.nav button.active{background:#fff}.note{margin-top:8px;font-size:12px;font-weight:900;color:#e4f0e8}.screen{display:none;padding:14px 14px 88px}.screen.active{display:block}.hero,.card{background:#fff;border:1px solid #d6e1da;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 10px 24px rgba(12,34,24,.08)}h1{font-size:24px;line-height:1.08;margin:0 0 8px;color:#0b2f22}h2{font-size:19px;margin:0 0 10px;color:#0b2f22}p{margin:0 0 10px}.grid{display:grid;gap:10px}.action,.stage{width:100%;border:1px solid #d6e1da;border-radius:16px;background:#fff;color:#102018;text-align:left;padding:14px;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;box-shadow:0 8px 20px rgba(12,34,24,.07)}.action{min-height:84px}.ico{width:42px;height:42px;border-radius:14px;background:#146342;color:#fff;display:grid;place-items:center;font-weight:900;font-size:19px}.action strong,.stage strong{display:block;font-size:17px;color:#0b2f22;margin-bottom:3px}.action span,.stage span{font-size:14px;color:#42564a}.map .ico{background:#2364aa}.reader .ico{background:#f4c945;color:#17311f}.warn .ico,.danger .ico{background:#b7332f}.step{display:grid;grid-template-columns:38px 1fr;gap:10px;padding:12px;border:1px solid #dde7e1;border-radius:14px;margin:8px 0;background:#fbfdfc}.num{width:38px;height:38px;border-radius:50%;background:#146342;color:#fff;display:grid;place-items:center;font-weight:900}.dangerBox{border-left:6px solid #b7332f;background:#fff9f7}.infoBox{border-left:6px solid #2364aa}.okBox{border-left:6px solid #146342}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}.tabs button{min-height:48px;border-radius:14px;border:1px solid #d6e1da;background:#fff;color:#146342;font-weight:900}.tabs button.active{background:#f4c945;color:#17311f}.btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;border:0;background:#146342;color:#fff;text-decoration:none;font-weight:900;padding:0 14px}.quiz button{width:100%;min-height:48px;border:1px solid #d6e1da;border-radius:12px;background:#fff;margin:6px 0;text-align:left;padding:10px;font-weight:800}.quiz button.good{background:#e8f6ee;border-color:#146342}.quiz button.bad{background:#fff1ef;border-color:#b7332f}.fixed{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(760px,100%);display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(246,249,247,.96);border-top:1px solid #d6e1da}.fixed button{min-height:48px;border-radius:14px;border:0;background:#146342;color:#fff;font-weight:900}.fixed button:last-child{background:#b7332f}@media(max-width:390px){.brand{grid-template-columns:40px 1fr auto}.mark{width:40px;height:40px}.brand strong{font-size:14px}.nav{grid-template-columns:1fr 1fr}.screen{padding-left:10px;padding-right:10px}.action,.stage{grid-template-columns:36px 1fr}.ico{width:36px;height:36px}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Przejdz do tresci</a>
-
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand-mark">C</span>
-      <div>
-        <strong data-i18n="appName">Szkolenie Citronex</strong>
-        <small data-i18n="location">Siechnice</small>
-      </div>
-    </div>
-    <nav class="language-switch" aria-label="Language">
-      <button data-lang="pl">PL</button>
-      <button data-lang="ua">UA</button>
-      <button data-lang="ru">RU</button>
-      <button data-lang="en">EN</button>
-      <button data-lang="az">AZ</button>
-    </nav>
-  </header>
-
-  <main id="main" class="app-shell">
-    <section class="hero card" id="startSection">
-      <span class="pill" data-i18n="mobileReady">Wersja mobilna</span>
-      <h1 data-i18n="heroTitle">Wybierz jezyk i rozpocznij szkolenie</h1>
-      <p data-i18n="heroText">Po zakonczeniu pokaz ekran potwierdzenia koordynatorowi.</p>
-      <div class="actions">
-        <button class="primary" id="startBtn" data-i18n="startBtn">Rozpocznij szkolenie</button>
-        <button class="secondary" id="resetBtn" data-i18n="resetBtn">Wyczysc zapis</button>
-      </div>
-      <p class="hint" data-i18n="phoneHint">Najlepiej otworzyc link w przegladarce telefonu.</p>
-    </section>
-
-    <section class="card stage-location" id="stageLocationSection">
-      <span class="pill" id="stageLocationPill">MOJA LOKALIZACJA</span>
-      <h2 id="stageLocationTitle">Gdzie mam isc?</h2>
-      <p class="hint" id="stageLocationHint">Wybierz swoje miejsce pracy. System pokaze wlasciwe wejscie i doda etap do potwierdzenia szkolenia.</p>
-
-      <div class="stage-buttons" id="stageButtons" aria-label="Wybierz etap">
-        <button type="button" data-stage="office">Office</button>
-        <button type="button" data-stage="e1">Etap 1</button>
-        <button type="button" data-stage="e2">Etap 2</button>
-        <button type="button" data-stage="e3">Etap 3</button>
-        <button type="button" data-stage="e4">Etap 4</button>
-        <button type="button" data-stage="e5">Etap 5</button>
-        <button type="button" data-stage="e6">Etap 6</button>
-      </div>
-
-      <div class="selected-stage-card" id="selectedStageCard" hidden>
-        <div>
-          <strong id="selectedStageName">Etap</strong>
-          <p id="selectedStageDescription">Opis</p>
-        </div>
-        <a class="map-link" id="selectedStageMap" href="#" target="_blank" rel="noopener noreferrer">Otworz mape</a>
-      </div>
-    </section>
-
-    <section class="progress card" aria-label="Progress">
-      <div class="progress-top">
-        <strong data-i18n="progressTitle">Postep szkolenia</strong>
-        <span id="progressText">0%</span>
-      </div>
-      <div class="progress-bar"><span id="progressBar"></span></div>
-    </section>
-
-    <section id="trainingSection" class="section-list" aria-live="polite"></section>
-
-    <section id="quizSection" class="card hidden">
-      <span class="pill" data-i18n="quizLabel">Test kontrolny</span>
-      <h2 data-i18n="quizTitle">Odpowiedz na pytania</h2>
-      <div id="quizList"></div>
-      <button class="primary full" id="finishBtn" data-i18n="finishBtn">Zakoncz szkolenie</button>
-      <p id="quizMessage" class="message" role="status"></p>
-    </section>
-
-    <section id="certificateSection" class="card certificate hidden">
-      <div class="success-icon">✓</div>
-      <h2 data-i18n="doneTitle">Szkolenie ukonczone</h2>
-      <label>
-        <span data-i18n="nameLabel">Imie i nazwisko</span>
-        <input id="workerName" type="text" autocomplete="name" placeholder="Imie i nazwisko">
-      </label>
-      <div class="summary-grid">
-        <div><span data-i18n="dateLabel">Data</span><strong id="doneDate"></strong></div>
-        <div><span data-i18n="langLabel">Jezyk</span><strong id="doneLang"></strong></div>
-        <div><span data-i18n="placeLabel">Lokalizacja</span><strong>Siechnice</strong></div>
-        <div><span id="stageSummaryLabel">Etap</span><strong id="doneStage">Nie wybrano</strong></div>
-      </div>
-      <button class="primary full" id="copyBtn" data-i18n="copyBtn">Kopiuj potwierdzenie</button>
-      <p class="hint" data-i18n="showCoordinator">Pokaz ten ekran koordynatorowi.</p>
-      <p id="copyMessage" class="message" role="status"></p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <span data-i18n="footerText">System informacyjno-uczacy Citronex Siechnice</span>
-  </footer>
-
-  <script src="data/locations.js"></script>
-  <script src="data/pl.js"></script>
-  <script src="data/ua.js"></script>
-  <script src="data/ru.js"></script>
-  <script src="data/en.js"></script>
-  <script src="data/az.js"></script>
-  <script src="app.js"></script>
-  <script src="stage-location.js"></script>
+<div class="app">
+<header class="top">
+<div class="brand"><div class="mark">CX</div><div><strong>CITRONEX SIECHNICE</strong><span id="sub"></span></div><button class="panic" data-go="problem" id="panic"></button></div>
+<div class="langs" id="langs"><button data-lang="PL">PL</button><button data-lang="EN">EN</button><button data-lang="UA">UA</button><button data-lang="RU">RU</button><button data-lang="AZ">AZ</button></div>
+<div class="nav" id="nav"><button data-go="home"></button><button data-go="maps"></button><button data-go="reader"></button><button data-go="problem"></button></div>
+<div class="note" id="note"></div>
+</header>
+<main>
+<section class="screen active" id="home"><div class="hero"><h1 id="homeTitle"></h1><p id="homeText"></p></div><div class="grid" id="actions"></div><div class="card okBox"><h2 id="rememberTitle"></h2><div id="remember"></div></div></section>
+<section class="screen" id="maps"><div class="hero"><h1 id="mapsTitle"></h1><p id="mapsText"></p></div><div class="grid" id="stages"></div><div class="card infoBox"><h2 id="firstTitle"></h2><div id="firstSteps"></div></div><div class="card dangerBox"><h2 id="mapWarnTitle"></h2><p id="mapWarn"></p></div></section>
+<section class="screen" id="reader"><div class="hero"><h1 id="readerTitle"></h1><p id="readerText"></p></div><div class="tabs"><button id="tabRows" data-r="rows"></button><button id="tabOutside" data-r="outside"></button></div><div id="readerStart" class="card dangerBox"></div><div id="readerRows" class="card okBox"></div><div id="readerOutside" class="card okBox"></div><div id="readerCart" class="card dangerBox"></div><div id="readerRestart" class="card"></div></section>
+<section class="screen" id="phone"><div class="hero"><h1 id="phoneTitle"></h1><p id="phoneText"></p></div><div class="card"><h2>Android</h2><div id="android"></div></div><div class="card"><h2>iPhone</h2><div id="iphone"></div></div></section>
+<section class="screen" id="test"><div class="hero"><h1 id="testTitle"></h1><p id="testText"></p></div><div class="card quiz" id="quiz"></div></section>
+<section class="screen" id="problem"><div class="hero dangerBox"><h1 id="problemTitle"></h1><p id="problemText"></p></div><div class="card"><h2 id="problemDoTitle"></h2><div id="problemSteps"></div></div></section>
+</main>
+<div class="fixed"><button data-go="home" id="backHome"></button><button data-go="problem" id="fixedProblem"></button></div>
+</div>
+<script>
+const MAPS={office:'https://www.google.com/maps/d/edit?mid=1QD04JMl9d4AepFLIV1Kc-ZycNRglwuA&usp=sharing',main:'https://www.google.com/maps/d/edit?mid=1VcKjk2pZ1RgER3GV2DrH8u699hZnnts',e1:'https://maps.app.goo.gl/kG99UiAv9FRvb6DG9?g_st=ic',e2:'https://maps.app.goo.gl/kG99UiAv9FRvb6DG9?g_st=ic',e3:'https://maps.google.com?q=51.0173459,17.1570148&entry=gps',e4:'https://maps.google.com?q=51.0173459,17.1570148&entry=gps',e5:'https://maps.app.goo.gl/ccG5vb6oE26NDsS76?g_st=ic',e6:'https://maps.app.goo.gl/DH8J1Rtea55mXsoTA?g_st=ic'};
+const T={
+PL:{sub:'SYSTEM INFORMACYJNO-UCZĄCY',note:'Wybierz język u góry. Potem kliknij to, czego teraz potrzebujesz.',nav:['START','MAPA','READER','PROBLEM'],problem:'PROBLEM',homeTitle:'Co chcesz zrobić teraz?',homeText:'Ten link ma szybko pomóc pracownikowi. Wybierz sytuację.',actions:[['maps','MAPA','Kieruję się pierwszy raz','Wybierz etap lub biuro i otwórz mapę.'],['reader','READER','Praca na szklarni','Instrukcja tagów, rzędów, przerw i wózków.'],['test','TEST','Sprawdź, czy pamiętasz','Krótki test z najważniejszych zasad.'],['phone','TEL','Dodaj do telefonu','Zrób z linku ikonę jak aplikację.']],rememberTitle:'Najważniejsze',remember:[['Nie wchodź sam','Po przybyciu czekaj na osobę prowadzącą.'],['Nie zgaduj','Jeśli nie wiesz, pytaj lidera albo brygadzistę.'],['Reader','Tag rzędu odbijasz przy wyjściu z rzędu, nie przy wejściu.']],mapsTitle:'Mapa i wejście',mapsText:'Wybierz miejsce z informacji startowej. Otwórz mapę i kieruj się do punktu.',stages:['Biuro','Mapa wejść','Etap 1','Etap 2','Etap 3','Etap 4','Etap 5','Etap 6'],open:'Otwórz mapę',firstTitle:'Pierwszy raz',first:[['Wybierz miejsce','Sprawdź w informacji startowej, gdzie masz się stawić.'],['Otwórz mapę','Kliknij etap albo biuro.'],['Kieruj się do punktu','Idź albo jedź zgodnie z mapą.'],['Czekaj','Nie wchodź sam na szklarnię.']],mapWarnTitle:'Uwaga',mapWarn:'Jeśli mapa pokazuje inne miejsce niż informacja startowa, pytaj przed wejściem.',readerTitle:'Reader - krok po kroku',readerText:'To jest moduł dla osoby, która jest już gotowa do pracy na szklarni.',rowsTab:'Praca w rzędach',outsideTab:'Poza rzędami',phoneTitle:'Dodaj link do telefonu',phoneText:'Pracownik może mieć szkolenie jako ikonę na ekranie.',android:[['Otwórz link','Otwórz stronę w Chrome.'],['Menu','Kliknij trzy kropki.'],['Dodaj','Wybierz: Dodaj do ekranu głównego.']],iphone:[['Otwórz link','Otwórz stronę w Safari.'],['Udostępnij','Kliknij ikonę udostępniania.'],['Dodaj','Wybierz: Do ekranu początkowego.']],testTitle:'Mini test',testText:'Kliknij dobrą odpowiedź.',quiz:[['Skończony rząd odbijasz:', ['1 raz','2 razy'],0],['Nieskończony rząd odbijasz:', ['1 raz','2 razy'],1],['Przy pomidorze najpierw odbijasz:', ['wózek','rząd'],0],['Tag rzędu odbijasz:', ['przy wejściu','przy wyjściu'],1]],problemTitle:'Masz problem?',problemText:'Nie zgaduj i nie kontynuuj sam, jeśli nie jesteś pewny.',problemDoTitle:'Co zrobić',problemSteps:[['Zatrzymaj się','Nie idź dalej, jeśli nie wiesz co zrobić.'],['Zapytaj','Pytaj lidera, brygadzistę albo osobę prowadzącą.'],['Pokaż ekran','Pokaż ten ekran, żeby problem był jasny.']],backHome:'START',fixedProblem:'PROBLEM',R:{startTitle:'Początek pracy',S:[['Weź reader','Weź reader z ładowarki z wyznaczonego miejsca.'],['Tag personalny','Odbij swój tag personalny centralnym przyciskiem readera zgodnie z informacją startową.'],['Początek pracy','Na tablicy odbij tag „początek pracy”.'],['Czynność','Odbij czynność, która została Ci przydzielona.']],rowsTitle:'Rejestracja pracy w rzędach',Rows:[['Wejście w rząd','Idź do przydzielonego rzędu.'],['Wyjście z rzędu','Dopiero wychodząc z rzędu odbij tag zawieszony na rzędzie.'],['Rząd skończony','Odbij tag rzędu jeden raz.'],['Rząd nieskończony','Odbij tag rzędu dwa razy.'],['Przerwa','Wyjdź z rzędu, odbij tag rzędu, potem odbij początek przerwy.'],['Koniec pracy','Wychodząc z rzędu odbij tag rzędu, potem odbij koniec pracy.']],outsideTitle:'Rejestracja pracy poza rzędami',Out:[['Początek','Odbij tag personalny, początek pracy i czynność.'],['Zmiana czynności','Podejdź do tablicy aktywności i odbij nową czynność.'],['Przerwa','Odbij początek przerwy, po powrocie koniec przerwy i czynność.'],['Koniec pracy','Po zakończeniu pracy odbij koniec pracy.']],cartTitle:'Wózki przy zbiorze pomidora',Cart:[['Wózek','Wychodząc z rzędu najpierw odbij tag wózka. Zawsze jeden raz.'],['Rząd','Potem odbij tag rzędu: skończony raz, nieskończony dwa razy.'],['Przycisk','Na końcu naciśnij przycisk readera.']],restartTitle:'Restart readera',Restart:[['Trzymaj lewy','Trzymaj wciśnięty lewy przycisk.'],['Naciśnij kolejno','Prawy, środkowy, prawy.'],['Menu','Puść lewy, prawy 5 razy, środkowy SELECT, lewy YES.']]}}},
+EN:{sub:'INFORMATION AND TRAINING SYSTEM',note:'Choose language at the top. Then tap what you need now.',nav:['START','MAP','READER','PROBLEM'],problem:'PROBLEM',homeTitle:'What do you need now?',homeText:'This link helps the worker quickly. Choose your situation.',actions:[['maps','MAP','I am heading there first time','Choose stage or office and open the map.'],['reader','READ','Greenhouse work','Tags, rows, breaks and carts.'],['test','TEST','Check what you remember','Short test with key rules.'],['phone','TEL','Add to phone','Use this link like an app icon.']],rememberTitle:'Most important',remember:[['Do not enter alone','After arrival, wait for the responsible person.'],['Do not guess','If you do not know, ask the leader or supervisor.'],['Reader','Scan row tag when leaving the row, not when entering.']],mapsTitle:'Map and entrance',mapsText:'Choose the place from start information. Open the map and head to the point.',stages:['Office','Entrance map','Stage 1','Stage 2','Stage 3','Stage 4','Stage 5','Stage 6'],open:'Open map',firstTitle:'First time',first:[['Choose place','Check where you must report.'],['Open map','Tap stage or office.'],['Head to the point','Walk or travel according to the map.'],['Wait','Do not enter the greenhouse alone.']],mapWarnTitle:'Important',mapWarn:'If the map is different from start information, ask before entering.',readerTitle:'Reader - step by step',readerText:'This module is for a person already ready to work in the greenhouse.',rowsTab:'Rows',outsideTab:'Outside rows',phoneTitle:'Add link to phone',phoneText:'Worker can keep training as an icon.',android:[['Open link','Open page in Chrome.'],['Menu','Tap three dots.'],['Add','Choose Add to home screen.']],iphone:[['Open link','Open page in Safari.'],['Share','Tap share icon.'],['Add','Choose Add to Home Screen.']],testTitle:'Mini test',testText:'Tap correct answer.',quiz:[['Finished row:', ['once','twice'],0],['Unfinished row:', ['once','twice'],1],['For tomatoes first scan:', ['cart','row'],0],['Scan row tag:', ['when entering','when leaving'],1]],problemTitle:'Problem?',problemText:'Do not guess or continue alone if unsure.',problemDoTitle:'What to do',problemSteps:[['Stop','Do not continue if you do not know what to do.'],['Ask','Ask leader, supervisor or responsible person.'],['Show screen','Show this screen so the problem is clear.']],backHome:'START',fixedProblem:'PROBLEM',R:{startTitle:'Start work',S:[['Take reader','Take reader from assigned charger.'],['Personal tag','Scan your personal tag according to start information.'],['Start work','Scan “start work” on the board.'],['Activity','Scan assigned activity.']],rowsTitle:'Work registration in rows',Rows:[['Enter row','Go to assigned row.'],['Leaving row','Only when leaving the row, scan the row tag.'],['Finished row','Scan row tag once.'],['Unfinished row','Scan row tag twice.'],['Break','Leave row, scan row tag, then scan break start.'],['End work','Leaving row scan row tag, then scan end work.']],outsideTitle:'Work registration outside rows',Out:[['Start','Scan personal tag, start work and activity.'],['Change activity','Go to activity board and scan new activity.'],['Break','Scan break start, after return break end and activity.'],['End work','After finishing work scan end work.']],cartTitle:'Carts during tomato harvest',Cart:[['Cart','When leaving row, scan cart tag first. Always once.'],['Row','Then scan row tag: finished once, unfinished twice.'],['Button','At the end press reader button.']],restartTitle:'Reader restart',Restart:[['Hold left','Hold left button.'],['Press in order','Right, middle, right.'],['Menu','Release left, right 5 times, middle SELECT, left YES.']]}}},
+UA:{sub:'ІНФОРМАЦІЙНО-НАВЧАЛЬНА СИСТЕМА',note:'Оберіть мову зверху. Потім натисніть те, що потрібно зараз.',nav:['СТАРТ','КАРТА','РІДЕР','ПРОБЛЕМА'],problem:'ПРОБЛЕМА',homeTitle:'Що вам потрібно зараз?',homeText:'Це посилання швидко допомагає працівнику. Оберіть ситуацію.',actions:[['maps','КАРТА','Прямую перший раз','Оберіть етап або офіс і відкрийте карту.'],['reader','РІД','Робота в теплиці','Теги, ряди, перерви і візки.'],['test','ТЕСТ','Перевірте, що пам’ятаєте','Короткий тест з головних правил.'],['phone','ТЕЛ','Додати на телефон','Зробіть з посилання іконку.']],rememberTitle:'Найважливіше',remember:[['Не заходьте самі','Після прибуття чекайте відповідальну особу.'],['Не вгадуйте','Якщо не знаєте, запитайте лідера або бригадира.'],['Рідер','Тег ряду відбивайте при виході з ряду, не при вході.']],mapsTitle:'Карта і вхід',mapsText:'Оберіть місце зі стартової інформації. Відкрийте карту і прямуйте до пункту.',stages:['Офіс','Карта входів','Етап 1','Етап 2','Етап 3','Етап 4','Етап 5','Етап 6'],open:'Відкрити карту',firstTitle:'Перший раз',first:[['Оберіть місце','Перевірте, куди потрібно прийти.'],['Відкрийте карту','Натисніть етап або офіс.'],['Прямуйте до пункту','Ідіть або їдьте згідно з картою.'],['Чекайте','Не заходьте самі в теплицю.']],mapWarnTitle:'Увага',mapWarn:'Якщо карта відрізняється від стартової інформації, запитайте перед входом.',readerTitle:'Рідер - крок за кроком',readerText:'Цей модуль для людини, яка вже готова до роботи в теплиці.',rowsTab:'Ряди',outsideTab:'Поза рядами',phoneTitle:'Додати посилання на телефон',phoneText:'Працівник може мати навчання як іконку.',android:[['Відкрийте посилання','Відкрийте сторінку в Chrome.'],['Меню','Натисніть три крапки.'],['Додайте','Оберіть додати на головний екран.']],iphone:[['Відкрийте посилання','Відкрийте сторінку в Safari.'],['Поділитися','Натисніть іконку поширення.'],['Додайте','Оберіть на початковий екран.']],testTitle:'Міні тест',testText:'Натисніть правильну відповідь.',quiz:[['Закінчений ряд:', ['1 раз','2 рази'],0],['Незакінчений ряд:', ['1 раз','2 рази'],1],['При помідорах спочатку:', ['візок','ряд'],0],['Тег ряду:', ['при вході','при виході'],1]],problemTitle:'Є проблема?',problemText:'Не вгадуйте і не продовжуйте самі, якщо не впевнені.',problemDoTitle:'Що зробити',problemSteps:[['Зупиніться','Не продовжуйте, якщо не знаєте що робити.'],['Запитайте','Запитайте лідера, бригадира або відповідальну особу.'],['Покажіть екран','Покажіть цей екран, щоб проблема була зрозуміла.']],backHome:'СТАРТ',fixedProblem:'ПРОБЛЕМА',R:{startTitle:'Початок роботи',S:[['Візьміть рідер','Візьміть рідер із визначеної зарядки.'],['Персональний тег','Відбийте персональний тег згідно зі стартовою інформацією.'],['Початок роботи','На дошці відбийте “початок роботи”.'],['Діяльність','Відбийте призначену діяльність.']],rowsTitle:'Реєстрація роботи в рядах',Rows:[['Вхід у ряд','Ідіть у призначений ряд.'],['Вихід з ряду','Тільки виходячи з ряду, відбийте тег ряду.'],['Ряд закінчений','Відбийте тег ряду один раз.'],['Ряд не закінчений','Відбийте тег ряду два рази.'],['Перерва','Вийдіть з ряду, відбийте тег ряду, потім початок перерви.'],['Кінець роботи','Виходячи з ряду відбийте тег ряду, потім кінець роботи.']],outsideTitle:'Робота поза рядами',Out:[['Початок','Відбийте персональний тег, початок роботи і діяльність.'],['Зміна діяльності','Підійдіть до дошки активностей і відбийте нову діяльність.'],['Перерва','Відбийте початок перерви, після повернення кінець перерви і діяльність.'],['Кінець роботи','Після завершення роботи відбийте кінець роботи.']],cartTitle:'Візки при зборі помідорів',Cart:[['Візок','Виходячи з ряду, спочатку відбийте тег візка. Завжди один раз.'],['Ряд','Потім тег ряду: закінчений раз, незакінчений два рази.'],['Кнопка','Наприкінці натисніть кнопку рідера.']],restartTitle:'Рестарт рідера',Restart:[['Тримайте ліву','Тримайте ліву кнопку.'],['Натисніть','Права, середня, права.'],['Меню','Відпустіть ліву, права 5 разів, середня SELECT, ліва YES.']]}}}
+};
+T.RU={...T.UA,sub:'ИНФОРМАЦИОННО-ОБУЧАЮЩАЯ СИСТЕМА',note:'Выберите язык сверху. Потом нажмите то, что нужно сейчас.',nav:['СТАРТ','КАРТА','РИДЕР','ПРОБЛЕМА'],problem:'ПРОБЛЕМА',homeTitle:'Что вам нужно сейчас?',homeText:'Эта ссылка быстро помогает работнику. Выберите ситуацию.',actions:[['maps','КАРТА','Направляюсь первый раз','Выберите этап или офис и откройте карту.'],['reader','РИД','Работа в теплице','Теги, ряды, перерывы и тележки.'],['test','ТЕСТ','Проверьте, что помните','Короткий тест по главным правилам.'],['phone','ТЕЛ','Добавить на телефон','Сделайте из ссылки иконку.']],rememberTitle:'Самое важное',remember:[['Не входите сами','После прибытия ждите ответственного человека.'],['Не угадывайте','Если не знаете, спросите лидера или бригадира.'],['Ридер','Тег ряда отмечайте при выходе из ряда, не при входе.']],mapsTitle:'Карта и вход',mapsText:'Выберите место из стартовой информации. Откройте карту и направляйтесь к пункту.',stages:['Офис','Карта входов','Этап 1','Этап 2','Этап 3','Этап 4','Этап 5','Этап 6'],open:'Открыть карту',mapWarnTitle:'Внимание',problemTitle:'Есть проблема?',fixedProblem:'ПРОБЛЕМА'};
+T.AZ={...T.EN,sub:'MƏLUMAT VƏ TƏLİM SİSTEMİ',note:'Dili yuxarıdan seçin. Sonra lazım olanı basın.',nav:['START','XƏRİTƏ','READER','PROBLEM'],problem:'PROBLEM',homeTitle:'İndi sizə nə lazımdır?',homeText:'Bu link işçiyə tez kömək edir. Vəziyyəti seçin.',actions:[['maps','XƏR','İlk dəfə istiqamət alıram','Etap və ya ofis seçin, xəritəni açın.'],['reader','REA','İstixanada iş','Taglar, sətirlər, fasilələr və arabalar.'],['test','TES','Yadda qalanı yoxla','Əsas qaydalar üzrə qısa test.'],['phone','TEL','Telefona əlavə et','Linki ikon kimi saxlayın.']],rememberTitle:'Ən vacib',remember:[['Tək girməyin','Gələndən sonra məsul şəxsi gözləyin.'],['Təxmin etməyin','Bilmirsinizsə, liderdən və ya briqadirdən soruşun.'],['Reader','Sətir tagını sətirdən çıxanda vurun, girəndə yox.']],mapsTitle:'Xəritə və giriş',mapsText:'Start məlumatındakı yeri seçin. Xəritəni açın və punkta istiqamət alın.',stages:['Ofis','Giriş xəritəsi','Etap 1','Etap 2','Etap 3','Etap 4','Etap 5','Etap 6'],open:'Xəritəni aç'};
+let lang='PL',screen='home',readerMode='rows';const $=id=>document.getElementById(id);function st(a){return a.map((x,i)=>`<div class="step"><div class="num">${i+1}</div><div><strong>${x[0]}</strong><p>${x[1]}</p></div></div>`).join('')}function go(id){screen=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));scrollTo(0,0)}function renderReader(){const L=T[lang],R=L.R;$('tabRows').textContent=L.rowsTab;$('tabOutside').textContent=L.outsideTab;$('tabRows').classList.toggle('active',readerMode==='rows');$('tabOutside').classList.toggle('active',readerMode==='outside');$('readerStart').innerHTML=`<h2>${R.startTitle}</h2>${st(R.S)}`;$('readerRows').style.display=readerMode==='rows'?'block':'none';$('readerOutside').style.display=readerMode==='outside'?'block':'none';$('readerRows').innerHTML=`<h2>${R.rowsTitle}</h2>${st(R.Rows)}`;$('readerOutside').innerHTML=`<h2>${R.outsideTitle}</h2>${st(R.Out)}`;$('readerCart').innerHTML=`<h2>${R.cartTitle}</h2>${st(R.Cart)}`;$('readerRestart').innerHTML=`<h2>${R.restartTitle}</h2>${st(R.Restart)}`}function render(){const L=T[lang];document.documentElement.lang=lang.toLowerCase();$('sub').textContent=L.sub;$('note').textContent=L.note;$('panic').textContent=L.problem;$('backHome').textContent=L.backHome;$('fixedProblem').textContent=L.fixedProblem;document.querySelectorAll('#langs button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));document.querySelectorAll('#nav button').forEach((b,i)=>b.textContent=L.nav[i]);$('homeTitle').textContent=L.homeTitle;$('homeText').textContent=L.homeText;$('actions').innerHTML=L.actions.map(a=>`<button class="action ${a[0]}" data-go="${a[0]}"><div class="ico">${a[1]}</div><div><strong>${a[2]}</strong><span>${a[3]}</span></div></button>`).join('');$('rememberTitle').textContent=L.rememberTitle;$('remember').innerHTML=st(L.remember);$('mapsTitle').textContent=L.mapsTitle;$('mapsText').textContent=L.mapsText;const keys=['office','main','e1','e2','e3','e4','e5','e6'];$('stages').innerHTML=keys.map((k,i)=>`<a class="stage" href="${MAPS[k]}" target="_blank" rel="noopener"><div class="ico">${i?i:'B'}</div><div><strong>${L.stages[i]}</strong><span>${L.open}</span></div></a>`).join('');$('firstTitle').textContent=L.firstTitle;$('firstSteps').innerHTML=st(L.first);$('mapWarnTitle').textContent=L.mapWarnTitle;$('mapWarn').textContent=L.mapWarn;$('readerTitle').textContent=L.readerTitle;$('readerText').textContent=L.readerText;$('phoneTitle').textContent=L.phoneTitle;$('phoneText').textContent=L.phoneText;$('android').innerHTML=st(L.android);$('iphone').innerHTML=st(L.iphone);$('testTitle').textContent=L.testTitle;$('testText').textContent=L.testText;$('quiz').innerHTML=L.quiz.map((q,qi)=>`<h2>${q[0]}</h2>${q[1].map((a,ai)=>`<button data-q="${qi}" data-a="${ai}">${a}</button>`).join('')}`).join('');$('problemTitle').textContent=L.problemTitle;$('problemText').textContent=L.problemText;$('problemDoTitle').textContent=L.problemDoTitle;$('problemSteps').innerHTML=st(L.problemSteps);document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));document.querySelectorAll('#quiz button').forEach(b=>b.onclick=()=>{const q=L.quiz[+b.dataset.q];b.classList.add(+b.dataset.a===q[2]?'good':'bad')});renderReader();go(screen)}document.querySelectorAll('#langs button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;render()});$('tabRows').onclick=()=>{readerMode='rows';renderReader()};$('tabOutside').onclick=()=>{readerMode='outside';renderReader()};render();
+</script>
 </body>
 </html>
