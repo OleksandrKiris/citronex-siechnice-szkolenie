@@ -92,7 +92,8 @@ function renderQuiz() {
 }
 
 function updateProgress() {
-  const completed = state.completed ? 100 : state.started ? 60 : 0;
+  const sectionsCount = data().sections.length || 1;
+  const completed = state.completed ? 100 : state.started ? Math.min(85, Math.round((sectionsCount / (sectionsCount + 2)) * 100)) : 0;
   els.progressText.textContent = `${completed}%`;
   els.progressBar.style.width = `${completed}%`;
 }
@@ -164,6 +165,9 @@ function resetState() {
 }
 
 function renderContent(value) {
+  if (typeof value === 'object' && value !== null && value.url) {
+    return `<a class="map-link" href="${escapeAttribute(value.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(value.label || value.url)}</a>`;
+  }
   return escapeHtml(value).replace(/https?:\/\/[^\s]+/g, (url) => {
     return `<a href="${escapeAttribute(url)}" target="_blank" rel="noopener noreferrer">${url}</a>`;
   });
