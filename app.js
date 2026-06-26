@@ -68,8 +68,8 @@ function renderTraining() {
     <article class="card training-card" data-training-card="${index}">
       <span class="pill">${index + 1}/${sections.length}</span>
       <h2>${escapeHtml(section.title)}</h2>
-      <ul>${section.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
-      ${section.notice ? `<div class="notice">${escapeHtml(section.notice)}</div>` : ''}
+      <ul>${section.items.map((item) => `<li>${renderContent(item)}</li>`).join('')}</ul>
+      ${section.notice ? `<div class="notice">${renderContent(section.notice)}</div>` : ''}
     </article>
   `).join('');
 }
@@ -163,6 +163,12 @@ function resetState() {
   window.location.reload();
 }
 
+function renderContent(value) {
+  return escapeHtml(value).replace(/https?:\/\/[^\s]+/g, (url) => {
+    return `<a href="${escapeAttribute(url)}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+  });
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -170,6 +176,10 @@ function escapeHtml(value) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
+}
+
+function escapeAttribute(value) {
+  return String(value).replaceAll('"', '&quot;');
 }
 
 function bindEvents() {
