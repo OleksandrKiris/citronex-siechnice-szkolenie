@@ -4,7 +4,7 @@ Jednoplikowy system szkoleniowy dla pracownikow Citronex Siechnice.
 
 ## Link glowny po publikacji
 
-https://okiris.github.io/citronex-siechnice-szkolenie/
+https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
 ## Co ma byc w repozytorium
 
@@ -16,4 +16,3 @@ https://okiris.github.io/citronex-siechnice-szkolenie/
 ## Cel
 
 Pracownik dostaje jeden link, otwiera go w przegladarce telefonu i przechodzi szkolenie.
-
