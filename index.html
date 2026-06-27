@@ -552,7 +552,7 @@ function toggleShowAll(){
 }
 function resetChoices(){
  ['cx_stage','cx_company','cx_mode','cx_reader','cx_lite','cx_guideStep','cx_showFull','cx_finished','cx_firstDayOpen','cx_helperPlace','cx_helperProblem','cx_cityOpen','cx_pathMode','cx_showAll','cx_appTab','cx_readerQuick'].forEach(k=>localStorage.removeItem&&localStorage.removeItem(k));
- stage='e1';company=0;mode='first';readerMode='start';readerQuick='startWork';lite=false;guideStep=0;showFull=false;finished=false;firstDayOpen=false;helperPlace='office';helperProblem=0;cityOpen=false;pathMode='start';showAll=false;appTab='route';
+stage='e1';company=0;mode='first';readerMode='start';readerQuick='startWork';lite=false;guideStep=0;showFull=false;finished=false;firstDayOpen=false;helperPlace='office';helperProblem=0;cityOpen=false;pathMode='start';showAll=false;appTab='home';
  let note=el('resetNote');if(note)note.textContent=(T[lang]||T.PL).resetDone;
  apply();
  setTimeout(()=>{let p=el('humanPanel');if(p&&p.scrollIntoView)p.scrollIntoView({behavior:'smooth',block:'start'})},0);
