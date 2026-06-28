@@ -1125,4 +1125,98 @@ renderOrientation=function(x){
 if(typeof apply==='function')apply();
 })();
 </script>
+<style>
+.medical-help-ready .assistPanel,
+.medical-help-ready .moduleQuizPanel,
+.medical-help-ready .lostRescue,
+.medical-help-ready #sosbox,
+.medical-help-ready .fixedSOS{display:none!important}
+.medicalPanel{border:0;background:#f6faf7;border-radius:18px;padding:0;margin:0;box-shadow:none}
+.medicalHero{background:#123f2b;color:#fff;border-radius:18px;padding:16px;margin:0 0 12px;box-shadow:0 14px 32px rgba(18,63,43,.18)}
+.medicalHero h2{margin:0 0 6px;font-size:24px;line-height:1.12;color:#fff}
+.medicalHero p{margin:0;color:#e8f5ed;font-weight:800;line-height:1.35}
+.medicalGrid{display:grid;grid-template-columns:1fr;gap:12px}
+.medicalCard{background:#fff;border:1px solid #d7e5da;border-radius:17px;padding:14px;box-shadow:0 10px 24px rgba(15,40,27,.08)}
+.medicalCard h3{margin:0 0 8px;color:#173b2a;font-size:19px;line-height:1.18}
+.medicalCard p{margin:0 0 10px;color:#42564a;font-weight:800;line-height:1.36}
+.medicalBadge{display:inline-block;background:#eaf8ef;color:#0f5f3f;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;margin-bottom:8px}
+.medicalUrgent{border-color:#f1c56d;background:#fffaf0}
+.medicalDanger{border-color:#eba0a0;background:#fff7f7}
+.medicalDental{border-color:#cdddf6;background:#f8fbff}
+.medicalChecklist{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 12px}
+.medicalChecklist span{background:#edf7f0;border:1px solid #cfe2d6;color:#173b2a;border-radius:999px;padding:7px 9px;font-size:13px;font-weight:900}
+.medicalActions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.medicalBtn{display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;border-radius:14px;padding:11px 12px;text-decoration:none;font-weight:900;text-align:center}
+.medicalMapBtn{background:#0f5f3f;color:#fff}
+.medicalTelBtn{background:#fff;border:1px solid #b9d2c2;color:#173b2a}
+.medical112{background:#a62323;color:#fff}
+.medicalProvider{border-top:1px solid #e1ebe4;padding-top:11px;margin-top:11px}
+.medicalProvider:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.medicalProvider b{display:block;color:#173b2a;font-size:16px;margin-bottom:4px}
+.medicalProvider small{display:block;color:#56685f;font-size:13px;font-weight:800;line-height:1.3;margin-bottom:8px}
+.medicalProviderActions{display:grid;grid-template-columns:1fr;gap:7px}
+.medicalNote{border-left:4px solid #0f5f3f;background:#eef8f2;border-radius:12px;padding:10px;color:#173b2a;font-weight:900;line-height:1.35;margin-top:10px}
+.medicalDanger .medicalNote{border-left-color:#a62323;background:#fff0f0;color:#741818}
+.medicalDangerBox{border:1px solid #eba0a0;background:#fff7f7;border-radius:15px;padding:12px;margin-top:12px}
+.medicalDangerBox h3{color:#741818}
+@media(min-width:720px){.medicalGrid{grid-template-columns:1fr 1fr}.medicalCard:first-child,.medicalCard:last-child{grid-column:1/-1}.medicalProviderActions{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.medicalHero{padding:14px;border-radius:16px}.medicalHero h2{font-size:22px}.medicalCard{padding:12px;border-radius:15px}.medicalCard h3{font-size:18px}.medicalBtn{min-height:46px;font-size:14px}.medicalChecklist span{font-size:12px}}
+</style>
+<script>
+(function(){
+document.body.classList.add('medical-help-ready');
+var MEDICAL_LINKS={
+goz:'https://www.google.com/maps/place/GOZ+Siechnice/@51.0312338,17.1495451,274m/data=!3m2!1e3!4b1!4m12!1m5!3m4!2zNTHCsDAxJzAyLjUiTiAxN8KwMDknMjUuMyJF!8m2!3d51.0173459!4d17.1570148!3m5!1s0x470fdd006716aeb7:0x34fbd349a5cac4d5!8m2!3d51.031233!4d17.1501888!16s%2Fg%2F11yycs9lf9?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D',
+sorOlawa:'https://maps.app.goo.gl/9oCDLCRmdZHyJ6wi8',
+sorWroclaw:'https://maps.app.goo.gl/PTFDRQC7fnsVRqhY8'
+};
+var MEDICAL_UI={
+PL:{tab:'Lekarz',tabLead:'Przychodnia, SOR i dentysta. Szybkie informacje bez pytań.',title:'Gdzie szukać lekarza?',lead:'Wybierz sytuację. Najważniejsze informacje są od razu widoczne na telefonie.',clinicBadge:'Najpierw',clinicTitle:'Przychodnia - GOZ Siechnice',registration:'Zapisy są od godziny 8:00.',registrationWarn:'Przyjdź o 8:00, nie później. Później może już nie być miejsc na zapis.',bring:'Zabierz ze sobą',pesel:'PESEL',passport:'paszport',phone:'telefon',maps:'Otwórz w Google Maps',sorTitle:'SOR - nagłe przypadki',sorLead:'Na SOR należy jechać w nagłych przypadkach: silny ból, uraz, gorączka, problemy z oddychaniem, omdlenie albo poważne pogorszenie stanu zdrowia.',sorOlawa:'SOR Oława',sorWroclaw:'SOR Wrocław',dentalTitle:'Pogotowie dentystyczne',nfz:'NFZ / doraźna pomoc stomatologiczna',nfzTime:'W dni robocze działa zwykle 19:00-7:00, a w soboty, niedziele i święta całodobowo.',contacts:'Adresy do kontaktu',private:'Prywatnie / ostry dyżur',call:'Zadzwoń',address:'Adres',onlyPhone:'Przyjmują tylko po wcześniejszej rejestracji telefonicznej.',privateDuty:'To prywatny dyżur, nie NFZ. Po godzinie 21:00 wymaga potwierdzenia telefonicznego.',callFirst:'Najlepiej najpierw zadzwonić.',danger:'Przy dużej opuchliźnie twarzy, gorączce, problemie z oddychaniem albo połykaniem - jedź na SOR albo dzwoń pod numer 112.',call112:'Zadzwoń 112'},
+EN:{tab:'Doctor',tabLead:'Clinic, emergency department and dentist. Fast information without questions.',title:'Where to look for a doctor?',lead:'Choose your situation. The most important information is visible immediately on the phone.',clinicBadge:'First option',clinicTitle:'Clinic - GOZ Siechnice',registration:'Registration starts at 8:00.',registrationWarn:'Come at 8:00, not later. Later there may be no registration places left.',bring:'Take with you',pesel:'PESEL',passport:'passport',phone:'phone',maps:'Open in Google Maps',sorTitle:'Emergency department - urgent cases',sorLead:'Go to the emergency department in urgent cases: strong pain, injury, fever, breathing problems, fainting or serious worsening of health.',sorOlawa:'Emergency department Oława',sorWroclaw:'Emergency department Wrocław',dentalTitle:'Emergency dental help',nfz:'NFZ / urgent dental help',nfzTime:'On working days it usually works 19:00-7:00, and on Saturdays, Sundays and public holidays 24h.',contacts:'Contacts',private:'Private / urgent duty',call:'Call',address:'Address',onlyPhone:'They accept patients only after phone registration.',privateDuty:'This is a private duty, not NFZ. After 21:00 it requires phone confirmation.',callFirst:'It is best to call first.',danger:'If the face is very swollen, there is fever, breathing or swallowing problem - go to the emergency department or call 112.',call112:'Call 112'},
+UA:{tab:'Лікар',tabLead:'Поліклініка, SOR і стоматолог. Швидка інформація без питань.',title:'Де шукати лікаря?',lead:'Оберіть ситуацію. Найважливіше одразу видно на телефоні.',clinicBadge:'Спочатку',clinicTitle:'Поліклініка - GOZ Siechnice',registration:'Запис починається о 8:00.',registrationWarn:'Прийдіть о 8:00, не пізніше. Пізніше місць для запису може вже не бути.',bring:'Візьміть із собою',pesel:'PESEL',passport:'паспорт',phone:'телефон',maps:'Відкрити в Google Maps',sorTitle:'SOR - невідкладні випадки',sorLead:'На SOR треба їхати у невідкладних випадках: сильний біль, травма, температура, проблеми з диханням, непритомність або різке погіршення стану.',sorOlawa:'SOR Олава',sorWroclaw:'SOR Вроцлав',dentalTitle:'Невідкладна стоматологічна допомога',nfz:'NFZ / невідкладна стоматологічна допомога',nfzTime:'У робочі дні зазвичай працює 19:00-7:00, а в суботу, неділю і свята цілодобово.',contacts:'Контакти',private:'Приватно / гострий черговий прийом',call:'Подзвонити',address:'Адреса',onlyPhone:'Приймають тільки після телефонної реєстрації.',privateDuty:'Це приватний черговий прийом, не NFZ. Після 21:00 потрібно підтвердити телефоном.',callFirst:'Найкраще спочатку подзвонити.',danger:'Якщо є велика пухлина обличчя, температура, проблема з диханням або ковтанням - їдьте на SOR або дзвоніть 112.',call112:'Дзвонити 112'},
+RU:{tab:'Врач',tabLead:'Поликлиника, SOR и стоматолог. Быстрая информация без вопросов.',title:'Где искать врача?',lead:'Выберите ситуацию. Самая важная информация сразу видна на телефоне.',clinicBadge:'Сначала',clinicTitle:'Поликлиника - GOZ Siechnice',registration:'Запись начинается в 8:00.',registrationWarn:'Приходите в 8:00, не позже. Позже мест для записи может уже не быть.',bring:'Возьмите с собой',pesel:'PESEL',passport:'паспорт',phone:'телефон',maps:'Открыть в Google Maps',sorTitle:'SOR - срочные случаи',sorLead:'На SOR нужно ехать в срочных случаях: сильная боль, травма, температура, проблемы с дыханием, обморок или серьезное ухудшение состояния.',sorOlawa:'SOR Олава',sorWroclaw:'SOR Вроцлав',dentalTitle:'Срочная стоматологическая помощь',nfz:'NFZ / срочная стоматологическая помощь',nfzTime:'В рабочие дни обычно работает 19:00-7:00, а в субботу, воскресенье и праздники круглосуточно.',contacts:'Контакты',private:'Частно / острый дежурный прием',call:'Позвонить',address:'Адрес',onlyPhone:'Принимают только после телефонной регистрации.',privateDuty:'Это частный дежурный прием, не NFZ. После 21:00 нужно подтверждение по телефону.',callFirst:'Лучше сначала позвонить.',danger:'Если большая опухоль лица, температура, проблема с дыханием или глотанием - езжайте на SOR или звоните 112.',call112:'Звонить 112'},
+AZ:{tab:'Həkim',tabLead:'Poliklinika, SOR və diş həkimi. Sualsız sürətli məlumat.',title:'Həkimi harada axtarmaq olar?',lead:'Vəziyyəti seçin. Ən vacib məlumat telefonda dərhal görünür.',clinicBadge:'Əvvəlcə',clinicTitle:'Poliklinika - GOZ Siechnice',registration:'Qeydiyyat saat 8:00-da başlayır.',registrationWarn:'Saat 8:00-da gəlin, gecikməyin. Sonra qeydiyyat üçün yer qalmaya bilər.',bring:'Özünüzlə götürün',pesel:'PESEL',passport:'pasport',phone:'telefon',maps:'Google Maps-də aç',sorTitle:'SOR - təcili hallar',sorLead:'SOR-a təcili hallarda gedin: güclü ağrı, zədə, qızdırma, nəfəs problemi, huşunu itirmə və ya sağlamlığın ciddi pisləşməsi.',sorOlawa:'SOR Oława',sorWroclaw:'SOR Wrocław',dentalTitle:'Təcili stomatoloji yardım',nfz:'NFZ / təcili stomatoloji yardım',nfzTime:'İş günləri adətən 19:00-7:00 işləyir, şənbə, bazar və bayram günləri isə 24 saat.',contacts:'Əlaqə',private:'Özəl / təcili növbə',call:'Zəng et',address:'Ünvan',onlyPhone:'Yalnız telefonla əvvəlcədən qeydiyyatdan sonra qəbul edirlər.',privateDuty:'Bu özəl növbədir, NFZ deyil. Saat 21:00-dan sonra telefonla təsdiq lazımdır.',callFirst:'Ən yaxşısı əvvəlcə zəng etməkdir.',danger:'Üzdə böyük şişkinlik, qızdırma, nəfəs alma və ya udma problemi varsa - SOR-a gedin və ya 112-yə zəng edin.',call112:'112-yə zəng et'}
+};
+function medicalText(){return MEDICAL_UI[lang]||MEDICAL_UI.PL}
+function mapSearch(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)}
+function mapBtn(label,url){return '<a class="medicalBtn medicalMapBtn" target="_blank" rel="noopener" href="'+url+'">'+label+'</a>'}
+function telBtn(t,number,label){return '<a class="medicalBtn medicalTelBtn" href="tel:'+number+'">'+t.call+': '+label+'</a>'}
+function provider(t,name,address,displayPhone,tel,mapQuery,note){
+ return '<div class="medicalProvider"><b>'+name+'</b><small>'+t.address+': '+address+'</small><div class="medicalProviderActions">'+telBtn(t,tel,displayPhone)+mapBtn(t.maps,mapSearch(mapQuery||name+' '+address))+'</div>'+(note?'<div class="medicalNote">'+note+'</div>':'')+'</div>';
+}
+function applyMedicalLabels(){
+ Object.keys(MEDICAL_UI).forEach(function(k){if(window.T&&T[k]){T[k].tabContacts=MEDICAL_UI[k].tab;T[k].tabContactsLead=MEDICAL_UI[k].tabLead;}});
+}
+applyMedicalLabels();
+renderModuleCoach=function(){var p=el('assistPanel');if(p)p.style.display='none'};
+renderLostRescue=function(){var n=el('lostRescue');if(n)n.innerHTML=''};
+renderAppVisibility=function(){
+ var all=['humanGuide','assistPanel','humanPanel','recoveryBar','lostQuick','rememberSection','mustKnow','workChooser','firstDayWhere','installInfo','currentPathSection','guide','cityInfo','lostRescue','sosbox','fullToggle','fullContent','route','firstStepsSection','company','rulesSection','forbiddenSection','reader','visualSection','test','checklistSection'];
+ all.forEach(function(id){tabShow(id,false)});
+ var visible={home:['humanGuide','humanPanel'],route:['humanGuide','fullContent','route'],greenhouse:['humanGuide','workChooser','guide'],reader:['humanGuide','fullContent','reader'],test:['fullContent','test'],contacts:['cityInfo']};
+ var ids=(visible[appTab]||visible.home).slice();
+ if(appTab==='route'&&needMode==='first')ids.splice(2,0,'firstDayWhere','installInfo','firstStepsSection');
+ ids.forEach(function(id){tabShow(id,true)});
+ var full=el('fullContent');if(full)full.classList.toggle('isHidden',!ids.includes('fullContent'));
+};
+renderCityInfo=function(){
+ var open=el('cityOpen'),panel=el('cityPanel'),t=medicalText();
+ if(!open||!panel)return;
+ open.style.display='none';open.onclick=null;
+ panel.classList.add('active');
+ panel.innerHTML='<div class="medicalPanel"><div class="medicalHero"><h2>'+t.title+'</h2><p>'+t.lead+'</p></div><div class="medicalGrid">'+
+ '<section class="medicalCard"><span class="medicalBadge">'+t.clinicBadge+'</span><h3>'+t.clinicTitle+'</h3><p>'+t.registration+'</p><div class="medicalNote">'+t.registrationWarn+'</div><p style="margin-top:10px">'+t.bring+':</p><div class="medicalChecklist"><span>'+t.pesel+'</span><span>'+t.passport+'</span><span>'+t.phone+'</span></div><div class="medicalActions">'+mapBtn(t.maps,MEDICAL_LINKS.goz)+telBtn(t,'+48713115517','71 311 55 17')+'</div></section>'+
+ '<section class="medicalCard medicalUrgent"><h3>'+t.sorTitle+'</h3><p>'+t.sorLead+'</p><div class="medicalActions">'+mapBtn(t.sorOlawa+' - '+t.maps,MEDICAL_LINKS.sorOlawa)+mapBtn(t.sorWroclaw+' - '+t.maps,MEDICAL_LINKS.sorWroclaw)+'</div></section>'+
+ '<section class="medicalCard medicalDental"><h3>'+t.dentalTitle+'</h3><p><b>'+t.nfz+'</b><br>'+t.nfzTime+'</p><div class="medicalNote">'+t.callFirst+'</div><h3 style="font-size:17px;margin-top:14px">'+t.contacts+'</h3>'+
+ provider(t,'ArtMedis','ul. Sienkiewicza 47, Wrocław','665 339 982','+48665339982','ArtMedis ul. Sienkiewicza 47 Wrocław')+
+ provider(t,'Centrum Medyczne Estomedica','ul. Słowiańska 27B, Wrocław','71 372 13 10','+48713721310','Centrum Medyczne Estomedica ul. Słowiańska 27B Wrocław')+
+ '<h3 style="font-size:17px;margin-top:14px">'+t.private+'</h3>'+
+ provider(t,'Q-Clinic','ul. Pretficza 21/1, Wrocław','71 791 5555','+48717915555','Q-Clinic ul. Pretficza 21/1 Wrocław',t.onlyPhone)+
+ provider(t,'Dental-Art','ul. Komandorska 53A/3b, Wrocław','71 367 22 62','+48713672262','Dental-Art ul. Komandorska 53A/3b Wrocław',t.privateDuty)+
+ '<div class="medicalDangerBox"><h3>'+t.call112+'</h3><p>'+t.danger+'</p><div class="medicalActions"><a class="medicalBtn medical112" href="tel:112">'+t.call112+'</a></div></div></section>'+
+ '</div></div>';
+};
+if(typeof apply==='function')apply();
+})();
+</script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
