@@ -1289,4 +1289,1318 @@ renderOrientation=function(){
 if(typeof apply==='function')apply();
 })();
 </script>
+<style>
+.readerLessonNotice{border:2px solid #0f5f3f;background:#f4fbf6;border-radius:16px;padding:13px;margin:0 0 12px;box-shadow:0 8px 22px rgba(15,95,63,.10)}
+.readerLessonNotice b{display:block;color:#0f5f3f;font-size:15px;margin-bottom:4px}
+.readerLessonNotice p{margin:0;color:#40564a;font-weight:850;line-height:1.35}
+.readerLessonNote{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #cfe6d7;border-radius:999px;padding:6px 9px;margin-top:9px;color:#173b2a;font-size:12px;font-weight:900}
+@media(max-width:520px){.readerLessonNotice{padding:12px;border-radius:14px}.readerLessonNotice b{font-size:14px}.readerLessonNotice p{font-size:13px}}
+</style>
+<script>
+(function(){
+var exactWarehouseMap='https://maps.app.goo.gl/dYbAP1aSsdFrdDZZ9?g_st=ic';
+function patchWarehouseMap(){
+ try{
+  if(typeof MAPS!=='undefined'){
+   var wh=MAPS.find(function(m){return m.id==='warehouse'});
+   if(wh)wh.url=exactWarehouseMap;
+  }
+  if(typeof HELPER_PLACES!=='undefined'){
+   var hp=HELPER_PLACES.find(function(m){return m.id==='warehouse'});
+   if(hp)hp.url=exactWarehouseMap;
+  }
+ }catch(e){}
+}
+var READER_EXACT={
+PL:{
+readerTitle:'Reader - instruktaż krok po kroku',
+readerChoiceTitle:'Ten moduł jest dla pracy na szklarni/produkcji. W magazynie Readera nie ma.',
+readerStartTab:'Start',readerRowsTab:'Rzędy',readerOutsideTab:'Poza rzędami',readerCartTab:'Wózki',readerRestartTab:'Restart',
+quickReaderTitle:'Reader - co robisz teraz?',quickReaderLead:'Wybierz sytuację. Strona pokaże tylko potrzebne kroki.',
+readerStart:[
+['1. Weź reader','Weź reader z ładowarki z wyznaczonego miejsca. Zapamiętaj numer miejsca, żeby odłożyć go tam samo.'],
+['2. Tag personalny','Przyłóż reader do swojego tagu personalnego i naciśnij środkowy przycisk. Godziny startu dostajesz osobno.'],
+['3. Początek pracy','Na tablicy przyłóż reader do tagu "początek pracy" i naciśnij środkowy przycisk.'],
+['4. Czynność','Odbij przydzieloną czynność na tablicy aktywności.'],
+['5. Wybierz dalej','Jeżeli pracujesz w rzędach, użyj zakładki "Rzędy". Jeżeli poza rzędami, użyj "Poza rzędami".'],
+['6. Przerwa','Przerwę odbijaj dokładnie według rodzaju pracy: w rzędach najpierw wyjście z rzędu, potem tag przerwy.'],
+['7. Powrót po przerwie','Po końcu przerwy wróć do pracy i odbij właściwą czynność lub pracuj dalej według instrukcji rzędu.'],
+['8. Koniec pracy','Po zakończeniu pracy odbij tag "koniec pracy".'],
+['9. Ładowarka','Odłóż reader na ładowarkę na wyznaczone miejsce z numerem.']
+],
+rows:[
+['1. Start w rzędach','Weź reader, odbij tag personalny, potem "początek pracy" i przydzieloną czynność.'],
+['2. Wejście do rzędu','Pracownik idzie w rząd. Tag rzędu nie jest odbijany przy wejściu.'],
+['3. Wyjście z rzędu','Dopiero wychodząc z rzędu odbij tag zawieszony na rzędzie.'],
+['4. Rząd skończony','Jeżeli rząd jest skończony, odbij tag rzędu jeden raz.'],
+['5. Rząd nieskończony','Jeżeli rząd nie jest skończony, odbij tag rzędu dwa razy.'],
+['6. Pomidor','Przy zbiorze pomidora użyj procedury wózka: wózek, potem rząd, na końcu przycisk.'],
+['7. Przerwa początek','Idąc na przerwę wyjdź z rzędu i odbij tag zawieszony na rzędzie. Dopiero potem odbij "przerwa początek".'],
+['8. Przerwa koniec','Po odbiciu "przerwa koniec" idź w rząd niedokończony albo nowy. Tag rzędu odbijesz dopiero wychodząc.'],
+['9. Socjal','Idąc na socjal wyjdź z rzędu i odbij tag rzędu. Potem odbij "początek socjal przerwa" i po powrocie "koniec socjal przerwa".'],
+['10. Zmiana czynności','Przy każdej zmianie czynności wyjdź z rzędu, odbij tag rzędu, podejdź do tablicy aktywności i odbij nową czynność.'],
+['11. Koniec pracy','Kończąc pracę w rzędach wyjdź z rzędu, odbij tag rzędu, a potem odbij "koniec pracy".'],
+['12. Przejście poza rzędy','Jeżeli kończysz pracę w rzędach i przechodzisz poza rzędy, stosuj procedurę "poza rzędami".']
+],
+outside:[
+['1. Tag personalny','Odbij swój tag personalny zgodnie z informacją startową.'],
+['2. Początek pracy','Odbij tag "początek pracy" na tablicy.'],
+['3. Czynność','Odbij przydzieloną czynność na tablicy aktywności.'],
+['4. Zmiana czynności','Gdy zmieniasz pracę poza rzędami, odbij nową czynność na tablicy aktywności.'],
+['5. Socjal początek','Rozpoczynając przerwę socjalną odbij "początek socjal przerwa".'],
+['6. Socjal koniec','Kończąc przerwę socjalną odbij "koniec socjal przerwa".'],
+['7. Po socjalu','Po powrocie odbij czynność, którą wykonujesz dalej.'],
+['8. Przerwa początek','Rozpoczynając zwykłą przerwę odbij "przerwa początek".'],
+['9. Przerwa koniec','Kończąc zwykłą przerwę odbij "przerwa koniec".'],
+['10. Po przerwie','Po powrocie odbij czynność, którą wykonujesz dalej.'],
+['11. Koniec pracy','Po zakończeniu pracy odbij "koniec pracy".']
+],
+cart:[
+['1. Zawsze przy wyjściu z rzędu','Procedurę wózka robisz zawsze wychodząc z rzędu.'],
+['2. Wózek','Najpierw zeskanuj wózek i naciśnij środkowy przycisk. Zawsze jeden raz.'],
+['3. Rząd','Potem zeskanuj tag rzędu. Rząd skończony = jeden raz. Rząd nieskończony = dwa razy.'],
+['4. Przycisk','Na końcu naciśnij przycisk na readerze. Kolejność ma znaczenie: wózek, rząd, przycisk.']
+],
+restart:[
+['RESTART READERA','Jeżeli reader się zawiesił, wykonaj dokładnie tę sekwencję.'],
+['1. Lewy przycisk','Trzymaj LEWY przycisk cały czas.'],
+['2. Sekwencja','Wciskaj po kolei: PRAWY, ŚRODKOWY, PRAWY.'],
+['3. Nowe menu','Gdy pojawi się nowe menu, puść LEWY przycisk.'],
+['4. Down','Naciśnij 5 razy PRAWY (DOWN).'],
+['5. Select','Naciśnij ŚRODKOWY (SELECT).'],
+['6. Yes','Naciśnij LEWY (YES).']
+]},
+EN:{
+readerTitle:'Reader - step-by-step training',
+readerChoiceTitle:'This module is for greenhouse/production work. There is no Reader in the warehouse.',
+readerStartTab:'Start',readerRowsTab:'Rows',readerOutsideTab:'Outside rows',readerCartTab:'Carts',readerRestartTab:'Restart',
+quickReaderTitle:'Reader - what are you doing now?',quickReaderLead:'Choose the situation. The page will show only the steps you need.',
+readerStart:[
+['1. Take the Reader','Take the Reader from the charger in the assigned place. Remember the number so you can return it to the same place.'],
+['2. Personal tag','Scan your personal tag with the middle button. Start information is given separately.'],
+['3. Start work','On the board, scan the "start work" tag and press the middle button.'],
+['4. Activity','Scan the activity assigned to you on the activity board.'],
+['5. Choose next','If you work in rows, use "Rows". If you work outside rows, use "Outside rows".'],
+['6. Break','Register breaks according to your work type: in rows, first leave the row and scan the row tag, then scan the break tag.'],
+['7. After break','After ending the break, return to work and scan the correct activity or continue according to the row instruction.'],
+['8. End work','After work, scan the "end work" tag.'],
+['9. Charger','Put the Reader back on the charger in the assigned numbered place.']
+],
+rows:[
+['1. Start in rows','Take the Reader, scan your personal tag, then scan "start work" and the assigned activity.'],
+['2. Enter the row','The worker goes into the row. Do not scan the row tag when entering.'],
+['3. Leave the row','Scan the hanging row tag only when leaving the row.'],
+['4. Finished row','If the row is finished, scan the row tag once.'],
+['5. Unfinished row','If the row is not finished, scan the row tag twice.'],
+['6. Tomatoes','When picking tomatoes, use the cart procedure: cart, then row, then button.'],
+['7. Break start','When going on break, leave the row and scan the hanging row tag. Then scan "break start".'],
+['8. Break end','After "break end", go to the unfinished row or a new row. Scan the row tag only when leaving.'],
+['9. Social break','When going to social break, leave the row and scan the row tag. Then scan "social break start" and after return "social break end".'],
+['10. Change activity','For every activity change, leave the row, scan the row tag, go to the activity board and scan the new activity.'],
+['11. End work','When finishing work in rows, leave the row, scan the row tag, then scan "end work".'],
+['12. Switching outside rows','If you finish row work and move outside rows, follow the "outside rows" procedure.']
+],
+outside:[
+['1. Personal tag','Scan your personal tag according to the start information.'],
+['2. Start work','Scan "start work" on the board.'],
+['3. Activity','Scan the activity assigned to you on the activity board.'],
+['4. Change activity','When changing work outside rows, scan the new activity on the activity board.'],
+['5. Social break start','When starting social break, scan "social break start".'],
+['6. Social break end','When ending social break, scan "social break end".'],
+['7. After social break','After returning, scan the activity you continue.'],
+['8. Break start','When starting a normal break, scan "break start".'],
+['9. Break end','When ending a normal break, scan "break end".'],
+['10. After break','After returning, scan the activity you continue.'],
+['11. End work','After work, scan "end work".']
+],
+cart:[
+['1. Always when leaving the row','Do the cart procedure always when leaving the row.'],
+['2. Cart','First scan the cart and press the middle button. Always once.'],
+['3. Row','Then scan the row tag. Finished row = once. Unfinished row = twice.'],
+['4. Button','At the end press the Reader button. The order matters: cart, row, button.']
+],
+restart:[
+['READER RESTART','If the Reader freezes, follow this exact sequence.'],
+['1. Left button','Hold the LEFT button all the time.'],
+['2. Sequence','Press in order: RIGHT, MIDDLE, RIGHT.'],
+['3. New menu','When the new menu appears, release the LEFT button.'],
+['4. Down','Press RIGHT (DOWN) 5 times.'],
+['5. Select','Press MIDDLE (SELECT).'],
+['6. Yes','Press LEFT (YES).']
+]},
+UA:{
+readerTitle:'Рідер - інструктаж крок за кроком',
+readerChoiceTitle:'Цей модуль для роботи в теплиці/на продукції. На складі рідера немає.',
+readerStartTab:'Старт',readerRowsTab:'Ряди',readerOutsideTab:'Поза рядами',readerCartTab:'Візки',readerRestartTab:'Рестарт',
+quickReaderTitle:'Рідер - що ви робите зараз?',quickReaderLead:'Оберіть ситуацію. Сторінка покаже тільки потрібні кроки.',
+readerStart:[
+['1. Візьміть рідер','Візьміть рідер із зарядного місця. Запамʼятайте номер місця, щоб потім повернути його туди саме.'],
+['2. Персональний тег','Прикладіть рідер до свого персонального тега і натисніть середню кнопку. Інформацію про старт ви отримуєте окремо.'],
+['3. Початок роботи','На дошці прикладіть рідер до тега "початок роботи" і натисніть середню кнопку.'],
+['4. Діяльність','Відбийте призначену вам діяльність на дошці активностей.'],
+['5. Оберіть далі','Якщо працюєте в рядах, відкрийте "Ряди". Якщо поза рядами, відкрийте "Поза рядами".'],
+['6. Перерва','Перерву відбивайте за типом роботи: у рядах спочатку вийдіть з ряду і відбийте тег ряду, потім тег перерви.'],
+['7. Після перерви','Після закінчення перерви поверніться до роботи і відбийте правильну діяльність або працюйте за інструкцією ряду.'],
+['8. Кінець роботи','Після роботи відбийте тег "кінець роботи".'],
+['9. Зарядка','Покладіть рідер на зарядку на визначене місце з номером.']
+],
+rows:[
+['1. Старт у рядах','Візьміть рідер, відбийте персональний тег, потім "початок роботи" і призначену діяльність.'],
+['2. Вхід у ряд','Працівник заходить у ряд. Тег ряду при вході не відбивається.'],
+['3. Вихід з ряду','Тег, який висить на ряді, відбивається тільки при виході з ряду.'],
+['4. Ряд закінчений','Якщо ряд закінчений, відбийте тег ряду один раз.'],
+['5. Ряд не закінчений','Якщо ряд не закінчений, відбийте тег ряду два рази.'],
+['6. Помідори','При зборі помідорів використовуйте процедуру візка: візок, потім ряд, в кінці кнопка.'],
+['7. Початок перерви','Йдучи на перерву, вийдіть з ряду і відбийте тег ряду. Потім відбийте "початок перерви".'],
+['8. Кінець перерви','Після "кінець перерви" йдіть у незакінчений або новий ряд. Тег ряду відбивається тільки при виході.'],
+['9. Соціальна перерва','Йдучи на соціальну перерву, вийдіть з ряду і відбийте тег ряду. Потім відбийте "початок соціальної перерви" і після повернення "кінець соціальної перерви".'],
+['10. Зміна діяльності','При кожній зміні діяльності вийдіть з ряду, відбийте тег ряду, підійдіть до дошки активностей і відбийте нову діяльність.'],
+['11. Кінець роботи','Закінчуючи роботу в рядах, вийдіть з ряду, відбийте тег ряду, потім відбийте "кінець роботи".'],
+['12. Перехід поза ряди','Якщо закінчуєте роботу в рядах і переходите поза ряди, використовуйте процедуру "поза рядами".']
+],
+outside:[
+['1. Персональний тег','Відбийте персональний тег згідно зі стартовою інформацією.'],
+['2. Початок роботи','Відбийте "початок роботи" на дошці.'],
+['3. Діяльність','Відбийте призначену діяльність на дошці активностей.'],
+['4. Зміна діяльності','Коли змінюєте роботу поза рядами, відбийте нову діяльність на дошці активностей.'],
+['5. Початок соціальної перерви','Починаючи соціальну перерву, відбийте "початок соціальної перерви".'],
+['6. Кінець соціальної перерви','Закінчуючи соціальну перерву, відбийте "кінець соціальної перерви".'],
+['7. Після соціальної перерви','Після повернення відбийте діяльність, яку виконуєте далі.'],
+['8. Початок перерви','Починаючи звичайну перерву, відбийте "початок перерви".'],
+['9. Кінець перерви','Закінчуючи звичайну перерву, відбийте "кінець перерви".'],
+['10. Після перерви','Після повернення відбийте діяльність, яку виконуєте далі.'],
+['11. Кінець роботи','Після роботи відбийте "кінець роботи".']
+],
+cart:[
+['1. Завжди при виході з ряду','Процедуру візка робіть завжди при виході з ряду.'],
+['2. Візок','Спочатку скануйте візок і натисніть середню кнопку. Завжди один раз.'],
+['3. Ряд','Потім скануйте тег ряду. Закінчений ряд = один раз. Не закінчений ряд = два рази.'],
+['4. Кнопка','В кінці натисніть кнопку на рідері. Порядок важливий: візок, ряд, кнопка.']
+],
+restart:[
+['РЕСТАРТ РІДЕРА','Якщо рідер завис, виконайте точну послідовність.'],
+['1. Ліва кнопка','Тримайте ЛІВУ кнопку весь час.'],
+['2. Послідовність','Натискайте по черзі: ПРАВА, СЕРЕДНЯ, ПРАВА.'],
+['3. Нове меню','Коли зʼявиться нове меню, відпустіть ЛІВУ кнопку.'],
+['4. Down','Натисніть 5 разів ПРАВУ (DOWN).'],
+['5. Select','Натисніть СЕРЕДНЮ (SELECT).'],
+['6. Yes','Натисніть ЛІВУ (YES).']
+]},
+RU:{
+readerTitle:'Ридер - инструктаж шаг за шагом',
+readerChoiceTitle:'Этот модуль для работы в теплице/на продукции. На складе ридера нет.',
+readerStartTab:'Старт',readerRowsTab:'Ряды',readerOutsideTab:'Вне рядов',readerCartTab:'Тележки',readerRestartTab:'Рестарт',
+quickReaderTitle:'Ридер - что вы делаете сейчас?',quickReaderLead:'Выберите ситуацию. Страница покажет только нужные шаги.',
+readerStart:[
+['1. Возьмите ридер','Возьмите ридер с зарядного места. Запомните номер места, чтобы потом вернуть его туда же.'],
+['2. Персональный тег','Приложите ридер к своему персональному тегу и нажмите среднюю кнопку. Информацию о старте вы получаете отдельно.'],
+['3. Начало работы','На доске приложите ридер к тегу "начало работы" и нажмите среднюю кнопку.'],
+['4. Деятельность','Отметьте назначенную вам деятельность на доске активностей.'],
+['5. Выберите дальше','Если работаете в рядах, откройте "Ряды". Если вне рядов, откройте "Вне рядов".'],
+['6. Перерыв','Перерыв отмечайте по типу работы: в рядах сначала выйдите из ряда и отметьте тег ряда, потом тег перерыва.'],
+['7. После перерыва','После окончания перерыва вернитесь к работе и отметьте правильную деятельность или продолжайте по инструкции ряда.'],
+['8. Конец работы','После работы отметьте тег "конец работы".'],
+['9. Зарядка','Положите ридер на зарядку на определенное место с номером.']
+],
+rows:[
+['1. Старт в рядах','Возьмите ридер, отметьте персональный тег, потом "начало работы" и назначенную деятельность.'],
+['2. Вход в ряд','Работник заходит в ряд. Тег ряда при входе не отмечается.'],
+['3. Выход из ряда','Тег, который висит на ряду, отмечается только при выходе из ряда.'],
+['4. Ряд закончен','Если ряд закончен, отметьте тег ряда один раз.'],
+['5. Ряд не закончен','Если ряд не закончен, отметьте тег ряда два раза.'],
+['6. Помидоры','При сборе помидоров используйте процедуру тележки: тележка, потом ряд, в конце кнопка.'],
+['7. Начало перерыва','Когда идете на перерыв, выйдите из ряда и отметьте тег ряда. Потом отметьте "начало перерыва".'],
+['8. Конец перерыва','После "конец перерыва" идите в незаконченный или новый ряд. Тег ряда отмечается только при выходе.'],
+['9. Социальный перерыв','Когда идете на социальный перерыв, выйдите из ряда и отметьте тег ряда. Потом отметьте "начало социального перерыва" и после возвращения "конец социального перерыва".'],
+['10. Смена деятельности','При каждой смене деятельности выйдите из ряда, отметьте тег ряда, подойдите к доске активностей и отметьте новую деятельность.'],
+['11. Конец работы','Заканчивая работу в рядах, выйдите из ряда, отметьте тег ряда, потом отметьте "конец работы".'],
+['12. Переход вне рядов','Если заканчиваете работу в рядах и переходите вне рядов, используйте процедуру "вне рядов".']
+],
+outside:[
+['1. Персональный тег','Отметьте персональный тег согласно стартовой информации.'],
+['2. Начало работы','Отметьте "начало работы" на доске.'],
+['3. Деятельность','Отметьте назначенную деятельность на доске активностей.'],
+['4. Смена деятельности','Когда меняете работу вне рядов, отметьте новую деятельность на доске активностей.'],
+['5. Начало социального перерыва','Начиная социальный перерыв, отметьте "начало социального перерыва".'],
+['6. Конец социального перерыва','Заканчивая социальный перерыв, отметьте "конец социального перерыва".'],
+['7. После социального перерыва','После возвращения отметьте деятельность, которую выполняете дальше.'],
+['8. Начало перерыва','Начиная обычный перерыв, отметьте "начало перерыва".'],
+['9. Конец перерыва','Заканчивая обычный перерыв, отметьте "конец перерыва".'],
+['10. После перерыва','После возвращения отметьте деятельность, которую выполняете дальше.'],
+['11. Конец работы','После работы отметьте "конец работы".']
+],
+cart:[
+['1. Всегда при выходе из ряда','Процедуру тележки делайте всегда при выходе из ряда.'],
+['2. Тележка','Сначала сканируйте тележку и нажмите среднюю кнопку. Всегда один раз.'],
+['3. Ряд','Потом сканируйте тег ряда. Законченный ряд = один раз. Не законченный ряд = два раза.'],
+['4. Кнопка','В конце нажмите кнопку на ридере. Порядок важен: тележка, ряд, кнопка.']
+],
+restart:[
+['РЕСТАРТ РИДЕРА','Если ридер завис, выполните точную последовательность.'],
+['1. Левая кнопка','Держите ЛЕВУЮ кнопку все время.'],
+['2. Последовательность','Нажимайте по очереди: ПРАВАЯ, СРЕДНЯЯ, ПРАВАЯ.'],
+['3. Новое меню','Когда появится новое меню, отпустите ЛЕВУЮ кнопку.'],
+['4. Down','Нажмите 5 раз ПРАВУЮ (DOWN).'],
+['5. Select','Нажмите СРЕДНЮЮ (SELECT).'],
+['6. Yes','Нажмите ЛЕВУЮ (YES).']
+]},
+AZ:{
+readerTitle:'Reader - addım-addım təlimat',
+readerChoiceTitle:'Bu modul istixana/istehsalat işi üçündür. Anbarda Reader yoxdur.',
+readerStartTab:'Start',readerRowsTab:'Sıralar',readerOutsideTab:'Sıralardan kənar',readerCartTab:'Arabalar',readerRestartTab:'Restart',
+quickReaderTitle:'Reader - indi nə edirsiniz?',quickReaderLead:'Vəziyyəti seçin. Səhifə yalnız lazım olan addımları göstərəcək.',
+readerStart:[
+['1. Reader-i götürün','Reader-i təyin olunmuş şarj yerindən götürün. Sonra eyni nömrəli yerə qaytarmaq üçün nömrəni yadda saxlayın.'],
+['2. Şəxsi tag','Reader-i şəxsi tag-a yaxınlaşdırın və orta düyməni basın. Start məlumatı ayrıca verilir.'],
+['3. İşin başlanğıcı','Lövhədə "işin başlanğıcı" tag-ını skan edin və orta düyməni basın.'],
+['4. Fəaliyyət','Sizə təyin olunmuş fəaliyyəti aktivlik lövhəsində skan edin.'],
+['5. Sonra seçin','Sıralarda işləyirsinizsə, "Sıralar" bölməsini açın. Sıralardan kənar işləyirsinizsə, "Sıralardan kənar" bölməsini açın.'],
+['6. Fasilə','Fasiləni iş növünə görə qeyd edin: sıralarda əvvəl sıradan çıxın və sıra tag-ını skan edin, sonra fasilə tag-ını skan edin.'],
+['7. Fasilədən sonra','Fasiləni bitirdikdən sonra işə qayıdın və düzgün fəaliyyəti skan edin və ya sıra təlimatına görə davam edin.'],
+['8. İşin sonu','İş bitdikdən sonra "işin sonu" tag-ını skan edin.'],
+['9. Şarj yeri','Reader-i təyin olunmuş nömrəli şarj yerinə qoyun.']
+],
+rows:[
+['1. Sıralarda start','Reader-i götürün, şəxsi tag-ı skan edin, sonra "işin başlanğıcı" və təyin olunmuş fəaliyyəti skan edin.'],
+['2. Sıraya giriş','İşçi sıraya daxil olur. Sıra tag-ı girişdə skan edilmir.'],
+['3. Sıradan çıxış','Sırada asılmış tag yalnız sıradan çıxanda skan edilir.'],
+['4. Sıra bitib','Əgər sıra bitibsə, sıra tag-ını bir dəfə skan edin.'],
+['5. Sıra bitməyib','Əgər sıra bitməyibsə, sıra tag-ını iki dəfə skan edin.'],
+['6. Pomidor','Pomidor yığanda araba prosedurundan istifadə edin: araba, sonra sıra, sonda düymə.'],
+['7. Fasilə başlanğıcı','Fasiləyə gedəndə sıradan çıxın və sıra tag-ını skan edin. Sonra "fasilə başlanğıcı"nı skan edin.'],
+['8. Fasilə sonu','"Fasilə sonu"ndan sonra bitməmiş və ya yeni sıraya gedin. Sıra tag-ı yalnız çıxanda skan edilir.'],
+['9. Sosial fasilə','Sosial fasiləyə gedəndə sıradan çıxın və sıra tag-ını skan edin. Sonra "sosial fasilə başlanğıcı" və qayıdanda "sosial fasilə sonu"nu skan edin.'],
+['10. Fəaliyyət dəyişikliyi','Hər fəaliyyət dəyişikliyində sıradan çıxın, sıra tag-ını skan edin, aktivlik lövhəsinə gedin və yeni fəaliyyəti skan edin.'],
+['11. İşin sonu','Sıralarda işi bitirəndə sıradan çıxın, sıra tag-ını skan edin, sonra "işin sonu"nu skan edin.'],
+['12. Sıralardan kənara keçid','Sıralarda işi bitirib sıralardan kənar işə keçirsinizsə, "sıralardan kənar" prosedurunu istifadə edin.']
+],
+outside:[
+['1. Şəxsi tag','Şəxsi tag-ı start məlumatına uyğun skan edin.'],
+['2. İşin başlanğıcı','Lövhədə "işin başlanğıcı"nı skan edin.'],
+['3. Fəaliyyət','Təyin olunmuş fəaliyyəti aktivlik lövhəsində skan edin.'],
+['4. Fəaliyyət dəyişikliyi','Sıralardan kənar işi dəyişəndə yeni fəaliyyəti aktivlik lövhəsində skan edin.'],
+['5. Sosial fasilə başlanğıcı','Sosial fasiləyə başlayanda "sosial fasilə başlanğıcı"nı skan edin.'],
+['6. Sosial fasilə sonu','Sosial fasiləni bitirəndə "sosial fasilə sonu"nu skan edin.'],
+['7. Sosial fasilədən sonra','Qayıdandan sonra davam etdiyiniz fəaliyyəti skan edin.'],
+['8. Fasilə başlanğıcı','Adi fasiləyə başlayanda "fasilə başlanğıcı"nı skan edin.'],
+['9. Fasilə sonu','Adi fasiləni bitirəndə "fasilə sonu"nu skan edin.'],
+['10. Fasilədən sonra','Qayıdandan sonra davam etdiyiniz fəaliyyəti skan edin.'],
+['11. İşin sonu','İş bitdikdən sonra "işin sonu"nu skan edin.']
+],
+cart:[
+['1. Həmişə sıradan çıxanda','Araba prosedurunu həmişə sıradan çıxanda edin.'],
+['2. Araba','Əvvəl arabanı skan edin və orta düyməni basın. Həmişə bir dəfə.'],
+['3. Sıra','Sonra sıra tag-ını skan edin. Sıra bitib = bir dəfə. Sıra bitməyib = iki dəfə.'],
+['4. Düymə','Sonda Reader düyməsini basın. Ardıcıllıq vacibdir: araba, sıra, düymə.']
+],
+restart:[
+['READER RESTART','Reader donubsa, bu dəqiq ardıcıllığı yerinə yetirin.'],
+['1. Sol düymə','SOL düyməni hər zaman basılı saxlayın.'],
+['2. Ardıcıllıq','Növbə ilə basın: SAĞ, ORTA, SAĞ.'],
+['3. Yeni menyu','Yeni menyu görünəndə SOL düyməni buraxın.'],
+['4. Down','SAĞ (DOWN) düyməsini 5 dəfə basın.'],
+['5. Select','ORTA (SELECT) düyməsini basın.'],
+['6. Yes','SOL (YES) düyməsini basın.']
+]}
+};
+function patchReaderData(){
+ try{
+  if(typeof T==='undefined')return;
+  Object.keys(READER_EXACT).forEach(function(k){
+   if(T[k])Object.assign(T[k],READER_EXACT[k]);
+  });
+ }catch(e){}
+}
+function safeText(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function renderReaderIntro(x,modeName){
+ var title=x.readerTitle||'Reader';
+ var lead=x.readerChoiceTitle||'';
+ return '<div class="readerLessonNotice"><b>'+safeText(title)+'</b><p>'+safeText(lead)+'</p><span class="readerLessonNote">'+safeText(modeName)+'</span></div><div id="readerSelectedSteps"></div>';
+}
+patchWarehouseMap();
+patchReaderData();
+if(typeof renderReaderTabs==='function'){
+ renderReaderTabs=function(x){
+  patchWarehouseMap();patchReaderData();
+  if(typeof renderReaderVisibility==='function')renderReaderVisibility();
+  if(typeof mode!=='undefined'&&mode==='warehouse'){
+   if(el('readerTabs'))el('readerTabs').innerHTML='';
+   if(el('readerSelected'))el('readerSelected').innerHTML='<div class="warehouseReaderNote"><b>'+ux('noReaderWarehouseTitle')+'</b><br>'+ux('noReaderWarehouseText')+'</div>';
+   return;
+  }
+  if(['start','rows','outside','cart','restart'].indexOf(readerMode)<0)readerMode='start';
+  var tabs=[['start',x.readerStartTab],['rows',x.readerRowsTab],['outside',x.readerOutsideTab],['cart',x.readerCartTab],['restart',x.readerRestartTab]];
+  el('readerTabs').innerHTML=tabs.map(function(t){return '<button class="readerBtn '+(readerMode===t[0]?'active':'')+'" onclick="readerMode=&quot;'+t[0]+'&quot;;localStorage.cx_reader=readerMode;apply()">'+t[1]+'</button>'}).join('');
+  var data=x.readerStart, modeName=x.readerStartTab;
+  if(readerMode==='rows'){data=x.rows;modeName=x.readerRowsTab}
+  if(readerMode==='outside'){data=x.outside;modeName=x.readerOutsideTab}
+  if(readerMode==='cart'){data=x.cart;modeName=x.readerCartTab}
+  if(readerMode==='restart'){data=x.restart;modeName=x.readerRestartTab}
+  el('readerSelected').innerHTML=renderReaderIntro(x,modeName);
+  steps('readerSelectedSteps',data);
+ };
+}
+if(typeof apply==='function')apply();
+})();
+</script>
+<style>
+/* Human-first visual layer */
+:root{
+ --cx-bg:#f5f7f4;
+ --cx-surface:#ffffff;
+ --cx-text:#17251d;
+ --cx-muted:#5a6b61;
+ --cx-line:#d8e2dc;
+ --cx-green:#0f6b45;
+ --cx-green-2:#178757;
+ --cx-blue:#245c9f;
+ --cx-amber:#9a640d;
+ --cx-red:#a62323;
+ --cx-shadow:0 14px 36px rgba(24,40,31,.10);
+ --cx-soft-shadow:0 8px 22px rgba(24,40,31,.07);
+}
+body{background:var(--cx-bg)!important;color:var(--cx-text)!important}
+.app{max-width:1120px;margin:0 auto}
+.top{background:rgba(255,255,255,.96)!important;border-bottom:1px solid var(--cx-line);box-shadow:0 8px 22px rgba(24,40,31,.06)}
+.topin{gap:10px!important}
+.brand b{letter-spacing:0!important;color:var(--cx-text)}
+.brand small{color:var(--cx-muted);font-weight:800}
+.lang{border-radius:12px!important;border:1px solid var(--cx-line)!important;background:#fff!important;color:var(--cx-text)!important;min-height:40px;min-width:44px;font-weight:900}
+.lang.active{background:var(--cx-green)!important;color:#fff!important;border-color:var(--cx-green)!important}
+.hero{background:linear-gradient(135deg,#ffffff,#eff8f2)!important;border:1px solid var(--cx-line)!important;border-radius:20px!important;box-shadow:var(--cx-shadow)!important;padding:18px!important}
+.hero h1,.hero h2{letter-spacing:0!important;line-height:1.08!important;color:var(--cx-text)!important}
+.hero p{color:var(--cx-muted)!important;font-weight:800!important}
+.section{background:transparent!important;border:0!important;box-shadow:none!important;margin-top:18px!important;padding:0!important}
+.section>h2{font-size:22px!important;line-height:1.15!important;margin:0 0 8px!important;color:var(--cx-text)!important}
+.lead{color:var(--cx-muted)!important;font-weight:800!important;line-height:1.42!important}
+.card,.company,.stage,.check,.visual,.medicalCard,.orientV4Card,.installBox,.officeContacts,.readerLessonNotice{
+ border:1px solid var(--cx-line)!important;
+ border-radius:16px!important;
+ background:var(--cx-surface)!important;
+ box-shadow:var(--cx-soft-shadow)!important;
+}
+.card{padding:14px!important}
+.humanGuide,.assistPanel,.readerQuickBox,.moduleQuizPanel{display:none!important}
+.humanChoice,.modebtn,.stage,.company,.placeBtn,.readerBtn,.mapbtn,.medicalBtn,.cityOpen,.firstDayOpen{
+ min-height:58px!important;
+ border-radius:16px!important;
+ padding:14px!important;
+ font-size:15px!important;
+ line-height:1.25!important;
+ box-shadow:var(--cx-soft-shadow)!important;
+}
+.humanChoice.primary,.modebtn.active,.readerBtn.active,.stage.active,.company.active,.placeBtn.active{
+ background:linear-gradient(135deg,var(--cx-green),var(--cx-green-2))!important;
+ color:#fff!important;
+ border-color:var(--cx-green)!important;
+}
+.stagegrid,.humanChoices,.startChoiceGrid,.modegrid,.companygrid,.placeGrid,.readerTabs{gap:10px!important}
+.mapbtn{background:linear-gradient(135deg,var(--cx-blue),#3277c8)!important;color:#fff!important;border:0!important;text-decoration:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+.mapbtn span{color:rgba(255,255,255,.86)!important}
+.warehouseStage{border-color:#efd39a!important;background:#fff8e8!important}
+.warehouseStage.active{background:linear-gradient(135deg,#8a5b12,#a77217)!important;color:#fff!important}
+.readerTabs{grid-template-columns:repeat(5,minmax(0,1fr))!important;position:sticky;top:88px;z-index:3;background:rgba(245,247,244,.94);backdrop-filter:blur(10px);padding:8px 0}
+.readerBtn{text-align:center!important;display:flex;align-items:center;justify-content:center}
+.readerLessonNotice{background:#f7fcf8!important;border-color:#cfe6d7!important}
+.readerLessonNotice b{font-size:18px!important;color:var(--cx-green)!important}
+.readerLessonNote{background:#eaf7ef!important;color:var(--cx-green)!important;border-color:#cbe7d4!important}
+.steps{display:grid;gap:10px!important}
+.steps>div{
+ background:#fff!important;
+ border:1px solid var(--cx-line)!important;
+ border-radius:16px!important;
+ padding:13px 13px 13px 54px!important;
+ min-height:54px;
+ position:relative;
+ box-shadow:var(--cx-soft-shadow)!important;
+}
+.steps>div>b:first-child{
+ position:absolute;
+ left:13px;
+ top:13px;
+ width:28px;
+ height:28px;
+ border-radius:50%;
+ background:var(--cx-green);
+ color:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:13px;
+ line-height:1;
+ font-weight:900;
+}
+.steps strong,.steps h3{color:var(--cx-text)!important;line-height:1.18!important}
+.steps p,.steps span{line-height:1.42!important}
+.forbiddenGrid div,.warehouseReaderNote,.brigadierAlert,.medicalEmergency{
+ border-radius:16px!important;
+ box-shadow:var(--cx-soft-shadow)!important;
+}
+.forbiddenGrid div{background:#fff3f3!important;color:var(--cx-red)!important;border-color:#efc2c2!important}
+.warehouseReaderNote{background:#fff8e8!important;border-color:#efd39a!important;color:#5d3f0e!important}
+.medicalHero,.medicalEmergency{background:#fff5f5!important;border-color:#efc2c2!important}
+.medicalBtn[href^="tel:112"],.medicalEmergency a{background:var(--cx-red)!important;color:#fff!important}
+.photoGrid img,.warehousePhotoGrid img,.visual img{border-radius:14px!important}
+.appTabsShell{top:84px!important;border-radius:18px!important;box-shadow:var(--cx-soft-shadow)!important;background:rgba(255,255,255,.95)!important}
+.appTabs{grid-template-columns:repeat(5,1fr)!important}
+.appTab{min-height:48px!important;border-radius:14px!important;background:#fff!important;border-color:var(--cx-line)!important;color:var(--cx-text)!important}
+.appTab.active{background:linear-gradient(135deg,var(--cx-green),var(--cx-green-2))!important;color:#fff!important}
+.appTab:nth-child(2).active{background:linear-gradient(135deg,var(--cx-blue),#3277c8)!important}
+.appTab:nth-child(5).active{background:linear-gradient(135deg,var(--cx-red),#c53a3a)!important}
+.mobileDock{display:none!important}
+@media(max-width:760px){
+ body{padding-bottom:86px!important}
+ .app{width:100%;max-width:none}
+ .top{position:sticky!important;top:0;z-index:20}
+ .topin{padding:8px 10px!important}
+ .brand small{display:none!important}
+ .hero{margin:10px 10px 0!important;padding:14px!important;border-radius:18px!important}
+ .hero h1,.hero h2{font-size:22px!important}
+ .hero p{display:none!important}
+ main{padding-left:10px!important;padding-right:10px!important}
+ .appTabsShell{display:none!important}
+ .mobileDock{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  position:fixed!important;
+  left:8px!important;
+  right:8px!important;
+  bottom:8px!important;
+  z-index:50!important;
+  gap:6px!important;
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid var(--cx-line)!important;
+  border-radius:18px!important;
+  padding:7px!important;
+  box-shadow:0 18px 42px rgba(24,40,31,.20)!important;
+ }
+ .mobileDock button{
+  min-height:48px!important;
+  border-radius:14px!important;
+  font-size:10px!important;
+  line-height:1.05!important;
+  background:#f3f8f5!important;
+  color:var(--cx-text)!important;
+  border:0!important;
+  font-weight:900!important;
+ }
+ .mobileDock button.active{background:var(--cx-green)!important;color:#fff!important}
+ .mobileDock button:nth-child(2).active{background:var(--cx-blue)!important}
+ .mobileDock button:nth-child(5).active{background:var(--cx-red)!important}
+ .section>h2{font-size:20px!important}
+ .humanChoices,.startChoiceGrid,.modegrid,.stagegrid,.companygrid,.placeGrid,.readerTabs,.grid.two{grid-template-columns:1fr!important}
+ .readerTabs{top:58px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .readerBtn{min-height:50px!important}
+ .readerBtn:nth-child(5){grid-column:1/-1}
+ .steps>div{padding:12px 12px 12px 50px!important}
+ .steps>div>b:first-child{left:12px;top:12px}
+ .card{padding:12px!important}
+ .photoGrid{grid-template-columns:1fr!important}
+}
+@media(max-width:380px){
+ .lang{min-width:38px;font-size:12px}
+ .hero h1,.hero h2{font-size:20px!important}
+ .mobileDock{left:5px!important;right:5px!important;bottom:5px!important}
+ .mobileDock button{font-size:9px!important;min-height:45px!important}
+ .humanChoice,.modebtn,.stage,.company,.placeBtn,.readerBtn,.mapbtn{font-size:14px!important;padding:12px!important}
+}
+</style>
+<script>
+(function(){
+function hideVisualNoise(){
+ var ids=['readerQuick'];
+ ids.forEach(function(id){var n=document.getElementById(id);if(n)n.style.display='none'});
+ document.querySelectorAll('.assistPanel,.moduleQuizPanel').forEach(function(n){n.style.display='none'});
+}
+function cleanMobileDock(){
+ var dock=document.getElementById('mobileDock');
+ if(!dock)return;
+ var buttons=[].slice.call(dock.querySelectorAll('button,a'));
+ if(buttons.length>5){
+  buttons.forEach(function(b,i){if(i>4)b.style.display='none'});
+ }
+}
+var oldApply=window.apply;
+if(typeof oldApply==='function'){
+ window.apply=function(){
+  var r=oldApply.apply(this,arguments);
+  hideVisualNoise();
+  cleanMobileDock();
+  return r;
+ };
+}
+hideVisualNoise();
+cleanMobileDock();
+})();
+</script>
+<style>
+/* Fix long translated Reader headings on small phones */
+.readerLessonNotice{
+ padding:14px!important;
+ margin-bottom:12px!important;
+ overflow:hidden!important;
+}
+.readerLessonNotice>b{
+ position:static!important;
+ display:block!important;
+ width:auto!important;
+ height:auto!important;
+ border-radius:0!important;
+ background:transparent!important;
+ color:var(--cx-green)!important;
+ font-size:18px!important;
+ line-height:1.2!important;
+ margin:0 0 7px!important;
+ padding:0!important;
+ text-align:left!important;
+ justify-content:flex-start!important;
+ overflow-wrap:anywhere!important;
+ word-break:normal!important;
+}
+.readerLessonNotice>p{
+ margin:0 0 10px!important;
+ color:var(--cx-muted)!important;
+ font-size:14px!important;
+ line-height:1.38!important;
+ overflow-wrap:anywhere!important;
+}
+.readerLessonNote{
+ display:inline-flex!important;
+ align-items:center!important;
+ min-height:30px!important;
+ border-radius:999px!important;
+ padding:6px 10px!important;
+ font-size:12px!important;
+ font-weight:900!important;
+}
+#readerSelected>.readerLessonNotice{
+ padding:14px!important;
+}
+#readerSelected>.readerLessonNotice>b,
+#readerSelected>.readerLessonNotice>p,
+#readerSelected>.readerLessonNotice>.readerLessonNote{
+ position:static!important;
+ margin-left:0!important;
+ transform:none!important;
+}
+</style>
+<script>
+(function(){
+ var warehouseMapNeedle='dYbAP1aSsdFrdDZZ9';
+ function cxWarehouseSelected(){
+  var map=document.getElementById('selectedMap');
+  if(map&&String(map.href||'').indexOf(warehouseMapNeedle)>-1)return true;
+  var active=[].slice.call(document.querySelectorAll('#stages .active,.warehouseStage.active'));
+  return active.some(function(n){
+   var t=(n.textContent||'').toLowerCase();
+   return t.indexOf('magazyn')>-1||t.indexOf('skład')>-1||t.indexOf('sklad')>-1||t.indexOf('warehouse')>-1||t.indexOf('склад')>-1||t.indexOf('складі')>-1||t.indexOf('anbar')>-1;
+  });
+ }
+ function cxSyncWarehouseReaderNav(){
+  var hide=cxWarehouseSelected();
+  var dock=document.getElementById('mobileDock');
+  var tabs=document.querySelector('.appTabs');
+  if(dock){
+   if(hide)dock.style.setProperty('grid-template-columns','repeat(4,minmax(0,1fr))','important');
+   else dock.style.removeProperty('grid-template-columns');
+  }
+  if(tabs){
+   if(hide)tabs.style.setProperty('grid-template-columns','repeat(4,minmax(0,1fr))','important');
+   else tabs.style.removeProperty('grid-template-columns');
+  }
+  [].slice.call(document.querySelectorAll('#mobileDock button,#mobileDock a,.appTabs .appTab')).forEach(function(btn){
+   var label=(btn.textContent||'').trim().toLowerCase();
+   if(label==='reader'){
+    btn.style.display=hide?'none':'';
+   }
+  });
+  if(hide){
+   var activeReader=document.querySelector('#mobileDock button.active,#mobileDock a.active,.appTabs .appTab.active');
+   if(activeReader&&(activeReader.textContent||'').trim().toLowerCase()==='reader'&&typeof window.setAppTab==='function'&&!window.__cxSwitchingFromReader){
+    window.__cxSwitchingFromReader=true;
+    try{window.setAppTab('route')}catch(e){}
+    window.__cxSwitchingFromReader=false;
+   }
+  }
+ }
+ var prevApply=window.apply;
+ if(typeof prevApply==='function'){
+  window.apply=function(){
+   var result=prevApply.apply(this,arguments);
+   cxSyncWarehouseReaderNav();
+   return result;
+  };
+ }
+ document.addEventListener('click',function(){setTimeout(cxSyncWarehouseReaderNav,0)},true);
+ cxSyncWarehouseReaderNav();
+})();
+</script>
+<style>
+/* Reader photo guide: icons + real instruction images */
+.readerPhotoGuide{
+ margin-top:12px!important;
+ border:1px solid var(--cx-line)!important;
+ border-radius:18px!important;
+ background:#fff!important;
+ box-shadow:var(--cx-soft-shadow)!important;
+ padding:14px!important;
+}
+.readerPhotoHead{
+ display:grid;
+ grid-template-columns:42px 1fr;
+ gap:10px;
+ align-items:start;
+ margin-bottom:12px;
+}
+.readerPhotoMark,.readerFlowIcon{
+ width:42px;
+ height:42px;
+ border-radius:14px;
+ display:grid;
+ place-items:center;
+ color:#fff;
+ background:linear-gradient(135deg,var(--cx-green),var(--cx-green-2));
+ box-shadow:0 8px 18px rgba(15,107,69,.18);
+}
+.readerPhotoHead h3{
+ margin:0;
+ font-size:19px;
+ line-height:1.15;
+ color:var(--cx-text);
+}
+.readerPhotoHead p{
+ margin:4px 0 0;
+ color:var(--cx-muted);
+ font-weight:800;
+ line-height:1.38;
+}
+.readerFlow{
+ display:grid;
+ grid-template-columns:repeat(6,minmax(0,1fr));
+ gap:8px;
+ margin:10px 0 14px;
+}
+.readerFlowStep{
+ min-height:92px;
+ border:1px solid #d8e2dc;
+ border-radius:15px;
+ background:#f8fcf9;
+ padding:9px;
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+ font-weight:900;
+ color:#173b2a;
+ line-height:1.18;
+}
+.readerFlowIcon{
+ width:34px;
+ height:34px;
+ border-radius:12px;
+ box-shadow:none;
+ background:#eaf7ef;
+ color:var(--cx-green);
+}
+.readerPhotoGrid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:12px;
+}
+.readerPhotoCard{
+ border:1px solid #d8e2dc;
+ border-radius:16px;
+ background:#fff;
+ overflow:hidden;
+ box-shadow:var(--cx-soft-shadow);
+}
+.readerPhotoCard img{
+ display:block;
+ width:100%;
+ max-height:430px;
+ object-fit:contain;
+ background:#f5f7f4;
+ border-bottom:1px solid #d8e2dc;
+}
+.readerPhotoCaption{
+ padding:11px 12px 12px;
+ display:grid;
+ gap:7px;
+}
+.readerPhotoCaption b{
+ color:var(--cx-text);
+ line-height:1.2;
+}
+.readerPhotoCaption span{
+ color:var(--cx-muted);
+ font-size:13px;
+ font-weight:800;
+ line-height:1.35;
+}
+.readerPhotoOpen{
+ border:0;
+ border-radius:13px;
+ background:#0f6b45;
+ color:#fff;
+ font-weight:900;
+ min-height:42px;
+ padding:10px 12px;
+ text-align:center;
+}
+.readerImageOverlay{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:100;
+ background:rgba(12,24,18,.88);
+ padding:14px;
+ align-items:center;
+ justify-content:center;
+}
+.readerImageOverlay.active{display:flex}
+.readerImageOverlayInner{
+ width:min(980px,100%);
+ max-height:96vh;
+ background:#fff;
+ border-radius:18px;
+ overflow:hidden;
+ display:grid;
+ grid-template-rows:auto 1fr;
+ box-shadow:0 24px 70px rgba(0,0,0,.35);
+}
+.readerImageOverlayTop{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ padding:10px 12px;
+ border-bottom:1px solid #d8e2dc;
+ font-weight:900;
+}
+.readerImageOverlayTop button{
+ border:0;
+ border-radius:12px;
+ background:#a62323;
+ color:#fff;
+ font-weight:900;
+ padding:9px 12px;
+}
+.readerImageOverlay img{
+ width:100%;
+ height:100%;
+ max-height:calc(96vh - 58px);
+ object-fit:contain;
+ background:#f5f7f4;
+}
+@media(max-width:760px){
+ .readerPhotoGuide{padding:12px!important}
+ .readerFlow{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .readerPhotoGrid{grid-template-columns:1fr}
+ .readerPhotoCard img{max-height:360px}
+}
+@media(max-width:380px){
+ .readerFlowStep{font-size:13px;min-height:86px}
+ .readerPhotoHead h3{font-size:18px}
+}
+</style>
+<script>
+(function(){
+ var READER_PHOTO_TEXT={
+  pl:{
+   title:'Reader - instruktaż ze zdjęciami',
+   lead:'Najpierw zobacz obraz, potem wykonaj krok. Zdjęcia pomagają zapamiętać kolejność.',
+   open:'Powiększ zdjęcie',
+   close:'Zamknij',
+   flow:['Weź reader','Odbij tag','Początek pracy','Czynność','Rzędy / przerwa / koniec','Ładowarka'],
+   photos:[
+    ['reader_start','Start pracy - instrukcja z tablicy','Reader, tag personalny, początek pracy, czynność, przerwa, koniec pracy i ładowarka.'],
+    ['cart_pl','Wózki - kolejność odbicia','Najpierw wózek, potem rząd, potem przycisk readera.'],
+    ['restart_1','Restart Reader - przyciski','Przytrzymaj lewy przycisk, potem naciśnij prawy, środkowy, prawy.'],
+    ['restart_2','Restart Reader - menu','W menu: 5x prawy / DOWN, środkowy / SELECT, lewy / YES.']
+   ]
+  },
+  en:{
+   title:'Reader - photo instruction',
+   lead:'Look at the picture first, then do the step. The photos help you remember the order.',
+   open:'Open photo',
+   close:'Close',
+   flow:['Take reader','Scan tag','Start work','Activity','Rows / break / finish','Charger'],
+   photos:[
+    ['reader_start','Start work - board instruction','Reader, personal tag, start work, activity, break, finish work and charger.'],
+    ['cart_pl','Carts - scan order','First cart, then row, then the reader button.'],
+    ['restart_1','Reader restart - buttons','Hold the left button, then press right, middle, right.'],
+    ['restart_2','Reader restart - menu','In menu: 5x right / DOWN, middle / SELECT, left / YES.']
+   ]
+  },
+  ua:{
+   title:'Рідер - інструктаж зі світлинами',
+   lead:'Спочатку подивись на картинку, потім виконай крок. Фото допомагають запам’ятати черговість.',
+   open:'Збільшити фото',
+   close:'Закрити',
+   flow:['Візьми рідер','Відміть тег','Початок роботи','Діяльність','Ряди / перерва / кінець','Зарядка'],
+   photos:[
+    ['reader_start','Початок роботи - інструкція з дошки','Рідер, персональний тег, початок роботи, діяльність, перерва, кінець роботи і зарядка.'],
+    ['cart_ua','Візки - черговість відмітки','Спочатку візок, потім ряд, потім кнопка рідера.'],
+    ['restart_1','Рестарт рідера - кнопки','Тримай ліву кнопку, потім натисни праву, середню, праву.'],
+    ['restart_2','Рестарт рідера - меню','У меню: 5x права / DOWN, середня / SELECT, ліва / YES.']
+   ]
+  },
+  ru:{
+   title:'Ридер - инструкция с фото',
+   lead:'Сначала посмотри на картинку, потом выполни шаг. Фото помогают запомнить порядок.',
+   open:'Увеличить фото',
+   close:'Закрыть',
+   flow:['Возьми ридер','Отметь тег','Начало работы','Деятельность','Ряды / перерыв / конец','Зарядка'],
+   photos:[
+    ['reader_start','Начало работы - инструкция с доски','Ридер, персональный тег, начало работы, деятельность, перерыв, конец работы и зарядка.'],
+    ['cart_pl','Тележки - порядок отметки','Сначала тележка, потом ряд, потом кнопка ридера.'],
+    ['restart_1','Рестарт ридера - кнопки','Держи левую кнопку, потом нажми правую, среднюю, правую.'],
+    ['restart_2','Рестарт ридера - меню','В меню: 5x правая / DOWN, средняя / SELECT, левая / YES.']
+   ]
+  },
+  az:{
+   title:'Reader - şəkilli təlimat',
+   lead:'Əvvəl şəkilə bax, sonra addımı et. Şəkillər ardıcıllığı yadda saxlamağa kömək edir.',
+   open:'Şəkli böyüt',
+   close:'Bağla',
+   flow:['Reader götür','Tag vur','İşə başla','Fəaliyyət','Sıra / fasilə / son','Şarj yeri'],
+   photos:[
+    ['reader_start','İşə başlama - lövhə təlimatı','Reader, şəxsi tag, işin başlanğıcı, fəaliyyət, fasilə, işin sonu və şarj yeri.'],
+    ['cart_pl','Arabalar - vurma ardıcıllığı','Əvvəl araba, sonra sıra, sonra reader düyməsi.'],
+    ['restart_1','Reader restart - düymələr','Sol düyməni saxla, sonra sağ, orta, sağ düyməyə bas.'],
+    ['restart_2','Reader restart - menyu','Menyuda: 5x sağ / DOWN, orta / SELECT, sol / YES.']
+   ]
+  }
+ };
+ function cxReaderLang(){
+  try{if(typeof lang!=='undefined'&&READER_PHOTO_TEXT[lang])return lang}catch(e){}
+  var active=(document.querySelector('.lang.active')||{}).textContent||'PL';
+  active=active.trim().toLowerCase();
+  return active==='ua'||active==='ru'||active==='az'||active==='en'?active:'pl';
+ }
+ function cxIcon(name){
+  var common='viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+  var paths={
+   reader:'<rect x="7" y="3" width="10" height="18" rx="2"></rect><circle cx="12" cy="16" r="2"></circle><path d="M10 7h4"></path>',
+   tag:'<path d="M20 10 12 18 4 10V4h6l10 10z"></path><circle cx="8" cy="8" r="1"></circle>',
+   start:'<path d="M8 5v14l11-7z"></path>',
+   activity:'<path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h10"></path>',
+   rows:'<path d="M4 5h16"></path><path d="M4 10h16"></path><path d="M4 15h16"></path><path d="M8 5v14"></path><path d="M16 5v14"></path>',
+   charge:'<rect x="5" y="7" width="13" height="10" rx="2"></rect><path d="M18 11h2"></path><path d="m11 9-2 4h3l-1 3 4-5h-3l1-2z"></path>',
+   cart:'<path d="M4 5h2l2 10h9l2-7H8"></path><circle cx="10" cy="19" r="1.5"></circle><circle cx="17" cy="19" r="1.5"></circle>',
+   restart:'<path d="M20 12a8 8 0 1 1-2.3-5.7"></path><path d="M20 4v6h-6"></path>'
+  };
+  return '<svg '+common+'>'+((paths[name]||paths.reader))+'</svg>';
+ }
+ function cxReaderPhotoSafe(s){
+  return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});
+ }
+ window.cxOpenReaderPhoto=function(key,title){
+  try{
+   var src=(typeof IMG!=='undefined'&&IMG[key])?IMG[key]:'';
+   if(!src)return;
+   var t=READER_PHOTO_TEXT[cxReaderLang()]||READER_PHOTO_TEXT.pl;
+   var overlay=document.getElementById('readerImageOverlay');
+   if(!overlay){
+    overlay=document.createElement('div');
+    overlay.id='readerImageOverlay';
+    overlay.className='readerImageOverlay';
+    overlay.innerHTML='<div class="readerImageOverlayInner"><div class="readerImageOverlayTop"><span id="readerImageOverlayTitle"></span><button type="button" id="readerImageOverlayClose"></button></div><img id="readerImageOverlayImg" alt=""></div>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('active')});
+    overlay.querySelector('#readerImageOverlayClose').addEventListener('click',function(){overlay.classList.remove('active')});
+   }
+   overlay.querySelector('#readerImageOverlayTitle').textContent=title||t.title;
+   overlay.querySelector('#readerImageOverlayClose').textContent=t.close;
+   overlay.querySelector('#readerImageOverlayImg').src=src;
+   overlay.classList.add('active');
+  }catch(e){}
+ };
+ function cxRenderReaderPhotoGuide(){
+  var reader=document.getElementById('reader');
+  if(!reader)return;
+  var guide=document.getElementById('readerPhotoGuide');
+  if(!guide){
+   guide=document.createElement('div');
+   guide.id='readerPhotoGuide';
+   guide.className='readerPhotoGuide';
+  }
+  var priority=reader.querySelector('.card.priority');
+  if(priority&&guide.nextSibling!==priority)reader.insertBefore(guide,priority);
+  else if(!priority&&!guide.parentNode)reader.appendChild(guide);
+  var hide=false;
+  try{hide=(typeof mode!=='undefined'&&mode==='warehouse')}catch(e){}
+  if(hide){guide.style.display='none';return}
+  guide.style.display='';
+  var t=READER_PHOTO_TEXT[cxReaderLang()]||READER_PHOTO_TEXT.pl;
+  var iconNames=['reader','tag','start','activity','rows','charge'];
+  var flow=t.flow.map(function(label,i){
+   return '<div class="readerFlowStep"><span class="readerFlowIcon">'+cxIcon(iconNames[i])+'</span><span>'+cxReaderPhotoSafe(label)+'</span></div>';
+  }).join('');
+  var photos=t.photos.map(function(p,i){
+   var key=p[0];
+   var img='';
+   try{img=(typeof IMG!=='undefined'&&IMG[key])?IMG[key]:''}catch(e){}
+   if(!img)return '';
+   var icon=i===1?'cart':(i>1?'restart':'reader');
+   return '<article class="readerPhotoCard"><img loading="lazy" src="'+img+'" alt="'+cxReaderPhotoSafe(p[1])+'"><div class="readerPhotoCaption"><b><span class="readerFlowIcon">'+cxIcon(icon)+'</span> '+cxReaderPhotoSafe(p[1])+'</b><span>'+cxReaderPhotoSafe(p[2])+'</span><button type="button" class="readerPhotoOpen" onclick="cxOpenReaderPhoto(&quot;'+key+'&quot;,&quot;'+cxReaderPhotoSafe(p[1])+'&quot;)">'+cxReaderPhotoSafe(t.open)+'</button></div></article>';
+  }).join('');
+  guide.innerHTML='<div class="readerPhotoHead"><span class="readerPhotoMark">'+cxIcon('reader')+'</span><div><h3>'+cxReaderPhotoSafe(t.title)+'</h3><p>'+cxReaderPhotoSafe(t.lead)+'</p></div></div><div class="readerFlow">'+flow+'</div><div class="readerPhotoGrid">'+photos+'</div>';
+ }
+ var prevApply=window.apply;
+ if(typeof prevApply==='function'){
+  window.apply=function(){
+   var result=prevApply.apply(this,arguments);
+   cxRenderReaderPhotoGuide();
+   return result;
+  };
+ }
+ document.addEventListener('click',function(){setTimeout(cxRenderReaderPhotoGuide,0)},true);
+ cxRenderReaderPhotoGuide();
+})();
+</script>
+<style>
+/* Human-first mobile app layer */
+.cxHomeTiles{margin-top:12px}
+.cxHomeHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 0 12px}
+.cxHomeHead b{display:block;font-size:24px;line-height:1.05;color:#14211b}
+.cxHomeHead span{color:#647067;font-weight:800;text-align:right;max-width:310px;line-height:1.25}
+.cxTileGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cxHomeTile{border:1px solid #d8e5dd;background:#fff;color:#14211b;border-radius:18px;padding:15px;min-height:132px;text-align:left;display:flex;flex-direction:column;gap:10px;justify-content:space-between;box-shadow:0 12px 28px rgba(20,33,27,.08);cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+.cxHomeTile:active{transform:scale(.985)}
+.cxHomeTile:hover{box-shadow:0 18px 38px rgba(20,33,27,.13);border-color:#b7d0c0}
+.cxHomeTileIcon{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;background:#eef8f2;color:#0f5f3f}
+.cxHomeTileIcon svg{width:25px;height:25px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cxHomeTile b{display:block;font-size:18px;line-height:1.08}
+.cxHomeTile span{display:block;color:#647067;font-size:13px;font-weight:800;line-height:1.25;margin-top:5px}
+.cxHomeTile.map .cxHomeTileIcon{background:#eaf3ff;color:#1f63b5}.cxHomeTile.map{border-color:#cbdcf4}
+.cxHomeTile.warehouse .cxHomeTileIcon{background:#fff5d8;color:#9a6a00}.cxHomeTile.warehouse{border-color:#f0dca6}
+.cxHomeTile.greenhouse .cxHomeTileIcon{background:#eaf8ef;color:#0f6a43}.cxHomeTile.greenhouse{border-color:#c8e4d1}
+.cxHomeTile.reader .cxHomeTileIcon{background:#fff6dc;color:#996b00}.cxHomeTile.reader{border-color:#efd99a}
+.cxHomeTile.doctor .cxHomeTileIcon{background:#fff0f0;color:#aa2525}.cxHomeTile.doctor{border-color:#eec0c0}
+.cxHomeTile.contacts .cxHomeTileIcon{background:#eef8f2;color:#0f5f3f}.cxHomeTile.contacts{border-color:#c8e4d1}
+.cxHomeFoot{margin-top:12px;border:1px solid #efd99a;background:#fff9e8;color:#4a3510;border-radius:16px;padding:12px 13px;font-weight:900;line-height:1.28}
+.cxWarehousePanel{display:none;background:#fff;border:1px solid #efd99a;border-left:6px solid #c69220;border-radius:18px;padding:14px;margin:12px 0;box-shadow:0 12px 28px rgba(20,33,27,.08)}
+.cxWarehousePanel.active{display:block}
+.cxWarehouseHead{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;margin-bottom:12px}
+.cxWarehouseHead .cxHomeTileIcon{background:#fff4d3;color:#9a6a00}
+.cxWarehouseHead h3{font-size:22px;line-height:1.05;margin:0;color:#14211b}
+.cxWarehouseHead p{margin:4px 0 0;color:#647067;font-weight:800;line-height:1.25}
+.cxWarehouseActions{display:grid;grid-template-columns:1fr;gap:9px;margin:10px 0}
+.cxPrimaryBtn,.cxCallBtn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:0;border-radius:14px;padding:13px 12px;font-weight:900;min-height:48px;color:#fff;background:#176ab6;box-shadow:0 10px 22px rgba(23,106,182,.18)}
+.cxPrimaryBtn svg,.cxCallBtn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cxWarehouseRules{display:grid;gap:8px;margin:12px 0}
+.cxWarehouseRule{display:grid;grid-template-columns:30px 1fr;gap:9px;align-items:start;background:#fffaf0;border:1px solid #f0dca6;border-radius:14px;padding:11px;font-weight:900;color:#4a3510}
+.cxWarehouseRule i{width:30px;height:30px;border-radius:11px;background:#c69220;color:#fff;display:grid;place-items:center;font-style:normal}
+.cxWarehousePhotos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.cxWarehousePhotos figure{margin:0;background:#fff;border:1px solid #dce7df;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(20,33,27,.08)}
+.cxWarehousePhotos img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.cxWarehousePhotos figcaption{padding:10px;font-size:13px;font-weight:900;color:#415047;line-height:1.25}
+.brigadierActions{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
+.brigadierActions a{min-height:44px;border-radius:13px;display:flex!important;align-items:center;justify-content:center;text-decoration:none;font-weight:900}
+.brigadierActions a.viber{background:#665cac!important;color:#fff!important}
+.cxOrientTopView{background:#fff;border:1px solid #dce7df;border-radius:18px;padding:14px;margin:0 0 14px;box-shadow:0 10px 26px rgba(20,33,27,.08)}
+.cxOrientTopView h3{margin:0 0 5px;font-size:21px;line-height:1.08}
+.cxOrientTopView p{margin:0 0 12px;color:#647067;font-weight:800;line-height:1.25}
+.cxOrientBadge{display:inline-flex;align-items:center;gap:7px;background:#0f5f3f;color:#fff;border-radius:999px;padding:8px 11px;margin:0 0 10px;font-size:12px;font-weight:900;letter-spacing:0;text-transform:uppercase}
+.cxOrientBadge:before{content:"";width:9px;height:9px;border-radius:50%;background:#f3c84c;box-shadow:0 0 0 3px rgba(243,200,76,.22)}
+.cxGreenhouseMap{display:grid;grid-template-rows:auto 1fr auto;border:2px solid #173b2a;border-radius:18px;overflow:hidden;background:#f8fff9}
+.cxGreenhouseConnector,.cxGreenhouseEntrance{background:#173b2a;color:#fff;text-align:center;padding:8px;font-weight:900;font-size:13px}
+.cxGreenhouseBody{display:grid;grid-template-columns:1fr 42px 1fr;min-height:250px}
+.cxGreenSide{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:10px;background:#f4fbf6}
+.cxPassage{border:1px solid #b9d7c4;border-radius:10px;background:#fff;display:grid;grid-template-rows:repeat(10,1fr);gap:2px;padding:5px;min-width:0}
+.cxPassage b{font-size:10px;color:#0f5f3f;text-align:center;line-height:1;align-self:center}
+.cxRowCell{height:10px;border-radius:999px;background:#cfe9d8}
+.cxGreenAisle{display:grid;place-items:center;background:#173b2a;color:#fff;font-weight:900;writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:0}
+.cxOrientLegend{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.cxOrientLegend span{background:#eef8f2;border:1px solid #dce7df;border-radius:12px;padding:9px;text-align:center;font-size:12px;font-weight:900;color:#173b2a}
+.cxOrientQuick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 12px}
+.cxOrientQuick div{background:#f8fff9;border:1px solid #cfe4d6;border-radius:14px;padding:10px;text-align:center;font-weight:900;color:#173b2a;line-height:1.18}
+.cxOrientQuick b{display:block;font-size:20px;color:#0f5f3f;line-height:1}
+.cxGreenhouseMap{position:relative}
+.cxGreenhouseConnector,.cxGreenhouseEntrance{letter-spacing:0}
+.cxGreenhouseEntrance{position:relative}
+.cxGreenhouseEntrance:before{content:"";position:absolute;left:50%;top:-18px;transform:translateX(-50%);border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:15px solid #173b2a}
+.cxSideBlock{min-width:0;display:grid;grid-template-rows:auto 1fr}
+.cxSideTitle{font-weight:900;text-align:center;padding:8px 4px;color:#173b2a;background:#eaf8ef;border-bottom:1px solid #cfe4d6}
+.cxSideBlock.right .cxSideTitle{background:#fff7df;color:#634400}
+.cxSideBlock.left .cxGreenSide{background:linear-gradient(180deg,#f2fff6,#e9f8ee)}
+.cxSideBlock.right .cxGreenSide{background:linear-gradient(180deg,#fffaf0,#fff2d2)}
+.cxPassage{position:relative;overflow:hidden}
+.cxPassageHead{display:grid;place-items:center;background:#0f5f3f;color:#fff;border-radius:8px;font-size:10px;font-weight:900;min-height:18px;margin-bottom:3px}
+.cxSideBlock.right .cxPassageHead{background:#c69220}
+.cxPassageRows{display:grid;grid-template-rows:repeat(10,1fr);gap:2px;height:100%}
+.cxRowCell{height:auto;min-height:9px;border-radius:999px;background:#cfe9d8;display:block;position:relative}
+.cxSideBlock.right .cxRowCell{background:#f3daa0}
+.cxRowCell em{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-style:normal;font-size:8px;font-weight:900;color:#173b2a}
+.cxRowCell:nth-child(1) em,.cxRowCell:nth-child(10) em{display:block}
+.cxGreenAisle{position:relative;gap:8px}
+.cxGreenAisle span{display:block}
+.cxGreenAisle:before,.cxGreenAisle:after{content:"";width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent}
+.cxGreenAisle:before{border-bottom:12px solid #fff}
+.cxGreenAisle:after{border-top:12px solid #fff}
+.cxOrientCards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.cxOrientCard{background:#fff;border:1px solid #dce7df;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(20,33,27,.06)}
+.cxOrientCard img{display:block;width:100%;height:92px;object-fit:contain;background:#f8fff9;padding:10px}
+.cxOrientCard b{display:block;padding:10px;font-size:13px;line-height:1.15;color:#173b2a}
+.cxPassageDemo{margin-top:12px;background:#fbfefc;border:1px solid #dce7df;border-radius:18px;padding:12px}
+.cxPassageDemo h4{margin:0 0 8px;font-size:17px;line-height:1.1;color:#14211b}
+.cxPassageDemo p{margin:0 0 10px!important;font-size:13px;color:#647067!important}
+.cxPassageDiagram{display:grid;grid-template-columns:1fr 48px 1fr;gap:8px;align-items:stretch}
+.cxHalf{border:1px solid #cfe4d6;border-radius:14px;background:#f0fbf4;padding:8px;min-width:0}
+.cxHalf.right{background:#fff7df;border-color:#edd79c}
+.cxHalf b{display:block;text-align:center;font-size:12px;margin-bottom:6px;color:#173b2a}
+.cxHalfRows{display:grid;grid-template-rows:repeat(10,1fr);gap:3px}
+.cxHalfRows span{height:11px;border-radius:999px;background:#bfe1ca}
+.cxHalf.right .cxHalfRows span{background:#f0d38f}
+.cxDetailPath{display:grid;place-items:center;background:#173b2a;color:#fff;border-radius:14px;font-size:11px;font-weight:900;writing-mode:vertical-rl;text-orientation:mixed;text-align:center}
+.cxSpanStrip{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:8px}
+.cxSpanStrip span{background:#fff;border:1px dashed #b8c9bf;border-radius:10px;text-align:center;padding:7px 2px;font-size:11px;font-weight:900;color:#415047}
+#orientationDiagrams .cxOrientTopView~.orientV4{display:none!important}
+.visual,.photoGrid img,.readerPhotoCard img,.cxWarehousePhotos img{border-radius:14px}
+.photoGrid figure,.visual,.readerPhotoCard,.cxWarehousePhotos figure{border-color:#dce7df!important}
+@media(max-width:760px){
+ body.cxHubActive .humanGuide,body.cxHubActive .gatewayIntro,body.cxHubActive .homeGateway,body.cxHubActive .homeStepper,body.cxHubActive .humanChoices,body.cxHubActive .humanMini,body.cxHubActive #pathBanner{display:none!important}
+ body.cxGreenhouseFocus .humanGuide,body.cxGreenhouseFocus .assistPanel{display:none!important}
+ body.cxGreenhouseFocus .hero{display:none!important}
+ body.cxGreenhouseFocus #guide{margin-top:8px!important}
+ body.cxGreenhouseFocus #guideTitle,body.cxGreenhouseFocus #guideLead{display:none!important}
+ body.cxHubActive #humanPanel{border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important;margin-top:8px!important}
+ body.cxHubActive #humanPanel>:not(#cxHomeTiles){display:none!important}
+ body.cxHubActive .hero{display:none!important}
+ body.cxHubActive .hero h2{font-size:20px!important;line-height:1.08!important;margin-bottom:0!important}
+ body.cxHubActive .hero p,body.cxHubActive .heroMark span{display:none!important}
+ body.cxHubActive .heroLogo{width:66px!important;height:48px!important}
+ .cxHomeHead{display:block;margin-bottom:10px}
+ .cxHomeHead b{font-size:22px}
+ .cxHomeHead span{display:block;text-align:left;max-width:none;margin-top:5px;font-size:14px}
+ .cxTileGrid{grid-template-columns:repeat(2,1fr);gap:10px}
+ .cxHomeTile{min-height:128px;padding:13px;border-radius:17px}
+ .cxHomeTileIcon{width:43px;height:43px;border-radius:15px}
+ .cxHomeTile b{font-size:16px}
+ .cxHomeTile span{font-size:12px}
+ .cxHomeFoot{font-size:13px;padding:11px;margin-top:10px}
+ .cxWarehousePanel{margin:10px 0;padding:12px;border-radius:17px}
+ .cxWarehouseHead{grid-template-columns:43px 1fr;gap:10px}
+ .cxWarehouseHead h3{font-size:19px}
+ .cxWarehousePhotos{grid-template-columns:1fr;gap:9px}
+ .cxWarehousePhotos img{aspect-ratio:16/10}
+ .cxGreenhouseBody{grid-template-columns:1fr 34px 1fr;min-height:218px}
+ .cxGreenSide{gap:3px;padding:7px}
+ .cxPassage{padding:4px;border-radius:9px}
+ .cxRowCell{height:8px}
+ .cxOrientLegend{grid-template-columns:repeat(2,1fr)}
+ .cxOrientQuick{grid-template-columns:repeat(3,1fr);gap:6px}
+ .cxOrientQuick div{font-size:11px;padding:8px 5px}
+ .cxOrientQuick b{font-size:18px}
+ .cxSideTitle{font-size:12px;padding:7px 2px}
+ .cxPassageHead{font-size:9px;min-height:16px}
+ .cxGreenAisle{font-size:11px}
+ .cxOrientCards{grid-template-columns:repeat(2,1fr);gap:8px}
+ .cxOrientCard img{height:78px}
+ .cxOrientCard b{font-size:12px;padding:8px}
+ .cxPassageDiagram{grid-template-columns:1fr 38px 1fr;gap:6px}
+ .cxSpanStrip{grid-template-columns:repeat(2,1fr)}
+ .brigadierActions{grid-template-columns:repeat(3,1fr)!important}
+ .card,.section,.guideShell,.cityInfo,.humanPanel,.appModeHero{margin-top:14px}
+}
+@media(max-width:380px){
+ .cxTileGrid{gap:8px}
+ .cxHomeTile{min-height:122px;padding:11px}
+ .cxHomeTileIcon{width:38px;height:38px;border-radius:13px}
+ .cxHomeTileIcon svg{width:22px;height:22px}
+ .cxHomeTile b{font-size:15px}
+ .cxHomeTile span{font-size:11.5px}
+ .cxGreenhouseBody{grid-template-columns:1fr 30px 1fr}
+ .cxOrientLegend span{font-size:11px;padding:8px 4px}
+ .cxOrientQuick{grid-template-columns:1fr}
+ .cxGreenSide{grid-template-columns:repeat(5,minmax(18px,1fr))}
+ .cxPassage{padding:3px}
+ .cxPassageDiagram{grid-template-columns:1fr 32px 1fr}
+ .cxDetailPath{font-size:10px}
+}
+</style>
+<script>
+(function(){
+ var CX_HOME_TEXT={
+  pl:{title:'Co chcesz zrobić?',lead:'Wybierz jeden kafelek. Szczegóły pokażą się dopiero po kliknięciu.',note:'Najpierw wybierz temat. Strona pokaże tylko to, co jest potrzebne w tej sytuacji.',tiles:{map:['Dojazd / mapa','Wybierz miejsce i otwórz trasę.'],warehouse:['Magazyn','Mapa, wejście i zasady bez readera.'],greenhouse:['Szklarnia','Orientacja, przejścia, rzędy i zasady pracy.'],reader:['Reader','Start, rzędy, poza rzędami, wózki i restart.'],doctor:['Lekarz','Przychodnia, SOR, dentysta i 112.'],contacts:['Kontakty','Brygadziści, koordynatorzy, WhatsApp i Viber.']},warehouseTitle:'Magazyn / sortownia',warehouseLead:'Ten moduł jest tylko dla pracy magazynowej. Tutaj nie ma readera.',warehouseRules:['W magazynie nie używa się readera.','Otwórz mapę i kieruj się do wejścia pokazanego na zdjęciu.','Po wejściu czekaj na instrukcję osoby odpowiedzialnej.','Jeżeli chorujesz lub spóźniasz się, skontaktuj się z brygadzistą albo koordynatorem.'],mapBtn:'Otwórz mapę do magazynu',photo1:'Widok budynku i parkingu przy wejściu dla personelu.',photo2:'Wejście dla personelu / Staff Entrance.',orientTitle:'Orientacja szklarni z góry',orientLead:'Najpierw rozpoznaj stronę lewą i prawą. W każdej nawie jest 5 przejść, a w przejściu 10 rzędów.',left:'LEWA STRONA',right:'PRAWA STRONA',connector:'ŁĄCZNIK / DOJŚCIE',entrance:'WEJŚCIE',aisle:'NAWA',legend:['5 przejść w nawie','10 rzędów w przejściu','Każde przejście ma lewą i prawą stronę','Najpierw ustal wejście i kierunek']},
+  en:{title:'What do you need?',lead:'Choose one tile. Details open only after you tap it.',note:'Start with one topic. The page will show only what you need now.',tiles:{map:['Route / map','Choose a place and open directions.'],warehouse:['Warehouse','Map, entrance and rules without reader.'],greenhouse:['Greenhouse','Orientation, passages, rows and work rules.'],reader:['Reader','Start, rows, outside rows, carts and restart.'],doctor:['Doctor','Clinic, ER, dentist and 112.'],contacts:['Contacts','Team leaders, coordinators, WhatsApp and Viber.']},warehouseTitle:'Warehouse / sorting area',warehouseLead:'This module is only for warehouse work. There is no reader here.',warehouseRules:['Reader is not used in the warehouse.','Open the map and go to the entrance shown in the photo.','After entering, wait for instructions from the responsible person.','If you are sick or late, contact your team leader or coordinator.'],mapBtn:'Open warehouse map',photo1:'Building and car park view near the staff entrance.',photo2:'Staff Entrance.',orientTitle:'Greenhouse orientation from above',orientLead:'First recognize the left and right side. Each nave has 5 passages, and each passage has 10 rows.',left:'LEFT SIDE',right:'RIGHT SIDE',connector:'CONNECTOR / WAY IN',entrance:'ENTRANCE',aisle:'NAVE',legend:['5 passages in a nave','10 rows in a passage','Each passage has left and right side','First find entrance and direction']},
+  ua:{title:'Що потрібно зробити?',lead:'Оберіть один блок. Деталі відкриються тільки після натискання.',note:'Спочатку оберіть тему. Сторінка покаже тільки те, що потрібно зараз.',tiles:{map:['Доїзд / карта','Оберіть місце і відкрийте маршрут.'],warehouse:['Склад','Карта, вхід і правила без рідера.'],greenhouse:['Теплиця','Орієнтація, проходи, ряди і правила роботи.'],reader:['Рідер','Старт, ряди, поза рядами, візки і рестарт.'],doctor:['Лікар','Поліклініка, SOR, стоматолог і 112.'],contacts:['Контакти','Бригадири, координатори, WhatsApp і Viber.']},warehouseTitle:'Склад / сортування',warehouseLead:'Цей модуль тільки для роботи на складі. Тут немає рідера.',warehouseRules:['На складі рідер не використовується.','Відкрийте карту і прямуйте до входу, який показано на фото.','Після входу чекайте інструкції відповідальної особи.','Якщо ви захворіли або запізнюєтесь, звʼяжіться з бригадиром або координатором.'],mapBtn:'Відкрити карту до складу',photo1:'Вигляд будівлі та парковки біля входу для персоналу.',photo2:'Вхід для персоналу / Staff Entrance.',orientTitle:'Орієнтація теплиці зверху',orientLead:'Спочатку визначте ліву і праву сторону. У кожній наві 5 проходів, у кожному проході 10 рядів.',left:'ЛІВА СТОРОНА',right:'ПРАВА СТОРОНА',connector:'ПЕРЕХІД / ДОХІД',entrance:'ВХІД',aisle:'НАВА',legend:['5 проходів у наві','10 рядів у проході','Кожен прохід має ліву і праву сторону','Спочатку визначте вхід і напрямок']},
+  ru:{title:'Что нужно сделать?',lead:'Выберите один блок. Подробности откроются после нажатия.',note:'Сначала выберите тему. Страница покажет только то, что нужно сейчас.',tiles:{map:['Дорога / карта','Выберите место и откройте маршрут.'],warehouse:['Склад','Карта, вход и правила без ридера.'],greenhouse:['Теплица','Ориентация, проходы, ряды и правила работы.'],reader:['Ридер','Старт, ряды, вне рядов, тележки и рестарт.'],doctor:['Врач','Поликлиника, SOR, стоматолог и 112.'],contacts:['Контакты','Бригадиры, координаторы, WhatsApp и Viber.']},warehouseTitle:'Склад / сортировка',warehouseLead:'Этот модуль только для работы на складе. Здесь нет ридера.',warehouseRules:['На складе ридер не используется.','Откройте карту и направляйтесь ко входу, который показан на фото.','После входа ждите инструкцию ответственного человека.','Если вы заболели или опаздываете, свяжитесь с бригадиром или координатором.'],mapBtn:'Открыть карту склада',photo1:'Вид здания и парковки возле входа для персонала.',photo2:'Вход для персонала / Staff Entrance.',orientTitle:'Ориентация теплицы сверху',orientLead:'Сначала определите левую и правую сторону. В каждой наве 5 проходов, в каждом проходе 10 рядов.',left:'ЛЕВАЯ СТОРОНА',right:'ПРАВАЯ СТОРОНА',connector:'ПЕРЕХОД / ПОДХОД',entrance:'ВХОД',aisle:'НАВА',legend:['5 проходов в наве','10 рядов в проходе','У каждого прохода есть левая и правая сторона','Сначала определите вход и направление']},
+  az:{title:'Nə etmək lazımdır?',lead:'Bir bölmə seçin. Təfərrüatlar klikdən sonra açılır.',note:'Əvvəlcə mövzunu seçin. Səhifə yalnız həmin anda lazım olanı göstərəcək.',tiles:{map:['Yol / xəritə','Yeri seçin və marşrutu açın.'],warehouse:['Anbar','Xəritə, giriş və readersiz qaydalar.'],greenhouse:['İstixana','Orientasiya, keçidlər, sıralar və iş qaydaları.'],reader:['Reader','Start, sıralar, sıradan kənar iş, arabalar və restart.'],doctor:['Həkim','Poliklinika, SOR, diş həkimi və 112.'],contacts:['Əlaqələr','Briqadirlər, koordinatorlar, WhatsApp və Viber.']},warehouseTitle:'Anbar / çeşidləmə',warehouseLead:'Bu modul yalnız anbar işi üçündür. Burada reader yoxdur.',warehouseRules:['Anbarda reader istifadə olunmur.','Xəritəni açın və fotoda göstərilən girişə tərəf gedin.','İçəri daxil olduqdan sonra məsul şəxsin təlimatını gözləyin.','Xəstəsinizsə və ya gecikirsinizsə, briqadir və ya koordinatorla əlaqə saxlayın.'],mapBtn:'Anbar xəritəsini açın',photo1:'Personal girişinin yanında bina və parkinq görünüşü.',photo2:'Personal girişi / Staff Entrance.',orientTitle:'İstixananın yuxarıdan görünüşü',orientLead:'Əvvəl sol və sağ tərəfi müəyyən edin. Hər navada 5 keçid, hər keçiddə 10 sıra var.',left:'SOL TƏRƏF',right:'SAĞ TƏRƏF',connector:'KEÇİD / GƏLİŞ',entrance:'GİRİŞ',aisle:'NAVA',legend:['Navada 5 keçid','Keçiddə 10 sıra','Hər keçidin sol və sağ tərəfi var','Əvvəl giriş və istiqaməti tapın']}
+ };
+ function cxLang(){
+  try{if(typeof lang!=='undefined'&&lang)return String(lang).toLowerCase()}catch(e){}
+  try{return String(localStorage.cx_lang||localStorage.lang||'pl').toLowerCase()}catch(e){return'pl'}
+ }
+ function cxText(){var l=cxLang();return CX_HOME_TEXT[l]||CX_HOME_TEXT.pl}
+ function cxEsc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function cxIcon(name){
+  var icons={
+   map:'<path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/>',
+   warehouse:'<path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-8h10v8"/><path d="M9 17h6"/>',
+   greenhouse:'<path d="M4 20V9a8 8 0 0 1 16 0v11"/><path d="M4 12h16M8 20V8M16 20V8"/>',
+   reader:'<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M10 7h4M10 17h4"/><circle cx="12" cy="13" r="2"/>',
+   doctor:'<path d="M12 21s7-4 7-10a7 7 0 1 0-14 0c0 6 7 10 7 10z"/><path d="M12 8v6M9 11h6"/>',
+   contacts:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.6.5 2.5.6a2 2 0 0 1 1.7 2z"/>',
+   arrow:'<path d="M5 12h14M13 5l7 7-7 7"/>'
+  };
+  return '<svg viewBox="0 0 24 24" aria-hidden="true">'+(icons[name]||icons.map)+'</svg>';
+ }
+ function cxTile(kind,tile){
+  return '<button type="button" class="cxHomeTile '+kind+'" onclick="cxHomeGo(&quot;'+kind+'&quot;)"><span class="cxHomeTileIcon">'+cxIcon(kind)+'</span><span><b>'+cxEsc(tile[0])+'</b><span>'+cxEsc(tile[1])+'</span></span></button>';
+ }
+ function cxCallTab(tab){
+  try{if(typeof setAppTab==='function'){setAppTab(tab);return true}}catch(e){}
+  return false;
+ }
+ function cxPickStage(id){
+  try{if(typeof selectStage==='function'){selectStage(id);return true}}catch(e){}
+  try{stage=id;localStorage.cx_stage=id;if(id==='warehouse'){mode='warehouse';localStorage.cx_mode='warehouse'}else if(/^e[1-6]$/.test(id)){mode='rows';localStorage.cx_mode='rows'}}catch(e){}
+  try{if(typeof apply==='function')apply()}catch(e){}
+ }
+ function cxIsWarehouse(){
+  try{if(typeof mode!=='undefined'&&mode==='warehouse')return true}catch(e){}
+  try{if(typeof stage!=='undefined'&&stage==='warehouse')return true}catch(e){}
+  var active=document.querySelector('#stages .stage.active');
+  return !!(active&&/magazyn|warehouse|склад|anbar/i.test(active.textContent||''));
+ }
+ window.cxHomeGo=function(kind){
+  if(kind==='map'){cxCallTab('route')}
+  if(kind==='warehouse'){cxPickStage('warehouse');cxCallTab('route')}
+  if(kind==='greenhouse'){if(cxIsWarehouse())cxPickStage('e1');cxCallTab('greenhouse')}
+  if(kind==='reader'){if(cxIsWarehouse())cxPickStage('e1');cxCallTab('reader')}
+  if(kind==='doctor'){cxCallTab('contacts');setTimeout(function(){var n=document.querySelector('#medicalPanel,.medicalPanel,#doctorPanel,#contacts');if(n)n.scrollIntoView({behavior:'smooth',block:'start'})},80)}
+  if(kind==='contacts'){cxCallTab('contacts');setTimeout(function(){var n=document.getElementById('contactList')||document.getElementById('contacts');if(n)n.scrollIntoView({behavior:'smooth',block:'start'})},80)}
+  setTimeout(cxSyncHumanApp,120);
+ };
+ function cxRenderHome(){
+  var panel=document.getElementById('humanPanel');
+  if(!panel)return;
+  var box=document.getElementById('cxHomeTiles');
+  if(!box){box=document.createElement('section');box.id='cxHomeTiles';box.className='cxHomeTiles';panel.insertBefore(box,panel.firstChild)}
+  var t=cxText(),tiles=t.tiles;
+  box.innerHTML='<div class="cxHomeHead"><b>'+cxEsc(t.title)+'</b><span>'+cxEsc(t.lead)+'</span></div><div class="cxTileGrid">'+
+   cxTile('map',tiles.map)+cxTile('warehouse',tiles.warehouse)+cxTile('greenhouse',tiles.greenhouse)+cxTile('reader',tiles.reader)+cxTile('doctor',tiles.doctor)+cxTile('contacts',tiles.contacts)+
+  '</div><div class="cxHomeFoot">'+cxEsc(t.note)+'</div>';
+ }
+ function cxRenderWarehouse(){
+  var route=document.getElementById('route'),photos=document.getElementById('stagePhotos');
+  if(!route)return;
+  var panel=document.getElementById('cxWarehousePanel');
+  if(!panel){panel=document.createElement('div');panel.id='cxWarehousePanel';panel.className='cxWarehousePanel';if(photos&&photos.parentNode)photos.parentNode.insertBefore(panel,photos);else route.appendChild(panel)}
+  var show=cxIsWarehouse();
+  panel.classList.toggle('active',show);
+  if(!show)return;
+  var t=cxText();
+  var map='https://maps.app.goo.gl/dYbAP1aSsdFrdDZZ9?g_st=ic';
+  var link=document.getElementById('selectedMap');
+  if(link){link.href=map;link.setAttribute('target','_blank');link.setAttribute('rel','noopener')}
+  panel.innerHTML='<div class="cxWarehouseHead"><span class="cxHomeTileIcon">'+cxIcon('warehouse')+'</span><div><h3>'+cxEsc(t.warehouseTitle)+'</h3><p>'+cxEsc(t.warehouseLead)+'</p></div></div>'+
+   '<div class="cxWarehouseActions"><a class="cxPrimaryBtn" target="_blank" rel="noopener" href="'+map+'">'+cxIcon('map')+cxEsc(t.mapBtn)+'</a></div>'+
+   '<div class="cxWarehouseRules">'+t.warehouseRules.map(function(r,i){return'<div class="cxWarehouseRule"><i>'+(i+1)+'</i><span>'+cxEsc(r)+'</span></div>'}).join('')+'</div>'+
+   '<div class="cxWarehousePhotos"><figure><img loading="lazy" src="assets/warehouse/magazyn-wejscie-1.jpg" alt="'+cxEsc(t.photo1)+'"><figcaption>'+cxEsc(t.photo1)+'</figcaption></figure><figure><img loading="lazy" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="'+cxEsc(t.photo2)+'"><figcaption>'+cxEsc(t.photo2)+'</figcaption></figure></div>';
+ }
+ function cxRenderOrientationTop(){
+  var box=document.getElementById('orientationDiagrams');
+  if(!box)return;
+  var view=document.getElementById('cxGreenhouseTopView');
+  if(!view){view=document.createElement('div');view.id='cxGreenhouseTopView';view.className='cxOrientTopView';box.insertBefore(view,box.firstChild)}
+  var t=cxText();
+  var v=({
+   pl:{quick:[['1','patrz od wejścia'],['5','przejść w nawie'],['10','rzędów w przejściu']],passageShort:'Prz.',walk:'KIERUNEK',demoTitle:'Jak wygląda jedno przejście',demoLead:'Przejście ma lewą i prawą stronę. W środku idziesz przejściem, po bokach są rzędy i przęsła.',path:'PRZEJŚCIE',span:'PRZĘSŁO',cards:['Lewa / prawa strona','Nawa','Przejście','Przęsło']},
+   en:{quick:[['1','look from entrance'],['5','passages in a nave'],['10','rows in a passage']],passageShort:'Pass.',walk:'DIRECTION',demoTitle:'One passage example',demoLead:'A passage has a left and a right side. You walk in the middle, rows and spans are on the sides.',path:'PASSAGE',span:'SPAN',cards:['Left / right side','Nave','Passage','Span']},
+   ua:{quick:[['1','дивись від входу'],['5','проходів у наві'],['10','рядів у проході']],passageShort:'Пр.',walk:'НАПРЯМОК',demoTitle:'Як виглядає один прохід',demoLead:'Прохід має ліву і праву сторону. Посередині йдеш проходом, по боках є ряди і прольоти.',path:'ПРОХІД',span:'ПРОЛІТ',cards:['Ліва / права сторона','Нава','Прохід','Проліт']},
+   ru:{quick:[['1','смотри от входа'],['5','проходов в наве'],['10','рядов в проходе']],passageShort:'Пр.',walk:'НАПРАВЛЕНИЕ',demoTitle:'Как выглядит один проход',demoLead:'У прохода есть левая и правая сторона. В середине идешь по проходу, по бокам находятся ряды и пролеты.',path:'ПРОХОД',span:'ПРОЛЕТ',cards:['Левая / правая сторона','Нава','Проход','Пролет']},
+   az:{quick:[['1','girişdən bax'],['5','navada keçid'],['10','keçiddə sıra']],passageShort:'Keç.',walk:'İSTİQAMƏT',demoTitle:'Bir keçid necə görünür',demoLead:'Keçidin sol və sağ tərəfi var. Ortadan keçidlə gedirsən, yanlarda sıralar və bölmələr var.',path:'KEÇİD',span:'BÖLMƏ',cards:['Sol / sağ tərəf','Nava','Keçid','Bölmə']}
+  })[cxLang()]||({
+   quick:[['1','patrz od wejścia'],['5','przejść w nawie'],['10','rzędów w przejściu']],passageShort:'Prz.',walk:'KIERUNEK',demoTitle:'Jak wygląda jedno przejście',demoLead:'Przejście ma lewą i prawą stronę. W środku idziesz przejściem, po bokach są rzędy i przęsła.',path:'PRZEJŚCIE',span:'PRZĘSŁO',cards:['Lewa / prawa strona','Nawa','Przejście','Przęsło']
+  });
+  function side(label,cls){
+   var passages='';
+   for(var p=1;p<=5;p++){
+    var rows='';
+    for(var r=1;r<=10;r++)rows+='<i class="cxRowCell"><em>'+r+'</em></i>';
+    passages+='<div class="cxPassage"><div class="cxPassageHead">'+cxEsc(v.passageShort)+' '+p+'</div><div class="cxPassageRows">'+rows+'</div></div>';
+   }
+   return '<div class="cxSideBlock '+cls+'"><div class="cxSideTitle">'+cxEsc(label)+'</div><div class="cxGreenSide">'+passages+'</div></div>';
+  }
+  function half(label,cls){
+   var rows='';
+   for(var r=1;r<=10;r++)rows+='<span></span>';
+   return '<div class="cxHalf '+cls+'"><b>'+cxEsc(label)+'</b><div class="cxHalfRows">'+rows+'</div></div>';
+  }
+  var quick='<div class="cxOrientQuick">'+v.quick.map(function(x){return'<div><b>'+cxEsc(x[0])+'</b>'+cxEsc(x[1])+'</div>'}).join('')+'</div>';
+  var cards=[
+   ['assets/greenhouse-orientation/lewa-prawa-strona.svg',v.cards[0]],
+   ['assets/greenhouse-orientation/nawa.svg',v.cards[1]],
+   ['assets/greenhouse-orientation/przejscie.svg',v.cards[2]],
+   ['assets/greenhouse-orientation/przeslo.svg',v.cards[3]]
+  ].map(function(c){return'<div class="cxOrientCard"><img loading="lazy" src="'+c[0]+'" alt="'+cxEsc(c[1])+'"><b>'+cxEsc(c[1])+'</b></div>'}).join('');
+  var spans='<div class="cxSpanStrip"><span>'+cxEsc(v.span)+' 1</span><span>'+cxEsc(v.span)+' 2</span><span>'+cxEsc(v.span)+' 3</span><span>'+cxEsc(v.span)+' 4</span></div>';
+  var demo='<div class="cxPassageDemo"><h4>'+cxEsc(v.demoTitle)+'</h4><p>'+cxEsc(v.demoLead)+'</p><div class="cxPassageDiagram">'+half(t.left,'left')+'<div class="cxDetailPath">'+cxEsc(v.path)+'</div>'+half(t.right,'right')+'</div>'+spans+'</div>';
+  view.innerHTML='<div class="cxOrientBadge">'+cxEsc(t.orientTitle)+'</div><h3>'+cxEsc(t.orientTitle)+'</h3><p>'+cxEsc(t.orientLead)+'</p>'+quick+'<div class="cxGreenhouseMap"><div class="cxGreenhouseConnector">'+cxEsc(t.connector)+'</div><div class="cxGreenhouseBody">'+side(t.left,'left')+'<div class="cxGreenAisle"><span>'+cxEsc(t.aisle)+'</span><span>'+cxEsc(v.walk)+'</span></div>'+side(t.right,'right')+'</div><div class="cxGreenhouseEntrance">'+cxEsc(t.entrance)+'</div></div><div class="cxOrientLegend">'+t.legend.map(function(x){return'<span>'+cxEsc(x)+'</span>'}).join('')+'</div>'+demo+'<div class="cxOrientCards">'+cards+'</div>';
+ }
+ function cxBringOrientationUp(){
+  var guide=document.getElementById('guide');
+  var chooser=document.getElementById('workChooser');
+  var parent=chooser&&chooser.parentNode;
+  var isGreen=false;
+  try{isGreen=appTab==='greenhouse'}catch(e){}
+  if(isGreen&&guide&&parent&&guide.nextElementSibling!==chooser){
+   parent.insertBefore(guide,chooser);
+  }
+ }
+ function cxEnhanceContacts(){
+  var label='Viber';
+  document.querySelectorAll('.brigadierCard').forEach(function(card){
+   var actions=card.querySelector('.brigadierActions');
+   if(!actions||actions.querySelector('.viber'))return;
+   var tel=actions.querySelector('a[href^="tel:"]');
+   var href=tel?tel.getAttribute('href'):'';
+   var phone=href.replace(/^tel:/,'').replace(/[^\d+]/g,'');
+   if(phone&&phone.charAt(0)!=='+')phone='+'+phone;
+   var a=document.createElement('a');
+   a.className='viber';
+   a.href='viber://chat?number='+encodeURIComponent(phone);
+   a.textContent=label;
+   actions.appendChild(a);
+  });
+ }
+ function cxSyncHumanApp(){
+  cxRenderHome();
+  cxRenderWarehouse();
+  cxRenderOrientationTop();
+  cxBringOrientationUp();
+  cxEnhanceContacts();
+  var isHome=false;
+  try{isHome=(typeof appTab==='undefined'||appTab==='home')}catch(e){isHome=true}
+  var isGreenhouse=false;
+  try{isGreenhouse=appTab==='greenhouse'}catch(e){}
+  document.body.classList.toggle('cxHubActive',isHome);
+  document.body.classList.toggle('cxGreenhouseFocus',isGreenhouse);
+  document.body.classList.toggle('cxWarehouseMode',cxIsWarehouse());
+ }
+ var cxPrevApply=window.apply;
+ if(typeof cxPrevApply==='function'){
+  window.apply=function(){
+   var r=cxPrevApply.apply(this,arguments);
+   setTimeout(cxSyncHumanApp,0);
+   return r;
+  };
+ }
+ function cxIsStartControl(el){
+  var btn=el&&el.closest?el.closest('#mobileDock button,.appTab'):null;
+  return !!(btn&&/^(Start|Старт|Початок|Start)$/i.test((btn.textContent||'').trim()));
+ }
+ document.addEventListener('click',function(ev){
+  var goHome=cxIsStartControl(ev.target);
+  setTimeout(function(){
+   cxSyncHumanApp();
+   if(goHome){try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){window.scrollTo(0,0)}}
+  },50);
+ },true);
+ document.addEventListener('change',function(){setTimeout(cxSyncHumanApp,50)},true);
+ cxSyncHumanApp();
+})();
+</script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
