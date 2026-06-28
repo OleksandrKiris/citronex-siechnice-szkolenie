@@ -1185,7 +1185,11 @@ function provider(t,name,address,displayPhone,tel,mapQuery,note){
  return '<div class="medicalProvider"><b>'+name+'</b><small>'+t.address+': '+address+'</small><div class="medicalProviderActions">'+telBtn(t,tel,displayPhone)+mapBtn(t.maps,mapSearch(mapQuery||name+' '+address))+'</div>'+(note?'<div class="medicalNote">'+note+'</div>':'')+'</div>';
 }
 function applyMedicalLabels(){
- Object.keys(MEDICAL_UI).forEach(function(k){if(window.T&&T[k]){T[k].tabContacts=MEDICAL_UI[k].tab;T[k].tabContactsLead=MEDICAL_UI[k].tabLead;}});
+ var helpSub={PL:'Przychodnia, SOR, dentysta',EN:'Clinic, emergency department, dentist',UA:'Поліклініка, SOR, стоматолог',RU:'Поликлиника, SOR, стоматолог',AZ:'Poliklinika, SOR, diş həkimi'};
+ Object.keys(MEDICAL_UI).forEach(function(k){
+  if(typeof T!=='undefined'&&T[k]){T[k].tabContacts=MEDICAL_UI[k].tab;T[k].tabContactsLead=MEDICAL_UI[k].tabLead;}
+  if(typeof UX!=='undefined'&&UX[k]){UX[k].progressContacts=MEDICAL_UI[k].tab;UX[k].gateHelpTitle=MEDICAL_UI[k].tab;UX[k].gateHelpSub=helpSub[k]||helpSub.PL;UX[k].helpContacts=MEDICAL_UI[k].tabLead;}
+ });
 }
 applyMedicalLabels();
 renderModuleCoach=function(){var p=el('assistPanel');if(p)p.style.display='none'};
