@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f5f3f">
+  <title>Pomoc medyczna | Citronex Siechnice</title>
+  <style>
+    :root {
+      --green: #0f5f3f;
+      --green-dark: #08391f;
+      --gold: #c69a3f;
+      --red: #a62323;
+      --text: #14211b;
+      --muted: #647067;
+      --line: #dce7df;
+      --bg: #f2faf5;
+      --card: #ffffff;
+      --warn: #fff2cc;
+      --danger-soft: #fff1f1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(#f2faf5, #fffdf7);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.42;
+    }
+
+    .app {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 14px 14px 42px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark), var(--green) 58%, var(--gold));
+      color: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 14px 34px rgba(19, 43, 31, .16);
+      margin-bottom: 14px;
+    }
+
+    .hero span {
+      display: inline-block;
+      background: rgba(255, 255, 255, .16);
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 31px; line-height: 1.05; margin-bottom: 8px; }
+    h2 { font-size: 23px; margin-bottom: 8px; }
+    h3 { font-size: 18px; margin-bottom: 7px; }
+    p { color: var(--muted); margin-bottom: 10px; }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .quick-card,
+    .card,
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(20, 33, 27, .07);
+    }
+
+    .quick-card {
+      text-decoration: none;
+      color: var(--text);
+      padding: 14px;
+      font-weight: 900;
+      min-height: 96px;
+    }
+
+    .quick-card small {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 5px;
+      font-weight: 800;
+    }
+
+    .card {
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .important {
+      background: var(--warn);
+      border: 1px solid #efd39a;
+      border-radius: 14px;
+      padding: 12px;
+      font-weight: 900;
+      margin: 10px 0;
+    }
+
+    .doc-list,
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .doc-list li {
+      background: #fbfefc;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 11px;
+      font-weight: 900;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 14px;
+      padding: 14px;
+      font-weight: 900;
+      background: var(--green);
+      color: #fff;
+      border: 0;
+    }
+
+    .btn.red { background: var(--red); }
+    .btn.light {
+      background: #f7fff9;
+      color: #123f2a;
+      border: 1px solid #cae6d5;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .contact-card {
+      padding: 13px;
+    }
+
+    .contact-card strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .note {
+      background: #f7fff9;
+      border: 1px solid #cae6d5;
+      border-radius: 14px;
+      padding: 12px;
+      font-weight: 900;
+      margin-top: 10px;
+    }
+
+    .danger-note {
+      background: var(--danger-soft);
+      border: 1px solid #efb7b7;
+      color: #7d1b1b;
+      border-radius: 14px;
+      padding: 12px;
+      font-weight: 900;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 720px) {
+      .app { padding: 10px 10px 34px; }
+      .hero { padding: 17px; }
+      h1 { font-size: 28px; }
+      .quick-grid,
+      .contact-grid,
+      .actions {
+        grid-template-columns: 1fr;
+      }
+      .quick-card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <span>🏥 Pomoc medyczna</span>
+      <h1>Gdzie szukać lekarza?</h1>
+      <p>Wybierz najprostszy kierunek: przychodnia, SOR albo dentysta.</p>
+    </section>
+
+    <nav class="quick-grid" aria-label="Szybki wybór miejsca">
+      <a class="quick-card" href="#przychodnia">Przychodnia<small>GOZ Siechnice, zapisy od 8:00</small></a>
+      <a class="quick-card" href="#sor">SOR<small>Nagłe przypadki: Oława lub Wrocław</small></a>
+      <a class="quick-card" href="#dentysta">Dentysta<small>NFZ i prywatny ostry dyżur</small></a>
+    </nav>
+
+    <section id="przychodnia" class="card">
+      <h2>1. Przychodnia — GOZ Siechnice</h2>
+      <p>Do zwykłej wizyty lekarskiej, recepty, skierowania albo kontroli zdrowia.</p>
+      <div class="important">Zapisy są od godziny 8:00. Trzeba przyjść o 8:00, nie później, ponieważ później może już nie być miejsc na zapis.</div>
+      <h3>Trzeba zabrać ze sobą:</h3>
+      <ul class="doc-list">
+        <li>✅ PESEL</li>
+        <li>✅ Paszport</li>
+        <li>✅ Telefon</li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="https://www.google.com/maps/place/GOZ+Siechnice/@51.0312338,17.1495451,274m/data=!3m2!1e3!4b1!4m12!1m5!3m4!2zNTHCsDAxJzAyLjUiTiAxN8KwMDknMjUuMyJF!8m2!3d51.0173459!4d17.1570148!3m5!1s0x470fdd006716aeb7:0x34fbd349a5cac4d5!8m2!3d51.031233!4d17.1501888!16s%2Fg%2F11yycs9lf9?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">📍 Otwórz w Google Maps</a>
+      </div>
+    </section>
+
+    <section id="sor" class="card">
+      <h2>2. SOR — nagłe przypadki</h2>
+      <p>Na SOR należy jechać w nagłych przypadkach, np. silny ból, uraz, gorączka, problemy z oddychaniem, omdlenie albo poważne pogorszenie stanu zdrowia.</p>
+      <div class="actions">
+        <a class="btn red" href="https://maps.app.goo.gl/9oCDLCRmdZHyJ6wi8" target="_blank" rel="noopener noreferrer">📍 Otwórz SOR Oława</a>
+        <a class="btn red" href="https://maps.app.goo.gl/PTFDRQC7fnsVRqhY8" target="_blank" rel="noopener noreferrer">📍 Otwórz SOR Wrocław</a>
+      </div>
+      <div class="danger-note">Jeśli jest zagrożenie życia — dzwoń 112.</div>
+    </section>
+
+    <section id="dentysta" class="card">
+      <h2>3. Pogotowie dentystyczne</h2>
+      <p>Najlepiej najpierw zadzwonić i potwierdzić możliwość przyjęcia.</p>
+
+      <h3>NFZ / doraźna pomoc stomatologiczna</h3>
+      <p>W dni robocze działa zwykle 19:00–7:00, a w soboty, niedziele i święta całodobowo.</p>
+
+      <div class="contact-grid">
+        <article class="contact-card">
+          <strong>ArtMedis</strong>
+          <p>ul. Sienkiewicza 47, Wrocław</p>
+          <a class="btn light" href="tel:+48665339982">📞 665 339 982</a>
+        </article>
+        <article class="contact-card">
+          <strong>Centrum Medyczne Estomedica</strong>
+          <p>ul. Słowiańska 27B, Wrocław</p>
+          <a class="btn light" href="tel:+48713721310">📞 71 372 13 10</a>
+        </article>
+      </div>
+
+      <h3 style="margin-top:16px">Prywatnie / ostry dyżur</h3>
+      <div class="contact-grid">
+        <article class="contact-card">
+          <strong>Q-Clinic</strong>
+          <p>ul. Pretficza 21/1, Wrocław</p>
+          <p>Przyjmują tylko po wcześniejszej rejestracji telefonicznej.</p>
+          <a class="btn light" href="tel:+48717915555">📞 71 791 5555</a>
+        </article>
+        <article class="contact-card">
+          <strong>Dental-Art — pogotowie stomatologiczne</strong>
+          <p>ul. Komandorska 53A/3b, Wrocław</p>
+          <p>To prywatny dyżur, nie NFZ. Po godzinie 21:00 wymaga potwierdzenia telefonicznego.</p>
+          <a class="btn light" href="tel:+48713672262">📞 71 367 22 62</a>
+        </article>
+      </div>
+
+      <div class="danger-note">Przy dużej opuchliźnie twarzy, gorączce, problemie z oddychaniem albo połykaniem — należy jechać na SOR albo dzwonić pod numer <a href="tel:112">112</a>.</div>
+    </section>
+  </main>
+</body>
+</html>
