@@ -2482,15 +2482,18 @@ cleanMobileDock();
 .cxPersonIcon:before,.cxPathPerson:before{content:"";position:absolute;top:5px;left:9px;width:10px;height:10px;border-radius:50%;background:#173b2a}
 .cxPersonIcon:after,.cxPathPerson:after{content:"";position:absolute;bottom:5px;left:7px;width:14px;height:8px;border-radius:8px 8px 5px 5px;background:#0f5f3f}
 .cxNaveZoom,.cxSideZoom{border:1px solid #dce7df;border-radius:18px;background:#fff;padding:12px;box-shadow:0 8px 22px rgba(20,33,27,.06);overflow:hidden}
-.cxNaveRows{display:grid;grid-template-columns:1fr;gap:8px}
-.cxNaveEntry{border:1px solid #dce7df;border-radius:15px;background:#fbfefc;overflow:hidden}
-.cxNaveEntryHead{background:#173b2a;color:#fff;text-align:center;font-weight:900;padding:7px;font-size:12px;letter-spacing:.02em}
-.cxNavePair{display:grid;grid-template-columns:1fr 1fr}
-.cxNavePair span{min-height:54px;display:grid;place-items:center;text-align:center;gap:2px;padding:8px 5px;font-weight:900;color:#173b2a;border-right:1px solid #dce7df;background:#eefaf2}
+.cxNaveTogether{margin:0 0 8px;border:1px solid #efd28a;background:#fff8df;color:#4a3510;border-radius:13px;padding:8px 10px;font-size:12px;font-weight:900;line-height:1.18}
+.cxNaveRows{display:grid;grid-template-columns:repeat(5,minmax(52px,1fr));gap:6px;align-items:stretch}
+.cxNaveEntry{border:1px solid #dce7df;border-radius:15px;background:#fbfefc;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
+.cxNaveEntryHead{background:#173b2a;color:#fff;text-align:center;font-weight:900;padding:7px 3px;font-size:10px;line-height:1.05;letter-spacing:0;min-height:38px;display:grid;place-items:center}
+.cxNavePair{display:grid;grid-template-columns:1fr 1fr;height:100%}
+.cxNavePair span{min-height:94px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px;padding:6px 2px;font-size:10px;line-height:1.05;font-weight:900;color:#173b2a;border-right:1px solid #dce7df;background:#eefaf2;word-break:break-word;overflow:hidden}
 .cxNavePair span:last-child{border-right:0;background:#fff8df}
 .cxNavePair b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#0f5f3f;color:#fff;font-size:14px}
 .cxNavePair span:last-child b{background:#815400}
-.cxNavePair small{display:block;color:#647067;font-size:10px;font-weight:900;line-height:1.1}
+.cxNavePair small{display:block;color:#647067;font-size:8.5px;font-weight:900;line-height:1.05}
+.cxNaveRows .cxNavePair small{display:none}
+.cxNaveRows .cxNavePair span{min-height:70px}
 .cxNaveRow{min-height:38px;border-radius:13px;border:1px solid #cfe4d6;background:#f2fff6;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 9px;font-weight:900;color:#173b2a}
 .cxNaveRow:nth-child(even){background:#fff8df;border-color:#efd28a}
 .cxNaveRow span:first-child{color:#0f5f3f;font-size:16px}
@@ -2524,7 +2527,13 @@ cleanMobileDock();
  .cxPlanSideTitle{font-size:12px}
  .cxSampleNave{font-size:12px;min-height:27px}
  .cxCommonRoad{font-size:10px}
- .cxNaveRows{grid-template-columns:1fr}
+ .cxNaveRows{grid-template-columns:repeat(5,minmax(46px,1fr));gap:5px}
+ .cxNaveEntryHead{font-size:9px;min-height:34px;padding:6px 2px}
+ .cxNavePair span{min-height:78px;font-size:9px;padding:5px 1px}
+ .cxNavePair b{width:22px;height:22px;font-size:12px}
+ .cxNavePair small{font-size:7.5px}
+ .cxNaveRows .cxNavePair small{display:none}
+ .cxNaveRows .cxNavePair span{min-height:62px}
  .cxNaveRow{min-height:34px}
  .cxSideWork{grid-template-columns:1fr 44px 1fr}
  .cxWorkSide{min-height:86px;font-size:12px;padding:10px 6px}
@@ -2876,6 +2885,7 @@ cleanMobileDock();
    az:{you:"ARXAN NAVA 1-Ə",look:"böyük nömrələrə tərəf baxırsan"}
   })[l]||({you:"PLECAMI DO NAWY 1",look:"patrzysz w stronę większych numerów"});
   var rowStep=({pl:"5 wejść / 10 rzędów",en:"5 entrances / 10 rows",ua:"5 входів / 10 рядів",ru:"5 входов / 10 рядов",az:"5 giriş / 10 sıra"})[l]||"5 wejść / 10 rzędów";
+  var together=({pl:"Wejścia 1-5 są obok siebie w jednej linii. To nie jest jedno wejście za drugim.",en:"Entrances 1-5 are next to each other in one line. They are not one behind another.",ua:"Входи 1-5 розташовані поруч в одну лінію. Це не один вхід за іншим.",ru:"Входы 1-5 находятся рядом в одной линии. Это не один вход за другим.",az:"1-5 girişlər bir xətt üzrə yan-yanadır. Onlar bir-birinin arxasında deyil."})[l]||"Wejścia 1-5 są obok siebie w jednej linii.";
   function samples(side){
    var nums=side==='left'?[1,2,3,m.more,37]:[1,2,3,m.more,39];
    return nums.map(function(n){return'<div class="cxSampleNave">'+cxEsc(m.nave)+' '+cxEsc(n)+'</div>'}).join('');
@@ -2892,7 +2902,7 @@ cleanMobileDock();
    '<div class="cxSimpleLead"><div class="cxOrientBadge">'+cxEsc(m.badge)+'</div><h3>'+cxEsc(m.title)+'</h3><p>'+cxEsc(m.lead)+'</p></div>'+
    '<div class="cxZoomSteps"><div class="cxZoomStep"><b>1</b>'+cxEsc(m.whole)+'</div><div class="cxZoomStep"><b>2</b>'+cxEsc(m.one)+'</div><div class="cxZoomStep"><b>3</b>'+cxEsc(rowStep)+'</div><div class="cxZoomStep"><b>4</b>'+cxEsc(m.side)+'</div></div>'+
    '<section class="cxMiniGreenhouse"><h4>'+cxEsc(m.whole)+'</h4><p>'+cxEsc(m.wholeText)+'</p><div class="cxGreenhousePlan"><div class="cxPlanSide"><div class="cxPlanSideTitle">'+cxEsc(m.left)+'</div><div class="cxNaveSamples">'+samples('left')+'</div></div><div class="cxCommonRoad">'+cxEsc(m.road)+'</div><div class="cxPlanSide right"><div class="cxPlanSideTitle">'+cxEsc(m.right)+'</div><div class="cxNaveSamples">'+samples('right')+'</div></div></div><div class="cxPlanCue"><span class="cxPersonIcon"></span><span><b>'+cxEsc(cue.you)+'</b><small>'+cxEsc(cue.look)+'</small></span></div><div class="cxPlanNote">'+cxEsc(m.note)+'</div></section>'+
-   '<section class="cxNaveZoom"><h4>'+cxEsc(m.one)+'</h4><p>'+cxEsc(m.oneText)+'</p><div class="cxNaveRows">'+rows()+'</div></section>'+
+    '<section class="cxNaveZoom"><h4>'+cxEsc(m.one)+'</h4><p>'+cxEsc(m.oneText)+'</p><div class="cxNaveTogether">'+cxEsc(together)+'</div><div class="cxNaveRows">'+rows()+'</div></section>'+
    '<section class="cxSideZoom"><h4>'+cxEsc(m.side)+'</h4><p>'+cxEsc(m.sideText)+'</p><div class="cxSideWork"><div class="cxWorkSide">'+cxEsc(m.workLeft)+'</div><div class="cxWorkPath"><span class="cxPathPerson"></span><span>'+cxEsc(m.path)+'</span></div><div class="cxWorkSide right">'+cxEsc(m.workRight)+'</div></div></section>'+
    '<div class="cxMemoryBox">'+m.remember.map(function(x,i){return'<div><b>'+(i+1)+'</b><span>'+cxEsc(x)+'</span></div>'}).join('')+'</div>'+
   '</div>';
