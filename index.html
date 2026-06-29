@@ -3230,4 +3230,208 @@ cleanMobileDock();
  }
 })();
 </script>
+<style id="cxWarehousePeopleCss">
+.cxHomeTile.warehousePeople{border-color:#efd28a;background:linear-gradient(180deg,#fff,#fff8e6)}
+.cxHomeTile.warehousePeople .cxHomeTileIcon{background:#fff1c7;color:#8b5b12}
+.cxHomeTile.testTile{border-color:#cfe3d4;background:linear-gradient(180deg,#fff,#f4fbf6)}
+.cxHomeTile.testTile .cxHomeTileIcon{background:#eaf8ef;color:#0f5f3f}
+.cxWarehousePeoplePanel{display:none;margin:12px 0 0;border:1px solid #d7e5da;border-radius:20px;background:#fff;padding:14px;box-shadow:0 14px 34px rgba(20,33,27,.10)}
+.cxWarehousePeoplePanel.active{display:grid;gap:13px}
+body.cxWarehousePeopleMode #humanGuide,
+body.cxWarehousePeopleMode #assistPanel{display:none!important}
+body.cxWarehousePeopleMode #humanPanel>*:not(#cxWarehousePeoplePanel){display:none!important}
+body.cxWarehousePeopleMode #humanPanel>#cxWarehousePeoplePanel{display:grid!important}
+body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
+.cxWarehousePeopleHero{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;border:1px solid #efd28a;background:#fff8e6;border-radius:18px;padding:12px}
+.cxWarehousePeopleHero i{width:48px;height:48px;border-radius:16px;background:#8b5b12;color:#fff;display:grid;place-items:center;font-style:normal}
+.cxWarehousePeopleHero h3{margin:0;font-size:22px;line-height:1.08;color:#173b2a}
+.cxWarehousePeopleHero p{margin:5px 0 0;color:#5b614f;font-weight:850;line-height:1.32}
+.cxWarehouseAlert{border:1px solid #efc875;background:#fff7df;color:#553b0d;border-radius:16px;padding:12px;font-weight:950;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center}
+.cxWarehouseAlert i{width:34px;height:34px;border-radius:12px;background:#8b5b12;color:#fff;display:grid;place-items:center;font-style:normal}
+.cxWarehousePeopleActions{display:grid;grid-template-columns:1fr;gap:9px}
+.cxWarehousePeopleActions a,.cxWarehousePeopleActions button{min-height:56px;border-radius:16px;border:1px solid #d7e5da;background:#f7fbf8;color:#173b2a;font-weight:950;padding:12px;text-align:left;text-decoration:none;display:flex;align-items:center;gap:10px}
+.cxWarehousePeopleActions a:first-child{background:#1c74d8;color:#fff;border-color:#1c74d8}
+.cxWarehousePeopleActions button{cursor:pointer}
+.cxWarehouseStaffSteps{display:grid;gap:10px}
+.cxWarehouseStaffStep{display:grid;grid-template-columns:44px 1fr;gap:11px;align-items:start;border:1px solid #d7e5da;background:#fff;border-radius:16px;padding:12px}
+.cxWarehouseStaffStep b:first-child{width:44px;height:44px;border-radius:15px;background:#eef8f2;color:#0f5f3f;display:grid;place-items:center;font-size:18px}
+.cxWarehouseStaffStep h4{margin:0 0 4px;font-size:16px;color:#173b2a}
+.cxWarehouseStaffStep p{margin:0;color:#536259;font-weight:820;line-height:1.35}
+.cxWarehousePeoplePhotos{display:grid;grid-template-columns:1fr;gap:10px}
+.cxWarehousePeoplePhotos figure{margin:0;border:1px solid #d7e5da;border-radius:18px;background:#fff;overflow:hidden}
+.cxWarehousePeoplePhotos img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.cxWarehousePeoplePhotos figcaption{padding:10px 12px;color:#173b2a;font-weight:900;font-size:13px}
+@media(min-width:760px){
+ .cxWarehousePeopleActions{grid-template-columns:1fr 1fr 1fr}
+ .cxWarehousePeoplePhotos{grid-template-columns:1fr 1fr}
+ .cxWarehouseStaffSteps{grid-template-columns:1fr 1fr}
+}
+@media(max-width:420px){
+ .cxWarehousePeoplePanel{margin-left:-2px;margin-right:-2px;padding:12px;border-radius:18px}
+ .cxWarehousePeopleHero{grid-template-columns:42px 1fr;padding:10px}
+ .cxWarehousePeopleHero i{width:42px;height:42px;border-radius:14px}
+ .cxWarehousePeopleHero h3{font-size:19px}
+ .cxWarehouseStaffStep{grid-template-columns:38px 1fr;padding:10px}
+ .cxWarehouseStaffStep b:first-child{width:38px;height:38px;border-radius:13px}
+}
+</style>
+<script id="cxWarehousePeoplePatch">
+(function(){
+ var WAREHOUSE_MAP='https://maps.app.goo.gl/dYbAP1aSsdFrdDZZ9?g_st=ic';
+ function lang(){
+  try{if(typeof cxLang==='function')return cxLang()}catch(e){}
+  try{if(typeof lang!=='undefined')return String(lang).toLowerCase()}catch(e){}
+  return 'pl';
+ }
+ function esc(v){
+  if(typeof cxEsc==='function')return cxEsc(v);
+  return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});
+ }
+ function icon(name){
+  var paths={
+   tablet:'<rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 7h6M9 11h6M9 15h4"></path><circle cx="12" cy="18" r=".7"></circle>',
+   test:'<path d="M9 11l2 2 4-5"></path><path d="M20 6v14H4V4h10"></path><path d="M14 4l6 6"></path>',
+   back:'<path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>',
+   map:'<path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"></path><path d="M9 3v15M15 6v15"></path>',
+   contact:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.6.5 2.5.6a2 2 0 0 1 1.7 2z"></path>',
+   warn:'<path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path>'
+  };
+  if(typeof cxIcon==='function'&&paths[name]==null)return cxIcon(name);
+  return '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round">'+(paths[name]||paths.tablet)+'</svg>';
+ }
+ var TXT={
+  pl:{tile:['Osoby magazynowe / tablet','Osobna instrukcja: magazyn, tablet, PIN i nazwisko.'],test:['Test','Jeden test szkoleniowy po zakończeniu nauki.'],title:'Osoby magazynowe / tablet',lead:'Ten moduł jest dla pracy magazynowej. Na magazynie nie używa się Readera.',alert:'Na magazynie nie bierzesz Readera i nie odbijasz tagów Readera.',steps:[['Wejście magazynu','Otwórz mapę i kieruj się do wejścia dla personelu. Po wejściu czekaj na osobę odpowiedzialną.'],['Tablet','Jeśli pracujesz na tablecie, znajdź swoje imię i nazwisko na liście.'],['PIN','Zaloguj się swoim numerem PIN. Nie używaj cudzego PIN-u.'],['Gdy coś nie działa','Jeśli nie widzisz swojego nazwiska albo PIN nie działa, zgłoś to liderowi lub brygadziście.'],['Praca','Wykonuj zadanie zgodnie z poleceniem osoby prowadzącej.']],map:'Otwórz mapę do magazynu',contacts:'Kontakty brygadzistów',back:'Wróć do kafelków',photo1:'Widok budynku i parkingu przy wejściu dla personelu.',photo2:'Wejście dla personelu / Staff Entrance.'},
+  en:{tile:['Warehouse people / tablet','Separate guide: warehouse, tablet, PIN and name.'],test:['Test','One training test after learning.'],title:'Warehouse people / tablet',lead:'This module is for warehouse work. There is no Reader in the warehouse.',alert:'In the warehouse you do not take a Reader and you do not scan Reader tags.',steps:[['Warehouse entrance','Open the map and go to the staff entrance. After entering, wait for the responsible person.'],['Tablet','If you work on a tablet, find your first and last name on the list.'],['PIN','Log in with your own PIN. Do not use another person’s PIN.'],['If something does not work','If you cannot see your name or the PIN does not work, tell the leader or team leader.'],['Work','Do the task according to the instruction from the responsible person.']],map:'Open warehouse map',contacts:'Team leader contacts',back:'Back to tiles',photo1:'Building and parking view near the staff entrance.',photo2:'Staff Entrance.'},
+  ua:{tile:['Працівникам складу / планшет','Окрема інструкція: склад, планшет, PIN і прізвище.'],test:['Тест','Один навчальний тест після навчання.'],title:'Працівникам складу / планшет',lead:'Цей модуль для роботи на складі. На складі Reader не використовується.',alert:'На складі не береш Reader і не відбиваєш теги Reader.',steps:[['Вхід на склад','Відкрий карту і прямуй до входу для персоналу. Після входу чекай відповідальну особу.'],['Планшет','Якщо працюєш на планшеті, знайди своє ім’я та прізвище у списку.'],['PIN','Увійди своїм номером PIN. Не використовуй чужий PIN.'],['Якщо щось не працює','Якщо не бачиш свого прізвища або PIN не працює, повідом лідера або бригадира.'],['Робота','Виконуй завдання згідно з вказівкою відповідальної особи.']],map:'Відкрити карту до складу',contacts:'Контакти бригадирів',back:'Повернутися до плиток',photo1:'Вид будівлі та паркінгу біля входу для персоналу.',photo2:'Вхід для персоналу / Staff Entrance.'},
+  ru:{tile:['Сотрудникам склада / планшет','Отдельная инструкция: склад, планшет, PIN и фамилия.'],test:['Тест','Один учебный тест после обучения.'],title:'Сотрудникам склада / планшет',lead:'Этот модуль для работы на складе. На складе Reader не используется.',alert:'На складе не берешь Reader и не отмечаешь теги Reader.',steps:[['Вход на склад','Открой карту и направляйся к входу для персонала. После входа жди ответственное лицо.'],['Планшет','Если работаешь на планшете, найди свое имя и фамилию в списке.'],['PIN','Войди своим номером PIN. Не используй чужой PIN.'],['Если что-то не работает','Если не видишь свою фамилию или PIN не работает, сообщи лидеру или бригадиру.'],['Работа','Выполняй задание по указанию ответственного лица.']],map:'Открыть карту склада',contacts:'Контакты бригадиров',back:'Вернуться к плиткам',photo1:'Вид здания и парковки возле входа для персонала.',photo2:'Вход для персонала / Staff Entrance.'},
+  az:{tile:['Anbar işçiləri / tablet','Ayrı təlimat: anbar, tablet, PIN və ad-soyad.'],test:['Test','Təlimdən sonra bir ümumi test.'],title:'Anbar işçiləri / tablet',lead:'Bu modul anbar işi üçündür. Anbarda Reader istifadə olunmur.',alert:'Anbarda Reader götürmürsən və Reader taglarını vurmursan.',steps:[['Anbar girişi','Xəritəni aç və personal girişinə tərəf get. İçəri girəndən sonra məsul şəxsi gözlə.'],['Tablet','Tabletdə işləyirsənsə, siyahıda öz ad və soyadını tap.'],['PIN','Öz PIN nömrənlə daxil ol. Başqasının PIN nömrəsindən istifadə etmə.'],['Problem olarsa','Adını görmürsənsə və ya PIN işləmirsə, liderə və ya briqadirə bildir.'],['İş','Tapşırığı məsul şəxsin göstərişinə uyğun yerinə yetir.']],map:'Anbar xəritəsini aç',contacts:'Briqadirlərin kontaktları',back:'Kafelə qayıt',photo1:'Personal girişi yanında bina və park yeri.',photo2:'Personal girişi / Staff Entrance.'}
+ };
+ function text(){return TXT[lang()]||TXT.pl}
+ function contactLead(){
+  return ({pl:'Numery E1-E6, telefon i WhatsApp.',en:'E1-E6 numbers, phone and WhatsApp.',ua:'Номери E1-E6, телефон і WhatsApp.',ru:'Номера E1-E6, телефон и WhatsApp.',az:'E1-E6 nömrələri, telefon və WhatsApp.'})[lang()]||'Numery E1-E6, telefon i WhatsApp.';
+ }
+ function patchHomeData(){
+  try{
+   var p={
+    pl:{contacts:'Numery E1-E6, telefon i WhatsApp.',warehousePeople:TXT.pl.tile},
+    en:{contacts:'E1-E6 numbers, phone and WhatsApp.',warehousePeople:TXT.en.tile},
+    ua:{contacts:'Номери E1-E6, телефон і WhatsApp.',warehousePeople:TXT.ua.tile},
+    ru:{contacts:'Номера E1-E6, телефон и WhatsApp.',warehousePeople:TXT.ru.tile},
+    az:{contacts:'E1-E6 nömrələri, telefon və WhatsApp.',warehousePeople:TXT.az.tile}
+   };
+   Object.keys(p).forEach(function(k){
+    if(typeof CX_HOME_TEXT!=='undefined'&&CX_HOME_TEXT[k]&&CX_HOME_TEXT[k].tiles){
+     if(CX_HOME_TEXT[k].tiles.contacts)CX_HOME_TEXT[k].tiles.contacts[1]=p[k].contacts;
+     CX_HOME_TEXT[k].tiles.warehousePeople=p[k].warehousePeople;
+    }
+   });
+  }catch(e){}
+  try{
+   if(typeof T!=='undefined'&&T.PL){
+    ['gateFirstTitle','helpStart'].forEach(function(k){if(typeof T.PL[k]==='string')T.PL[k]=T.PL[k].replace(/Jadę pierwszy raz/g,'Idę pierwszy raz').replace(/jadę pierwszy raz/g,'idę pierwszy raz')});
+   }
+  }catch(e){}
+ }
+ function tileHtml(kind,data,cls,iconName,handler){
+  return '<button type="button" class="cxHomeTile '+cls+'" onclick="'+handler+'"><span class="cxHomeTileIcon">'+icon(iconName)+'</span><span><b>'+esc(data[0])+'</b><span>'+esc(data[1])+'</span></span></button>';
+ }
+ function renderTiles(){
+  var host=document.querySelector('#cxHomeTiles .cxTileGrid');
+  if(!host)return;
+  var t=text();
+  var wh=host.querySelector('.cxHomeTile.warehousePeople');
+  if(!wh){wh=document.createElement('button');wh.type='button';wh.className='cxHomeTile warehousePeople';wh.onclick=function(){window.cxOpenWarehousePeople()}}
+  var whHtml='<span class="cxHomeTileIcon">'+icon('tablet')+'</span><span><b>'+esc(t.tile[0])+'</b><span>'+esc(t.tile[1])+'</span></span>';
+  if(wh.innerHTML!==whHtml)wh.innerHTML=whHtml;
+  var after=host.querySelector('.cxHomeTile.warehouse');
+  if(after&&after.nextSibling!==wh)host.insertBefore(wh,after.nextSibling);else if(!wh.parentNode)host.appendChild(wh);
+  var test=host.querySelector('.cxHomeTile.testTile');
+  if(!test){test=document.createElement('button');test.type='button';test.className='cxHomeTile testTile';test.onclick=function(){try{localStorage.removeItem('cx_warehouse_people')}catch(e){}try{cxCallTab('test')}catch(e){try{setAppTab('test')}catch(_){}}setTimeout(function(){try{cxSyncHumanApp()}catch(e){}},60)}}
+  var testHtml='<span class="cxHomeTileIcon">'+icon('test')+'</span><span><b>'+esc(t.test[0])+'</b><span>'+esc(t.test[1])+'</span></span>';
+  if(test.innerHTML!==testHtml)test.innerHTML=testHtml;
+  var forbidden=host.querySelector('.cxHomeTile.forbidden');
+  if(forbidden&&forbidden.parentNode===host)host.insertBefore(test,forbidden);else if(!test.parentNode)host.appendChild(test);
+  var contact=host.querySelector('.cxHomeTile.contacts .cxHomeTileIcon + span > span');
+  if(contact&&contact.textContent!==contactLead())contact.textContent=contactLead();
+ }
+ function active(){
+  try{return localStorage.getItem('cx_warehouse_people')==='1'&&(typeof appTab==='undefined'||appTab==='home')}catch(e){return false}
+ }
+ function renderPanel(){
+  var human=document.getElementById('humanPanel');
+  if(!human)return;
+  var panel=document.getElementById('cxWarehousePeoplePanel');
+  if(!panel){panel=document.createElement('section');panel.id='cxWarehousePeoplePanel';panel.className='cxWarehousePeoplePanel';human.appendChild(panel)}
+  var t=text(), isActive=active();
+  document.body.classList.toggle('cxWarehousePeopleMode',isActive);
+  panel.className='cxWarehousePeoplePanel'+(isActive?' active':'');
+  if(!isActive)return;
+  var forbiddenPanel=document.getElementById('cxForbiddenPanel');
+  if(forbiddenPanel){
+   forbiddenPanel.classList.remove('active');
+   forbiddenPanel.style.setProperty('display','none','important');
+  }
+  var panelHtml='<div class="cxWarehousePeopleHero"><i>'+icon('tablet')+'</i><div><h3>'+esc(t.title)+'</h3><p>'+esc(t.lead)+'</p></div></div>'+
+   '<div class="cxWarehouseAlert"><i>'+icon('warn')+'</i><span>'+esc(t.alert)+'</span></div>'+
+   '<div class="cxWarehousePeopleActions"><a href="'+WAREHOUSE_MAP+'" target="_blank" rel="noopener">'+icon('map')+esc(t.map)+'</a><button type="button" onclick="try{cxContactMode=&quot;people&quot;;cxCallTab(&quot;contacts&quot;)}catch(e){}">'+icon('contact')+esc(t.contacts)+'</button><button type="button" onclick="cxCloseWarehousePeople()">'+icon('back')+esc(t.back)+'</button></div>'+
+   '<div class="cxWarehouseStaffSteps">'+t.steps.map(function(s,i){return'<div class="cxWarehouseStaffStep"><b>'+(i+1)+'</b><div><h4>'+esc(s[0])+'</h4><p>'+esc(s[1])+'</p></div></div>'}).join('')+'</div>'+
+   '<div class="cxWarehousePeoplePhotos"><figure><img loading="lazy" src="assets/warehouse/magazyn-wejscie-1.jpg" alt="'+esc(t.photo1)+'"><figcaption>'+esc(t.photo1)+'</figcaption></figure><figure><img loading="lazy" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="'+esc(t.photo2)+'"><figcaption>'+esc(t.photo2)+'</figcaption></figure></div>';
+  if(panel.innerHTML!==panelHtml)panel.innerHTML=panelHtml;
+ }
+ window.cxOpenWarehousePeople=function(){
+ try{localStorage.setItem('cx_warehouse_people','1');localStorage.cx_mode='warehouse';localStorage.cx_stage='warehouse';localStorage.cx_appTab='home';localStorage.cx_needMode='home'}catch(e){}
+  try{localStorage.setItem('cx_forbiddenOpen','0')}catch(e){}
+  try{mode='warehouse';stage='warehouse';appTab='home';needMode='home'}catch(e){}
+  try{if(typeof apply==='function')apply();else if(typeof cxSyncHumanApp==='function')cxSyncHumanApp()}catch(e){}
+  setTimeout(function(){renderPanel();var p=document.getElementById('cxWarehousePeoplePanel');if(p)try{p.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){p.scrollIntoView()}},90);
+ };
+ window.cxCloseWarehousePeople=function(){
+  try{localStorage.removeItem('cx_warehouse_people')}catch(e){}
+  document.body.classList.remove('cxWarehousePeopleMode');
+  try{if(typeof apply==='function')apply();else if(typeof cxSyncHumanApp==='function')cxSyncHumanApp()}catch(e){}
+  setTimeout(function(){var h=document.getElementById('cxHomeTiles');if(h)try{h.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){h.scrollIntoView()}},80);
+ };
+ var oldHomeGo=window.cxHomeGo;
+ window.cxHomeGo=function(kind){
+  if(kind==='warehousePeople')return window.cxOpenWarehousePeople();
+  try{localStorage.removeItem('cx_warehouse_people')}catch(e){}
+  document.body.classList.remove('cxWarehousePeopleMode');
+  if(kind==='test'){try{cxCallTab('test')}catch(e){try{setAppTab('test')}catch(_){}}return}
+  return oldHomeGo?oldHomeGo.apply(this,arguments):undefined;
+ };
+ var oldSync=window.cxSyncHumanApp;
+ window.cxSyncHumanApp=function(){
+  patchHomeData();
+  var r=oldSync?oldSync.apply(this,arguments):undefined;
+  renderTiles();
+  renderPanel();
+  return r;
+ };
+ var oldApplyWarehousePeople=window.apply;
+ if(typeof oldApplyWarehousePeople==='function'){
+  window.apply=function(){
+   patchHomeData();
+   var r=oldApplyWarehousePeople.apply(this,arguments);
+   setTimeout(function(){renderTiles();renderPanel()},0);
+   return r;
+  };
+ }
+  document.addEventListener('DOMContentLoaded',function(){patchHomeData();renderTiles();renderPanel()});
+ try{
+  var cxWarehousePeopleTimer=0;
+  new MutationObserver(function(){
+   if(cxWarehousePeopleTimer)return;
+   cxWarehousePeopleTimer=setTimeout(function(){
+    cxWarehousePeopleTimer=0;
+    patchHomeData();
+    renderTiles();
+    renderPanel();
+   },60);
+  }).observe(document.body,{childList:true,subtree:true});
+ }catch(e){}
+ patchHomeData();
+ renderTiles();
+ renderPanel();
+})();
+</script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
