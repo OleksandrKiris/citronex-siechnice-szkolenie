@@ -3069,4 +3069,121 @@ cleanMobileDock();
   cxSyncHumanApp();
 })();
 </script>
+<style id="cxTopNavFix">
+@media(max-width:760px){
+ .top{position:static!important;z-index:auto!important}
+ .topin{padding:8px 10px 6px!important}
+ .brand{display:grid!important;grid-template-columns:40px 1fr auto!important;gap:8px!important;align-items:center!important}
+ .brand h1{font-size:14px!important;line-height:1.08!important}
+ .brand .small{display:none!important}
+ .logo{width:40px!important;height:38px!important;border-radius:11px!important}
+ .langs{display:none!important}
+ .cxLangSelectWrap{display:flex!important;align-items:center;gap:5px;justify-self:end;background:#fff;border:1px solid var(--l);border-radius:12px;padding:4px 6px;color:var(--g);font-size:11px;font-weight:900}
+ .cxLangSelectWrap span{font-size:12px}
+ .cxLangSelect{border:0;background:transparent;color:var(--g);font-weight:900;font-size:12px;outline:none;max-width:62px}
+ .appTabsShell{display:block!important;position:sticky!important;top:0!important;z-index:60!important;margin:0 0 12px!important;width:100%!important;padding:8px 10px!important;border-radius:0 0 16px 16px!important;border-left:0!important;border-right:0!important;background:rgba(255,255,255,.98)!important;box-shadow:0 8px 22px rgba(20,33,27,.14)!important}
+ .appTabs{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important;overflow:visible!important}
+ .appTab{min-width:0!important;min-height:42px!important;padding:8px 2px!important;border-radius:12px!important;font-size:10.5px!important;line-height:1.05!important;display:flex!important;align-items:center!important;justify-content:center!important}
+ .appTabLead{display:none!important}
+ #mobileDock,.mobileDock{display:none!important}
+ body{padding-bottom:0!important}
+ .app{padding-bottom:22px!important}
+ .cxForbiddenPanel.active{display:grid!important}
+}
+@media(max-width:380px){
+ .appTab{font-size:9.5px!important}
+ .cxLangSelect{max-width:54px;font-size:11px}
+}
+</style>
+<script>
+(function(){
+ function cxInstallLanguageSelect(){
+  var langs=document.querySelector('.langs');
+  if(!langs)return;
+  var select=document.getElementById('cxLangSelect');
+  if(!select){
+   var wrap=document.createElement('label');
+   wrap.className='cxLangSelectWrap';
+   wrap.innerHTML='<span>Lang</span><select class="cxLangSelect" id="cxLangSelect"></select>';
+   langs.parentNode.insertBefore(wrap,langs);
+   select=wrap.querySelector('select');
+   [].slice.call(langs.querySelectorAll('.lang')).forEach(function(btn){
+    var opt=document.createElement('option');
+    opt.value=btn.getAttribute('data-lang')||btn.textContent.trim();
+    opt.textContent=btn.textContent.trim();
+    select.appendChild(opt);
+   });
+   select.addEventListener('change',function(){
+    var btn=langs.querySelector('.lang[data-lang="'+this.value+'"]');
+    if(btn)btn.click();
+   });
+  }
+  var active=langs.querySelector('.lang.active')||langs.querySelector('.lang');
+  if(active)select.value=active.getAttribute('data-lang')||active.textContent.trim();
+ }
+ function cxMoveTabsToTop(){
+  var header=document.querySelector('.top');
+  var shell=document.getElementById('appTabsShell');
+  if(header&&shell&&header.nextSibling!==shell)header.parentNode.insertBefore(shell,header.nextSibling);
+ }
+ function cxTopNavSync(){
+  cxInstallLanguageSelect();
+  cxMoveTabsToTop();
+  cxSyncForbiddenDisplay();
+ }
+ function cxSyncForbiddenDisplay(){
+  var panel=document.getElementById('cxForbiddenPanel');
+  if(!panel)return;
+  var open=false;
+  try{open=localStorage.cx_forbiddenOpen==='1'}catch(e){}
+  if(open){
+   panel.classList.add('active');
+   panel.style.setProperty('display','grid','important');
+  }else{
+   panel.style.removeProperty('display');
+   panel.classList.remove('active');
+  }
+ }
+ function cxOpenForbiddenHard(){
+  try{localStorage.cx_forbiddenOpen='1'}catch(e){}
+  try{if(typeof appTab!=='undefined'){appTab='home';localStorage.cx_appTab='home'}}catch(e){}
+  try{if(typeof needMode!=='undefined'){needMode='home';localStorage.cx_needMode='home'}}catch(e){}
+  try{if(typeof apply==='function')apply()}catch(e){}
+  setTimeout(function(){
+   try{if(typeof cxSyncHumanApp==='function')cxSyncHumanApp()}catch(e){}
+   var panel=document.getElementById('cxForbiddenPanel');
+   if(panel){
+    panel.classList.add('active');
+    panel.style.setProperty('display','grid','important');
+    try{panel.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){panel.scrollIntoView()}
+   }
+  },120);
+ }
+ window.cxOpenForbidden=cxOpenForbiddenHard;
+ document.addEventListener('click',function(ev){
+  var tile=ev.target&&ev.target.closest?ev.target.closest('.cxHomeTile.forbidden'):null;
+  if(tile){
+   ev.preventDefault();
+   ev.stopPropagation();
+   cxOpenForbiddenHard();
+  }
+  var close=ev.target&&ev.target.closest?ev.target.closest('.cxForbiddenClose'):null;
+  if(close){
+   try{localStorage.cx_forbiddenOpen='0'}catch(e){}
+   var panel=document.getElementById('cxForbiddenPanel');
+   if(panel){panel.style.removeProperty('display');panel.classList.remove('active')}
+  }
+ },true);
+ var prevApply=window.apply;
+ if(typeof prevApply==='function'){
+  window.apply=function(){
+   var result=prevApply.apply(this,arguments);
+   setTimeout(cxTopNavSync,0);
+   return result;
+  };
+ }
+ document.addEventListener('DOMContentLoaded',cxTopNavSync);
+ cxTopNavSync();
+})();
+</script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
