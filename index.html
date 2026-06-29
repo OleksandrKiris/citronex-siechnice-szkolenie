@@ -2948,7 +2948,7 @@ cleanMobileDock();
   cxRenderOrientationTop();
   cxBringOrientationUp();
   cxEnhanceContacts();
-  document.querySelectorAll('.cxOfficeCard span').forEach(function(n){n.textContent=(n.textContent||'').replace('Â·','-')});
+  document.querySelectorAll('.cxOfficeCard span').forEach(function(n){n.textContent=(n.textContent||'').replace(/\u00c2\u00b7/g,'-')});
   var isHome=false;
   try{isHome=(typeof appTab==='undefined'||appTab==='home')}catch(e){isHome=true}
   var isGreenhouse=false;
@@ -3770,6 +3770,240 @@ body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
  try{var timer=0;new MutationObserver(function(){if(timer)return;timer=setTimeout(function(){timer=0;renderAll()},100)}).observe(document.body,{childList:true,subtree:true})}catch(e){}
  document.addEventListener('DOMContentLoaded',renderAll);
  renderAll();
+})();
+</script>
+<style id="cxMasterUxCss">
+:root{--cx-green:#0f5f3f;--cx-blue:#1769aa;--cx-yellow:#f5b83d;--cx-red:#b3261e;--cx-ink:#173b2a;--cx-line:#d7e5da;--cx-soft:#f6fbf8}
+.cxTodayPanel,.cxLitePanel,.cxMapTools,.cxReaderSim,.cxVersionFooter,.cxAdminPanel{box-sizing:border-box}
+.cxTodayPanel{background:linear-gradient(180deg,#ffffff,#f5fbf7);border:1px solid var(--cx-line);border-radius:18px;padding:14px;margin:0 0 14px;box-shadow:0 12px 28px rgba(15,40,27,.08)}
+body.cxHubActive #humanPanel>#cxTodayPanel{display:block!important}
+.cxTodayHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.cxTodayHead b{display:block;color:var(--cx-ink);font-size:19px;line-height:1.15}
+.cxTodayHead span{display:block;color:#52695d;font-weight:800;line-height:1.35;margin-top:3px}
+.cxTodayGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.cxTodayBtn{border:1px solid var(--cx-line);background:#fff;color:var(--cx-ink);border-radius:16px;min-height:66px;padding:11px;text-align:left;font-weight:900;display:grid;grid-template-columns:32px 1fr;gap:9px;align-items:center;box-shadow:0 8px 20px rgba(15,40,27,.06)}
+.cxTodayBtn svg,.cxIcon svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cxTodayIcon{width:32px;height:32px;border-radius:12px;background:#eaf8ef;color:var(--cx-green);display:grid;place-items:center}
+.cxTodayBtn[data-kind=map] .cxTodayIcon{background:#eaf3ff;color:var(--cx-blue)}
+.cxTodayBtn[data-kind=warehouse] .cxTodayIcon,.cxTodayBtn[data-kind=forbidden] .cxTodayIcon{background:#fff7df;color:#8a5a00}
+.cxTodayBtn[data-kind=medical] .cxTodayIcon{background:#fff1f0;color:var(--cx-red)}
+.cxTodayBtn small{display:block;color:#627568;font-weight:800;margin-top:3px;line-height:1.25}
+.cxLitePanel{border:1px solid #d8e6dc;background:#fff;border-radius:16px;padding:12px;margin:12px 0;box-shadow:0 8px 20px rgba(15,40,27,.06)}
+.cxLiteTop{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.cxLiteTop b{color:var(--cx-ink);font-size:16px}.cxLiteTop span{display:block;color:#5c7065;font-weight:800;font-size:13px;line-height:1.3;margin-top:3px}
+.cxLiteBtn,.cxCopyBtn,.cxAdminBtn{border:0;border-radius:14px;background:var(--cx-green);color:#fff;min-height:52px;padding:0 14px;font-weight:900}
+.cxLiteBtn.isOff{background:#eef6f1;color:var(--cx-ink);border:1px solid var(--cx-line)}
+.cxUltraLite .hero:after,.cxUltraLite .brandLogo{display:none!important}
+.cxMapTools{display:grid;grid-template-columns:1fr;gap:8px;border:1px solid #d7e5da;background:#f8fcfa;border-radius:16px;padding:12px;margin:10px 0}
+.cxMapTools b{color:var(--cx-ink);font-size:16px}.cxMapTools span{color:#52695d;font-weight:800;line-height:1.35}
+.cxCopyBtn{background:var(--cx-blue);width:100%}.cxCopyStatus{font-size:12px;color:#436151;font-weight:900;min-height:16px}
+.cxReaderSim{background:#fff;border:1px solid var(--cx-line);border-radius:18px;padding:13px;margin:12px 0;box-shadow:0 10px 24px rgba(15,40,27,.07)}
+.cxReaderSim h3{margin:0;color:var(--cx-ink);font-size:20px;line-height:1.15}.cxReaderSim p{margin:5px 0 10px;color:#52695d;font-weight:800;line-height:1.35}
+.cxSimTabs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
+.cxSimTabs button{border:1px solid var(--cx-line);border-radius:14px;background:#fff;color:var(--cx-ink);padding:12px;text-align:left;font-weight:900;min-height:52px}
+.cxSimTabs button.active{background:var(--cx-green);border-color:var(--cx-green);color:#fff}
+.cxSimSteps{display:grid;gap:9px}
+.cxSimStep{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:start;border:1px solid #e0ebe4;background:#f9fdfb;border-radius:15px;padding:10px}
+.cxSimNo{width:40px;height:40px;border-radius:14px;background:#eaf8ef;color:var(--cx-green);display:grid;place-items:center;font-weight:950}
+.cxSimStep b{display:block;color:var(--cx-ink);font-size:15px}.cxSimStep span{display:block;color:#52695d;font-weight:800;line-height:1.32;margin-top:2px}
+.cxForbiddenItem{display:flex!important;align-items:center;justify-content:center;gap:7px;min-height:54px}
+.cxForbiddenItem:before{content:"";width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#d93025,#9b1c16);box-shadow:inset 0 0 0 5px #fff;outline:2px solid #d93025;flex:0 0 22px}
+.medicalCard h3.cxIconHeader,.cityCard h3.cxIconHeader{display:flex;align-items:center;gap:8px}
+.cxHeaderIcon{width:30px;height:30px;border-radius:12px;background:#eef8f2;color:var(--cx-green);display:inline-grid;place-items:center;flex:0 0 30px}
+.medicalUrgent .cxHeaderIcon,.medicalDangerBox .cxHeaderIcon{background:#fff1f0;color:var(--cx-red)}
+.medicalDental .cxHeaderIcon{background:#eef3ff;color:var(--cx-blue)}
+.cxVersionFooter{margin:18px 0 84px;padding:12px;text-align:center;color:#52695d;font-weight:900;font-size:12px;line-height:1.35;border-top:1px solid #d7e5da}
+.cxVersionFooter button{display:inline-block;border:0;background:transparent;color:#52695d;font:inherit;text-decoration:underline;text-underline-offset:3px;padding:4px}
+.cxAdminPanel{display:none;background:#102a1e;color:#fff;border-radius:18px;padding:14px;margin:12px 0 86px;box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.cxAdminPanel.active{display:block}
+.cxAdminPanel h3{margin:0 0 8px;color:#fff}.cxAdminPanel pre{white-space:pre-wrap;background:rgba(255,255,255,.08);border-radius:12px;padding:10px;font-size:12px;line-height:1.35;max-height:260px;overflow:auto}
+@media(max-width:520px){.cxTodayGrid{grid-template-columns:1fr}.cxTodayBtn{min-height:60px}.cxLiteTop{display:grid}.cxLiteBtn{width:100%}.cxSimTabs{grid-template-columns:1fr}.cxReaderSim{margin-left:-2px;margin-right:-2px}.cxTodayPanel{margin-left:-2px;margin-right:-2px}}
+@media(max-width:380px){.cxTodayHead b{font-size:17px}.cxTodayBtn{font-size:14px}.cxTodayBtn small{font-size:12px}.cxSimStep{grid-template-columns:34px 1fr}.cxSimNo{width:34px;height:34px}}
+</style>
+<script id="cxMasterUxPatch">
+(function(){
+ if(window.cxMasterUxLoaded)return;
+ window.cxMasterUxLoaded=true;
+ var CX_VERSION='2026-06-29 / master UX';
+ var PUBLIC_URL='https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/';
+ var simMode=localStorage.cx_reader_sim||'start';
+ var focusModule=localStorage.cx_focusModule||'';
+ var adminClicks=0;
+ function cxEl(id){return document.getElementById(id)}
+ function cxLang(){try{return lang||localStorage.cx_lang||'PL'}catch(e){return localStorage.cx_lang||'PL'}}
+ function cxText(){
+  var l=cxLang();
+  return (CX_TEXT[l]||CX_TEXT.PL);
+ }
+ function cxEsc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function cxIcon(name){
+  var d={map:'M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z M9 3v15 M15 6v15',warehouse:'M3 20V8l9-5 9 5v12 M7 20v-8h10v8 M10 20v-5h4v5',greenhouse:'M4 20V9c0-4 3-7 8-7s8 3 8 7v11 M4 11h16 M8 20V9 M16 20V9',reader:'M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z M9 6h6 M12 17h.01',doctor:'M12 3v18 M3 12h18 M7 7l10 10 M17 7L7 17',phone:'M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006.4 6.4l1.2-1.2a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z',ban:'M4 4l16 16 M20 12a8 8 0 11-16 0 8 8 0 0116 0z',test:'M9 11l3 3L22 4 M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11',copy:'M8 8h10v12H8z M6 16H4V4h10v2'};
+  return '<span class="cxIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="'+(d[name]||d.test)+'"/></svg></span>';
+ }
+ var CX_TEXT={
+  PL:{todayTitle:'Co chcesz zrobić dzisiaj?',todayLead:'Wybierz jeden kafelek. System pokaże tylko potrzebny moduł.',first:'Pierwszy raz idę do pracy',map:'Mapa i dojazd',greenhouse:'Szklarnia',warehouse:'Magazyn',reader:'Reader',doctor:'Lekarz / SOR',contacts:'Kontakty',forbidden:'Zakazy',test:'Test 30 pytań',liteTitle:'Tryb lekki na telefon',liteLead:'Gdy internet jest słaby, ukryj zdjęcia i zostaw same kroki.',liteOn:'Włącz lekki',liteOff:'Wyłącz lekki',liteActive:'Tryb lekki jest włączony.',liteNormal:'Zdjęcia są widoczne.',mapTools:'Mapa do tego miejsca',copyRoute:'Kopiuj nazwę i link',copied:'Skopiowano. Możesz wkleić w wiadomości.',readerSimTitle:'Reader - przećwicz krok po kroku',readerSimLead:'Wybierz sytuację i sprawdź, co odbijać. Logika jest taka sama jak w instruktażach.',simStart:'Start',simRows:'Rzędy',simOutside:'Poza rzędami',simCart:'Wózki',simRestart:'Restart',warehouseNoReader:'Na magazynie nie ma readerów. Ten moduł dotyczy szklarni.',version:'Wersja szkolenia',admin:'Kontrola języków',adminOk:'OK - brak oczywistych problemów.',examHeader:'WYNIK TESTU DO DODANIA DO BAZY',module:'Moduł',link:'Link szkolenia'},
+  EN:{todayTitle:'What do you need today?',todayLead:'Choose one tile. The system will show only the module you need.',first:'First time going to work',map:'Map and route',greenhouse:'Greenhouse',warehouse:'Warehouse',reader:'Reader',doctor:'Doctor / ER',contacts:'Contacts',forbidden:'Forbidden items',test:'30-question test',liteTitle:'Light mode for phone',liteLead:'If the internet is weak, hide photos and keep only the steps.',liteOn:'Turn light mode on',liteOff:'Turn light mode off',liteActive:'Light mode is on.',liteNormal:'Photos are visible.',mapTools:'Map for this place',copyRoute:'Copy name and link',copied:'Copied. You can paste it into a message.',readerSimTitle:'Reader - practice step by step',readerSimLead:'Choose a situation and check what to scan. The logic is the same as in the instructions.',simStart:'Start',simRows:'Rows',simOutside:'Outside rows',simCart:'Carts',simRestart:'Restart',warehouseNoReader:'There are no readers in the warehouse. This module is for the greenhouse.',version:'Training version',admin:'Language check',adminOk:'OK - no obvious issues.',examHeader:'TEST RESULT FOR DATABASE',module:'Module',link:'Training link'},
+  UA:{todayTitle:'Що вам потрібно сьогодні?',todayLead:'Оберіть один блок. Система покаже тільки потрібний модуль.',first:'Я вперше йду на роботу',map:'Карта і маршрут',greenhouse:'Теплиця',warehouse:'Склад',reader:'Рідер',doctor:'Лікар / SOR',contacts:'Контакти',forbidden:'Заборони',test:'Тест 30 питань',liteTitle:'Легкий режим для телефону',liteLead:'Якщо інтернет слабкий, сховайте фото і залиште тільки кроки.',liteOn:'Увімкнути легкий',liteOff:'Вимкнути легкий',liteActive:'Легкий режим увімкнено.',liteNormal:'Фото видно.',mapTools:'Карта цього місця',copyRoute:'Скопіювати назву і посилання',copied:'Скопійовано. Можна вставити в повідомлення.',readerSimTitle:'Рідер - потренуйтесь крок за кроком',readerSimLead:'Оберіть ситуацію і перевірте, що потрібно відбивати. Логіка така сама, як в інструктажах.',simStart:'Старт',simRows:'Ряди',simOutside:'Поза рядами',simCart:'Візки',simRestart:'Перезапуск',warehouseNoReader:'На складі немає рідерів. Цей модуль стосується теплиці.',version:'Версія навчання',admin:'Перевірка мов',adminOk:'OK - явних проблем немає.',examHeader:'РЕЗУЛЬТАТ ТЕСТУ ДЛЯ БАЗИ',module:'Модуль',link:'Посилання на навчання'},
+  RU:{todayTitle:'Что нужно сделать сегодня?',todayLead:'Выберите один блок. Система покажет только нужный модуль.',first:'Я иду на работу в первый раз',map:'Карта и маршрут',greenhouse:'Теплица',warehouse:'Склад',reader:'Ридер',doctor:'Врач / SOR',contacts:'Контакты',forbidden:'Запреты',test:'Тест 30 вопросов',liteTitle:'Легкий режим для телефона',liteLead:'Если интернет слабый, скройте фото и оставьте только шаги.',liteOn:'Включить легкий',liteOff:'Выключить легкий',liteActive:'Легкий режим включен.',liteNormal:'Фото видны.',mapTools:'Карта этого места',copyRoute:'Скопировать название и ссылку',copied:'Скопировано. Можно вставить в сообщение.',readerSimTitle:'Ридер - потренируйтесь шаг за шагом',readerSimLead:'Выберите ситуацию и проверьте, что нужно отмечать. Логика такая же, как в инструктажах.',simStart:'Старт',simRows:'Ряды',simOutside:'Вне рядов',simCart:'Тележки',simRestart:'Перезапуск',warehouseNoReader:'На складе нет ридеров. Этот модуль относится к теплице.',version:'Версия обучения',admin:'Проверка языков',adminOk:'OK - явных проблем нет.',examHeader:'РЕЗУЛЬТАТ ТЕСТА ДЛЯ БАЗЫ',module:'Модуль',link:'Ссылка на обучение'},
+  AZ:{todayTitle:'Bu gün nə lazımdır?',todayLead:'Bir kafel seçin. Sistem yalnız lazım olan modulu göstərəcək.',first:'İşə ilk dəfə gedirəm',map:'Xəritə və yol',greenhouse:'İstixana',warehouse:'Anbar',reader:'Reader',doctor:'Həkim / SOR',contacts:'Əlaqə',forbidden:'Qadağalar',test:'30 suallıq test',liteTitle:'Telefon üçün yüngül rejim',liteLead:'İnternet zəifdirsə, şəkilləri gizlədin və yalnız addımları saxlayın.',liteOn:'Yüngül rejimi aç',liteOff:'Yüngül rejimi bağla',liteActive:'Yüngül rejim aktivdir.',liteNormal:'Şəkillər görünür.',mapTools:'Bu yerin xəritəsi',copyRoute:'Adı və linki kopyala',copied:'Kopyalandı. Mesaja yapışdıra bilərsiniz.',readerSimTitle:'Reader - addım-addım məşq',readerSimLead:'Vəziyyəti seçin və nəyi qeyd etməli olduğunuzu yoxlayın. Məntiq təlimatdakı kimidir.',simStart:'Start',simRows:'Sıralar',simOutside:'Sıralardan kənar',simCart:'Arabalar',simRestart:'Restart',warehouseNoReader:'Anbarda reader yoxdur. Bu modul istixana üçündür.',version:'Təlim versiyası',admin:'Dil yoxlanışı',adminOk:'OK - açıq problem yoxdur.',examHeader:'BAZA ÜÇÜN TEST NƏTİCƏSİ',module:'Modul',link:'Təlim linki'}
+ };
+ var SIM_STEPS={
+  PL:{start:[['Weź reader','Weź reader z ładowarki z przypisanego miejsca.'],['Tag personalny','Odbij tag personalny centralnym przyciskiem readera.'],['Początek pracy','Przyłóż reader do taga „początek pracy” na tablicy i naciśnij centralny przycisk.'],['Czynność','Odbij czynność, którą masz wykonywać.'],['Po pracy','Odbij „koniec pracy” i odłóż reader na ładowarkę na miejsce z numerem.']],rows:[['Wejście w rząd','Wchodzisz do rzędu. Nie odbijasz taga przy wejściu.'],['Wyjście z rzędu','Wychodząc z rzędu odbij tag zawieszony na rzędzie.'],['Rząd skończony','Jeśli rząd jest skończony, odbij tag jeden raz.'],['Rząd nieskończony','Jeśli rząd nie jest skończony, odbij tag dwa razy.'],['Pomidory','Jeśli zbierasz pomidor, odbij tag przy rzędzie i tag przy wózku.']],outside:[['Start','Odbij tag personalny, początek pracy i czynność na tablicy.'],['Zmiana czynności','Najpierw zakończ poprzednią czynność, potem odbij nową czynność na tablicy.'],['Przerwa','Odbij początek przerwy. Po powrocie odbij koniec przerwy i czynność.'],['Koniec pracy','Odbij koniec pracy i odłóż reader na ładowarkę.']],cart:[['Tag wózka','Przyłóż reader do taga przy wózku.'],['Tag rzędu','Odbij tag rzędu zgodnie z tym, czy rząd jest skończony.'],['Zapis','Naciśnij centralny przycisk readera.']],restart:[['Lewy przycisk','Przytrzymaj lewy przycisk.'],['Sekwencja','Naciśnij prawy, środkowy, prawy.'],['Menu','Puść lewy przycisk, gdy pojawi się menu.'],['Restart','Naciśnij prawy 5 razy, środkowy wybiera, lewy potwierdza TAK.']]},
+  EN:{start:[['Take reader','Take the reader from the charger at your assigned place.'],['Personal tag','Scan your personal tag with the middle reader button.'],['Start work','Scan the “start work” tag on the board and press the middle button.'],['Activity','Scan the activity assigned to you.'],['After work','Scan “end work” and put the reader back on the numbered charger.']],rows:[['Enter the row','You enter the row. Do not scan the row tag when entering.'],['Leave the row','When leaving the row, scan the tag hanging on the row.'],['Finished row','If the row is finished, scan the tag once.'],['Unfinished row','If the row is not finished, scan the tag twice.'],['Tomatoes','If collecting tomatoes, scan the row tag and the cart tag.']],outside:[['Start','Scan personal tag, start work and activity on the board.'],['Change activity','Finish the previous activity first, then scan the new activity on the board.'],['Break','Scan break start. After return, scan break end and activity.'],['End work','Scan end work and put the reader on the charger.']],cart:[['Cart tag','Touch the reader to the cart tag.'],['Row tag','Scan the row tag according to whether the row is finished.'],['Save','Press the middle reader button.']],restart:[['Left button','Hold the left button.'],['Sequence','Press right, middle, right.'],['Menu','Release the left button when the menu appears.'],['Restart','Press right 5 times, middle selects, left confirms YES.']]},
+  UA:{start:[['Візьміть рідер','Візьміть рідер із зарядного пристрою з призначеного місця.'],['Персональний тег','Відбийте персональний тег центральною кнопкою рідера.'],['Початок роботи','Прикладіть рідер до тега “початок роботи” на дошці і натисніть центральну кнопку.'],['Діяльність','Відбийте призначену вам діяльність.'],['Після роботи','Відбийте “кінець роботи” і покладіть рідер на зарядку на місце з номером.']],rows:[['Вхід у ряд','Ви заходите в ряд. При вході тег ряду не відбивається.'],['Вихід з ряду','Виходячи з ряду, відбийте тег, який висить на ряду.'],['Ряд закінчений','Якщо ряд закінчений, відбийте тег один раз.'],['Ряд не закінчений','Якщо ряд не закінчений, відбийте тег два рази.'],['Помідори','Якщо збираєте помідор, відбийте тег при ряду і тег при візку.']],outside:[['Старт','Відбийте персональний тег, початок роботи і діяльність на дошці.'],['Зміна діяльності','Спочатку завершіть попередню діяльність, потім відбийте нову діяльність на дошці.'],['Перерва','Відбийте початок перерви. Після повернення відбийте кінець перерви і діяльність.'],['Кінець роботи','Відбийте кінець роботи і покладіть рідер на зарядку.']],cart:[['Тег візка','Прикладіть рідер до тега при візку.'],['Тег ряду','Відбийте тег ряду залежно від того, чи ряд закінчений.'],['Запис','Натисніть центральну кнопку рідера.']],restart:[['Ліва кнопка','Утримуйте ліву кнопку.'],['Послідовність','Натисніть праву, центральну, праву.'],['Меню','Відпустіть ліву кнопку, коли з’явиться меню.'],['Restart','Натисніть праву 5 разів, центральна вибирає, ліва підтверджує TAK.']]},
+  RU:{start:[['Возьмите ридер','Возьмите ридер с зарядного устройства с назначенного места.'],['Персональный тег','Отметьте персональный тег центральной кнопкой ридера.'],['Начало работы','Приложите ридер к тегу “начало работы” на доске и нажмите центральную кнопку.'],['Деятельность','Отметьте назначенную вам деятельность.'],['После работы','Отметьте “конец работы” и положите ридер на зарядку на место с номером.']],rows:[['Вход в ряд','Вы заходите в ряд. При входе тег ряда не отмечается.'],['Выход из ряда','Выходя из ряда, отметьте тег, который висит на ряду.'],['Ряд закончен','Если ряд закончен, отметьте тег один раз.'],['Ряд не закончен','Если ряд не закончен, отметьте тег два раза.'],['Помидоры','Если собираете помидор, отметьте тег возле ряда и тег возле тележки.']],outside:[['Старт','Отметьте персональный тег, начало работы и деятельность на доске.'],['Смена деятельности','Сначала завершите предыдущую деятельность, потом отметьте новую деятельность на доске.'],['Перерыв','Отметьте начало перерыва. После возврата отметьте конец перерыва и деятельность.'],['Конец работы','Отметьте конец работы и положите ридер на зарядку.']],cart:[['Тег тележки','Приложите ридер к тегу возле тележки.'],['Тег ряда','Отметьте тег ряда в зависимости от того, закончен ряд или нет.'],['Запись','Нажмите центральную кнопку ридера.']],restart:[['Левая кнопка','Удерживайте левую кнопку.'],['Последовательность','Нажмите правую, центральную, правую.'],['Меню','Отпустите левую кнопку, когда появится меню.'],['Restart','Нажмите правую 5 раз, центральная выбирает, левая подтверждает TAK.']]},
+  AZ:{start:[['Reader götürün','Reader-i öz yerinizdəki şarj cihazından götürün.'],['Şəxsi tag','Şəxsi tagı reader-in orta düyməsi ilə qeyd edin.'],['İşin başlanğıcı','Reader-i lövhədəki “işin başlanğıcı” tagına yaxınlaşdırın və orta düyməni basın.'],['Fəaliyyət','Sizə verilən fəaliyyəti qeyd edin.'],['İşdən sonra','“İşin sonu”nu qeyd edin və reader-i nömrəli şarj yerinə qoyun.']],rows:[['Sıraya giriş','Sıraya daxil olursunuz. Girişdə sıra tagı qeyd edilmir.'],['Sıradan çıxış','Sıradan çıxanda sırada asılmış tagı qeyd edin.'],['Sıra bitib','Sıra bitibsə, tagı bir dəfə qeyd edin.'],['Sıra bitməyib','Sıra bitməyibsə, tagı iki dəfə qeyd edin.'],['Pomidor','Pomidor yığırsınızsa, sıra tagını və araba tagını qeyd edin.']],outside:[['Start','Şəxsi tagı, işin başlanğıcını və fəaliyyəti lövhədə qeyd edin.'],['Fəaliyyət dəyişikliyi','Əvvəl əvvəlki fəaliyyəti bitirin, sonra lövhədə yeni fəaliyyəti qeyd edin.'],['Fasilə','Fasilənin başlanğıcını qeyd edin. Qayıdanda fasilənin sonunu və fəaliyyəti qeyd edin.'],['İşin sonu','İşin sonunu qeyd edin və reader-i şarja qoyun.']],cart:[['Araba tagı','Reader-i araba tagına yaxınlaşdırın.'],['Sıra tagı','Sıra bitib-bitmədiyinə görə sıra tagını qeyd edin.'],['Yadda saxla','Reader-in orta düyməsini basın.']],restart:[['Sol düymə','Sol düyməni basılı saxlayın.'],['Ardıcıllıq','Sağ, orta, sağ düymələrini basın.'],['Menyu','Menyu görünəndə sol düyməni buraxın.'],['Restart','Sağı 5 dəfə basın, orta seçir, sol TAK təsdiqləyir.']]}
+ };
+ function cxGoto(target){
+  focusModule='';
+  try{
+   if(target==='first'){needMode='first';localStorage.cx_needMode='first';setAppTab('route');return}
+   if(target==='map'){setAppTab('route');return}
+   if(target==='warehouse'){selectStage('warehouse');setAppTab('greenhouse');return}
+   if(target==='greenhouse'){if(mode==='warehouse'){mode='rows';localStorage.cx_mode=mode}setAppTab('greenhouse');return}
+   if(target==='reader'){if(mode==='warehouse'){mode='rows';localStorage.cx_mode=mode}setAppTab('reader');return}
+   if(target==='doctor'||target==='contacts'){setAppTab('contacts');return}
+   if(target==='test'){setAppTab('test');return}
+   if(target==='forbidden'){focusModule='forbidden';localStorage.cx_focusModule='forbidden';setAppTab('greenhouse');setTimeout(cxShowFocus,80);return}
+  }catch(e){}
+ }
+ window.cxGoto=cxGoto;
+ function cxRenderToday(){
+  var panel=cxEl('humanPanel'); if(!panel)return;
+  var t=cxText();
+  var box=cxEl('cxTodayPanel'); if(!box){box=document.createElement('div');box.id='cxTodayPanel';box.className='cxTodayPanel';panel.insertBefore(box,panel.firstChild)}
+  var items=[['first',t.first,'map'],['map',t.map,'map'],['greenhouse',t.greenhouse,'greenhouse'],['warehouse',t.warehouse,'warehouse'],['reader',t.reader,'reader'],['doctor',t.doctor,'doctor'],['contacts',t.contacts,'phone'],['forbidden',t.forbidden,'ban'],['test',t.test,'test']];
+  box.innerHTML='<div class="cxTodayHead"><div><b>'+cxEsc(t.todayTitle)+'</b><span>'+cxEsc(t.todayLead)+'</span></div></div><div class="cxTodayGrid">'+items.map(function(it){return '<button type="button" class="cxTodayBtn" data-kind="'+it[0]+'" onclick="cxGoto(\''+it[0]+'\')"><span class="cxTodayIcon">'+cxIcon(it[2])+'</span><span>'+cxEsc(it[1])+'</span></button>'}).join('')+'</div>';
+ }
+ function cxAutoLite(){
+  try{
+   if(localStorage.cx_lite)return;
+   var c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+   if(c&&(c.saveData||/^(slow-2g|2g)$/.test(c.effectiveType||''))){lite=true;localStorage.cx_lite='1'}
+  }catch(e){}
+ }
+ function cxToggleLiteMode(){
+  try{lite=!lite;localStorage.cx_lite=lite?'1':'0';apply()}catch(e){}
+ }
+ window.cxToggleLiteMode=cxToggleLiteMode;
+ function cxRenderLite(){
+  var t=cxText();
+  try{document.body.classList.toggle('cxUltraLite',!!lite)}catch(e){}
+  var anchor=cxEl('humanGuide')||cxEl('route')||document.querySelector('.app');
+  if(!anchor||!anchor.parentNode)return;
+  var box=cxEl('cxLitePanel'); if(!box){box=document.createElement('div');box.id='cxLitePanel';box.className='cxLitePanel';anchor.parentNode.insertBefore(box,anchor.nextSibling)}
+  var isLite=false;try{isLite=!!lite}catch(e){}
+  box.innerHTML='<div class="cxLiteTop"><div><b>'+cxEsc(t.liteTitle)+'</b><span>'+cxEsc(isLite?t.liteActive:t.liteNormal)+' '+cxEsc(t.liteLead)+'</span></div><button type="button" class="cxLiteBtn '+(isLite?'isOff':'')+'" onclick="cxToggleLiteMode()">'+cxEsc(isLite?t.liteOff:t.liteOn)+'</button></div>';
+  document.querySelectorAll('img').forEach(function(img){img.loading='lazy';img.decoding='async'});
+ }
+ function cxCurrentMap(){
+  try{return (MAPS||[]).find(function(m){return m.id===stage})||MAPS[0]}catch(e){return null}
+ }
+ function cxMapName(m){
+  try{var x=T[cxLang()]||T.PL;var r=mapLabel(x,m);return r[0]+' - '+r[1]}catch(e){return (m&&((m.name||m.id)+' - '+(m.desc||'')))||''}
+ }
+ function cxCopyRoute(){
+  var t=cxText(),m=cxCurrentMap(); if(!m)return;
+  var text=cxMapName(m)+'\n'+m.url+'\n'+PUBLIC_URL;
+  var done=function(){var s=cxEl('cxCopyStatus');if(s)s.textContent=t.copied};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done).catch(done);else done();
+ }
+ window.cxCopyRoute=cxCopyRoute;
+ function cxRenderMapTools(){
+  var a=cxEl('selectedMap'); if(!a||!a.parentNode)return;
+  var t=cxText(),m=cxCurrentMap(); if(!m)return;
+  var box=cxEl('cxMapTools'); if(!box){box=document.createElement('div');box.id='cxMapTools';box.className='cxMapTools';a.parentNode.insertBefore(box,a.nextSibling)}
+  box.innerHTML='<b>'+cxEsc(t.mapTools)+'</b><span>'+cxEsc(cxMapName(m))+'</span><button class="cxCopyBtn" type="button" onclick="cxCopyRoute()">'+cxIcon('copy')+' '+cxEsc(t.copyRoute)+'</button><span class="cxCopyStatus" id="cxCopyStatus"></span>';
+ }
+ function cxSetReaderSim(v){simMode=v;localStorage.cx_reader_sim=v;cxRenderReaderSim()}
+ window.cxSetReaderSim=cxSetReaderSim;
+ function cxRenderReaderSim(){
+  var anchor=cxEl('readerTabs')||cxEl('readerQuickActions')||cxEl('reader'); if(!anchor)return;
+  var holder=anchor.parentNode||anchor;
+  var box=cxEl('cxReaderSim'); if(!box){box=document.createElement('div');box.id='cxReaderSim';box.className='cxReaderSim';holder.insertBefore(box,anchor)}
+  var t=cxText(),l=cxLang(),data=(SIM_STEPS[l]||SIM_STEPS.PL);
+  try{if(mode==='warehouse'){box.innerHTML='<h3>'+cxEsc(t.readerSimTitle)+'</h3><p>'+cxEsc(t.warehouseNoReader)+'</p>';return}}catch(e){}
+  var tabs=[['start',t.simStart],['rows',t.simRows],['outside',t.simOutside],['cart',t.simCart],['restart',t.simRestart]];
+  var steps=(data[simMode]||data.start).map(function(s,i){return '<div class="cxSimStep"><span class="cxSimNo">'+(i+1)+'</span><span><b>'+cxEsc(s[0])+'</b><span>'+cxEsc(s[1])+'</span></span></div>'}).join('');
+  box.innerHTML='<h3>'+cxEsc(t.readerSimTitle)+'</h3><p>'+cxEsc(t.readerSimLead)+'</p><div class="cxSimTabs">'+tabs.map(function(v){return '<button type="button" class="'+(simMode===v[0]?'active':'')+'" onclick="cxSetReaderSim(\''+v[0]+'\')">'+cxEsc(v[1])+'</button>'}).join('')+'</div><div class="cxSimSteps">'+steps+'</div>';
+ }
+ function cxEnhanceForbidden(){
+  var box=cxEl('forbiddenItems'); if(!box)return;
+  Array.prototype.forEach.call(box.children,function(n){if(!n.classList.contains('cxForbiddenItem'))n.classList.add('cxForbiddenItem')});
+ }
+ function cxEnhanceMedical(){
+  document.querySelectorAll('.medicalCard h3,.cityCard h3,.medicalDangerBox h3').forEach(function(h){
+   if(h.classList.contains('cxIconHeader'))return;
+   h.classList.add('cxIconHeader');
+   var icon='doctor'; if((h.textContent||'').match(/SOR|112|Emergency|nag|сроч|невід/i))icon='doctor'; else if((h.textContent||'').match(/dent|stomat|стомат|стома/i))icon='reader';
+   h.insertAdjacentHTML('afterbegin','<span class="cxHeaderIcon">'+cxIcon(icon)+'</span>');
+  });
+ }
+ function cxShowFocus(){
+  if(focusModule!=='forbidden')return;
+  ['humanGuide','workChooser','guide'].forEach(function(id){var n=cxEl(id);if(n)n.classList.add('appHidden')});
+  ['fullContent','forbiddenSection'].forEach(function(id){var n=cxEl(id);if(n)n.classList.remove('appHidden')});
+  var sec=cxEl('forbiddenSection'); if(sec&&sec.scrollIntoView)sec.scrollIntoView({behavior:'smooth',block:'start'});
+ }
+ function cxExamModuleLabel(){
+  var t=cxText();
+  try{if(mode==='warehouse')return t.warehouse;if(mode==='rows')return t.greenhouse+' / '+t.simRows;if(mode==='outside')return t.greenhouse+' / '+t.simOutside}catch(e){}
+  return t.greenhouse;
+ }
+ var oldExamMessage=(typeof examMessage==='function')?examMessage:null;
+ if(oldExamMessage){
+  window.examMessage=function(){
+   var t=cxText(),base=oldExamMessage();
+   return [t.examHeader,t.version+': '+CX_VERSION,t.module+': '+cxExamModuleLabel(),t.link+': '+PUBLIC_URL,'',base].join('\n');
+  };
+ }
+ function cxLanguageReport(){
+  var langs=['PL','EN','UA','RU','AZ'];
+  var rows=[];
+  [['CX_TEXT',CX_TEXT],['SIM_STEPS',SIM_STEPS]].forEach(function(pair){
+   var miss=langs.filter(function(l){return !pair[1][l]});
+   rows.push(pair[0]+': '+(miss.length?'brak '+miss.join(', '):'OK'));
+  });
+  try{var missT=langs.filter(function(l){return !T[l]});rows.push('T: '+(missT.length?'brak '+missT.join(', '):'OK'))}catch(e){rows.push('T: niedostępne')}
+  var visible=(document.body.innerText||'').slice(0,200000);
+  var bad=(visible.match(/[\uFFFD\u00C3\u00C2\u0110\u00C4\u0139\u0143\u0102]/g)||[]);
+  rows.push('Podejrzane znaki na ekranie: '+bad.length);
+  rows.push(cxText().adminOk);
+  return rows.join('\n');
+ }
+ function cxRenderFooter(){
+  var app=document.querySelector('.app')||document.body;
+  var f=cxEl('cxVersionFooter'); if(!f){f=document.createElement('div');f.id='cxVersionFooter';f.className='cxVersionFooter';app.appendChild(f)}
+  var t=cxText();
+  f.innerHTML='<button type="button" onclick="cxVersionClick()">'+cxEsc(t.version)+': '+cxEsc(CX_VERSION)+'</button><br>SYSTEM INFORMACYJNO-UCZĄCY CITRONEX - Siechnice';
+  var admin=cxEl('cxAdminPanel'); if(!admin){admin=document.createElement('div');admin.id='cxAdminPanel';admin.className='cxAdminPanel';app.appendChild(admin)}
+  var active=localStorage.cx_admin==='1'||location.search.indexOf('admin=1')>-1;
+  admin.classList.toggle('active',active);
+  admin.innerHTML='<h3>'+cxEsc(t.admin)+'</h3><pre>'+cxEsc(cxLanguageReport())+'</pre><button class="cxAdminBtn" type="button" onclick="cxToggleAdmin(false)">Ukryj panel</button>';
+ }
+ window.cxVersionClick=function(){adminClicks++; if(adminClicks>=5){adminClicks=0;cxToggleAdmin(true)}};
+ window.cxToggleAdmin=function(on){localStorage.cx_admin=on?'1':'0';cxRenderFooter()};
+ function cxRenderUx(){
+  cxAutoLite();
+  cxRenderToday();
+  cxRenderLite();
+  cxRenderMapTools();
+  cxRenderReaderSim();
+  cxEnhanceForbidden();
+  cxEnhanceMedical();
+  cxShowFocus();
+  cxRenderFooter();
+ }
+ var oldApply=(typeof apply==='function')?apply:null;
+ if(oldApply){
+  window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(cxRenderUx,0);return r};
+ }
+ var oldSetAppTab=(typeof setAppTab==='function')?setAppTab:null;
+ if(oldSetAppTab){
+  window.setAppTab=function(t){if(t!=='greenhouse'){focusModule='';localStorage.cx_focusModule=''}return oldSetAppTab.apply(this,arguments)};
+ }
+ document.addEventListener('DOMContentLoaded',cxRenderUx);
+ setTimeout(cxRenderUx,0);
 })();
 </script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
