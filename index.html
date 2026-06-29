@@ -2301,9 +2301,8 @@ cleanMobileDock();
 .cxWarehousePhotos figure{margin:0;background:#fff;border:1px solid #dce7df;border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(20,33,27,.08)}
 .cxWarehousePhotos img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
 .cxWarehousePhotos figcaption{padding:10px;font-size:13px;font-weight:900;color:#415047;line-height:1.25}
-.brigadierActions{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
+.brigadierActions{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:8px!important}
 .brigadierActions a{min-height:44px;border-radius:13px;display:flex!important;align-items:center;justify-content:center;text-decoration:none;font-weight:900}
-.brigadierActions a.viber{background:#665cac!important;color:#fff!important}
 .cxPeopleMode #cityInfo,.cxPeopleMode #lostRescue{display:none!important}
 .cxPeopleMode #sosbox{display:block!important;margin-top:8px!important;border:2px solid #0f5f3f!important;box-shadow:0 14px 34px rgba(15,95,63,.13)!important}
 .cxPeopleMode #sosbox>#sos,.cxPeopleMode #sosbox>#sosText,.cxPeopleMode #contacts{display:none!important}
@@ -2541,7 +2540,7 @@ cleanMobileDock();
  .cxOrientCard b{font-size:12px;padding:8px}
  .cxPassageDiagram{grid-template-columns:1fr 38px 1fr;gap:6px}
  .cxSpanStrip{grid-template-columns:repeat(2,1fr)}
- .brigadierActions{grid-template-columns:repeat(3,1fr)!important}
+  .brigadierActions{grid-template-columns:repeat(2,1fr)!important}
  .brigadierStageTabs,.brigadierReasons{grid-template-columns:repeat(2,1fr)!important}
  .cxOfficeCard{grid-template-columns:1fr}
  .cxOfficeActions{justify-content:stretch}
@@ -2805,7 +2804,6 @@ cleanMobileDock();
   }
  }
  function cxEnhanceContacts(){
-  var label='Viber';
   var t=cxText();
   var sos=document.getElementById('sosbox');
   if(sos){
@@ -2818,19 +2816,7 @@ cleanMobileDock();
    }
    title.innerHTML='<span class="cxHomeTileIcon">'+cxIcon('contacts')+'</span><div><h2>'+cxEsc(t.peopleTitle||t.tiles.contacts[0])+'</h2><p>'+cxEsc(t.peopleLead||t.tiles.contacts[1])+'</p></div>';
   }
-  document.querySelectorAll('.brigadierCard').forEach(function(card){
-   var actions=card.querySelector('.brigadierActions');
-   if(!actions||actions.querySelector('.viber'))return;
-   var tel=actions.querySelector('a[href^="tel:"]');
-   var href=tel?tel.getAttribute('href'):'';
-   var phone=href.replace(/^tel:/,'').replace(/[^\d+]/g,'');
-   if(phone&&phone.charAt(0)!=='+')phone='+'+phone;
-   var a=document.createElement('a');
-   a.className='viber';
-   a.href='viber://chat?number='+encodeURIComponent(phone);
-   a.textContent=label;
-   actions.appendChild(a);
-  });
+  document.querySelectorAll('.brigadierCard .brigadierActions a.viber').forEach(function(a){a.remove()});
   document.querySelectorAll('.officeList>div:not(.cxOfficeCard)').forEach(function(item){
    var raw=(item.textContent||'').replace(/\s+/g,' ').trim();
    var m=raw.match(/^(.+?)\s*(\+?\d[\d\s]{7,}\d)/);
