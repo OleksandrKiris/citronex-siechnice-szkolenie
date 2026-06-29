@@ -2282,9 +2282,36 @@ cleanMobileDock();
 .cxHomeTile.greenhouse .cxHomeTileIcon{background:#eaf8ef;color:#0f6a43}.cxHomeTile.greenhouse{border-color:#c8e4d1}
 .cxHomeTile.reader .cxHomeTileIcon{background:#fff6dc;color:#996b00}.cxHomeTile.reader{border-color:#efd99a}
 .cxHomeTile.doctor .cxHomeTileIcon{background:#fff0f0;color:#aa2525}.cxHomeTile.doctor{border-color:#eec0c0}
+.cxHomeTile.city .cxHomeTileIcon{background:#edf4ff;color:#1f5b99}.cxHomeTile.city{border-color:#cbdcf4;background:linear-gradient(180deg,#ffffff,#f6fbff)}
 .cxHomeTile.contacts .cxHomeTileIcon{background:#eef8f2;color:#0f5f3f}.cxHomeTile.contacts{border-color:#c8e4d1}
 .cxHomeTile.contacts{background:linear-gradient(180deg,#ffffff,#f2fff7);border-width:2px}
 .cxHomeFoot{margin-top:12px;border:1px solid #efd99a;background:#fff9e8;color:#4a3510;border-radius:16px;padding:12px 13px;font-weight:900;line-height:1.28}
+.cxCityPanel{display:none;margin:12px 0;border:1px solid #cbdcf4;border-left:6px solid #1f5b99;background:#fff;border-radius:18px;padding:14px;box-shadow:0 14px 32px rgba(31,91,153,.12)}
+.cxCityPanel.active{display:block}
+.cxCityHero{display:grid;grid-template-columns:48px 1fr auto;gap:12px;align-items:start;margin-bottom:12px}
+.cxCityHero .cxHomeTileIcon{background:#edf4ff;color:#1f5b99}
+.cxCityHero h3{margin:0;font-size:22px;line-height:1.06;color:#14211b}
+.cxCityHero p{margin:4px 0 0;color:#647067;font-weight:800;line-height:1.28}
+.cxCityHero button{border:1px solid #cbdcf4;background:#f6fbff;color:#1f5b99;border-radius:12px;padding:9px 10px;font-weight:900}
+.cxCityQuick{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0 12px}
+.cxCityQuick a,.cxBankList a,.cxCityCard.copy button{display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;border:0;border-radius:14px;min-height:46px;padding:11px 10px;background:#1f5b99;color:#fff;font-weight:900;line-height:1.15}
+.cxCityQuick button{display:flex;align-items:center;justify-content:center;text-align:center;border:0;border-radius:14px;min-height:46px;padding:11px 10px;background:#173b2a;color:#fff;font-weight:900;line-height:1.15}
+.cxCityTopStatus{grid-column:1/-1;min-height:20px;text-align:center;font-weight:900;color:#1f5b99}
+.cxCityGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.cxCityCard{border:1px solid #dce7df;background:#fbfefc;border-radius:16px;padding:12px;box-shadow:0 8px 20px rgba(20,33,27,.05)}
+.cxCityCard h4{margin:0 0 7px;font-size:17px;line-height:1.13;color:#14211b}
+.cxCityCard p{margin:0;color:#40564a;font-weight:800;line-height:1.32}
+.cxCityCard.warn{background:#fff8df;border-color:#efd28a}
+.cxCityCard.danger{background:#fff1f1;border-color:#efb7b7}
+.cxCityAddress{margin-top:9px;border:1px dashed #b8cfe9;background:#f6fbff;border-radius:12px;padding:9px;font-weight:900;color:#1f5b99}
+.cxCityCard.banks,.cxCityCard.copy{grid-column:1/-1}
+.cxBankList{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.cxBankList>div{border:1px solid #dce7df;border-radius:14px;background:#fff;padding:11px;display:grid;gap:6px}
+.cxBankList b{font-size:16px;color:#14211b}
+.cxBankList span{font-weight:850;color:#40564a;line-height:1.25}
+.cxCityCard.copy pre{white-space:pre-wrap;margin:8px 0 10px;background:#f6f8f7;border:1px solid #dce7df;border-radius:14px;padding:11px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.35;color:#173b2a}
+.cxCityCard.copy button{width:100%;background:#173b2a}
+#cxCityStatus{min-height:20px;margin-top:8px;font-weight:900;color:#1f5b99}
 .cxWarehousePanel{display:none;background:#fff;border:1px solid #efd99a;border-left:6px solid #c69220;border-radius:18px;padding:14px;margin:12px 0;box-shadow:0 12px 28px rgba(20,33,27,.08)}
 .cxWarehousePanel.active{display:block}
 .cxWarehouseHead{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;margin-bottom:12px}
@@ -2527,6 +2554,13 @@ cleanMobileDock();
  .cxHomeTile b{font-size:16px}
  .cxHomeTile span{font-size:12px}
  .cxHomeFoot{font-size:13px;padding:11px;margin-top:10px}
+ .cxCityPanel{padding:12px;border-radius:17px;margin:10px 0}
+ .cxCityHero{grid-template-columns:43px 1fr;gap:10px}
+ .cxCityHero button{grid-column:1/-1;justify-self:start}
+ .cxCityHero h3{font-size:19px}
+ .cxCityQuick,.cxCityGrid,.cxBankList{grid-template-columns:1fr}
+ .cxCityCard{padding:11px;border-radius:15px}
+ .cxCityCard h4{font-size:16px}
  .cxWarehousePanel{margin:10px 0;padding:12px;border-radius:17px}
  .cxWarehouseHead{grid-template-columns:43px 1fr;gap:10px}
  .cxWarehouseHead h3{font-size:19px}
@@ -2623,6 +2657,7 @@ cleanMobileDock();
    greenhouse:'<path d="M4 20V9a8 8 0 0 1 16 0v11"/><path d="M4 12h16M8 20V8M16 20V8"/>',
    reader:'<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M10 7h4M10 17h4"/><circle cx="12" cy="13" r="2"/>',
    doctor:'<path d="M12 21s7-4 7-10a7 7 0 1 0-14 0c0 6 7 10 7 10z"/><path d="M12 8v6M9 11h6"/>',
+   city:'<path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M12 10h.01M15 10h.01"/>',
    contacts:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.6.5 2.5.6a2 2 0 0 1 1.7 2z"/>',
    arrow:'<path d="M5 12h14M13 5l7 7-7 7"/>'
   };
@@ -2648,6 +2683,7 @@ cleanMobileDock();
  }
  window.cxHomeGo=function(kind){
   if(kind==='map'){cxCallTab('route')}
+  if(kind==='city'){cxCityOpen=true;try{localStorage.cx_city_panel='1'}catch(e){}cxCallTab('home');setTimeout(function(){cxSyncHumanApp();var n=document.getElementById('cxCityPanel');if(n)n.scrollIntoView({behavior:'smooth',block:'start'})},120)}
   if(kind==='warehouse'){cxPickStage('warehouse');cxCallTab('route')}
   if(kind==='greenhouse'){if(cxIsWarehouse())cxPickStage('e1');cxCallTab('greenhouse')}
   if(kind==='reader'){if(cxIsWarehouse())cxPickStage('e1');cxCallTab('reader')}
@@ -2655,6 +2691,61 @@ cleanMobileDock();
   if(kind==='contacts'){cxContactMode='people';cxCallTab('contacts');setTimeout(function(){cxSyncHumanApp();var n=document.getElementById('sosbox')||document.getElementById('contactList')||document.getElementById('contacts');if(n)n.scrollIntoView({behavior:'smooth',block:'start'})},120)}
   setTimeout(cxSyncHumanApp,120);
  };
+ var cxCityOpen=false;
+ try{cxCityOpen=localStorage.cx_city_panel==='1'}catch(e){}
+ var CX_CITY_LINKS={
+  officeSite:'https://www.siechnice.gmina.pl/',
+  officeMap:'https://www.google.com/maps/search/?api=1&query=Urz%C4%85d+Miejski+w+Siechnicach%2C+Jana+Paw%C5%82a+II+12%2C+55-011+Siechnice',
+  jakdojade:'https://jakdojade.pl/',
+  koleo:'https://koleo.pl/',
+  pko:'https://www.google.com/maps/place/Oddzia%C5%82+PKO+Banku+Polskiego/@51.0333025,17.1562485,1198m/data=!3m2!1e3!5s0x470fdc5d1d840fc7:0x44851fc9a86bd92e!4m10!1m2!2m1!1spko!3m6!1s0x470fdc5cd74ceb8f:0xe9ab50ad0c73dcd4!8m2!3d51.0323083!4d17.1490679!15sCgNwa28iA4gBAZIBBGJhbmvgAQA!16s%2Fg%2F11c1_w075g?hl=pl-pl&entry=ttu',
+  alior:'https://www.google.com/maps/place/Alior+Bank/@51.0324975,17.1547473,2652m/data=!3m1!1e3!4m10!1m2!2m1!1salior!3m6!1s0x470fdc69c916aa27:0x360d79d4251341dc!8m2!3d51.0284489!4d17.1527781!15sCgVhbGlvciIDiAEBkgEMc2F2aW5nc19iYW5r4AEA!16s%2Fg%2F1ptw7mj8_?hl=pl-pl&entry=ttu'
+ };
+ var CX_CITY_TEXT={
+  pl:{tile:["Miasto / Urząd / Banki","PESEL, Profil Zaufany, mObywatel, dojazd, banki i zasady."],title:"Miasto / Urząd / Banki",lead:"Praktyczne miejsca i zasady po przyjeździe. Otwierasz tylko to, czego teraz potrzebujesz.",close:"Zamknij",officeTitle:"Urząd Miejski / sprawy urzędowe",officeText:"W urzędzie możesz pytać o PESEL, Profil Zaufany, meldunek, dokumenty, usługi publiczne i mObywatel. Przed wizytą sprawdź godziny oraz dokumenty.",officeAddress:"Jana Pawła II 12, 55-011 Siechnice",openOffice:"Otwórz stronę urzędu",openOfficeMap:"Otwórz mapę urzędu",transportTitle:"Jak dojechać",transportText:"Do miasta i urzędu możesz dojechać komunikacją miejską albo pociągiem. Do autobusów użyj Jakdojade, do pociągów Koleo.",openJakdojade:"Otwórz Jakdojade",openKoleo:"Otwórz Koleo",docsTitle:"Ważne - dokumenty przy sobie",docsText:"Kiedy wychodzisz do miasta, miej przy sobie paszport albo Kartę Pobytu. Dokument może być potrzebny w urzędzie, banku lub przy kontroli.",banksTitle:"Banki w Siechnicach",bankAddress:"Adres",bankPhone:"Telefon",openBank:"Otwórz mapę",passTitle:"Wejście na teren firmy",passText:"Przy wejściu trzeba mieć przepustkę. Bez przepustki ochrona nie przepuści.",parcelTitle:"Zamówienia i paczki",parcelText:"AliExpress, Allegro i inne paczki zamawiaj tylko do Paczkomatu. Nie zamawiaj paczek na adres firmy, ochrona ich nie przyjmuje.",copyTitle:"Wiadomość do koordynatora",copyBtn:"Skopiuj wiadomość - potrzebuję pomocy w mieście",copied:"Skopiowano wiadomość.",copyFail:"Nie udało się skopiować. Przytrzymaj tekst i skopiuj ręcznie.",message:"Dzień dobry, potrzebuję pomocy w mieście.\n\nSprawa:\nPESEL / Profil Zaufany / mObywatel / bank / dojazd / inna sprawa\n\nImię i nazwisko:\nTelefon:\nJęzyk:\n\nProszę o informację."},
+  en:{tile:["City / Office / Banks","PESEL, Trusted Profile, mObywatel, transport, banks and rules."],title:"City / Office / Banks",lead:"Practical places and rules after arrival. Open only what you need now.",close:"Close",officeTitle:"City office / official matters",officeText:"At the office you can ask about PESEL, Trusted Profile, registration, documents, public online services and mObywatel. Before visiting, check hours and required documents.",officeAddress:"Jana Pawła II 12, 55-011 Siechnice",openOffice:"Open office website",openOfficeMap:"Open office map",transportTitle:"How to get there",transportText:"You can get to the city and office by public transport or train. Use Jakdojade for buses and Koleo for trains.",openJakdojade:"Open Jakdojade",openKoleo:"Open Koleo",docsTitle:"Important - keep documents with you",docsText:"When you go to the city, keep your passport or residence card with you. You may need it at the office, bank or during a check.",banksTitle:"Banks in Siechnice",bankAddress:"Address",bankPhone:"Phone",openBank:"Open map",passTitle:"Entering company premises",passText:"You must have a pass at the entrance. Without a pass, security will not let you in.",parcelTitle:"Orders and parcels",parcelText:"Order AliExpress, Allegro and other parcels only to a parcel locker. Do not order parcels to the company address; security does not accept them.",copyTitle:"Message to coordinator",copyBtn:"Copy message - I need help in the city",copied:"Message copied.",copyFail:"Could not copy. Hold the text and copy manually.",message:"Good morning, I need help in the city.\n\nMatter:\nPESEL / Trusted Profile / mObywatel / bank / transport / other matter\n\nFull name:\nPhone number:\nLanguage:\n\nPlease send me information."},
+  ua:{tile:["Місто / Уряд / Банки","PESEL, Profil Zaufany, mObywatel, доїзд, банки та правила."],title:"Місто / Уряд / Банки",lead:"Практичні місця і правила після приїзду. Відкривайте тільки те, що потрібно зараз.",close:"Закрити",officeTitle:"Уряд / міські справи",officeText:"В уряді можна питати про PESEL, Profil Zaufany, meldunek, документи, державні онлайн-послуги та mObywatel. Перед візитом перевірте години роботи і потрібні документи.",officeAddress:"Jana Pawła II 12, 55-011 Siechnice",openOffice:"Відкрити сайт уряду",openOfficeMap:"Відкрити карту уряду",transportTitle:"Як доїхати",transportText:"До міста та уряду можна доїхати громадським транспортом або поїздом. Для автобусів використовуйте Jakdojade, для потягів Koleo.",openJakdojade:"Відкрити Jakdojade",openKoleo:"Відкрити Koleo",docsTitle:"Важливо - документи з собою",docsText:"Коли виходите в місто, майте при собі паспорт або карту побиту. Документ може знадобитися в уряді, банку або при перевірці.",banksTitle:"Банки в Siechnice",bankAddress:"Адреса",bankPhone:"Телефон",openBank:"Відкрити карту",passTitle:"Вхід на територію фірми",passText:"При вході потрібно мати перепустку. Без перепустки охорона не пропустить.",parcelTitle:"Замовлення і посилки",parcelText:"AliExpress, Allegro та інші посилки замовляйте тільки до Paczkomat. Не замовляйте посилки на адресу фірми, охорона їх не приймає.",copyTitle:"Повідомлення координатору",copyBtn:"Скопіювати повідомлення - потрібна допомога в місті",copied:"Повідомлення скопійовано.",copyFail:"Не вдалося скопіювати. Затисніть текст і скопіюйте вручну.",message:"Добрий день, мені потрібна допомога в місті.\n\nПитання:\nPESEL / Profil Zaufany / mObywatel / банк / доїзд / інше\n\nІм’я та прізвище:\nТелефон:\nМова:\n\nПрошу надати інформацію."},
+  ru:{tile:["Город / Ужонд / Банки","PESEL, Profil Zaufany, mObywatel, проезд, банки и правила."],title:"Город / Ужонд / Банки",lead:"Практичные места и правила после приезда. Открывай только то, что нужно сейчас.",close:"Закрыть",officeTitle:"Ужонд / городские дела",officeText:"В ужонде можно спросить про PESEL, Profil Zaufany, meldunek, документы, государственные онлайн-услуги и mObywatel. Перед визитом проверь часы работы и нужные документы.",officeAddress:"Jana Pawła II 12, 55-011 Siechnice",openOffice:"Открыть сайт ужонда",openOfficeMap:"Открыть карту ужонда",transportTitle:"Как доехать",transportText:"До города и ужонда можно доехать городским транспортом или поездом. Для автобусов используй Jakdojade, для поездов Koleo.",openJakdojade:"Открыть Jakdojade",openKoleo:"Открыть Koleo",docsTitle:"Важно - документы с собой",docsText:"Когда выходишь в город, имей при себе паспорт или карту побыта. Документ может понадобиться в ужонде, банке или при проверке.",banksTitle:"Банки в Siechnice",bankAddress:"Адрес",bankPhone:"Телефон",openBank:"Открыть карту",passTitle:"Вход на территорию фирмы",passText:"При входе нужно иметь пропуск. Без пропуска охрана не пропустит.",parcelTitle:"Заказы и посылки",parcelText:"AliExpress, Allegro и другие посылки заказывай только в Paczkomat. Не заказывай посылки на адрес фирмы, охрана их не принимает.",copyTitle:"Сообщение координатору",copyBtn:"Скопировать сообщение - нужна помощь в городе",copied:"Сообщение скопировано.",copyFail:"Не удалось скопировать. Зажми текст и скопируй вручную.",message:"Добрый день, мне нужна помощь в городе.\n\nВопрос:\nPESEL / Profil Zaufany / mObywatel / банк / проезд / другое\n\nИмя и фамилия:\nТелефон:\nЯзык:\n\nПрошу дать информацию."},
+  az:{tile:["Şəhər / İdarə / Banklar","PESEL, Profil Zaufany, mObywatel, nəqliyyat, banklar və qaydalar."],title:"Şəhər / İdarə / Banklar",lead:"Gəldikdən sonra lazım olan yerlər və qaydalar. İndi lazım olan bölməni açın.",close:"Bağla",officeTitle:"Şəhər idarəsi / rəsmi işlər",officeText:"İdarədə PESEL, Profil Zaufany, qeydiyyat, sənədlər, dövlət onlayn xidmətləri və mObywatel haqqında soruşmaq olar. Getməzdən əvvəl iş saatlarını və sənədləri yoxlayın.",officeAddress:"Jana Pawła II 12, 55-011 Siechnice",openOffice:"İdarənin saytını aç",openOfficeMap:"İdarənin xəritəsini aç",transportTitle:"Necə getmək olar",transportText:"Şəhərə və idarəyə ictimai nəqliyyatla və ya qatarla getmək olar. Avtobus üçün Jakdojade, qatar üçün Koleo istifadə edin.",openJakdojade:"Jakdojade aç",openKoleo:"Koleo aç",docsTitle:"Vacib - sənədlər yanınızda olsun",docsText:"Şəhərə çıxanda pasport və ya karta pobytu yanınızda olsun. Sənəd idarədə, bankda və yoxlama zamanı lazım ola bilər.",banksTitle:"Siechnice bankları",bankAddress:"Ünvan",bankPhone:"Telefon",openBank:"Xəritəni aç",passTitle:"Firma ərazisinə giriş",passText:"Girişdə keçid kartı olmalıdır. Keçid kartı olmadan mühafizə buraxmayacaq.",parcelTitle:"Sifarişlər və bağlamalar",parcelText:"AliExpress, Allegro və digər bağlamaları yalnız Paczkomat-a sifariş edin. Firma ünvanına sifariş etməyin, mühafizə qəbul etmir.",copyTitle:"Koordinatora mesaj",copyBtn:"Mesajı kopyala - şəhərdə kömək lazımdır",copied:"Mesaj kopyalandı.",copyFail:"Kopyalamaq olmadı. Mətni saxlayıb əl ilə kopyalayın.",message:"Salam, şəhərdə mənə kömək lazımdır.\n\nMəsələ:\nPESEL / Profil Zaufany / mObywatel / bank / nəqliyyat / başqa məsələ\n\nAd və soyad:\nTelefon:\nDil:\n\nXahiş edirəm məlumat verin."}
+ };
+ function cxCityText(){return CX_CITY_TEXT[cxLang()]||CX_CITY_TEXT.pl}
+ function cxCityList(items){return '<ul>'+items.map(function(x){return'<li>'+cxEsc(x)+'</li>'}).join('')+'</ul>'}
+ function cxCityCopy(){
+  var t=cxCityText(),statuses=Array.prototype.slice.call(document.querySelectorAll('[data-city-status]'));
+  function setStatus(msg){if(statuses.length){statuses.forEach(function(status){status.textContent=msg})}else{var status=document.getElementById('cxCityStatus');if(status)status.textContent=msg}}
+  function done(){setStatus(t.copied)}
+  function fail(){setStatus(t.copyFail)}
+  done();
+  try{
+   if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t.message).then(done).catch(function(){cxFallbackCityCopy(t.message,done,fail)});
+   }else cxFallbackCityCopy(t.message,done,fail);
+  }catch(e){cxFallbackCityCopy(t.message,done,fail)}
+ }
+ function cxFallbackCityCopy(text,done,fail){try{var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();var ok=document.execCommand('copy');ta.remove();if(ok){done&&done()}else{fail&&fail()}return ok}catch(e){fail&&fail();return false}}
+ function cxCityClose(){cxCityOpen=false;try{localStorage.cx_city_panel='0'}catch(e){}cxRenderCityPanel()}
+ window.cxCityCopy=cxCityCopy;
+ window.cxCityClose=cxCityClose;
+ function cxRenderCityPanel(){
+  var panel=document.getElementById('cxCityPanel');if(!panel)return;
+  var t=cxCityText();
+  panel.classList.toggle('active',cxCityOpen);
+  if(!cxCityOpen){panel.innerHTML='';return}
+  panel.innerHTML='<div class="cxCityHero"><span class="cxHomeTileIcon">'+cxIcon('city')+'</span><div><h3>'+cxEsc(t.title)+'</h3><p>'+cxEsc(t.lead)+'</p></div><button type="button" data-city-close="1">'+cxEsc(t.close)+'</button></div>'+
+   '<div class="cxCityQuick"><a target="_blank" rel="noopener" href="'+CX_CITY_LINKS.officeSite+'">'+cxEsc(t.openOffice)+'</a><a target="_blank" rel="noopener" href="'+CX_CITY_LINKS.officeMap+'">'+cxEsc(t.openOfficeMap)+'</a><a target="_blank" rel="noopener" href="'+CX_CITY_LINKS.jakdojade+'">'+cxEsc(t.openJakdojade)+'</a><a target="_blank" rel="noopener" href="'+CX_CITY_LINKS.koleo+'">'+cxEsc(t.openKoleo)+'</a><button type="button" data-city-copy="1" data-copied="'+cxEsc(t.copied)+'" onclick="var m=this.getAttribute(&quot;data-copied&quot;),p=document.querySelector(&quot;#cxCityPanel .cxCityCard.copy pre&quot;);document.querySelectorAll(&quot;[data-city-status]&quot;).forEach(function(s){s.textContent=m});if(navigator.clipboard&&p)navigator.clipboard.writeText(p.innerText)">'+cxEsc(t.copyBtn)+'</button><span class="cxCityTopStatus" data-city-status></span></div>'+
+   '<div class="cxCityGrid">'+
+   '<section class="cxCityCard"><h4>'+cxEsc(t.officeTitle)+'</h4><p>'+cxEsc(t.officeText)+'</p><div class="cxCityAddress">'+cxEsc(t.officeAddress)+'</div></section>'+
+   '<section class="cxCityCard"><h4>'+cxEsc(t.transportTitle)+'</h4><p>'+cxEsc(t.transportText)+'</p></section>'+
+   '<section class="cxCityCard warn"><h4>'+cxEsc(t.docsTitle)+'</h4><p>'+cxEsc(t.docsText)+'</p></section>'+
+   '<section class="cxCityCard danger"><h4>'+cxEsc(t.passTitle)+'</h4><p>'+cxEsc(t.passText)+'</p></section>'+
+   '<section class="cxCityCard warn"><h4>'+cxEsc(t.parcelTitle)+'</h4><p>'+cxEsc(t.parcelText)+'</p></section>'+
+   '<section class="cxCityCard banks"><h4>'+cxEsc(t.banksTitle)+'</h4><div class="cxBankList"><div><b>PKO Bank Polski</b><span>'+cxEsc(t.bankAddress)+': ul. Jana Pawła II 28/30, Siechnice</span><span>'+cxEsc(t.bankPhone)+': 800 302 302</span><a target="_blank" rel="noopener" href="'+CX_CITY_LINKS.pko+'">'+cxEsc(t.openBank)+' PKO</a></div><div><b>Alior Bank</b><span>'+cxEsc(t.bankAddress)+': ul. Jarzębinowa 7-13/lok.2, Siechnice</span><span>'+cxEsc(t.bankPhone)+': 71 303 22 40</span><a target="_blank" rel="noopener" href="'+CX_CITY_LINKS.alior+'">'+cxEsc(t.openBank)+' Alior</a></div></div></section>'+
+   '<section class="cxCityCard copy"><h4>'+cxEsc(t.copyTitle)+'</h4><pre>'+cxEsc(t.message)+'</pre><button type="button" data-city-copy="1" data-copied="'+cxEsc(t.copied)+'" onclick="var m=this.getAttribute(&quot;data-copied&quot;),p=document.querySelector(&quot;#cxCityPanel .cxCityCard.copy pre&quot;);document.querySelectorAll(&quot;[data-city-status]&quot;).forEach(function(s){s.textContent=m});if(navigator.clipboard&&p)navigator.clipboard.writeText(p.innerText)">'+cxEsc(t.copyBtn)+'</button><div id="cxCityStatus" data-city-status></div></section>'+
+   '</div>';
+  var closeBtn=panel.querySelector('[data-city-close]');
+  if(closeBtn)closeBtn.addEventListener('click',cxCityClose);
+  Array.prototype.forEach.call(panel.querySelectorAll('[data-city-copy]'),function(copyBtn){copyBtn.addEventListener('click',cxCityCopy)});
+ }
  function cxRenderHome(){
   var panel=document.getElementById('humanPanel');
   if(!panel)return;
@@ -2662,8 +2753,9 @@ cleanMobileDock();
   if(!box){box=document.createElement('section');box.id='cxHomeTiles';box.className='cxHomeTiles';panel.insertBefore(box,panel.firstChild)}
   var t=cxText(),tiles=t.tiles;
   box.innerHTML='<div class="cxHomeHead"><b>'+cxEsc(t.title)+'</b><span>'+cxEsc(t.lead)+'</span></div><div class="cxTileGrid">'+
-   cxTile('map',tiles.map)+cxTile('warehouse',tiles.warehouse)+cxTile('greenhouse',tiles.greenhouse)+cxTile('reader',tiles.reader)+cxTile('doctor',tiles.doctor)+cxTile('contacts',tiles.contacts)+
-  '</div><div class="cxHomeFoot">'+cxEsc(t.note)+'</div>';
+   cxTile('map',tiles.map)+cxTile('city',cxCityText().tile)+cxTile('warehouse',tiles.warehouse)+cxTile('greenhouse',tiles.greenhouse)+cxTile('reader',tiles.reader)+cxTile('doctor',tiles.doctor)+cxTile('contacts',tiles.contacts)+
+  '</div><div id="cxCityPanel" class="cxCityPanel"></div><div class="cxHomeFoot">'+cxEsc(t.note)+'</div>';
+  cxRenderCityPanel();
  }
  function cxRenderWarehouse(){
   var route=document.getElementById('route'),photos=document.getElementById('stagePhotos');
