@@ -3279,8 +3279,9 @@ body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
 (function(){
  var WAREHOUSE_MAP='https://maps.app.goo.gl/dYbAP1aSsdFrdDZZ9?g_st=ic';
  function lang(){
-  try{if(typeof cxLang==='function')return cxLang()}catch(e){}
-  try{if(typeof lang!=='undefined')return String(lang).toLowerCase()}catch(e){}
+  try{var docLang=document.documentElement.getAttribute('lang');if(docLang)return String(docLang).slice(0,2).toLowerCase()}catch(e){}
+  try{if(typeof cxLang==='function')return String(cxLang()).toLowerCase()}catch(e){}
+  try{var saved=localStorage.cx_lang||localStorage.lang;if(saved)return String(saved).toLowerCase()}catch(e){}
   return 'pl';
  }
  function esc(v){
@@ -3357,6 +3358,17 @@ body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
  function active(){
   try{return localStorage.getItem('cx_warehouse_people')==='1'&&(typeof appTab==='undefined'||appTab==='home')}catch(e){return false}
  }
+ function warehouseMistakesHtml(){
+  var pack={
+   pl:['Najczęstsze błędy magazynowe',['Nie bierz Readera na magazyn.','Nie używaj cudzego PIN-u.','Nie zaczynaj pracy samodzielnie bez instrukcji osoby odpowiedzialnej.','Jeśli nie ma nazwiska albo PIN nie działa, zgłoś to liderowi.']],
+   en:['Most common warehouse mistakes',['Do not take a Reader in the warehouse.','Do not use someone else’s PIN.','Do not start work alone without instruction from the responsible person.','If your name is missing or PIN does not work, tell the leader.']],
+   ua:['Найчастіші помилки на складі',['Не бери Reader на склад.','Не використовуй чужий PIN.','Не починай роботу сам без інструкції відповідальної особи.','Якщо немає прізвища або PIN не працює, повідом лідера.']],
+   ru:['Самые частые ошибки на складе',['Не бери Reader на склад.','Не используй чужой PIN.','Не начинай работу сам без инструкции ответственного лица.','Если нет фамилии или PIN не работает, сообщи лидеру.']],
+   az:['Anbarda ən çox edilən səhvlər',['Anbarda Reader götürmə.','Başqasının PIN kodundan istifadə etmə.','Məsul şəxsin təlimatı olmadan işə başlama.','Adın yoxdursa və ya PIN işləmir, liderə bildir.']]
+  };
+  var m=pack[lang()]||pack.pl;
+  return '<div id="cxWarehouseMistakes" class="cxMistakeBox"><h4>'+esc(m[0])+'</h4><ul>'+m[1].map(function(x){return'<li>'+esc(x)+'</li>'}).join('')+'</ul></div>';
+ }
  function renderPanel(){
   var human=document.getElementById('humanPanel');
   if(!human)return;
@@ -3375,6 +3387,7 @@ body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
    '<div class="cxWarehouseAlert"><i>'+icon('warn')+'</i><span>'+esc(t.alert)+'</span></div>'+
    '<div class="cxWarehousePeopleActions"><a href="'+WAREHOUSE_MAP+'" target="_blank" rel="noopener">'+icon('map')+esc(t.map)+'</a><button type="button" onclick="try{cxContactMode=&quot;people&quot;;cxCallTab(&quot;contacts&quot;)}catch(e){}">'+icon('contact')+esc(t.contacts)+'</button><button type="button" onclick="cxCloseWarehousePeople()">'+icon('back')+esc(t.back)+'</button></div>'+
    '<div class="cxWarehouseStaffSteps">'+t.steps.map(function(s,i){return'<div class="cxWarehouseStaffStep"><b>'+(i+1)+'</b><div><h4>'+esc(s[0])+'</h4><p>'+esc(s[1])+'</p></div></div>'}).join('')+'</div>'+
+   warehouseMistakesHtml()+
    '<div class="cxWarehousePeoplePhotos"><figure><img loading="lazy" src="assets/warehouse/magazyn-wejscie-1.jpg" alt="'+esc(t.photo1)+'"><figcaption>'+esc(t.photo1)+'</figcaption></figure><figure><img loading="lazy" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="'+esc(t.photo2)+'"><figcaption>'+esc(t.photo2)+'</figcaption></figure></div>';
   if(panel.innerHTML!==panelHtml)panel.innerHTML=panelHtml;
  }
@@ -3432,6 +3445,174 @@ body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
  patchHomeData();
  renderTiles();
  renderPanel();
+})();
+</script>
+<style id="cxHumanUxBoostCss">
+.cxHumanChooser{border:1px solid #d7e5da;background:#fbfffb;border-radius:18px;padding:12px;margin:10px 0 12px;box-shadow:0 10px 26px rgba(20,33,27,.07)}
+.cxHumanChooserHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px}
+.cxHumanChooserHead b{font-size:18px;color:#173b2a}
+.cxHumanChooserHead span{font-size:13px;color:#607166;font-weight:850;line-height:1.25;text-align:right}
+.cxHumanChooserGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cxHumanChooserBtn{min-height:58px;border:1px solid #d7e5da;border-radius:16px;background:#fff;color:#173b2a;text-align:left;padding:11px;display:grid;grid-template-columns:34px 1fr;gap:9px;align-items:center;font-weight:950;cursor:pointer}
+.cxHumanChooserBtn i{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;font-style:normal;background:#eef8f2;color:#0f5f3f}
+.cxHumanChooserBtn span{display:block;font-size:12px;color:#627267;font-weight:850;margin-top:2px;line-height:1.2}
+.cxHumanChooserBtn.first i{background:#eaf2ff;color:#1c74d8}.cxHumanChooserBtn.green i{background:#eaf8ef;color:#0f5f3f}.cxHumanChooserBtn.warehouse i{background:#fff1c7;color:#8b5b12}
+.cxHumanBreadcrumb{display:none;margin:0 0 10px;border:1px solid #d7e5da;background:#fff;border-radius:16px;padding:10px 12px;color:#173b2a;font-weight:950;box-shadow:0 8px 20px rgba(20,33,27,.06)}
+.cxHumanBreadcrumb.active{display:flex;align-items:center;gap:8px}
+.cxHumanBreadcrumb span{color:#647067;font-weight:850}
+.cxHumanBoostPanel{border:1px solid #d7e5da;background:#fff;border-radius:18px;padding:13px;margin:10px 0 12px;box-shadow:0 10px 26px rgba(20,33,27,.07)}
+.cxHumanBoostPanel h3{margin:0 0 7px;color:#173b2a;font-size:19px;line-height:1.12}
+.cxHumanBoostLead{margin:0 0 10px;color:#536259;font-weight:850;line-height:1.33}
+.cxMiniRules{display:grid;gap:8px}
+.cxMiniRule{display:grid;grid-template-columns:36px 1fr;gap:9px;align-items:start;border:1px solid #e3ece5;background:#f8fbf9;border-radius:14px;padding:9px;font-weight:900;color:#173b2a}
+.cxMiniRule b{width:36px;height:36px;border-radius:13px;background:#eef8f2;color:#0f5f3f;display:grid;place-items:center}
+.cxMistakeBox{border:1px solid #efd28a;background:#fff8e6;border-radius:16px;padding:12px;margin:10px 0;color:#553b0d}
+.cxMistakeBox h4{margin:0 0 8px;font-size:16px}
+.cxMistakeBox ul{margin:0;padding-left:19px;display:grid;gap:6px;font-weight:900;line-height:1.3}
+.cxTestScope{border:1px solid #d7e5da;background:#f7fbf8;border-radius:16px;padding:12px;margin:10px 0;font-weight:850;color:#173b2a}
+.cxTestScopeActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.cxTestScopeActions button{min-height:52px;border:1px solid #d7e5da;background:#fff;border-radius:14px;color:#173b2a;font-weight:950;text-align:left;padding:10px}
+@media(max-width:760px){
+ .cxHumanChooserHead{display:block}.cxHumanChooserHead span{text-align:left;display:block;margin-top:4px}
+ .cxHumanChooserGrid{grid-template-columns:1fr}
+ .cxHumanChooserBtn{min-height:56px}
+ .cxTestScopeActions{grid-template-columns:1fr}
+}
+</style>
+<script id="cxHumanUxBoost">
+(function(){
+ function lang(){
+  try{var docLang=document.documentElement.getAttribute('lang');if(docLang)return String(docLang).slice(0,2).toLowerCase()}catch(e){}
+  try{if(typeof cxLang==='function')return String(cxLang()).toLowerCase()}catch(e){}
+  try{var saved=localStorage.cx_lang||localStorage.lang;if(saved)return String(saved).toLowerCase()}catch(e){}
+  return 'pl';
+ }
+ function esc(v){
+  if(typeof cxEsc==='function')return cxEsc(v);
+  return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});
+ }
+ function ico(name){
+  var p={
+   first:'<path d="M12 21s7-4 7-10a7 7 0 1 0-14 0c0 6 7 10 7 10z"></path><path d="M12 8v5"></path><path d="M9.5 11.5h5"></path>',
+   green:'<path d="M4 20V9a8 8 0 0 1 16 0v11"></path><path d="M4 12h16M8 20V8M16 20V8"></path>',
+   warehouse:'<path d="M3 21V8l9-5 9 5v13"></path><path d="M7 21v-8h10v8"></path>',
+   reader:'<rect x="7" y="3" width="10" height="18" rx="2"></rect><circle cx="12" cy="15" r="2"></circle><path d="M10 7h4"></path>',
+   test:'<path d="M9 11l2 2 4-5"></path><path d="M20 6v14H4V4h10"></path><path d="M14 4l6 6"></path>'
+  };
+  return '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round">'+(p[name]||p.first)+'</svg>';
+ }
+ var TX={
+  pl:{chooseTitle:'Co wybrać?',chooseLead:'Nowy pracownik ma wybrać jedną drogę, bez czytania wszystkiego naraz.',first:['Idę pierwszy raz','Mapa, wejście i gdzie czekać'],green:['Pracuję na szklarni','Orientacja, rzędy i Reader'],warehouse:['Pracuję na magazynie','Wejście, tablet, PIN i zasady'],crumb:'Jesteś tutaj',home:'Start',readerTitle:'Reader w 3 zasadach',readerLead:'Procedura zostaje taka jak w instruktażu. Tu jest tylko szybkie zapamiętanie.',readerRules:['Tag personalny odbij tylko zgodnie z informacją startową.','Pracę, czynność, przerwę i koniec pracy odbijaj w odpowiednim miejscu.','Po pracy odłóż Reader na ładowarkę na swoje miejsce.'],readerMistakes:'Najczęstsze błędy przy Readerze',readerBad:['Nie bierz Readera na magazyn.','Nie odbijaj tagu rzędu przy wejściu, tylko według instrukcji przy wyjściu.','Nie odkładaj Readera bez zakończenia pracy.'],greenTitle:'Nie zgub się na szklarni',greenLead:'Najpierw zobacz całość, potem nawę, potem wejście/rząd.',greenRules:['Stoisz plecami do pierwszych naw, tam gdzie zaczyna się numeracja.','W jednej nawie jest 5 wejść i 10 rzędów.','W rzędzie sprawdź lewą i prawą stronę pracy.'],greenMistakes:'Najczęstsze pomyłki na szklarni',greenBad:['Nie myl lewej/prawej strony z widokiem na kartce.','Nie zakładaj, że każda szklarnia ma tyle samo naw.','Jeśli jesteś pierwszy raz, nie wchodź sam.'],warehouseMistakes:'Najczęstsze błędy magazynowe',warehouseBad:['Nie bierz Readera na magazyn.','Nie używaj cudzego PIN-u.','Nie zaczynaj pracy samodzielnie bez instrukcji osoby odpowiedzialnej.','Jeśli nie ma nazwiska albo PIN nie działa, zgłoś to liderowi.'],testTitle:'Test po nauce',testLead:'Najpierw przejdź swój moduł. Magazyn zaczyna od kafelki magazynowej, szklarnia od orientacji i Readera.',testWarehouse:'Przejdź magazyn',testGreen:'Przejdź szklarnię'},
+  en:{chooseTitle:'What should I choose?',chooseLead:'A new worker chooses one path instead of reading everything at once.',first:['First time here','Map, entrance and where to wait'],green:['I work in greenhouse','Orientation, rows and Reader'],warehouse:['I work in warehouse','Entrance, tablet, PIN and rules'],crumb:'You are here',home:'Start',readerTitle:'Reader in 3 rules',readerLead:'The procedure stays exactly as in the instruction. This is only a memory aid.',readerRules:['Scan the personal tag only according to start information.','Scan work, activity, break and end of work in the correct place.','After work put the Reader back on the charger in its place.'],readerMistakes:'Most common Reader mistakes',readerBad:['Do not take a Reader in the warehouse.','Do not scan the row tag at entry; follow the instruction for exit.','Do not put the Reader away before ending work.'],greenTitle:'Do not get lost in the greenhouse',greenLead:'First see the whole greenhouse, then the nave, then the entrance/row.',greenRules:['Stand with your back to the first naves, where numbering starts.','One nave has 5 entrances and 10 rows.','In the row, check the left and right work side.'],greenMistakes:'Most common greenhouse mistakes',greenBad:['Do not mix left/right side with the drawing view.','Do not assume every greenhouse has the same number of naves.','If it is your first time, do not enter alone.'],warehouseMistakes:'Most common warehouse mistakes',warehouseBad:['Do not take a Reader in the warehouse.','Do not use someone else’s PIN.','Do not start work alone without instruction from the responsible person.','If your name is missing or PIN does not work, tell the leader.'],testTitle:'Test after learning',testLead:'First complete your own module. Warehouse starts from the warehouse tile, greenhouse from orientation and Reader.',testWarehouse:'Go to warehouse',testGreen:'Go to greenhouse'},
+  ua:{chooseTitle:'Що вибрати?',chooseLead:'Новий працівник вибирає один шлях і не читає все одразу.',first:['Я йду перший раз','Карта, вхід і де чекати'],green:['Я працюю на теплиці','Орієнтація, ряди і Reader'],warehouse:['Я працюю на складі','Вхід, планшет, PIN і правила'],crumb:'Ти тут',home:'Старт',readerTitle:'Reader у 3 правилах',readerLead:'Процедура залишається як в інструктажі. Це тільки коротка підказка.',readerRules:['Персональний тег відбивай тільки згідно зі стартовою інформацією.','Роботу, діяльність, перерву і кінець роботи відбивай у правильному місці.','Після роботи поклади Reader на зарядку на своє місце.'],readerMistakes:'Найчастіші помилки з Reader',readerBad:['Не бери Reader на склад.','Не відбивай тег ряду при вході, дій за інструкцією при виході.','Не клади Reader без завершення роботи.'],greenTitle:'Не загубись на теплиці',greenLead:'Спочатку подивись на всю теплицю, потім на наву, потім на вхід/ряд.',greenRules:['Стань спиною до перших нав, де починається нумерація.','В одній наві 5 входів і 10 рядів.','У ряду перевір ліву і праву сторону роботи.'],greenMistakes:'Найчастіші помилки на теплиці',greenBad:['Не плутай ліву/праву сторону з видом на малюнку.','Не думай, що в кожній теплиці однакова кількість нав.','Якщо ти перший раз, не заходь сам.'],warehouseMistakes:'Найчастіші помилки на складі',warehouseBad:['Не бери Reader на склад.','Не використовуй чужий PIN.','Не починай роботу сам без інструкції відповідальної особи.','Якщо немає прізвища або PIN не працює, повідом лідера.'],testTitle:'Тест після навчання',testLead:'Спочатку пройди свій модуль. Склад починає з плитки складу, теплиця з орієнтації і Reader.',testWarehouse:'Перейти до складу',testGreen:'Перейти до теплиці'},
+  ru:{chooseTitle:'Что выбрать?',chooseLead:'Новый человек выбирает один путь и не читает всё сразу.',first:['Иду первый раз','Карта, вход и где ждать'],green:['Работаю на теплице','Ориентация, ряды и Reader'],warehouse:['Работаю на складе','Вход, планшет, PIN и правила'],crumb:'Ты здесь',home:'Старт',readerTitle:'Reader в 3 правилах',readerLead:'Процедура остается как в инструктаже. Это только короткая подсказка.',readerRules:['Персональный тег отмечай только согласно стартовой информации.','Работу, деятельность, перерыв и конец работы отмечай в правильном месте.','После работы положи Reader на зарядку на свое место.'],readerMistakes:'Самые частые ошибки с Reader',readerBad:['Не бери Reader на склад.','Не отмечай тег ряда при входе, действуй по инструкции при выходе.','Не клади Reader без завершения работы.'],greenTitle:'Не потеряйся на теплице',greenLead:'Сначала посмотри всю теплицу, потом наву, потом вход/ряд.',greenRules:['Стань спиной к первым навам, где начинается нумерация.','В одной наве 5 входов и 10 рядов.','В ряду проверь левую и правую сторону работы.'],greenMistakes:'Самые частые ошибки на теплице',greenBad:['Не путай левую/правую сторону с видом на рисунке.','Не думай, что в каждой теплице одинаковое количество нав.','Если ты первый раз, не заходи сам.'],warehouseMistakes:'Самые частые ошибки на складе',warehouseBad:['Не бери Reader на склад.','Не используй чужой PIN.','Не начинай работу сам без инструкции ответственного лица.','Если нет фамилии или PIN не работает, сообщи лидеру.'],testTitle:'Тест после обучения',testLead:'Сначала пройди свой модуль. Склад начинает с плитки склада, теплица с ориентации и Reader.',testWarehouse:'Перейти к складу',testGreen:'Перейти к теплице'},
+  az:{chooseTitle:'Nə seçməli?',chooseLead:'Yeni işçi hər şeyi bir dəfəyə oxumur, bir yolu seçir.',first:['Birinci dəfə gedirəm','Xəritə, giriş və harada gözləmək'],green:['İstixanada işləyirəm','Orientasiya, sıralar və Reader'],warehouse:['Anbarda işləyirəm','Giriş, tablet, PIN və qaydalar'],crumb:'Sən buradasan',home:'Start',readerTitle:'Reader 3 qaydada',readerLead:'Prosedur təlimatdakı kimidir. Bu yalnız qısa yaddaş köməyidir.',readerRules:['Personal tagı yalnız start məlumatına uyğun vur.','İşi, fəaliyyəti, fasiləni və işin sonunu düzgün yerdə vur.','İşdən sonra Readeri öz yerində şarja qoy.'],readerMistakes:'Reader ilə ən çox edilən səhvlər',readerBad:['Anbarda Reader götürmə.','Sıra tagını girişdə vurma, çıxış üçün təlimata əməl et.','İşi bitirmədən Readeri yerinə qoyma.'],greenTitle:'İstixanada itmə',greenLead:'Əvvəl bütün istixanaya bax, sonra navaya, sonra giriş/sıraya.',greenRules:['Nömrələnmənin başladığı ilk navalara arxanı çevir.','Bir navada 5 giriş və 10 sıra var.','Sırada sol və sağ iş tərəfini yoxla.'],greenMistakes:'İstixanada ən çox qarışan şeylər',greenBad:['Sol/sağ tərəfi şəkil görünüşü ilə qarışdırma.','Hər istixanada eyni sayda nava olduğunu düşünmə.','Birinci dəfədirsənsə, tək girmə.'],warehouseMistakes:'Anbarda ən çox edilən səhvlər',warehouseBad:['Anbarda Reader götürmə.','Başqasının PIN kodundan istifadə etmə.','Məsul şəxsin təlimatı olmadan işə başlama.','Adın yoxdursa və ya PIN işləmir, liderə bildir.'],testTitle:'Təlimdən sonra test',testLead:'Əvvəl öz modulunu keç. Anbar anbar kafelindən, istixana orientasiya və Readerdən başlayır.',testWarehouse:'Anbara keç',testGreen:'İstixanaya keç'}
+ };
+ function t(){return TX[lang()]||TX.pl}
+ function go(kind){
+  try{localStorage.removeItem('cx_warehouse_people')}catch(e){}
+  if(kind==='first'){try{if(typeof goNeed==='function')goNeed('first');else if(typeof setAppTab==='function')setAppTab('route')}catch(e){}}
+  if(kind==='greenhouse'){try{if(typeof cxHomeGo==='function')cxHomeGo('greenhouse');else if(typeof setAppTab==='function')setAppTab('greenhouse')}catch(e){}}
+  if(kind==='warehouse'){try{if(typeof cxOpenWarehousePeople==='function')cxOpenWarehousePeople()}catch(e){}}
+ }
+ function rules(items){return '<div class="cxMiniRules">'+items.map(function(x,i){return'<div class="cxMiniRule"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>'}).join('')+'</div>'}
+ function mistakes(title,items){return '<div class="cxMistakeBox"><h4>'+esc(title)+'</h4><ul>'+items.map(function(x){return'<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'}
+ function renderChooser(){
+  var host=document.getElementById('cxHomeTiles');if(!host)return;
+  var existing=document.getElementById('cxHumanChooser'), x=t();
+  var html='<div class="cxHumanChooserHead"><b>'+esc(x.chooseTitle)+'</b><span>'+esc(x.chooseLead)+'</span></div><div class="cxHumanChooserGrid">'+
+   '<button type="button" class="cxHumanChooserBtn first" data-cx-human-go="first"><i>'+ico('first')+'</i><b>'+esc(x.first[0])+'<span>'+esc(x.first[1])+'</span></b></button>'+
+   '<button type="button" class="cxHumanChooserBtn green" data-cx-human-go="greenhouse"><i>'+ico('green')+'</i><b>'+esc(x.green[0])+'<span>'+esc(x.green[1])+'</span></b></button>'+
+   '<button type="button" class="cxHumanChooserBtn warehouse" data-cx-human-go="warehouse"><i>'+ico('warehouse')+'</i><b>'+esc(x.warehouse[0])+'<span>'+esc(x.warehouse[1])+'</span></b></button></div>';
+  if(!existing){existing=document.createElement('section');existing.id='cxHumanChooser';existing.className='cxHumanChooser';var grid=host.querySelector('.cxTileGrid');host.insertBefore(existing,grid||host.firstChild)}
+  if(existing.innerHTML!==html)existing.innerHTML=html;
+ }
+ function renderBreadcrumb(){
+  var shell=document.getElementById('appTabsShell');if(!shell)return;
+  var bar=document.getElementById('cxHumanBreadcrumb');if(!bar){bar=document.createElement('div');bar.id='cxHumanBreadcrumb';bar.className='cxHumanBreadcrumb';shell.parentNode.insertBefore(bar,shell.nextSibling)}
+  var x=t(), label='';
+  try{
+   if(localStorage.getItem('cx_warehouse_people')==='1')label=x.warehouse[0];
+   else if(typeof appTab!=='undefined'&&appTab==='route')label='Mapa';
+   else if(typeof appTab!=='undefined'&&appTab==='greenhouse')label=x.green[0];
+   else if(typeof appTab!=='undefined'&&appTab==='reader')label='Reader';
+   else if(typeof appTab!=='undefined'&&appTab==='contacts')label='Kontakty';
+   else if(typeof appTab!=='undefined'&&appTab==='test')label=x.testTitle;
+  }catch(e){}
+  bar.className='cxHumanBreadcrumb'+(label?' active':'');
+  bar.innerHTML=label?'<span>'+esc(x.crumb)+':</span> '+esc(x.home)+' &gt; '+esc(label):'';
+ }
+ function renderReaderBoost(){
+  var reader=document.getElementById('reader');if(!reader)return;
+  var panel=document.getElementById('cxReaderBoost'), x=t();
+  var html='<h3>'+esc(x.readerTitle)+'</h3><p class="cxHumanBoostLead">'+esc(x.readerLead)+'</p>'+rules(x.readerRules)+mistakes(x.readerMistakes,x.readerBad);
+  if(!panel){panel=document.createElement('section');panel.id='cxReaderBoost';panel.className='cxHumanBoostPanel';var ref=document.getElementById('readerQuick')||reader.children[1];reader.insertBefore(panel,ref||reader.firstChild)}
+  if(panel.innerHTML!==html)panel.innerHTML=html;
+ }
+ function renderGreenBoost(){
+  var guide=document.getElementById('guide');if(!guide)return;
+  var panel=document.getElementById('cxGreenBoost'), x=t();
+  var html='<h3>'+esc(x.greenTitle)+'</h3><p class="cxHumanBoostLead">'+esc(x.greenLead)+'</p>'+rules(x.greenRules)+mistakes(x.greenMistakes,x.greenBad);
+  if(!panel){panel=document.createElement('section');panel.id='cxGreenBoost';panel.className='cxHumanBoostPanel';var ref=document.getElementById('orientationDiagrams');guide.insertBefore(panel,ref||guide.firstChild)}
+  if(panel.innerHTML!==html)panel.innerHTML=html;
+ }
+ function renderWarehouseBoost(){
+  var panel=document.getElementById('cxWarehousePeoplePanel');if(!panel||!panel.classList.contains('active'))return;
+  var box=document.getElementById('cxWarehouseMistakes'), x=t(), html=mistakes(x.warehouseMistakes,x.warehouseBad);
+  if(!box){box=document.createElement('div');box.id='cxWarehouseMistakes';var photos=panel.querySelector('.cxWarehousePeoplePhotos');panel.insertBefore(box,photos||null)}
+  if(box.innerHTML!==html)box.innerHTML=html;
+ }
+ function renderTestScope(){
+  var test=document.getElementById('test'), quiz=document.getElementById('quiz');if(!test||!quiz)return;
+  var box=document.getElementById('cxTestScope'), x=t();
+  var html='<b>'+esc(x.testTitle)+'</b><div>'+esc(x.testLead)+'</div><div class="cxTestScopeActions"><button type="button" data-cx-human-go="warehouse">'+esc(x.testWarehouse)+'</button><button type="button" data-cx-human-go="greenhouse">'+esc(x.testGreen)+'</button></div>';
+  if(!box){box=document.createElement('div');box.id='cxTestScope';box.className='cxTestScope';test.insertBefore(box,quiz)}
+  if(box.innerHTML!==html)box.innerHTML=html;
+ }
+ function patchFirstWords(){
+  try{
+   if(typeof T!=='undefined'&&T.PL){
+    ['gateFirstTitle','helpStart'].forEach(function(k){if(typeof T.PL[k]==='string')T.PL[k]=T.PL[k].replace(/Jadę pierwszy raz/g,'Idę pierwszy raz').replace(/jadę pierwszy raz/g,'idę pierwszy raz')});
+   }
+  }catch(e){}
+  document.querySelectorAll('button,b,span,p,h2,h3').forEach(function(n){
+   if(n.childElementCount)return;
+   var s=n.textContent;
+   if(s&&s.indexOf('Jadę pierwszy raz')>=0)n.textContent=s.replace(/Jadę pierwszy raz/g,'Idę pierwszy raz');
+  });
+ }
+ function renderAll(){
+  patchFirstWords();
+  renderChooser();
+  renderBreadcrumb();
+  renderReaderBoost();
+  renderGreenBoost();
+  renderWarehouseBoost();
+  renderTestScope();
+ }
+ document.addEventListener('click',function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest('[data-cx-human-go]'):null;
+  if(!b)return;
+  ev.preventDefault();
+  go(b.getAttribute('data-cx-human-go'));
+  setTimeout(renderAll,120);
+  setTimeout(renderAll,380);
+  setTimeout(renderAll,760);
+ },true);
+ var prevApply=window.apply;
+ if(typeof prevApply==='function'){
+  window.apply=function(){
+   var r=prevApply.apply(this,arguments);
+   setTimeout(renderAll,0);
+   return r;
+  };
+ }
+ try{
+  var timer=0;
+  new MutationObserver(function(){if(timer)return;timer=setTimeout(function(){timer=0;renderAll()},90)}).observe(document.body,{childList:true,subtree:true});
+ }catch(e){}
+ document.addEventListener('DOMContentLoaded',renderAll);
+ renderAll();
 })();
 </script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
