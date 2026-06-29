@@ -816,9 +816,9 @@ function renderAppTabs(x){
 }
 function tabShow(id,on){let n=el(id);if(n){n.classList.toggle('appHidden',!on);if(on&&appTab!=='home')n.classList.remove('pathHidden')}}
 function renderAppVisibility(){
- const all=['humanGuide','assistPanel','humanPanel','recoveryBar','lostQuick','rememberSection','mustKnow','workChooser','firstDayWhere','installInfo','currentPathSection','guide','cityInfo','lostRescue','sosbox','fullToggle','fullContent','route','firstStepsSection','company','rulesSection','forbiddenSection','reader','visualSection','test','checklistSection'];
+ const all=['start','humanGuide','assistPanel','humanPanel','recoveryBar','lostQuick','rememberSection','mustKnow','workChooser','firstDayWhere','installInfo','currentPathSection','guide','cityInfo','lostRescue','sosbox','fullToggle','fullContent','route','firstStepsSection','company','rulesSection','forbiddenSection','reader','visualSection','test','checklistSection'];
  all.forEach(id=>tabShow(id,false));
- const visible={home:['humanGuide','humanPanel'],route:['humanGuide','assistPanel','fullContent','route'],greenhouse:['humanGuide','assistPanel','workChooser','guide'],reader:['humanGuide','assistPanel','fullContent','reader'],test:['humanGuide','assistPanel','fullContent','test'],contacts:['humanGuide','cityInfo','lostRescue','sosbox']};
+ const visible={home:['start','humanPanel'],route:['fullContent','route'],greenhouse:['workChooser','guide'],reader:['fullContent','reader'],test:['fullContent','test'],contacts:['cityInfo','sosbox']};
  let ids=(visible[appTab]||visible.home).slice();
  if(appTab==='route'&&needMode==='first')ids.splice(2,0,'firstDayWhere','installInfo','firstStepsSection');
  ids.forEach(id=>tabShow(id,true));
@@ -3611,6 +3611,163 @@ body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
   var timer=0;
   new MutationObserver(function(){if(timer)return;timer=setTimeout(function(){timer=0;renderAll()},90)}).observe(document.body,{childList:true,subtree:true});
  }catch(e){}
+ document.addEventListener('DOMContentLoaded',renderAll);
+ renderAll();
+})();
+</script>
+<style id="cxScopedExamCss">
+.cxExamScopePanel{border:1px solid #d7e5da;background:#fff;border-radius:18px;padding:13px;margin:10px 0;box-shadow:0 10px 26px rgba(20,33,27,.07)}
+.cxExamScopePanel h3{margin:0 0 5px;color:#173b2a;font-size:19px}
+.cxExamScopePanel p{margin:0 0 10px;color:#536259;font-weight:850;line-height:1.34}
+.cxExamScopeGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cxExamScopeBtn{min-height:56px;border:1px solid #d7e5da;border-radius:15px;background:#f8fbf9;color:#173b2a;padding:11px;text-align:left;font-weight:950;cursor:pointer}
+.cxExamScopeBtn span{display:block;margin-top:3px;color:#647067;font-size:12px;font-weight:850;line-height:1.2}
+.cxExamScopeBtn.active{background:#0f5f3f;color:#fff;border-color:#0f5f3f}
+.cxExamScopeBtn.active span{color:#eafff0}
+.cxFirstDayBoost{border:1px solid #d1e0ff;background:#f4f8ff;border-radius:18px;padding:13px;margin:10px 0 12px;box-shadow:0 10px 26px rgba(28,116,216,.08)}
+.cxFirstDayBoost h3{margin:0 0 5px;color:#143d72;font-size:19px}
+.cxFirstDayBoost p{margin:0 0 10px;color:#536171;font-weight:850;line-height:1.34}
+.cxFirstDaySteps{display:grid;gap:8px}
+.cxFirstDayStep{display:grid;grid-template-columns:36px 1fr;gap:9px;border:1px solid #d9e6ff;background:#fff;border-radius:14px;padding:9px;font-weight:900;color:#173b2a}
+.cxFirstDayStep b{width:36px;height:36px;border-radius:13px;background:#e8f1ff;color:#1c74d8;display:grid;place-items:center}
+.cxOfflineHint{border:1px solid #efd28a;background:#fff8e6;color:#553b0d;border-radius:16px;padding:11px;margin-top:10px;font-weight:900;line-height:1.34}
+.assistPanel,.lostQuick{display:none!important}
+@media(max-width:760px){.cxExamScopeGrid{grid-template-columns:1fr}.cxExamScopeBtn{min-height:54px}}
+</style>
+<script id="cxScopedExamPatch">
+(function(){
+ function currentLang(){
+  try{var d=document.documentElement.getAttribute('lang');if(d)return String(d).slice(0,2).toLowerCase()}catch(e){}
+  try{if(typeof cxLang==='function')return String(cxLang()).toLowerCase()}catch(e){}
+  try{var saved=localStorage.cx_lang||localStorage.lang;if(saved)return String(saved).toLowerCase()}catch(e){}
+  return 'pl';
+ }
+ function keyLang(){return ({pl:'PL',en:'EN',ua:'UA',ru:'RU',az:'AZ'})[currentLang()]||'PL'}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ var TXT={
+  pl:{scopeTitle:'Wybierz zakres testu',scopeLead:'Test ma sprawdzić to, czego człowiek naprawdę się uczył. Magazyn nie dostaje pytań o rzędy.',warehouse:'Test magazynowy',warehouseLead:'Magazyn, tablet, PIN, brak Readera',greenhouse:'Test szklarniowy',greenhouseLead:'Reader, rzędy, przerwy, orientacja',all:'Test ogólny',allLead:'Pełne 30 pytań',firstTitle:'Pierwszy dzień - prosto',firstLead:'Dla nowej osoby najpierw liczy się dojście do dobrego punktu i czekanie na miejscu.',firstSteps:['Wybierz miejsce lub etap.','Otwórz mapę i kieruj się do punktu.','Po dojściu czekaj. Nie wchodź sam.','Dopiero potem wybierz: magazyn albo szklarnia.'],offline:'Na telefonie warto dodać link do ekranu głównego i zrobić zrzut ekranu wejścia/mapy przed wyjściem.'},
+  en:{scopeTitle:'Choose test scope',scopeLead:'The test should check what the person actually learned. Warehouse workers do not get row questions.',warehouse:'Warehouse test',warehouseLead:'Warehouse, tablet, PIN, no Reader',greenhouse:'Greenhouse test',greenhouseLead:'Reader, rows, breaks, orientation',all:'General test',allLead:'Full 30 questions',firstTitle:'First day - simple',firstLead:'For a new person, first comes reaching the correct point and waiting there.',firstSteps:['Choose the place or stage.','Open the map and go to the point.','When you arrive, wait. Do not enter alone.','Only then choose: warehouse or greenhouse.'],offline:'On the phone, add the link to the home screen and take a screenshot of the entrance/map before leaving.'},
+  ua:{scopeTitle:'Оберіть тест',scopeLead:'Тест має перевіряти те, що людина реально вчила. Працівник складу не отримує питання про ряди.',warehouse:'Тест складу',warehouseLead:'Склад, планшет, PIN, без Reader',greenhouse:'Тест теплиці',greenhouseLead:'Reader, ряди, перерви, орієнтація',all:'Загальний тест',allLead:'Повні 30 питань',firstTitle:'Перший день - просто',firstLead:'Для нової людини спочатку важливо дійти до правильного пункту і чекати там.',firstSteps:['Оберіть місце або етап.','Відкрийте карту і прямуйте до пункту.','Коли прийшли, чекайте. Не заходьте самі.','Потім виберіть: склад або теплиця.'],offline:'На телефоні варто додати посилання на головний екран і зробити знімок входу/карти перед виходом.'},
+  ru:{scopeTitle:'Выберите тест',scopeLead:'Тест должен проверять то, что человек реально учил. Работник склада не получает вопросы про ряды.',warehouse:'Тест склада',warehouseLead:'Склад, планшет, PIN, без Reader',greenhouse:'Тест теплицы',greenhouseLead:'Reader, ряды, перерывы, ориентация',all:'Общий тест',allLead:'Полные 30 вопросов',firstTitle:'Первый день - просто',firstLead:'Для нового человека сначала важно дойти до правильного пункта и ждать там.',firstSteps:['Выберите место или этап.','Откройте карту и направляйтесь к пункту.','Когда пришли, ждите. Не заходите сами.','Потом выберите: склад или теплица.'],offline:'На телефоне стоит добавить ссылку на главный экран и сделать скриншот входа/карты перед выходом.'},
+  az:{scopeTitle:'Testi seç',scopeLead:'Test insanın həqiqətən öyrəndiyini yoxlamalıdır. Anbar işçisi sıra sualları almır.',warehouse:'Anbar testi',warehouseLead:'Anbar, tablet, PIN, Reader yoxdur',greenhouse:'İstixana testi',greenhouseLead:'Reader, sıralar, fasilələr, orientasiya',all:'Ümumi test',allLead:'Tam 30 sual',firstTitle:'Birinci gün - sadə',firstLead:'Yeni insan üçün əvvəl düzgün nöqtəyə çatmaq və orada gözləmək vacibdir.',firstSteps:['Yeri və ya mərhələni seç.','Xəritəni aç və nöqtəyə tərəf get.','Çatanda gözlə. Tək daxil olma.','Sonra seç: anbar və ya istixana.'],offline:'Telefonda linki əsas ekrana əlavə etmək və çıxmadan əvvəl giriş/xəritə ekran görüntüsü etmək yaxşıdır.'}
+ };
+ var EXTRA={
+  PL:[
+   ['Jeśli pracuję na tablecie, najpierw:',['Znajduję swoje imię i nazwisko na liście','Loguję się na dowolną osobę'],0],
+   ['PIN na tablecie:',['Używam tylko swojego PIN-u','Mogę użyć PIN-u kolegi'],0],
+   ['Jeśli nie widzę nazwiska albo PIN nie działa:',['Zgłaszam to liderowi lub brygadziście','Próbuję losowe numery'],0],
+   ['Po wejściu na magazyn:',['Czekam na osobę odpowiedzialną','Sam zaczynam pracę'],0],
+   ['Magazyn ma instrukcję:',['Osobną, bez Readera','Taką samą jak rzędy na szklarni'],0],
+   ['Mapa magazynu prowadzi do:',['Wejścia dla personelu','Dowolnej bramy'],0],
+   ['Najważniejsze przy magazynie:',['Nie biorę Readera i nie odbijam tagów Readera','Biorę Reader tak jak na szklarni'],0]
+  ],
+  EN:[
+   ['If I work on a tablet, first I:',['Find my first and last name on the list','Log in as any person'],0],
+   ['Tablet PIN:',['I use only my own PIN','I can use a coworker’s PIN'],0],
+   ['If my name is missing or PIN does not work:',['I tell the leader or team leader','I try random numbers'],0],
+   ['After entering the warehouse:',['I wait for the responsible person','I start work alone'],0],
+   ['Warehouse has an instruction:',['Separate, without Reader','The same as greenhouse rows'],0],
+   ['Warehouse map leads to:',['The staff entrance','Any gate'],0],
+   ['Most important in warehouse:',['I do not take a Reader or scan Reader tags','I take a Reader like in the greenhouse'],0]
+  ],
+  UA:[
+   ['Якщо я працюю на планшеті, спочатку:',['Знаходжу своє ім’я та прізвище у списку','Заходжу на будь-яку людину'],0],
+   ['PIN на планшеті:',['Використовую тільки свій PIN','Можу використати PIN колеги'],0],
+   ['Якщо немає прізвища або PIN не працює:',['Повідомляю лідера або бригадира','Пробую випадкові номери'],0],
+   ['Після входу на склад:',['Чекаю відповідальну особу','Сам починаю роботу'],0],
+   ['Склад має інструкцію:',['Окрему, без Reader','Таку саму як ряди на теплиці'],0],
+   ['Карта складу веде до:',['Входу для персоналу','Будь-яких воріт'],0],
+   ['Найважливіше на складі:',['Не беру Reader і не відбиваю теги Reader','Беру Reader як на теплиці'],0]
+  ],
+  RU:[
+   ['Если я работаю на планшете, сначала:',['Нахожу свое имя и фамилию в списке','Захожу на любого человека'],0],
+   ['PIN на планшете:',['Использую только свой PIN','Могу использовать PIN коллеги'],0],
+   ['Если нет фамилии или PIN не работает:',['Сообщаю лидеру или бригадиру','Пробую случайные номера'],0],
+   ['После входа на склад:',['Жду ответственное лицо','Сам начинаю работу'],0],
+   ['Склад имеет инструкцию:',['Отдельную, без Reader','Такую же как ряды на теплице'],0],
+   ['Карта склада ведет к:',['Входу для персонала','Любым воротам'],0],
+   ['Самое важное на складе:',['Не беру Reader и не отмечаю теги Reader','Беру Reader как на теплице'],0]
+  ],
+  AZ:[
+   ['Tabletdə işləyirəmsə, əvvəl:',['Siyahıda öz ad və soyadımı tapıram','İstənilən adamın adı ilə daxil oluram'],0],
+   ['Tabletdə PIN:',['Yalnız öz PIN kodumu istifadə edirəm','İş yoldaşımın PIN kodunu istifadə edə bilərəm'],0],
+   ['Adım yoxdursa və ya PIN işləmir:',['Liderə və ya briqadirə bildirirəm','Təsadüfi nömrələr sınayıram'],0],
+   ['Anbara girdikdən sonra:',['Məsul şəxsi gözləyirəm','İşə özüm başlayıram'],0],
+   ['Anbar təlimatı:',['Ayrıdır, Readersiz','İstixana sıraları ilə eynidir'],0],
+   ['Anbar xəritəsi aparır:',['Personal girişinə','İstənilən darvazaya'],0],
+   ['Anbarda ən vacib:',['Reader götürmürəm və Reader tagı vurmuram','İstixanadakı kimi Reader götürürəm'],0]
+  ]
+ };
+ function text(){return TXT[currentLang()]||TXT.pl}
+ function getScope(){
+  try{var s=localStorage.cx_exam_scope;if(s)return s}catch(e){}
+  try{if(localStorage.cx_warehouse_people==='1')return 'warehouse'}catch(e){}
+  try{if(typeof mode!=='undefined'&&mode==='warehouse')return 'warehouse'}catch(e){}
+  return 'all';
+ }
+ function setScope(s){
+  try{localStorage.cx_exam_scope=s;localStorage.cx_examStarted='0';localStorage.cx_examAnswers='[]'}catch(e){}
+  try{examStarted=false;examAnswers=[]}catch(e){}
+  if(s==='warehouse'){try{mode='warehouse';stage='warehouse';localStorage.cx_mode='warehouse';localStorage.cx_stage='warehouse'}catch(e){}}
+  if(s==='greenhouse'){try{if(typeof mode!=='undefined'&&mode==='warehouse')mode='rows';localStorage.cx_mode=mode||'rows'}catch(e){}}
+ }
+ function baseQuestions(){
+  try{return (EXAM_QUESTIONS[keyLang()]||EXAM_QUESTIONS.PL).slice()}catch(e){return []}
+ }
+ function scopedQuestions(){
+  var base=baseQuestions(), scope=getScope(), k=keyLang();
+  if(scope==='warehouse')return [0,1,2,3,4,5,6,29].map(function(i){return base[i]}).filter(Boolean).concat(EXTRA[k]||EXTRA.PL);
+  if(scope==='greenhouse')return base.filter(function(_,i){return i!==5&&i!==6});
+  return base;
+ }
+ function scopeLabel(){
+  var x=text(), s=getScope();
+  if(s==='warehouse')return x.warehouse;
+  if(s==='greenhouse')return x.greenhouse;
+  return x.all;
+ }
+ try{
+  examQuestions=function(){return scopedQuestions()};
+  examStats=function(){const qs=examQuestions();let answered=0,score=0,wrong=[],missing=[];qs.forEach((q,i)=>{if(examAnswers[i]===null||examAnswers[i]===undefined){missing.push(i+1);return}answered++;if(examAnswers[i]===q[2])score++;else wrong.push(i+1)});return {total:qs.length,answered,score,wrong,missing,complete:answered===qs.length,passed:score>=Math.ceil(qs.length*.8)}};
+  var oldModeLabel=examModeLabel;
+  examModeLabel=function(){var base='';try{base=oldModeLabel()}catch(e){}return base+' / '+scopeLabel()};
+ }catch(e){}
+ function renderScopePanel(){
+  var host=document.getElementById('cxTestScope')||document.getElementById('test');if(!host)return;
+  var x=text(), s=getScope(), q=scopedQuestions();
+  var html='<h3>'+esc(x.scopeTitle)+'</h3><p>'+esc(x.scopeLead)+'</p><div class="cxExamScopeGrid">'+
+   button('warehouse',x.warehouse,x.warehouseLead,s,q.length)+button('greenhouse',x.greenhouse,x.greenhouseLead,s,q.length)+button('all',x.all,x.allLead,s,q.length)+
+   '</div>';
+  var panel=document.getElementById('cxExamScopePanel');
+  if(!panel){panel=document.createElement('section');panel.id='cxExamScopePanel';panel.className='cxExamScopePanel';host.parentNode.insertBefore(panel,host)}
+  if(panel.innerHTML!==html)panel.innerHTML=html;
+ }
+ function button(scope,title,lead,current){
+  var count=scope==='warehouse'?((EXTRA[keyLang()]||EXTRA.PL).length+8):(scope==='greenhouse'?28:30);
+  return '<button type="button" class="cxExamScopeBtn '+(scope===current?'active':'')+'" data-cx-exam-scope="'+scope+'">'+esc(title)+'<span>'+esc(lead)+' - '+count+'</span></button>';
+ }
+ function renderFirstDay(){
+  var route=document.getElementById('route');if(!route)return;
+  var x=text(), panel=document.getElementById('cxFirstDayBoost');
+  var html='<h3>'+esc(x.firstTitle)+'</h3><p>'+esc(x.firstLead)+'</p><div class="cxFirstDaySteps">'+x.firstSteps.map(function(v,i){return'<div class="cxFirstDayStep"><b>'+(i+1)+'</b><span>'+esc(v)+'</span></div>'}).join('')+'</div><div class="cxOfflineHint">'+esc(x.offline)+'</div>';
+  if(!panel){panel=document.createElement('section');panel.id='cxFirstDayBoost';panel.className='cxFirstDayBoost';route.insertBefore(panel,route.firstChild)}
+  if(panel.innerHTML!==html)panel.innerHTML=html;
+ }
+ function renderAll(){renderScopePanel();renderFirstDay()}
+ document.addEventListener('click',function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest('[data-cx-exam-scope]'):null;
+  if(!b)return;
+  ev.preventDefault();
+  setScope(b.getAttribute('data-cx-exam-scope'));
+  try{if(typeof setAppTab==='function')setAppTab('test')}catch(e){}
+  try{if(typeof resetExam==='function')resetExam()}catch(e){}
+  setTimeout(renderAll,120);
+ },true);
+ var oldApply=window.apply;
+ if(typeof oldApply==='function'){
+  window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(renderAll,0);return r};
+ }
+ try{var timer=0;new MutationObserver(function(){if(timer)return;timer=setTimeout(function(){timer=0;renderAll()},100)}).observe(document.body,{childList:true,subtree:true})}catch(e){}
  document.addEventListener('DOMContentLoaded',renderAll);
  renderAll();
 })();
