@@ -4006,4 +4006,313 @@ body.cxHubActive #humanPanel>#cxTodayPanel{display:block!important}
  setTimeout(cxRenderUx,0);
 })();
 </script>
+<style id="cxFullHumanFlowCss">
+body.cxHubActive #humanPanel>#cxSetupWizard{display:block!important}
+.cxSetupWizard,.cxGreenCalc,.cxReaderPhotoGuide,.cxQuickContact,.cxExamPrep,.cxPhotoGate,.cxForbiddenMemory{box-sizing:border-box}
+.cxSetupWizard{background:#fff;border:2px solid #0f5f3f;border-radius:18px;padding:14px;margin:0 0 12px;box-shadow:0 12px 30px rgba(15,40,27,.10)}
+.cxSetupTop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.cxSetupTop b{display:block;color:#173b2a;font-size:19px;line-height:1.15}.cxSetupTop span{display:block;color:#52695d;font-weight:800;line-height:1.3;margin-top:4px}
+.cxSetupGrid{display:grid;gap:10px}.cxSetupRow{display:grid;gap:8px}.cxSetupLabel{font-weight:950;color:#173b2a}.cxSetupChoices{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.cxSetupLang{grid-template-columns:repeat(5,1fr)}
+.cxSetupChoices button,.cxSetupSave,.cxSetupChange,.cxCalcBtn,.cxPhotoGate button{border:1px solid #d7e5da;background:#fff;color:#173b2a;border-radius:14px;min-height:52px;padding:10px;font-weight:950;text-align:center}
+.cxSetupChoices button.active{background:#0f5f3f;color:#fff;border-color:#0f5f3f}.cxSetupChoices button[data-area=warehouse].active{background:#8a5a00;border-color:#8a5a00}
+.cxSetupStage{grid-template-columns:repeat(3,1fr)}.cxSetupSave{background:#0f5f3f;color:#fff;width:100%;margin-top:3px}.cxSetupChange{background:#eef8f2;color:#0f5f3f;min-height:44px}.cxSetupSummary{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.cxSetupSummary strong{color:#173b2a}.cxSetupSummary small{display:block;color:#52695d;font-weight:850;margin-top:3px}
+.cxGreenCalc{background:#f7fbf8;border:1px solid #cfe2d6;border-radius:18px;padding:13px;margin:12px 0;box-shadow:0 10px 24px rgba(15,40,27,.07)}
+.cxGreenCalc h3,.cxReaderPhotoGuide h3,.cxQuickContact h3,.cxExamPrep h3{margin:0 0 5px;color:#173b2a;font-size:20px;line-height:1.15}.cxGreenCalc p,.cxReaderPhotoGuide p,.cxQuickContact p,.cxExamPrep p{margin:0 0 10px;color:#52695d;font-weight:800;line-height:1.35}
+.cxCalcForm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cxCalcForm label{display:grid;gap:5px;color:#52695d;font-size:12px;font-weight:950}.cxCalcForm select{border:1px solid #cfe2d6;border-radius:14px;background:#fff;color:#173b2a;min-height:52px;padding:8px;font-weight:950;font-size:15px}
+.cxCalcResult{margin-top:10px;border-left:5px solid #0f5f3f;background:#eef8f2;border-radius:15px;padding:11px;color:#173b2a;font-weight:900;line-height:1.35}.cxCalcResult b{display:block;font-size:17px;margin-bottom:4px}
+.cxGreenVisual{display:grid;gap:10px;margin-top:12px}.cxGreenWhole,.cxGreenNave,.cxGreenPassage{background:#fff;border:1px solid #d7e5da;border-radius:16px;padding:10px}
+.cxGreenWholeMap{display:grid;grid-template-columns:1fr 34px 1fr;gap:7px;align-items:stretch}.cxGreenSide{border-radius:14px;background:#eaf8ef;border:1px solid #b9ddc6;padding:8px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.cxGreenSide div{background:#fff;border:1px solid #d7e5da;border-radius:8px;min-height:28px;text-align:center;font-size:11px;font-weight:950;color:#173b2a;padding-top:6px}.cxGreenRoad{background:#dfe8e2;border-radius:12px;display:grid;place-items:center;writing-mode:vertical-rl;font-weight:950;color:#43594d;font-size:11px}
+.cxNaveGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.cxNaveEntry{border:1px solid #d7e5da;border-radius:12px;background:#fbfefc;min-height:64px;padding:6px;text-align:center;font-weight:950;color:#173b2a}.cxNaveEntry span{display:block;font-size:10px;color:#607368;margin-top:4px}
+.cxPassageBox{display:grid;grid-template-columns:1fr 54px 1fr;gap:7px;align-items:stretch}.cxPassageSide{border:1px solid #d7e5da;border-radius:14px;background:#fff8e8;color:#5c3d08;padding:10px;text-align:center;font-weight:950}.cxPassageSide.selected{background:#0f5f3f;color:#fff;border-color:#0f5f3f}.cxPassageWalk{background:#eef3ff;color:#1769aa;border-radius:12px;display:grid;place-items:center;font-weight:950;font-size:11px}
+.cxReaderPhotoGuide{background:#fff;border:1px solid #d7e5da;border-radius:18px;padding:13px;margin:12px 0;box-shadow:0 10px 24px rgba(15,40,27,.07)}
+.cxReaderPhotoGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.cxReaderPhotoStep{border:1px solid #d7e5da;border-radius:15px;background:#f9fdfb;overflow:hidden}.cxReaderPhotoStep img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#eef3ee}.cxReaderPhotoStep div{padding:10px}.cxReaderPhotoStep b{display:block;color:#173b2a}.cxReaderPhotoStep span{display:block;color:#52695d;font-weight:800;margin-top:3px;line-height:1.3}
+.cxQuickContact{background:#f8fcfa;border:1px solid #d7e5da;border-radius:18px;padding:13px;margin:12px 0}.cxQuickReasons{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.cxQuickReasons button{border:1px solid #d7e5da;border-radius:14px;background:#fff;color:#173b2a;min-height:50px;font-weight:950}.cxQuickReasons button.active{background:#0f5f3f;color:#fff;border-color:#0f5f3f}.cxQuickSend{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.cxQuickSend a{display:grid;place-items:center;text-decoration:none;border-radius:14px;min-height:52px;font-weight:950;color:#fff}.cxQuickSend a:first-child{background:#20a955}.cxQuickSend a:last-child{background:#665cac}
+.cxExamPrep{background:#fff8e8;border:1px solid #efd28a;border-radius:18px;padding:13px;margin:12px 0}.cxExamPrepActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cxExamPrepActions button{border:0;border-radius:14px;background:#0f5f3f;color:#fff;min-height:52px;font-weight:950}.cxExamPrepActions button:first-child{background:#8a5a00}
+.cxPhotoGate{border:1px dashed #b9cfc2;background:#f8fcfa;border-radius:16px;padding:10px;margin:10px 0}.cxPhotoGate button{width:100%;background:#1769aa;color:#fff;border-color:#1769aa}.cxPhotosDeferred #stagePhotos,.cxPhotosDeferred #visuals{display:none!important}
+.cxForbiddenMemory{background:#fff8e8;border:1px solid #efd28a;border-radius:15px;padding:10px;color:#4a3510;font-weight:900;line-height:1.35}.cxForbiddenMemory b{display:block;color:#173b2a;margin-bottom:5px}
+.cxHomeTile.cxHiddenForProfile,.cxTodayBtn.cxHiddenForProfile{display:none!important}
+@media(max-width:520px){.cxSetupSummary{grid-template-columns:1fr}.cxSetupChange{width:100%}.cxSetupChoices{grid-template-columns:1fr}.cxSetupLang{grid-template-columns:repeat(5,1fr)}.cxSetupStage{grid-template-columns:repeat(3,1fr)}.cxCalcForm{grid-template-columns:1fr}.cxGreenWholeMap{grid-template-columns:1fr}.cxGreenRoad{writing-mode:horizontal-tb;min-height:30px}.cxReaderPhotoGrid,.cxQuickReasons,.cxQuickSend,.cxExamPrepActions{grid-template-columns:1fr}}
+@media(max-width:380px){.cxSetupLang button{font-size:12px;padding:8px 2px}.cxSetupStage{grid-template-columns:repeat(2,1fr)}.cxNaveGrid{grid-template-columns:1fr}.cxPassageBox{grid-template-columns:1fr}.cxPassageWalk{min-height:34px}}
+</style>
+<script id="cxFullHumanFlowPatch">
+(function(){
+ if(window.cxFullHumanFlowLoaded)return; window.cxFullHumanFlowLoaded=true;
+ var PUBLIC_URL='https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/';
+ var quickReason=localStorage.cx_quick_reason||'late';
+ var profileArea=localStorage.cx_profile_area||'greenhouse';
+ var profileStage=localStorage.cx_profile_stage||'e1';
+ var calcNave=localStorage.cx_calc_nave||'1';
+ var calcEntry=localStorage.cx_calc_entry||'1';
+ var calcSide=localStorage.cx_calc_side||'right';
+ var photosOpen=localStorage.cx_photos_open==='1';
+ function el(id){return document.getElementById(id)}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function lng(){try{return (lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return (localStorage.cx_lang||'PL').toUpperCase()}}
+ function tr(){return TXT[lng()]||TXT.PL}
+ function icon(n){var p={map:'M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z M9 3v15 M15 6v15',green:'M4 20V9c0-4 3-7 8-7s8 3 8 7v11 M4 11h16 M8 20V9 M16 20V9',warehouse:'M3 20V8l9-5 9 5v12 M7 20v-8h10v8',reader:'M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z M9 6h6 M12 17h.01',doctor:'M12 3v18 M3 12h18',phone:'M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006.4 6.4l1.2-1.2a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z',ban:'M4 4l16 16 M20 12a8 8 0 11-16 0 8 8 0 0116 0z',photo:'M4 5h16v14H4z M8 13l2.5-3 3 4 2-2.5L20 17 M8 8h.01'};
+  return '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="'+(p[n]||p.map)+'"/></svg>'}
+ var TXT={
+  PL:{setupTitle:'Ustaw swoją ścieżkę',setupLead:'Wybierz język, miejsce pracy i etap. Potem system pokaże tylko to, co jest potrzebne.',language:'Język',place:'Miejsce pracy',stage:'Etap',greenhouse:'Szklarnia',warehouse:'Magazyn',save:'Zapisz i pokaż moje moduły',change:'Zmień',profile:'Twoja ścieżka',readerHidden:'Reader jest ukryty, bo na magazynie go nie ma.',calcTitle:'Kalkulator orientacji szklarni',calcLead:'Wybierz nawę, wejście i stronę. Pamiętaj: w różnych szklarniach liczba naw może być 37, 38 albo 39.',nave:'Nawa',entry:'Wejście',side:'Strona pracy',left:'Lewa',right:'Prawa',result:'Masz szukać',whole:'Szklarnia z góry',road:'droga środkiem',naveOne:'Jedna nawa: 5 wejść',passage:'Widok w przejściu',rowLeft:'lewa strona rzędu',rowRight:'prawa strona rzędu',readerPhotoTitle:'Reader obrazkowo',readerPhotoLead:'Krótka instrukcja jak na zdjęciach: krok, zdanie, obraz.',take:'Weź reader',tag:'Tag personalny',start:'Początek pracy',activity:'Czynność',end:'Koniec i ładowarka',quickTitle:'Szybka wiadomość',quickLead:'Jeśli chorujesz albo się spóźnisz, wyślij gotową wiadomość.',late:'Spóźnię się',sick:'Jestem chory/chora',lost:'Nie wiem gdzie iść',other:'Potrzebuję kontaktu',sendWa:'Wyślij WhatsApp',sendViber:'Wyślij Viber',examTitle:'Przed testem',examLead:'Najpierw przejdź swój moduł. Potem zrób jeden test i wyślij wynik.',goWarehouse:'Moduł magazynu',goGreen:'Moduł szklarni',resultId:'ID wyniku',photoShow:'Pokaż zdjęcia',photoHide:'Ukryj zdjęcia',photoLead:'Zdjęcia są odkładane, żeby telefon działał lżej.',forbidMemory:'Zapamiętaj najważniejsze',forbidText:'Nie wnoś jedzenia, napojów, telefonu, papierosów, leków bez zgłoszenia, biżuterii, sztucznych paznokci i rzęs.'},
+  EN:{setupTitle:'Set your path',setupLead:'Choose language, work place and stage. Then the system shows only what you need.',language:'Language',place:'Work place',stage:'Stage',greenhouse:'Greenhouse',warehouse:'Warehouse',save:'Save and show my modules',change:'Change',profile:'Your path',readerHidden:'Reader is hidden because there are no readers in the warehouse.',calcTitle:'Greenhouse orientation calculator',calcLead:'Choose nave, entrance and side. Different greenhouses may have 37, 38 or 39 naves.',nave:'Nave',entry:'Entrance',side:'Work side',left:'Left',right:'Right',result:'Look for',whole:'Greenhouse from above',road:'middle road',naveOne:'One nave: 5 entrances',passage:'View in passage',rowLeft:'left row side',rowRight:'right row side',readerPhotoTitle:'Reader with pictures',readerPhotoLead:'Short instruction like the photos: step, sentence, image.',take:'Take reader',tag:'Personal tag',start:'Start work',activity:'Activity',end:'End and charger',quickTitle:'Quick message',quickLead:'If you are sick or late, send a ready message.',late:'I will be late',sick:'I am sick',lost:'I do not know where to go',other:'I need contact',sendWa:'Send WhatsApp',sendViber:'Send Viber',examTitle:'Before the test',examLead:'First complete your module. Then do one test and send the result.',goWarehouse:'Warehouse module',goGreen:'Greenhouse module',resultId:'Result ID',photoShow:'Show photos',photoHide:'Hide photos',photoLead:'Photos are deferred so the phone works lighter.',forbidMemory:'Remember the key point',forbidText:'Do not bring food, drinks, phone, cigarettes, medicine without reporting, jewelry, artificial nails or lashes.'},
+  UA:{setupTitle:'Налаштуйте свій шлях',setupLead:'Оберіть мову, місце роботи і етап. Потім система покаже тільки потрібне.',language:'Мова',place:'Місце роботи',stage:'Етап',greenhouse:'Теплиця',warehouse:'Склад',save:'Зберегти і показати мої модулі',change:'Змінити',profile:'Ваш шлях',readerHidden:'Рідер прихований, бо на складі рідерів немає.',calcTitle:'Калькулятор орієнтації теплиці',calcLead:'Оберіть наву, вхід і сторону. У різних теплицях може бути 37, 38 або 39 нав.',nave:'Нава',entry:'Вхід',side:'Сторона роботи',left:'Ліва',right:'Права',result:'Шукайте',whole:'Теплиця зверху',road:'дорога посередині',naveOne:'Одна нава: 5 входів',passage:'Вид у проході',rowLeft:'ліва сторона ряду',rowRight:'права сторона ряду',readerPhotoTitle:'Рідер з картинками',readerPhotoLead:'Коротка інструкція як на фото: крок, речення, зображення.',take:'Візьміть рідер',tag:'Персональний тег',start:'Початок роботи',activity:'Діяльність',end:'Кінець і зарядка',quickTitle:'Швидке повідомлення',quickLead:'Якщо хворієте або запізнюєтесь, надішліть готове повідомлення.',late:'Я запізнюся',sick:'Я хворію',lost:'Не знаю куди йти',other:'Потрібен контакт',sendWa:'Надіслати WhatsApp',sendViber:'Надіслати Viber',examTitle:'Перед тестом',examLead:'Спочатку пройдіть свій модуль. Потім зробіть один тест і надішліть результат.',goWarehouse:'Модуль складу',goGreen:'Модуль теплиці',resultId:'ID результату',photoShow:'Показати фото',photoHide:'Сховати фото',photoLead:'Фото відкладаються, щоб телефон працював легше.',forbidMemory:'Запам’ятайте головне',forbidText:'Не вносити їжу, напої, телефон, сигарети, ліки без повідомлення, прикраси, штучні нігті та вії.'},
+  RU:{setupTitle:'Настройте свой путь',setupLead:'Выберите язык, место работы и этап. Потом система покажет только нужное.',language:'Язык',place:'Место работы',stage:'Этап',greenhouse:'Теплица',warehouse:'Склад',save:'Сохранить и показать мои модули',change:'Изменить',profile:'Ваш путь',readerHidden:'Ридер скрыт, потому что на складе ридеров нет.',calcTitle:'Калькулятор ориентации теплицы',calcLead:'Выберите наву, вход и сторону. В разных теплицах может быть 37, 38 или 39 нав.',nave:'Нава',entry:'Вход',side:'Сторона работы',left:'Левая',right:'Правая',result:'Ищите',whole:'Теплица сверху',road:'дорога посередине',naveOne:'Одна нава: 5 входов',passage:'Вид в проходе',rowLeft:'левая сторона ряда',rowRight:'правая сторона ряда',readerPhotoTitle:'Ридер с картинками',readerPhotoLead:'Короткая инструкция как на фото: шаг, предложение, изображение.',take:'Возьмите ридер',tag:'Персональный тег',start:'Начало работы',activity:'Деятельность',end:'Конец и зарядка',quickTitle:'Быстрое сообщение',quickLead:'Если заболели или опаздываете, отправьте готовое сообщение.',late:'Я опоздаю',sick:'Я болею',lost:'Не знаю куда идти',other:'Нужен контакт',sendWa:'Отправить WhatsApp',sendViber:'Отправить Viber',examTitle:'Перед тестом',examLead:'Сначала пройдите свой модуль. Потом сделайте один тест и отправьте результат.',goWarehouse:'Модуль склада',goGreen:'Модуль теплицы',resultId:'ID результата',photoShow:'Показать фото',photoHide:'Скрыть фото',photoLead:'Фото отложены, чтобы телефон работал легче.',forbidMemory:'Запомните главное',forbidText:'Не приносить еду, напитки, телефон, сигареты, лекарства без сообщения, украшения, искусственные ногти и ресницы.'},
+  AZ:{setupTitle:'Öz yolunuzu seçin',setupLead:'Dil, iş yeri və etap seçin. Sonra sistem yalnız lazım olanı göstərəcək.',language:'Dil',place:'İş yeri',stage:'Etap',greenhouse:'İstixana',warehouse:'Anbar',save:'Yadda saxla və modulları göstər',change:'Dəyiş',profile:'Sizin yolunuz',readerHidden:'Reader gizlidir, çünki anbarda reader yoxdur.',calcTitle:'İstixana orientasiya kalkulyatoru',calcLead:'Nava, giriş və tərəfi seçin. Müxtəlif istixanalarda 37, 38 və ya 39 nava ola bilər.',nave:'Nava',entry:'Giriş',side:'İş tərəfi',left:'Sol',right:'Sağ',result:'Axtarın',whole:'İstixana yuxarıdan',road:'orta yol',naveOne:'Bir nava: 5 giriş',passage:'Keçiddə görünüş',rowLeft:'sıranın sol tərəfi',rowRight:'sıranın sağ tərəfi',readerPhotoTitle:'Reader şəkillərlə',readerPhotoLead:'Şəkillərdəki kimi qısa təlimat: addım, cümlə, şəkil.',take:'Reader götür',tag:'Şəxsi tag',start:'İşin başlanğıcı',activity:'Fəaliyyət',end:'Son və şarj',quickTitle:'Sürətli mesaj',quickLead:'Xəstəsinizsə və ya gecikirsinizsə, hazır mesaj göndərin.',late:'Gecikəcəyəm',sick:'Xəstəyəm',lost:'Hara getməyi bilmirəm',other:'Əlaqə lazımdır',sendWa:'WhatsApp göndər',sendViber:'Viber göndər',examTitle:'Testdən əvvəl',examLead:'Əvvəl öz modulunuzu keçin. Sonra bir test edin və nəticəni göndərin.',goWarehouse:'Anbar modulu',goGreen:'İstixana modulu',resultId:'Nəticə ID',photoShow:'Şəkilləri göstər',photoHide:'Şəkilləri gizlət',photoLead:'Telefon daha yüngül işləsin deyə şəkillər təxirə salınır.',forbidMemory:'Əsasını yadda saxlayın',forbidText:'Yemək, içki, telefon, siqaret, xəbərsiz dərman, zinət əşyası, süni dırnaq və kirpik gətirməyin.'}
+ };
+ function setProfile(k,v){if(k==='area')profileArea=v;if(k==='stage')profileStage=v;localStorage.cx_profile_area=profileArea;localStorage.cx_profile_stage=profileStage}
+ window.cxFlowSetLang=function(l){try{lang=l;localStorage.cx_lang=l;if(typeof apply==='function')apply()}catch(e){localStorage.cx_lang=l;renderAll()}};
+ window.cxFlowSetArea=function(v){setProfile('area',v);renderAll()};
+ window.cxFlowSetStage=function(v){setProfile('stage',v);renderAll()};
+ window.cxFlowSave=function(){localStorage.cx_profile_done='1';if(profileArea==='warehouse'){try{selectStage('warehouse')}catch(e){}}else{try{selectStage(profileStage)}catch(e){}}renderAll()};
+ window.cxFlowChange=function(){localStorage.removeItem('cx_profile_done');renderAll()};
+ function renderSetup(){
+  var host=el('humanPanel'); if(!host)return; var t=tr(), done=localStorage.cx_profile_done==='1';
+  var box=el('cxSetupWizard'); if(!box){box=document.createElement('section');box.id='cxSetupWizard';box.className='cxSetupWizard';host.insertBefore(box,host.firstChild)}
+  if(done){var place=profileArea==='warehouse'?t.warehouse:t.greenhouse;var st=profileArea==='warehouse'?t.warehouse:profileStage.toUpperCase();box.innerHTML='<div class="cxSetupSummary"><div><strong>'+esc(t.profile)+': '+esc(place)+' / '+esc(st)+'</strong><small>'+esc(profileArea==='warehouse'?t.readerHidden:t.setupLead)+'</small></div><button class="cxSetupChange" onclick="cxFlowChange()">'+esc(t.change)+'</button></div>';return}
+  var langs=['PL','EN','UA','RU','AZ'].map(function(l){return'<button class="'+(lng()===l?'active':'')+'" onclick="cxFlowSetLang(\''+l+'\')">'+l+'</button>'}).join('');
+  var stages=['e1','e2','e3','e4','e5','e6'].map(function(s){return'<button class="'+(profileStage===s?'active':'')+'" onclick="cxFlowSetStage(\''+s+'\')">'+s.toUpperCase()+'</button>'}).join('');
+  box.innerHTML='<div class="cxSetupTop"><div><b>'+esc(t.setupTitle)+'</b><span>'+esc(t.setupLead)+'</span></div></div><div class="cxSetupGrid"><div class="cxSetupRow"><span class="cxSetupLabel">'+esc(t.language)+'</span><div class="cxSetupChoices cxSetupLang">'+langs+'</div></div><div class="cxSetupRow"><span class="cxSetupLabel">'+esc(t.place)+'</span><div class="cxSetupChoices"><button data-area="greenhouse" class="'+(profileArea==='greenhouse'?'active':'')+'" onclick="cxFlowSetArea(\'greenhouse\')">'+esc(t.greenhouse)+'</button><button data-area="warehouse" class="'+(profileArea==='warehouse'?'active':'')+'" onclick="cxFlowSetArea(\'warehouse\')">'+esc(t.warehouse)+'</button></div></div>'+(profileArea==='greenhouse'?'<div class="cxSetupRow"><span class="cxSetupLabel">'+esc(t.stage)+'</span><div class="cxSetupChoices cxSetupStage">'+stages+'</div></div>':'')+'<button class="cxSetupSave" onclick="cxFlowSave()">'+esc(t.save)+'</button></div>';
+ }
+ function filterTiles(){
+  var isWh=profileArea==='warehouse'&&localStorage.cx_profile_done==='1';
+  document.querySelectorAll('.cxHomeTile.reader,.cxTodayBtn[data-kind="reader"],.cxHomeTile.greenhouse,.cxTodayBtn[data-kind="greenhouse"],.cxHomeTile.warehouse,.cxTodayBtn[data-kind="warehouse"]').forEach(function(n){n.classList.remove('cxHiddenForProfile')});
+  if(isWh){document.querySelectorAll('.cxHomeTile.reader,.cxTodayBtn[data-kind="reader"],.cxHomeTile.greenhouse,.cxTodayBtn[data-kind="greenhouse"]').forEach(function(n){n.classList.add('cxHiddenForProfile')})}
+  if(!isWh&&localStorage.cx_profile_done==='1'){document.querySelectorAll('.cxHomeTile.warehouse,.cxTodayBtn[data-kind="warehouse"]').forEach(function(n){n.classList.add('cxHiddenForProfile')})}
+ }
+ window.cxCalcSet=function(k,v){if(k==='nave')calcNave=v;if(k==='entry')calcEntry=v;if(k==='side')calcSide=v;localStorage.cx_calc_nave=calcNave;localStorage.cx_calc_entry=calcEntry;localStorage.cx_calc_side=calcSide;renderGreenCalc()};
+ function renderGreenCalc(){
+  var host=el('orientationDiagrams')||el('guide'); if(!host)return; var t=tr();
+  var box=el('cxGreenCalc'); if(!box){box=document.createElement('section');box.id='cxGreenCalc';box.className='cxGreenCalc';host.parentNode.insertBefore(box,host)}
+  var naveOpts='',entryOpts=''; for(var i=1;i<=39;i++)naveOpts+='<option value="'+i+'" '+(String(i)===String(calcNave)?'selected':'')+'>'+i+'</option>'; for(var j=1;j<=5;j++)entryOpts+='<option value="'+j+'" '+(String(j)===String(calcEntry)?'selected':'')+'>'+j+'</option>';
+  var rowA=(Number(calcEntry)-1)*2+1,rowB=rowA+1,side=calcSide==='left'?t.left:t.right;
+  box.innerHTML='<h3>'+esc(t.calcTitle)+'</h3><p>'+esc(t.calcLead)+'</p><div class="cxCalcForm"><label>'+esc(t.nave)+'<select onchange="cxCalcSet(\'nave\',this.value)">'+naveOpts+'</select></label><label>'+esc(t.entry)+'<select onchange="cxCalcSet(\'entry\',this.value)">'+entryOpts+'</select></label><label>'+esc(t.side)+'<select onchange="cxCalcSet(\'side\',this.value)"><option value="right" '+(calcSide==='right'?'selected':'')+'>'+esc(t.right)+'</option><option value="left" '+(calcSide==='left'?'selected':'')+'>'+esc(t.left)+'</option></select></label></div><div class="cxCalcResult"><b>'+esc(t.result)+': '+esc(t.nave)+' '+esc(calcNave)+' / '+esc(t.entry)+' '+esc(calcEntry)+' / '+esc(side)+'</b>'+esc(t.entry)+' '+esc(calcEntry)+' = '+esc(t.nave)+' '+esc(calcNave)+', '+esc(t.rowLeft)+' '+rowA+' / '+esc(t.rowRight)+' '+rowB+'</div><div class="cxGreenVisual"><div class="cxGreenWhole"><b>'+esc(t.whole)+'</b><div class="cxGreenWholeMap"><div class="cxGreenSide">'+[1,2,3,4,5].map(function(n){return'<div>N'+n+'</div>'}).join('')+'</div><div class="cxGreenRoad">'+esc(t.road)+'</div><div class="cxGreenSide">'+[6,7,8,9,10].map(function(n){return'<div>N'+n+'</div>'}).join('')+'</div></div></div><div class="cxGreenNave"><b>'+esc(t.naveOne)+'</b><div class="cxNaveGrid">'+[1,2,3,4,5].map(function(n){var a=(n-1)*2+1,b=a+1;return'<div class="cxNaveEntry">'+esc(t.entry)+' '+n+'<span>'+esc(t.rowLeft)+' '+a+' / '+esc(t.rowRight)+' '+b+'</span></div>'}).join('')+'</div></div><div class="cxGreenPassage"><b>'+esc(t.passage)+'</b><div class="cxPassageBox"><div class="cxPassageSide '+(calcSide==='left'?'selected':'')+'">'+esc(t.rowLeft)+'</div><div class="cxPassageWalk">'+esc(t.entry)+'</div><div class="cxPassageSide '+(calcSide==='right'?'selected':'')+'">'+esc(t.rowRight)+'</div></div></div></div>';
+ }
+ function renderReaderPhotoGuide(){
+  var reader=el('reader'); if(!reader)return; var t=tr();
+  var box=el('cxReaderPhotoGuide'); if(!box){box=document.createElement('section');box.id='cxReaderPhotoGuide';box.className='cxReaderPhotoGuide';var ref=el('cxReaderSim')||el('readerQuick')||reader.firstChild;reader.insertBefore(box,ref)}
+  if(profileArea==='warehouse'){box.innerHTML='<h3>'+esc(t.readerPhotoTitle)+'</h3><p>'+esc(t.readerHidden)+'</p>';return}
+  var img=(typeof IMG!=='undefined'&&IMG.reader_start)?IMG.reader_start:'';
+  var steps=[[t.take,'reader_start'],[t.tag,'reader_start'],[t.start,'reader_start'],[t.activity,'reader_start'],[t.end,'reader_start']];
+  box.innerHTML='<h3>'+esc(t.readerPhotoTitle)+'</h3><p>'+esc(t.readerPhotoLead)+'</p><div class="cxReaderPhotoGrid">'+steps.map(function(s,i){return'<div class="cxReaderPhotoStep">'+(img?'<img loading="lazy" decoding="async" src="'+img+'" alt="'+esc(s[0])+'">':'')+'<div><b>'+(i+1)+'. '+esc(s[0])+'</b><span>'+esc(s[0])+'</span></div></div>'}).join('')+'</div>';
+ }
+ function quickText(){var t=tr(), stage=(profileArea==='warehouse'?t.warehouse:profileStage.toUpperCase());var reason=t[quickReason]||t.late;return 'Citronex Siechnice\n'+stage+'\n'+reason+'\n'+PUBLIC_URL}
+ window.cxQuickReason=function(r){quickReason=r;localStorage.cx_quick_reason=r;renderQuickContact()};
+ function renderQuickContact(){
+  var host=el('sosbox')||el('contactList'); if(!host)return; var t=tr();
+  var box=el('cxQuickContact'); if(!box){box=document.createElement('section');box.id='cxQuickContact';box.className='cxQuickContact';host.insertBefore(box,host.firstChild)}
+  var reasons=['late','sick','lost','other'].map(function(r){return'<button class="'+(quickReason===r?'active':'')+'" onclick="cxQuickReason(\''+r+'\')">'+esc(t[r])+'</button>'}).join('');
+  var msg=encodeURIComponent(quickText());
+  box.innerHTML='<h3>'+esc(t.quickTitle)+'</h3><p>'+esc(t.quickLead)+'</p><div class="cxQuickReasons">'+reasons+'</div><div class="cxQuickSend"><a target="_blank" rel="noopener" href="https://wa.me/48502251384?text='+msg+'">'+esc(t.sendWa)+'</a><a href="viber://chat?number=%2B48794912552">'+esc(t.sendViber)+'</a></div>';
+ }
+ window.cxSetPhotosOpen=function(v){photosOpen=!!v;localStorage.cx_photos_open=photosOpen?'1':'0';renderPhotoGate()};
+ function renderPhotoGate(){
+  var route=el('route'); if(!route)return; var t=tr(), gate=el('cxPhotoGate');
+  if(!gate){gate=document.createElement('div');gate.id='cxPhotoGate';gate.className='cxPhotoGate';var photos=el('stagePhotos');if(photos&&photos.parentNode)photos.parentNode.insertBefore(gate,photos);else route.appendChild(gate)}
+  document.body.classList.toggle('cxPhotosDeferred',!photosOpen);
+  gate.innerHTML='<div>'+esc(t.photoLead)+'</div><button onclick="cxSetPhotosOpen('+(!photosOpen)+')">'+icon('photo')+' '+esc(photosOpen?t.photoHide:t.photoShow)+'</button>';
+ }
+ function renderExamPrep(){
+  var test=el('test'); if(!test)return; var t=tr(), box=el('cxExamPrep');
+  if(!box){box=document.createElement('section');box.id='cxExamPrep';box.className='cxExamPrep';test.insertBefore(box,test.firstChild)}
+  box.innerHTML='<h3>'+esc(t.examTitle)+'</h3><p>'+esc(t.examLead)+'</p><div class="cxExamPrepActions"><button onclick="try{selectStage(\'warehouse\');setAppTab(\'greenhouse\')}catch(e){}">'+esc(t.goWarehouse)+'</button><button onclick="try{selectStage(\''+esc(profileStage)+'\');setAppTab(\'greenhouse\')}catch(e){}">'+esc(t.goGreen)+'</button></div>';
+ }
+ function resultId(){var id=localStorage.cx_exam_result_id;if(!id){var d=new Date(),pad=function(n){return String(n).padStart(2,'0')};id='CX-'+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'-'+pad(d.getHours())+pad(d.getMinutes())+pad(d.getSeconds())+'-'+Math.random().toString(36).slice(2,6).toUpperCase();localStorage.cx_exam_result_id=id}return id}
+ if(typeof examMessage==='function'&&!window.cxFlowExamWrapped){window.cxFlowExamWrapped=true;var oldExam=examMessage;window.examMessage=function(){var t=tr();return t.resultId+': '+resultId()+'\n'+oldExam()+'\n'+PUBLIC_URL}}
+ if(typeof resetExam==='function'&&!window.cxFlowResetWrapped){window.cxFlowResetWrapped=true;var oldReset=resetExam;window.resetExam=function(){localStorage.removeItem('cx_exam_result_id');return oldReset.apply(this,arguments)}}
+ function renderForbiddenMemory(){var p=el('cxForbiddenPanel');if(!p)return;var t=tr(), m=el('cxForbiddenMemory');if(!m){m=document.createElement('div');m.id='cxForbiddenMemory';m.className='cxForbiddenMemory';p.appendChild(m)}m.innerHTML='<b>'+esc(t.forbidMemory)+'</b>'+esc(t.forbidText)}
+ function renderAll(){renderSetup();filterTiles();renderGreenCalc();renderReaderPhotoGuide();renderQuickContact();renderPhotoGate();renderExamPrep();renderForbiddenMemory()}
+ var oldApply=typeof apply==='function'?apply:null; if(oldApply&&!window.cxFlowApplyWrapped){window.cxFlowApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(renderAll,0);return r}}
+ document.addEventListener('DOMContentLoaded',renderAll);setTimeout(renderAll,0);
+})();
+</script>
+<style id="cxFinalPhoneUxCss">
+/* Final phone-first cleanup: one clear module, top navigation, less visual noise. */
+body.cxHubActive #humanPanel>#cxTodayPanel{display:none!important}
+body.cxHubActive #humanPanel>#cxSetupWizard{display:block!important}
+body.cxHubActive #rememberSection,
+body.cxHubActive #start,
+body.cxHubActive #humanGuide,
+body.cxHubActive #assistPanel,
+body.cxHubActive #cxLitePanel,
+body.cxHubActive #cxHumanChooser,
+body.cxHubActive #mustKnow,
+body.cxHubActive #lostQuick,
+body.cxHubActive #recoveryBar,
+body.cxHubActive #installInfo,
+body.cxHubActive #workChooser,
+body.cxHubActive #firstDayWhere,
+body.cxHubActive #currentPathSection,
+body.cxHubActive #cityInfo,
+body.cxHubActive #guide{display:none!important}
+body.cxHubActive #humanPanel>.pathBanner,
+body.cxHubActive #humanPanel>h2,
+body.cxHubActive #humanPanel>p.lead,
+body.cxHubActive #humanPanel>.gatewayIntro,
+body.cxHubActive #humanPanel>#homeGateway,
+body.cxHubActive #humanPanel>#homeStepper,
+body.cxHubActive #humanPanel>.humanChoices,
+body.cxHubActive #humanPanel>.humanMini,
+body.cxHubActive #humanPanel>#cxHumanChooser{display:none!important}
+body.cxHubActive #humanPanel{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+body.cxHubActive #humanPanel>#cxHomeTiles{display:block!important}
+#cxReaderPhotoGuide{display:none!important}
+.brigadierCard .brigadierActions a.viber{display:none!important}
+.cxHomeTiles{scroll-margin-top:96px}
+.cxHomeTile{border-radius:18px!important;min-height:140px!important}
+.cxHomeTile b{font-size:18px!important}
+.cxHomeTile span span{font-size:13px!important;line-height:1.3!important}
+.cxHomeFoot{font-size:14px!important}
+.readerPhotoGuide{border:2px solid #d7e5da!important;background:#fff!important}
+.readerPhotoCard{border-radius:17px!important;overflow:hidden!important}
+.readerPhotoCard img{aspect-ratio:4/3!important;object-fit:cover!important}
+.cxGreenCalc{border-width:2px!important}
+.cxCalcResult{font-size:15px!important}
+.cxForbiddenMemory{margin-top:10px!important}
+@media(max-width:760px){
+ body{background:#f6faf7!important}
+ .app{padding-bottom:30px!important}
+ .mobileDock{display:none!important}
+ .appTabsShell{
+  display:block!important;
+  position:sticky!important;
+  top:0!important;
+  z-index:80!important;
+  background:rgba(246,250,247,.98)!important;
+  border:0!important;
+  border-bottom:1px solid #d7e5da!important;
+  border-radius:0!important;
+  padding:8px 0 9px!important;
+  margin:0 -12px 10px!important;
+  box-shadow:0 10px 24px rgba(20,33,27,.08)!important;
+  backdrop-filter:blur(12px)!important;
+ }
+ .appTabs{
+  display:flex!important;
+  overflow-x:auto!important;
+  gap:7px!important;
+  padding:0 12px!important;
+  scrollbar-width:none!important;
+ }
+ .appTabs::-webkit-scrollbar{display:none!important}
+ .appTab{
+  flex:0 0 auto!important;
+  min-width:96px!important;
+  min-height:52px!important;
+  border-radius:15px!important;
+  font-size:12px!important;
+  padding:10px 8px!important;
+  white-space:normal!important;
+ }
+ .appTabLead{
+  margin:8px 12px 0!important;
+  padding:9px 10px!important;
+  border-radius:14px!important;
+  font-size:12px!important;
+ }
+ .tabProgressTop{display:grid!important;gap:4px!important}
+ .cxHomeHead{display:block!important;margin-bottom:10px!important}
+ .cxHomeHead b{font-size:22px!important}
+ .cxHomeHead span{display:block!important;text-align:left!important;margin-top:6px!important;max-width:none!important}
+ .cxTileGrid{grid-template-columns:1fr!important;gap:10px!important}
+ .cxHomeTile{
+  min-height:104px!important;
+  display:grid!important;
+  grid-template-columns:54px 1fr!important;
+  align-items:center!important;
+  gap:12px!important;
+  padding:13px!important;
+ }
+ .cxHomeTileIcon{width:54px!important;height:54px!important;border-radius:17px!important}
+ .cxHomeTile b{font-size:18px!important}
+ .cxHomeTile span span{font-size:13px!important}
+ .cxSetupWizard{margin-bottom:10px!important}
+ .cxSetupTop b{font-size:18px!important}
+ .cxCalcForm{grid-template-columns:1fr!important}
+ .cxGreenVisual{gap:8px!important}
+ .readerPhotoGuide{padding:12px!important}
+ .readerPhotoGrid{grid-template-columns:1fr!important}
+ .readerPhotoCard img{max-height:330px!important}
+ .cxQuickSend,.examSendGrid{grid-template-columns:1fr!important}
+ .brigadierActions{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:380px){
+ .appTab{min-width:88px!important;font-size:11px!important}
+ .cxHomeTile{grid-template-columns:48px 1fr!important}
+ .cxHomeTileIcon{width:48px!important;height:48px!important}
+ .cxHomeTile b{font-size:16px!important}
+ .cxHomeTile span span{font-size:12px!important}
+ .brigadierActions{grid-template-columns:1fr!important}
+}
+</style>
+<script id="cxFinalPhoneUxPatch">
+(function(){
+ if(window.cxFinalPhoneUxLoaded)return; window.cxFinalPhoneUxLoaded=true;
+ function l(){try{return String(window.lang||lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return String(localStorage.cx_lang||'PL').toUpperCase()}}
+ function txt(){
+  var d={
+   PL:{contactSub:'Numery E1-E6, telefon i WhatsApp. Biuro od 8:00.',peopleLead:'Je\u015bli chorujesz, sp\u00f3\u017aniasz si\u0119 albo nie mo\u017cesz przyj\u015b\u0107, napisz na WhatsApp do brygadzisty ze swojego etapu albo zadzwo\u0144.',officeAfter:'Koordynatorzy / biuro po 8:00',topHint:'Wybierz jeden kafelek. Zobaczysz tylko potrzebny modu\u0142.'},
+   EN:{contactSub:'E1-E6 numbers, phone and WhatsApp. Office from 8:00.',peopleLead:'If you are sick, late, or cannot come, message your stage team leader on WhatsApp or call.',officeAfter:'Coordinators / office after 8:00',topHint:'Choose one tile. You will see only the module you need.'},
+   UA:{contactSub:'\u041d\u043e\u043c\u0435\u0440\u0438 E1-E6, \u0442\u0435\u043b\u0435\u0444\u043e\u043d \u0456 WhatsApp. \u041e\u0444\u0456\u0441 \u0437 8:00.',peopleLead:'\u042f\u043a\u0449\u043e \u0432\u0438 \u0437\u0430\u0445\u0432\u043e\u0440\u0456\u043b\u0438, \u0437\u0430\u043f\u0456\u0437\u043d\u044e\u0454\u0442\u0435\u0441\u044c \u0430\u0431\u043e \u043d\u0435 \u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u0440\u0438\u0439\u0442\u0438, \u043d\u0430\u043f\u0438\u0448\u0456\u0442\u044c \u0443 WhatsApp \u0431\u0440\u0438\u0433\u0430\u0434\u0438\u0440\u0443 \u0441\u0432\u043e\u0433\u043e \u0435\u0442\u0430\u043f\u0443 \u0430\u0431\u043e \u043f\u043e\u0434\u0437\u0432\u043e\u043d\u0456\u0442\u044c.',officeAfter:'\u041a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u043e\u0440\u0438 / \u043e\u0444\u0456\u0441 \u043f\u0456\u0441\u043b\u044f 8:00',topHint:'\u041e\u0431\u0435\u0440\u0456\u0442\u044c \u043e\u0434\u0438\u043d \u0431\u043b\u043e\u043a. \u0412\u0438 \u043f\u043e\u0431\u0430\u0447\u0438\u0442\u0435 \u0442\u0456\u043b\u044c\u043a\u0438 \u043f\u043e\u0442\u0440\u0456\u0431\u043d\u0438\u0439 \u043c\u043e\u0434\u0443\u043b\u044c.'},
+   RU:{contactSub:'\u041d\u043e\u043c\u0435\u0440\u0430 E1-E6, \u0442\u0435\u043b\u0435\u0444\u043e\u043d \u0438 WhatsApp. \u041e\u0444\u0438\u0441 \u0441 8:00.',peopleLead:'\u0415\u0441\u043b\u0438 \u0432\u044b \u0437\u0430\u0431\u043e\u043b\u0435\u043b\u0438, \u043e\u043f\u0430\u0437\u0434\u044b\u0432\u0430\u0435\u0442\u0435 \u0438\u043b\u0438 \u043d\u0435 \u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u0440\u0438\u0439\u0442\u0438, \u043d\u0430\u043f\u0438\u0448\u0438\u0442\u0435 \u0432 WhatsApp \u0431\u0440\u0438\u0433\u0430\u0434\u0438\u0440\u0443 \u0441\u0432\u043e\u0435\u0433\u043e \u044d\u0442\u0430\u043f\u0430 \u0438\u043b\u0438 \u043f\u043e\u0437\u0432\u043e\u043d\u0438\u0442\u0435.',officeAfter:'\u041a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u043e\u0440\u044b / \u043e\u0444\u0438\u0441 \u043f\u043e\u0441\u043b\u0435 8:00',topHint:'\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043e\u0434\u0438\u043d \u0431\u043b\u043e\u043a. \u0412\u044b \u0443\u0432\u0438\u0434\u0438\u0442\u0435 \u0442\u043e\u043b\u044c\u043a\u043e \u043d\u0443\u0436\u043d\u044b\u0439 \u043c\u043e\u0434\u0443\u043b\u044c.'},
+   AZ:{contactSub:'E1-E6 nomreleri, telefon ve WhatsApp. Ofis 8:00-dan sonra.',peopleLead:'Xestesinizse, gecikirsinizse ve ya gele bilmirsinizse, oz etap briqadirinize WhatsApp yazin ve ya zeng edin.',officeAfter:'Koordinatorlar / ofis 8:00-dan sonra',topHint:'Bir kafel secin. Yalniz lazim olan modul acilacaq.'}
+  };
+  return d[l()]||d.PL;
+ }
+ function cleanContacts(){
+  var t=txt();
+  document.querySelectorAll('.brigadierCard .brigadierActions a.viber').forEach(function(a){a.remove()});
+  document.querySelectorAll('.brigadierCard span').forEach(function(n){
+   var next=(n.textContent||'').replace(/\s*[.\u00b7-]\s*Viber\s*\/\s*WhatsApp/ig,' - WhatsApp').replace(/WhatsApp\s*(i|and|ve|\u0438|\u0456)\s*Viber/ig,'WhatsApp');
+   if(n.textContent!==next)n.textContent=next;
+  });
+  var contactTile=document.querySelector('.cxHomeTile.contacts');
+  if(contactTile){
+   var nested=contactTile.querySelectorAll('span span');
+   if(nested.length&&nested[nested.length-1].textContent!==t.contactSub)nested[nested.length-1].textContent=t.contactSub;
+  }
+  var people=document.querySelector('#cxPeopleTitle p');
+  if(people&&people.textContent!==t.peopleLead)people.textContent=t.peopleLead;
+  document.querySelectorAll('.officeContacts h3').forEach(function(h){if(h.textContent!==t.officeAfter)h.textContent=t.officeAfter});
+ }
+ function cleanHome(){
+  var t=txt();
+  var head=document.querySelector('.cxHomeHead span');
+  if(head&&head.textContent!==t.topHint)head.textContent=t.topHint;
+  var done=localStorage.cx_profile_done==='1';
+  var area=localStorage.cx_profile_area||'greenhouse';
+  document.querySelectorAll('.cxHomeTile').forEach(function(tile){
+   var hide=false;
+   if(done&&area==='warehouse')hide=tile.classList.contains('reader')||tile.classList.contains('greenhouse');
+   if(done&&area!=='warehouse')hide=tile.classList.contains('warehouse')||tile.classList.contains('warehousePeople');
+   if(tile.classList.contains('cxHiddenForProfile')!==hide)tile.classList.toggle('cxHiddenForProfile',hide);
+   var label=(tile.textContent||'').replace(/\s+/g,' ').trim();
+   if(tile.getAttribute('aria-label')!==label)tile.setAttribute('aria-label',label);
+  });
+  document.querySelectorAll('.cxTodayBtn[data-kind]').forEach(function(btn){
+   var kind=btn.getAttribute('data-kind'), hide=false;
+   if(done&&area==='warehouse')hide=kind==='reader'||kind==='greenhouse';
+   if(done&&area!=='warehouse')hide=kind==='warehouse';
+   if(btn.classList.contains('cxHiddenForProfile')!==hide)btn.classList.toggle('cxHiddenForProfile',hide);
+  });
+ }
+ function cleanFlow(){
+  cleanContacts();
+  cleanHome();
+  var duplicate=document.getElementById('cxReaderPhotoGuide');
+  if(duplicate&&duplicate.getAttribute('aria-hidden')!=='true')duplicate.setAttribute('aria-hidden','true');
+ }
+ var prevApply=window.apply;
+ if(typeof prevApply==='function'&&!window.cxFinalPhoneApplyWrapped){
+  window.cxFinalPhoneApplyWrapped=true;
+  window.apply=function(){var r=prevApply.apply(this,arguments);setTimeout(cleanFlow,0);return r};
+ }
+ var prevTab=window.setAppTab;
+ if(typeof prevTab==='function'&&!window.cxFinalPhoneTabWrapped){
+  window.cxFinalPhoneTabWrapped=true;
+  window.setAppTab=function(){var r=prevTab.apply(this,arguments);setTimeout(cleanFlow,0);return r};
+ }
+ document.addEventListener('DOMContentLoaded',cleanFlow);
+ document.addEventListener('click',function(){setTimeout(cleanFlow,40)},true);
+ try{new MutationObserver(function(){cleanFlow()}).observe(document.documentElement,{childList:true,subtree:true})}catch(e){}
+ setTimeout(cleanFlow,0);
+})();
+</script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
