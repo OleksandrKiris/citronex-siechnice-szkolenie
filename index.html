@@ -2429,6 +2429,38 @@ cleanMobileDock();
 .cxDoNotMix{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 .cxDoNotMix div{border-radius:14px;padding:10px;background:#fff8df;border:1px solid #efd28a;color:#4a3510;font-size:12px;font-weight:900;line-height:1.2}
 .cxDoNotMix b{display:block;margin-bottom:3px;color:#7b3b00}
+.cxSimpleOrient{display:grid;gap:12px}
+.cxSimpleOrient *{box-sizing:border-box}
+.cxSimpleLead{display:grid;gap:7px}
+.cxSimpleLead h3{margin:0;font-size:22px;line-height:1.08;color:#14211b}
+.cxSimpleLead p{margin:0!important;color:#647067!important;font-weight:800;line-height:1.28}
+.cxZoomSteps{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.cxZoomStep{border:1px solid #dce7df;background:#fff;border-radius:13px;padding:9px 7px;text-align:center;font-size:12px;font-weight:900;color:#173b2a;line-height:1.15}
+.cxZoomStep b{display:block;color:#0f5f3f;font-size:18px;line-height:1}
+.cxMiniGreenhouse{border:1px solid #dce7df;border-radius:18px;background:#fff;padding:12px;box-shadow:0 8px 22px rgba(20,33,27,.06);overflow:hidden}
+.cxMiniGreenhouse h4,.cxNaveZoom h4,.cxSideZoom h4{margin:0 0 5px;font-size:18px;line-height:1.1;color:#14211b}
+.cxMiniGreenhouse p,.cxNaveZoom p,.cxSideZoom p{margin:0 0 10px!important;color:#647067!important;font-weight:800;font-size:13px!important;line-height:1.28}
+.cxGreenhousePlan{display:grid;grid-template-columns:1fr 42px 1fr;border:2px solid #173b2a;border-radius:16px;overflow:hidden;min-height:210px;background:#f8fff9}
+.cxPlanSide{display:grid;grid-template-rows:auto 1fr;min-width:0}
+.cxPlanSideTitle{text-align:center;font-weight:900;padding:9px 5px;background:#eaf8ef;color:#0f5f3f}
+.cxPlanSide.right .cxPlanSideTitle{background:#fff5d8;color:#815400}
+.cxNaveSamples{display:grid;gap:6px;padding:10px}
+.cxSampleNave{border:1px solid #cfe4d6;background:#fff;border-radius:12px;min-height:28px;display:grid;place-items:center;font-weight:900;color:#173b2a}
+.cxPlanSide.right .cxSampleNave{border-color:#efd28a;background:#fffdf4}
+.cxCommonRoad{display:grid;place-items:center;text-align:center;background:#173b2a;color:#fff;font-size:11px;font-weight:900;line-height:1.05;writing-mode:vertical-rl;text-orientation:mixed}
+.cxPlanNote{margin-top:9px;border:1px solid #efd28a;background:#fff8df;color:#4a3510;border-radius:14px;padding:10px;font-size:13px;font-weight:900;line-height:1.25}
+.cxNaveZoom,.cxSideZoom{border:1px solid #dce7df;border-radius:18px;background:#fff;padding:12px;box-shadow:0 8px 22px rgba(20,33,27,.06);overflow:hidden}
+.cxNaveRows{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.cxNaveRow{min-height:38px;border-radius:13px;border:1px solid #cfe4d6;background:#f2fff6;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 9px;font-weight:900;color:#173b2a}
+.cxNaveRow:nth-child(even){background:#fff8df;border-color:#efd28a}
+.cxNaveRow span:first-child{color:#0f5f3f;font-size:16px}
+.cxSideWork{display:grid;grid-template-columns:1fr 54px 1fr;gap:8px;align-items:stretch}
+.cxWorkSide{border:1px solid #cfe4d6;border-radius:15px;background:#eefaf2;padding:12px 8px;display:grid;place-items:center;text-align:center;font-weight:900;color:#0f5f3f;min-height:96px}
+.cxWorkSide.right{background:#fff8df;border-color:#efd28a;color:#815400}
+.cxWorkPath{background:#173b2a;color:#fff;border-radius:15px;display:grid;place-items:center;text-align:center;font-size:11px;font-weight:900;line-height:1.1;writing-mode:vertical-rl;text-orientation:mixed}
+.cxMemoryBox{border:1px solid #dce7df;border-radius:16px;background:#fbfefc;padding:12px;display:grid;gap:8px}
+.cxMemoryBox div{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:center;font-weight:900;color:#173b2a;line-height:1.2}
+.cxMemoryBox b{width:28px;height:28px;border-radius:50%;background:#0f5f3f;color:#fff;display:grid;place-items:center}
 @media(max-width:760px){
  .cxBodyRule{grid-template-columns:1fr 68px 1fr;padding:10px;gap:6px}
  .cxSidePill{min-height:78px;font-size:12px;padding:10px 6px}
@@ -2443,6 +2475,16 @@ cleanMobileDock();
  .cxReadStep{text-align:left;display:grid;grid-template-columns:28px 1fr;align-items:center;gap:8px}
  .cxReadStep b{font-size:18px}
  .cxDoNotMix{grid-template-columns:1fr}
+ .cxZoomSteps{grid-template-columns:repeat(2,1fr)}
+ .cxGreenhousePlan{grid-template-columns:1fr 34px 1fr;min-height:190px}
+ .cxPlanSideTitle{font-size:12px}
+ .cxSampleNave{font-size:12px;min-height:27px}
+ .cxCommonRoad{font-size:10px}
+ .cxNaveRows{grid-template-columns:1fr}
+ .cxNaveRow{min-height:34px}
+ .cxSideWork{grid-template-columns:1fr 44px 1fr}
+ .cxWorkSide{min-height:86px;font-size:12px;padding:10px 6px}
+ .cxWorkPath{font-size:10px}
 }
 #orientationDiagrams .cxOrientTopView~.orientV4{display:none!important}
 .visual,.photoGrid img,.readerPhotoCard img,.cxWarehousePhotos img{border-radius:14px}
@@ -2699,9 +2741,40 @@ cleanMobileDock();
    '<div class="cxOrientIntro"><div class="cxOrientBadge">'+cxEsc(m.badge)+'</div><h3>'+cxEsc(m.title)+'</h3><p>'+cxEsc(m.lead)+'</p></div>'+
    '<div class="cxBodyRule"><div class="cxSidePill left">'+cxEsc(m.left)+'</div><div class="cxHumanFigure"><span class="cxHumanBack">'+cxEsc(m.back)+'</span><span class="cxHumanHead"></span><span class="cxHumanBody"></span><span class="cxHumanBack">'+cxEsc(m.person)+'</span></div><div class="cxSidePill right">'+cxEsc(m.right)+'</div></div>'+
    '<div class="cxNaveSeries"><div class="cxNaveSeriesHead"><span>'+cxEsc(m.seriesTitle)+'</span><small>'+cxEsc(m.seriesHelp)+'</small></div><div class="cxNaveRail">'+naves()+'</div><div class="cxDirectionLine"><span>'+cxEsc(m.start)+'</span><span>'+cxEsc(m.direction)+'</span><span>'+cxEsc(m.end)+'</span></div></div>'+
-   '<div class="cxOneNave"><h4>'+cxEsc(m.oneTitle)+'</h4><p>'+cxEsc(m.oneLead)+'</p><div class="cxEntryGrid">'+entries()+'</div></div>'+
-   '<div class="cxReadOrder">'+order()+'</div>'+
-   '<div class="cxDoNotMix"><div><b>'+cxEsc(m.mixA)+'</b>'+cxEsc(m.mixAText)+'</div><div><b>'+cxEsc(m.mixB)+'</b>'+cxEsc(m.mixBText)+'</div></div>'+
+  '<div class="cxOneNave"><h4>'+cxEsc(m.oneTitle)+'</h4><p>'+cxEsc(m.oneLead)+'</p><div class="cxEntryGrid">'+entries()+'</div></div>'+
+  '<div class="cxReadOrder">'+order()+'</div>'+
+  '<div class="cxDoNotMix"><div><b>'+cxEsc(m.mixA)+'</b>'+cxEsc(m.mixAText)+'</div><div><b>'+cxEsc(m.mixB)+'</b>'+cxEsc(m.mixBText)+'</div></div>'+
+  '</div>';
+ }
+ function cxRenderOrientationTop(){
+  var box=document.getElementById('orientationDiagrams');
+  if(!box)return;
+  var view=document.getElementById('cxGreenhouseTopView');
+  if(!view){view=document.createElement('div');view.id='cxGreenhouseTopView';view.className='cxOrientTopView';box.insertBefore(view,box.firstChild)}
+  var l=cxLang();
+  var m=({
+   pl:{badge:"Prosty widok",title:"Szklarnia krok po kroku",lead:"Najpierw zobacz całą szklarnię z góry. Potem przybliżamy jedną nawę i dopiero potem jeden rząd.",whole:"1. Cała szklarnia z góry",wholeText:"Szklarnia jest podzielona na dwie części. Pośrodku jest wspólna droga / przejście główne.",left:"LEWA STRONA",right:"PRAWA STRONA",road:"WSPÓLNA DROGA",nave:"Nawa",more:"...",note:"W każdej szklarni może być inna liczba naw: czasem 37, czasem 38, czasem 39. Nie trzeba zapamiętywać wszystkich na raz.",one:"2. To jest jedna nawa",oneText:"W jednej nawie masz 10 rzędów. Na telefonie najważniejsze jest zapamiętać: jedna nawa = 10 rzędów.",row:"Rząd",side:"3. Przy pracy na rzędzie",sideText:"Kiedy jesteś przy rzędzie, znowu patrzysz na lewą i prawą stronę. Tam wykonujesz pracę przy roślinach.",workLeft:"LEWA STRONA PRACY",workRight:"PRAWA STRONA PRACY",path:"PRZEJŚCIE",remember:["Cała szklarnia ma dwie części i drogę pośrodku.","Naw jest różna liczba w zależności od szklarni.","Jedna nawa ma 10 rzędów.","Przy rzędzie zawsze sprawdź lewą i prawą stronę."]},
+   en:{badge:"Simple view",title:"Greenhouse step by step",lead:"First look at the whole greenhouse from above. Then we zoom into one nave, and only then into one row.",whole:"1. Whole greenhouse from above",wholeText:"The greenhouse is divided into two parts. In the middle there is a common road / main passage.",left:"LEFT SIDE",right:"RIGHT SIDE",road:"COMMON ROAD",nave:"Nave",more:"...",note:"Each greenhouse can have a different number of naves: sometimes 37, sometimes 38, sometimes 39. You do not need to remember all at once.",one:"2. This is one nave",oneText:"One nave has 10 rows. On the phone remember the main rule: one nave = 10 rows.",row:"Row",side:"3. Working at a row",sideText:"When you are at a row, you again check the left and right side. This is where you work with the plants.",workLeft:"LEFT WORK SIDE",workRight:"RIGHT WORK SIDE",path:"PASSAGE",remember:["The whole greenhouse has two parts and a road in the middle.","The number of naves depends on the greenhouse.","One nave has 10 rows.","At the row always check left and right side."]},
+   ua:{badge:"Простий вид",title:"Теплиця крок за кроком",lead:"Спочатку подивіться на всю теплицю зверху. Потім наближаємо одну наву, а потім один ряд.",whole:"1. Вся теплиця зверху",wholeText:"Теплиця поділена на дві частини. Посередині є спільна дорога / головний прохід.",left:"ЛІВА СТОРОНА",right:"ПРАВА СТОРОНА",road:"СПІЛЬНА ДОРОГА",nave:"Нава",more:"...",note:"У кожній теплиці може бути різна кількість нав: іноді 37, іноді 38, іноді 39. Не треба запам’ятовувати всі одразу.",one:"2. Це одна нава",oneText:"В одній наві є 10 рядів. На телефоні головне запам’ятати: одна нава = 10 рядів.",row:"Ряд",side:"3. Робота біля ряду",sideText:"Коли ви біля ряду, знову перевіряєте ліву і праву сторону. Там виконується робота з рослинами.",workLeft:"ЛІВА СТОРОНА РОБОТИ",workRight:"ПРАВА СТОРОНА РОБОТИ",path:"ПРОХІД",remember:["Уся теплиця має дві частини і дорогу посередині.","Кількість нав залежить від теплиці.","Одна нава має 10 рядів.","Біля ряду завжди перевіряйте ліву і праву сторону."]},
+   ru:{badge:"Простой вид",title:"Теплица шаг за шагом",lead:"Сначала покажем всю теплицу сверху. Потом приблизим одну наву, а потом один ряд.",whole:"1. Вся теплица сверху",wholeText:"Теплица разделена на две части. Посередине идет общая дорога / главный проход.",left:"ЛЕВАЯ СТОРОНА",right:"ПРАВАЯ СТОРОНА",road:"ОБЩАЯ ДОРОГА",nave:"Нава",more:"...",note:"В каждой теплице может быть разное количество нав: где-то 37, где-то 38, где-то 39. Не надо показывать и учить все сразу.",one:"2. Это одна нава",oneText:"В одной наве есть 10 рядов. Для телефона главное запомнить: одна нава = 10 рядов.",row:"Ряд",side:"3. Работа возле ряда",sideText:"Когда ты возле ряда, снова смотришь левую и правую сторону. Именно там обрабатываешь растения.",workLeft:"ЛЕВАЯ СТОРОНА РАБОТЫ",workRight:"ПРАВАЯ СТОРОНА РАБОТЫ",path:"ПРОХОД",remember:["Вся теплица делится на две части, между ними общая дорога.","Количество нав зависит от теплицы.","Одна нава имеет 10 рядов.","Возле ряда всегда проверь левую и правую сторону."]},
+   az:{badge:"Sadə görünüş",title:"İstixana addım-addım",lead:"Əvvəl bütün istixananı yuxarıdan görürük. Sonra bir navanı, sonra isə bir sıranı yaxınlaşdırırıq.",whole:"1. Bütün istixana yuxarıdan",wholeText:"İstixana iki hissəyə bölünür. Ortada ümumi yol / əsas keçid var.",left:"SOL TƏRƏF",right:"SAĞ TƏRƏF",road:"ÜMUMİ YOL",nave:"Nava",more:"...",note:"Hər istixanada nava sayı fərqli ola bilər: bəzən 37, bəzən 38, bəzən 39. Hamısını birdən yadda saxlamaq lazım deyil.",one:"2. Bu bir navadır",oneText:"Bir navada 10 sıra var. Telefonda əsas qayda: bir nava = 10 sıra.",row:"Sıra",side:"3. Sıranın yanında iş",sideText:"Sıranın yanında olanda yenə sol və sağ tərəfi yoxlayırsan. Bitkilərlə iş orada edilir.",workLeft:"SOL İŞ TƏRƏFİ",workRight:"SAĞ İŞ TƏRƏFİ",path:"KEÇİD",remember:["Bütün istixana iki hissədən və ortada ümumi yoldan ibarətdir.","Nava sayı istixanadan asılıdır.","Bir navada 10 sıra var.","Sıranın yanında həmişə sol və sağ tərəfi yoxla."]}
+  })[l]||({});
+  function samples(side){
+   var nums=side==='left'?[1,2,3,m.more,37]:[1,2,3,m.more,39];
+   return nums.map(function(n){return'<div class="cxSampleNave">'+cxEsc(m.nave)+' '+cxEsc(n)+'</div>'}).join('');
+  }
+  function rows(){
+   var h='';
+   for(var i=1;i<=10;i++)h+='<div class="cxNaveRow"><span>'+i+'</span><span>'+cxEsc(m.row)+' '+i+'</span></div>';
+   return h;
+  }
+  view.innerHTML='<div class="cxSimpleOrient">'+
+   '<div class="cxSimpleLead"><div class="cxOrientBadge">'+cxEsc(m.badge)+'</div><h3>'+cxEsc(m.title)+'</h3><p>'+cxEsc(m.lead)+'</p></div>'+
+   '<div class="cxZoomSteps"><div class="cxZoomStep"><b>1</b>'+cxEsc(m.whole)+'</div><div class="cxZoomStep"><b>2</b>'+cxEsc(m.one)+'</div><div class="cxZoomStep"><b>3</b>'+cxEsc(m.row)+' 1-10</div><div class="cxZoomStep"><b>4</b>'+cxEsc(m.side)+'</div></div>'+
+   '<section class="cxMiniGreenhouse"><h4>'+cxEsc(m.whole)+'</h4><p>'+cxEsc(m.wholeText)+'</p><div class="cxGreenhousePlan"><div class="cxPlanSide"><div class="cxPlanSideTitle">'+cxEsc(m.left)+'</div><div class="cxNaveSamples">'+samples('left')+'</div></div><div class="cxCommonRoad">'+cxEsc(m.road)+'</div><div class="cxPlanSide right"><div class="cxPlanSideTitle">'+cxEsc(m.right)+'</div><div class="cxNaveSamples">'+samples('right')+'</div></div></div><div class="cxPlanNote">'+cxEsc(m.note)+'</div></section>'+
+   '<section class="cxNaveZoom"><h4>'+cxEsc(m.one)+'</h4><p>'+cxEsc(m.oneText)+'</p><div class="cxNaveRows">'+rows()+'</div></section>'+
+   '<section class="cxSideZoom"><h4>'+cxEsc(m.side)+'</h4><p>'+cxEsc(m.sideText)+'</p><div class="cxSideWork"><div class="cxWorkSide">'+cxEsc(m.workLeft)+'</div><div class="cxWorkPath">'+cxEsc(m.path)+'</div><div class="cxWorkSide right">'+cxEsc(m.workRight)+'</div></div></section>'+
+   '<div class="cxMemoryBox">'+m.remember.map(function(x,i){return'<div><b>'+(i+1)+'</b><span>'+cxEsc(x)+'</span></div>'}).join('')+'</div>'+
   '</div>';
  }
  function cxBringOrientationUp(){
