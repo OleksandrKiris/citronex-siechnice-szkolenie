@@ -2387,6 +2387,63 @@ cleanMobileDock();
 .cxDetailPath{display:grid;place-items:center;background:#173b2a;color:#fff;border-radius:14px;font-size:11px;font-weight:900;writing-mode:vertical-rl;text-orientation:mixed;text-align:center}
 .cxSpanStrip{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:8px}
 .cxSpanStrip span{background:#fff;border:1px dashed #b8c9bf;border-radius:10px;text-align:center;padding:7px 2px;font-size:11px;font-weight:900;color:#415047}
+.cxHumanOrient{display:grid;gap:12px}
+.cxHumanOrient,.cxNaveSeries,.cxOneNave,.cxEntryGrid,.cxReadOrder,.cxDoNotMix{min-width:0;max-width:100%;box-sizing:border-box}
+.cxOrientIntro{display:grid;gap:9px}
+.cxBodyRule{display:grid;grid-template-columns:1fr 76px 1fr;gap:8px;align-items:stretch;background:#f8fff9;border:1px solid #cfe4d6;border-radius:18px;padding:12px}
+.cxSidePill{border-radius:16px;padding:12px 9px;display:grid;place-items:center;text-align:center;font-weight:900;line-height:1.12;min-height:86px}
+.cxSidePill.left{background:#e9f8ef;color:#0f5f3f;border:1px solid #bfe1ca}
+.cxSidePill.right{background:#fff4d2;color:#815400;border:1px solid #efd28a}
+.cxHumanFigure{display:grid;place-items:center;gap:5px;color:#173b2a;font-weight:900;text-align:center}
+.cxHumanHead{width:32px;height:32px;border-radius:50%;background:#173b2a;box-shadow:0 0 0 6px #e8f3ed}
+.cxHumanBody{width:52px;height:36px;border-radius:18px 18px 8px 8px;background:#0f5f3f;position:relative}
+.cxHumanBody:before,.cxHumanBody:after{content:"";position:absolute;top:13px;width:26px;height:8px;border-radius:999px;background:#0f5f3f}
+.cxHumanBody:before{right:42px;transform:rotate(-18deg)}
+.cxHumanBody:after{left:42px;transform:rotate(18deg)}
+.cxHumanBack{font-size:10px;line-height:1.05;color:#647067}
+.cxNaveSeries{border:1px solid #dce7df;border-radius:18px;background:#fff;padding:12px;box-shadow:0 8px 20px rgba(20,33,27,.06);overflow:hidden}
+.cxNaveSeriesHead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-weight:900;color:#14211b}
+.cxNaveSeriesHead small{color:#647067;font-weight:900}
+.cxNaveRail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(38px,1fr);gap:5px;overflow-x:auto;padding:4px 0 7px;scrollbar-width:thin}
+.cxNaveChip{min-height:36px;border-radius:12px;border:1px solid #d8e5dd;background:#f8fff9;display:grid;place-items:center;font-weight:900;color:#173b2a}
+.cxNaveRail{display:flex!important;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden}
+.cxNaveChip{flex:0 0 38px}
+.cxNaveChip.first{background:#173b2a;color:#fff}
+.cxNaveChip.end{background:#c69220;color:#fff;border-color:#c69220}
+.cxDirectionLine{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;margin-top:8px;color:#415047;font-size:12px;font-weight:900}
+.cxDirectionLine:before,.cxDirectionLine:after{content:"";height:3px;background:#0f5f3f;border-radius:999px}
+.cxOneNave{background:#fff;border:1px solid #dce7df;border-radius:18px;padding:12px;box-shadow:0 8px 22px rgba(20,33,27,.06);overflow:hidden}
+.cxOneNave h4{margin:0 0 5px;font-size:18px;line-height:1.1;color:#14211b}
+.cxOneNave p{margin:0 0 10px!important;color:#647067!important;font-size:13px!important;font-weight:800}
+.cxEntryGrid{display:grid;gap:8px}
+.cxEntryCard{border:1px solid #dce7df;border-radius:15px;background:#fbfefc;overflow:hidden}
+.cxEntryTitle{background:#173b2a;color:#fff;padding:8px 10px;font-size:13px;font-weight:900;text-align:center}
+.cxEntrySides{display:grid;grid-template-columns:1fr 1fr}
+.cxEntrySide{padding:10px 7px;display:grid;gap:5px;text-align:center;font-weight:900;line-height:1.1}
+.cxEntrySide.left{background:#eefaf2;color:#0f5f3f;border-right:1px solid #dce7df}
+.cxEntrySide.right{background:#fff8df;color:#815400}
+.cxEntrySide small{display:block;font-size:11px;color:#647067;font-weight:900}
+.cxReadOrder{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:10px}
+.cxReadStep{background:#fff;border:1px solid #dce7df;border-radius:13px;padding:9px 7px;font-size:12px;font-weight:900;line-height:1.15;color:#173b2a;text-align:center}
+.cxReadStep b{display:block;color:#0f5f3f;font-size:17px;line-height:1}
+.cxDoNotMix{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.cxDoNotMix div{border-radius:14px;padding:10px;background:#fff8df;border:1px solid #efd28a;color:#4a3510;font-size:12px;font-weight:900;line-height:1.2}
+.cxDoNotMix b{display:block;margin-bottom:3px;color:#7b3b00}
+@media(max-width:760px){
+ .cxBodyRule{grid-template-columns:1fr 68px 1fr;padding:10px;gap:6px}
+ .cxSidePill{min-height:78px;font-size:12px;padding:10px 6px}
+ .cxHumanHead{width:27px;height:27px}
+ .cxHumanBody{width:45px;height:32px}
+ .cxHumanBody:before{right:36px}.cxHumanBody:after{left:36px}
+ .cxNaveSeries,.cxOneNave{padding:10px;border-radius:16px}
+ .cxNaveSeriesHead{display:grid;gap:4px}
+ .cxNaveChip{flex-basis:34px}
+ .cxNaveChip{min-height:34px;font-size:12px}
+ .cxReadOrder{grid-template-columns:1fr;gap:6px}
+ .cxReadStep{text-align:left;display:grid;grid-template-columns:28px 1fr;align-items:center;gap:8px}
+ .cxReadStep b{font-size:18px}
+ .cxDoNotMix{grid-template-columns:1fr}
+}
 #orientationDiagrams .cxOrientTopView~.orientV4{display:none!important}
 .visual,.photoGrid img,.readerPhotoCard img,.cxWarehousePhotos img{border-radius:14px}
 .photoGrid figure,.visual,.readerPhotoCard,.cxWarehousePhotos figure{border-color:#dce7df!important}
@@ -2605,6 +2662,47 @@ cleanMobileDock();
   var spans='<div class="cxSpanStrip"><span>'+cxEsc(v.span)+' 1</span><span>'+cxEsc(v.span)+' 2</span><span>'+cxEsc(v.span)+' 3</span><span>'+cxEsc(v.span)+' 4</span></div>';
   var demo='<div class="cxPassageDemo"><h4>'+cxEsc(v.demoTitle)+'</h4><p>'+cxEsc(v.demoLead)+'</p><div class="cxPassageDiagram">'+half(t.left,'left')+'<div class="cxDetailPath">'+cxEsc(v.path)+'</div>'+half(t.right,'right')+'</div>'+spans+'</div>';
   view.innerHTML='<div class="cxOrientBadge">'+cxEsc(t.orientTitle)+'</div><h3>'+cxEsc(t.orientTitle)+'</h3><p>'+cxEsc(t.orientLead)+'</p>'+quick+'<div class="cxGreenhouseMap"><div class="cxGreenhouseConnector">'+cxEsc(t.connector)+'</div><div class="cxGreenhouseBody">'+side(t.left,'left')+'<div class="cxGreenAisle"><span>'+cxEsc(t.aisle)+'</span><span>'+cxEsc(v.walk)+'</span></div>'+side(t.right,'right')+'</div><div class="cxGreenhouseEntrance">'+cxEsc(t.entrance)+'</div></div><div class="cxOrientLegend">'+t.legend.map(function(x){return'<span>'+cxEsc(x)+'</span>'}).join('')+'</div>'+demo+'<div class="cxOrientCards">'+cards+'</div>';
+ }
+ function cxRenderOrientationTop(){
+  var box=document.getElementById('orientationDiagrams');
+  if(!box)return;
+  var view=document.getElementById('cxGreenhouseTopView');
+  if(!view){view=document.createElement('div');view.id='cxGreenhouseTopView';view.className='cxOrientTopView';box.insertBefore(view,box.firstChild)}
+  var l=cxLang();
+  var m=({
+   pl:{badge:"Widok dla człowieka",title:"Jak odnaleźć się na szklarni",lead:"Najpierw ustaw ciało. Stań plecami do pierwszych naw, czyli do miejsca, gdzie zaczyna się numeracja. Patrzysz w stronę większych numerów.",back:"PLECAMI DO PIERWSZYCH NAW",person:"ty stoisz tutaj",left:"LEWA STRONA",right:"PRAWA STRONA",seriesTitle:"Numeracja naw",seriesHelp:"Nawy liczą się od 1 do 37/38/39 zależnie od szklarni. Przesuń palcem w bok.",start:"początek: nawa 1",end:"koniec: 37 / 38 / 39",direction:"patrzysz w stronę większych numerów",oneTitle:"Jedna nawa od środka",oneLead:"W każdej nawie jest 5 wejść / przejść. Każde przejście ma dwie strony: lewą i prawą. Razem daje to 10 rzędów.",entry:"Wejście / przejście",row:"rząd",leftSide:"lewa strona",rightSide:"prawa strona",orderTitle:"Kolejność szukania miejsca",order:["strona","nawa","wejście","lewa/prawa","przęsło"],mixA:"Nie myl strony szklarni",mixAText:"Lewą i prawą stronę rozpoznajesz swoimi rękami, kiedy stoisz plecami do pierwszych naw.",mixB:"Nie myl strony przejścia",mixBText:"W każdym wejściu / przejściu znowu jest lewa i prawa strona."},
+   en:{badge:"Human view",title:"How to find your way in the greenhouse",lead:"First set your body position. Stand with your back to the first naves, where numbering starts. You look toward higher numbers.",back:"BACK TO FIRST NAVES",person:"you stand here",left:"LEFT SIDE",right:"RIGHT SIDE",seriesTitle:"Nave numbering",seriesHelp:"Naves are counted from 1 to 37/38/39 depending on the greenhouse. Swipe sideways.",start:"start: nave 1",end:"end: 37 / 38 / 39",direction:"you look toward higher numbers",oneTitle:"One nave inside",oneLead:"Each nave has 5 entrances / passages. Each passage has two sides: left and right. Together this gives 10 rows.",entry:"Entrance / passage",row:"row",leftSide:"left side",rightSide:"right side",orderTitle:"Order for finding a place",order:["side","nave","entrance","left/right","span"],mixA:"Do not mix greenhouse side",mixAText:"Left and right side are based on your hands when you stand with your back to the first naves.",mixB:"Do not mix passage side",mixBText:"Inside each entrance / passage there is again a left and a right side."},
+   ua:{badge:"Вид для людини",title:"Як орієнтуватися в теплиці",lead:"Спочатку поставте тіло правильно. Станьте спиною до перших нав, тобто до місця, де починається нумерація. Ви дивитесь у бік більших номерів.",back:"СПИНОЮ ДО ПЕРШИХ НАВ",person:"ви стоїте тут",left:"ЛІВА СТОРОНА",right:"ПРАВА СТОРОНА",seriesTitle:"Нумерація нав",seriesHelp:"Нави рахуються від 1 до 37/38/39 залежно від теплиці. Проведіть пальцем убік.",start:"початок: нава 1",end:"кінець: 37 / 38 / 39",direction:"дивитесь у бік більших номерів",oneTitle:"Одна нава всередині",oneLead:"У кожній наві є 5 входів / проходів. Кожен прохід має дві сторони: ліву і праву. Разом це 10 рядів.",entry:"Вхід / прохід",row:"ряд",leftSide:"ліва сторона",rightSide:"права сторона",orderTitle:"Порядок пошуку місця",order:["сторона","нава","вхід","ліва/права","проліт"],mixA:"Не плутайте сторону теплиці",mixAText:"Ліву і праву сторону визначайте по своїх руках, коли стоїте спиною до перших нав.",mixB:"Не плутайте сторону проходу",mixBText:"У кожному вході / проході знову є ліва і права сторона."},
+   ru:{badge:"Вид для человека",title:"Как ориентироваться в теплице",lead:"Сначала поставь тело правильно. Стань спиной к первым навам, то есть к месту, где начинается нумерация. Ты смотришь в сторону больших номеров.",back:"СПИНОЙ К ПЕРВЫМ НАВАМ",person:"ты стоишь здесь",left:"ЛЕВАЯ СТОРОНА",right:"ПРАВАЯ СТОРОНА",seriesTitle:"Нумерация нав",seriesHelp:"Навы считаются от 1 до 37/38/39 в зависимости от теплицы. Проведи пальцем вбок.",start:"начало: нава 1",end:"конец: 37 / 38 / 39",direction:"смотришь в сторону больших номеров",oneTitle:"Одна нава внутри",oneLead:"В каждой наве есть 5 входов / проходов. У каждого прохода две стороны: левая и правая. Вместе это 10 рядов.",entry:"Вход / проход",row:"ряд",leftSide:"левая сторона",rightSide:"правая сторона",orderTitle:"Порядок поиска места",order:["сторона","нава","вход","левая/правая","пролёт"],mixA:"Не путай сторону теплицы",mixAText:"Левую и правую сторону определяешь по своим рукам, когда стоишь спиной к первым навам.",mixB:"Не путай сторону прохода",mixBText:"В каждом входе / проходе снова есть левая и правая сторона."},
+   az:{badge:"İnsan üçün görünüş",title:"İstixanada necə orientasiya etmək",lead:"Əvvəl bədəni düzgün istiqamətdə saxla. Nömrələnmənin başladığı ilk navalara arxanı çevir. Sən böyük nömrələr tərəfə baxırsan.",back:"İLK NAVALARA ARXA",person:"sən burada dayanırsan",left:"SOL TƏRƏF",right:"SAĞ TƏRƏF",seriesTitle:"Navaların nömrələnməsi",seriesHelp:"Navalar istixanadan asılı olaraq 1-dən 37/38/39-a qədər sayılır. Yana sürüşdür.",start:"başlanğıc: nava 1",end:"son: 37 / 38 / 39",direction:"böyük nömrələr tərəfə baxırsan",oneTitle:"Bir navanın içi",oneLead:"Hər navada 5 giriş / keçid var. Hər keçidin iki tərəfi var: sol və sağ. Birlikdə bu 10 sıradır.",entry:"Giriş / keçid",row:"sıra",leftSide:"sol tərəf",rightSide:"sağ tərəf",orderTitle:"Yeri tapmaq ardıcıllığı",order:["tərəf","nava","giriş","sol/sağ","bölmə"],mixA:"İstixana tərəfini qarışdırma",mixAText:"Sol və sağ tərəfi ilk navalara arxa çevirdikdə öz əllərinə görə müəyyən edirsən.",mixB:"Keçid tərəfini qarışdırma",mixBText:"Hər giriş / keçidin içində yenə sol və sağ tərəf var."}
+  })[l]||({});
+  function naves(){
+   var h='';
+   for(var i=1;i<=39;i++){
+    var c=i===1?' first':(i>=37?' end':'');
+    h+='<span class="cxNaveChip'+c+'">'+i+'</span>';
+   }
+   return h;
+  }
+  function entries(){
+   var h='';
+   for(var p=1;p<=5;p++){
+    var lr=(p*2)-1, rr=p*2;
+    h+='<div class="cxEntryCard"><div class="cxEntryTitle">'+cxEsc(m.entry)+' '+p+'</div><div class="cxEntrySides"><div class="cxEntrySide left">'+cxEsc(m.leftSide)+'<small>'+cxEsc(m.row)+' '+lr+'</small></div><div class="cxEntrySide right">'+cxEsc(m.rightSide)+'<small>'+cxEsc(m.row)+' '+rr+'</small></div></div></div>';
+   }
+   return h;
+  }
+  function order(){
+   return m.order.map(function(x,i){return'<div class="cxReadStep"><b>'+(i+1)+'</b><span>'+cxEsc(x)+'</span></div>'}).join('');
+  }
+  view.innerHTML='<div class="cxHumanOrient">'+
+   '<div class="cxOrientIntro"><div class="cxOrientBadge">'+cxEsc(m.badge)+'</div><h3>'+cxEsc(m.title)+'</h3><p>'+cxEsc(m.lead)+'</p></div>'+
+   '<div class="cxBodyRule"><div class="cxSidePill left">'+cxEsc(m.left)+'</div><div class="cxHumanFigure"><span class="cxHumanBack">'+cxEsc(m.back)+'</span><span class="cxHumanHead"></span><span class="cxHumanBody"></span><span class="cxHumanBack">'+cxEsc(m.person)+'</span></div><div class="cxSidePill right">'+cxEsc(m.right)+'</div></div>'+
+   '<div class="cxNaveSeries"><div class="cxNaveSeriesHead"><span>'+cxEsc(m.seriesTitle)+'</span><small>'+cxEsc(m.seriesHelp)+'</small></div><div class="cxNaveRail">'+naves()+'</div><div class="cxDirectionLine"><span>'+cxEsc(m.start)+'</span><span>'+cxEsc(m.direction)+'</span><span>'+cxEsc(m.end)+'</span></div></div>'+
+   '<div class="cxOneNave"><h4>'+cxEsc(m.oneTitle)+'</h4><p>'+cxEsc(m.oneLead)+'</p><div class="cxEntryGrid">'+entries()+'</div></div>'+
+   '<div class="cxReadOrder">'+order()+'</div>'+
+   '<div class="cxDoNotMix"><div><b>'+cxEsc(m.mixA)+'</b>'+cxEsc(m.mixAText)+'</div><div><b>'+cxEsc(m.mixB)+'</b>'+cxEsc(m.mixBText)+'</div></div>'+
+  '</div>';
  }
  function cxBringOrientationUp(){
   var guide=document.getElementById('guide');
