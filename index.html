@@ -6401,4 +6401,96 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  document.addEventListener('change',function(){setTimeout(ensureDuw,140)},true);
  setTimeout(ensureDuw,0);setTimeout(ensureDuw,700);setTimeout(ensureDuw,1800);
 })();
+</script><style id="cxWorkGroupsCss">
+.cxHomeTile.groups{border-color:#cbdcf4!important;background:linear-gradient(180deg,#fff,#f4f9ff)!important}
+.cxHomeTile.groups .cxHomeTileIcon{background:#eaf2ff!important;color:#1f5b99!important}
+.cxTodayBtn[data-kind=groups] .cxTodayIcon{background:#eaf2ff!important;color:#1f5b99!important}
+.cxTodayBtn[data-kind=groups]{border-color:#cbdcf4!important;background:#f8fbff!important}
+.cxWorkGroupsCard{border:2px solid #1f5b99;background:linear-gradient(180deg,#f8fbff,#fff);border-radius:18px;padding:14px;margin:12px 0;box-shadow:0 14px 34px rgba(31,91,153,.12)}
+.cxWorkGroupsHead{display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:center;margin-bottom:10px}.cxWorkGroupsIcon{width:48px;height:48px;border-radius:15px;background:#1f5b99;color:#fff;display:grid;place-items:center;line-height:0}.cxWorkGroupsIcon svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.cxWorkGroupsHead h3{margin:0;color:#173b2a;font-size:21px;line-height:1.08}.cxWorkGroupsHead p{margin:4px 0 0;color:#52695d;font-weight:850;line-height:1.3}
+.cxWorkGroupsButtons{display:grid;grid-template-columns:1fr;gap:9px}.cxWorkGroupBtn{min-height:56px;border-radius:15px;text-decoration:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;color:#fff;font-weight:1000;box-shadow:0 10px 22px rgba(20,33,27,.08)}
+.cxWorkGroupBtn b{font-size:16px}.cxWorkGroupBtn span{font-size:13px;opacity:.92;text-align:right}.cxWorkGroupBtn.viber{background:#665cac}.cxWorkGroupBtn.telegram{background:#229ed9}.cxWorkGroupBtn.telegramAz{background:#0f5f3f}
+.cxWorkGroupsNote{margin-top:10px;border:1px solid #d7e5da;background:#f7fbf8;border-radius:14px;padding:10px;color:#173b2a;font-weight:850;line-height:1.3}
+@media(min-width:720px){.cxWorkGroupsButtons{grid-template-columns:repeat(3,1fr)}.cxWorkGroupBtn{display:grid;place-items:center;text-align:center}.cxWorkGroupBtn span{text-align:center}}
+@media(max-width:420px){.cxWorkGroupsCard{padding:12px;border-radius:16px}.cxWorkGroupsHead{grid-template-columns:44px 1fr}.cxWorkGroupsIcon{width:44px;height:44px}.cxWorkGroupsHead h3{font-size:18px}.cxWorkGroupsHead p{font-size:13px}.cxWorkGroupBtn{min-height:54px;padding:11px 12px}.cxWorkGroupBtn b{font-size:15px}.cxWorkGroupBtn span{font-size:12px}}
+</style><script id="cxWorkGroupsPatch">
+(function(){
+ if(window.cxWorkGroupsPatchLoaded)return;window.cxWorkGroupsPatchLoaded=true;
+ var LINKS={
+  viber:'https://invite.viber.com/?g2=AQBkAFR0EI%2F5S1YUZP23%2Fc6MRVsnc6wfhgi%2FQig%2B1XKt3Z7mb2YPUdlazS0qoc4L',
+  telegram:'https://t.me/robota_citronex',
+  telegramAz:'https://t.me/poloniawork_citronex'
+ };
+ var TX={
+  PL:{tile:['Grupy','Viber, Telegram i Telegram AZ.'],title:'Nasze grupy informacyjne',lead:'Dołącz do grupy, żeby szybciej dostać informacje od firmy.',note:'Jeśli link nie otwiera się w aplikacji, otwórz go w przeglądarce telefonu.',viber:'Grupa Viber',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'ogólna grupa',telegramSub:'praca Citronex',telegramAzSub:'dla osób azerskojęzycznych'},
+  EN:{tile:['Groups','Viber, Telegram and Telegram AZ.'],title:'Our information groups',lead:'Join the group to receive company information faster.',note:'If the link does not open in the app, open it in your phone browser.',viber:'Viber group',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'general group',telegramSub:'Citronex work',telegramAzSub:'for Azerbaijani speakers'},
+  UA:{tile:['Групи','Viber, Telegram і Telegram AZ.'],title:'Наші інформаційні групи',lead:'Приєднайтесь до групи, щоб швидше отримувати інформацію від фірми.',note:'Якщо посилання не відкривається в додатку, відкрийте його в браузері телефону.',viber:'Група Viber',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'загальна група',telegramSub:'робота Citronex',telegramAzSub:'для азербайджаномовних'},
+  RU:{tile:['Группы','Viber, Telegram и Telegram AZ.'],title:'Наши информационные группы',lead:'Присоединитесь к группе, чтобы быстрее получать информацию от фирмы.',note:'Если ссылка не открывается в приложении, откройте её в браузере телефона.',viber:'Группа Viber',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'общая группа',telegramSub:'работа Citronex',telegramAzSub:'для азербайджаноязычных'},
+  AZ:{tile:['Qruplar','Viber, Telegram və Telegram AZ.'],title:'Məlumat qruplarımız',lead:'Şirkətdən məlumatı daha tez almaq üçün qrupa qoşulun.',note:'Link tətbiqdə açılmırsa, telefon brauzerində açın.',viber:'Viber qrupu',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'ümumi qrup',telegramSub:'Citronex işi',telegramAzSub:'azərbaycandilli şəxslər üçün'},
+  ES:{tile:['Grupos','Viber, Telegram y Telegram AZ.'],title:'Nuestros grupos de información',lead:'Únete al grupo para recibir información de la empresa más rápido.',note:'Si el enlace no se abre en la aplicación, ábrelo en el navegador del teléfono.',viber:'Grupo Viber',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'grupo general',telegramSub:'trabajo Citronex',telegramAzSub:'para hablantes de azerbaiyano'},
+  FIL:{tile:['Groups','Viber, Telegram at Telegram AZ.'],title:'Aming information groups',lead:'Sumali sa group para mas mabilis makatanggap ng impormasyon mula sa company.',note:'Kung hindi bumukas ang link sa app, buksan ito sa phone browser.',viber:'Viber group',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'general group',telegramSub:'Citronex work',telegramAzSub:'para sa Azerbaijani speakers'},
+  ID:{tile:['Grup','Viber, Telegram dan Telegram AZ.'],title:'Grup informasi kami',lead:'Bergabung ke grup agar lebih cepat menerima informasi dari perusahaan.',note:'Jika link tidak terbuka di aplikasi, buka di browser telepon.',viber:'Grup Viber',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'grup umum',telegramSub:'kerja Citronex',telegramAzSub:'untuk penutur Azerbaijan'},
+  NE:{tile:['Groups','Viber, Telegram र Telegram AZ.'],title:'हाम्रा information groups',lead:'Company बाट सूचना छिटो पाउन group मा join गर्नुहोस्।',note:'Link app मा खुलेन भने phone browser मा खोल्नुहोस्।',viber:'Viber group',telegram:'Telegram',telegramAz:'Telegram AZ',viberSub:'general group',telegramSub:'Citronex work',telegramAzSub:'Azerbaijani बोल्नेहरूको लागि'}
+ };
+ function code(){
+  try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}
+  try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}
+  try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}
+ }
+ function t(){return TX[code()]||TX.PL}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function icon(){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path><path d="M8 9h8M8 13h5"></path></svg>'}
+ function cardHtml(){
+  var x=t();
+  return '<section class="cxWorkGroupsCard" data-cx-work-groups="1"><div class="cxWorkGroupsHead"><span class="cxWorkGroupsIcon">'+icon()+'</span><div><h3>'+esc(x.title)+'</h3><p>'+esc(x.lead)+'</p></div></div><div class="cxWorkGroupsButtons"><a class="cxWorkGroupBtn viber" target="_blank" rel="noopener" href="'+LINKS.viber+'"><b>'+esc(x.viber)+'</b><span>'+esc(x.viberSub)+'</span></a><a class="cxWorkGroupBtn telegram" target="_blank" rel="noopener" href="'+LINKS.telegram+'"><b>'+esc(x.telegram)+'</b><span>'+esc(x.telegramSub)+'</span></a><a class="cxWorkGroupBtn telegramAz" target="_blank" rel="noopener" href="'+LINKS.telegramAz+'"><b>'+esc(x.telegramAz)+'</b><span>'+esc(x.telegramAzSub)+'</span></a></div><div class="cxWorkGroupsNote">'+esc(x.note)+'</div></section>';
+ }
+ function ensureCard(){
+  var host=document.getElementById('sosbox')||document.getElementById('contactList');if(!host)return;
+  var html=cardHtml(),old=host.querySelector('[data-cx-work-groups]');
+  if(old){old.outerHTML=html;return}
+  var wrap=document.createElement('div');wrap.innerHTML=html;var node=wrap.firstElementChild;
+  var title=document.getElementById('cxPeopleTitle');
+  if(title&&title.parentNode===host)title.parentNode.insertBefore(node,title.nextSibling);
+  else if(host.firstChild)host.insertBefore(node,host.firstChild);
+  else host.appendChild(node);
+ }
+ function tileHtml(){
+  var x=t();
+  return '<button type="button" class="cxHomeTile groups" data-cx-groups-tile="1" onclick="cxOpenWorkGroups()"><span class="cxHomeTileIcon">'+icon()+'</span><span><b>'+esc(x.tile[0])+'</b><span>'+esc(x.tile[1])+'</span></span></button>';
+ }
+ function ensureTile(){
+  var grid=document.querySelector('#cxHomeTiles .cxTileGrid');if(!grid)return;
+  var html=tileHtml(),old=grid.querySelector('[data-cx-groups-tile]');
+  if(old){old.outerHTML=html;return}
+  var wrap=document.createElement('div');wrap.innerHTML=html;var node=wrap.firstElementChild;
+  var contacts=grid.querySelector('.cxHomeTile.contacts');
+  if(contacts&&contacts.parentNode===grid)contacts.parentNode.insertBefore(node,contacts.nextSibling);else grid.appendChild(node);
+ }
+ function ensureTodayTile(){
+  var grid=document.querySelector('#cxTodayPanel .cxTodayGrid');if(!grid)return;
+  var x=t();
+  var html='<button type="button" class="cxTodayBtn" data-kind="groups" data-cx-today-groups="1" onclick="cxOpenWorkGroups()"><span class="cxTodayIcon">'+icon()+'</span><span>'+esc(x.tile[0])+'</span></button>';
+  var old=grid.querySelector('[data-cx-today-groups]');
+  if(old){old.outerHTML=html;return}
+  var wrap=document.createElement('div');wrap.innerHTML=html;var node=wrap.firstElementChild;
+  var contacts=grid.querySelector('.cxTodayBtn[data-kind="contacts"]');
+  if(contacts&&contacts.parentNode===grid)contacts.parentNode.insertBefore(node,contacts.nextSibling);else grid.appendChild(node);
+ }
+ window.cxOpenWorkGroups=function(){
+  try{if(typeof cxContactMode!=='undefined')cxContactMode='people'}catch(e){}
+  try{if(typeof cxCallTab==='function')cxCallTab('contacts');else if(typeof setAppTab==='function')setAppTab('contacts')}catch(e){}
+  setTimeout(function(){try{if(typeof cxSyncHumanApp==='function')cxSyncHumanApp()}catch(e){}ensureCard();var n=document.querySelector('[data-cx-work-groups]');if(n)n.scrollIntoView({behavior:'smooth',block:'start'})},120);
+ };
+ function run(){ensureTile();ensureTodayTile();ensureCard()}
+ window.cxEnsureWorkGroups=run;
+ try{
+  var oldApply=window.apply||apply;
+  if(typeof oldApply==='function'&&!window.cxWorkGroupsApplyWrapped){window.cxWorkGroupsApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(run,0);setTimeout(run,220);return r};try{apply=window.apply}catch(e){}}
+ }catch(e){}
+ document.addEventListener('DOMContentLoaded',function(){setTimeout(run,0);setTimeout(run,400)});
+ document.addEventListener('click',function(){setTimeout(run,140)},true);
+ document.addEventListener('change',function(){setTimeout(run,140)},true);
+ setTimeout(run,0);setTimeout(run,700);setTimeout(run,1800);
+})();
 </script></body></html>
