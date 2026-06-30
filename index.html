@@ -5417,11 +5417,17 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  function patchMedicalExtra(){
   if(window.renderCityInfo!==renderMedicalExtra)window.renderCityInfo=renderMedicalExtra;
  }
+ var CITY_ADD={
+  ES:{cityOpenTitle:"Ciudad / oficina / bancos",cityOpenLead:"PESEL, Profil Zaufany, mObywatel, transporte, bancos y reglas importantes",cityTitle:"Ciudad / oficina / bancos / reglas",cityLead:"Informacion practica despues de llegar: oficina municipal, transporte, documentos, entrada a la empresa, paquetes y bancos en Siechnice.",cityOfficeTitle:"Oficina municipal / asuntos oficiales",cityOfficeText:"Urząd Miejski w Siechnicach: ul. Jana Pawła II 12, 55-011 Siechnice. Alli puedes gestionar PESEL, Profil Zaufany, empadronamiento, documentos, servicios publicos e informacion sobre mObywatel. Antes de ir, revisa horario y documentos necesarios.",openOffice:"Abrir mapa de la oficina",transportTitle:"Como llegar",transportText:"Puedes moverte por la ciudad en transporte publico o tren. Paginas utiles: Jakdojade y Koleo.",openJakdojade:"Abrir Jakdojade",openKoleo:"Abrir Koleo",docsTitle:"Importante: documentos contigo",docsText:"Cuando sales a la ciudad, lleva pasaporte o Karta Pobytu. Puede ser necesario en control, oficina, banco o tramites.",passTitle:"Entrada al terreno de la empresa",passText:"Para entrar al terreno de la empresa necesitas pase. Sin pase, seguridad no te dejara pasar.",parcelTitle:"Pedidos y paquetes",parcelText:"AliExpress, Allegro y otros pedidos envia solo a PACZKOMAT. No pidas paquetes a la direccion de la empresa. Seguridad no recibe paquetes para la empresa.",banksTitle:"Bancos en Siechnice",bankAddress:"Direccion",bankPhone:"Telefono",openBankMap:"Abrir mapa"},
+  FIL:{cityOpenTitle:"City / office / banks",cityOpenLead:"PESEL, Profil Zaufany, mObywatel, transport, banks at important rules",cityTitle:"City / office / banks / rules",cityLead:"Practical information pagdating: city office, transport, documents, company entrance, parcels at banks sa Siechnice.",cityOfficeTitle:"City office / official matters",cityOfficeText:"Urząd Miejski w Siechnicach: ul. Jana Pawła II 12, 55-011 Siechnice. Dito puwedeng asikasuhin ang PESEL, Profil Zaufany, registration, documents, public services at information tungkol sa mObywatel. Bago pumunta, tingnan ang opening hours at required documents.",openOffice:"Open office map",transportTitle:"How to get there",transportText:"Puwedeng gumamit ng public transport o train. Useful pages: Jakdojade at Koleo.",openJakdojade:"Open Jakdojade",openKoleo:"Open Koleo",docsTitle:"Important: bring documents",docsText:"Kapag lalabas sa city, laging dalhin ang passport o Karta Pobytu. Maaaring kailanganin sa control, office, bank o errands.",passTitle:"Company entrance",passText:"Kailangan ng pass para pumasok sa company area. Kung walang pass, hindi ka papapasukin ng security.",parcelTitle:"Orders and parcels",parcelText:"AliExpress, Allegro at iba pang orders ipadala lang sa PACZKOMAT. Huwag ipadala sa company address. Security does not receive company-addressed parcels.",banksTitle:"Banks in Siechnice",bankAddress:"Address",bankPhone:"Phone",openBankMap:"Open map"},
+  ID:{cityOpenTitle:"Kota / kantor / bank",cityOpenLead:"PESEL, Profil Zaufany, mObywatel, transportasi, bank dan aturan penting",cityTitle:"Kota / kantor / bank / aturan",cityLead:"Informasi praktis setelah datang: kantor kota, transportasi, dokumen, masuk area perusahaan, paket dan bank di Siechnice.",cityOfficeTitle:"Kantor kota / urusan resmi",cityOfficeText:"Urząd Miejski w Siechnicach: ul. Jana Pawła II 12, 55-011 Siechnice. Di sana kamu bisa mengurus PESEL, Profil Zaufany, pendaftaran alamat, dokumen, layanan publik dan informasi mObywatel. Sebelum datang, cek jam buka dan dokumen yang dibutuhkan.",openOffice:"Buka peta kantor",transportTitle:"Cara pergi",transportText:"Kamu bisa menggunakan transportasi umum atau kereta. Halaman yang berguna: Jakdojade dan Koleo.",openJakdojade:"Buka Jakdojade",openKoleo:"Buka Koleo",docsTitle:"Penting: bawa dokumen",docsText:"Saat pergi ke kota, selalu bawa paspor atau Karta Pobytu. Dokumen bisa diperlukan saat kontrol, di kantor, bank atau saat mengurus sesuatu.",passTitle:"Masuk area perusahaan",passText:"Untuk masuk area perusahaan perlu kartu masuk. Tanpa kartu, security tidak akan mengizinkan masuk.",parcelTitle:"Pesanan dan paket",parcelText:"AliExpress, Allegro dan pesanan lain kirim hanya ke PACZKOMAT. Jangan kirim paket ke alamat perusahaan. Security tidak menerima paket untuk perusahaan.",banksTitle:"Bank di Siechnice",bankAddress:"Alamat",bankPhone:"Telepon",openBankMap:"Buka peta"},
+  NE:{cityOpenTitle:"City / office / banks",cityOpenLead:"PESEL, Profil Zaufany, mObywatel, transport, banks र important rules",cityTitle:"City / office / banks / rules",cityLead:"आएपछि चाहिने practical information: city office, transport, documents, company entrance, parcels र Siechnice का banks.",cityOfficeTitle:"City office / official matters",cityOfficeText:"Urząd Miejski w Siechnicach: ul. Jana Pawła II 12, 55-011 Siechnice. यहाँ PESEL, Profil Zaufany, address registration, documents, public services र mObywatel सम्बन्धी information गर्न सकिन्छ। जानुअघि opening hours र चाहिने documents जाँच गर्नुहोस्.",openOffice:"Office map खोल्नुहोस्",transportTitle:"कसरी जाने",transportText:"City वा office जान public transport वा train प्रयोग गर्न सकिन्छ। Useful pages: Jakdojade र Koleo.",openJakdojade:"Jakdojade खोल्नुहोस्",openKoleo:"Koleo खोल्नुहोस्",docsTitle:"Important: documents साथमा",docsText:"City जाँदा passport वा Karta Pobytu साथमा राख्नुहोस्। Control, office, bank वा काम गर्दा document चाहिन सक्छ.",passTitle:"Company area प्रवेश",passText:"Company area मा पस्न pass चाहिन्छ। Pass नभए security ले प्रवेश दिँदैन.",parcelTitle:"Orders and parcels",parcelText:"AliExpress, Allegro र अरू orders PACZKOMAT मा मात्र पठाउनुहोस्। Company address मा parcels नपठाउनुहोस्। Security ले company parcels लिँदैन.",banksTitle:"Siechnice का banks",bankAddress:"Address",bankPhone:"Phone",openBankMap:"Map खोल्नुहोस्"}
+ };
  var FINAL={
-  ES:{homeTitle:"¿Qué necesitas ahora?",homeLead:"Elige un módulo. No leas todo de una vez.",setupTitle:"Configura tu ruta",setupLead:"Elige idioma, lugar de trabajo y etapa. El sistema mostrará solo lo necesario.",language:"Idioma",place:"Lugar de trabajo",stage:"Etapa",greenhouse:"Invernadero",warehouse:"Almacén",save:"Guardar y mostrar mis módulos",change:"Cambiar",profile:"Tu ruta",readerHidden:"Reader está oculto porque en almacén no se usa.",tiles:{map:["Ruta / mapa","Elige lugar y abre la ruta."],warehouse:["Almacén","Mapa, entrada y reglas sin Reader."],warehousePeople:["Almacén - tablet","Instrucción para trabajadores de almacén."],greenhouse:["Invernadero","Orientación, pasillos, filas y reglas."],reader:["Reader","Inicio, pausa, trabajo, fin y restart."],doctor:["Médico","Clínica, SOR, dentista y 112."],contacts:["Contactos","Brigadistas E1-E6, coordinadores y WhatsApp."],forbidden:["Prohibiciones","Qué no se puede traer al trabajo."],test:["Test","Un test después del entrenamiento."]},tabs:{home:"Inicio",route:"Mapa",greenhouse:"Trabajo",reader:"Reader",contacts:"Médico",test:"Test"},context:{home:["Inicio","Elige lo que necesitas."],route:["Mapa","Elige lugar y abre ruta."],greenhouse:["Trabajo","Orientación y reglas del invernadero."],reader:["Reader","Pasos de registro de trabajo."],contacts:["Médico","Clínica, SOR, dentista y contactos."],test:["Test","Test final de 30 preguntas."]},glossTitle:"Diccionario rápido",glossLead:"Palabras que aparecen en la instrucción.",gloss:[["Nave","Parte numerada del invernadero. Puede haber 37, 38 o 39."],["Entrada","Una de 5 entradas en una nave. Cada entrada tiene dos filas."],["Fila","Lugar de trabajo junto a las plantas."],["Izquierda / derecha","Se define estando de espaldas a las primeras naves."],["Conector","Camino central del invernadero."],["Reader","Dispositivo para registrar trabajo. En almacén no hay Reader."]]},
-  FIL:{homeTitle:"Ano ang kailangan mo ngayon?",homeLead:"Pumili ng isang module. Huwag basahin lahat sabay-sabay.",setupTitle:"I-set ang iyong ruta",setupLead:"Piliin ang language, work place at stage. Ipapakita lang ang kailangan.",language:"Language",place:"Work place",stage:"Stage",greenhouse:"Greenhouse",warehouse:"Warehouse",save:"Save at ipakita modules",change:"Change",profile:"Iyong ruta",readerHidden:"Nakatago ang Reader dahil walang Reader sa warehouse.",tiles:{map:["Route / map","Piliin ang lugar at buksan ang route."],warehouse:["Warehouse","Mapa, entrance at rules without Reader."],warehousePeople:["Warehouse - tablet","Instruction para sa warehouse workers."],greenhouse:["Greenhouse","Orientation, passages, rows at rules."],reader:["Reader","Start, break, work, end at restart."],doctor:["Doctor","Clinic, SOR, dentist at 112."],contacts:["Contacts","Team leaders E1-E6, coordinators at WhatsApp."],forbidden:["Bawal","Ano ang bawal dalhin sa trabaho."],test:["Test","Isang test pagkatapos ng training."]},tabs:{home:"Start",route:"Map",greenhouse:"Work",reader:"Reader",contacts:"Doctor",test:"Test"},context:{home:["Start","Piliin ang kailangan mo."],route:["Map","Piliin ang lugar at buksan ang route."],greenhouse:["Work","Greenhouse orientation at rules."],reader:["Reader","Work registration steps."],contacts:["Doctor","Clinic, SOR, dentist at contacts."],test:["Test","Final 30-question test."]},glossTitle:"Quick words",glossLead:"Mga salitang uulit sa instruction.",gloss:[["Nave","Numbered part ng greenhouse. Pwedeng 37, 38 o 39."],["Entrance","Isa sa 5 entrances sa nave. Bawat entrance may dalawang rows."],["Row","Lugar ng work sa plants."],["Left / right","Itakda habang nakatalikod sa first naves."],["Connector","Middle road ng greenhouse."],["Reader","Device para sa work registration. Walang Reader sa warehouse."]]},
-  ID:{homeTitle:"Apa yang kamu butuhkan sekarang?",homeLead:"Pilih satu modul. Jangan baca semuanya sekaligus.",setupTitle:"Atur jalur kamu",setupLead:"Pilih bahasa, tempat kerja dan tahap. Sistem hanya menampilkan yang diperlukan.",language:"Bahasa",place:"Tempat kerja",stage:"Tahap",greenhouse:"Rumah kaca",warehouse:"Gudang",save:"Simpan dan tampilkan modul saya",change:"Ubah",profile:"Jalur kamu",readerHidden:"Reader disembunyikan karena di gudang tidak ada Reader.",tiles:{map:["Rute / peta","Pilih tempat dan buka rute."],warehouse:["Gudang","Peta, pintu masuk dan aturan tanpa Reader."],warehousePeople:["Gudang - tablet","Instruksi untuk pekerja gudang."],greenhouse:["Rumah kaca","Orientasi, lorong, baris dan aturan."],reader:["Reader","Mulai, istirahat, kerja, selesai dan restart."],doctor:["Dokter","Klinik, SOR, dokter gigi dan 112."],contacts:["Kontak","Brigadir E1-E6, koordinator dan WhatsApp."],forbidden:["Larangan","Yang tidak boleh dibawa ke kerja."],test:["Tes","Satu tes setelah pelatihan."]},tabs:{home:"Mulai",route:"Peta",greenhouse:"Kerja",reader:"Reader",contacts:"Dokter",test:"Tes"},context:{home:["Mulai","Pilih yang kamu butuhkan."],route:["Peta","Pilih tempat dan buka rute."],greenhouse:["Kerja","Orientasi dan aturan rumah kaca."],reader:["Reader","Langkah registrasi kerja."],contacts:["Dokter","Klinik, SOR, dokter gigi dan kontak."],test:["Tes","Tes akhir 30 pertanyaan."]},glossTitle:"Kata penting",glossLead:"Kata yang sering muncul di instruksi.",gloss:[["Nave","Bagian rumah kaca bernomor. Bisa 37, 38 atau 39."],["Pintu masuk","Satu dari 5 pintu masuk dalam nave. Setiap pintu punya dua baris."],["Baris","Tempat kerja di dekat tanaman."],["Kiri / kanan","Ditentukan saat berdiri membelakangi nave pertama."],["Connector","Jalan tengah rumah kaca."],["Reader","Alat registrasi kerja. Di gudang tidak ada Reader."]]},
-  NE:{homeTitle:"अहिले के चाहिन्छ?",homeLead:"एक module छान्नुहोस्। सबै एकै पटक नपढ्नुहोस्।",setupTitle:"आफ्नो बाटो सेट गर्नुहोस्",setupLead:"भाषा, काम गर्ने ठाउँ र stage छान्नुहोस्। System ले चाहिने कुरा मात्र देखाउँछ।",language:"भाषा",place:"काम गर्ने ठाउँ",stage:"Stage",greenhouse:"Greenhouse",warehouse:"Warehouse",save:"Save गरेर modules देखाउनुहोस्",change:"Change",profile:"तपाईंको बाटो",readerHidden:"Warehouse मा Reader नभएकोले Reader लुकाइएको छ।",tiles:{map:["बाटो / नक्सा","स्थान छानेर route खोल्नुहोस्।"],warehouse:["Warehouse","Map, entrance र rules without Reader."],warehousePeople:["Warehouse - tablet","Warehouse workers को instruction."],greenhouse:["Greenhouse","Orientation, passages, rows र rules."],reader:["Reader","Start, break, work, end र restart."],doctor:["Doctor","Clinic, SOR, dentist र 112."],contacts:["Contacts","Team leaders E1-E6, coordinators र WhatsApp."],forbidden:["Prohibitions","काममा के ल्याउन मिल्दैन।"],test:["Test","Training पछि एक test."]},tabs:{home:"Start",route:"Map",greenhouse:"काम",reader:"Reader",contacts:"Doctor",test:"Test"},context:{home:["Start","चाहिएको कुरा छान्नुहोस्।"],route:["Map","स्थान छानेर route खोल्नुहोस्।"],greenhouse:["काम","Greenhouse orientation र rules."],reader:["Reader","Work registration steps."],contacts:["Doctor","Clinic, SOR, dentist र contacts."],test:["Test","Final 30-question test."]},glossTitle:"मुख्य शब्दहरू",glossLead:"Instruction मा दोहोरिने शब्दहरू।",gloss:[["Nave","Greenhouse को numbered भाग। 37, 38 वा 39 हुन सक्छ।"],["Entrance","Nave भित्र 5 entrances मध्ये एक। हरेक entrance मा दुई rows हुन्छन्।"],["Row","Plants नजिक काम गर्ने ठाउँ।"],["Left / right","First naves तिर ढाड फर्काएर side निर्धारण गर्नुहोस्।"],["Connector","Greenhouse को middle road."],["Reader","Work register गर्ने device. Warehouse मा Reader छैन."]]}
+  ES:{homeTitle:"¿Qué necesitas ahora?",homeLead:"Elige un módulo. No leas todo de una vez.",setupTitle:"Configura tu ruta",setupLead:"Elige idioma, lugar de trabajo y etapa. El sistema mostrará solo lo necesario.",language:"Idioma",place:"Lugar de trabajo",stage:"Etapa",greenhouse:"Invernadero",warehouse:"Almacén",save:"Guardar y mostrar mis módulos",change:"Cambiar",profile:"Tu ruta",readerHidden:"Reader está oculto porque en almacén no se usa.",tiles:{map:["Ruta / mapa","Elige lugar y abre la ruta."],city:["Ciudad / oficina / bancos","PESEL, Profil Zaufany, mObywatel, transporte, bancos y reglas."],warehouse:["Almacén","Mapa, entrada y reglas sin Reader."],warehousePeople:["Almacén - tablet","Instrucción para trabajadores de almacén."],greenhouse:["Invernadero","Orientación, pasillos, filas y reglas."],reader:["Reader","Inicio, pausa, trabajo, fin y restart."],doctor:["Médico","Clínica, SOR, dentista y 112."],contacts:["Contactos","Brigadistas E1-E6, coordinadores y WhatsApp."],forbidden:["Prohibiciones","Qué no se puede traer al trabajo."],test:["Test","Un test después del entrenamiento."]},tabs:{home:"Inicio",route:"Mapa",greenhouse:"Trabajo",reader:"Reader",contacts:"Médico",test:"Test"},context:{home:["Inicio","Elige lo que necesitas."],route:["Mapa","Elige lugar y abre ruta."],greenhouse:["Trabajo","Orientación y reglas del invernadero."],reader:["Reader","Pasos de registro de trabajo."],contacts:["Médico","Clínica, SOR, dentista y contactos."],test:["Test","Test final de 30 preguntas."]},glossTitle:"Diccionario rápido",glossLead:"Palabras que aparecen en la instrucción.",gloss:[["Nave","Parte numerada del invernadero. Puede haber 37, 38 o 39."],["Entrada","Una de 5 entradas en una nave. Cada entrada tiene dos filas."],["Fila","Lugar de trabajo junto a las plantas."],["Izquierda / derecha","Se define estando de espaldas a las primeras naves."],["Conector","Camino central del invernadero."],["Reader","Dispositivo para registrar trabajo. En almacén no hay Reader."]]},
+  FIL:{homeTitle:"Ano ang kailangan mo ngayon?",homeLead:"Pumili ng isang module. Huwag basahin lahat sabay-sabay.",setupTitle:"I-set ang iyong ruta",setupLead:"Piliin ang language, work place at stage. Ipapakita lang ang kailangan.",language:"Language",place:"Work place",stage:"Stage",greenhouse:"Greenhouse",warehouse:"Warehouse",save:"Save at ipakita modules",change:"Change",profile:"Iyong ruta",readerHidden:"Nakatago ang Reader dahil walang Reader sa warehouse.",tiles:{map:["Route / map","Piliin ang lugar at buksan ang route."],city:["City / office / banks","PESEL, Profil Zaufany, mObywatel, transport, banks at rules."],warehouse:["Warehouse","Mapa, entrance at rules without Reader."],warehousePeople:["Warehouse - tablet","Instruction para sa warehouse workers."],greenhouse:["Greenhouse","Orientation, passages, rows at rules."],reader:["Reader","Start, break, work, end at restart."],doctor:["Doctor","Clinic, SOR, dentist at 112."],contacts:["Contacts","Team leaders E1-E6, coordinators at WhatsApp."],forbidden:["Bawal","Ano ang bawal dalhin sa trabaho."],test:["Test","Isang test pagkatapos ng training."]},tabs:{home:"Start",route:"Map",greenhouse:"Work",reader:"Reader",contacts:"Doctor",test:"Test"},context:{home:["Start","Piliin ang kailangan mo."],route:["Map","Piliin ang lugar at buksan ang route."],greenhouse:["Work","Greenhouse orientation at rules."],reader:["Reader","Work registration steps."],contacts:["Doctor","Clinic, SOR, dentist at contacts."],test:["Test","Final 30-question test."]},glossTitle:"Quick words",glossLead:"Mga salitang uulit sa instruction.",gloss:[["Nave","Numbered part ng greenhouse. Pwedeng 37, 38 o 39."],["Entrance","Isa sa 5 entrances sa nave. Bawat entrance may dalawang rows."],["Row","Lugar ng work sa plants."],["Left / right","Itakda habang nakatalikod sa first naves."],["Connector","Middle road ng greenhouse."],["Reader","Device para sa work registration. Walang Reader sa warehouse."]]},
+  ID:{homeTitle:"Apa yang kamu butuhkan sekarang?",homeLead:"Pilih satu modul. Jangan baca semuanya sekaligus.",setupTitle:"Atur jalur kamu",setupLead:"Pilih bahasa, tempat kerja dan tahap. Sistem hanya menampilkan yang diperlukan.",language:"Bahasa",place:"Tempat kerja",stage:"Tahap",greenhouse:"Rumah kaca",warehouse:"Gudang",save:"Simpan dan tampilkan modul saya",change:"Ubah",profile:"Jalur kamu",readerHidden:"Reader disembunyikan karena di gudang tidak ada Reader.",tiles:{map:["Rute / peta","Pilih tempat dan buka rute."],city:["Kota / kantor / bank","PESEL, Profil Zaufany, mObywatel, transportasi, bank dan aturan."],warehouse:["Gudang","Peta, pintu masuk dan aturan tanpa Reader."],warehousePeople:["Gudang - tablet","Instruksi untuk pekerja gudang."],greenhouse:["Rumah kaca","Orientasi, lorong, baris dan aturan."],reader:["Reader","Mulai, istirahat, kerja, selesai dan restart."],doctor:["Dokter","Klinik, SOR, dokter gigi dan 112."],contacts:["Kontak","Brigadir E1-E6, koordinator dan WhatsApp."],forbidden:["Larangan","Yang tidak boleh dibawa ke kerja."],test:["Tes","Satu tes setelah pelatihan."]},tabs:{home:"Mulai",route:"Peta",greenhouse:"Kerja",reader:"Reader",contacts:"Dokter",test:"Tes"},context:{home:["Mulai","Pilih yang kamu butuhkan."],route:["Peta","Pilih tempat dan buka rute."],greenhouse:["Kerja","Orientasi dan aturan rumah kaca."],reader:["Reader","Langkah registrasi kerja."],contacts:["Dokter","Klinik, SOR, dokter gigi dan kontak."],test:["Tes","Tes akhir 30 pertanyaan."]},glossTitle:"Kata penting",glossLead:"Kata yang sering muncul di instruksi.",gloss:[["Nave","Bagian rumah kaca bernomor. Bisa 37, 38 atau 39."],["Pintu masuk","Satu dari 5 pintu masuk dalam nave. Setiap pintu punya dua baris."],["Baris","Tempat kerja di dekat tanaman."],["Kiri / kanan","Ditentukan saat berdiri membelakangi nave pertama."],["Connector","Jalan tengah rumah kaca."],["Reader","Alat registrasi kerja. Di gudang tidak ada Reader."]]},
+  NE:{homeTitle:"अहिले के चाहिन्छ?",homeLead:"एक module छान्नुहोस्। सबै एकै पटक नपढ्नुहोस्।",setupTitle:"आफ्नो बाटो सेट गर्नुहोस्",setupLead:"भाषा, काम गर्ने ठाउँ र stage छान्नुहोस्। System ले चाहिने कुरा मात्र देखाउँछ।",language:"भाषा",place:"काम गर्ने ठाउँ",stage:"Stage",greenhouse:"Greenhouse",warehouse:"Warehouse",save:"Save गरेर modules देखाउनुहोस्",change:"Change",profile:"तपाईंको बाटो",readerHidden:"Warehouse मा Reader नभएकोले Reader लुकाइएको छ।",tiles:{map:["बाटो / नक्सा","स्थान छानेर route खोल्नुहोस्।"],city:["City / office / banks","PESEL, Profil Zaufany, mObywatel, transport, banks र rules."],warehouse:["Warehouse","Map, entrance र rules without Reader."],warehousePeople:["Warehouse - tablet","Warehouse workers को instruction."],greenhouse:["Greenhouse","Orientation, passages, rows र rules."],reader:["Reader","Start, break, work, end र restart."],doctor:["Doctor","Clinic, SOR, dentist र 112."],contacts:["Contacts","Team leaders E1-E6, coordinators र WhatsApp."],forbidden:["Prohibitions","काममा के ल्याउन मिल्दैन।"],test:["Test","Training पछि एक test."]},tabs:{home:"Start",route:"Map",greenhouse:"काम",reader:"Reader",contacts:"Doctor",test:"Test"},context:{home:["Start","चाहिएको कुरा छान्नुहोस्।"],route:["Map","स्थान छानेर route खोल्नुहोस्।"],greenhouse:["काम","Greenhouse orientation र rules."],reader:["Reader","Work registration steps."],contacts:["Doctor","Clinic, SOR, dentist र contacts."],test:["Test","Final 30-question test."]},glossTitle:"मुख्य शब्दहरू",glossLead:"Instruction मा दोहोरिने शब्दहरू।",gloss:[["Nave","Greenhouse को numbered भाग। 37, 38 वा 39 हुन सक्छ।"],["Entrance","Nave भित्र 5 entrances मध्ये एक। हरेक entrance मा दुई rows हुन्छन्।"],["Row","Plants नजिक काम गर्ने ठाउँ।"],["Left / right","First naves तिर ढाड फर्काएर side निर्धारण गर्नुहोस्।"],["Connector","Greenhouse को middle road."],["Reader","Work register गर्ने device. Warehouse मा Reader छैन."]]}
  };
  var ORIENT={
   ES:{badge:"Orientación",title:"Invernadero: vista para una persona",lead:"Primero coloca el cuerpo. Después mira todo el invernadero, una nave y una entrada.",result:"Tu lugar",go:"Ve a",nave:"Nave",entry:"Entrada",side:"lado",left:"Izquierda",right:"Derecha",row:"fila",human:"1. Coloca el cuerpo",humanLead:"Ponte de espaldas a las primeras naves, donde empieza la numeración.",you:"TÚ",back:"espalda a nave 1",whole:"2. Invernadero desde arriba",wholeLead:"En el centro está el camino común / conector. A la izquierda está el lado izquierdo, a la derecha el lado derecho. No mostramos todas las naves: puede haber 37, 38 o 39.",start:"inicio: nave 1",many:"... 37 / 38 / 39",road:"camino común",stand:"Mano izquierda = lado izquierdo. Mano derecha = lado derecho.",one:"3. Una nave",oneLead:"En una nave las entradas 1-5 están una al lado de otra. Cada entrada tiene 2 filas, juntas 10 filas.",pass:"4. Entrada / fila",passLead:"Vista después de entrar en la fila larga. En esta vista los lados están invertidos: a la izquierda ves el lado derecho de trabajo, a la derecha el izquierdo.",walk:"entras",span:"tramo",memory:"Recuerda: lado del invernadero -> número de nave -> entrada 1-5 -> lado de trabajo -> tramo. El trabajo es en la fila."},
@@ -5432,6 +5438,7 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  window.cxExtraOrientationText=ORIENT;
  function patchDictionaries(){
   try{Object.keys(CORE).forEach(function(k){T[k]=merge(clone(T.EN||T.PL),CORE[k])})}catch(e){}
+  try{Object.keys(CITY_ADD).forEach(function(k){if(typeof T!=="undefined"&&T[k])T[k]=merge(T[k],CITY_ADD[k])})}catch(e){}
   try{Object.keys(EXAM_TEXT_ADD).forEach(function(k){EXAM_TEXT[k]=merge(clone(EXAM_TEXT.EN||EXAM_TEXT.PL),EXAM_TEXT_ADD[k])})}catch(e){}
   try{Object.keys(EXAM_Q_ADD).forEach(function(k){EXAM_QUESTIONS[k]=EXAM_Q_ADD[k]})}catch(e){}
   try{Object.keys(MED_ADD).forEach(function(k){MEDICAL_UI[k]=merge(clone(MEDICAL_UI.EN||MEDICAL_UI.PL),MED_ADD[k]);if(typeof T!=="undefined"&&T[k]){T[k].tabContacts=MEDICAL_UI[k].tab;T[k].tabContactsLead=MEDICAL_UI[k].tabLead}})}catch(e){}
@@ -5451,12 +5458,43 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  function rewriteHome(){
   var t=FINAL[cur()];if(!t)return;
   var hb=document.querySelector(".cxHomeHead b"),hs=document.querySelector(".cxHomeHead span");if(hb)hb.textContent=t.homeTitle;if(hs)hs.textContent=t.homeLead;
-  Object.keys(t.tiles).forEach(function(k){document.querySelectorAll(".cxHomeTile."+k+",.cxTodayBtn[data-kind='"+k+"']").forEach(function(n){var b=n.querySelector("b,strong"),sp=n.querySelector("span:not(.cxHomeTileIcon)");if(b)b.textContent=t.tiles[k][0];if(sp)sp.textContent=t.tiles[k][1];n.setAttribute("aria-label",t.tiles[k][0]+" - "+t.tiles[k][1])})});
+  Object.keys(t.tiles).forEach(function(k){
+   document.querySelectorAll(".cxHomeTile."+k).forEach(function(n){
+    var icon=n.querySelector(".cxHomeTileIcon"),pair=t.tiles[k];
+    n.innerHTML=(icon?icon.outerHTML:"")+'<span><b>'+esc(pair[0])+'</b><span>'+esc(pair[1])+'</span></span>';
+    n.setAttribute("aria-label",pair[0]+" - "+pair[1]);
+   });
+   document.querySelectorAll(".cxTodayBtn[data-kind='"+k+"']").forEach(function(n){
+    var pair=t.tiles[k],b=n.querySelector("b,strong"),sp=n.querySelector("span:not(.cxHomeTileIcon)");
+    if(b)b.textContent=pair[0];else n.textContent=pair[0];
+    if(sp)sp.textContent=pair[1];
+   n.setAttribute("aria-label",pair[0]+" - "+pair[1]);
+   });
+  });
+  document.querySelectorAll(".cxHomeTile.testTile").forEach(function(n){
+   var icon=n.querySelector(".cxHomeTileIcon"),pair=t.tiles.test;
+   if(!pair)return;
+   n.innerHTML=(icon?icon.outerHTML:"")+'<span><b>'+esc(pair[0])+'</b><span>'+esc(pair[1])+'</span></span>';
+   n.setAttribute("aria-label",pair[0]+" - "+pair[1]);
+  });
   var g=document.getElementById("cxFinalGlossary");if(g){var items=t.gloss.map(function(r,i){return'<div class="cxGlossItem"><span class="cxGlossIcon">'+(i+1)+'</span><span><b>'+esc(r[0])+'</b><span>'+esc(r[1])+'</span></span></div>'}).join("");g.innerHTML='<h3>'+esc(t.glossTitle)+'</h3><p>'+esc(t.glossLead)+'</p><div class="cxGlossGrid">'+items+'</div>'}
  }
  function rewriteTabs(){
   var t=FINAL[cur()];if(!t)return;
-  document.querySelectorAll(".appTab").forEach(function(btn){var txt=(btn.dataset.cxBaseText||btn.textContent||"").toLowerCase(),key="home";if(txt.indexOf("map")>-1||txt.indexOf("peta")>-1||txt.indexOf("mapa")>-1||txt.indexOf("route")>-1)key="route";else if(txt.indexOf("work")>-1||txt.indexOf("trab")>-1||txt.indexOf("kerja")>-1||txt.indexOf("काम")>-1)key="greenhouse";else if(txt.indexOf("reader")>-1)key="reader";else if(txt.indexOf("doctor")>-1||txt.indexOf("méd")>-1||txt.indexOf("dokter")>-1||txt.indexOf("contacts")>-1)key="contacts";else if(txt.indexOf("test")>-1||txt.indexOf("tes")>-1)key="test";var icon=btn.querySelector(".cxAppTabIcon");btn.innerHTML=(icon?icon.outerHTML:"")+'<span class="cxAppTabText">'+esc(t.tabs[key]||t.tabs.home)+'</span>';btn.setAttribute("aria-label",t.tabs[key]||t.tabs.home)});
+  document.querySelectorAll(".appTab").forEach(function(btn){
+   var raw=(btn.getAttribute("onclick")||"")+" "+(btn.dataset.cxBaseText||"")+" "+(btn.textContent||""),low=raw.toLowerCase(),key="home";
+   if(raw.indexOf("setAppTab('route')")>-1||raw.indexOf('setAppTab("route")')>-1||low.indexOf("cxcalltab('route')")>-1||low.indexOf('cxcalltab("route")')>-1)key="route";
+   else if(raw.indexOf("setAppTab('greenhouse')")>-1||raw.indexOf('setAppTab("greenhouse")')>-1||low.indexOf("cxcalltab('greenhouse')")>-1||low.indexOf('cxcalltab("greenhouse")')>-1)key="greenhouse";
+   else if(raw.indexOf("setAppTab('reader')")>-1||raw.indexOf('setAppTab("reader")')>-1||low.indexOf("cxcalltab('reader')")>-1||low.indexOf('cxcalltab("reader")')>-1)key="reader";
+   else if(raw.indexOf("setAppTab('contacts')")>-1||raw.indexOf('setAppTab("contacts")')>-1||low.indexOf("cxcalltab('contacts')")>-1||low.indexOf('cxcalltab("contacts")')>-1)key="contacts";
+   else if(raw.indexOf("setAppTab('test')")>-1||raw.indexOf('setAppTab("test")')>-1||low.indexOf("cxcalltab('test')")>-1||low.indexOf('cxcalltab("test")')>-1)key="test";
+   else if(low.indexOf("map")>-1||low.indexOf("peta")>-1||low.indexOf("mapa")>-1||low.indexOf("route")>-1)key="route";
+   else if(low.indexOf("work")>-1||low.indexOf("trab")>-1||low.indexOf("kerja")>-1||low.indexOf("काम")>-1)key="greenhouse";
+   else if(low.indexOf("reader")>-1)key="reader";
+   else if(low.indexOf("doctor")>-1||low.indexOf("méd")>-1||low.indexOf("dokter")>-1||low.indexOf("contacts")>-1)key="contacts";
+   else if(low.indexOf("test")>-1||low.indexOf("tes")>-1)key="test";
+   var icon=btn.querySelector(".cxAppTabIcon");btn.innerHTML=(icon?icon.outerHTML:"")+'<span class="cxAppTabText">'+esc(t.tabs[key]||t.tabs.home)+'</span>';btn.setAttribute("aria-label",t.tabs[key]||t.tabs.home);
+  });
   var bar=document.getElementById("cxVisualContextBar");if(bar){var b=bar.querySelector("b"),s=bar.querySelector("span");var key="home";if(bar.className.indexOf("map")>-1||bar.className.indexOf("route")>-1)key="route";else if(bar.className.indexOf("greenhouse")>-1)key="greenhouse";else if(bar.className.indexOf("reader")>-1)key="reader";else if(bar.className.indexOf("doctor")>-1||bar.className.indexOf("contacts")>-1)key="contacts";else if(bar.className.indexOf("test")>-1)key="test";if(b)b.textContent=t.context[key][0];if(s)s.textContent=t.context[key][1]}
  }
  function pair(e){var a=(Number(e)-1)*2+1;return[a,a+1]}
@@ -5474,5 +5512,194 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  var oldApply=window.apply;if(typeof oldApply==="function"&&!window.cxExtraLanguagesApplyWrapped){window.cxExtraLanguagesApplyWrapped=true;window.apply=function(){patchDictionaries();var r=oldApply.apply(this,arguments);scheduleRefresh();return r}}
  document.addEventListener("DOMContentLoaded",refresh);document.addEventListener("click",function(){setTimeout(refresh,80)},true);document.addEventListener("change",function(e){if(e.target&&e.target.id==="cxFinalLangSelect")setLang(e.target.value);else setTimeout(refresh,80)},true);
  setTimeout(refresh,0);setTimeout(refresh,800);setTimeout(refresh,1800);setTimeout(refresh,3000);
+})();
+</script>
+<style id="cxSingleExamCss">
+#cxTestScope,#cxExamScopePanel{display:none!important}
+</style>
+<script id="cxSingleExamPatch">
+(function(){
+ if(window.cxSingleExamLoaded)return;window.cxSingleExamLoaded=true;
+ function langKey(){
+  try{return String(window.lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return 'PL'}
+ }
+ function baseQuestions(){
+  try{return (typeof EXAM_QUESTIONS!=='undefined'&&((EXAM_QUESTIONS[langKey()]||EXAM_QUESTIONS.PL)||[]).slice(0,30))||[]}catch(e){return []}
+ }
+ function singleStats(){
+  var qs=baseQuestions(),answered=0,score=0,wrong=[],missing=[];
+  qs.forEach(function(q,i){
+   if(!window.examAnswers||examAnswers[i]===null||examAnswers[i]===undefined){missing.push(i+1);return}
+   answered++;
+   if(examAnswers[i]===q[2])score++;else wrong.push(i+1);
+  });
+  return {total:qs.length,answered:answered,score:score,wrong:wrong,missing:missing,complete:answered===qs.length,passed:score>=Math.ceil(qs.length*.8)};
+ }
+ function removeScopeUi(){
+  ['cxTestScope','cxExamScopePanel'].forEach(function(id){var node=document.getElementById(id);if(node)node.remove()});
+ }
+ function forceSingleExam(){
+  try{localStorage.cx_exam_scope='all'}catch(e){}
+  try{examQuestions=function(){return baseQuestions()};window.examQuestions=examQuestions}catch(e){}
+  try{examStats=function(){return singleStats()};window.examStats=examStats}catch(e){}
+  removeScopeUi();
+  try{
+   if(window.appTab==='test'&&typeof window.renderExam==='function'){
+    window.renderExam((window.T&&(T[langKey()]||T.PL))||{});
+    removeScopeUi();
+   }
+  }catch(e){}
+ }
+ function schedule(){setTimeout(forceSingleExam,0);setTimeout(forceSingleExam,120);setTimeout(forceSingleExam,450)}
+ var oldApply=window.apply;
+ if(typeof oldApply==='function'&&!window.cxSingleExamApplyWrapped){
+  window.cxSingleExamApplyWrapped=true;
+  window.apply=function(){var r=oldApply.apply(this,arguments);schedule();return r};
+ }
+ document.addEventListener('DOMContentLoaded',schedule);
+ document.addEventListener('click',function(){setTimeout(forceSingleExam,80)},true);
+ document.addEventListener('change',function(){setTimeout(forceSingleExam,80)},true);
+ try{new MutationObserver(function(){if(window.appTab==='test')setTimeout(forceSingleExam,80)}).observe(document.body,{childList:true,subtree:true})}catch(e){}
+ schedule();
+})();
+</script>
+<script id="cxForbiddenModulePatch">
+(function(){
+ if(window.cxForbiddenModuleLoaded)return;window.cxForbiddenModuleLoaded=true;
+ var opening=false;
+ function hideOldForbiddenPanel(){
+  var panel=document.getElementById('cxForbiddenPanel');
+  if(panel){panel.classList.remove('active');panel.style.setProperty('display','none','important')}
+  try{localStorage.cx_forbiddenOpen='0'}catch(e){}
+ }
+ function openForbiddenModule(){
+  if(opening)return;
+  opening=true;
+  try{localStorage.removeItem('cx_warehouse_people');document.body.classList.remove('cxWarehousePeopleMode')}catch(e){}
+  try{localStorage.cx_focusModule='forbidden'}catch(e){}
+  try{focusModule='forbidden'}catch(e){}
+  hideOldForbiddenPanel();
+  try{
+   if(typeof appTab==='undefined'||appTab!=='greenhouse'){
+    if(typeof setAppTab==='function')setAppTab('greenhouse');else{appTab='greenhouse';localStorage.cx_appTab='greenhouse';if(typeof apply==='function')apply()}
+   }
+  }catch(e){}
+  setTimeout(function(){
+   try{focusModule='forbidden';localStorage.cx_focusModule='forbidden'}catch(e){}
+   hideOldForbiddenPanel();
+   try{if(typeof cxShowFocus==='function')cxShowFocus()}catch(e){}
+   ['humanGuide','workChooser','guide','sosbox','cxWarehousePeoplePanel'].forEach(function(id){var n=document.getElementById(id);if(n)n.classList.add('appHidden')});
+   ['fullContent','forbiddenSection'].forEach(function(id){var n=document.getElementById(id);if(n){n.classList.remove('appHidden');n.classList.remove('isHidden')}});
+   var sec=document.getElementById('forbiddenSection');
+   if(sec)try{sec.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){sec.scrollIntoView()}
+   opening=false;
+  },120);
+ }
+ var previousHomeGo=window.cxHomeGo;
+ window.cxHomeGo=function(kind){
+  if(kind==='forbidden')return openForbiddenModule();
+  return previousHomeGo?previousHomeGo.apply(this,arguments):undefined;
+ };
+ window.cxOpenForbidden=openForbiddenModule;
+ document.addEventListener('click',function(ev){
+  var tile=ev.target&&ev.target.closest?ev.target.closest('.cxHomeTile.forbidden,.cxTodayBtn[data-kind="forbidden"]'):null;
+  if(tile){ev.preventDefault();ev.stopPropagation();openForbiddenModule()}
+ },true);
+ var previousApply=window.apply;
+ if(typeof previousApply==='function'&&!window.cxForbiddenApplyWrapped){
+  window.cxForbiddenApplyWrapped=true;
+  window.apply=function(){var r=previousApply.apply(this,arguments);try{if(focusModule==='forbidden')setTimeout(openForbiddenModule,0)}catch(e){}return r};
+ }
+})();
+</script>
+<script id="cxFinalHomeTranslationPatch">
+(function(){
+ if(window.cxFinalHomeTranslationLoaded)return;window.cxFinalHomeTranslationLoaded=true;
+ var HOME={
+  AZ:{head:["Bu gün nə lazımdır?","Bir modul seçin. Səhifə yalnız lazım olan məlumatı göstərəcək."],tiles:{map:["Yol / xəritə","Yeri seçin və marşrutu açın."],city:["Şəhər / idarə / banklar","PESEL, Profil Zaufany, mObywatel, nəqliyyat, banklar və qaydalar."],warehouse:["Anbar","Xəritə, giriş və Reader olmayan qaydalar."],warehousePeople:["Anbar işçiləri / tablet","Ayrı təlimat: anbar, tablet, PIN və soyad."],greenhouse:["İstixana","Orientasiya, keçidlər, sıralar və iş qaydaları."],reader:["Reader","Start, fasilə, fərqli işlər, son və restart."],doctor:["Həkim","Poliklinika, SOR, diş həkimi və 112."],contacts:["Kontaktlar","E1-E6 briqadirləri, koordinatorlar və WhatsApp."],test:["Test","Təlimdən sonra bir ümumi test."],forbidden:["Qadağalar","İşə nə gətirmək olmaz."]}},
+  ES:{head:["¿Qué necesitas ahora?","Elige un módulo. La página mostrará solo lo que necesitas."],tiles:{map:["Ruta / mapa","Elige el lugar y abre la ruta."],city:["Ciudad / oficina / bancos","PESEL, Profil Zaufany, mObywatel, transporte, bancos y reglas."],warehouse:["Almacén","Mapa, entrada y reglas sin Reader."],warehousePeople:["Almacén - tablet","Instrucción para trabajadores de almacén."],greenhouse:["Invernadero","Orientación, pasillos, filas y reglas de trabajo."],reader:["Reader","Inicio, pausa, diferentes trabajos, final y reinicio."],doctor:["Médico","Centro de salud, SOR, dentista y 112."],contacts:["Contactos","Brigadistas E1-E6, coordinadores y WhatsApp."],test:["Test","Un test después de la formación."],forbidden:["Prohibiciones","Lo que no se puede llevar al trabajo."]}},
+  FIL:{head:["Ano ang kailangan mo ngayon?","Pumili ng isang module. Ipapakita lang ang kailangan mo."],tiles:{map:["Ruta / mapa","Piliin ang lugar at buksan ang ruta."],city:["Lungsod / opisina / bangko","PESEL, Profil Zaufany, mObywatel, transport, banks at rules."],warehouse:["Bodega","Mapa, pasukan at rules na walang Reader."],warehousePeople:["Bodega - tablet","Instruction para sa warehouse workers."],greenhouse:["Greenhouse","Orientation, daanan, rows at work rules."],reader:["Reader","Start, break, iba't ibang trabaho, end at restart."],doctor:["Doktor","Clinic, SOR, dentist at 112."],contacts:["Mga contact","Brigadista E1-E6, coordinators at WhatsApp."],test:["Test","Isang test pagkatapos ng training."],forbidden:["Mga bawal","Mga hindi puwedeng dalhin sa trabaho."]}},
+  ID:{head:["Apa yang kamu butuhkan sekarang?","Pilih satu modul. Halaman hanya menampilkan yang kamu perlukan."],tiles:{map:["Rute / peta","Pilih tempat dan buka rute."],city:["Kota / kantor / bank","PESEL, Profil Zaufany, mObywatel, transportasi, bank dan aturan."],warehouse:["Gudang","Peta, pintu masuk dan aturan tanpa Reader."],warehousePeople:["Gudang - tablet","Instruksi untuk pekerja gudang."],greenhouse:["Rumah kaca","Orientasi, lorong, baris dan aturan kerja."],reader:["Reader","Mulai, istirahat, berbagai pekerjaan, selesai dan restart."],doctor:["Dokter","Klinik, SOR, dokter gigi dan 112."],contacts:["Kontak","Brigadir E1-E6, koordinator dan WhatsApp."],test:["Tes","Satu tes setelah pelatihan."],forbidden:["Larangan","Yang tidak boleh dibawa ke tempat kerja."]}},
+  NE:{head:["अहिले के चाहिन्छ?","एक module छान्नुहोस्। पेजले चाहिने कुरा मात्र देखाउँछ।"],tiles:{map:["बाटो / नक्सा","ठाउँ छानेर route खोल्नुहोस्।"],city:["शहर / कार्यालय / बैंक","PESEL, Profil Zaufany, mObywatel, transport, banks र rules."],warehouse:["गोदाम","Reader बिना map, entrance र rules."],warehousePeople:["गोदाम - tablet","Warehouse workers को instruction."],greenhouse:["ग्रीनहाउस","Orientation, passages, rows र work rules."],reader:["Reader","Start, break, फरक काम, end र restart."],doctor:["डाक्टर","Clinic, SOR, dentist र 112."],contacts:["सम्पर्क","Brigadier E1-E6, coordinators र WhatsApp."],test:["Test","Training पछि एक test."],forbidden:["निषेध","काममा ल्याउन नहुने सामान."]}}
+ };
+ function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+ function cur(){try{return String(lang||localStorage.cx_lang||"PL").toUpperCase()}catch(e){return String(localStorage.cx_lang||"PL").toUpperCase()}}
+ function setTile(selector,pair){
+  document.querySelectorAll(selector).forEach(function(tile){
+   var label=pair[0]+" - "+pair[1],oldB=tile.querySelector("b,strong"),oldS=tile.querySelector(".cxHomeTileIcon + span > span");
+   if(tile.getAttribute("aria-label")===label&&oldB&&oldB.textContent===pair[0]&&oldS&&oldS.textContent===pair[1])return;
+   var icon=tile.querySelector(".cxHomeTileIcon");
+   tile.innerHTML=(icon?icon.outerHTML:"")+'<span><b>'+esc(pair[0])+'</b><span>'+esc(pair[1])+'</span></span>';
+   tile.setAttribute("aria-label",label);
+  });
+ }
+ function setToday(kind,pair){
+  document.querySelectorAll('.cxTodayBtn[data-kind="'+kind+'"]').forEach(function(btn){
+   var label=pair[0]+" - "+pair[1];
+   if(btn.getAttribute("aria-label")===label)return;
+   var b=btn.querySelector("b,strong"),sp=btn.querySelector(".cxTodayText span,span:not(.cxTodayIcon)");
+   if(b)b.textContent=pair[0];else btn.textContent=pair[0];
+   if(sp)sp.textContent=pair[1];
+   btn.setAttribute("aria-label",label);
+  });
+ }
+ function run(){
+  var t=HOME[cur()];if(!t)return;
+  var hb=document.querySelector(".cxHomeHead b"),hs=document.querySelector(".cxHomeHead span");
+  if(hb)hb.textContent=t.head[0];if(hs)hs.textContent=t.head[1];
+  Object.keys(t.tiles).forEach(function(k){
+   var cls=k==="test"?"testTile":k;
+   setTile(".cxHomeTile."+cls,t.tiles[k]);
+   setToday(k,t.tiles[k]);
+  });
+ }
+ function schedule(){setTimeout(run,0);setTimeout(run,90);setTimeout(run,260);setTimeout(run,700)}
+ var previousApply=window.apply;
+ if(typeof previousApply==="function"&&!window.cxFinalHomeTranslationApplyWrapped){
+  window.cxFinalHomeTranslationApplyWrapped=true;
+  window.apply=function(){var r=previousApply.apply(this,arguments);schedule();return r};
+ }
+ document.addEventListener("DOMContentLoaded",schedule);
+ document.addEventListener("click",function(){setTimeout(run,120)},true);
+ document.addEventListener("change",schedule,true);
+ try{new MutationObserver(function(){if((cur() in HOME)&&document.querySelector("#cxHomeTiles"))setTimeout(run,80)}).observe(document.body,{childList:true,subtree:true})}catch(e){}
+ schedule();
+})();
+</script>
+<script id="cxNewLanguageVisibleTextCleanup">
+(function(){
+ if(window.cxNewLanguageVisibleTextCleanupLoaded)return;window.cxNewLanguageVisibleTextCleanupLoaded=true;
+ var REPL={
+  AZ:[["Pierwszy dzień - prosto","İlk gün - sadə"],["Dla nowej osoby najpierw liczy się dojście do dobrego punktu i czekanie na miejscu.","Yeni işçi üçün ən vacibi düzgün yerə getmək və orada gözləməkdir."],["Wybierz miejsce lub etap.","Yeri və ya mərhələni seçin."],["Otwórz mapę i kieruj się do punktu.","Xəritəni açın və göstərilən nöqtəyə gedin."],["Po dojściu czekaj. Nie wchodź sam.","Çatanda gözləyin. Tək daxil olmayın."],["Dopiero potem wybierz: magazyn albo szklarnia.","Sonra seçin: anbar və ya istixana."],["Na telefonie warto dodać link do ekranu głównego i zrobić zrzut ekranu wejścia/mapy przed wyjściem.","Telefonda linki ana ekrana əlavə etmək və çıxmazdan əvvəl giriş/xəritə screenshot-u etmək yaxşıdır."],["Magazyn / sortownia","Anbar / sortlama"],["Wejście dla personelu - tutaj nie ma Readera","Personal girişi - burada Reader yoxdur"],["Mapa do tego miejsca","Bu yerin xəritəsi"],["Kopiuj nazwę i link","Adı və linki kopyala"],["Strona pracy","İş tərəfi"],["Prawa","Sağ"],["Lewa","Sol"],["Nawa","Nava"],["Wejście","Giriş"],["Początek naw","Navaların başlanğıcı"],["Łącznik","Birləşdirici"],["Wejście / rząd","Giriş / sıra"],["Lewa strona","Sol tərəf"],["Prawa strona","Sağ tərəf"]],
+  ES:[["Pierwszy dzień - prosto","Primer día - simple"],["Dla nowej osoby najpierw liczy się dojście do dobrego punktu i czekanie na miejscu.","Para una persona nueva, lo primero es llegar al punto correcto y esperar allí."],["Wybierz miejsce lub etap.","Elige el lugar o la etapa."],["Otwórz mapę i kieruj się do punktu.","Abre el mapa y dirígete al punto."],["Po dojściu czekaj. Nie wchodź sam.","Cuando llegues, espera. No entres solo."],["Dopiero potem wybierz: magazyn albo szklarnia.","Después elige: almacén o invernadero."],["Na telefonie warto dodać link do ekranu głównego i zrobić zrzut ekranu wejścia/mapy przed wyjściem.","En el teléfono conviene añadir el enlace a la pantalla principal y hacer una captura de la entrada/mapa antes de salir."],["Magazyn / sortownia","Almacén / clasificación"],["Wejście dla personelu - tutaj nie ma Readera","Entrada de personal - aquí no hay Reader"],["Mapa do tego miejsca","Mapa de este lugar"],["Kopiuj nazwę i link","Copiar nombre y enlace"],["Strona pracy","Lado de trabajo"],["Prawa","Derecha"],["Lewa","Izquierda"],["Nawa","Nave"],["Wejście","Entrada"],["Początek naw","Inicio de naves"],["Łącznik","Conector"],["Wejście / rząd","Entrada / fila"],["Lewa strona","Lado izquierdo"],["Prawa strona","Lado derecho"]],
+  FIL:[["Pierwszy dzień - prosto","Unang araw - simple"],["Dla nowej osoby najpierw liczy się dojście do dobrego punktu i czekanie na miejscu.","Para sa bagong tao, ang una ay makarating sa tamang point at maghintay doon."],["Wybierz miejsce lub etap.","Piliin ang lugar o stage."],["Otwórz mapę i kieruj się do punktu.","Buksan ang mapa at pumunta sa point."],["Po dojściu czekaj. Nie wchodź sam.","Pagdating, maghintay. Huwag pumasok mag-isa."],["Dopiero potem wybierz: magazyn albo szklarnia.","Pagkatapos piliin: warehouse o greenhouse."],["Na telefonie warto dodać link do ekranu głównego i zrobić zrzut ekranu wejścia/mapy przed wyjściem.","Sa phone, magandang idagdag ang link sa home screen at gumawa ng screenshot ng entrance/map bago umalis."],["Magazyn / sortownia","Bodega / sorting"],["Wejście dla personelu - tutaj nie ma Readera","Staff entrance - walang Reader dito"],["Mapa do tego miejsca","Mapa papunta sa lugar na ito"],["Kopiuj nazwę i link","Kopyahin ang pangalan at link"],["Strona pracy","Work side"],["Prawa","Right"],["Lewa","Left"],["Nawa","Nave"],["Wejście","Entrance"],["Początek naw","Start ng naves"],["Łącznik","Connector"],["Wejście / rząd","Entrance / row"],["Lewa strona","Left side"],["Prawa strona","Right side"]],
+  ID:[["Pierwszy dzień - prosto","Hari pertama - sederhana"],["Dla nowej osoby najpierw liczy się dojście do dobrego punktu i czekanie na miejscu.","Untuk orang baru, yang paling penting adalah sampai ke titik yang benar dan menunggu di sana."],["Wybierz miejsce lub etap.","Pilih tempat atau tahap."],["Otwórz mapę i kieruj się do punktu.","Buka peta dan pergi ke titik."],["Po dojściu czekaj. Nie wchodź sam.","Setelah sampai, tunggu. Jangan masuk sendiri."],["Dopiero potem wybierz: magazyn albo szklarnia.","Setelah itu pilih: gudang atau rumah kaca."],["Na telefonie warto dodać link do ekranu głównego i zrobić zrzut ekranu wejścia/mapy przed wyjściem.","Di telepon, sebaiknya tambahkan link ke layar utama dan buat screenshot pintu masuk/peta sebelum berangkat."],["Magazyn / sortownia","Gudang / sortir"],["Wejście dla personelu - tutaj nie ma Readera","Pintu masuk staf - di sini tidak ada Reader"],["Mapa do tego miejsca","Peta ke tempat ini"],["Kopiuj nazwę i link","Salin nama dan link"],["Strona pracy","Sisi kerja"],["Prawa","Kanan"],["Lewa","Kiri"],["Nawa","Nave"],["Wejście","Pintu masuk"],["Początek naw","Awal nave"],["Łącznik","Connector"],["Wejście / rząd","Pintu masuk / baris"],["Lewa strona","Sisi kiri"],["Prawa strona","Sisi kanan"]],
+  NE:[["Pierwszy dzień - prosto","पहिलो दिन - सरल"],["Dla nowej osoby najpierw liczy się dojście do dobrego punktu i czekanie na miejscu.","नयाँ व्यक्तिका लागि पहिले सही ठाउँमा पुग्नु र त्यहाँ कुर्नु महत्वपूर्ण हुन्छ।"],["Wybierz miejsce lub etap.","ठाउँ वा stage छान्नुहोस्।"],["Otwórz mapę i kieruj się do punktu.","नक्सा खोल्नुहोस् र point तिर जानुहोस्।"],["Po dojściu czekaj. Nie wchodź sam.","पुगेपछि कुर्नुहोस्। एक्लै भित्र नजानुहोस्।"],["Dopiero potem wybierz: magazyn albo szklarnia.","त्यसपछि छान्नुहोस्: warehouse वा greenhouse."],["Na telefonie warto dodać link do ekranu głównego i zrobić zrzut ekranu wejścia/mapy przed wyjściem.","फोनमा link home screen मा राख्नुहोस् र निस्कनुअघि entrance/map को screenshot लिनुहोस्।"],["Magazyn / sortownia","गोदाम / sorting"],["Wejście dla personelu - tutaj nie ma Readera","Staff entrance - यहाँ Reader छैन"],["Mapa do tego miejsca","यो ठाउँको नक्सा"],["Kopiuj nazwę i link","नाम र link copy गर्नुहोस्"],["Strona pracy","Work side"],["Prawa","Right"],["Lewa","Left"],["Nawa","Nave"],["Wejście","Entrance"],["Początek naw","Nave को सुरु"],["Łącznik","Connector"],["Wejście / rząd","Entrance / row"],["Lewa strona","Left side"],["Prawa strona","Right side"]]
+ };
+ function cur(){try{return String(lang||localStorage.cx_lang||"PL").toUpperCase()}catch(e){return String(localStorage.cx_lang||"PL").toUpperCase()}}
+ function replaceTextNode(node,pairs){var v=node.nodeValue,n=v;pairs.forEach(function(r){n=n.split(r[0]).join(r[1])});if(n!==v)node.nodeValue=n}
+ function walk(node,pairs){
+  if(!node||/SCRIPT|STYLE|TEXTAREA|INPUT|SELECT/.test(node.nodeName))return;
+  if(node.nodeType===3){replaceTextNode(node,pairs);return}
+  for(var c=node.firstChild;c;c=c.nextSibling)walk(c,pairs);
+ }
+ function run(){
+  var pairs=REPL[cur()];if(!pairs)return;
+  walk(document.body,pairs);
+  document.querySelectorAll("option").forEach(function(o){
+   var v=o.textContent,n=v;pairs.forEach(function(r){n=n.split(r[0]).join(r[1])});if(n!==v)o.textContent=n;
+  });
+ }
+ function schedule(){setTimeout(run,0);setTimeout(run,180);setTimeout(run,600);setTimeout(run,1300);setTimeout(run,2400)}
+ var oldApply=window.apply;
+ if(typeof oldApply==="function"&&!window.cxNewLangCleanupApplyWrapped){
+  window.cxNewLangCleanupApplyWrapped=true;
+  window.apply=function(){var r=oldApply.apply(this,arguments);schedule();return r};
+ }
+ document.addEventListener("DOMContentLoaded",schedule);
+ document.addEventListener("click",function(){setTimeout(run,150)},true);
+ document.addEventListener("change",schedule,true);
+ try{new MutationObserver(function(){if(REPL[cur()])setTimeout(run,120)}).observe(document.body,{childList:true,subtree:true,characterData:true})}catch(e){}
+ schedule();
 })();
 </script><nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
