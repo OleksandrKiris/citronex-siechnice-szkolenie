@@ -4911,4 +4911,87 @@ setTimeout(schedule,0);setTimeout(schedule,600);setTimeout(schedule,1400);
  document.addEventListener('DOMContentLoaded',sync);document.addEventListener('click',function(){setTimeout(sync,60)},true);setTimeout(sync,0);setTimeout(sync,800);
 })();
 </script>
-<nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
+<style id="cxVisualMasterCss">
+html,body{max-width:100%;overflow-x:hidden}
+body{background:linear-gradient(180deg,#f3f8f5 0,#f8fbf9 34%,#eef6f1 100%)!important}
+.top{border-bottom:1px solid rgba(15,95,63,.12)!important;box-shadow:0 8px 24px rgba(20,33,27,.08)!important}
+.mobileDock{display:none!important}
+.appTabsShell{position:sticky!important;top:58px!important;z-index:70!important;background:rgba(255,255,255,.96)!important;border:1px solid #d7e5da!important;border-radius:18px!important;padding:8px!important;margin:10px 0 12px!important;box-shadow:0 12px 30px rgba(20,33,27,.12)!important;backdrop-filter:blur(12px)!important}
+.appTabs{display:flex!important;gap:8px!important;overflow-x:auto!important;scrollbar-width:none!important}
+.appTabs::-webkit-scrollbar{display:none}
+.appTab{flex:0 0 auto!important;min-width:112px!important;min-height:54px!important;border-radius:15px!important;padding:10px!important;font-size:13px!important;display:flex!important;align-items:center!important;justify-content:center!important;white-space:normal!important;line-height:1.1!important}
+.appTab.active{box-shadow:0 10px 22px rgba(15,95,63,.20)!important}
+.appTabLead{display:none!important}
+body.cxHubActive .appTabsShell{display:none!important}
+.cxVisualContextBar{display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:center;background:#fff;border:1px solid #d7e5da;border-left:7px solid #0f5f3f;border-radius:18px;padding:12px;margin:0 0 12px;box-shadow:0 10px 26px rgba(20,33,27,.09)}
+.cxVisualContextBar.map,.cxVisualContextBar.route{border-left-color:#1f63b5}.cxVisualContextBar.doctor,.cxVisualContextBar.forbidden{border-left-color:#a62323}.cxVisualContextBar.reader{border-left-color:#b47a00}.cxVisualContextBar.test{border-left-color:#6750a4}
+.cxVisualContextIcon{width:48px;height:48px;border-radius:16px;background:#eef8f2;color:#0f5f3f;display:grid;place-items:center;font-weight:1000;font-size:12px}
+.cxVisualContextBar.map .cxVisualContextIcon,.cxVisualContextBar.route .cxVisualContextIcon{background:#eaf3ff;color:#1f63b5}.cxVisualContextBar.doctor .cxVisualContextIcon,.cxVisualContextBar.forbidden .cxVisualContextIcon{background:#fff0f0;color:#a62323}.cxVisualContextBar.reader .cxVisualContextIcon{background:#fff6dc;color:#9a6a00}.cxVisualContextBar.test .cxVisualContextIcon{background:#f1edff;color:#6750a4}
+.cxVisualContextBar b{display:block;font-size:18px;line-height:1.08;color:#14211b}.cxVisualContextBar span{display:block;margin-top:4px;color:#52695d;font-weight:850;line-height:1.25}
+.cxHomeTiles,.humanPanel,.section,.cityInfo,.medical-help,.readerPhotoGuide,.cxAlwaysOrient,.cxFinalGlossary{scroll-margin-top:132px}
+.cxHomeTiles{background:#fff;border:1px solid #d7e5da;border-radius:22px;padding:14px;box-shadow:0 14px 34px rgba(20,33,27,.10)}
+.cxHomeHead{align-items:flex-start!important;margin-bottom:14px!important}.cxHomeHead b{font-size:25px!important}.cxHomeHead span{text-align:left!important;font-size:14px!important}
+.cxTileGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}
+.cxHomeTile{position:relative;overflow:hidden;border-radius:20px!important;min-height:138px!important;padding:15px!important;border-width:2px!important;box-shadow:0 12px 28px rgba(20,33,27,.09)!important;justify-content:flex-start!important}
+.cxHomeTile:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:#0f5f3f}
+.cxHomeTile.map:before,.cxHomeTile.city:before{background:#1f63b5}.cxHomeTile.warehouse:before,.cxHomeTile.reader:before{background:#b47a00}.cxHomeTile.greenhouse:before,.cxHomeTile.contacts:before{background:#0f6a43}.cxHomeTile.doctor:before,.cxHomeTile.forbidden:before{background:#a62323}.cxHomeTile.testTile:before{background:#6750a4}
+.cxHomeTileIcon{width:50px!important;height:50px!important;border-radius:17px!important}.cxHomeTileIcon svg{width:27px!important;height:27px!important}
+.cxHomeTile b{font-size:18px!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.cxHomeTile span{font-size:13px!important;line-height:1.25!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cxHomeFoot{border-radius:18px!important;padding:13px 14px!important}
+.mapbtn,.medicalBtn,.cityLink,.cityCopyBtn,.examStartBtn,.examSendBtn,.examUtilityBtn,.readerPhotoOpen,.cxCityQuick a,.cxCityQuick button,.brigadierActions a,.placeBtn,.stage,.company,.modebtn,.readerBtn,.humanChoice,.cxFinalSetupSave{min-height:56px!important;border-radius:16px!important;font-weight:950!important}
+.section,.card,.step,.humanPanel,.readerQuickBox,.readerPhotoGuide,.cxAOCard,.cxFinalSetup,.cxFinalGlossary,.cityCard,.brigadierCard{border-radius:18px!important}
+.step{box-shadow:0 8px 22px rgba(20,33,27,.07)!important}.num{box-shadow:0 5px 14px rgba(15,95,63,.18)}
+.visual,.readerPhotoCard,figure.card{border-radius:18px!important;overflow:hidden!important;border:1px solid #d7e5da!important;background:#fff!important;box-shadow:0 10px 26px rgba(20,33,27,.08)!important}
+.visual img,.readerPhotoCard img,figure.card img{display:block;width:100%;height:auto;border-radius:14px!important}
+.readerFlow{gap:9px!important}.readerFlowStep{border-radius:16px!important;min-height:58px!important}.readerPhotoHead{border-radius:18px!important}.readerPhotoGrid{gap:12px!important}
+.cxAOEntries{grid-auto-flow:unset!important;grid-auto-columns:unset!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;overflow-x:visible!important;max-width:100%!important;gap:6px!important;padding-bottom:0!important}
+.cxAOEntry{min-width:0!important;min-height:104px!important;padding:6px!important;border-radius:16px!important}
+.cxAOEntry b{font-size:12px!important;min-height:30px!important;border-radius:11px!important;line-height:1.05!important}.cxAORows{grid-template-columns:1fr!important;gap:4px!important}
+.cxAORow{font-size:10.5px!important;min-height:28px!important;padding:4px 2px!important;border-radius:9px!important}
+.cxAOPassage{grid-template-columns:1fr 74px 1fr!important}.cxAOWorkSide{min-height:122px!important}.cxAOMemory{font-size:15px!important}
+.guideTop{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important;overflow:visible!important}
+.guidePill{min-width:0!important;width:auto!important;font-size:12px!important;padding:9px 5px!important;text-align:center!important}
+.progressWrap{grid-column:1/-1!important;width:100%!important;min-width:0!important}
+@media(max-width:900px){.cxTileGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:760px){
+ .app{padding:0 10px 28px!important}
+ .top{position:sticky!important;top:0!important;z-index:90!important;margin:0 -10px!important}
+ .topin{padding:8px 112px 8px 10px!important}
+ .brand h1{font-size:14px!important}.brand .small{font-size:11px!important}
+ .appTabsShell{top:58px!important;margin-left:0!important;margin-right:0!important}
+ .appTab{min-width:104px!important;min-height:52px!important;font-size:12px!important}
+ .cxVisualContextBar{grid-template-columns:44px 1fr;padding:10px;border-radius:16px}.cxVisualContextIcon{width:44px;height:44px;border-radius:14px}.cxVisualContextBar b{font-size:17px}.cxVisualContextBar span{font-size:13px}
+ .cxHomeTiles{margin:10px 0 0!important;padding:12px!important;border-radius:20px!important}.cxHomeHead{display:block!important}.cxHomeHead b{font-size:22px!important}.cxHomeHead span{display:block;margin-top:5px;max-width:none!important}
+ .cxTileGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .cxHomeTile{height:132px!important;min-height:132px!important;padding:13px!important;border-radius:18px!important;gap:8px!important}.cxHomeTileIcon{width:42px!important;height:42px!important;border-radius:15px!important}.cxHomeTileIcon svg{width:23px!important;height:23px!important}.cxHomeTile b{font-size:16px!important}.cxHomeTile span{font-size:12px!important}.cxHomeFoot{font-size:13px!important}
+ .modegrid,.readerTabs,.placeGrid,.stagegrid,.companygrid,.cityActions,.examSendGrid,.brigadierActions{grid-template-columns:1fr!important}
+ .visual img,.readerPhotoCard img{max-height:68vh!important;object-fit:contain!important}
+ .cxAOWhole{grid-template-columns:1fr 40px 1fr!important}.cxAORoad{font-size:10px!important}.cxAOSide{min-height:128px!important}.cxAOSide strong{font-size:16px!important}.cxAONaves i{font-size:10px!important;padding:5px 1px!important}
+ .cxAOPassage{grid-template-columns:1fr!important}.cxAOPerson{min-height:72px!important}
+}
+@media(max-width:380px){
+ .topin{padding-right:96px!important}.brand h1{font-size:13px!important}.logo{width:34px!important;height:34px!important}
+ .cxTileGrid{gap:8px!important}.cxHomeTile{height:124px!important;min-height:124px!important;padding:11px!important}.cxHomeTileIcon{width:38px!important;height:38px!important}.cxHomeTile b{font-size:15px!important}.cxHomeTile span{font-size:11.5px!important}
+ .cxAOEntries{gap:4px!important}.cxAOEntry{padding:4px!important;min-height:96px!important}.cxAOEntry b{font-size:10.5px!important}.cxAORow{font-size:9.5px!important}.appTab{min-width:96px!important}
+}
+</style>
+<script id="cxVisualMasterPatch">
+(function(){
+ if(window.cxVisualMasterLoaded)return;window.cxVisualMasterLoaded=true;
+ function langNow(){try{return String(lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return String(localStorage.cx_lang||'PL').toUpperCase()}}
+ function tabNow(){try{return String(appTab||localStorage.cx_appTab||'home')}catch(e){return String(localStorage.cx_appTab||'home')}}
+ function areaNow(){try{return String(profileArea||localStorage.cx_profile_area||'greenhouse')}catch(e){return String(localStorage.cx_profile_area||'greenhouse')}}
+ function dict(){var d={
+  PL:{home:['Start','Wybierz jeden kafelek. Zobaczysz tylko potrzebne informacje.'],route:['Mapa','Wybierz miejsce i otwórz trasę w Google Maps.'],greenhouse:['Szklarnia','Orientacja, strona lewa/prawa, rzędy i zasady pracy.'],warehouse:['Magazyn','Mapa, wejście, tablet i zasady. Bez readera.'],reader:['Reader','Odbijaj dokładnie: start, czynność, przerwa, koniec.'],doctor:['Lekarz','Przychodnia, SOR, dentysta i numery telefonu.'],contacts:['Kontakty','Najpierw wybierz E1-E6, potem zadzwoń albo napisz WhatsApp.'],forbidden:['Zakazy','Rzeczy, których nie wolno wnosić do pracy.'],test:['Test','Jeden test po szkoleniu. Wynik wyślij wiadomością.']},
+  EN:{home:['Start','Choose one tile. You will see only what you need.'],route:['Map','Choose a place and open directions in Google Maps.'],greenhouse:['Greenhouse','Orientation, left/right side, rows and work rules.'],warehouse:['Warehouse','Map, entrance, tablet and rules. No reader.'],reader:['Reader','Register correctly: start, activity, break and end.'],doctor:['Doctor','Clinic, ER, dentist and phone numbers.'],contacts:['Contacts','Choose E1-E6 first, then call or write on WhatsApp.'],forbidden:['Prohibitions','Things that must not be brought to work.'],test:['Test','One test after training. Send the result by message.']},
+  UA:{home:['Старт','Оберіть один блок. Ви побачите тільки потрібну інформацію.'],route:['Карта','Оберіть місце і відкрийте маршрут у Google Maps.'],greenhouse:['Теплиця','Орієнтація, ліва/права сторона, ряди і правила роботи.'],warehouse:['Склад','Карта, вхід, планшет і правила. Без рідера.'],reader:['Рідер','Відмічайте правильно: старт, діяльність, перерва, кінець.'],doctor:['Лікар','Поліклініка, SOR, стоматолог і телефони.'],contacts:['Контакти','Спочатку оберіть E1-E6, потім дзвоніть або пишіть WhatsApp.'],forbidden:['Заборони','Речі, які не можна приносити на роботу.'],test:['Тест','Один тест після навчання. Результат надішліть повідомленням.']},
+  RU:{home:['Старт','Выберите один блок. Вы увидите только нужную информацию.'],route:['Карта','Выберите место и откройте маршрут в Google Maps.'],greenhouse:['Теплица','Ориентация, левая/правая сторона, ряды и правила работы.'],warehouse:['Склад','Карта, вход, планшет и правила. Без ридера.'],reader:['Ридер','Отмечайте правильно: старт, деятельность, перерыв, конец.'],doctor:['Врач','Поликлиника, SOR, стоматолог и телефоны.'],contacts:['Контакты','Сначала выберите E1-E6, потом звоните или пишите WhatsApp.'],forbidden:['Запреты','Вещи, которые нельзя приносить на работу.'],test:['Тест','Один тест после обучения. Результат отправьте сообщением.']},
+  AZ:{home:['Start','Bir blok seçin. Yalnız lazım olan məlumat görünəcək.'],route:['Xəritə','Yeri seçin və Google Maps-da marşrutu açın.'],greenhouse:['İstixana','Orientasiya, sol/sağ tərəf, sıralar və iş qaydaları.'],warehouse:['Anbar','Xəritə, giriş, planşet və qaydalar. Reader yoxdur.'],reader:['Reader','Düzgün qeyd edin: start, fəaliyyət, fasilə, son.'],doctor:['Həkim','Klinika, SOR, stomatoloq və telefonlar.'],contacts:['Kontaktlar','Əvvəl E1-E6 seçin, sonra zəng edin və ya WhatsApp yazın.'],forbidden:['Qadağalar','İşə gətirmək olmaz.'],test:['Test','Təlimdən sonra bir test. Nəticəni mesajla göndərin.']}
+ };return d[langNow()]||d.PL}
+ function moduleKey(){var t=tabNow();if(t==='route')return'route';if(t==='reader')return'reader';if(t==='test')return'test';if(t==='contacts')return'contacts';if(t==='greenhouse')return areaNow()==='warehouse'?'warehouse':'greenhouse';var n='';try{n=String(needMode||'')}catch(e){}if(n==='help')return'doctor';if(n==='forbidden')return'forbidden';return t==='home'?'home':t}
+ function code(k){return{route:'MAP',greenhouse:'SZK',warehouse:'MAG',reader:'RID',doctor:'112',contacts:'TEL',forbidden:'NIE',test:'TEST',home:'GO'}[k]||'INFO'}
+ function render(){var shell=document.querySelector('.appTabsShell')||document.querySelector('.humanPanel')||document.querySelector('.section');if(!shell)return;var key=moduleKey();var bar=document.getElementById('cxVisualContextBar');if(key==='home'){if(bar)bar.remove();return}var tr=dict()[key]||dict().home;if(!bar){bar=document.createElement('div');bar.id='cxVisualContextBar';shell.insertAdjacentElement('afterend',bar)}bar.className='cxVisualContextBar '+key;bar.innerHTML='<div class="cxVisualContextIcon">'+code(key)+'</div><div><b>'+tr[0]+'</b><span>'+tr[1]+'</span></div>'}
+ var oldApply=window.apply;if(typeof oldApply==='function'&&!window.cxVisualMasterApplyWrapped){window.cxVisualMasterApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(render,0);setTimeout(render,180);return r}}
+ document.addEventListener('DOMContentLoaded',render);document.addEventListener('click',function(){setTimeout(render,80)},true);document.addEventListener('change',function(){setTimeout(render,80)},true);setTimeout(render,0);setTimeout(render,800);
+})();
+</script><nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
