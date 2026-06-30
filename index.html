@@ -5178,4 +5178,95 @@ body.cxPhotoOpen{overflow:hidden}
  var oldApply=window.apply;if(typeof oldApply==='function'&&!window.cxVisualFlowBoostApplyWrapped){window.cxVisualFlowBoostApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(run,0);setTimeout(run,300);return r}}
  document.addEventListener('DOMContentLoaded',run);document.addEventListener('click',function(){setTimeout(run,120)},true);document.addEventListener('change',function(){setTimeout(run,120)},true);setTimeout(run,0);setTimeout(run,900);
 })();
+</script>
+<style id="cxGreenhouseHumanV2Css">
+/* Final greenhouse orientation: replaces the older confusing map inside the visible training panel. */
+.cxAlwaysOrient.cxGHV2Ready{display:grid!important;gap:12px!important;margin:12px 0!important;color:#173b2a!important}
+.cxAlwaysOrient.cxGHV2Ready *{box-sizing:border-box;min-width:0}
+.cxAlwaysOrient.cxGHV2Ready .cxInlineZoom{display:none!important}
+.cxGHV2Hero{background:#0f5f3f;color:#fff;border-radius:22px;padding:15px;box-shadow:0 14px 30px rgba(15,95,63,.22)}
+.cxGHV2Hero small{display:inline-block;background:#f3c84c;color:#2f2300;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:1000;text-transform:uppercase}
+.cxGHV2Hero h3{margin:10px 0 6px!important;color:#fff!important;font-size:25px!important;line-height:1.04!important}
+.cxGHV2Hero p{margin:0!important;color:#eaf8ef!important;font-size:15px!important;font-weight:900!important;line-height:1.28!important}
+.cxGHV2Result{background:#111f18;color:#fff;border:3px solid #f3c84c;border-radius:20px;padding:13px}
+.cxGHV2Result b{display:block;font-size:23px;line-height:1.08}.cxGHV2Result span{display:block;margin-top:8px;color:#e8f7ee;font-size:16px;font-weight:950;line-height:1.24}
+.cxGHV2Card{background:#fff;border:2px solid #d7e5da;border-radius:20px;padding:12px;box-shadow:0 12px 24px rgba(15,40,27,.08)}
+.cxGHV2Card h4{margin:0 0 6px!important;color:#173b2a!important;font-size:20px!important;line-height:1.1!important}
+.cxGHV2Card p{margin:0 0 10px!important;color:#52695d!important;font-size:14px!important;font-weight:900!important;line-height:1.28!important}
+.cxGHV2Human{display:grid!important;grid-template-columns:1fr 82px 1fr;gap:8px;align-items:stretch}
+.cxGHV2Hand,.cxGHV2Person{border-radius:18px;min-height:92px;padding:10px;display:grid;place-items:center;text-align:center;font-weight:1000;line-height:1.12}
+.cxGHV2Hand.left{background:#d9ebff;border:3px solid #2a75c9;color:#073a72}.cxGHV2Hand.right{background:#dff7e8;border:3px solid #0f8a55;color:#075536}
+.cxGHV2Person{background:#173b2a;color:#fff;border:3px solid #0b2719;font-size:12px}
+.cxGHV2PersonIcon{position:relative;width:40px;height:54px;margin:0 auto 5px}
+.cxGHV2PersonIcon:before{content:"";position:absolute;left:10px;top:0;width:18px;height:18px;border-radius:50%;background:#f3c84c}
+.cxGHV2PersonIcon:after{content:"";position:absolute;left:6px;top:20px;width:28px;height:30px;border-radius:13px 13px 8px 8px;background:#fff}
+.cxGHV2Whole{display:grid!important;grid-template-columns:1fr 44px 1fr!important;gap:7px!important;align-items:stretch!important}
+.cxGHV2Side{border-radius:18px;padding:10px;text-align:center;font-weight:1000;display:grid;gap:7px;align-content:space-between;min-height:156px}
+.cxGHV2Side.left{background:#e6f1ff;border:3px solid #2a75c9;color:#073a72}.cxGHV2Side.right{background:#e2f8ea;border:3px solid #0f8a55;color:#075536}
+.cxGHV2Side strong{font-size:21px;line-height:1.03}.cxGHV2Side span{font-size:12px;line-height:1.12}
+.cxGHV2Naves{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.cxGHV2Naves i{font-style:normal;background:#fff;border:1px solid rgba(0,0,0,.13);border-radius:9px;padding:6px 1px;font-size:12px}
+.cxGHV2Road{background:#173b2a;color:#fff;border-radius:16px;display:grid;place-items:center;text-align:center;font-size:11px;font-weight:1000;line-height:1.05;padding:5px;writing-mode:vertical-rl;text-orientation:mixed}
+.cxGHV2Stand{margin-top:10px;background:#fff8df;border:3px solid #f3c84c;border-radius:17px;padding:10px;color:#3e2c00;font-size:15px;font-weight:1000;line-height:1.28}
+.cxGHV2Entries{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:6px!important;max-width:100%!important}
+.cxGHV2Entry{border:2px solid #d7e5da;background:#f8fcfa;border-radius:16px;padding:6px;display:grid;gap:5px;min-height:126px}
+.cxGHV2Entry.active{border-color:#0f5f3f;background:#eef8f2;box-shadow:0 10px 22px rgba(15,95,63,.16)}
+.cxGHV2Entry b{display:grid;place-items:center;min-height:32px;background:#173b2a;color:#fff;border-radius:12px;font-size:13px;line-height:1.05;text-align:center}
+.cxGHV2Row{display:grid;place-items:center;min-height:34px;border-radius:11px;padding:5px 2px;text-align:center;font-weight:1000;font-size:11px;line-height:1.06}
+.cxGHV2Row.left{background:#d9ebff;color:#073a72}.cxGHV2Row.right{background:#dff7e8;color:#075536}
+.cxGHV2Entry.active .cxGHV2Row.selected{background:#111f18!important;color:#fff!important;box-shadow:inset 0 0 0 3px #f3c84c}
+.cxGHV2Passage{display:grid!important;grid-template-columns:1fr 70px 1fr!important;gap:7px;align-items:stretch}
+.cxGHV2WorkSide{border:3px solid transparent;border-radius:18px;min-height:116px;display:grid;place-items:center;text-align:center;padding:8px;font-weight:1000;line-height:1.08}
+.cxGHV2WorkSide strong{display:block;font-size:20px}.cxGHV2WorkSide span{display:block;margin-top:6px;font-size:14px}
+.cxGHV2WorkSide.viewRight{background:#dff7e8;color:#075536;border-color:#0f8a55}.cxGHV2WorkSide.viewLeft{background:#d9ebff;color:#073a72;border-color:#2a75c9}
+.cxGHV2WorkSide.active{background:#111f18!important;color:#fff!important;border-color:#f3c84c!important}
+.cxGHV2Walk{background:#173b2a;color:#fff;border-radius:18px;display:grid;place-items:center;text-align:center;padding:7px;font-size:11px;font-weight:1000;line-height:1.05}
+.cxGHV2Walk span:last-child{writing-mode:vertical-rl;text-orientation:mixed}
+.cxGHV2Spans{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-top:8px}
+.cxGHV2Spans span{background:#fff8df;border:1px dashed #d4b14e;border-radius:10px;text-align:center;padding:7px 2px;color:#4a3510;font-size:11px;font-weight:1000}
+.cxGHV2Memory{background:#fff8df;border-left:7px solid #f3c84c;border-radius:17px;padding:11px;color:#3e2c00;font-size:15px;font-weight:1000;line-height:1.28}
+@media(max-width:380px){
+ .cxGHV2Hero h3{font-size:22px!important}.cxGHV2Result b{font-size:20px}.cxGHV2Result span{font-size:15px}
+ .cxGHV2Human{grid-template-columns:1fr}.cxGHV2Hand,.cxGHV2Person{min-height:68px}
+ .cxGHV2Whole{grid-template-columns:1fr 36px 1fr!important}.cxGHV2Side{min-height:132px;padding:8px}.cxGHV2Side strong{font-size:18px}.cxGHV2Naves i{font-size:10px}
+ .cxGHV2Entries{gap:4px!important}.cxGHV2Entry{padding:4px;min-height:112px}.cxGHV2Entry b{font-size:11px}.cxGHV2Row{font-size:10px}
+ .cxGHV2Passage{grid-template-columns:1fr!important}.cxGHV2Walk{min-height:48px}.cxGHV2Walk span:last-child{writing-mode:horizontal-tb}.cxGHV2WorkSide{min-height:82px}
+}
+</style>
+<script id="cxGreenhouseHumanV2Patch">
+(function(){
+ if(window.cxGreenhouseHumanV2Loaded)return;window.cxGreenhouseHumanV2Loaded=true;
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function langNow(){try{return String(lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return String(localStorage.cx_lang||'PL').toUpperCase()}}
+ function tx(){var d={
+  PL:{badge:'Orientacja',title:'Szklarnia: widok dla człowieka',lead:'Najpierw ustaw ciało, potem patrz na całą szklarnię, jedną nawę i wejście do rzędu.',result:'Twoje miejsce',go:'Idź do',nave:'Nawa',entry:'Wejście',side:'strona',left:'Lewa',right:'Prawa',row:'rząd',human:'1. Najpierw ustaw ciało',humanLead:'Stań plecami do pierwszych naw, czyli tam gdzie zaczyna się numeracja.',you:'TY',back:'plecami do nawy 1',whole:'2. Cała szklarnia z góry',wholeLead:'Po środku jest wspólna droga / łącznik. Po lewej jest lewa strona, po prawej prawa strona. Nie pokazujemy wszystkich naw, bo w szklarni może być 37, 38 albo 39.',start:'początek: nawa 1',many:'... 37 / 38 / 39',road:'wspólna droga',stand:'Lewa ręka = lewa strona szklarni. Prawa ręka = prawa strona szklarni.',one:'3. Jedna nawa',oneLead:'W jednej nawie wejścia 1-5 są obok siebie w jednej linii. Każde wejście ma 2 rzędy, razem 10 rzędów.',pass:'4. Wejście / rząd',passLead:'To widok po wejściu w długi rząd. Strony w tym widoku są zamienione: po lewej widzisz prawą stronę pracy, po prawej lewą.',walk:'wchodzisz',span:'przęsło',memory:'Zapamiętaj: strona szklarni -> numer nawy -> wejście 1-5 -> strona pracy -> przęsło. Praca jest w rzędzie, nie obok rzędu.'},
+  EN:{badge:'Orientation',title:'Greenhouse: human view',lead:'First set your body, then look at the whole greenhouse, one nave and the row entrance.',result:'Your place',go:'Go to',nave:'Nave',entry:'Entrance',side:'side',left:'Left',right:'Right',row:'row',human:'1. Set your body first',humanLead:'Stand with your back to the first naves, where numbering starts.',you:'YOU',back:'back to nave 1',whole:'2. Whole greenhouse from above',wholeLead:'The common road / connector is in the middle. Left side is on the left, right side is on the right. We do not show all naves because a greenhouse can have 37, 38 or 39.',start:'start: nave 1',many:'... 37 / 38 / 39',road:'common road',stand:'Left hand = left greenhouse side. Right hand = right greenhouse side.',one:'3. One nave',oneLead:'In one nave, entrances 1-5 are side by side in one line. Each entrance has 2 rows, 10 rows in total.',pass:'4. Entrance / row',passLead:'This is the view after entering the long row. In this view the sides are reversed: on the left you see the right work side, on the right the left side.',walk:'you enter',span:'span',memory:'Remember: greenhouse side -> nave number -> entrance 1-5 -> work side -> span. Work is in the row, not next to the row.'},
+  UA:{badge:'Орієнтація',title:'Теплиця: вигляд для людини',lead:'Спочатку поставте тіло правильно, потім дивіться на всю теплицю, одну наву і вхід до ряду.',result:'Ваше місце',go:'Ідіть до',nave:'Нава',entry:'Вхід',side:'сторона',left:'Ліва',right:'Права',row:'ряд',human:'1. Спочатку поставте тіло',humanLead:'Станьте спиною до перших нав, там де починається нумерація.',you:'ВИ',back:'спиною до нави 1',whole:'2. Вся теплиця зверху',wholeLead:'Посередині є спільна дорога / з’єднання. Зліва ліва сторона, справа права сторона. Не показуємо всі нави, бо в теплиці може бути 37, 38 або 39.',start:'початок: нава 1',many:'... 37 / 38 / 39',road:'спільна дорога',stand:'Ліва рука = ліва сторона теплиці. Права рука = права сторона теплиці.',one:'3. Одна нава',oneLead:'В одній наві входи 1-5 стоять поруч в одній лінії. Кожен вхід має 2 ряди, разом 10 рядів.',pass:'4. Вхід / ряд',passLead:'Це вигляд після входу в довгий ряд. У цьому вигляді сторони змінені: зліва ви бачите праву сторону роботи, справа ліву.',walk:'заходите',span:'проліт',memory:'Запам’ятайте: сторона теплиці -> номер нави -> вхід 1-5 -> сторона роботи -> проліт. Робота в ряду, не біля ряду.'},
+  RU:{badge:'Ориентация',title:'Теплица: вид для человека',lead:'Сначала поставьте тело правильно, потом смотрите на всю теплицу, одну наву и вход в ряд.',result:'Ваше место',go:'Идите в',nave:'Нава',entry:'Вход',side:'сторона',left:'Левая',right:'Правая',row:'ряд',human:'1. Сначала поставьте тело',humanLead:'Встаньте спиной к первым навам, там где начинается нумерация.',you:'ВЫ',back:'спиной к наве 1',whole:'2. Вся теплица сверху',wholeLead:'Посередине общая дорога / соединение. Слева левая сторона, справа правая сторона. Не показываем все навы, потому что в теплице может быть 37, 38 или 39.',start:'начало: нава 1',many:'... 37 / 38 / 39',road:'общая дорога',stand:'Левая рука = левая сторона теплицы. Правая рука = правая сторона теплицы.',one:'3. Одна нава',oneLead:'В одной наве входы 1-5 стоят рядом в одной линии. Каждый вход имеет 2 ряда, всего 10 рядов.',pass:'4. Вход / ряд',passLead:'Это вид после входа в длинный ряд. В этом виде стороны поменяны: слева вы видите правую сторону работы, справа левую.',walk:'входите',span:'пролёт',memory:'Запомните: сторона теплицы -> номер навы -> вход 1-5 -> сторона работы -> пролёт. Работа в ряду, не возле ряда.'},
+  AZ:{badge:'Orientasiya',title:'Istixana: insan ucun gorunus',lead:'Evvel beden istiqametini duz tutun, sonra butun istixanaya, bir navaya ve siraya girise baxin.',result:'Sizin yeriniz',go:'Gedin',nave:'Nava',entry:'Giris',side:'teref',left:'Sol',right:'Sag',row:'sira',human:'1. Evvel beden istiqameti',humanLead:'Nomrelemenin basladigi ilk navalara arxanizla durun.',you:'SIZ',back:'nava 1-e arxa ile',whole:'2. Butun istixana yuxaridan',wholeLead:'Ortada umumi yol / baglanti var. Solda sol teref, sagda sag teref var. Bütün navaları göstərmirik, çünki istixanada 37, 38 və ya 39 ola bilər.',start:'baslangic: nava 1',many:'... 37 / 38 / 39',road:'umumi yol',stand:'Sol el = istixananin sol terefi. Sag el = istixananin sag terefi.',one:'3. Bir nava',oneLead:'Bir navada 1-5 girisler yan-yana bir xetdedir. Her girisde 2 sira var, cemi 10 sira.',pass:'4. Giris / sira',passLead:'Bu uzun siraya girdikden sonraki gorunusdur. Bu gorunusde terefler deyisir: solda sag is terefi, sagda sol teref.',walk:'girirsiniz',span:'bolme',memory:'Yadda saxlayin: istixana terefi -> nava nomresi -> giris 1-5 -> is terefi -> bolme. Is siradadir, siranin yaninda deyil.'}
+ };return d[langNow()]||d.PL}
+ function vals(){var box=document.getElementById('cxGreenCalc'),s=box?[].slice.call(box.querySelectorAll('select')):[];return {n:s[0]?s[0].value:'1',e:s[1]?s[1].value:'1',side:s[2]?s[2].value:'right'}}
+ function pair(e){var a=(Number(e)-1)*2+1;return [a,a+1]}
+ function entries(m,v,isLeft){var h='';for(var i=1;i<=5;i++){var r=pair(i),a=String(i)===String(v.e);h+='<div class="cxGHV2Entry '+(a?'active':'')+'"><b>'+esc(m.entry)+' '+i+'</b><div class="cxGHV2Row left '+(a&&isLeft?'selected':'')+'">'+esc(m.left)+'<br>'+esc(m.row)+' '+r[0]+'</div><div class="cxGHV2Row right '+(a&&!isLeft?'selected':'')+'">'+esc(m.right)+'<br>'+esc(m.row)+' '+r[1]+'</div></div>'}return h}
+ function render(){
+  var panel=document.getElementById('cxFinalOrientationAlways'),box=document.getElementById('cxGreenCalc');if(!box)return;
+  if(!panel){panel=document.createElement('section');panel.id='cxFinalOrientationAlways';panel.className='cxAlwaysOrient';var form=box.querySelector('.cxCalcForm');if(form&&form.parentNode)form.parentNode.insertBefore(panel,form.nextSibling);else box.appendChild(panel)}
+  var m=tx(),v=vals(),rows=pair(v.e),isLeft=v.side==='left',sideName=isLeft?m.left:m.right,row=isLeft?rows[0]:rows[1],key=langNow()+'|'+v.n+'|'+v.e+'|'+v.side+'|v2';
+  if(panel.getAttribute('data-ghv2-key')===key&&panel.querySelector('.cxGHV2Hero'))return;
+  panel.setAttribute('data-ghv2-key',key);panel.className='cxAlwaysOrient cxGHV2Ready';
+  var naves='<i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>'+esc(m.many)+'</i>';
+  panel.innerHTML='<div class="cxGHV2Hero"><small>'+esc(m.badge)+'</small><h3>'+esc(m.title)+'</h3><p>'+esc(m.lead)+'</p></div>'+
+   '<div class="cxGHV2Result"><b>'+esc(m.go)+': '+esc(m.nave)+' '+esc(v.n)+' / '+esc(m.entry)+' '+esc(v.e)+' / '+esc(sideName)+' '+esc(m.side)+'</b><span>'+esc(m.result)+': '+esc(m.row)+' '+row+'. '+esc(m.left)+' = '+esc(m.row)+' '+rows[0]+', '+esc(m.right)+' = '+esc(m.row)+' '+rows[1]+'.</span></div>'+
+   '<div class="cxGHV2Card"><h4>'+esc(m.human)+'</h4><p>'+esc(m.humanLead)+'</p><div class="cxGHV2Human"><div class="cxGHV2Hand left">'+esc(m.left).toUpperCase()+'</div><div class="cxGHV2Person"><div><div class="cxGHV2PersonIcon"></div><strong>'+esc(m.you)+'</strong><br><span>'+esc(m.back)+'</span></div></div><div class="cxGHV2Hand right">'+esc(m.right).toUpperCase()+'</div></div></div>'+
+   '<div class="cxGHV2Card"><h4>'+esc(m.whole)+'</h4><p>'+esc(m.wholeLead)+'</p><div class="cxGHV2Whole"><div class="cxGHV2Side left"><strong>'+esc(m.left).toUpperCase()+'</strong><span>'+esc(m.start)+'</span><div class="cxGHV2Naves">'+naves+'</div></div><div class="cxGHV2Road">'+esc(m.road)+'</div><div class="cxGHV2Side right"><strong>'+esc(m.right).toUpperCase()+'</strong><span>'+esc(m.start)+'</span><div class="cxGHV2Naves">'+naves+'</div></div></div><div class="cxGHV2Stand">'+esc(m.stand)+'</div></div>'+
+   '<div class="cxGHV2Card"><h4>'+esc(m.one)+'</h4><p>'+esc(m.oneLead)+'</p><div class="cxGHV2Entries">'+entries(m,v,isLeft)+'</div></div>'+
+   '<div class="cxGHV2Card"><h4>'+esc(m.pass)+'</h4><p>'+esc(m.passLead)+'</p><div class="cxGHV2Passage"><div class="cxGHV2WorkSide viewRight '+(!isLeft?'active':'')+'"><div><strong>'+esc(m.right).toUpperCase()+'</strong><span>'+esc(m.row)+' '+rows[1]+'</span></div></div><div class="cxGHV2Walk"><div><div class="cxGHV2PersonIcon"></div><strong>'+esc(m.you)+'</strong><br><span>'+esc(m.walk)+'</span></div></div><div class="cxGHV2WorkSide viewLeft '+(isLeft?'active':'')+'"><div><strong>'+esc(m.left).toUpperCase()+'</strong><span>'+esc(m.row)+' '+rows[0]+'</span></div></div></div><div class="cxGHV2Spans"><span>'+esc(m.span)+' 1</span><span>2</span><span>3</span><span>...</span><span>27</span></div></div>'+
+   '<div class="cxGHV2Memory">'+esc(m.memory)+'</div>';
+ }
+ var busy=false;function schedule(){if(busy)return;busy=true;setTimeout(function(){busy=false;render()},180)}
+ var oldApply=window.apply;if(typeof oldApply==='function'&&!window.cxGreenhouseHumanV2ApplyWrapped){window.cxGreenhouseHumanV2ApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(schedule,220);setTimeout(schedule,700);return r}}
+ document.addEventListener('DOMContentLoaded',schedule);document.addEventListener('change',function(e){if(e.target&&e.target.closest&&e.target.closest('#cxGreenCalc'))schedule()},true);document.addEventListener('click',function(){setTimeout(schedule,260)},true);
+ try{new MutationObserver(function(muts){for(var i=0;i<muts.length;i++){var t=muts[i].target;if(t&&t.id==='cxFinalOrientationAlways'){schedule();break}}}).observe(document.documentElement,{childList:true,subtree:true})}catch(e){}
+ setTimeout(schedule,0);setTimeout(schedule,900);setTimeout(schedule,1800);
+})();
 </script><nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
