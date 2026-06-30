@@ -4445,4 +4445,65 @@ body.cxHubActive #humanPanel>#cxHomeTiles{display:block!important}
  setTimeout(schedule,0);
 })();
 </script>
+<style id="cxHumanSimpleOrientationCss">
+/* Emergency simplification: orientation must feel like one clear instruction, not a quiz. */
+#cxGreenhouseTopView,#cxOrientCoach,#cxGreenCalc>.cxGreenVisual,#cxGreenCalc>.cxCalcResult{display:none!important}
+#cxGreenHumanOrientation>.cxOrientIntro,
+#cxGreenHumanOrientation>.cxOrientSelected,
+#cxGreenHumanOrientation>.cxOrientCard,
+#cxGreenHumanOrientation>.cxMemoryLine{display:none!important}
+.cxHumanSimpleOrient{display:grid!important;gap:12px;margin-top:12px}
+.cxSimpleResult{border:3px solid #0f5f3f;background:#f2fff6;border-radius:20px;padding:14px;box-shadow:0 14px 30px rgba(15,95,63,.16)}
+.cxSimpleResult small{display:block;color:#0f5f3f;font-weight:950;text-transform:uppercase;letter-spacing:0;font-size:12px;margin-bottom:6px}
+.cxSimpleResult b{display:block;color:#173b2a;font-size:24px;line-height:1.08}
+.cxSimpleResult span{display:block;color:#52695d;font-weight:900;line-height:1.35;margin-top:8px}
+.cxSimpleRule{border-left:6px solid #f3c84c;background:#fff8e8;border-radius:16px;padding:12px;color:#4a3510;font-weight:950;line-height:1.35}
+.cxSimpleDirection{display:grid;grid-template-columns:1fr 82px 1fr;gap:8px;align-items:stretch}
+.cxDirSide,.cxDirPerson{border-radius:18px;min-height:108px;display:grid;place-items:center;text-align:center;padding:10px;font-weight:950;line-height:1.2}
+.cxDirSide.left{background:#eef5ff;border:2px solid #bad7ff;color:#174d8a}
+.cxDirSide.right{background:#eef8f2;border:2px solid #b9ddc6;color:#0f5f3f}
+.cxDirPerson{background:#173b2a;color:#fff;font-size:13px}
+.cxEntryMini{border:1px solid #d7e5da;background:#fff;border-radius:18px;padding:12px;box-shadow:0 10px 24px rgba(15,40,27,.06)}
+.cxEntryMini h4{margin:0 0 8px;color:#173b2a;font-size:18px}
+.cxEntryMiniGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.cxEntryMiniItem{border:1px solid #d7e5da;background:#f8fcfa;border-radius:14px;padding:9px 5px;text-align:center;font-weight:950;color:#173b2a;line-height:1.2;font-size:12px}
+.cxEntryMiniItem.active{background:#0f5f3f;color:#fff;border-color:#0f5f3f;box-shadow:0 10px 22px rgba(15,95,63,.22)}
+.cxEntryMiniItem span{display:block;font-size:11px;margin-top:5px;font-weight:850}
+@media(max-width:620px){.cxSimpleResult b{font-size:21px}.cxSimpleDirection{grid-template-columns:1fr}.cxDirSide,.cxDirPerson{min-height:68px}.cxEntryMiniGrid{grid-template-columns:1fr}.cxEntryMiniItem{min-height:50px}}
+</style>
+<script id="cxHumanSimpleOrientationPatch">
+(function(){
+ if(window.cxHumanSimpleOrientationLoaded)return; window.cxHumanSimpleOrientationLoaded=true;
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function langNow(){try{return String(window.lang||lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return 'PL'}}
+ function txt(){
+  var d={
+   PL:{result:'Twoje miejsce',go:'Id\u017a do',nave:'Nawa',entry:'wej\u015bcie',side:'strona',left:'lewa',right:'prawa',row:'rz\u0105d',rows:'W tym wej\u015bciu',rule:'Najwa\u017cniejsze: sta\u0144 plecami do pierwszych naw. Twoja lewa r\u0119ka to lewa strona, prawa r\u0119ka to prawa strona.',you:'TY',back:'plecami do pierwszych naw',entries:'Wej\u015bcia w jednej nawie'},
+   EN:{result:'Your place',go:'Go to',nave:'Nave',entry:'entrance',side:'side',left:'left',right:'right',row:'row',rows:'In this entrance',rule:'Most important: stand with your back to the first naves. Your left hand is the left side, your right hand is the right side.',you:'YOU',back:'back to first naves',entries:'Entrances in one nave'},
+   UA:{result:'\u0412\u0430\u0448\u0435 \u043c\u0456\u0441\u0446\u0435',go:'\u0406\u0434\u0456\u0442\u044c \u0434\u043e',nave:'\u041d\u0430\u0432\u0430',entry:'\u0432\u0445\u0456\u0434',side:'\u0441\u0442\u043e\u0440\u043e\u043d\u0430',left:'\u043b\u0456\u0432\u0430',right:'\u043f\u0440\u0430\u0432\u0430',row:'\u0440\u044f\u0434',rows:'\u0423 \u0446\u044c\u043e\u043c\u0443 \u0432\u0445\u043e\u0434\u0456',rule:'\u041d\u0430\u0439\u0432\u0430\u0436\u043b\u0438\u0432\u0456\u0448\u0435: \u0441\u0442\u0430\u043d\u044c\u0442\u0435 \u0441\u043f\u0438\u043d\u043e\u044e \u0434\u043e \u043f\u0435\u0440\u0448\u0438\u0445 \u043d\u0430\u0432. \u041b\u0456\u0432\u0430 \u0440\u0443\u043a\u0430 \u2014 \u043b\u0456\u0432\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0430, \u043f\u0440\u0430\u0432\u0430 \u2014 \u043f\u0440\u0430\u0432\u0430.',you:'\u0412\u0418',back:'\u0441\u043f\u0438\u043d\u043e\u044e \u0434\u043e \u043f\u0435\u0440\u0448\u0438\u0445 \u043d\u0430\u0432',entries:'\u0412\u0445\u043e\u0434\u0438 \u0432 \u043e\u0434\u043d\u0456\u0439 \u043d\u0430\u0432\u0456'},
+   RU:{result:'\u0412\u0430\u0448\u0435 \u043c\u0435\u0441\u0442\u043e',go:'\u0418\u0434\u0438\u0442\u0435 \u0432',nave:'\u041d\u0430\u0432\u0430',entry:'\u0432\u0445\u043e\u0434',side:'\u0441\u0442\u043e\u0440\u043e\u043d\u0430',left:'\u043b\u0435\u0432\u0430\u044f',right:'\u043f\u0440\u0430\u0432\u0430\u044f',row:'\u0440\u044f\u0434',rows:'\u0412 \u044d\u0442\u043e\u043c \u0432\u0445\u043e\u0434\u0435',rule:'\u0413\u043b\u0430\u0432\u043d\u043e\u0435: \u0432\u0441\u0442\u0430\u043d\u044c\u0442\u0435 \u0441\u043f\u0438\u043d\u043e\u0439 \u043a \u043f\u0435\u0440\u0432\u044b\u043c \u043d\u0430\u0432\u0430\u043c. \u041b\u0435\u0432\u0430\u044f \u0440\u0443\u043a\u0430 \u2014 \u043b\u0435\u0432\u0430\u044f \u0441\u0442\u043e\u0440\u043e\u043d\u0430, \u043f\u0440\u0430\u0432\u0430\u044f \u2014 \u043f\u0440\u0430\u0432\u0430\u044f.',you:'\u0412\u042b',back:'\u0441\u043f\u0438\u043d\u043e\u0439 \u043a \u043f\u0435\u0440\u0432\u044b\u043c \u043d\u0430\u0432\u0430\u043c',entries:'\u0412\u0445\u043e\u0434\u044b \u0432 \u043e\u0434\u043d\u043e\u0439 \u043d\u0430\u0432\u0435'},
+   AZ:{result:'Sizin yeriniz',go:'Gedin',nave:'Nava',entry:'giris',side:'teref',left:'sol',right:'sag',row:'sira',rows:'Bu girisde',rule:'En vacib: ilk navalara arxanizla durun. Sol el sol terefdir, sag el sag terefdir.',you:'SIZ',back:'ilk navalara arxa ile',entries:'Bir navada girisler'}
+  };
+  return d[langNow()]||d.PL;
+ }
+ function values(){var box=document.getElementById('cxGreenCalc'),s=box?[].slice.call(box.querySelectorAll('select')):[];return {n:s[0]?s[0].value:'1',e:s[1]?s[1].value:'1',side:s[2]?s[2].value:'right'}}
+ function pair(e){var a=(Number(e)-1)*2+1;return [a,a+1]}
+ function render(){
+  try{localStorage.cx_orient_focus='0';localStorage.cx_lr_help='0'}catch(e){}
+  var panel=document.getElementById('cxGreenHumanOrientation'),box=document.getElementById('cxGreenCalc'); if(!box)return;
+  if(!panel){panel=document.createElement('section');panel.id='cxGreenHumanOrientation';panel.className='cxOrientHuman';box.appendChild(panel)}
+  panel.classList.remove('cxOrientFocus');
+  var t=txt(),v=values(),rows=pair(v.e),sideName=v.side==='left'?t.left:t.right,row=v.side==='left'?rows[0]:rows[1];
+  var simple=document.getElementById('cxOrientHumanSimple'); if(!simple){simple=document.createElement('section');simple.id='cxOrientHumanSimple';simple.className='cxHumanSimpleOrient';panel.insertBefore(simple,panel.firstChild)}
+  var key=langNow()+'|'+v.n+'|'+v.e+'|'+v.side; if(simple.getAttribute('data-key')===key)return; simple.setAttribute('data-key',key);
+  var entries=[1,2,3,4,5].map(function(i){var r=pair(i);return '<div class="cxEntryMiniItem '+(String(i)===String(v.e)?'active':'')+'">'+esc(t.entry)+' '+i+'<span>'+esc(t.left)+' '+r[0]+' / '+esc(t.right)+' '+r[1]+'</span></div>'}).join('');
+  simple.innerHTML='<div class="cxSimpleResult"><small>'+esc(t.result)+'</small><b>'+esc(t.go)+': '+esc(t.nave)+' '+esc(v.n)+' / '+esc(t.entry)+' '+esc(v.e)+' / '+esc(sideName)+' '+esc(t.side)+'</b><span>'+esc(t.rows)+': '+esc(t.left)+' = '+esc(t.row)+' '+rows[0]+', '+esc(t.right)+' = '+esc(t.row)+' '+rows[1]+'. '+esc(t.result)+': '+esc(t.row)+' '+row+'.</span></div><div class="cxSimpleRule">'+esc(t.rule)+'</div><div class="cxSimpleDirection"><div class="cxDirSide left">'+esc(t.left).toUpperCase()+'</div><div class="cxDirPerson">'+esc(t.you)+'<br>'+esc(t.back)+'</div><div class="cxDirSide right">'+esc(t.right).toUpperCase()+'</div></div><div class="cxEntryMini"><h4>'+esc(t.entries)+'</h4><div class="cxEntryMiniGrid">'+entries+'</div></div>';
+ }
+ var busy=false;function schedule(){if(busy)return;busy=true;setTimeout(function(){busy=false;render()},80)}
+ document.addEventListener('DOMContentLoaded',schedule);
+ document.addEventListener('change',function(e){if(e.target&&e.target.closest&&e.target.closest('#cxGreenCalc'))schedule()},true);
+ try{new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true})}catch(e){}
+ setTimeout(schedule,0);
+})();
+</script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
