@@ -869,6 +869,8 @@ function renderModes(x){const items=[['rows',x.workRows],['outside',x.workOutsid
 const WAREHOUSE_LABELS={PL:['Magazyn / sortownia','Wejście dla personelu - tutaj nie ma Readera'],EN:['Warehouse / sorting area','Staff Entrance - no Reader here'],UA:['Склад / сортувальна зона','Вхід для персоналу - тут немає рідера'],RU:['Склад / сортировка','Вход для персонала - здесь нет ридера'],AZ:['Anbar / çeşidləmə','Personal girişi - burada Reader yoxdur']};
 const WAREHOUSE_PHOTO_LABELS={PL:['Budynek magazynu z zewnątrz','Wejście dla personelu - szukaj czerwonej tablicy Citronex'],EN:['Warehouse building from outside','Staff entrance - look for the red Citronex sign'],UA:['Будівля складу ззовні','Вхід для персоналу - шукайте червону табличку Citronex'],RU:['Здание склада снаружи','Вход для персонала - ищите красную табличку Citronex'],AZ:['Anbar binası kənardan','Personal girişi - qırmızı Citronex lövhəsini axtarın']};
 function warehousePhotoLabel(i){const a=WAREHOUSE_PHOTO_LABELS[lang]||WAREHOUSE_PHOTO_LABELS.PL;return a[i]||a[0]}
+function locationPhotoLabel(m,ml,i){if(m.id==='warehouse')return warehousePhotoLabel(i);return `${ml[0]} - foto ${i+1}`}
+function locationPhotosHtml(m,ml){return (m.photos&&m.photos.length)?`<div class="locationPhotoGrid warehousePhotoGrid">${m.photos.map((k,i)=>`<figure><img src="${IMG[k]||k}" alt="${ml[0]} ${i+1}" loading="eager"><figcaption>${locationPhotoLabel(m,ml,i)}</figcaption></figure>`).join('')}</div>`:''}
 function mapLabel(x,m){if(m.id==='warehouse')return WAREHOUSE_LABELS[lang]||WAREHOUSE_LABELS.PL;return (x.mapLabels&&x.mapLabels[m.id])?x.mapLabels[m.id]:[m.name,m.desc]}
 function renderMyPath(x){let m=MAPS.find(v=>v.id===stage)||MAPS[0];let ml=mapLabel(x,m);let arr=[[ml[0],`${x.openMap}: ${ml[1]}`],[x.companies[company][0],x.companies[company][1]]];if(mode==='first')arr=arr.concat(x.firstSteps.slice(0,4));if(mode==='rows')arr=arr.concat(x.readerStart.slice(0,4),x.rows.slice(0,8));if(mode==='outside')arr=arr.concat(x.outside);if(mode==='warehouse')arr=arr.concat(x.warehouseSteps||x.rules.slice(0,3));steps('myPath',arr)}
 
@@ -989,10 +991,10 @@ function renderGuide(x){
  el('guideTop').innerHTML=names.map((n,i)=>`<div class="guidePill ${i===guideStep?'active':''}">${i+1}. ${n}</div>`).join('')+`<div class="progressWrap" style="grid-column:1/-1"><div class="progressLabel"><span>${x.progressText}</span><span>${guideStep+1}/4</span></div><div class="progressBar"><div class="progressFill" style="width:${(guideStep+1)*25}%"></div></div></div>`;
  let m=MAPS.find(v=>v.id===stage)||MAPS[0];let ml=mapLabel(x,m);
  let rows = mode==='rows' ? x.readerStart.slice(0,4).concat(x.rows.slice(0,5)) : mode==='outside' ? x.outside.slice(0,8) : x.firstSteps.slice(0,4);
- const warehousePhotos=(isWarehouse&&m.photos&&m.photos.length)?`<div class="warehousePhotoGrid">${m.photos.map((k,i)=>`<figure><img src="${IMG[k]||k}" alt="${ml[0]} ${i+1}" loading="lazy"><figcaption>${warehousePhotoLabel(i)}</figcaption></figure>`).join('')}</div>`:'';
+ const locationPhotos=locationPhotosHtml(m,ml);
  const simpleItems=isWarehouse?[x.openMap,ml[1],ux('noReaderWarehouseText')]:x.simpleItems;
  let body='';
- if(guideStep===0){body=`<div class="guideCard"><h3>${x.guideStep} 1: ${x.quickMap}</h3><div class="steps">${stepHtml([[ml[0],ml[1]],[x.openMap,ml[1]]])}</div><a class="guideMapBtn" target="_blank" rel="noopener" href="${m.url}">${x.openThisMap}</a>${warehousePhotos}<div class="simpleBox"><b>${x.simpleMode}</b><div class="simpleGrid">${simpleItems.map(v=>`<div>${v}</div>`).join('')}</div></div></div>`}
+ if(guideStep===0){body=`<div class="guideCard"><h3>${x.guideStep} 1: ${x.quickMap}</h3><div class="steps">${stepHtml([[ml[0],ml[1]],[x.openMap,ml[1]]])}</div><a class="guideMapBtn" target="_blank" rel="noopener" href="${m.url}">${x.openThisMap}</a>${locationPhotos}<div class="simpleBox"><b>${x.simpleMode}</b><div class="simpleGrid">${simpleItems.map(v=>`<div>${v}</div>`).join('')}</div></div></div>`}
  if(guideStep===1){body=`<div class="guideCard"><h3>${x.guideStep} 2: ${x.quickRules}</h3><div class="steps">${stepHtml(x.rules.slice(0,3))}</div></div>`}
  if(guideStep===2){
   const stepData=isWarehouse?(x.warehouseSteps||x.rules.slice(0,3)):rows;
@@ -3894,7 +3896,7 @@ body.cxHubActive #humanPanel>#cxTodayPanel{display:block!important}
   var box=cxEl('cxLitePanel'); if(!box){box=document.createElement('div');box.id='cxLitePanel';box.className='cxLitePanel';anchor.parentNode.insertBefore(box,anchor.nextSibling)}
   var isLite=false;try{isLite=!!lite}catch(e){}
   box.innerHTML='<div class="cxLiteTop"><div><b>'+cxEsc(t.liteTitle)+'</b><span>'+cxEsc(isLite?t.liteActive:t.liteNormal)+' '+cxEsc(t.liteLead)+'</span></div><button type="button" class="cxLiteBtn '+(isLite?'isOff':'')+'" onclick="cxToggleLiteMode()">'+cxEsc(isLite?t.liteOff:t.liteOn)+'</button></div>';
-  document.querySelectorAll('img').forEach(function(img){img.loading='lazy';img.decoding='async'});
+  document.querySelectorAll('img').forEach(function(img){img.loading=img.closest('.locationPhotoGrid,#stagePhotos,.warehousePhotoGrid')?'eager':'lazy';img.decoding='async'});
  }
  function cxCurrentMap(){
   try{return (MAPS||[]).find(function(m){return m.id===stage})||MAPS[0]}catch(e){return null}
@@ -4043,7 +4045,7 @@ body.cxHubActive #humanPanel>#cxSetupWizard{display:block!important}
  var calcNave=localStorage.cx_calc_nave||'1';
  var calcEntry=localStorage.cx_calc_entry||'1';
  var calcSide=localStorage.cx_calc_side||'right';
- var photosOpen=localStorage.cx_photos_open==='1';
+ var photosOpen=localStorage.cx_photos_open!=='0';
  function el(id){return document.getElementById(id)}
  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
  function lng(){try{return (lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return (localStorage.cx_lang||'PL').toUpperCase()}}
