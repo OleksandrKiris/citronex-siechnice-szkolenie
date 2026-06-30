@@ -6334,4 +6334,71 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  setTimeout(function(){addMap();syncOldWarehouse();try{if(typeof apply==='function')apply()}catch(e){}},0);
  setTimeout(syncOldWarehouse,700);
 })();
+</script><style id="cxDuwResidenceCss">
+.cxDuwResidenceCard{border:1px solid #cbdcf4;border-left:6px solid #1f5b99;background:linear-gradient(180deg,#f8fbff,#fff);border-radius:18px;padding:14px;margin:12px 0;box-shadow:0 12px 28px rgba(31,91,153,.10);display:grid;gap:10px}
+.cxDuwTop{display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:start}.cxDuwIcon{width:48px;height:48px;border-radius:15px;background:#1f5b99;color:#fff;display:grid;place-items:center;font-weight:1000;font-size:15px;letter-spacing:.02em}
+.cxDuwResidenceCard b{display:block;color:#173b2a;font-size:18px;line-height:1.12}.cxDuwResidenceCard p{margin:5px 0 0;color:#52695d;font-weight:850;line-height:1.36}
+.cxDuwTags{display:flex;flex-wrap:wrap;gap:6px}.cxDuwTags span{background:#fff;border:1px solid #cbdcf4;border-radius:999px;padding:6px 8px;font-size:12px;font-weight:950;color:#1f5b99;line-height:1.1}
+.cxDuwBtn{display:flex!important;align-items:center;justify-content:center;min-height:52px;width:100%;border-radius:14px!important;background:#1f5b99!important;color:#fff!important;text-decoration:none!important;font-weight:1000!important}
+.cxCityQuick a[data-city-duw-map]{background:#1f5b99!important;color:#fff!important;border-color:#1f5b99!important}
+@media(max-width:420px){.cxDuwResidenceCard{padding:12px;border-radius:16px}.cxDuwTop{grid-template-columns:44px 1fr}.cxDuwIcon{width:44px;height:44px;border-radius:14px}.cxDuwResidenceCard b{font-size:16px}.cxDuwResidenceCard p{font-size:13px}.cxDuwTags span{font-size:11px}}
+</style><script id="cxDuwResidencePatch">
+(function(){
+ if(window.cxDuwResidencePatchLoaded)return;window.cxDuwResidencePatchLoaded=true;
+ var DUW_MAP='https://maps.app.goo.gl/NySReoBkGW3aoziv9';
+ var TX={
+  PL:{title:'DUW - karta pobytu',text:'Tutaj składa się wniosek o kartę pobytu i odbiera gotową kartę pobytu. Zabierz paszport, dokumenty i telefon.',btn:'Otwórz DUW w Google Maps',tags:['Karta pobytu','Wniosek','Odbiór karty'],quick:'DUW - karta pobytu'},
+  EN:{title:'DUW - residence card',text:'This is where you submit the residence card application and pick up the ready residence card. Take your passport, documents and phone.',btn:'Open DUW in Google Maps',tags:['Residence card','Application','Card pickup'],quick:'DUW - residence card'},
+  UA:{title:'DUW - карта побиту',text:'Тут подають заяву на карту побиту і забирають готову карту. Візьміть паспорт, документи і телефон.',btn:'Відкрити DUW у Google Maps',tags:['Карта побиту','Заява','Отримання карти'],quick:'DUW - карта побиту'},
+  RU:{title:'DUW - карта побыту',text:'Здесь подают заявление на карту побыту и забирают готовую карту. Возьмите паспорт, документы и телефон.',btn:'Открыть DUW в Google Maps',tags:['Карта побыту','Заявление','Получение карты'],quick:'DUW - карта побыту'},
+  AZ:{title:'DUW - yaşayış kartı',text:'Burada yaşayış kartı üçün müraciət verilir və hazır kart götürülür. Pasport, sənədlər və telefon götürün.',btn:'DUW-u Google Maps-də aç',tags:['Yaşayış kartı','Müraciət','Kartın götürülməsi'],quick:'DUW - yaşayış kartı'},
+  ES:{title:'DUW - tarjeta de residencia',text:'Aquí se presenta la solicitud de tarjeta de residencia y se recoge la tarjeta lista. Lleva pasaporte, documentos y teléfono.',btn:'Abrir DUW en Google Maps',tags:['Tarjeta de residencia','Solicitud','Recogida'],quick:'DUW - residencia'},
+  FIL:{title:'DUW - residence card',text:'Dito nagsusumite ng application para sa residence card at dito kinukuha ang ready card. Dalhin ang passport, documents at phone.',btn:'Buksan ang DUW sa Google Maps',tags:['Residence card','Application','Pickup'],quick:'DUW - residence card'},
+  ID:{title:'DUW - kartu tinggal',text:'Di sini mengajukan permohonan kartu tinggal dan mengambil kartu yang sudah jadi. Bawa paspor, dokumen dan telepon.',btn:'Buka DUW di Google Maps',tags:['Kartu tinggal','Permohonan','Ambil kartu'],quick:'DUW - kartu tinggal'},
+  NE:{title:'DUW - residence card',text:'यहाँ residence card को आवेदन बुझाइन्छ र तयार card लिइन्छ। Passport, documents र phone ल्याउनुहोस्।',btn:'DUW Google Maps मा खोल्नुहोस्',tags:['Residence card','Application','Card pickup'],quick:'DUW - residence card'}
+ };
+ function code(){
+  try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}
+  try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}
+  try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}
+ }
+ function t(){return TX[code()]||TX.PL}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function cardHtml(){
+  var x=t();
+  return '<section class="cxCityCard cxDuwResidenceCard" data-cx-duw-card="1"><div class="cxDuwTop"><span class="cxDuwIcon">DUW</span><div><b>'+esc(x.title)+'</b><p>'+esc(x.text)+'</p></div></div><div class="cxDuwTags">'+x.tags.map(function(v){return'<span>'+esc(v)+'</span>'}).join('')+'</div><a class="cityLink cxDuwBtn" target="_blank" rel="noopener" href="'+DUW_MAP+'">'+esc(x.btn)+'</a></section>';
+ }
+ function addQuickLink(panel){
+  var quick=panel&&panel.querySelector('.cxCityQuick');if(!quick)return;
+  var old=quick.querySelector('[data-city-duw-map]');
+  if(!old){old=document.createElement('a');old.setAttribute('data-city-duw-map','1');old.target='_blank';old.rel='noopener';quick.insertBefore(old,quick.firstChild)}
+  old.href=DUW_MAP;old.textContent=t().quick;
+ }
+ function ensureDuw(){
+  var targets=[document.getElementById('cxCityPanel'),document.getElementById('cityPanel')].filter(Boolean);
+  targets.forEach(function(panel){
+   addQuickLink(panel);
+   if(panel.getAttribute('data-duw-disabled')==='1')return;
+   var html=cardHtml(),old=panel.querySelector('[data-cx-duw-card]');
+   if(old){old.outerHTML=html;return}
+   var wrap=document.createElement('div');wrap.innerHTML=html;var node=wrap.firstElementChild;
+   var grid=panel.querySelector('.cxCityGrid');
+   if(grid){grid.insertBefore(node,grid.firstChild);return}
+   var banks=panel.querySelector('.bankGrid,.cxBankList,.cityMsg,.cityCard');
+   if(banks&&banks.parentNode)banks.parentNode.insertBefore(node,banks);else panel.appendChild(node);
+  });
+ }
+ window.cxEnsureDuwResidence=ensureDuw;
+ try{
+  if(typeof cxRenderCityPanel==='function'&&!window.cxDuwCityWrapped){window.cxDuwCityWrapped=true;var oldCity=cxRenderCityPanel;cxRenderCityPanel=function(){var r=oldCity.apply(this,arguments);setTimeout(ensureDuw,0);return r}}
+ }catch(e){}
+ try{
+  var oldApply=window.apply||apply;
+  if(typeof oldApply==='function'&&!window.cxDuwApplyWrapped){window.cxDuwApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(ensureDuw,0);setTimeout(ensureDuw,220);return r};try{apply=window.apply}catch(e){}}
+ }catch(e){}
+ document.addEventListener('DOMContentLoaded',function(){setTimeout(ensureDuw,0);setTimeout(ensureDuw,350)});
+ document.addEventListener('click',function(){setTimeout(ensureDuw,140)},true);
+ document.addEventListener('change',function(){setTimeout(ensureDuw,140)},true);
+ setTimeout(ensureDuw,0);setTimeout(ensureDuw,700);setTimeout(ensureDuw,1800);
+})();
 </script></body></html>
