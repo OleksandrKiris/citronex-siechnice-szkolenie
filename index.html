@@ -4506,4 +4506,153 @@ body.cxHubActive #humanPanel>#cxHomeTiles{display:block!important}
  setTimeout(schedule,0);
 })();
 </script>
+<style id="cxOrientationBigVisibleCss">
+/* High-visibility greenhouse orientation for tired/new workers on small phones. */
+#cxOrientHumanSimple{display:none!important}
+#cxGreenCalc{background:#ffffff!important;border:0!important;box-shadow:none!important;padding:0!important}
+#cxGreenCalc>h3,#cxGreenCalc>p{display:none!important}
+#cxGreenCalc .cxCalcForm{background:#f7fbf8;border:2px solid #d7e5da;border-radius:18px;padding:12px;margin-bottom:12px}
+#cxGreenCalc .cxCalcForm label{font-size:13px!important;color:#173b2a!important}
+#cxGreenCalc .cxCalcForm select{min-height:58px!important;font-size:19px!important;border:2px solid #0f5f3f!important;color:#173b2a!important}
+.cxOrientBig{display:grid;gap:12px;margin:0 0 12px}
+.cxBigResult{background:#111f18;color:#fff;border-radius:22px;padding:16px;box-shadow:0 18px 34px rgba(17,31,24,.22)}
+.cxBigResult small{display:block;color:#f3c84c;font-weight:950;font-size:13px;letter-spacing:0;text-transform:uppercase;margin-bottom:8px}
+.cxBigResult b{display:block;font-size:28px;line-height:1.05;letter-spacing:0}
+.cxBigResult span{display:block;margin-top:10px;font-size:18px;line-height:1.25;font-weight:950;color:#e8f7ee}
+.cxBigRule{background:#fff8df;border:3px solid #f3c84c;color:#3e2c00;border-radius:20px;padding:13px;font-size:18px;font-weight:950;line-height:1.3}
+.cxBigSides{display:grid;grid-template-columns:1fr 86px 1fr;gap:8px;align-items:stretch}
+.cxBigSide,.cxBigYou{border-radius:22px;min-height:132px;padding:12px;display:grid;place-items:center;text-align:center;font-weight:950;line-height:1.05}
+.cxBigSide strong,.cxBigYou strong{display:block;font-size:26px;letter-spacing:0}
+.cxBigSide span,.cxBigYou span{display:block;margin-top:8px;font-size:14px;line-height:1.2}
+.cxBigSide.left{background:#d9ebff;border:4px solid #2a75c9;color:#083b76}
+.cxBigSide.right{background:#dff7e8;border:4px solid #0f8a55;color:#075536}
+.cxBigSide.active{background:#0f5f3f!important;color:#fff!important;border-color:#062f20!important;box-shadow:0 16px 30px rgba(15,95,63,.28)}
+.cxBigYou{background:#173b2a;color:#fff;border:4px solid #0b2217}
+.cxBigEntries{background:#fff;border:2px solid #d7e5da;border-radius:22px;padding:12px;box-shadow:0 12px 26px rgba(15,40,27,.08)}
+.cxBigEntries h4{margin:0 0 10px;color:#173b2a;font-size:20px;line-height:1.1}
+.cxBigEntryList{display:grid;gap:8px}
+.cxBigEntry{display:grid;grid-template-columns:74px 1fr 1fr;gap:8px;align-items:stretch;border:2px solid #e1ebe5;border-radius:17px;background:#f8fcfa;padding:8px}
+.cxBigEntry.active{border-color:#0f5f3f;background:#eef8f2;box-shadow:0 10px 22px rgba(15,95,63,.14)}
+.cxBigEntryNo{background:#173b2a;color:#fff;border-radius:13px;display:grid;place-items:center;text-align:center;font-weight:950;font-size:15px}
+.cxBigRow{border-radius:13px;min-height:54px;display:grid;place-items:center;text-align:center;font-weight:950;font-size:15px;line-height:1.1;padding:7px}
+.cxBigRow.left{background:#d9ebff;color:#083b76}.cxBigRow.right{background:#dff7e8;color:#075536}
+.cxBigEntry.active .cxBigRow.selected{background:#0f5f3f!important;color:#fff!important;box-shadow:inset 0 0 0 3px rgba(255,255,255,.28)}
+@media(max-width:620px){
+ .cxBigResult{padding:15px;border-radius:20px}
+ .cxBigResult b{font-size:25px}
+ .cxBigResult span{font-size:17px}
+ .cxBigRule{font-size:16px}
+ .cxBigSides{grid-template-columns:1fr;gap:9px}
+ .cxBigSide,.cxBigYou{min-height:82px}
+ .cxBigSide strong,.cxBigYou strong{font-size:24px}
+ .cxBigEntry{grid-template-columns:1fr;gap:7px}
+ .cxBigEntryNo{min-height:42px;font-size:17px}
+ .cxBigRow{min-height:48px;font-size:16px}
+}
+</style>
+<script id="cxOrientationBigVisiblePatch">
+(function(){
+ if(window.cxOrientationBigVisibleLoaded)return; window.cxOrientationBigVisibleLoaded=true;
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function langNow(){try{return String(window.lang||lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return 'PL'}}
+ function tx(){
+  var d={
+   PL:{result:'Twoje miejsce',go:'Id\u017a do',nave:'Nawa',entry:'Wej\u015bcie',side:'strona',left:'Lewa',right:'Prawa',row:'rz\u0105d',you:'TY',back:'plecami do pierwszych naw',rule:'Patrz tak: sta\u0144 plecami do pierwszych naw. Lewa r\u0119ka = LEWA strona. Prawa r\u0119ka = PRAWA strona.',entries:'Wej\u015bcia 1-5 w jednej nawie'},
+   EN:{result:'Your place',go:'Go to',nave:'Nave',entry:'Entrance',side:'side',left:'Left',right:'Right',row:'row',you:'YOU',back:'back to first naves',rule:'Look this way: stand with your back to the first naves. Left hand = LEFT side. Right hand = RIGHT side.',entries:'Entrances 1-5 in one nave'},
+   UA:{result:'\u0412\u0430\u0448\u0435 \u043c\u0456\u0441\u0446\u0435',go:'\u0406\u0434\u0456\u0442\u044c \u0434\u043e',nave:'\u041d\u0430\u0432\u0430',entry:'\u0412\u0445\u0456\u0434',side:'\u0441\u0442\u043e\u0440\u043e\u043d\u0430',left:'\u041b\u0456\u0432\u0430',right:'\u041f\u0440\u0430\u0432\u0430',row:'\u0440\u044f\u0434',you:'\u0412\u0418',back:'\u0441\u043f\u0438\u043d\u043e\u044e \u0434\u043e \u043f\u0435\u0440\u0448\u0438\u0445 \u043d\u0430\u0432',rule:'\u0414\u0438\u0432\u0456\u0442\u044c\u0441\u044f \u0442\u0430\u043a: \u0441\u0442\u0430\u043d\u044c\u0442\u0435 \u0441\u043f\u0438\u043d\u043e\u044e \u0434\u043e \u043f\u0435\u0440\u0448\u0438\u0445 \u043d\u0430\u0432. \u041b\u0456\u0432\u0430 \u0440\u0443\u043a\u0430 = \u041b\u0406\u0412\u0410 \u0441\u0442\u043e\u0440\u043e\u043d\u0430. \u041f\u0440\u0430\u0432\u0430 \u0440\u0443\u043a\u0430 = \u041f\u0420\u0410\u0412\u0410.',entries:'\u0412\u0445\u043e\u0434\u0438 1-5 \u0432 \u043e\u0434\u043d\u0456\u0439 \u043d\u0430\u0432\u0456'},
+   RU:{result:'\u0412\u0430\u0448\u0435 \u043c\u0435\u0441\u0442\u043e',go:'\u0418\u0434\u0438\u0442\u0435 \u0432',nave:'\u041d\u0430\u0432\u0430',entry:'\u0412\u0445\u043e\u0434',side:'\u0441\u0442\u043e\u0440\u043e\u043d\u0430',left:'\u041b\u0435\u0432\u0430\u044f',right:'\u041f\u0440\u0430\u0432\u0430\u044f',row:'\u0440\u044f\u0434',you:'\u0412\u042b',back:'\u0441\u043f\u0438\u043d\u043e\u0439 \u043a \u043f\u0435\u0440\u0432\u044b\u043c \u043d\u0430\u0432\u0430\u043c',rule:'\u0421\u043c\u043e\u0442\u0440\u0438\u0442\u0435 \u0442\u0430\u043a: \u0432\u0441\u0442\u0430\u043d\u044c\u0442\u0435 \u0441\u043f\u0438\u043d\u043e\u0439 \u043a \u043f\u0435\u0440\u0432\u044b\u043c \u043d\u0430\u0432\u0430\u043c. \u041b\u0435\u0432\u0430\u044f \u0440\u0443\u043a\u0430 = \u041b\u0415\u0412\u0410\u042f \u0441\u0442\u043e\u0440\u043e\u043d\u0430. \u041f\u0440\u0430\u0432\u0430\u044f \u0440\u0443\u043a\u0430 = \u041f\u0420\u0410\u0412\u0410\u042f.',entries:'\u0412\u0445\u043e\u0434\u044b 1-5 \u0432 \u043e\u0434\u043d\u043e\u0439 \u043d\u0430\u0432\u0435'},
+   AZ:{result:'Sizin yeriniz',go:'Gedin',nave:'Nava',entry:'Giris',side:'teref',left:'Sol',right:'Sag',row:'sira',you:'SIZ',back:'ilk navalara arxa ile',rule:'Bele baxin: ilk navalara arxanizla durun. Sol el = SOL teref. Sag el = SAG teref.',entries:'Bir navada giris 1-5'}
+  };
+  return d[langNow()]||d.PL;
+ }
+ function values(){var box=document.getElementById('cxGreenCalc'),s=box?[].slice.call(box.querySelectorAll('select')):[];return {n:s[0]?s[0].value:'1',e:s[1]?s[1].value:'1',side:s[2]?s[2].value:'right'}}
+ function pair(e){var a=(Number(e)-1)*2+1;return [a,a+1]}
+ function render(){
+  var box=document.getElementById('cxGreenCalc'); if(!box)return;
+  var t=tx(),v=values(),rows=pair(v.e),sideName=v.side==='left'?t.left:t.right,row=v.side==='left'?rows[0]:rows[1];
+  var big=document.getElementById('cxOrientBigVisible'); if(!big){big=document.createElement('section');big.id='cxOrientBigVisible';big.className='cxOrientBig';box.insertBefore(big,box.firstChild)}
+  var key=langNow()+'|'+v.n+'|'+v.e+'|'+v.side; if(big.getAttribute('data-key')===key)return; big.setAttribute('data-key',key);
+  var entries=[1,2,3,4,5].map(function(i){var r=pair(i),active=String(i)===String(v.e);return '<div class="cxBigEntry '+(active?'active':'')+'"><div class="cxBigEntryNo">'+esc(t.entry)+' '+i+'</div><div class="cxBigRow left '+(active&&v.side==='left'?'selected':'')+'">'+esc(t.left)+'<br>'+esc(t.row)+' '+r[0]+'</div><div class="cxBigRow right '+(active&&v.side==='right'?'selected':'')+'">'+esc(t.right)+'<br>'+esc(t.row)+' '+r[1]+'</div></div>'}).join('');
+  big.innerHTML='<div class="cxBigResult"><small>'+esc(t.result)+'</small><b>'+esc(t.go)+': '+esc(t.nave)+' '+esc(v.n)+' / '+esc(t.entry)+' '+esc(v.e)+' / '+esc(sideName)+' '+esc(t.side)+'</b><span>'+esc(t.result)+': '+esc(t.row)+' '+row+'. '+esc(t.left)+' = '+esc(t.row)+' '+rows[0]+', '+esc(t.right)+' = '+esc(t.row)+' '+rows[1]+'.</span></div><div class="cxBigRule">'+esc(t.rule)+'</div><div class="cxBigSides"><div class="cxBigSide left '+(v.side==='left'?'active':'')+'"><div><strong>'+esc(t.left).toUpperCase()+'</strong><span>'+esc(t.row)+' '+rows[0]+'</span></div></div><div class="cxBigYou"><div><strong>'+esc(t.you)+'</strong><span>'+esc(t.back)+'</span></div></div><div class="cxBigSide right '+(v.side==='right'?'active':'')+'"><div><strong>'+esc(t.right).toUpperCase()+'</strong><span>'+esc(t.row)+' '+rows[1]+'</span></div></div></div><div class="cxBigEntries"><h4>'+esc(t.entries)+'</h4><div class="cxBigEntryList">'+entries+'</div></div>';
+ }
+ var busy=false;function schedule(){if(busy)return;busy=true;setTimeout(function(){busy=false;render()},80)}
+ document.addEventListener('DOMContentLoaded',schedule);
+ document.addEventListener('change',function(e){if(e.target&&e.target.closest&&e.target.closest('#cxGreenCalc'))schedule()},true);
+ try{new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true})}catch(e){}
+ setTimeout(schedule,0);
+})();
+</script>
+<style id="cxOrientationWorkerVisibleCss">
+/* Final human-first orientation: one large phone screen, no technical clutter. */
+#cxOrientBigVisible{display:none!important}
+#cxGreenBoost,#orientationDiagrams,#cxPhotoGate{display:none!important}
+.cxOrientWorker{display:grid;gap:14px;margin:0 0 14px;color:#173b2a;max-width:100%;min-width:0;overflow:hidden}
+.cxOrientWorker>*{min-width:0;max-width:100%;box-sizing:border-box}
+.cxOWHero{background:linear-gradient(135deg,#0f5f3f,#173b2a);color:#fff;border-radius:24px;padding:16px;box-shadow:0 18px 36px rgba(15,95,63,.24);width:100%}
+.cxOWHero small{display:inline-flex;align-items:center;gap:6px;background:#f3c84c;color:#2f2300;border-radius:999px;padding:7px 10px;font-weight:950;font-size:12px;text-transform:uppercase}
+.cxOWHero h3{margin:12px 0 7px!important;color:#fff!important;font-size:28px!important;line-height:1.02!important}
+.cxOWHero p{margin:0!important;color:#eaf8ef!important;font-size:16px!important;font-weight:900!important;line-height:1.3!important}
+.cxOWResult{background:#111f18;color:#fff;border-radius:22px;padding:15px;border:3px solid #f3c84c;width:100%}
+.cxOWResult b{display:block;font-size:27px;line-height:1.05;letter-spacing:0}.cxOWResult span{display:block;margin-top:10px;color:#e8f7ee;font-size:18px;font-weight:950;line-height:1.25}
+.cxOWBlock{background:#fff;border:2px solid #d7e5da;border-radius:24px;padding:13px;box-shadow:0 14px 28px rgba(15,40,27,.08);width:100%;min-width:0;max-width:100%}
+.cxOWBlock h4{margin:0 0 7px;color:#173b2a;font-size:22px;line-height:1.08}.cxOWBlock p{margin:0 0 12px!important;color:#52695d!important;font-size:15px!important;font-weight:900!important;line-height:1.3!important}
+.cxOWGreenhouse{display:grid;grid-template-columns:1fr 58px 1fr;gap:8px;min-height:210px}
+.cxOWArea{border-radius:20px;padding:10px;display:grid;align-content:space-between;gap:8px;text-align:center;font-weight:950}
+.cxOWArea.left{background:#e6f1ff;border:4px solid #2a75c9;color:#073a72}.cxOWArea.right{background:#e2f8ea;border:4px solid #0f8a55;color:#075536}
+.cxOWArea strong{font-size:23px;line-height:1.02}.cxOWArea span{font-size:13px;line-height:1.15}
+.cxOWNaves{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.cxOWNaves i{font-style:normal;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:10px;padding:7px 2px;font-size:13px}
+.cxOWRoad{border-radius:18px;background:#173b2a;color:#fff;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:950;line-height:1.05;padding:8px;writing-mode:vertical-rl;text-orientation:mixed}
+.cxOWYou{background:#fff8df;border:3px solid #f3c84c;border-radius:20px;padding:12px;color:#3e2c00;font-size:17px;font-weight:950;line-height:1.28}
+.cxOWEntrances{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(128px,1fr);gap:9px;overflow-x:auto;max-width:100%;min-width:0;padding-bottom:4px;scroll-snap-type:x mandatory}
+.cxOWEntrance{scroll-snap-align:start;border:2px solid #d7e5da;background:#f8fcfa;border-radius:20px;padding:9px;display:grid;gap:8px;min-height:142px}
+.cxOWEntrance.active{border-color:#0f5f3f;background:#eef8f2;box-shadow:0 12px 24px rgba(15,95,63,.16)}
+.cxOWEntrance b{display:grid;place-items:center;min-height:38px;border-radius:14px;background:#173b2a;color:#fff;font-size:17px}
+.cxOWRow{display:grid;place-items:center;min-height:38px;border-radius:13px;font-weight:950;text-align:center;font-size:14px;line-height:1.08;padding:6px}
+.cxOWRow.left{background:#d9ebff;color:#073a72}.cxOWRow.right{background:#dff7e8;color:#075536}.cxOWEntrance.active .cxOWRow.selected{background:#0f5f3f!important;color:#fff!important;box-shadow:inset 0 0 0 3px rgba(255,255,255,.3)}
+.cxOWPassage{display:grid;grid-template-columns:1fr 70px 1fr;gap:8px;align-items:stretch}
+.cxOWPassSide{border-radius:20px;min-height:132px;display:grid;place-items:center;text-align:center;padding:12px;font-weight:950;line-height:1.08;border:4px solid transparent}
+.cxOWPassSide strong{display:block;font-size:23px}.cxOWPassSide span{display:block;margin-top:8px;font-size:15px}
+.cxOWPassSide.viewRight{background:#dff7e8;color:#075536;border-color:#0f8a55}.cxOWPassSide.viewLeft{background:#d9ebff;color:#073a72;border-color:#2a75c9}
+.cxOWPassSide.active{background:#111f18!important;color:#fff!important;border-color:#f3c84c!important}
+.cxOWWalk{background:#173b2a;color:#fff;border-radius:18px;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:950;line-height:1.05;writing-mode:vertical-rl;text-orientation:mixed;padding:8px}
+.cxOWMemory{background:#fff8df;border-left:7px solid #f3c84c;border-radius:18px;padding:12px;color:#3e2c00;font-size:16px;font-weight:950;line-height:1.3}
+@media(max-width:620px){
+ .cxOWHero,.cxOWBlock,.cxOWResult{border-radius:20px}.cxOWHero h3{font-size:24px!important}.cxOWResult b{font-size:24px}.cxOWResult span{font-size:16px}
+ .cxOWGreenhouse{grid-template-columns:1fr;min-height:0}.cxOWRoad{min-height:48px;writing-mode:horizontal-tb;text-orientation:mixed}.cxOWArea{min-height:116px}.cxOWNaves{grid-template-columns:repeat(4,1fr)}
+ .cxOWEntrances{grid-auto-columns:minmax(150px,82%)}.cxOWPassage{grid-template-columns:1fr;gap:9px}.cxOWWalk{min-height:48px;writing-mode:horizontal-tb;text-orientation:mixed}.cxOWPassSide{min-height:86px}
+}
+</style>
+<script id="cxOrientationWorkerVisiblePatch">
+(function(){
+ if(window.cxOrientationWorkerVisibleLoaded)return; window.cxOrientationWorkerVisibleLoaded=true;
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function langNow(){try{return String(window.lang||lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return 'PL'}}
+ function dict(){
+  var d={
+   PL:{badge:'Orientacja',title:'Szklarnia od góry',lead:'Najpierw zobacz całość. Potem jedną nawę. Dopiero na końcu wejście i stronę pracy.',result:'Twoje miejsce',go:'Idź do',nave:'Nawa',entry:'Wejście',side:'strona',left:'Lewa',right:'Prawa',row:'rząd',whole:'1. Cała szklarnia',wholeLead:'Środek to droga / łącznik. Po bokach są strony szklarni. Liczba naw może być różna: 37, 38 albo 39.',first:'pierwsze nawy / start numeracji',road:'droga / łącznik',many:'... do 37 / 38 / 39',stand:'Stań plecami do pierwszych naw. Lewa ręka pokazuje lewą stronę, prawa ręka prawą stronę.',one:'2. Jedna nawa',oneLead:'W jednej nawie wejścia są obok siebie: 1, 2, 3, 4, 5. Każde wejście ma dwa rzędy, razem 10 rzędów.',pass:'3. Widok w przejściu',passLead:'To jest widok, kiedy wchodzisz w długie przejście. Tu strony widoku są zamienione: po lewej widzisz prawą stronę pracy.',walk:'kierunek wejścia',remember:'Zapamiętaj: najpierw numer nawy, potem wejście 1-5, potem strona pracy. Nie zgaduj lewej/prawej bez ustawienia się plecami do pierwszych naw.'},
+   EN:{badge:'Orientation',title:'Greenhouse from above',lead:'First see the whole greenhouse. Then one nave. Only then the entrance and work side.',result:'Your place',go:'Go to',nave:'Nave',entry:'Entrance',side:'side',left:'Left',right:'Right',row:'row',whole:'1. Whole greenhouse',wholeLead:'The middle is the road / connector. Greenhouse sides are on both sides. The number of naves can be different: 37, 38 or 39.',first:'first naves / numbering start',road:'road / connector',many:'... to 37 / 38 / 39',stand:'Stand with your back to the first naves. Your left hand shows the left side, your right hand shows the right side.',one:'2. One nave',oneLead:'In one nave, entrances are next to each other: 1, 2, 3, 4, 5. Each entrance has two rows, 10 rows in total.',pass:'3. View inside the passage',passLead:'This is the view when you enter the long passage. In this view the sides are reversed: on your left you see the right work side.',walk:'entry direction',remember:'Remember: first nave number, then entrance 1-5, then work side. Do not guess left/right without standing with your back to the first naves.'},
+   UA:{badge:'Орієнтація',title:'Теплиця зверху',lead:'Спочатку подивіться на всю теплицю. Потім на одну наву. І тільки потім на вхід і сторону роботи.',result:'Ваше місце',go:'Ідіть до',nave:'Нава',entry:'Вхід',side:'сторона',left:'Ліва',right:'Права',row:'ряд',whole:'1. Вся теплиця',wholeLead:'Посередині дорога / з’єднання. По боках сторони теплиці. Кількість нав може бути різна: 37, 38 або 39.',first:'перші нави / початок нумерації',road:'дорога / з’єднання',many:'... до 37 / 38 / 39',stand:'Станьте спиною до перших нав. Ліва рука показує ліву сторону, права рука праву сторону.',one:'2. Одна нава',oneLead:'В одній наві входи стоять поруч: 1, 2, 3, 4, 5. Кожен вхід має два ряди, разом 10 рядів.',pass:'3. Вид у проході',passLead:'Це вид, коли ви заходите в довгий прохід. У цьому виді сторони міняються: зліва ви бачите праву сторону роботи.',walk:'напрям входу',remember:'Запам’ятайте: спочатку номер нави, потім вхід 1-5, потім сторона роботи. Не вгадуйте ліву/праву без позиції спиною до перших нав.'},
+   RU:{badge:'Ориентация',title:'Теплица сверху',lead:'Сначала посмотрите на всю теплицу. Потом на одну наву. И только потом на вход и сторону работы.',result:'Ваше место',go:'Идите в',nave:'Нава',entry:'Вход',side:'сторона',left:'Левая',right:'Правая',row:'ряд',whole:'1. Вся теплица',wholeLead:'Посередине дорога / соединение. По бокам стороны теплицы. Количество нав может быть разным: 37, 38 или 39.',first:'первые навы / начало нумерации',road:'дорога / соединение',many:'... до 37 / 38 / 39',stand:'Встаньте спиной к первым навам. Левая рука показывает левую сторону, правая рука правую сторону.',one:'2. Одна нава',oneLead:'В одной наве входы стоят рядом: 1, 2, 3, 4, 5. У каждого входа два ряда, всего 10 рядов.',pass:'3. Вид в проходе',passLead:'Это вид, когда вы заходите в длинный проход. В этом виде стороны меняются: слева вы видите правую сторону работы.',walk:'направление входа',remember:'Запомните: сначала номер навы, потом вход 1-5, потом сторона работы. Не угадывайте левую/правую без позиции спиной к первым навам.'},
+   AZ:{badge:'Yon',title:'Istixana yuxaridan',lead:'Evvel butun istixanaya baxin. Sonra bir navaya. Axirda giris ve is terefini yoxlayin.',result:'Sizin yeriniz',go:'Gedin',nave:'Nava',entry:'Giris',side:'teref',left:'Sol',right:'Sag',row:'sira',whole:'1. Butun istixana',wholeLead:'Ortada yol / birlesme var. Istixananin terefleri yanlardadir. Navalarin sayi ferqli ola biler: 37, 38 ve ya 39.',first:'ilk navalar / nomreleme baslayir',road:'yol / birlesme',many:'... 37 / 38 / 39-a qeder',stand:'Ilk navalara arxanizla durun. Sol el sol terefi, sag el sag terefi gosterir.',one:'2. Bir nava',oneLead:'Bir navada girisler yan-yanadir: 1, 2, 3, 4, 5. Her girisde iki sira var, cemi 10 sira.',pass:'3. Kecidde gorunus',passLead:'Bu uzun kecide girdiyiniz gorunusdur. Bu gorunusde terefler deyisir: solda sag is terefini gorursunuz.',walk:'giris istiqameti',remember:'Yadda saxlayin: evvel nava nomresi, sonra giris 1-5, sonra is terefi. Ilk navalara arxanizla durmadan sol/sag texmin etmeyin.'}
+  };
+  return d[langNow()]||d.PL;
+ }
+ function values(){var box=document.getElementById('cxGreenCalc'),s=box?[].slice.call(box.querySelectorAll('select')):[];return {n:s[0]?s[0].value:'12',e:s[1]?s[1].value:'3',side:s[2]?s[2].value:'right'}}
+ function pair(e){var a=(Number(e)-1)*2+1;return [a,a+1]}
+function render(){
+  var box=document.getElementById('cxGreenCalc'); if(!box)return;
+  var guide=document.getElementById('guide'); if(!window.cxOrientWorkerMoved&&guide&&box.parentNode===guide&&guide.firstElementChild!==box){guide.insertBefore(box,guide.firstElementChild);window.cxOrientWorkerMoved=true}
+  var t=dict(),v=values(),rows=pair(v.e),isLeft=v.side==='left',sideName=isLeft?t.left:t.right,row=isLeft?rows[0]:rows[1];
+  var panel=document.getElementById('cxOrientWorkerVisible'); if(!panel){panel=document.createElement('section');panel.id='cxOrientWorkerVisible';panel.className='cxOrientWorker';box.insertBefore(panel,box.firstChild)}
+  var key=langNow()+'|'+v.n+'|'+v.e+'|'+v.side; if(panel.getAttribute('data-key')===key)return; panel.setAttribute('data-key',key);
+  var entrances=[1,2,3,4,5].map(function(i){var r=pair(i),active=String(i)===String(v.e);return '<div class="cxOWEntrance '+(active?'active':'')+'"><b>'+esc(t.entry)+' '+i+'</b><div class="cxOWRow left '+(active&&isLeft?'selected':'')+'">'+esc(t.left)+'<br>'+esc(t.row)+' '+r[0]+'</div><div class="cxOWRow right '+(active&&!isLeft?'selected':'')+'">'+esc(t.right)+'<br>'+esc(t.row)+' '+r[1]+'</div></div>'}).join('');
+  var naves='<i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>'+esc(t.many)+'</i>';
+  panel.innerHTML='<div class="cxOWHero"><small>'+esc(t.badge)+'</small><h3>'+esc(t.title)+'</h3><p>'+esc(t.lead)+'</p></div><div class="cxOWResult"><b>'+esc(t.go)+': '+esc(t.nave)+' '+esc(v.n)+' / '+esc(t.entry)+' '+esc(v.e)+' / '+esc(sideName)+' '+esc(t.side)+'</b><span>'+esc(t.result)+': '+esc(t.row)+' '+row+'. '+esc(t.left)+' = '+esc(t.row)+' '+rows[0]+', '+esc(t.right)+' = '+esc(t.row)+' '+rows[1]+'.</span></div><div class="cxOWBlock"><h4>'+esc(t.whole)+'</h4><p>'+esc(t.wholeLead)+'</p><div class="cxOWGreenhouse"><div class="cxOWArea left"><strong>'+esc(t.left).toUpperCase()+'</strong><span>'+esc(t.first)+'</span><div class="cxOWNaves">'+naves+'</div></div><div class="cxOWRoad">'+esc(t.road)+'</div><div class="cxOWArea right"><strong>'+esc(t.right).toUpperCase()+'</strong><span>'+esc(t.first)+'</span><div class="cxOWNaves">'+naves+'</div></div></div><div class="cxOWYou">'+esc(t.stand)+'</div></div><div class="cxOWBlock"><h4>'+esc(t.one)+'</h4><p>'+esc(t.oneLead)+'</p><div class="cxOWEntrances">'+entrances+'</div></div><div class="cxOWBlock"><h4>'+esc(t.pass)+'</h4><p>'+esc(t.passLead)+'</p><div class="cxOWPassage"><div class="cxOWPassSide viewRight '+(!isLeft?'active':'')+'"><div><strong>'+esc(t.right).toUpperCase()+'</strong><span>'+esc(t.row)+' '+rows[1]+'</span></div></div><div class="cxOWWalk">'+esc(t.walk)+'</div><div class="cxOWPassSide viewLeft '+(isLeft?'active':'')+'"><div><strong>'+esc(t.left).toUpperCase()+'</strong><span>'+esc(t.row)+' '+rows[0]+'</span></div></div></div></div><div class="cxOWMemory">'+esc(t.remember)+'</div>';
+ }
+ var busy=false;function schedule(){if(busy)return;busy=true;setTimeout(function(){busy=false;render()},80)}
+ document.addEventListener('DOMContentLoaded',schedule);
+ document.addEventListener('change',function(e){if(e.target&&e.target.closest&&e.target.closest('#cxGreenCalc'))schedule()},true);
+ setTimeout(schedule,0);
+})();
+</script>
 <nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
