@@ -884,7 +884,7 @@ function escHtml(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<'
 function brigadierText(){return BRIGADIER_TEXT[lang]||BRIGADIER_TEXT.PL}
 function setBrigadierStage(v){brigadierStage=v;localStorage.cx_brigadierStage=v;renderBrigadierContacts(T[lang]||T.PL)}
 function setBrigadierReason(v){brigadierReason=v;localStorage.cx_brigadierReason=v;renderBrigadierContacts(T[lang]||T.PL)}
-function brigadierMessage(t,stageId,person){const stageName=(stageId||'').toUpperCase();return (t.msg[brigadierReason]||t.msg.late)+'\n'+stageName+' / '+person.signature}
+function brigadierMessage(t,stageId,person){const stageName=stageId==='warehouse'?'Magazyn':(stageId||'').toUpperCase();const plMsg={late:"Dzie\u0144 dobry. Sp\u00f3\u017ani\u0119 si\u0119 dzisiaj do pracy. Prosz\u0119 o przekazanie informacji.",sick:"Dzie\u0144 dobry. Jestem chory/chora i nie przyjd\u0119 dzisiaj do pracy. Prosz\u0119 o potwierdzenie.",absent:"Dzie\u0144 dobry. Dzisiaj nie przyjd\u0119 do pracy. Prosz\u0119 o potwierdzenie.",lost:"Dzie\u0144 dobry. Nie mog\u0119 znale\u017a\u0107 miejsca lub etapu. Prosz\u0119 o pomoc."};return (plMsg[brigadierReason]||plMsg.late)+'\n'+stageName+' / '+person.signature}
 function renderBrigadierContacts(x){
  const box=el('contactList'); if(!box)return;
  if(!BRIGADIER_CONTACTS[brigadierStage])brigadierStage=stage||'e1';
@@ -4095,7 +4095,7 @@ body.cxHubActive #humanPanel>#cxSetupWizard{display:block!important}
   var steps=[[t.take,'reader_start'],[t.tag,'reader_start'],[t.start,'reader_start'],[t.activity,'reader_start'],[t.end,'reader_start']];
   box.innerHTML='<h3>'+esc(t.readerPhotoTitle)+'</h3><p>'+esc(t.readerPhotoLead)+'</p><div class="cxReaderPhotoGrid">'+steps.map(function(s,i){return'<div class="cxReaderPhotoStep">'+(img?'<img loading="lazy" decoding="async" src="'+img+'" alt="'+esc(s[0])+'">':'')+'<div><b>'+(i+1)+'. '+esc(s[0])+'</b><span>'+esc(s[0])+'</span></div></div>'}).join('')+'</div>';
  }
- function quickText(){var t=tr(), stage=(profileArea==='warehouse'?t.warehouse:profileStage.toUpperCase());var reason=t[quickReason]||t.late;return 'Citronex Siechnice\n'+stage+'\n'+reason+'\n'+PUBLIC_URL}
+ function quickText(){var stage=(profileArea==='warehouse'?'Magazyn':profileStage.toUpperCase());var reasons={late:"Sp\u00f3\u017ani\u0119 si\u0119 do pracy.",sick:"Jestem chory/chora i nie przyjd\u0119 do pracy.",lost:"Nie mog\u0119 znale\u017a\u0107 miejsca lub etapu.",other:"Mam inn\u0105 spraw\u0119. Prosz\u0119 o kontakt."};var reason=reasons[quickReason]||reasons.other;return 'Citronex Siechnice\n'+stage+'\n'+reason+'\n'+PUBLIC_URL}
  window.cxQuickReason=function(r){quickReason=r;localStorage.cx_quick_reason=r;renderQuickContact()};
  function renderQuickContact(){
   var host=el('sosbox')||el('contactList'); if(!host)return; var t=tr();
