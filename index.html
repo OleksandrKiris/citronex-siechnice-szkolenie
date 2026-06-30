@@ -5952,4 +5952,143 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  document.addEventListener("change",function(){setTimeout(run,120)},true);
  setTimeout(run,0);setTimeout(run,400);setTimeout(run,1200);
 })();
-</script></body></html>
+</script><style id="cxIconAlignmentCss">
+/* Icon alignment polish: keep every symbol centered, same optical size, and off the text baseline. */
+.cxHomeTileIcon,
+.cxTodayIcon,
+.readerPhotoMark,
+.readerFlowIcon,
+.cxPeopleTitle .cxHomeTileIcon,
+.cxWarehouseHead .cxHomeTileIcon,
+.cxCityHero .cxHomeTileIcon{
+ box-sizing:border-box!important;
+ display:inline-grid!important;
+ place-items:center!important;
+ flex:0 0 auto!important;
+ line-height:0!important;
+ text-align:center!important;
+ vertical-align:middle!important;
+}
+.cxHomeTileIcon svg,
+.cxTodayIcon svg,
+.readerPhotoMark svg,
+.readerFlowIcon svg,
+.cxPeopleTitle .cxHomeTileIcon svg,
+.cxWarehouseHead .cxHomeTileIcon svg,
+.cxCityHero .cxHomeTileIcon svg{
+ display:block!important;
+ width:24px!important;
+ height:24px!important;
+ margin:0!important;
+ flex:0 0 auto!important;
+ stroke:currentColor!important;
+ fill:none!important;
+ stroke-width:2.25!important;
+ stroke-linecap:round!important;
+ stroke-linejoin:round!important;
+ transform:translateZ(0);
+}
+.cxTodayBtn,
+.cxWarehouseHead,
+.cxPeopleTitle,
+.cxCityHero,
+.readerPhotoHead{
+ align-items:center!important;
+}
+.cxHomeTile{
+ align-items:flex-start!important;
+}
+.cxHomeTileIcon{
+ width:52px!important;
+ height:52px!important;
+ border-radius:17px!important;
+}
+.cxTodayIcon{
+ width:34px!important;
+ height:34px!important;
+ border-radius:12px!important;
+}
+.readerPhotoMark{
+ width:42px!important;
+ height:42px!important;
+ border-radius:14px!important;
+}
+.readerFlowIcon{
+ width:34px!important;
+ height:34px!important;
+ border-radius:12px!important;
+}
+.readerFlowIcon svg{
+ width:20px!important;
+ height:20px!important;
+}
+.readerPhotoCaption b{
+ display:flex!important;
+ align-items:center!important;
+ gap:8px!important;
+ line-height:1.2!important;
+}
+.readerPhotoCaption b .readerFlowIcon{
+ width:30px!important;
+ height:30px!important;
+ min-width:30px!important;
+ border-radius:11px!important;
+}
+.readerPhotoCaption b .readerFlowIcon svg{
+ width:18px!important;
+ height:18px!important;
+}
+.cxPrimaryBtn,
+.cxCallBtn,
+.cxWarehousePeopleActions a,
+.cxWarehousePeopleActions button,
+.cxQuickSend a,
+.examSendBtn,
+.cxCityQuick a,
+.cxCityQuick button,
+.cxBankList a,
+.cxCityCard.copy button{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ gap:8px!important;
+ line-height:1.15!important;
+}
+.cxPrimaryBtn svg,
+.cxCallBtn svg,
+.cxWarehousePeopleActions svg,
+.cxWarehousePeopleHero svg,
+.cxWarehouseAlert svg,
+.cxQuickSend svg,
+.examSendBtn svg,
+.cxCityQuick svg,
+.cxBankList svg,
+.cxCityCard.copy button svg{
+ display:block!important;
+ width:20px!important;
+ height:20px!important;
+ min-width:20px!important;
+ margin:0!important;
+ flex:0 0 auto!important;
+ stroke:currentColor!important;
+ fill:none!important;
+ stroke-width:2.25!important;
+ stroke-linecap:round!important;
+ stroke-linejoin:round!important;
+}
+@media(max-width:520px){
+ .cxHomeTile{align-items:center!important}
+ .cxHomeTileIcon{width:50px!important;height:50px!important}
+ .cxHomeTileIcon svg{width:23px!important;height:23px!important}
+ .cxTodayBtn{grid-template-columns:36px 1fr!important}
+ .cxTodayIcon{width:36px!important;height:36px!important}
+ .cxWarehouseHead,.cxPeopleTitle,.cxCityHero,.readerPhotoHead{grid-template-columns:50px 1fr!important}
+ .cxWarehouseHead .cxHomeTileIcon,.cxPeopleTitle .cxHomeTileIcon,.cxCityHero .cxHomeTileIcon{width:50px!important;height:50px!important}
+}
+@media(max-width:380px){
+ .cxHomeTileIcon{width:46px!important;height:46px!important;border-radius:15px!important}
+ .cxHomeTileIcon svg{width:22px!important;height:22px!important}
+ .cxWarehouseHead,.cxPeopleTitle,.cxCityHero,.readerPhotoHead{grid-template-columns:46px 1fr!important}
+ .cxWarehouseHead .cxHomeTileIcon,.cxPeopleTitle .cxHomeTileIcon,.cxCityHero .cxHomeTileIcon{width:46px!important;height:46px!important}
+}
+</style></body></html>
