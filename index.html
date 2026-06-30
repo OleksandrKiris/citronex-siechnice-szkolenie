@@ -5106,4 +5106,76 @@ body.cxZoomOpen{overflow:hidden}
  var oldApply=window.apply;if(typeof oldApply==='function'&&!window.cxVisualHumanPlusApplyWrapped){window.cxVisualHumanPlusApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(run,0);setTimeout(run,260);return r}}
  document.addEventListener('DOMContentLoaded',run);document.addEventListener('click',function(){setTimeout(run,100)},true);document.addEventListener('change',function(){setTimeout(run,100)},true);setTimeout(run,0);setTimeout(run,900);
 })();
+</script>
+<style id="cxVisualFlowBoostCss">
+.cxDecisionPanel{display:grid;gap:10px;margin:0 0 12px}
+.cxDecisionGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cxDecisionBtn{border:2px solid #d7e5da;background:#fff;color:#173b2a;border-radius:20px;padding:14px;text-align:left;min-height:92px;box-shadow:0 10px 24px rgba(20,33,27,.08);font-weight:950}
+.cxDecisionBtn strong{display:block;font-size:19px;line-height:1.08}.cxDecisionBtn span{display:block;margin-top:6px;color:#52695d;font-size:13px;line-height:1.25}
+.cxDecisionBtn.new{background:linear-gradient(135deg,#0f5f3f,#23885e);color:#fff;border-color:#0f5f3f}.cxDecisionBtn.new span{color:#eafff1}
+.cxNowStrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;background:#fff8df;border:1px solid #efd28a;border-radius:18px;padding:10px}
+.cxNowItem{display:grid;grid-template-columns:32px 1fr;gap:8px;align-items:center;color:#3e2c00;font-weight:950;line-height:1.15;font-size:13px}
+.cxNowNo{width:32px;height:32px;border-radius:12px;background:#f3c84c;color:#173b2a;display:grid;place-items:center;font-weight:1000}
+.cxMapRoute{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:2px}
+.cxMapRouteStep{position:relative;background:#fff;border:1px solid #cfe3d5;border-radius:14px;padding:9px 5px;text-align:center;color:#173b2a;font-weight:1000;font-size:11.5px;line-height:1.12}
+.cxMapRouteStep:not(:last-child):after{content:"";position:absolute;right:-7px;top:50%;width:10px;height:10px;border-top:3px solid #0f5f3f;border-right:3px solid #0f5f3f;transform:translateY(-50%) rotate(45deg);background:#fff}
+.cxReaderSlider{display:none;background:#f7fbf8;border:2px solid #d7e5da;border-radius:20px;padding:12px;margin:12px 0;box-shadow:0 10px 24px rgba(20,33,27,.08)}
+.cxReaderSlideTop{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:9px;color:#173b2a;font-weight:1000}
+.cxReaderCounter{background:#173b2a;color:#fff;border-radius:999px;padding:6px 10px;font-size:12px;white-space:nowrap}
+.cxReaderSlide{display:grid;gap:10px}
+.cxReaderSlide h4{margin:0;font-size:20px;line-height:1.12;color:#173b2a}
+.cxReaderSlide p{margin:0;color:#52695d;font-weight:900;line-height:1.3}
+.cxReaderSlide img{width:100%;max-height:48vh;object-fit:contain;background:#fff;border:1px solid #d7e5da;border-radius:16px}
+.cxReaderNav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.cxReaderNav button{border:0;border-radius:16px;min-height:52px;padding:12px;background:#173b2a;color:#fff;font-weight:1000}
+.cxReaderNav button:disabled{background:#e2ebe5;color:#849289}
+.cxPhotoOverlay{position:fixed;inset:0;background:rgba(12,24,18,.88);z-index:1000;display:grid;grid-template-rows:auto 1fr;gap:10px;padding:10px}
+.cxPhotoTop{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;color:#fff;font-weight:1000}
+.cxPhotoTop button{border:0;background:#fff;color:#173b2a;border-radius:14px;min-height:46px;padding:10px 14px;font-weight:1000}
+.cxPhotoBox{background:#101a14;border-radius:18px;display:grid;place-items:center;overflow:auto;padding:8px}
+.cxPhotoBox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:14px;background:#fff}
+body.cxPhotoOpen{overflow:hidden}
+@media(max-width:760px){
+ .cxDecisionGrid{grid-template-columns:1fr}
+ .cxDecisionBtn{min-height:84px}
+ .cxNowStrip{grid-template-columns:1fr}
+ .cxMapRoute{grid-template-columns:1fr;gap:8px}
+ .cxMapRouteStep:not(:last-child):after{right:50%;top:auto;bottom:-8px;transform:translateX(50%) rotate(135deg)}
+ .readerPhotoGuide.cxReaderSliderReady .readerFlow,.readerPhotoGuide.cxReaderSliderReady .readerPhotoGrid{display:none!important}
+ .readerPhotoGuide.cxReaderSliderReady .cxReaderSlider{display:grid}
+ .readerPhotoCard img,.visual img,.cxWarehousePhotos img,.cxReaderSlide img{cursor:zoom-in}
+}
+@media(max-width:380px){
+ .cxDecisionBtn strong{font-size:17px}
+ .cxReaderSlide h4{font-size:18px}
+ .cxNowItem{font-size:12px}
+}
+</style>
+<script id="cxVisualFlowBoostPatch">
+(function(){
+ if(window.cxVisualFlowBoostLoaded)return;window.cxVisualFlowBoostLoaded=true;
+ function langNow(){try{return String(lang||localStorage.cx_lang||'PL').toUpperCase()}catch(e){return String(localStorage.cx_lang||'PL').toUpperCase()}}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function tr(){var d={
+  PL:{newTitle:'Jestem nowy',newLead:'Prowadź mnie krok po kroku od mapy do pracy.',findTitle:'Wiem, czego szukam',findLead:'Pokaż kafelki i wybiorę konkretny moduł.',now:['Wybierz miejsce','Otwórz mapę','Po przyjściu czekaj'],route:['Wejście','Początek naw','Łącznik','Nawa','Wejście / rząd'],slide:'Krok',prev:'Wstecz',next:'Dalej',close:'Zamknij',photo:'Zdjęcie'},
+  EN:{newTitle:'I am new',newLead:'Guide me step by step from map to work.',findTitle:'I know what I need',findLead:'Show tiles and I will choose a module.',now:['Choose place','Open map','Wait after arrival'],route:['Entrance','Start of naves','Connector','Nave','Entrance / row'],slide:'Step',prev:'Back',next:'Next',close:'Close',photo:'Photo'},
+  UA:{newTitle:'Я новий',newLead:'Проведи мене крок за кроком від карти до роботи.',findTitle:'Я знаю, що шукаю',findLead:'Покажи блоки, і я виберу потрібний модуль.',now:['Оберіть місце','Відкрийте карту','Після приходу чекайте'],route:['Вхід','Початок нав','З’єднання','Нава','Вхід / ряд'],slide:'Крок',prev:'Назад',next:'Далі',close:'Закрити',photo:'Фото'},
+  RU:{newTitle:'Я новый',newLead:'Проведи меня шаг за шагом от карты до работы.',findTitle:'Я знаю, что ищу',findLead:'Покажи блоки, и я выберу нужный модуль.',now:['Выбери место','Открой карту','После прихода жди'],route:['Вход','Начало нав','Соединение','Нава','Вход / ряд'],slide:'Шаг',prev:'Назад',next:'Дальше',close:'Закрыть',photo:'Фото'},
+  AZ:{newTitle:'Mən yeniyəm',newLead:'Məni xəritədən işə qədər addım-addım apar.',findTitle:'Nə axtardığımı bilirəm',findLead:'Modulları göstər, mən seçəcəyəm.',now:['Yeri seç','Xəritəni aç','Gələndə gözlə'],route:['Giriş','Navaların başlanğıcı','Birləşdirici','Nava','Giriş / sıra'],slide:'Addım',prev:'Geri',next:'İrəli',close:'Bağla',photo:'Şəkil'}
+ };return d[langNow()]||d.PL}
+ function goFirst(){try{if(typeof goNeed==='function'){goNeed('first');return}}catch(e){}try{if(typeof cxHomeGo==='function'){cxHomeGo('map');return}}catch(e){}try{if(typeof setAppTab==='function')setAppTab('route')}catch(e){}}
+ function renderHome(){var host=document.getElementById('cxHomeTiles');if(!host)return;var grid=host.querySelector('.cxTileGrid');if(!grid)return;var t=tr();var panel=document.getElementById('cxDecisionPanel');if(!panel){panel=document.createElement('section');panel.id='cxDecisionPanel';panel.className='cxDecisionPanel';host.insertBefore(panel,grid)}panel.innerHTML='<div class="cxDecisionGrid"><button type="button" class="cxDecisionBtn new" id="cxNewWorkerBtn"><strong>'+esc(t.newTitle)+'</strong><span>'+esc(t.newLead)+'</span></button><button type="button" class="cxDecisionBtn" id="cxFindBtn"><strong>'+esc(t.findTitle)+'</strong><span>'+esc(t.findLead)+'</span></button></div><div class="cxNowStrip">'+t.now.map(function(x,i){return '<div class="cxNowItem"><span class="cxNowNo">'+(i+1)+'</span><span>'+esc(x)+'</span></div>'}).join('')+'</div>';panel.querySelector('#cxNewWorkerBtn').onclick=goFirst;panel.querySelector('#cxFindBtn').onclick=function(){try{grid.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){grid.scrollIntoView()}}}
+ function renderGreenRoute(){var box=document.querySelector('.cxGreenhouseWholeFix');if(!box)return;var t=tr();var old=box.querySelector('.cxMapRoute');if(old)old.remove();var route=document.createElement('div');route.className='cxMapRoute';route.innerHTML=t.route.map(function(x){return '<div class="cxMapRouteStep">'+esc(x)+'</div>'}).join('');var start=box.querySelector('.cxGWFStart');if(start&&start.parentNode)start.parentNode.insertBefore(route,start.nextSibling);else box.appendChild(route)}
+ function textClean(n){return (n&&n.textContent||'').trim().replace(/\s+/g,' ')}
+ function buildReaderSlider(){var guide=document.querySelector('.readerPhotoGuide');if(!guide)return;var t=tr();var flow=[].slice.call(guide.querySelectorAll('.readerFlowStep')).map(textClean).filter(Boolean);var photos=[].slice.call(guide.querySelectorAll('.readerPhotoCard')).map(function(card){var img=card.querySelector('img');return {src:img?img.src:'',alt:img?img.alt:'',text:textClean(card.querySelector('.readerPhotoCaption')||card)}});var count=Math.max(flow.length,photos.length,1);var slider=guide.querySelector('.cxReaderSlider');if(!slider){slider=document.createElement('div');slider.className='cxReaderSlider';var head=guide.querySelector('.readerPhotoHead');if(head&&head.parentNode)head.parentNode.insertBefore(slider,head.nextSibling);else guide.insertBefore(slider,guide.firstChild)}var saved=Number(window.cxReaderSlideIndex);var attr=Number(slider.getAttribute('data-step')||0);var current=Number.isFinite(saved)?saved:attr;if(current<0)current=0;if(current>=count)current=count-1;window.cxReaderSlideIndex=current;var p=photos[current]||photos[0]||{};var title=flow[current]||p.text||t.photo;slider.setAttribute('data-step',String(current));slider.setAttribute('data-count',String(count));slider.innerHTML='<div class="cxReaderSlideTop"><span>'+esc(t.slide)+'</span><span class="cxReaderCounter">'+(current+1)+' / '+count+'</span></div><div class="cxReaderSlide"><h4>'+esc(title)+'</h4>'+(p.src?'<img src="'+esc(p.src)+'" alt="'+esc(p.alt||title)+'">':'<p>'+esc(title)+'</p>')+'</div><div class="cxReaderNav"><button type="button" class="cxReaderPrev" onclick="cxReaderSlideGo(-1)" '+(current===0?'disabled':'')+'>'+esc(t.prev)+'</button><button type="button" class="cxReaderNext" onclick="cxReaderSlideGo(1)" '+(current===count-1?'disabled':'')+'>'+esc(t.next)+'</button></div>';guide.classList.add('cxReaderSliderReady')}
+ function readerSlideGo(delta){var slider=document.querySelector('.readerPhotoGuide .cxReaderSlider');if(!slider)return;var count=Number(slider.getAttribute('data-count')||1);var saved=Number(window.cxReaderSlideIndex);var attr=Number(slider.getAttribute('data-step')||0);var current=Number.isFinite(saved)?saved:attr;current=Math.max(0,Math.min(count-1,current+Number(delta||0)));window.cxReaderSlideIndex=current;slider.setAttribute('data-step',String(current));buildReaderSlider();bindPhotos()}
+ window.cxReaderSlideGo=readerSlideGo;
+ function openPhoto(src,title){if(!src)return;closePhoto();var t=tr();var ov=document.createElement('div');ov.className='cxPhotoOverlay';ov.innerHTML='<div class="cxPhotoTop"><span>'+esc(title||t.photo)+'</span><button type="button">'+esc(t.close)+'</button></div><div class="cxPhotoBox"><img src="'+esc(src)+'" alt="'+esc(title||t.photo)+'"></div>';ov.querySelector('button').onclick=closePhoto;ov.addEventListener('click',function(e){if(e.target===ov)closePhoto()});document.body.appendChild(ov);document.body.classList.add('cxPhotoOpen')}
+ function closePhoto(){var old=document.querySelector('.cxPhotoOverlay');if(old)old.remove();document.body.classList.remove('cxPhotoOpen')}
+ window.cxCloseTrainingPhoto=closePhoto;
+ function bindPhotos(){document.querySelectorAll('.readerPhotoCard img,.visual img,.cxWarehousePhotos img,.cxReaderSlide img').forEach(function(img){if(img.dataset.cxPhotoBound==='1')return;img.dataset.cxPhotoBound='1';img.addEventListener('click',function(){openPhoto(img.currentSrc||img.src,img.alt||tr().photo)})})}
+ function run(){renderHome();renderGreenRoute();buildReaderSlider();bindPhotos()}
+ var oldApply=window.apply;if(typeof oldApply==='function'&&!window.cxVisualFlowBoostApplyWrapped){window.cxVisualFlowBoostApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(run,0);setTimeout(run,300);return r}}
+ document.addEventListener('DOMContentLoaded',run);document.addEventListener('click',function(){setTimeout(run,120)},true);document.addEventListener('change',function(){setTimeout(run,120)},true);setTimeout(run,0);setTimeout(run,900);
+})();
 </script><nav class="mobileDock" id="mobileDock"></nav><script>if(window.apply)apply();</script></body></html>
