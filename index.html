@@ -6212,4 +6212,126 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  try{new MutationObserver(function(){setTimeout(render,80)}).observe(document.body,{childList:true,subtree:true})}catch(e){}
  setTimeout(render,0);setTimeout(render,600);setTimeout(render,1600);
 })();
+</script><style id="cxOldWarehouseCss">
+.stage[onclick*="old_warehouse"],.placeBtn[onclick*="old_warehouse"]{border-color:#c69220!important;background:#fff8e8!important}
+.stage[onclick*="old_warehouse"].active,.placeBtn[onclick*="old_warehouse"].active{background:#8b5b12!important;color:#fff!important;border-color:#8b5b12!important}
+</style><script id="cxOldWarehouseMapPatch">
+(function(){
+ if(window.cxOldWarehouseMapPatchLoaded)return;window.cxOldWarehouseMapPatchLoaded=true;
+ var OLD_ID='old_warehouse';
+ var OLD_MAP='https://maps.app.goo.gl/5B47Av1GDhEUBM7M7';
+ var OLD_LABELS={
+  PL:['Stary magazyn','Adres i mapa do starego magazynu - bez Readera'],
+  EN:['Old warehouse','Address and map to the old warehouse - no Reader'],
+  UA:['Старий склад','Адреса і карта до старого складу - без рідера'],
+  RU:['Старый склад','Адрес и карта старого склада - без ридера'],
+  AZ:['Köhnə anbar','Köhnə anbarın ünvanı və xəritəsi - Reader yoxdur'],
+  ES:['Almacén antiguo','Dirección y mapa del almacén antiguo - sin Reader'],
+  FIL:['Lumang bodega','Address at mapa papunta sa lumang bodega - walang Reader'],
+  ID:['Gudang lama','Alamat dan peta ke gudang lama - tanpa Reader'],
+  NE:['पुरानो गोदाम','पुरानो गोदामको address र map - Reader छैन']
+ };
+ function code(){
+  try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}
+  try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}
+  try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}
+ }
+ function label(){return OLD_LABELS[code()]||OLD_LABELS.PL}
+ function addMap(){
+  try{
+   if(typeof MAPS!=='undefined'&&Array.isArray(MAPS)&&!MAPS.some(function(m){return m.id===OLD_ID})){
+    var wh=MAPS.find(function(m){return m.id==='warehouse'});
+    var item={id:OLD_ID,name:'Stary magazyn / Old warehouse',desc:'Adres i mapa do starego magazynu - bez Readera',url:OLD_MAP,photos:(wh&&wh.photos)||['warehouse_1','warehouse_2']};
+    var idx=MAPS.findIndex(function(m){return m.id==='warehouse'});
+    if(idx>-1)MAPS.splice(idx+1,0,item);else MAPS.push(item);
+   }
+  }catch(e){}
+  try{
+   if(typeof HELPER_PLACES!=='undefined'&&Array.isArray(HELPER_PLACES)&&!HELPER_PLACES.some(function(p){return p.id===OLD_ID})){
+    var item2={id:OLD_ID,label:'Stary magazyn',go:'Stary magazyn / Old warehouse',url:OLD_MAP};
+    var idx2=HELPER_PLACES.findIndex(function(p){return p.id==='hotel'});
+    if(idx2>-1)HELPER_PLACES.splice(idx2,0,item2);else HELPER_PLACES.push(item2);
+   }
+  }catch(e){}
+ }
+ addMap();
+ try{
+  var oldMapLabel=mapLabel;
+  mapLabel=function(x,m){
+   if(m&&m.id===OLD_ID)return label();
+   return oldMapLabel(x,m);
+  };
+ }catch(e){}
+ try{
+  var oldHelperPlaceLabel=helperPlaceLabel;
+  helperPlaceLabel=function(x,p){
+   if(p&&p.id===OLD_ID)return label()[0];
+   return oldHelperPlaceLabel(x,p);
+  };
+ }catch(e){}
+ function markWarehouseMode(){
+  try{
+   var st=String(localStorage.cx_stage||'');
+   if(st===OLD_ID){
+    if(typeof stage!=='undefined')stage=OLD_ID;
+    if(typeof mode!=='undefined'&&mode!=='warehouse'){mode='warehouse';localStorage.cx_mode='warehouse'}
+    if(typeof readerMode!=='undefined')readerMode='start';
+   }
+  }catch(e){}
+ }
+ try{
+  var oldSelectStage=selectStage;
+  selectStage=function(id){
+   if(id===OLD_ID){
+    stage=OLD_ID;localStorage.cx_stage=OLD_ID;
+    mode='warehouse';localStorage.cx_mode='warehouse';
+    readerMode='start';localStorage.cx_reader=readerMode;
+    apply();return;
+   }
+   return oldSelectStage(id);
+  };
+ }catch(e){}
+ try{
+  var oldCxPickStage=cxPickStage;
+  cxPickStage=function(id){
+   if(id===OLD_ID){
+    try{stage=OLD_ID;localStorage.cx_stage=OLD_ID;mode='warehouse';localStorage.cx_mode='warehouse';readerMode='start';localStorage.cx_reader=readerMode}catch(e){}
+    try{if(typeof apply==='function')apply()}catch(e){}
+    return;
+   }
+   return oldCxPickStage(id);
+  };
+ }catch(e){}
+ function syncOldWarehouse(){
+  addMap();markWarehouseMode();
+  var selected=false;
+  try{selected=String(stage||localStorage.cx_stage||'')===OLD_ID}catch(e){selected=String(localStorage.cx_stage||'')===OLD_ID}
+  if(!selected)return;
+  var l=label();
+  var link=document.getElementById('selectedMap');
+  if(link){
+   link.href=OLD_MAP;link.setAttribute('target','_blank');link.setAttribute('rel','noopener');
+   link.innerHTML='<strong>Otwórz mapę: '+l[0]+'</strong><span>'+l[1]+'</span>';
+  }
+  var panel=document.getElementById('cxWarehousePanel');
+  if(panel){
+   var btn=panel.querySelector('a.cxPrimaryBtn');
+   if(btn){btn.href=OLD_MAP}
+   var h=panel.querySelector('h3');if(h)h.textContent=l[0];
+   var p=panel.querySelector('p');if(p)p.textContent=l[1];
+  }
+  document.body.classList.add('cxOldWarehouseSelected');
+ }
+ var oldApply=window.apply||apply;
+ if(typeof oldApply==='function'&&!window.cxOldWarehouseApplyWrapped){
+  window.cxOldWarehouseApplyWrapped=true;
+  window.apply=function(){var r=oldApply.apply(this,arguments);setTimeout(syncOldWarehouse,0);setTimeout(syncOldWarehouse,250);return r};
+  try{apply=window.apply}catch(e){}
+ }
+ document.addEventListener('DOMContentLoaded',function(){addMap();setTimeout(syncOldWarehouse,0);setTimeout(function(){try{if(typeof apply==='function')apply()}catch(e){}},80)});
+ document.addEventListener('click',function(){setTimeout(syncOldWarehouse,160)},true);
+ document.addEventListener('change',function(){setTimeout(syncOldWarehouse,160)},true);
+ setTimeout(function(){addMap();syncOldWarehouse();try{if(typeof apply==='function')apply()}catch(e){}},0);
+ setTimeout(syncOldWarehouse,700);
+})();
 </script></body></html>
