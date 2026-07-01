@@ -6950,4 +6950,140 @@ img{
  document.addEventListener('DOMContentLoaded',after);
  setTimeout(sync,0);setTimeout(sync,800);setInterval(sync,2500);
 })();
+</script><script id="cxTranslationClarityAuditPatch">
+(function(){
+ if(window.cxTranslationClarityAuditLoaded)return;window.cxTranslationClarityAuditLoaded=true;
+ var REPL={
+  ES:[
+   ['todo el etapa','toda la etapa'],
+   ['Todo el etapa','Toda la etapa'],
+   ['Reader - exactamente según la instrucción','Reader - según la instrucción'],
+   ['Test de memoria','Test de comprensión']
+  ],
+  FIL:[
+   ['CITRONEX INFORMATION AT TRAINING SYSTEM','SISTEMA NG IMPORMASYON AT PAGSASANAY CITRONEX'],
+   ['Buong training bago magsimula sa trabaho','Buong pagsasanay bago magsimula sa trabaho'],
+   ['rules','mga patakaran'],
+   ['Rules','Mga patakaran'],
+   ['Reader instruction photos','Mga larawan ng instruksyon ng Reader'],
+   ['Memory test','Test para sa pag-alala'],
+   ['Photos','Mga larawan'],
+   ['photos','mga larawan'],
+   ['responsible person','taong responsable'],
+   ['Contacts','Mga contact'],
+   ['Doctor','Doktor'],
+   ['Phone','Telepono'],
+   ['Canteen','Kantina'],
+   ['Parcels','Mga parcel'],
+   ['Start work','Simula ng trabaho'],
+   ['End work','Tapos ng trabaho'],
+   ['Break start','Simula ng break'],
+   ['Break end','Tapos ng break'],
+   ['Social start','Simula ng social break'],
+   ['Social end','Tapos ng social break'],
+   ['LEFT SIDE','KALIWANG BAHAGI'],
+   ['RIGHT SIDE','KANANG BAHAGI'],
+   ['LEFT SPAN','KALIWANG BAHAGI'],
+   ['RIGHT SPAN','KANANG BAHAGI'],
+   ['PASSAGE','DAAN'],
+   ['Entrance','Pasukan'],
+   ['left row','kaliwang row'],
+   ['right row','kanang row'],
+   ['common road','gitnang daan'],
+   ['Whole greenhouse from above','Buong greenhouse mula sa taas'],
+   ['One nave','Isang nave'],
+   ['row tag','tag ng row'],
+   ['team leader','lider ng team']
+  ],
+  ID:[
+   ['Reader - persis sesuai instruksi','Reader - sesuai instruksi'],
+   ['Tes ingatan','Tes pemahaman'],
+   ['Checklist sebelum kerja','Daftar cek sebelum kerja']
+  ],
+  NE:[
+   ['City / office / banks','शहर / कार्यालय / बैंक'],
+   ['Warehouse - tablet','गोदाम - tablet'],
+   ['Warehouse','गोदाम'],
+   ['Greenhouse','ग्रीनहाउस'],
+   ['greenhouse','ग्रीनहाउस'],
+   ['Doctor','डाक्टर'],
+   ['Contacts','सम्पर्क'],
+   ['Contact','सम्पर्क'],
+   ['Map','नक्सा'],
+   ['map','नक्सा'],
+   ['Work','काम'],
+   ['work','काम'],
+   ['Start','सुरु'],
+   ['start','सुरु'],
+   ['Test','टेस्ट'],
+   ['test','टेस्ट'],
+   ['Stage','स्टेज'],
+   ['stage','स्टेज'],
+   ['Route','बाटो'],
+   ['route','बाटो'],
+   ['office','कार्यालय'],
+   ['banks','बैंक'],
+   ['rules','नियम'],
+   ['Rules','नियम'],
+   ['Entrance','प्रवेश'],
+   ['entrance','प्रवेश'],
+   ['Section numbers','सेक्शन नम्बर'],
+   ['section number','सेक्शन नम्बर'],
+   ['LEFT SIDE','बायाँ साइड'],
+   ['RIGHT SIDE','दायाँ साइड'],
+   ['LEFT SPAN','बायाँ भाग'],
+   ['RIGHT SPAN','दायाँ भाग'],
+   ['PASSAGE','बाटो'],
+   ['left row','बायाँ row'],
+   ['right row','दायाँ row'],
+   ['team leader','टोली नेता']
+  ]
+ };
+ function langKey(){
+  try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}
+  try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}
+  try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}
+ }
+ function applyRepl(text,list){
+  var out=String(text||'');
+  for(var i=0;i<list.length;i++){
+   var from=list[i][0],to=list[i][1];
+   if(/^[A-Za-z]+$/.test(from)){
+    out=out.replace(new RegExp('\\b'+from.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','g'),to);
+   }else{
+    out=out.split(from).join(to);
+   }
+  }
+  return out;
+ }
+ function run(){
+  var list=REPL[langKey()];
+  if(!list||!document.body)return;
+  var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+   acceptNode:function(n){
+    var p=n.parentNode;
+    if(!p||/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA|INPUT|SELECT|OPTION)$/i.test(p.nodeName))return NodeFilter.FILTER_REJECT;
+    if(!String(n.nodeValue||'').trim())return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;
+   }
+  });
+  var nodes=[],n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(function(node){
+   var next=applyRepl(node.nodeValue,list);
+   if(next!==node.nodeValue)node.nodeValue=next;
+  });
+  document.querySelectorAll('[aria-label]').forEach(function(el){
+   var old=el.getAttribute('aria-label'), next=applyRepl(old,list);
+   if(next!==old)el.setAttribute('aria-label',next);
+  });
+ }
+ function schedule(){setTimeout(run,0);setTimeout(run,120);setTimeout(run,420);setTimeout(run,1000);setTimeout(run,2200)}
+ try{var oldApply=window.apply||apply;if(typeof oldApply==='function'&&!window.cxTranslationClarityApplyWrapped){window.cxTranslationClarityApplyWrapped=true;window.apply=function(){var r=oldApply.apply(this,arguments);schedule();return r};try{apply=window.apply}catch(e){}}}catch(e){}
+ document.addEventListener('DOMContentLoaded',schedule);
+ document.addEventListener('click',schedule,true);
+ document.addEventListener('change',schedule,true);
+ try{new MutationObserver(function(){setTimeout(run,80)}).observe(document.body,{childList:true,subtree:true,characterData:true})}catch(e){}
+ schedule();
+})();
 </script></body></html>
