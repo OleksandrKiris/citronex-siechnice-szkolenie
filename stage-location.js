@@ -143,12 +143,16 @@ function getTrainingState() {
 
 function setTrainingState(patch) {
   const next = { ...getTrainingState(), ...patch };
-  localStorage.setItem(STAGE_STORAGE_KEY, JSON.stringify(next));
+  try {
+    localStorage.setItem(STAGE_STORAGE_KEY, JSON.stringify(next));
+  } catch (_) {
+    // Local storage can be blocked in some browsers/private mode.
+  }
   return next;
 }
 
 function getStageLang() {
-  const lang = getTrainingState().lang || 'pl';
+  const lang = getTrainingState().lang || document.documentElement.lang || 'pl';
   return STAGE_TEXTS[lang] ? lang : 'pl';
 }
 
@@ -206,6 +210,7 @@ function renderStageLocation() {
 }
 
 function selectStage(stage) {
+  if (!STAGE_URL_KEY[stage]) return;
   setTrainingState({ selectedStage: stage });
   renderStageLocation();
 }
@@ -215,7 +220,7 @@ function buildStageConfirmation() {
   const state = getTrainingState();
   const name = document.getElementById('workerName')?.value?.trim() || text.noStage;
   const date = document.getElementById('doneDate')?.textContent || new Date().toLocaleDateString('pl-PL');
-  const lang = (state.lang || 'pl').toUpperCase();
+  const lang = (state.lang || getStageLang()).toUpperCase();
   const stage = getSelectedStageName(state.selectedStage);
 
   return [
@@ -229,8 +234,9 @@ function buildStageConfirmation() {
 }
 
 async function copyStageConfirmation(event) {
-  const button = document.getElementById('copyBtn');
-  if (!button || event.target !== button) return;
+  const button = event.target?.closest?.('#copyBtn');
+  if (!button) return;
+
   event.preventDefault();
   event.stopImmediatePropagation();
 
@@ -260,4 +266,8 @@ function bindStageLocation() {
   renderStageLocation();
 }
 
-bindStageLocation();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindStageLocation, { once: true });
+} else {
+  bindStageLocation();
+}
