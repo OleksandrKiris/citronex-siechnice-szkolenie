@@ -6821,6 +6821,8 @@ img{
  function store(k){
   if(!k)return;
   try{localStorage.cx_active_home_tile=k}catch(e){}
+  try{if(k!=='warehousePeople')localStorage.removeItem('cx_warehouse_people')}catch(e){}
+  try{if(k!=='forbidden')localStorage.cx_forbiddenOpen='0'}catch(e){}
  }
  function readStore(){
   try{return localStorage.cx_active_home_tile||''}catch(e){return''}
@@ -6837,6 +6839,15 @@ img{
   try{if(typeof cxContactMode!=='undefined'&&cxContactMode)return String(cxContactMode)}catch(e){}
   return''
  }
+ function tabKey(){
+  var tab=tabNow();
+  if(tab==='route')return'map';
+  if(tab==='greenhouse')return modeNow()==='warehouse'?'warehouse':'greenhouse';
+  if(tab==='reader')return'reader';
+  if(tab==='test')return'test';
+  if(tab==='contacts')return contactNow()==='doctor'?'doctor':'contacts';
+  return'';
+ }
  function tileKey(tile){
   if(!tile)return'';
   if(tile.matches('[data-cx-groups-tile],.groups'))return'groups';
@@ -6849,17 +6860,18 @@ img{
   return'';
  }
  function fallbackKey(){
-  try{if(localStorage.cx_warehouse_people==='1')return'warehousePeople'}catch(e){}
-  try{if(localStorage.cx_forbiddenOpen==='1')return'forbidden'}catch(e){}
+  if(tabNow()==='home'){
+   try{if(localStorage.cx_warehouse_people==='1')return'warehousePeople'}catch(e){}
+   try{if(localStorage.cx_forbiddenOpen==='1')return'forbidden'}catch(e){}
+  }
   var saved=readStore();
-  if(saved)return saved;
-  var tab=tabNow();
-  if(tab==='route')return'map';
-  if(tab==='greenhouse')return modeNow()==='warehouse'?'warehouse':'greenhouse';
-  if(tab==='reader')return'reader';
-  if(tab==='test')return'test';
-  if(tab==='contacts')return contactNow()==='doctor'?'doctor':'contacts';
-  return'';
+  var current=tabKey();
+  if(saved){
+   if(tabNow()==='home')return saved;
+   if(saved===current)return saved;
+   if((saved==='doctor'||saved==='contacts'||saved==='groups')&&current==='contacts')return saved;
+  }
+  return current||saved||'';
  }
  function selectorFor(k){
   if(k==='warehousePeople')return'.cxHomeTile.warehousePeople';
