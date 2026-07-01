@@ -3332,7 +3332,7 @@ body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
  };
  function text(){return TXT[lang()]||TXT.pl}
  function contactLead(){
-  return ({pl:'Numery E1-E6, telefon i WhatsApp.',en:'E1-E6 numbers, phone and WhatsApp.',ua:'Номери E1-E6, телефон і WhatsApp.',ru:'Номера E1-E6, телефон и WhatsApp.',az:'E1-E6 nömrələri, telefon və WhatsApp.'})[lang()]||'Numery E1-E6, telefon i WhatsApp.';
+  return ({pl:'Numery E1-E6, telefon i WhatsApp.',en:'E1-E6 numbers, phone and WhatsApp.',ua:'Номери E1-E6, телефон і WhatsApp.',ru:'Номера E1-E6, телефон и WhatsApp.',az:'E1-E6 nömrələri, telefon və WhatsApp.',es:'Números E1-E6, teléfono y WhatsApp.',fil:'Mga numero E1-E6, telepono at WhatsApp.',id:'Nomor E1-E6, telepon dan WhatsApp.',ne:'टीम लिडर E1-E6, फोन र WhatsApp.'})[lang()]||'Numery E1-E6, telefon i WhatsApp.';
  }
  function patchHomeData(){
   try{
@@ -3341,7 +3341,11 @@ body.cxWarehousePeopleMode #humanPanel>#cxForbiddenPanel{display:none!important}
     en:{contacts:'E1-E6 numbers, phone and WhatsApp.',warehousePeople:TXT.en.tile},
     ua:{contacts:'Номери E1-E6, телефон і WhatsApp.',warehousePeople:TXT.ua.tile},
     ru:{contacts:'Номера E1-E6, телефон и WhatsApp.',warehousePeople:TXT.ru.tile},
-    az:{contacts:'E1-E6 nömrələri, telefon və WhatsApp.',warehousePeople:TXT.az.tile}
+    az:{contacts:'E1-E6 nömrələri, telefon və WhatsApp.',warehousePeople:TXT.az.tile},
+    es:{contacts:'Números E1-E6, teléfono y WhatsApp.',warehousePeople:['Personal de almacén / tablet','Instrucción separada: almacén, tablet, PIN y apellido.']},
+    fil:{contacts:'Mga numero E1-E6, telepono at WhatsApp.',warehousePeople:['Mga manggagawa sa bodega / tablet','Hiwalay na instruksyon: bodega, tablet, PIN at apelyido.']},
+    id:{contacts:'Nomor E1-E6, telepon dan WhatsApp.',warehousePeople:TXT.id.tile},
+    ne:{contacts:'टीम लिडर E1-E6, फोन र WhatsApp.',warehousePeople:['गोदाम कामदार / ट्याबलेट','गोदाम, ट्याबलेट, PIN र थरका लागि छुट्टै निर्देशन.']}
    };
    Object.keys(p).forEach(function(k){
     if(typeof CX_HOME_TEXT!=='undefined'&&CX_HOME_TEXT[k]&&CX_HOME_TEXT[k].tiles){
@@ -9348,6 +9352,444 @@ body.cxContactWarehouse #cxWarehouseContactsOnly{display:block!important}
  schedule();
 })();
 </script>
+<script id="cxTranslationAuditFixPatch">
+(function(){
+ if(window.__cxTranslationAuditFixPatch)return;window.__cxTranslationAuditFixPatch=true;
+ function langKey(){
+  try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}
+  try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}
+  try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}
+ }
+ var COMMON={
+  UA:[
+   ['Biuro / punkt spotkania','Офіс / місце зустрічі'],
+   ['Dokumenty, start, pierwszy kontakt','Документи, старт, перший контакт'],
+   ['Wszystkie wejscia i dojscia','Усі входи та підходи'],
+   ['Wszystkie wejścia i dojścia','Усі входи та підходи'],
+   ['Mapa wejsc','Карта входів'],
+   ['Mapa wejść','Карта входів'],
+   ['Magazyn / Warehouse','Склад'],
+   ['Old warehouse','Старий склад'],
+   ['Warehouse','Склад'],
+   ['Staff Entrance','Вхід для персоналу']
+   ,['Powiększ','Збільшити']
+   ,['Wejście dla personelu','Вхід для персоналу']
+   ,['bez Readera','без рідера']
+   ,['Stary magazyn','Старий склад']
+   ,['Adres i mapa do starego magazynu','Адреса і карта до старого складу']
+   ,['Szklarnia - Etap','Теплиця - Етап']
+   ,['Etap','Етап']
+   ,['SYSTEM INFORMACYJNO-UCZĄCY CITRONEX - Siechnice','ІНФОРМАЦІЙНО-НАВЧАЛЬНА СИСТЕМА CITRONEX - Siechnice']
+  ],
+  RU:[
+   ['Biuro / punkt spotkania','Офис / место встречи'],
+   ['Dokumenty, start, pierwszy kontakt','Документы, старт, первый контакт'],
+   ['Wszystkie wejscia i dojscia','Все входы и подходы'],
+   ['Wszystkie wejścia i dojścia','Все входы и подходы'],
+   ['Mapa wejsc','Карта входов'],
+   ['Mapa wejść','Карта входов'],
+   ['Magazyn / Warehouse','Склад'],
+   ['Old warehouse','Старый склад'],
+   ['Warehouse','Склад'],
+   ['Staff Entrance','Вход для персонала']
+   ,['Powiększ','Увеличить']
+   ,['Wejście dla personelu','Вход для персонала']
+   ,['bez Readera','без ридера']
+   ,['Stary magazyn','Старый склад']
+   ,['Adres i mapa do starego magazynu','Адрес и карта старого склада']
+   ,['Szklarnia - Etap','Теплица - Этап']
+   ,['Etap','Этап']
+   ,['SYSTEM INFORMACYJNO-UCZĄCY CITRONEX - Siechnice','ИНФОРМАЦИОННО-ОБУЧАЮЩАЯ СИСТЕМА CITRONEX - Siechnice']
+  ],
+  AZ:[
+   ['Biuro / punkt spotkania','Ofis / görüş yeri'],
+   ['Dokumenty, start, pierwszy kontakt','Sənədlər, başlanğıc, ilk əlaqə'],
+   ['Wszystkie wejscia i dojscia','Bütün girişlər və yollar'],
+   ['Wszystkie wejścia i dojścia','Bütün girişlər və yollar'],
+   ['Mapa wejsc','Girişlərin xəritəsi'],
+   ['Mapa wejść','Girişlərin xəritəsi'],
+   ['Magazyn / Warehouse','Anbar'],
+   ['Old warehouse','Köhnə anbar'],
+   ['Warehouse','Anbar'],
+   ['Staff Entrance','Personal girişi']
+   ,['Powiększ','Böyüt']
+   ,['Wejście dla personelu','Personal girişi']
+   ,['Giriş dla personelu','Personal girişi']
+   ,['bez Readera','Readersiz']
+   ,['Stary magazyn','Köhnə anbar']
+   ,['Adres i mapa do starego magazynu','Köhnə anbarın ünvanı və xəritəsi']
+   ,['Szklarnia - Etap','İstixana - mərhələ']
+   ,['Etap','Mərhələ']
+   ,['SYSTEM INFORMACYJNO-UCZĄCY CITRONEX - Siechnice','CITRONEX MƏLUMAT VƏ TƏLİM SİSTEMİ - Siechnice']
+  ],
+  ES:[
+   ['Potrzebuję pomocy w mieście.','Necesito ayuda en la ciudad.'],
+   ['potrzebuję pomocy w mieście','necesito ayuda en la ciudad'],
+   ['Skopiuj wiadomość - potrzebuję pomocy w mieście','Copiar mensaje - necesito ayuda en la ciudad'],
+   ['Sprawa: PESEL / Profil Zaufany / mObywatel / bank / dojazd / inna sprawa','Asunto: PESEL / Profil Zaufany / mObywatel / banco / transporte / otro asunto'],
+   ['Sprawa:','Asunto:'],
+   ['dojazd','transporte'],
+   ['inna sprawa','otro asunto'],
+   ['Imię i nazwisko:','Nombre y apellido:'],
+   ['Język:','Idioma:'],
+   ['Proszę o informację.','Por favor, envíame información.'],
+   ['Biuro / punkt spotkania','Oficina / punto de encuentro'],
+   ['Dokumenty, start, pierwszy kontakt','Documentos, inicio, primer contacto'],
+   ['Wszystkie wejscia i dojscia','Todas las entradas y accesos'],
+   ['Wszystkie wejścia i dojścia','Todas las entradas y accesos'],
+   ['Mapa wejsc','Mapa de entradas'],
+   ['Mapa wejść','Mapa de entradas'],
+   ['Magazyn / Warehouse','Almacén'],
+   ['Old warehouse','Almacén antiguo'],
+   ['Warehouse','Almacén'],
+   ['Staff Entrance','Entrada del personal'],
+   ['Powiększ','Ampliar'],
+   ['Clinic','Clínica'],
+   ['Wejście dla personelu','Entrada del personal'],
+   ['bez Readera','sin Reader'],
+   ['Stary magazyn','Almacén antiguo'],
+   ['Adres i mapa do starego magazynu','Dirección y mapa del almacén antiguo'],
+   ['Szklarnia - Etap','Invernadero - Etapa'],
+   ['Etap','Etapa'],
+   ['SYSTEM INFORMACYJNO-UCZĄCY CITRONEX - Siechnice','SISTEMA DE INFORMACIÓN Y FORMACIÓN CITRONEX - Siechnice'],
+   ['If you work in the greenhouse - choose work type','Si trabajas en el invernadero, elige el tipo de trabajo'],
+   ['This sets the steps only for your situation.','Esto muestra los pasos solo para tu situación.'],
+   ['Training progress','Progreso de formación'],
+   ['Step 1: Map and route','Paso 1: mapa y ruta'],
+   ['Map and route','Mapa y ruta'],
+   ['Greenhouse - Stage','Invernadero - Etapa'],
+   ['Open map to this place','Abrir mapa de este lugar'],
+   ['Very simple mode','Modo muy simple'],
+   ['Go to the point','Ve al punto indicado'],
+   ['Wait','Espera'],
+   ['Do not enter alone','No entres solo'],
+   ['Scan Reader','Marca el Reader'],
+   ['Back','Atrás'],
+   ['Next','Siguiente'],
+   ['Rules','Reglas'],
+   ['Ready','Listo']
+  ],
+  FIL:[
+   ['Potrzebuję pomocy w mieście.','Kailangan ko ng tulong sa lungsod.'],
+   ['potrzebuję pomocy w mieście','kailangan ko ng tulong sa lungsod'],
+   ['Skopiuj wiadomość - potrzebuję pomocy w mieście','Kopyahin ang mensahe - kailangan ko ng tulong sa lungsod'],
+   ['Sprawa: PESEL / Profil Zaufany / mObywatel / bank / dojazd / inna sprawa','Paksa: PESEL / Profil Zaufany / mObywatel / bangko / biyahe / ibang bagay'],
+   ['Sprawa:','Paksa:'],
+   ['dojazd','biyahe'],
+   ['inna sprawa','ibang bagay'],
+   ['Imię i nazwisko:','Pangalan at apelyido:'],
+   ['Język:','Wika:'],
+   ['Proszę o informację.','Pakibigay ang impormasyon.'],
+   ['Biuro / punkt spotkania','Opisina / lugar ng pagkikita'],
+   ['Dokumenty, start, pierwszy kontakt','Dokumento, simula, unang contact'],
+   ['Wszystkie wejscia i dojscia','Lahat ng pasukan at daanan'],
+   ['Wszystkie wejścia i dojścia','Lahat ng pasukan at daanan'],
+   ['Mapa wejsc','Mapa ng mga pasukan'],
+   ['Mapa wejść','Mapa ng mga pasukan'],
+   ['Magazyn / Warehouse','Bodega'],
+   ['Old warehouse','Lumang bodega'],
+   ['Staff Entrance','Pasukan ng staff'],
+   ['Powiększ','Palakihin'],
+   ['Wejście dla personelu','Pasukan ng staff'],
+   ['bez Readera','walang Reader'],
+   ['Stary magazyn','Lumang bodega'],
+   ['Adres i mapa do starego magazynu','Address at mapa papunta sa lumang bodega'],
+   ['Szklarnia - Etap','Bahay-taniman - Stage'],
+   ['Kontakty','Mga contact'],
+   ['Start > Kontakty','Simula > Mga contact'],
+   ['Start > Mga contact','Simula > Mga contact'],
+   ['SYSTEM INFORMACYJNO-UCZĄCY CITRONEX - Siechnice','SISTEMA NG IMPORMASYON AT PAGSASANAY CITRONEX - Siechnice'],
+   ['Instruction para sa warehouse workers.','Instruksyon para sa mga manggagawa sa bodega.'],
+   ['Instruksyon para sa bodega workers.','Instruksyon para sa mga manggagawa sa bodega.'],
+   ['Orientation, daanan, rows at work mga patakaran.','Oryentasyon, daanan, mga hanay at mga patakaran sa trabaho.'],
+   ['Orientation, passages, rows at mga patakaran.','Oryentasyon, daanan, mga hanay at mga patakaran.'],
+   ['Orientation, passages, rows at mga patakaran','Oryentasyon, daanan, mga hanay at mga patakaran'],
+   ['Start, break, work, end at restart.','Simula, pahinga, trabaho, pagtatapos at restart.'],
+   ["Start, break, iba't ibang trabaho, end at restart.","Simula, pahinga, iba't ibang trabaho, pagtatapos at restart."],
+   ['Simula, break, work, end at restart.','Simula, pahinga, trabaho, pagtatapos at restart.'],
+   ['Simula work','Simula ng trabaho'],
+   ['Start work','Simula ng trabaho'],
+   ['Isang test pagkatapos ng training.','Isang test pagkatapos ng pagsasanay.'],
+   ['Pagsasanay progress','Progreso ng pagsasanay'],
+   ['Training progress','Progreso ng pagsasanay'],
+   ['City / office / banks','Lungsod / opisina / bangko'],
+   ['City / opisina / bangko','Lungsod / opisina / bangko'],
+   ['PESEL, Profil Zaufany, mObywatel, transport, banks at mga patakaran.','PESEL, Profil Zaufany, mObywatel, transport, bangko at mga patakaran.'],
+   ['PESEL, Profil Zaufany, mObywatel, transport, banks at rules.','PESEL, Profil Zaufany, mObywatel, transport, bangko at mga patakaran.'],
+   ['banks at mga patakaran','bangko at mga patakaran'],
+   ['banks at rules','bangko at mga patakaran'],
+   ['rules na','mga patakaran na'],
+   ['work rules','mga patakaran sa trabaho'],
+   ['work mga patakaran','mga patakaran sa trabaho'],
+   ['Orientation','Oryentasyon'],
+   ['orientation','oryentasyon'],
+   ['rows','mga hanay'],
+   ['Route / map','Ruta / mapa'],
+   ['route','ruta'],
+   ['without Reader','walang Reader'],
+   ['warehouse workers','mga manggagawa sa bodega'],
+   ['Warehouse','Bodega'],
+   ['Greenhouse','Bahay-taniman'],
+   ['greenhouse','bahay-taniman'],
+   ['Doctor','Doktor'],
+   ['doctor','doktor'],
+   ['Contacts','Mga contact'],
+   ['contacts','mga contact'],
+   ['Team leaders','Mga lider ng team'],
+   ['Team leaders E1-E6, coordinators at WhatsApp.','Mga lider ng team E1-E6, mga koordinator at WhatsApp.'],
+   ['Brigadista E1-E6, coordinators at WhatsApp.','Mga brigadista E1-E6, mga koordinator at WhatsApp.'],
+   ['coordinators','mga koordinator'],
+   ['Clinic','Klinika'],
+   ['Registration starts at 8:00.','Nagsisimula ang rehistrasyon ng 8:00.'],
+   ['phone registration','rehistrasyon sa telepono'],
+   ['registration','rehistrasyon'],
+   ['Saan maghahanap ng doctor?','Saan maghahanap ng doktor?'],
+   ['dentistaaaaaa','dentista'],
+   ['dentistaaaaa','dentista'],
+   ['dentistaaaa','dentista'],
+   ['dentistaaa','dentista'],
+   ['dentistaa','dentista'],
+   ['dentist at','dentista at'],
+   ['Citronex work','Trabaho sa Citronex'],
+   ['Emergency dental help','Pang-emerhensiyang tulong sa ngipin'],
+   ['emergency cases','mga agarang kaso'],
+   ['Emergency cases','Mga agarang kaso'],
+   ['SOR - emergency cases','SOR - mga agarang kaso'],
+   ['urgent dental help','agarang tulong sa ngipin'],
+   ['urgent','agarang'],
+   ['passport','pasaporte'],
+   ['injury','sugat'],
+   ['fever','lagnat'],
+   ['fainting','pagkahimatay'],
+   ['health','kalusugan'],
+   ['Saturdays, Sundays and holidays 24h.','Sabado, Linggo at pista opisyal 24h.'],
+   ['production','produksyon'],
+   ['work zone','sona ng trabaho'],
+   ['work side','bahagi ng trabaho'],
+   ['work registration','pagtatala ng trabaho'],
+   ['Ready','Handa'],
+   ['instruction','instruksyon'],
+   ['Entrance','Pasukan'],
+   ['entrances','mga pasukan'],
+   ['Row','Hanay'],
+   ['Working days usually','Karaniwang bukas sa araw ng trabaho'],
+   ['If you work in the bahay-taniman - choose work type','Kung nagtatrabaho ka sa bahay-taniman, piliin ang uri ng trabaho'],
+   ['This sets the steps only for your situation.','Ipinapakita nito ang mga hakbang para lang sa iyong sitwasyon.'],
+   ['Go to the point','Pumunta sa punto'],
+   ['Wait','Maghintay'],
+   ['Do not enter alone','Huwag pumasok mag-isa'],
+   ['Scan Reader','I-scan ang Reader'],
+   ['Back','Bumalik'],
+   ['Next','Susunod'],
+   ['Choose','Pumili'],
+   ['Open','Buksan'],
+   ['Send','Ipadala']
+  ],
+  ID:[
+   ['Potrzebuję pomocy w mieście.','Saya perlu bantuan di kota.'],
+   ['potrzebuję pomocy w mieście','saya perlu bantuan di kota'],
+   ['Skopiuj wiadomość - potrzebuję pomocy w mieście','Salin pesan - saya perlu bantuan di kota'],
+   ['Sprawa: PESEL / Profil Zaufany / mObywatel / bank / dojazd / inna sprawa','Urusan: PESEL / Profil Zaufany / mObywatel / bank / perjalanan / urusan lain'],
+   ['Sprawa:','Urusan:'],
+   ['dojazd','perjalanan'],
+   ['inna sprawa','urusan lain'],
+   ['Imię i nazwisko:','Nama lengkap:'],
+   ['Język:','Bahasa:'],
+   ['Proszę o informację.','Mohon kirim informasi.'],
+   ['Biuro / punkt spotkania','Kantor / titik temu'],
+   ['Dokumenty, start, pierwszy kontakt','Dokumen, mulai, kontak pertama'],
+   ['Wszystkie wejscia i dojscia','Semua pintu masuk dan akses'],
+   ['Wszystkie wejścia i dojścia','Semua pintu masuk dan akses'],
+   ['Mapa wejsc','Peta pintu masuk'],
+   ['Mapa wejść','Peta pintu masuk'],
+   ['Magazyn / Warehouse','Gudang'],
+   ['Old warehouse','Gudang lama'],
+   ['Warehouse','Gudang'],
+   ['Staff Entrance','Pintu masuk staf'],
+   ['Powiększ','Perbesar'],
+   ['Clinic','Klinik'],
+   ['Wejście dla personelu','Pintu masuk staf'],
+   ['bez Readera','tanpa Reader'],
+   ['Stary magazyn','Gudang lama'],
+   ['Adres i mapa do starego magazynu','Alamat dan peta ke gudang lama'],
+   ['Szklarnia - Etap','Rumah kaca - Tahap'],
+   ['Etap','Tahap'],
+   ['SYSTEM INFORMACYJNO-UCZĄCY CITRONEX - Siechnice','SISTEM INFORMASI DAN PELATIHAN CITRONEX - Siechnice'],
+   ['If you work in the rumah kaca - choose work type','Jika kamu bekerja di rumah kaca, pilih jenis kerja'],
+   ['This sets the steps only for your situation.','Ini menampilkan langkah hanya untuk situasimu.'],
+   ['Go to the point','Pergi ke titik yang ditunjuk'],
+   ['Wait','Tunggu'],
+   ['Do not enter alone','Jangan masuk sendiri'],
+   ['Scan Reader','Pindai Reader'],
+   ['Back','Kembali'],
+   ['Next','Lanjut'],
+   ['Open map to this place','Buka peta ke tempat ini'],
+   ['Very simple mode','Mode sangat sederhana'],
+   ['Training progress','Progres pelatihan'],
+   ['Step 1: Map and route','Langkah 1: peta dan rute'],
+   ['Map and route','Peta dan rute']
+  ],
+  NE:[
+   ['Co potrzebujesz teraz?','अहिले के चाहिन्छ?'],
+   ['Wybierz jeden kafelek. Zobaczysz tylko potrzebny moduł.','एउटा टाइल छान्नुहोस्। आवश्यक मोड्युल मात्र देखिनेछ।'],
+   ['Wybierz jeden kafelek. Zobaczysz tylko potrzebny moduł','एउटा टाइल छान्नुहोस्। आवश्यक मोड्युल मात्र देखिनेछ'],
+   ['Dojazd / mapa','बाटो / नक्सा'],
+   ['Wybierz miejsce i otwórz trasę.','स्थान छानेर बाटो खोल्नुहोस्।'],
+   ['Magazyn - tablet','गोदाम - ट्याबलेट'],
+   ['Osoby magazynowe / tablet','गोदाम कर्मचारी / ट्याबलेट'],
+   ['Instrukcja dla osób magazynowych.','गोदाम कर्मचारीका लागि निर्देशन।'],
+   ['Mapa, wejście i zasady bez readera.','नक्सा, प्रवेश र Reader बिना नियम।'],
+   ['Mapa, wejście i zasady bez Readera.','नक्सा, प्रवेश र Reader बिना नियम।'],
+   ['Orientacja, przejścia, rzędy i zasady pracy.','दिशा, बाटो, पंक्ति र कामका नियम।'],
+   ['Start, przerwa, różne prace, koniec i restart.','सुरु, ब्रेक, विभिन्न काम, अन्त्य र restart।'],
+   ['Przychodnia, SOR, dentysta i 112.','क्लिनिक, SOR, दन्त चिकित्सक र 112।'],
+   ['Brygadziści E1-E6, koordynatorzy i WhatsApp.','E1-E6 टीम लिडर, समन्वयकर्ता र WhatsApp।'],
+   ['Jeden test po szkoleniu.','तालिमपछि एउटा टेस्ट।'],
+   ['Czego nie wolno wnosić do pracy.','काममा के ल्याउन मिल्दैन।'],
+   ['Potrzebuję pomocy w mieście.','मलाई शहरमा सहयोग चाहिन्छ।'],
+   ['potrzebuję pomocy w mieście','मलाई शहरमा सहयोग चाहिन्छ'],
+   ['Skopiuj wiadomość - potrzebuję pomocy w mieście','सन्देश कपी गर्नुहोस् - मलाई शहरमा सहयोग चाहिन्छ'],
+   ['Sprawa: PESEL / Profil Zaufany / mObywatel / bank / dojazd / inna sprawa','विषय: PESEL / Profil Zaufany / mObywatel / बैंक / बाटो / अरू विषय'],
+   ['Sprawa:','विषय:'],
+   ['dojazd','बाटो'],
+   ['inna sprawa','अरू विषय'],
+   ['Imię i nazwisko:','नाम र थर:'],
+   ['Język:','भाषा:'],
+   ['Proszę o informację.','कृपया जानकारी दिनुहोस्।'],
+   ['Biuro / punkt spotkania','कार्यालय / भेट्ने ठाउँ'],
+   ['Dokumenty, start, pierwszy kontakt','कागजात, सुरुवात, पहिलो सम्पर्क'],
+   ['Wszystkie wejscia i dojscia','सबै प्रवेश र बाटोहरू'],
+   ['Wszystkie wejścia i dojścia','सबै प्रवेश र बाटोहरू'],
+   ['Mapa wejsc','प्रवेशहरूको नक्सा'],
+   ['Mapa wejść','प्रवेशहरूको नक्सा'],
+   ['Magazyn / Warehouse','गोदाम'],
+   ['Old warehouse','पुरानो गोदाम'],
+   ['Warehouse','गोदाम'],
+   ['Staff Entrance','कर्मचारी प्रवेश'],
+   ['Powiększ','ठूलो देखाउनुहोस्'],
+   ['Wejście dla personelu','कर्मचारी प्रवेश'],
+   ['bez Readera','Reader बिना'],
+   ['Stary magazyn','पुरानो गोदाम'],
+   ['Adres i mapa do starego magazynu','पुरानो गोदामको ठेगाना र नक्सा'],
+   ['Szklarnia - Etap','ग्रीनहाउस - चरण'],
+   ['Etap','चरण'],
+   ['SYSTEM INFORMACYJNO-UCZĄCY CITRONEX - Siechnice','CITRONEX सूचना र तालिम प्रणाली - Siechnice'],
+   ['Jesteś tutaj:','तपाईं यहाँ हुनुहुन्छ:'],
+   ['Start > Kontakty','सुरु > सम्पर्क'],
+   ['Coordinators /','समन्वयकर्ता /'],
+   ['City / office / banks','शहर / कार्यालय / बैंक'],
+   ['City / कार्यालय / बैंक','शहर / कार्यालय / बैंक'],
+   ['City / office / बैंक','शहर / कार्यालय / बैंक'],
+   ['module','मोड्युल'],
+   ['पेज','पृष्ठ'],
+   ['transport','यातायात'],
+   ['tablet','ट्याबलेट'],
+   ['restart','रीस्टार्ट'],
+   ['Test','टेस्ट'],
+   ['Brigadier','टीम लिडर'],
+   ['Route / map','बाटो / नक्सा'],
+   ['route','बाटो'],
+   ['without Reader','Reader बिना'],
+   ['Warehouse','गोदाम'],
+   ['Greenhouse','ग्रीनहाउस'],
+   ['Doctor','डाक्टर'],
+   ['Contacts','सम्पर्क'],
+   ['contacts','सम्पर्क'],
+   ['Prohibitions','निषेध'],
+   ['Magazyn','गोदाम'],
+   ['Szklarnia','ग्रीनहाउस'],
+   ['Lekarz','डाक्टर'],
+   ['Kontakty','सम्पर्क'],
+   ['Zakazy','निषेध'],
+   ['Team leaders','टीम लिडर'],
+   ['coordinators','समन्वयकर्ता'],
+   ['Clinic','क्लिनिक'],
+   ['dentist','दन्त चिकित्सक'],
+   ['Orientation','दिशा'],
+   ['orientation','दिशा'],
+   ['passages','बाटोहरू'],
+   ['rows','पंक्तिहरू'],
+   ['rules','नियम'],
+   ['entrance','प्रवेश'],
+   ['break','ब्रेक'],
+   ['end','अन्त्य'],
+   ['greenhouse and warehouse','ग्रीनहाउस र गोदाम'],
+   ['ग्रीनहाउस and गोदाम','ग्रीनहाउस र गोदाम'],
+   ['If you are sick, late, or cannot come to काम, choose your स्टेज or गोदाम and inform the टोली नेता.','यदि तपाईं बिरामी हुनुहुन्छ, ढिलो आउनुहुन्छ वा काममा आउन सक्नुहुन्न भने आफ्नो चरण वा गोदाम छानेर टोली नेतालाई जानकारी दिनुहोस्।'],
+   ['If you are sick, late, or cannot come to काम, choose your चरण or गोदाम and inform the टोली नेता.','यदि तपाईं बिरामी हुनुहुन्छ, ढिलो आउनुहुन्छ वा काममा आउन सक्नुहुन्न भने आफ्नो चरण वा गोदाम छानेर टोली नेतालाई जानकारी दिनुहोस्।'],
+   ['If you are sick, late, or cannot come to work, choose your stage or warehouse and inform the team leader.','यदि तपाईं बिरामी हुनुहुन्छ, ढिलो आउनुहुन्छ वा काममा आउन सक्नुहुन्न भने आफ्नो चरण वा गोदाम छानेर टोली नेतालाई जानकारी दिनुहोस्।'],
+   ['choose your स्टेज or गोदाम','आफ्नो चरण वा गोदाम छान्नुहोस्'],
+   ['छान्नुहोस् स्टेज or गोदाम','चरण वा गोदाम छान्नुहोस्'],
+   ['छान्नुहोस् चरण or गोदाम','चरण वा गोदाम छान्नुहोस्'],
+   ['स्टेज','चरण'],
+   ['Stage','चरण'],
+   ['registration slot','दर्ता ठाउँ'],
+   ['Registration','दर्ता'],
+   ['registration','दर्ता'],
+   ['passport','पासपोर्ट'],
+   ['Google नक्साs','Google Maps'],
+   ['emergency','आपतकालीन'],
+   ['Emergency','आपतकालीन'],
+   ['injury','चोट'],
+   ['fever','ज्वरो'],
+   ['health','स्वास्थ्य'],
+   ['allowed','अनुमति'],
+   ['First','पहिलो'],
+   ['Work','काम'],
+   ['work','काम'],
+   ['If you काम in the ग्रीनहाउस - choose काम type','यदि तपाईं ग्रीनहाउसमा काम गर्नुहुन्छ भने कामको प्रकार छान्नुहोस्'],
+   ['If you work in the ग्रीनहाउस - choose work type','यदि तपाईं ग्रीनहाउसमा काम गर्नुहुन्छ भने कामको प्रकार छान्नुहोस्'],
+   ['This sets the steps only for your situation.','यसले तपाईंको अवस्थाका लागि मात्र चरणहरू देखाउँछ।'],
+   ['Go to the point','तोकिएको स्थानमा जानुहोस्'],
+   ['Wait','पर्खनुहोस्'],
+   ['Do not enter alone','एक्लै भित्र नजानुहोस्'],
+   ['Scan Reader','Reader स्क्यान गर्नुहोस्'],
+   ['Back','पछाडि'],
+   ['Next','अर्को'],
+   ['Choose','छान्नुहोस्'],
+   ['Open','खोल्नुहोस्'],
+   ['Send','पठाउनुहोस्'],
+   ['Working days मा सामान्यतया','काम गर्ने दिनमा सामान्यतया'],
+   ['Emergency dental help','आपतकालीन दन्त सहायता'],
+   ['urgent dental help','तत्काल दन्त सहायता'],
+   ['Address:','ठेगाना:']
+  ]
+ };
+ function applyList(text,list){
+  var out=String(text||'');
+  list.slice().sort(function(a,b){return b[0].length-a[0].length}).forEach(function(pair){
+   out=out.split(pair[0]).join(pair[1]);
+  });
+  return out;
+ }
+ function run(){
+  var list=COMMON[langKey()];
+  if(!list||!document.body)return;
+  var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(node){
+   var p=node.parentNode;
+   if(!p||/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/i.test(p.nodeName))return NodeFilter.FILTER_REJECT;
+   return String(node.nodeValue||'').trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+  }});
+  var nodes=[],n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(function(node){var next=applyList(node.nodeValue,list);if(next!==node.nodeValue)node.nodeValue=next});
+  document.querySelectorAll('[aria-label],img[alt],input[placeholder],button[title],a[title]').forEach(function(el){
+   ['aria-label','alt','placeholder','title'].forEach(function(attr){
+    var v=el.getAttribute&&el.getAttribute(attr);
+    if(v){var next=applyList(v,list);if(next!==v)el.setAttribute(attr,next)}
+   });
+  });
+ }
+ function schedule(){[0,80,180,360,700,1100,1700,2600,4000,6500,9000,12000].forEach(function(ms){setTimeout(run,ms)})}
+ document.addEventListener('DOMContentLoaded',schedule);
+ document.addEventListener('click',schedule,true);
+ document.addEventListener('change',schedule,true);
+ try{new MutationObserver(function(){setTimeout(run,80)}).observe(document.body,{childList:true,subtree:true,characterData:true})}catch(e){}
+ var ticks=0;
+ var timer=setInterval(function(){run(); if(++ticks>90)clearInterval(timer)},800);
+ schedule();
+})();
+</script>
 <script id="cxHomeTileGlowFinal">
 (function(){
  function mark(tile){
@@ -9364,7 +9806,7 @@ body.cxContactWarehouse #cxWarehouseContactsOnly{display:block!important}
 </script>
 <script id="cxOneModuleVisualModeFinal">
 (function(){
- if(window.cxOneModuleVisualModeFinal)return;window.cxOneModuleVisualModeFinal=true;
+ if(window.__cxOneModuleVisualModeFinal)return;window.__cxOneModuleVisualModeFinal=true;
  function enter(){document.body.classList.add('cxViewingModule')}
  function leave(){document.body.classList.remove('cxViewingModule')}
  var oldGo=window.cxHomeGo;
@@ -9617,4 +10059,86 @@ body:has(#cxHomeTiles .cxHomeTile.contacts.cxChosenTile) #cxPeopleTitle{
  .cxHomeTile b,.cxTodayBtn>span:last-child{font-size:14px!important}
 }
 </style>
+<script id="cxLastTranslationSweepFinal">
+(function(){
+ if(window.__cxLastTranslationSweepFinal)return;window.__cxLastTranslationSweepFinal=true;
+ function key(){
+  try{var s=document.getElementById("cxFinalLangSelect");if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}
+  try{return String(localStorage.cx_lang||"PL").toUpperCase()}catch(e){return"PL"}
+ }
+ var FIX={
+  ES:[
+   ["Osoby magazynowe / tablet","Personal de almacén / tablet"],
+   ["Osobna instrukcja: magazyn, tablet, PIN i nazwisko.","Instrucción separada: almacén, tablet, PIN y apellido."],
+   ["Numery E1-E6, telefon i WhatsApp.","Números E1-E6, teléfono y WhatsApp."],
+   ["Jeden test szkoleniowy po zakończeniu nauki.","Un test de formación después de aprender."]
+  ],
+  FIL:[
+   ["Osoby magazynowe / tablet","Mga manggagawa sa bodega / tablet"],
+   ["Osobna instrukcja: magazyn, tablet, PIN i nazwisko.","Hiwalay na instruksyon: bodega, tablet, PIN at apelyido."],
+   ["Numery E1-E6, telefon i WhatsApp.","Mga numero E1-E6, telepono at WhatsApp."],
+   ["Jeden test szkoleniowy po zakończeniu nauki.","Isang pagsusulit pagkatapos ng pagsasanay."],
+   ["PESEL, Profil Zaufany, mObywatel, transport, banks at rules.","PESEL, Profil Zaufany, mObywatel, transport, bangko at mga patakaran."],
+   ["Mapa, pasukan at rules na walang Reader.","Mapa, pasukan at mga patakaran na walang Reader."],
+   ["Instruction para sa warehouse workers.","Instruksyon para sa mga manggagawa sa bodega."],
+   ["Greenhouse","Bahay-taniman"],
+   ["Orientation, daanan, rows at work rules.","Oryentasyon, daanan, mga hanay at mga patakaran sa trabaho."],
+   ["Start, break, iba't ibang trabaho, end at restart.","Simula, pahinga, iba't ibang trabaho, pagtatapos at restart."],
+   ["Clinic, SOR, dentist at 112.","Klinika, SOR, dentista at 112."],
+   ["E1-E6 numbers, phone at WhatsApp. Office from 8:00.","Mga numero E1-E6, telepono at WhatsApp. Opisina mula 8:00."],
+   ["Isang test pagkatapos ng training.","Isang test pagkatapos ng pagsasanay."],
+   ["Warehouse","Bodega"],
+   ["Test","Pagsubok"],
+   ["test","pagsubok"],
+   ["banks","bangko"],
+   ["rules","mga patakaran"]
+  ],
+  NE:[
+   ["PESEL, Profil Zaufany, mObywatel, यातायात, banks र नियम.","PESEL, Profil Zaufany, mObywatel, यातायात, बैंक र नियम."],
+   ["Reader बिना map, प्रवेश र नियम.","Reader बिना नक्सा, प्रवेश र नियम."],
+   ["गोदाम कामers को instruction.","गोदाम कामदारहरूको निर्देशन."],
+   ["दिशा, बाटोहरू, पंक्तिहरू र काम नियम.","दिशा, बाटोहरू, पंक्तिहरू र कामका नियम."],
+   ["Start, ब्रेक, फरक काम, अन्त्य र रीस्टार्ट.","सुरु, ब्रेक, फरक काम, अन्त्य र रीस्टार्ट."],
+   ["Training पछि एक test.","तालिमपछि एउटा टेस्ट."],
+   ["Warehouse","गोदाम"],
+   ["Greenhouse","ग्रीनहाउस"],
+   ["Instruction","निर्देशन"],
+   ["instruction","निर्देशन"],
+   ["कामers","कामदारहरू"],
+   ["banks","बैंक"],
+   ["rules","नियम"],
+   ["map","नक्सा"],
+   ["Start","सुरु"],
+   ["Training","तालिम"],
+   ["test","टेस्ट"]
+  ]
+ };
+ function applyText(text,list){
+  var out=String(text||"");
+  list.slice().sort(function(a,b){return b[0].length-a[0].length}).forEach(function(p){out=out.split(p[0]).join(p[1])});
+  return out;
+ }
+ function patchRoot(root,list){
+  if(!root)return;
+  var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+   var p=n.parentNode;if(!p||/^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA)$/i.test(p.nodeName))return NodeFilter.FILTER_REJECT;
+   return String(n.nodeValue||"").trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+  }}),nodes=[],n;
+  while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(function(node){var next=applyText(node.nodeValue,list);if(next!==node.nodeValue)node.nodeValue=next});
+ }
+ function run(){
+  var list=FIX[key()];if(!list||!document.body)return;
+  ["#cxHomeTiles","#cxCleanModulePanel.active","#cxSoloPanel.active","#cxReaderLitePanel","#cxForbiddenLitePanel.active","#route","#sosbox",".medical-help",".medicalPanel",".cxWarehousePeoplePanel.active"].forEach(function(sel){
+   document.querySelectorAll(sel).forEach(function(root){patchRoot(root,list)});
+  });
+ }
+ function schedule(){[0,80,200,420,800,1300,2100,3400,5500,8000].forEach(function(ms){setTimeout(run,ms)})}
+ document.addEventListener("DOMContentLoaded",schedule);
+ document.addEventListener("change",schedule,true);
+ document.addEventListener("click",schedule,true);
+ try{new MutationObserver(function(){setTimeout(run,120)}).observe(document.body,{childList:true,subtree:true,characterData:true})}catch(e){}
+ schedule();
+})();
+</script>
 </body></html>
