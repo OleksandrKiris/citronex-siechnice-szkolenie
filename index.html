@@ -7487,7 +7487,7 @@ img{
   '<div class="cxGhGrid"><section class="cxGhCard"><h4><span class="cxGhNo">1</span>'+esc(x.whole)+'</h4><p>'+esc(x.wholeLead)+'</p><div class="cxGhWholeMap">'+block('left',x.left,x.sideNote)+'<div class="cxGhRoad">'+esc(x.road)+'</div>'+block('right',x.right,x.sideNote)+'<div class="cxGhPerson"><b>TY</b><span>'+esc(x.person)+'</span></div></div></section>'+
   '<section class="cxGhCard"><h4><span class="cxGhNo">2</span>'+esc(x.nave)+'</h4><p>'+esc(x.naveLead)+'</p><div class="cxGhEntries">'+entries(x)+'</div><div class="cxGhEntryHint">'+esc(x.entryHint)+'</div></section>'+
   '<section class="cxGhCard"><h4><span class="cxGhNo">3</span>'+esc(x.passage)+'</h4><p>'+esc(x.passageLead)+'</p><div class="cxGhPassage"><div class="cxGhSpan left">'+esc(x.leftSpan)+'</div><div class="cxGhPath">'+esc(x.path)+'</div><div class="cxGhSpan right">'+esc(x.rightSpan)+'</div></div><div class="cxGhLook"><b>1</b><span>'+esc(x.look)+'</span></div></section></div>'+
-  '<details class="cxGhRemember"><summary>'+esc(x.rememberTitle)+'</summary><div>'+remember(x)+'</div></details><details class="cxGhFull"><summary>'+esc(x.full)+'</summary><img loading="lazy" src="'+IMG+'" alt="'+esc(x.full)+'"></details>';
+  '<details class="cxGhRemember"><summary>'+esc(x.rememberTitle)+'</summary><div>'+remember(x)+'</div></details><details class="cxGhFull"><summary>'+esc(x.full)+'</summary><img loading="eager" decoding="async" src="'+IMG+'" alt="'+esc(x.full)+'"></details>';
   if(view.innerHTML!==html)view.innerHTML=html;
  }
  var timer=0;
@@ -7772,5 +7772,195 @@ body.cxCleanForbiddenOpen #start,body.cxCleanForbiddenOpen #fullContent,body.cxC
  document.addEventListener('click',schedule,true);
  document.addEventListener('change',function(ev){if(ev.target&&ev.target.id==='cxFinalLangSelect')schedule()},true);
  schedule();
+})();
+</script>
+<style id="cxSingleScreenCss">
+#cxSoloPanel{
+  display:none!important;
+  margin:12px 0 16px!important;
+  background:#fff!important;
+  border:1px solid #d7e5da!important;
+  border-radius:22px!important;
+  padding:14px!important;
+  box-shadow:0 12px 28px rgba(20,33,27,.09)!important;
+  color:#173b2a!important;
+}
+#cxSoloPanel.active{display:block!important}
+#cxSoloPanel *{box-sizing:border-box}
+body.cxSoloOpen #start,
+body.cxSoloOpen #fullContent,
+body.cxSoloOpen #humanPanel,
+body.cxSoloOpen #workChooser,
+body.cxSoloOpen #currentPathSection,
+body.cxSoloOpen #cityInfo,
+body.cxSoloOpen #guide,
+body.cxSoloOpen #sosbox,
+body.cxSoloOpen #lostRescue,
+body.cxSoloOpen #firstDayWhere,
+body.cxSoloOpen #installInfo,
+body.cxSoloOpen #cxForbiddenLitePanel,
+body.cxSoloOpen #cxForbiddenPanel,
+body.cxSoloOpen #cxCleanModulePanel{display:none!important}
+body.cxSoloForbidden #start,
+body.cxSoloForbidden #fullContent,
+body.cxSoloForbidden #humanPanel,
+body.cxSoloForbidden #workChooser,
+body.cxSoloForbidden #currentPathSection,
+body.cxSoloForbidden #cityInfo,
+body.cxSoloForbidden #guide,
+body.cxSoloForbidden #sosbox,
+body.cxSoloForbidden #lostRescue,
+body.cxSoloForbidden #firstDayWhere,
+body.cxSoloForbidden #installInfo,
+body.cxSoloForbidden #cxSoloPanel,
+body.cxSoloForbidden #cxCleanModulePanel{display:none!important}
+body.cxSoloForbidden #cxForbiddenLitePanel.active,
+body.cxSoloForbidden #cxForbiddenPanel.active{display:block!important}
+body:has(#cxForbiddenLitePanel.active) #start,
+body:has(#cxForbiddenLitePanel.active) #fullContent,
+body:has(#cxForbiddenLitePanel.active) #humanPanel,
+body:has(#cxForbiddenLitePanel.active) #workChooser,
+body:has(#cxForbiddenLitePanel.active) #currentPathSection,
+body:has(#cxForbiddenLitePanel.active) #cityInfo,
+body:has(#cxForbiddenLitePanel.active) #guide,
+body:has(#cxForbiddenLitePanel.active) #sosbox,
+body:has(#cxForbiddenLitePanel.active) #lostRescue,
+body:has(#cxForbiddenLitePanel.active) #firstDayWhere,
+body:has(#cxForbiddenLitePanel.active) #installInfo,
+body:has(#cxForbiddenLitePanel.active) #cxCleanModulePanel,
+body:has(#cxForbiddenPanel.active) #start,
+body:has(#cxForbiddenPanel.active) #fullContent,
+body:has(#cxForbiddenPanel.active) #humanPanel,
+body:has(#cxForbiddenPanel.active) #workChooser,
+body:has(#cxForbiddenPanel.active) #currentPathSection,
+body:has(#cxForbiddenPanel.active) #cityInfo,
+body:has(#cxForbiddenPanel.active) #guide,
+body:has(#cxForbiddenPanel.active) #sosbox,
+body:has(#cxForbiddenPanel.active) #lostRescue,
+body:has(#cxForbiddenPanel.active) #firstDayWhere,
+body:has(#cxForbiddenPanel.active) #installInfo,
+body:has(#cxForbiddenPanel.active) #cxCleanModulePanel{display:none!important}
+body.cxSoloReader #start,
+body.cxSoloReader #humanPanel,
+body.cxSoloReader #workChooser,
+body.cxSoloReader #currentPathSection,
+body.cxSoloReader #cityInfo,
+body.cxSoloReader #guide,
+body.cxSoloReader #sosbox,
+body.cxSoloReader #lostRescue,
+body.cxSoloReader #firstDayWhere,
+body.cxSoloReader #installInfo,
+body.cxSoloReader #cxSoloPanel,
+body.cxSoloReader #cxCleanModulePanel,
+body.cxSoloReader #cxForbiddenLitePanel,
+body.cxSoloReader #cxForbiddenPanel{display:none!important}
+body.cxSoloReader #fullContent{display:block!important}
+body.cxSoloReader #fullContent>section{display:none!important}
+body.cxSoloReader #fullContent #reader{display:block!important}
+body.cxSoloReader #readerQuick,
+body.cxSoloReader #readerTabs,
+body.cxSoloReader #reader>.card.priority,
+body.cxSoloReader #reader>details.card,
+body.cxSoloReader #cxReaderBoost,
+body.cxSoloReader #cxReaderSim,
+body.cxSoloReader #visualSection{display:none!important}
+body.cxSoloReader #reader{scroll-margin-top:88px!important}
+.cxHomeTile.cxSoloSelected,
+.cxTodayBtn.cxSoloSelected{
+  border-color:#0f5f3f!important;
+  background:#eaf8ef!important;
+  box-shadow:0 0 0 3px rgba(15,95,63,.16),0 12px 26px rgba(15,95,63,.14)!important;
+}
+.cxHomeTile.cxSoloSelected .cxHomeTileIcon{background:#0f5f3f!important;color:#fff!important}
+.cxSoloHead{display:grid!important;grid-template-columns:46px 1fr!important;gap:10px!important;align-items:start!important;margin-bottom:10px!important}
+.cxSoloIcon{width:46px!important;height:46px!important;border-radius:16px!important;display:grid!important;place-items:center!important;background:#eaf8ef!important;color:#0f5f3f!important;font-size:21px!important;font-weight:1000!important}
+.cxSoloHead.map .cxSoloIcon{background:#eaf2ff!important;color:#1f63b5!important}
+.cxSoloHead.warehouse .cxSoloIcon{background:#fff8df!important;color:#8b5b12!important}
+.cxSoloHead.groups .cxSoloIcon{background:#f2efff!important;color:#665cac!important}
+.cxSoloHead h3{margin:0!important;color:#14211b!important;font-size:23px!important;line-height:1.08!important}
+.cxSoloHead p{margin:5px 0 0!important;color:#52695d!important;font-size:13px!important;font-weight:850!important;line-height:1.3!important}
+.cxSoloGrid{display:grid!important;gap:9px!important}
+.cxSoloCard{border:1px solid #d7e5da!important;background:#fbfefc!important;border-radius:17px!important;padding:11px!important;display:grid!important;gap:8px!important}
+.cxSoloCard h4{margin:0!important;color:#173b2a!important;font-size:17px!important;line-height:1.12!important}
+.cxSoloCard p{margin:0!important;color:#52695d!important;font-size:12.5px!important;font-weight:850!important;line-height:1.3!important}
+.cxSoloBtn{min-height:54px!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;border:0!important;border-radius:16px!important;background:#0f5f3f!important;color:#fff!important;text-decoration:none!important;font-size:15px!important;font-weight:1000!important;padding:10px 12px!important}
+.cxSoloBtn.blue{background:#1f63b5!important}.cxSoloBtn.gold{background:#8b5b12!important}.cxSoloBtn.viber{background:#665cac!important}.cxSoloBtn.telegram{background:#229ed9!important}.cxSoloBtn.telegramAz{background:#0f5f3f!important}
+.cxSoloAlert{background:#fff8df!important;border:1px solid #efd28a!important;border-radius:15px!important;padding:10px!important;color:#4a3510!important;font-size:13px!important;font-weight:950!important;line-height:1.28!important;margin:9px 0!important}
+.cxSoloPhotos{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+.cxSoloPhotos figure{margin:0!important;border:1px solid #d7e5da!important;border-radius:15px!important;overflow:hidden!important;background:#fff!important}
+.cxSoloPhotos img{display:block!important;width:100%!important;aspect-ratio:4/3!important;object-fit:cover!important;border-radius:0!important}
+.cxSoloPhotos figcaption{padding:8px!important;color:#173b2a!important;font-size:11px!important;font-weight:950!important;line-height:1.15!important}
+.cxSoloList{display:grid!important;gap:6px!important;margin:10px 0 0!important;padding:0!important;list-style:none!important}
+.cxSoloList li{display:grid!important;grid-template-columns:26px 1fr!important;gap:7px!important;align-items:start!important;border:1px solid #d7e5da!important;background:#f7fbf8!important;border-radius:13px!important;padding:8px!important;color:#173b2a!important;font-size:12.5px!important;font-weight:900!important;line-height:1.25!important}
+.cxSoloList b{width:26px!important;height:26px!important;border-radius:9px!important;background:#0f5f3f!important;color:#fff!important;display:grid!important;place-items:center!important;font-size:12px!important}
+#cxReaderLitePanel{
+  display:block!important;
+  margin:10px 0 12px!important;
+  border:1px solid #cfe2d6!important;
+  border-radius:20px!important;
+  background:#fff!important;
+  padding:12px!important;
+  box-shadow:0 12px 28px rgba(20,33,27,.08)!important;
+}
+.cxReaderLiteHead{display:grid!important;grid-template-columns:44px 1fr!important;gap:10px!important;align-items:start!important;margin-bottom:10px!important}
+.cxReaderLiteIcon{width:44px!important;height:44px!important;border-radius:15px!important;background:#eaf8ef!important;color:#0f5f3f!important;display:grid!important;place-items:center!important;font-weight:1000!important;font-size:20px!important}
+.cxReaderLiteHead h3{margin:0!important;color:#14211b!important;font-size:22px!important;line-height:1.08!important}
+.cxReaderLiteHead p{margin:5px 0 0!important;color:#52695d!important;font-size:13px!important;font-weight:850!important;line-height:1.3!important}
+.cxReaderLiteNav{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:10px 0!important}
+.cxReaderLiteNav button{min-height:54px!important;border:1px solid #d7e5da!important;border-radius:16px!important;background:#f7fbf8!important;color:#173b2a!important;font-weight:1000!important;text-align:left!important;padding:9px 10px!important}
+.cxReaderLiteNav button.active{background:#0f5f3f!important;border-color:#0f5f3f!important;color:#fff!important}
+.cxReaderLiteSteps{display:grid!important;gap:8px!important}
+.cxReaderLiteStep{display:grid!important;grid-template-columns:34px 1fr!important;gap:9px!important;align-items:start!important;border:1px solid #d7e5da!important;border-radius:16px!important;background:#f9fdfb!important;padding:9px!important}
+.cxReaderLiteStep i{width:34px!important;height:34px!important;border-radius:12px!important;background:#0f5f3f!important;color:#fff!important;display:grid!important;place-items:center!important;font-style:normal!important;font-weight:1000!important}
+.cxReaderLiteStep b{display:block!important;color:#173b2a!important;font-size:14.5px!important;line-height:1.12!important;margin-bottom:2px!important}
+.cxReaderLiteStep span{display:block!important;color:#52695d!important;font-size:12.5px!important;line-height:1.32!important;font-weight:850!important}
+.cxReaderStartHidden{display:none!important}
+@media(min-width:720px){.cxSoloGrid.two{grid-template-columns:1fr 1fr!important}.cxSoloGrid.three{grid-template-columns:repeat(3,1fr)!important}.cxReaderLiteNav{grid-template-columns:repeat(5,minmax(0,1fr))!important}.cxReaderLiteSteps{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:390px){#cxSoloPanel,#cxReaderLitePanel{padding:11px!important;border-radius:18px!important}.cxSoloHead{grid-template-columns:40px 1fr!important}.cxSoloIcon{width:40px!important;height:40px!important}.cxSoloHead h3,.cxReaderLiteHead h3{font-size:20px!important}.cxSoloPhotos{grid-template-columns:1fr!important}.cxReaderLiteNav{grid-template-columns:1fr!important}}
+</style>
+<script id="cxSingleScreenPatch">
+(function(){
+ if(window.cxSingleScreenLoaded)return;window.cxSingleScreenLoaded=true;
+ var LINKS={viber:'https://invite.viber.com/?g2=AQBkAFR0EI%2F5S1YUZP23%2Fc6MRVsnc6wfhgi%2FQig%2B1XKt3Z7mb2YPUdlazS0qoc4L',telegram:'https://t.me/robota_citronex',telegramAz:'https://t.me/poloniawork_citronex',oldWarehouse:'https://maps.app.goo.gl/5B47Av1GDhEUBM7M7'};
+ var TX={
+  PL:{map:['Mapa i dojazd','Wybierz tylko miejsce i otwórz trasę. Bez instrukcji pracy pod spodem.'],warehouse:['Magazyn','Osobny ekran magazynu: mapa, wejście, zasady. Tu nie ma Readera.'],groups:['Grupy informacyjne','Szybkie linki do grup. To nie jest ekran kontaktów.'],open:'Otwórz w Google Maps',photos:'Zdjęcia wejścia',newWh:'Magazyn - wejście dla personelu',oldWh:'Stary magazyn',noReader:'Na magazynie nie używa się Readera. Instrukcje szklarniowe są ukryte.',rules:['Idź do wejścia dla personelu.','Czekaj na brygadzistę albo osobę prowadzącą.','Nie wchodź sam do innych stref.','Jeśli spóźniasz się lub chorujesz, użyj Kontakty.'],viber:'Grupa Viber',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Reader','Wybierz jedną sytuację. Szczegóły pojawią się tylko dla wybranej części.'],readerPick:'Wybierz część instrukcji',startTip:'Poniżej masz instrukcję startu z obrazka rozbitą na 9 prostych linii.',tabs:{start:'Start',rows:'Rzędy',outside:'Poza rzędami',cart:'Wózki',restart:'Restart'}},
+  EN:{map:['Map and route','Choose a place and open the route. No work instruction underneath.'],warehouse:['Warehouse','Separate warehouse screen: map, entrance, rules. There is no Reader here.'],groups:['Information groups','Quick links to groups. This is not the contacts screen.'],open:'Open in Google Maps',photos:'Entrance photos',newWh:'Warehouse - staff entrance',oldWh:'Old warehouse',noReader:'The Reader is not used in the warehouse. Greenhouse instructions are hidden.',rules:['Go to the staff entrance.','Wait for the team leader or responsible person.','Do not enter other zones alone.','If you are late or sick, use Contacts.'],viber:'Viber group',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Reader','Choose one situation. Details appear only for the selected part.'],readerPick:'Choose instruction part',startTip:'Below is the start instruction from the picture split into 9 simple lines.',tabs:{start:'Start',rows:'Rows',outside:'Outside rows',cart:'Carts',restart:'Restart'}},
+  UA:{map:['Карта і доїзд','Виберіть місце і відкрийте маршрут. Без робочих інструкцій знизу.'],warehouse:['Склад','Окремий екран складу: карта, вхід, правила. Тут немає Readera.'],groups:['Інформаційні групи','Швидкі посилання на групи. Це не екран контактів.'],open:'Відкрити в Google Maps',photos:'Фото входу',newWh:'Склад - вхід для персоналу',oldWh:'Старий склад',noReader:'На складі Reader не використовується. Інструкції теплиці приховані.',rules:['Йдіть до входу для персоналу.','Чекайте бригадира або відповідальну особу.','Не заходьте самі в інші зони.','Якщо запізнюєтесь або захворіли, використайте Контакти.'],viber:'Група Viber',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Рідер','Виберіть одну ситуацію. Деталі з’являться тільки для вибраної частини.'],readerPick:'Виберіть частину інструкції',startTip:'Нижче інструкція старту з картинки розділена на 9 простих рядків.',tabs:{start:'Старт',rows:'Ряди',outside:'Поза рядами',cart:'Візки',restart:'Рестарт'}},
+  RU:{map:['Карта и дорога','Выберите место и откройте маршрут. Без рабочих инструкций снизу.'],warehouse:['Склад','Отдельный экран склада: карта, вход, правила. Здесь нет Readera.'],groups:['Информационные группы','Быстрые ссылки на группы. Это не экран контактов.'],open:'Открыть в Google Maps',photos:'Фото входа',newWh:'Склад - вход для персонала',oldWh:'Старый склад',noReader:'На складе Reader не используется. Инструкции теплицы скрыты.',rules:['Идите ко входу для персонала.','Ждите бригадира или ответственного человека.','Не заходите сами в другие зоны.','Если опаздываете или заболели, используйте Контакты.'],viber:'Группа Viber',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Ридер','Выберите одну ситуацию. Детали появятся только для выбранной части.'],readerPick:'Выберите часть инструкции',startTip:'Ниже инструкция старта с картинки разделена на 9 простых строк.',tabs:{start:'Старт',rows:'Ряды',outside:'Вне рядов',cart:'Тележки',restart:'Рестарт'}},
+  AZ:{map:['Xəritə və yol','Yeri seçin və marşrutu açın. Aşağıda iş təlimatı göstərilmir.'],warehouse:['Anbar','Ayrı anbar ekranı: xəritə, giriş, qaydalar. Burada Reader yoxdur.'],groups:['Məlumat qrupları','Qruplara sürətli linklər. Bu kontakt ekranı deyil.'],open:'Google Maps-də aç',photos:'Giriş şəkilləri',newWh:'Anbar - personal girişi',oldWh:'Köhnə anbar',noReader:'Anbarda Reader istifadə olunmur. İstixana təlimatları gizlidir.',rules:['Personal girişinə gedin.','Briqadiri və ya məsul şəxsi gözləyin.','Başqa zonalara tək daxil olmayın.','Gecikir və ya xəstəsinizsə, Kontaktlardan istifadə edin.'],viber:'Viber qrupu',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Reader','Bir vəziyyət seçin. Detallar yalnız seçilən hissə üçün görünəcək.'],readerPick:'Təlimat hissəsini seçin',startTip:'Aşağıda şəkildəki start təlimatı 9 sadə sətirə bölünüb.',tabs:{start:'Start',rows:'Sıralar',outside:'Sıralardan kənar',cart:'Arabalar',restart:'Restart'}},
+  ES:{map:['Mapa y ruta','Elige un lugar y abre la ruta. Sin instrucciones de trabajo debajo.'],warehouse:['Almacén','Pantalla separada del almacén: mapa, entrada, reglas. Aquí no hay Reader.'],groups:['Grupos de información','Enlaces rápidos a grupos. No es la pantalla de contactos.'],open:'Abrir en Google Maps',photos:'Fotos de entrada',newWh:'Almacén - entrada de personal',oldWh:'Almacén antiguo',noReader:'En el almacén no se usa Reader. Las instrucciones del invernadero están ocultas.',rules:['Ve a la entrada de personal.','Espera al jefe de equipo o persona responsable.','No entres solo en otras zonas.','Si llegas tarde o estás enfermo, usa Contactos.'],viber:'Grupo Viber',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Reader','Elige una situación. Los detalles aparecen solo para la parte elegida.'],readerPick:'Elige parte de la instrucción',startTip:'Abajo está la instrucción de inicio de la foto dividida en 9 líneas simples.',tabs:{start:'Inicio',rows:'Filas',outside:'Fuera de filas',cart:'Carros',restart:'Reinicio'}},
+  FIL:{map:['Mapa at ruta','Piliin ang lugar at buksan ang route. Walang work instruction sa ilalim.'],warehouse:['Bodega','Separate warehouse screen: mapa, entrance, rules. Walang Reader dito.'],groups:['Information groups','Quick links sa groups. Hindi ito contacts screen.'],open:'Buksan sa Google Maps',photos:'Entrance photos',newWh:'Bodega - staff entrance',oldWh:'Old warehouse',noReader:'Hindi ginagamit ang Reader sa bodega. Nakatago ang greenhouse instructions.',rules:['Pumunta sa staff entrance.','Maghintay sa team leader o responsible person.','Huwag pumasok mag-isa sa ibang zones.','Kung late o may sakit, gamitin ang Contacts.'],viber:'Viber group',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Reader','Pumili ng isang situation. Details lang ng napili ang lalabas.'],readerPick:'Piliin ang instruction part',startTip:'Nasa ibaba ang start instruction mula sa larawan na hinati sa 9 simple lines.',tabs:{start:'Start',rows:'Rows',outside:'Outside rows',cart:'Carts',restart:'Restart'}},
+  ID:{map:['Peta dan rute','Pilih tempat dan buka rute. Tidak ada instruksi kerja di bawah.'],warehouse:['Gudang','Layar gudang terpisah: peta, pintu masuk, aturan. Tidak ada Reader di sini.'],groups:['Grup informasi','Link cepat ke grup. Ini bukan layar kontak.'],open:'Buka di Google Maps',photos:'Foto pintu masuk',newWh:'Gudang - pintu staf',oldWh:'Gudang lama',noReader:'Reader tidak digunakan di gudang. Instruksi greenhouse disembunyikan.',rules:['Pergi ke pintu masuk staf.','Tunggu pemimpin tim atau orang yang bertanggung jawab.','Jangan masuk sendiri ke zona lain.','Jika terlambat atau sakit, gunakan Kontak.'],viber:'Grup Viber',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Reader','Pilih satu situasi. Detail hanya muncul untuk bagian yang dipilih.'],readerPick:'Pilih bagian instruksi',startTip:'Di bawah ini instruksi mulai dari gambar, dibagi menjadi 9 baris sederhana.',tabs:{start:'Mulai',rows:'Baris',outside:'Di luar baris',cart:'Troli',restart:'Restart'}},
+  NE:{map:['नक्सा र बाटो','ठाउँ छानेर route खोल्नुहोस्। तल कामको instruction देखिँदैन।'],warehouse:['Warehouse','छुट्टै warehouse screen: नक्सा, entrance, rules. यहाँ Reader छैन।'],groups:['Information groups','Groups का quick links. यो contacts screen होइन।'],open:'Google Maps मा खोल्नुहोस्',photos:'Entrance photos',newWh:'Warehouse - staff entrance',oldWh:'Old warehouse',noReader:'Warehouse मा Reader प्रयोग हुँदैन। Greenhouse instructions लुकाइएको छ।',rules:['Staff entrance मा जानुहोस्।','Team leader वा responsible person लाई पर्खनुहोस्।','अरू zones मा एक्लै नजानुहोस्।','Late वा sick भए Contacts प्रयोग गर्नुहोस्।'],viber:'Viber group',telegram:'Telegram',telegramAz:'Telegram AZ',reader:['Reader','एउटा situation छान्नुहोस्। Details छानेको भागको मात्र देखिन्छ।'],readerPick:'Instruction part छान्नुहोस्',startTip:'तल फोटोको start instruction 9 सजिलो line मा छ।',tabs:{start:'Start',rows:'Rows',outside:'Outside rows',cart:'Carts',restart:'Restart'}}
+ };
+ function langKey(){try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}}
+ function t(){return TX[langKey()]||TX.PL}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function maps(){try{return Array.isArray(MAPS)?MAPS:[]}catch(e){return[]}}
+ function findMap(id){return maps().filter(function(m){return m.id===id})[0]}
+ function mainPanel(){var main=document.querySelector('main')||document.body,p=document.getElementById('cxSoloPanel');if(!p){p=document.createElement('section');p.id='cxSoloPanel'}if(p.parentNode!==main)main.insertBefore(p,main.firstChild);return p}
+ function head(kind,icon,a){return'<div class="cxSoloHead '+kind+'"><span class="cxSoloIcon">'+icon+'</span><div><h3>'+esc(a[0])+'</h3><p>'+esc(a[1])+'</p></div></div>'}
+ function mapCard(m,x,label,cls){if(!m)return'';return'<article class="cxSoloCard"><h4>'+esc(label||m.name)+'</h4><p>'+esc(m.desc||'')+'</p><a class="cxSoloBtn '+(cls||'blue')+'" target="_blank" rel="noopener" href="'+esc(m.url)+'">'+esc(x.open)+'</a></article>'}
+ function photo(src,cap){return'<figure><img loading="lazy" decoding="async" src="'+esc(src)+'" alt="'+esc(cap)+'" onerror="this.closest(&quot;figure&quot;).style.display=&quot;none&quot;"><figcaption>'+esc(cap)+'</figcaption></figure>'}
+ function renderMap(){var x=t(),ids=['office','entrances','warehouse','old_warehouse','e1','e2','e3','e4','e5','e6'];var cards=ids.map(function(id){var m=findMap(id);if(!m&&id==='old_warehouse')m={name:x.oldWh,desc:'',url:LINKS.oldWarehouse};return mapCard(m,x)}).join('');return head('map','M',x.map)+'<div class="cxSoloGrid two">'+cards+'</div>'}
+ function renderWarehouse(){var x=t(),wh=findMap('warehouse')||{name:x.newWh,desc:'',url:'https://www.google.com/maps/dir/?api=1&destination=Citronex+Siechnice+Wej%C5%9Bcie+dla+personelu+Staff+Entrance&travelmode=walking'},old=findMap('old_warehouse')||{name:x.oldWh,desc:'',url:LINKS.oldWarehouse};return head('warehouse','W',x.warehouse)+'<div class="cxSoloAlert">'+esc(x.noReader)+'</div><div class="cxSoloGrid two">'+mapCard(wh,x,x.newWh,'gold')+mapCard(old,x,x.oldWh,'gold')+'</div><h4 style="margin:12px 0 8px">'+esc(x.photos)+'</h4><div class="cxSoloPhotos">'+photo('assets/warehouse/magazyn-wejscie-1.jpg',x.newWh)+photo('assets/warehouse/magazyn-wejscie-2.jpg',x.newWh)+'</div><ul class="cxSoloList">'+x.rules.map(function(r,i){return'<li><b>'+(i+1)+'</b><span>'+esc(r)+'</span></li>'}).join('')+'</ul>'}
+ function renderGroups(){var x=t();return head('groups','G',x.groups)+'<div class="cxSoloGrid"><a class="cxSoloBtn viber" target="_blank" rel="noopener" href="'+LINKS.viber+'">'+esc(x.viber)+'</a><a class="cxSoloBtn telegram" target="_blank" rel="noopener" href="'+LINKS.telegram+'">'+esc(x.telegram)+'</a><a class="cxSoloBtn telegramAz" target="_blank" rel="noopener" href="'+LINKS.telegramAz+'">'+esc(x.telegramAz)+'</a></div>'}
+ function clearClasses(){document.body.classList.remove('cxSoloOpen','cxSoloReader','cxSoloForbidden','cxCleanModuleOpen','cxCleanForbiddenOpen');var p=document.getElementById('cxSoloPanel');if(p){p.classList.remove('active')}document.querySelectorAll('#cxForbiddenLitePanel,#cxForbiddenPanel').forEach(function(n){n.classList.remove('active');n.style.removeProperty('display')});document.querySelectorAll('.cxHomeTile,.cxTodayBtn').forEach(function(n){n.classList.remove('cxSoloSelected')})}
+ function mark(kind){document.querySelectorAll('.cxHomeTile,.cxTodayBtn').forEach(function(n){var k=n.getAttribute('data-kind')||'';var c=' '+String(n.className||'')+' ';if(k===kind||c.indexOf(' '+kind+' ')>-1)n.classList.add('cxSoloSelected');else n.classList.remove('cxSoloSelected')})}
+ function openSolo(kind){var p=mainPanel(),html=kind==='warehouse'?renderWarehouse():kind==='groups'?renderGroups():renderMap();clearClasses();p.innerHTML=html;p.classList.add('active');document.body.classList.add('cxSoloOpen');mark(kind);try{localStorage.cx_active_home_tile=kind}catch(e){}try{p.scrollIntoView({block:'start'})}catch(e){}}
+ function dict(){try{return (typeof T!=='undefined'&&(T[langKey()]||T.PL))||{}}catch(e){return{}}}
+ function arrFor(mode){var d=dict(),pl={};try{pl=(typeof T!=='undefined'&&T.PL)||{}}catch(e){}return (d[mode]||pl[mode]||[])}
+ function readerTabs(){var x=t().tabs;return [['start',x.start],['rows',x.rows],['outside',x.outside],['cart',x.cart],['restart',x.restart]]}
+ function setReaderMode(mode){try{localStorage.cx_reader_lite_mode=mode}catch(e){}renderReader()}
+ window.cxReaderLiteMode=setReaderMode;
+ function readerStepHtml(mode){if(mode==='start')return'<div class="cxSoloAlert">'+esc(t().startTip)+'</div>';var a=arrFor(mode);return'<div class="cxReaderLiteSteps">'+a.map(function(s,i){return'<article class="cxReaderLiteStep"><i>'+(i+1)+'</i><div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div></article>'}).join('')+'</div>'}
+ function renderReader(){var reader=document.getElementById('reader');if(!reader)return;try{if(window.cxReaderStartLinesRender)window.cxReaderStartLinesRender()}catch(e){}var mode='start';try{mode=localStorage.cx_reader_lite_mode||'start'}catch(e){}if(!/^(start|rows|outside|cart|restart)$/.test(mode))mode='start';var p=document.getElementById('cxReaderLitePanel');if(!p){p=document.createElement('section');p.id='cxReaderLitePanel'}var ref=document.getElementById('cxReaderStartLinesPanel')||document.getElementById('readerQuick')||reader.firstChild;if(p.parentNode!==reader)reader.insertBefore(p,ref);var x=t();p.innerHTML='<div class="cxReaderLiteHead"><span class="cxReaderLiteIcon">R</span><div><h3>'+esc(x.reader[0])+'</h3><p>'+esc(x.reader[1])+'</p></div></div><b style="display:block;margin:0 0 8px;color:#173b2a">'+esc(x.readerPick)+'</b><div class="cxReaderLiteNav">'+readerTabs().map(function(r){return'<button type="button" class="'+(mode===r[0]?'active':'')+'" onclick="cxReaderLiteMode(&quot;'+r[0]+'&quot;)">'+esc(r[1])+'</button>'}).join('')+'</div>'+readerStepHtml(mode);var start=document.getElementById('cxReaderStartLinesPanel');if(start)start.classList.toggle('cxReaderStartHidden',mode!=='start')}
+ function openReader(){clearClasses();document.body.classList.add('cxSoloReader');mark('reader');renderReader();try{localStorage.cx_active_home_tile='reader'}catch(e){}try{document.getElementById('reader').scrollIntoView({block:'start'})}catch(e){}}
+ var prevHome=window.cxHomeGo;
+ function openForbidden(){clearClasses();if(prevHome)prevHome.call(window,'forbidden');setTimeout(function(){document.body.classList.add('cxSoloForbidden');document.body.classList.remove('cxSoloOpen','cxSoloReader','cxCleanModuleOpen');mark('forbidden');var p=document.getElementById('cxForbiddenLitePanel')||document.getElementById('cxForbiddenPanel');if(p)p.classList.add('active');try{p&&p.scrollIntoView({block:'start'})}catch(e){}},40)}
+ window.cxHomeGo=function(kind){if(kind==='map'||kind==='warehouse'||kind==='groups'){openSolo(kind);return}if(kind==='reader'){openReader();return}if(kind==='forbidden'){openForbidden();return}clearClasses();return prevHome?prevHome.apply(this,arguments):undefined};
+ document.addEventListener('click',function(ev){var tile=ev.target&&ev.target.closest?ev.target.closest('.cxHomeTile,.cxTodayBtn'):null;if(!tile)return;var kind=tile.getAttribute('data-kind')||'';var cls=' '+String(tile.className||'')+' ';if(cls.indexOf(' warehousePeople ')>-1)return;if(!kind){['map','warehouse','groups','reader','forbidden'].some(function(k){if(cls.indexOf(' '+k+' ')>-1){kind=k;return true}return false})}if(kind==='map'||kind==='warehouse'||kind==='groups'||kind==='reader'||kind==='forbidden'){ev.preventDefault();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();window.cxHomeGo(kind)}},true);
+ document.addEventListener('change',function(ev){if(ev.target&&ev.target.id==='cxFinalLangSelect'){var k='';try{k=localStorage.cx_active_home_tile||''}catch(e){}if(k==='map'||k==='warehouse'||k==='groups')openSolo(k);if(document.body.classList.contains('cxSoloReader'))renderReader();if(document.body.classList.contains('cxSoloForbidden'))setTimeout(function(){document.body.classList.add('cxSoloForbidden')},60)}},true);
+ setTimeout(function(){if(document.body.classList.contains('cxSoloReader'))renderReader()},300);
 })();
 </script></body></html>
