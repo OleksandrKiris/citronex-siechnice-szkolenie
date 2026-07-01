@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-training-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-01-01";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-01-02";
 
 const CORE_ASSETS = [
   "./",
@@ -8,42 +8,13 @@ const CORE_ASSETS = [
   "./app.js",
   "./stage-location.css",
   "./stage-location.js",
-  "./assets/logo-citronex.svg",
-  "./assets/orientation/sklarnia-etap-excel.png",
-  "./assets/greenhouse-orientation/dolny-wozek.svg",
-  "./assets/greenhouse-orientation/gorny-wozek.svg",
-  "./assets/greenhouse-orientation/lewa-prawa-strona.svg",
-  "./assets/greenhouse-orientation/nawa.svg",
-  "./assets/greenhouse-orientation/orientacja-ogolna.svg",
-  "./assets/greenhouse-orientation/przejscie.svg",
-  "./assets/greenhouse-orientation/przeslo.svg",
-  "./assets/inline/cart_pl.jpg",
-  "./assets/inline/cart_ua.jpg",
-  "./assets/inline/hotel_1.jpg",
-  "./assets/inline/hotel_2.jpg",
-  "./assets/inline/hotel_3.jpg",
-  "./assets/inline/hotel_4.jpg",
-  "./assets/inline/hotel_5.jpg",
-  "./assets/inline/reader_start.jpg",
-  "./assets/inline/restart_1.jpg",
-  "./assets/inline/restart_2.jpg",
-  "./assets/inline/stage12_1.jpg",
-  "./assets/inline/stage12_2.jpg",
-  "./assets/inline/stage34_1.jpg",
-  "./assets/inline/stage34_2.jpg",
-  "./assets/inline/stage34_3.jpg",
-  "./assets/inline/stage5_1.jpg",
-  "./assets/inline/stage5_2.jpg",
-  "./assets/inline/stage5_3.jpg",
-  "./assets/inline/stage5_4.jpg",
-  "./assets/inline/stage6_1.jpg",
-  "./assets/inline/stage6_2.jpg",
-  "./assets/inline/stage6_3.jpg",
-  "./assets/inline/stage6_4.jpg",
-  "./assets/inline/stage6_5.jpg",
-  "./assets/warehouse/magazyn-wejscie-1.jpg",
-  "./assets/warehouse/magazyn-wejscie-2.jpg"
+  "./assets/logo-citronex.svg"
 ];
+
+// Images are cached on demand during normal browsing.
+// Do not preload all photos on install, because weaker phones can freeze
+// or show a long blank screen while many large JPG files are being cached.
+const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
@@ -52,7 +23,7 @@ self.addEventListener("install", (event) => {
       try {
         await cache.add(new Request(asset, { cache: "reload" }));
       } catch (error) {
-        // Keep offline install resilient when a non-critical file is missing.
+        console.warn("[SW] Core asset was not cached:", asset, error);
       }
     }));
     await self.skipWaiting();
@@ -98,6 +69,11 @@ async function cacheFirst(request) {
   return response;
 }
 
+function isImageRequest(url, request) {
+  if (request.destination === "image") return true;
+  return IMAGE_EXTENSIONS.some((ext) => url.pathname.toLowerCase().endsWith(ext));
+}
+
 self.addEventListener("fetch", (event) => {
   const request = event.request;
   if (request.method !== "GET") return;
@@ -111,5 +87,10 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  event.respondWith(cacheFirst(request));
+  if (isImageRequest(url, request)) {
+    event.respondWith(cacheFirst(request));
+    return;
+  }
+
+  event.respondWith(networkFirst(request));
 });
