@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-training-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-01-02";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-01-03";
 
 const CORE_ASSETS = [
   "./",
@@ -15,6 +15,109 @@ const CORE_ASSETS = [
 // Do not preload all photos on install, because weaker phones can freeze
 // or show a long blank screen while many large JPG files are being cached.
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".svg"];
+
+const VIEW_STABILIZER_STYLE = `
+<style id="citronex-view-stabilizer-style">
+  html { scroll-behavior: auto !important; }
+  body,
+  .app,
+  .section,
+  .card,
+  .guideShell,
+  .appModeHero,
+  .firstDayHelper,
+  .firstDayPanel,
+  .guideCard,
+  .placeCard,
+  #stagePhotos,
+  #warehousePhotos {
+    overflow-anchor: none !important;
+  }
+  .stage,
+  .company,
+  .modebtn,
+  .readerBtn,
+  .liteBtn,
+  .placeBtn,
+  .guidePill,
+  .firstDayOpen,
+  .fullToggle,
+  [data-stage],
+  [data-company],
+  [data-mode],
+  [data-reader],
+  [data-place] {
+    scroll-margin-top: 128px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .visual img,
+  .training-image,
+  .warehousePhotoGrid img,
+  .orientationCard img {
+    aspect-ratio: 4 / 3;
+    height: auto;
+    contain-intrinsic-size: 520px 390px;
+  }
+</style>`;
+
+const VIEW_STABILIZER_SCRIPT = `
+<script id="citronex-view-stabilizer-script">
+(function () {
+  if (window.__citronexViewStabilizerInstalled) return;
+  window.__citronexViewStabilizerInstalled = true;
+
+  var TILE_SELECTOR = [
+    '.stage',
+    '.company',
+    '.modebtn',
+    '.readerBtn',
+    '.liteBtn',
+    '.placeBtn',
+    '.guidePill',
+    '.firstDayOpen',
+    '.fullToggle',
+    '[data-stage]',
+    '[data-company]',
+    '[data-mode]',
+    '[data-reader]',
+    '[data-place]'
+  ].join(',');
+
+  function keepTileStable(tile) {
+    if (!tile || !tile.getBoundingClientRect) return;
+
+    var beforeTop = tile.getBoundingClientRect().top;
+    var beforeScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+    setTimeout(function () {
+      if (tile.blur) tile.blur();
+    }, 0);
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        if (!tile.isConnected) return;
+
+        var afterTop = tile.getBoundingClientRect().top;
+        var delta = afterTop - beforeTop;
+
+        if (Math.abs(delta) > 2) {
+          window.scrollTo({
+            top: Math.max(0, beforeScroll + delta),
+            behavior: 'auto'
+          });
+        }
+      });
+    });
+  }
+
+  document.addEventListener('click', function (event) {
+    var target = event.target && event.target.closest ? event.target.closest(TILE_SELECTOR) : null;
+    if (!target) return;
+    keepTileStable(target);
+  }, true);
+})();
+</script>`;
 
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
@@ -49,11 +152,31 @@ async function putInCache(request, response) {
   await cache.put(request, response.clone());
 }
 
+async function patchHtmlResponse(response) {
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("text/html")) return response;
+
+  let text = await response.text();
+  if (!text.includes("citronex-view-stabilizer-script")) {
+    text = text.replace("</head>", VIEW_STABILIZER_STYLE + "</head>");
+    text = text.replace("</body>", VIEW_STABILIZER_SCRIPT + "</body>");
+  }
+
+  const headers = new Headers(response.headers);
+  headers.delete("content-length");
+  return new Response(text, {
+    status: response.status,
+    statusText: response.statusText,
+    headers
+  });
+}
+
 async function networkFirst(request) {
   try {
     const response = await fetch(request);
-    await putInCache(request, response);
-    return response;
+    const finalResponse = await patchHtmlResponse(response);
+    await putInCache(request, finalResponse);
+    return finalResponse.clone();
   } catch (error) {
     const cached = await caches.match(request);
     return cached || caches.match("./index.html");
@@ -66,7 +189,7 @@ async function cacheFirst(request) {
 
   const response = await fetch(request);
   await putInCache(request, response);
-  return response;
+  return response.clone();
 }
 
 function isImageRequest(url, request) {
