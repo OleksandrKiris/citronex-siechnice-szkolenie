@@ -5937,9 +5937,9 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  function patchData(){
   try{
    BRIGADIER_CONTACTS.warehouse=[
-    {name:"Pawe\u0142",phone:"+48785881165",signature:"Magazyn Pawe\u0142"},
-    {name:"Mateusz",phone:"+48606770754",signature:"Magazyn Mateusz"},
-    {name:"Beata",phone:"+48500533643",signature:"Magazyn Beata"}
+    {name:"Pawe\u0142",phone:"+48 785 881 165",signature:"Magazyn Pawe\u0142"},
+    {name:"Mateusz",phone:"+48 606 770 754",signature:"Magazyn Mateusz"},
+    {name:"Beata",phone:"+48 500 533 643",signature:"Magazyn Beata"}
    ];
   }catch(e){}
   try{
@@ -9092,7 +9092,7 @@ body.cxContactWarehouse #cxWarehouseContactsOnly{display:block!important}
 <script id="cxFinalHumanViewsPatch">
 (function(){
  if(window.cxFinalHumanViewsLoaded)return;window.cxFinalHumanViewsLoaded=true;
- var WAREHOUSE=[['Paweł','+48785881165'],['Mateusz','+48606770754'],['Beata','+48500533643']];
+ var WAREHOUSE=[['Paweł','+48 785 881 165'],['Mateusz','+48 606 770 754'],['Beata','+48 500 533 643']];
  var TX={
   PL:{ghBadge:'Orientacja',ghTitle:'Szklarnia w 4 prostych krokach',ghLead:'Najpierw całość, potem nawa, potem wejście i strona pracy.',whole:'Cała szklarnia z góry',wholeTxt:'Dwie strony rozdziela droga. Stoisz plecami do pierwszych naw.',left:'LEWA STRONA',right:'PRAWA STRONA',road:'DROGA',nave:'Jedna nawa',naveTxt:'W jednej nawie jest 5 wejść. Każde wejście ma dwa rzędy: lewy i prawy.',entry:'Wejście / przejście',entryTxt:'Gdy patrzysz w przejście: z lewej jest lewe przęsło, z prawej prawe przęsło.',read:'Czytaj miejsce po kolei',readTxt:'Etap -> strona -> nawa -> wejście -> rząd/przęsło.',warehouseContacts:'Brygadziści magazynu',call:'Zadzwoń',wa:'WhatsApp',contactTitle:'Wybierz kontakt',greenContacts:'Szklarnia E1-E6',warehouse:'Magazyn',testTitle:'Test 30 pytań',testLead:'Jeden spokojny test. Odpowiedz, potem wyślij wynik.',steps:['Etap','Strona','Nawa','Wejście','Rząd']},
   EN:{ghBadge:'Orientation',ghTitle:'Greenhouse in 4 simple steps',ghLead:'First the whole greenhouse, then one nave, then entrance and work side.',whole:'Whole greenhouse from above',wholeTxt:'The road separates two sides. Stand with your back to the first naves.',left:'LEFT SIDE',right:'RIGHT SIDE',road:'ROAD',nave:'One nave',naveTxt:'One nave has 5 entrances. Each entrance has two rows: left and right.',entry:'Entrance / passage',entryTxt:'When you look into the passage: left span is on the left, right span is on the right.',read:'Read the place in order',readTxt:'Stage -> side -> nave -> entrance -> row/span.',warehouseContacts:'Warehouse brigadiers',call:'Call',wa:'WhatsApp',contactTitle:'Choose contact',greenContacts:'Greenhouse E1-E6',warehouse:'Warehouse',testTitle:'30-question test',testLead:'One calm test. Answer, then send the result.',steps:['Stage','Side','Nave','Entrance','Row']},
@@ -9145,6 +9145,68 @@ body.cxContactWarehouse #cxWarehouseContactsOnly{display:block!important}
  document.addEventListener('change',function(){setTimeout(run,120)},true);
  document.addEventListener('DOMContentLoaded',run);
  setTimeout(run,0);setTimeout(run,700);setTimeout(run,1800);
+})();
+</script>
+<style id="cxWarehouseBrigadiersDirectCss">
+.cxHomeTile.whBrigadiers{border-color:#f0dca6;background:linear-gradient(180deg,#fff,#fff9e8);border-width:2px}
+.cxHomeTile.whBrigadiers .cxHomeTileIcon{background:#fff2cc;color:#8b5b12}
+.cxTodayBtn[data-kind="warehouseBrigadiers"] .cxTodayIcon{background:#fff2cc;color:#8b5b12}
+.cxWarehouseBrigadiersPanel .cxSoloHead .cxSoloIcon{background:#fff2cc!important;color:#8b5b12!important}
+.cxWarehouseBrigadiersHint{border:1px solid #efd28a;background:#fff8df;border-radius:16px;padding:10px;margin:10px 0;color:#4a3510;font-size:13px;font-weight:950;line-height:1.28}
+.cxWarehouseBrigadiersGrid{display:grid;gap:9px;margin-top:10px}
+.cxWarehouseBrigadierCard{display:grid;grid-template-columns:1fr;gap:9px;border:1px solid #d7e5da;background:#fff;border-radius:17px;padding:12px;box-shadow:0 8px 20px rgba(20,33,27,.06)}
+.cxWarehouseBrigadierCard b{display:block;color:#14211b;font-size:18px;line-height:1.08}
+.cxWarehouseBrigadierCard span{display:block;color:#52695d;font-size:13px;font-weight:900;margin-top:4px}
+.cxWarehouseBrigadierActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cxWarehouseBrigadierActions a{min-height:54px;border-radius:15px;text-decoration:none;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:1000;font-size:14px}
+.cxWarehouseBrigadierActions .tel{background:#1f63b5}.cxWarehouseBrigadierActions .wa{background:#1f8f52}
+@media(min-width:720px){.cxWarehouseBrigadiersGrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:370px){.cxWarehouseBrigadierActions{grid-template-columns:1fr}.cxWarehouseBrigadierCard b{font-size:16px}}
+</style>
+<script id="cxWarehouseBrigadiersDirectPatch">
+(function(){
+ if(window.cxWarehouseBrigadiersDirectLoaded)return;window.cxWarehouseBrigadiersDirectLoaded=true;
+ var PEOPLE=[
+  {name:"Paweł",phone:"+48 785 881 165"},
+  {name:"Mateusz",phone:"+48 606 770 754"},
+  {name:"Beata",phone:"+48 500 533 643"}
+ ];
+ var COPY={
+  PL:{tile:"Brygadziści magazynu",sub:"Paweł, Mateusz, Beata: telefon i WhatsApp.",title:"Brygadziści magazynu",lead:"Jeśli pracujesz na magazynie, tutaj masz szybki kontakt do brygadzistów.",hint:"Magazyn nie używa Readera. W sprawie spóźnienia, choroby albo nieobecności napisz lub zadzwoń do brygadzisty magazynu.",call:"Zadzwoń",wa:"WhatsApp"},
+  EN:{tile:"Warehouse team leaders",sub:"Paweł, Mateusz, Beata: phone and WhatsApp.",title:"Warehouse team leaders",lead:"If you work in the warehouse, use these direct contacts.",hint:"The warehouse does not use Reader. If you are late, sick, or absent, call or message the warehouse team leader.",call:"Call",wa:"WhatsApp"},
+  UA:{tile:"Бригадири складу",sub:"Paweł, Mateusz, Beata: телефон і WhatsApp.",title:"Бригадири складу",lead:"Якщо ви працюєте на складі, тут є швидкий контакт до бригадирів.",hint:"На складі Reader не використовується. Якщо запізнюєтесь, захворіли або не прийдете, напишіть або зателефонуйте бригадиру складу.",call:"Подзвонити",wa:"WhatsApp"},
+  RU:{tile:"Бригадиры склада",sub:"Paweł, Mateusz, Beata: телефон и WhatsApp.",title:"Бригадиры склада",lead:"Если вы работаете на складе, здесь быстрые контакты бригадиров.",hint:"На складе Reader не используется. Если опаздываете, заболели или не придете, напишите или позвоните бригадиру склада.",call:"Позвонить",wa:"WhatsApp"},
+  AZ:{tile:"Anbar briqadirləri",sub:"Paweł, Mateusz, Beata: telefon və WhatsApp.",title:"Anbar briqadirləri",lead:"Anbarda işləyirsinizsə, briqadirlərlə sürətli əlaqə buradadır.",hint:"Anbarda Reader istifadə olunmur. Gecikirsinizsə, xəstəsinizsə və ya gələ bilmirsinizsə, anbar briqadirinə yazın və ya zəng edin.",call:"Zəng et",wa:"WhatsApp"},
+  ES:{tile:"Encargados de almacén",sub:"Paweł, Mateusz, Beata: teléfono y WhatsApp.",title:"Encargados de almacén",lead:"Si trabajas en el almacén, aquí tienes contacto directo.",hint:"En el almacén no se usa Reader. Si llegas tarde, estás enfermo o no puedes venir, escribe o llama al encargado del almacén.",call:"Llamar",wa:"WhatsApp"},
+  FIL:{tile:"Mga lider sa bodega",sub:"Paweł, Mateusz, Beata: telepono at WhatsApp.",title:"Mga lider sa bodega",lead:"Kung nagtatrabaho ka sa bodega, nandito ang mabilis na contact.",hint:"Sa bodega walang Reader. Kung mahuhuli, may sakit o hindi makakapasok, mag-message o tumawag sa lider ng bodega.",call:"Tumawag",wa:"WhatsApp"},
+  ID:{tile:"Brigadir gudang",sub:"Paweł, Mateusz, Beata: telepon dan WhatsApp.",title:"Brigadir gudang",lead:"Jika bekerja di gudang, gunakan kontak langsung ini.",hint:"Di gudang tidak menggunakan Reader. Jika terlambat, sakit, atau tidak masuk, kirim pesan atau telepon brigadir gudang.",call:"Telepon",wa:"WhatsApp"},
+  NE:{tile:"गोदाम टीम लिडर",sub:"Paweł, Mateusz, Beata: फोन र WhatsApp.",title:"गोदाम टीम लिडर",lead:"गोदाममा काम गर्नुहुन्छ भने यी सिधा सम्पर्कहरू प्रयोग गर्नुहोस्।",hint:"गोदाममा Reader प्रयोग हुँदैन। ढिलो, बिरामी वा आउन नसक्ने भए गोदाम टीम लिडरलाई लेख्नुहोस् वा फोन गर्नुहोस्।",call:"फोन गर्नुहोस्",wa:"WhatsApp"}
+ };
+ function langKey(){try{var s=document.getElementById("cxFinalLangSelect");if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}try{if(typeof lang!=="undefined"&&lang)return String(lang).toUpperCase()}catch(e){}try{return String(localStorage.cx_lang||"PL").toUpperCase()}catch(e){return"PL"}}
+ function tr(){return COPY[langKey()]||COPY.PL}
+ function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+ function cleanPhone(v){return String(v||"").replace(/[^\d+]/g,"")}
+ function waPhone(v){return String(v||"").replace(/\D/g,"")}
+ function icon(){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12"/><path d="M7 19v-6h10v6"/><path d="M8 9h2M12 9h2M16 9h0"/></svg>'}
+ function card(p,x){return '<article class="cxWarehouseBrigadierCard"><div><b>'+esc(p.name)+'</b><span>'+esc(p.phone)+'</span></div><div class="cxWarehouseBrigadierActions"><a class="tel" href="tel:'+cleanPhone(p.phone)+'">'+esc(x.call)+'</a><a class="wa" target="_blank" rel="noopener" href="https://wa.me/'+waPhone(p.phone)+'">'+esc(x.wa)+'</a></div></article>'}
+ function moduleContactsHtml(){var x=tr();return '<section id="cxWarehouseModuleBrigadiers" class="cxWarehouseInlineContacts"><h4>'+esc(x.title)+'</h4><div class="cxWarehouseBrigadiersGrid">'+PEOPLE.map(function(person){return card(person,x)}).join("")+'</div></section>'}
+ function panel(){var main=document.querySelector("main")||document.body,p=document.getElementById("cxSoloPanel");if(!p){p=document.createElement("section");p.id="cxSoloPanel"}if(p.parentNode!==main)main.insertBefore(p,main.firstChild);return p}
+ function mark(){document.querySelectorAll(".cxHomeTile,.cxTodayBtn").forEach(function(n){var on=n.getAttribute("data-kind")==="warehouseBrigadiers"||n.hasAttribute("data-cx-warehouse-brigadiers");n.classList.toggle("cxSoloSelected",on);n.classList.toggle("cxChosenTile",on);if(on)n.setAttribute("aria-current","true");else n.removeAttribute("aria-current")})}
+ function clearOther(){document.body.classList.remove("cxSoloReader","cxSoloForbidden","cxCleanModuleOpen","cxCleanForbiddenOpen","cxContactWarehouse");document.querySelectorAll("#cxForbiddenLitePanel,#cxForbiddenPanel,#cxCleanModulePanel").forEach(function(n){n.classList.remove("active");n.style.removeProperty("display")})}
+ function open(){var x=tr(),p=panel();clearOther();p.innerHTML='<div class="cxWarehouseBrigadiersPanel"><div class="cxSoloHead warehouse"><span class="cxSoloIcon">'+icon()+'</span><div><h3>'+esc(x.title)+'</h3><p>'+esc(x.lead)+'</p></div></div><div class="cxWarehouseBrigadiersHint">'+esc(x.hint)+'</div><div id="cxWarehouseInlineContacts" class="cxWarehouseBrigadiersGrid">'+PEOPLE.map(function(person){return card(person,x)}).join("")+'</div></div>';p.classList.add("active");document.body.classList.add("cxSoloOpen","cxWarehouseBrigadiersOpen");try{localStorage.cx_active_home_tile="warehouseBrigadiers"}catch(e){}[0,180,520,1000].forEach(function(delay){setTimeout(mark,delay)});try{p.scrollIntoView({behavior:"smooth",block:"start"})}catch(e){try{p.scrollIntoView()}catch(_){}}}
+ function tileHtml(){var x=tr();return '<button type="button" class="cxHomeTile whBrigadiers" data-kind="warehouseBrigadiers" data-cx-warehouse-brigadiers="1" data-cx-wh-lang="'+esc(langKey())+'" onclick="cxOpenWarehouseBrigadiers()"><span class="cxHomeTileIcon">'+icon()+'</span><span><b>'+esc(x.tile)+'</b><span>'+esc(x.sub)+'</span></span></button>'}
+ function todayHtml(){var x=tr();return '<button type="button" class="cxTodayBtn" data-kind="warehouseBrigadiers" data-cx-today-warehouse-brigadiers="1" data-cx-wh-lang="'+esc(langKey())+'" onclick="cxOpenWarehouseBrigadiers()"><span class="cxTodayIcon">'+icon()+'</span><span>'+esc(x.tile)+'</span></button>'}
+ function ensureTile(){var key=langKey(),grid=document.querySelector("#cxHomeTiles .cxTileGrid");if(grid){var old=grid.querySelector("[data-cx-warehouse-brigadiers]");if(!old||old.getAttribute("data-cx-wh-lang")!==key){var wrap=document.createElement("div");wrap.innerHTML=tileHtml();var node=wrap.firstElementChild;if(old){old.replaceWith(node)}else{var anchor=grid.querySelector(".cxHomeTile.contacts")||grid.querySelector(".cxHomeTile.warehouse");if(anchor&&anchor.parentNode===grid)anchor.parentNode.insertBefore(node,anchor.nextSibling);else grid.appendChild(node)}}}var today=document.querySelector("#cxTodayPanel .cxTodayGrid");if(today){var oldT=today.querySelector("[data-cx-today-warehouse-brigadiers]");if(!oldT||oldT.getAttribute("data-cx-wh-lang")!==key){var wrapT=document.createElement("div");wrapT.innerHTML=todayHtml();var nodeT=wrapT.firstElementChild;if(oldT){oldT.replaceWith(nodeT)}else{var a=today.querySelector('.cxTodayBtn[data-kind="contacts"]')||today.querySelector('.cxTodayBtn[data-kind="warehouse"]');if(a&&a.parentNode===today)a.parentNode.insertBefore(nodeT,a.nextSibling);else today.appendChild(nodeT)}}}if(document.body.classList.contains("cxWarehouseBrigadiersOpen"))mark()}
+ function ensureWarehouseModuleContacts(){var active="";try{active=localStorage.cx_active_home_tile||""}catch(e){}if(active!=="warehouse")return;var p=document.querySelector("#cxCleanModulePanel.active");if(!p||p.querySelector("#cxWarehouseModuleBrigadiers"))return;p.insertAdjacentHTML("beforeend",moduleContactsHtml())}
+ window.cxOpenWarehouseBrigadiers=open;
+ try{var oldHome=window.cxHomeGo;if(typeof oldHome==="function"&&!window.cxWarehouseBrigadiersHomeWrapped){window.cxWarehouseBrigadiersHomeWrapped=true;window.cxHomeGo=function(kind){if(kind==="warehouseBrigadiers"){open();return}return oldHome.apply(this,arguments)}}}catch(e){}
+ document.addEventListener("click",function(ev){var t=ev.target&&ev.target.closest?ev.target.closest("[data-cx-warehouse-brigadiers],[data-cx-today-warehouse-brigadiers]"):null;if(!t)return;ev.preventDefault();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();else ev.stopPropagation();open()},true);
+ document.addEventListener("change",function(){setTimeout(function(){ensureTile();if(document.body.classList.contains("cxWarehouseBrigadiersOpen"))open()},120)},true);
+ try{new MutationObserver(function(){setTimeout(function(){ensureTile();ensureWarehouseModuleContacts()},60)}).observe(document.body,{childList:true,subtree:true})}catch(e){}
+ document.addEventListener("click",function(){setTimeout(ensureWarehouseModuleContacts,160);setTimeout(ensureWarehouseModuleContacts,620)},true);
+ function run(){ensureTile();ensureWarehouseModuleContacts();if(document.body.classList.contains("cxWarehouseBrigadiersOpen"))open()}
+ document.addEventListener("DOMContentLoaded",run);
+ setTimeout(run,0);setTimeout(run,500);setTimeout(run,1500);
 })();
 </script>
 </body></html>
