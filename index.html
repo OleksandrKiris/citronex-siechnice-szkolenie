@@ -7561,4 +7561,216 @@ body.cxCleanForbiddenOpen #start,body.cxCleanForbiddenOpen #fullContent,body.cxC
  document.addEventListener('click',function(ev){var t=ev.target&&ev.target.closest?ev.target.closest('.cxHomeTile,.cxTodayBtn'):null;if(!t)return;var cls=String(t.className||''),kind=String(t.getAttribute('data-kind')||''),txt=String(t.innerText||'').toLowerCase();var k=cls.indexOf('warehousePeople')>-1?'warehousePeople':cls.indexOf('warehouse')>-1?'warehouse':cls.indexOf('groups')>-1?'groups':cls.indexOf('map')>-1?'map':cls.indexOf('forbidden')>-1?'forbidden':kind;if(k==='map'||k==='warehouse'||k==='groups'){ev.preventDefault();if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();open(k);return}if(k==='forbidden'||txt.indexOf('zakazy')>-1){setTimeout(forbiddenMode,30);return}if(t.closest('.cxHomeTile,.cxTodayBtn'))closeClean()},true);
  document.addEventListener('change',function(ev){if(ev.target&&ev.target.id==='cxFinalLangSelect'){var p=document.getElementById('cxCleanModulePanel');if(p&&p.classList.contains('active')){var k='';try{k=localStorage.cx_active_home_tile||''}catch(e){}if(k==='map'||k==='warehouse'||k==='groups')open(k)}}},true);
 })();
+</script>
+<style id="cxReaderStartLinesCss">
+#cxReaderPhotoGuide{display:none!important}
+#cxReaderStartLinesPanel{
+  scroll-margin-top:96px!important;
+  margin:12px 0 14px!important;
+  border:1px solid #cfe2d6!important;
+  border-left:6px solid #0f5f3f!important;
+  border-radius:20px!important;
+  background:#ffffff!important;
+  padding:12px!important;
+  box-shadow:0 12px 28px rgba(20,33,27,.08)!important;
+}
+.cxReaderLinesHead{
+  display:grid!important;
+  grid-template-columns:48px 1fr!important;
+  gap:10px!important;
+  align-items:start!important;
+  margin-bottom:10px!important;
+}
+.cxReaderLinesIcon{
+  width:48px!important;
+  height:48px!important;
+  border-radius:16px!important;
+  background:#eaf8ef!important;
+  color:#0f5f3f!important;
+  display:grid!important;
+  place-items:center!important;
+  font-size:22px!important;
+  font-weight:1000!important;
+}
+.cxReaderLinesHead h3{
+  margin:0!important;
+  color:#14211b!important;
+  font-size:22px!important;
+  line-height:1.08!important;
+}
+.cxReaderLinesHead p{
+  margin:5px 0 0!important;
+  color:#52695d!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  line-height:1.32!important;
+}
+.cxReaderLineList{
+  display:grid!important;
+  gap:8px!important;
+}
+.cxReaderLine{
+  display:grid!important;
+  grid-template-columns:36px 1fr!important;
+  gap:9px!important;
+  align-items:start!important;
+  min-height:56px!important;
+  border:1px solid #d7e5da!important;
+  border-radius:16px!important;
+  background:#f9fdfb!important;
+  padding:9px!important;
+}
+.cxReaderLineNo{
+  width:36px!important;
+  height:36px!important;
+  border-radius:13px!important;
+  background:#0f5f3f!important;
+  color:#fff!important;
+  display:grid!important;
+  place-items:center!important;
+  font-size:15px!important;
+  font-weight:1000!important;
+}
+.cxReaderLine b{
+  display:block!important;
+  margin:0 0 2px!important;
+  color:#173b2a!important;
+  font-size:15px!important;
+  line-height:1.12!important;
+}
+.cxReaderLine span{
+  display:block!important;
+  color:#52695d!important;
+  font-size:12.7px!important;
+  line-height:1.32!important;
+  font-weight:850!important;
+}
+.cxReaderBoardWords{
+  margin-top:10px!important;
+  border:1px solid #efd28a!important;
+  background:#fff8df!important;
+  border-radius:16px!important;
+  padding:10px!important;
+}
+.cxReaderBoardWords h4{
+  margin:0 0 8px!important;
+  color:#4a3510!important;
+  font-size:15px!important;
+  line-height:1.15!important;
+}
+.cxReaderChipGrid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:7px!important;
+}
+.cxReaderChip{
+  min-height:42px!important;
+  border-radius:13px!important;
+  border:1px solid #efd28a!important;
+  background:#fff!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  padding:7px!important;
+  color:#4a3510!important;
+  font-size:12px!important;
+  line-height:1.15!important;
+  font-weight:950!important;
+}
+.cxReaderChip i{
+  width:24px!important;
+  height:24px!important;
+  border-radius:9px!important;
+  background:#8b5b12!important;
+  color:#fff!important;
+  display:grid!important;
+  place-items:center!important;
+  font-style:normal!important;
+  font-size:12px!important;
+  flex:0 0 auto!important;
+}
+.cxReaderOriginal{
+  margin-top:10px!important;
+  border:1px solid #d7e5da!important;
+  border-radius:16px!important;
+  background:#f7fbf8!important;
+  overflow:hidden!important;
+}
+.cxReaderOriginal summary{
+  min-height:52px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:10px 12px!important;
+  color:#173b2a!important;
+  font-size:14px!important;
+  font-weight:1000!important;
+  cursor:pointer!important;
+}
+.cxReaderOriginal img{
+  display:block!important;
+  width:100%!important;
+  max-height:560px!important;
+  object-fit:contain!important;
+  background:#fff!important;
+  border-top:1px solid #d7e5da!important;
+  border-radius:0!important;
+}
+@media(min-width:720px){
+  .cxReaderLineList{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .cxReaderLine{grid-template-columns:40px 1fr!important}
+  .cxReaderLineNo{width:40px!important;height:40px!important}
+  .cxReaderChipGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:390px){
+  #cxReaderStartLinesPanel{padding:10px!important;border-radius:18px!important}
+  .cxReaderLinesHead{grid-template-columns:42px 1fr!important}
+  .cxReaderLinesIcon{width:42px!important;height:42px!important;border-radius:14px!important;font-size:20px!important}
+  .cxReaderLinesHead h3{font-size:19px!important}
+  .cxReaderLinesHead p{font-size:12px!important}
+  .cxReaderLine{grid-template-columns:32px 1fr!important;gap:8px!important;padding:8px!important}
+  .cxReaderLineNo{width:32px!important;height:32px!important;border-radius:11px!important;font-size:14px!important}
+  .cxReaderLine b{font-size:14px!important}
+  .cxReaderLine span{font-size:12px!important}
+  .cxReaderChipGrid{grid-template-columns:1fr!important}
+}
+</style>
+<script id="cxReaderStartLinesPatch">
+(function(){
+ if(window.cxReaderStartLinesLoaded)return;window.cxReaderStartLinesLoaded=true;
+ var IMG_SRC='assets/inline/reader_start.jpg';
+ var TX={
+  PL:{title:'Reader: początek pracy krok po kroku',lead:'Instrukcja z obrazka jest rozbita na proste linie. Zmieniasz język u góry, a te napisy też się tłumaczą.',board:'Nazwy, które zobaczysz na tablicy',original:'Pokaż oryginalne zdjęcie instrukcji',labels:['Tag personalny','Początek pracy','Czynność','Tag rzędu','Początek przerwy','Koniec przerwy','Koniec pracy','Ładowarka'],steps:[['Weź reader','Weź reader z ładowarki z wyznaczonego miejsca.'],['Tag personalny','Odbij swój tag personalny: przyłóż tag do readera i naciśnij centralny przycisk.'],['Początek pracy','Na tablicy odbij Początek pracy: przyłóż reader do tagu i naciśnij centralny przycisk.'],['Czynność','Odbij przydzieloną Ci czynność na tablicy aktywności.'],['Rząd','Wejdź w wyznaczony rząd i odbij tag wiszący przy rzędzie zgodnie z instrukcją pracy.'],['Początek przerwy','Rozpoczynając przerwę, odbij Początek przerwy.'],['Koniec przerwy','Kończąc przerwę, odbij Koniec przerwy.'],['Koniec pracy','Po zakończeniu pracy odbij Koniec pracy.'],['Ładowarka','Odłóż reader na ładowarkę na wyznaczone miejsce z numerem.']]},
+  EN:{title:'Reader: start work step by step',lead:'The instruction from the picture is split into simple lines. Change the language at the top and these texts change too.',board:'Names you will see on the board',original:'Show the original instruction photo',labels:['Personal tag','Start work','Activity','Row tag','Break start','Break end','End work','Charger'],steps:[['Take the reader','Take the reader from the charger in the assigned place.'],['Personal tag','Scan your personal tag: touch the tag with the reader and press the center button.'],['Start work','On the board, scan Start work: touch the tag with the reader and press the center button.'],['Activity','Scan the activity assigned to you on the activity board.'],['Row','Enter the assigned row and scan the tag hanging by the row according to the work instruction.'],['Break start','When starting a break, scan Break start.'],['Break end','When ending a break, scan Break end.'],['End work','After finishing work, scan End work.'],['Charger','Put the reader on the charger in the assigned numbered place.']]},
+  UA:{title:'Рідер: початок роботи крок за кроком',lead:'Інструкцію з картинки розділено на прості рядки. Змініть мову зверху, і ці написи теж зміняться.',board:'Назви, які ви побачите на дошці',original:'Показати оригінальне фото інструкції',labels:['Персональний тег','Початок роботи','Діяльність','Тег ряду','Початок перерви','Кінець перерви','Кінець роботи','Зарядка'],steps:[['Візьміть рідер','Візьміть рідер із зарядного пристрою з визначеного місця.'],['Персональний тег','Відбийте свій персональний тег: прикладіть тег до рідера і натисніть центральну кнопку.'],['Початок роботи','На дошці відбийте Початок роботи: прикладіть рідер до тега і натисніть центральну кнопку.'],['Діяльність','Відбийте призначену вам діяльність на дошці активностей.'],['Ряд','Увійдіть у визначений ряд і відбийте тег, який висить при ряді, згідно з інструкцією роботи.'],['Початок перерви','Починаючи перерву, відбийте Початок перерви.'],['Кінець перерви','Завершуючи перерву, відбийте Кінець перерви.'],['Кінець роботи','Після завершення роботи відбийте Кінець роботи.'],['Зарядка','Покладіть рідер на зарядний пристрій на визначене місце з номером.']]},
+  RU:{title:'Ридер: начало работы пошагово',lead:'Инструкция с картинки разделена на простые строки. Смените язык сверху, и эти надписи тоже изменятся.',board:'Названия, которые вы увидите на доске',original:'Показать оригинальное фото инструкции',labels:['Персональный тег','Начало работы','Деятельность','Тег ряда','Начало перерыва','Конец перерыва','Конец работы','Зарядка'],steps:[['Возьмите ридер','Возьмите ридер с зарядного устройства с назначенного места.'],['Персональный тег','Отметьте свой персональный тег: приложите тег к ридеру и нажмите центральную кнопку.'],['Начало работы','На доске отметьте Начало работы: приложите ридер к тегу и нажмите центральную кнопку.'],['Деятельность','Отметьте назначенную вам деятельность на доске активностей.'],['Ряд','Зайдите в назначенный ряд и отметьте тег, который висит у ряда, согласно рабочей инструкции.'],['Начало перерыва','Начиная перерыв, отметьте Начало перерыва.'],['Конец перерыва','Заканчивая перерыв, отметьте Конец перерыва.'],['Конец работы','После окончания работы отметьте Конец работы.'],['Зарядка','Положите ридер на зарядное устройство на назначенное место с номером.']]},
+  AZ:{title:'Reader: işə başlama addım-addım',lead:'Şəkildəki təlimat sadə sətirlərə bölünüb. Dili yuxarıdan dəyişin, bu mətnlər də dəyişəcək.',board:'Lövhədə görəcəyiniz adlar',original:'Orijinal təlimat şəklini göstər',labels:['Şəxsi tag','İşin başlanğıcı','Fəaliyyət','Sıra tagı','Fasilənin başlanğıcı','Fasilənin sonu','İşin sonu','Şarj yeri'],steps:[['Reader-i götürün','Reader-i təyin olunmuş yerdəki şarj cihazından götürün.'],['Şəxsi tag','Şəxsi tagınızı qeyd edin: tagı readerə yaxınlaşdırın və mərkəzi düyməni basın.'],['İşin başlanğıcı','Lövhədə İşin başlanğıcı tagını qeyd edin: readeri taga yaxınlaşdırın və mərkəzi düyməni basın.'],['Fəaliyyət','Sizə təyin olunan fəaliyyəti aktivlik lövhəsində qeyd edin.'],['Sıra','Təyin olunmuş sıraya daxil olun və sıra yanında asılmış tagı iş təlimatına uyğun qeyd edin.'],['Fasilənin başlanğıcı','Fasiləyə başlayanda Fasilənin başlanğıcı tagını qeyd edin.'],['Fasilənin sonu','Fasiləni bitirəndə Fasilənin sonu tagını qeyd edin.'],['İşin sonu','İşi bitirdikdən sonra İşin sonu tagını qeyd edin.'],['Şarj yeri','Reader-i nömrəli təyin olunmuş yerə, şarj cihazına qoyun.']]},
+  ES:{title:'Reader: inicio del trabajo paso a paso',lead:'La instrucción de la foto está dividida en líneas simples. Cambia el idioma arriba y estos textos también cambian.',board:'Nombres que verás en el tablero',original:'Mostrar la foto original de la instrucción',labels:['Tag personal','Inicio del trabajo','Actividad','Tag de fila','Inicio de pausa','Fin de pausa','Fin del trabajo','Cargador'],steps:[['Toma el reader','Toma el reader del cargador en el lugar asignado.'],['Tag personal','Marca tu tag personal: acerca el tag al reader y pulsa el botón central.'],['Inicio del trabajo','En el tablero marca Inicio del trabajo: acerca el reader al tag y pulsa el botón central.'],['Actividad','Marca la actividad asignada en el tablero de actividades.'],['Fila','Entra en la fila asignada y marca el tag colgado junto a la fila según la instrucción de trabajo.'],['Inicio de pausa','Al empezar la pausa, marca Inicio de pausa.'],['Fin de pausa','Al terminar la pausa, marca Fin de pausa.'],['Fin del trabajo','Después de terminar el trabajo, marca Fin del trabajo.'],['Cargador','Pon el reader en el cargador, en el lugar asignado con número.']]},
+  FIL:{title:'Reader: pagsisimula ng trabaho step by step',lead:'Ang instruction sa larawan ay hinati sa madaling linya. Palitan ang wika sa taas at magbabago rin ang mga tekstong ito.',board:'Mga pangalan na makikita mo sa board',original:'Ipakita ang original na larawan ng instruction',labels:['Personal tag','Start work','Activity','Row tag','Break start','Break end','End work','Charger'],steps:[['Kunin ang reader','Kunin ang reader mula sa charger sa nakatalagang lugar.'],['Personal tag','I-scan ang iyong personal tag: ilapit ang tag sa reader at pindutin ang gitnang button.'],['Start work','Sa board, i-scan ang Start work: ilapit ang reader sa tag at pindutin ang gitnang button.'],['Activity','I-scan ang activity na ibinigay sa iyo sa activity board.'],['Row','Pumasok sa nakatalagang row at i-scan ang tag na nakasabit sa row ayon sa work instruction.'],['Break start','Kapag magsisimula ang break, i-scan ang Break start.'],['Break end','Kapag matatapos ang break, i-scan ang Break end.'],['End work','Pagkatapos ng trabaho, i-scan ang End work.'],['Charger','Ibalik ang reader sa charger sa nakatalagang numbered place.']]},
+  ID:{title:'Reader: mulai kerja langkah demi langkah',lead:'Instruksi dari gambar dibagi menjadi baris yang sederhana. Ganti bahasa di atas dan teks ini juga ikut berubah.',board:'Nama yang akan terlihat di papan',original:'Tampilkan foto instruksi asli',labels:['Tag pribadi','Mulai kerja','Aktivitas','Tag baris','Mulai istirahat','Selesai istirahat','Selesai kerja','Charger'],steps:[['Ambil reader','Ambil reader dari charger di tempat yang ditentukan.'],['Tag pribadi','Scan tag pribadi kamu: dekatkan tag ke reader dan tekan tombol tengah.'],['Mulai kerja','Di papan, scan Mulai kerja: dekatkan reader ke tag dan tekan tombol tengah.'],['Aktivitas','Scan aktivitas yang ditugaskan kepada kamu di papan aktivitas.'],['Baris','Masuk ke baris yang ditentukan dan scan tag yang tergantung di dekat baris sesuai instruksi kerja.'],['Mulai istirahat','Saat mulai istirahat, scan Mulai istirahat.'],['Selesai istirahat','Saat selesai istirahat, scan Selesai istirahat.'],['Selesai kerja','Setelah selesai bekerja, scan Selesai kerja.'],['Charger','Letakkan reader di charger pada tempat bernomor yang ditentukan.']]},
+  NE:{title:'Reader: काम सुरु गर्ने चरणहरू',lead:'फोटोको निर्देशनलाई सजिलो लाइनमा विभाजन गरिएको छ। माथि भाषा फेर्दा यी लेखाइ पनि फेरिन्छन्।',board:'बोर्डमा देखिने नामहरू',original:'मूल निर्देशन फोटो देखाउनुहोस्',labels:['व्यक्तिगत tag','काम सुरु','कामको गतिविधि','Row tag','Break सुरु','Break समाप्त','काम समाप्त','Charger'],steps:[['Reader लिनुहोस्','तोकिएको ठाउँको charger बाट reader लिनुहोस्।'],['व्यक्तिगत tag','आफ्नो व्यक्तिगत tag scan गर्नुहोस्: tag reader मा लगाउनुहोस् र बीचको बटन थिच्नुहोस्।'],['काम सुरु','बोर्डमा काम सुरु scan गर्नुहोस्: reader लाई tag मा लगाएर बीचको बटन थिच्नुहोस्।'],['कामको गतिविधि','Activity board मा तपाईंलाई दिएको काम scan गर्नुहोस्।'],['Row','तोकिएको row मा जानुहोस् र कामको निर्देशन अनुसार row मा झुन्डिएको tag scan गर्नुहोस्।'],['Break सुरु','Break सुरु गर्दा Break सुरु scan गर्नुहोस्।'],['Break समाप्त','Break सक्दा Break समाप्त scan गर्नुहोस्।'],['काम समाप्त','काम सकिएपछि काम समाप्त scan गर्नुहोस्।'],['Charger','Reader लाई तोकिएको नम्बर भएको ठाउँको charger मा राख्नुहोस्।']]}
+ };
+ function langKey(){
+  try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}
+  try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}
+  try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}
+ }
+ function tr(){return TX[langKey()]||TX.PL}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function render(){
+  var reader=document.getElementById('reader');if(!reader)return;
+  var t=tr(),panel=document.getElementById('cxReaderStartLinesPanel');
+  if(!panel){panel=document.createElement('section');panel.id='cxReaderStartLinesPanel'}
+  var ref=document.getElementById('readerQuick')||document.getElementById('readerTabs')||reader.firstChild;
+  if(panel.parentNode!==reader){reader.insertBefore(panel,ref||reader.firstChild)}
+  var stepHtml=t.steps.map(function(s,i){return'<article class="cxReaderLine"><div class="cxReaderLineNo">'+(i+1)+'</div><div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div></article>'}).join('');
+  var chips=t.labels.map(function(s,i){return'<span class="cxReaderChip"><i>'+String(i+1)+'</i>'+esc(s)+'</span>'}).join('');
+  panel.innerHTML='<div class="cxReaderLinesHead"><div class="cxReaderLinesIcon">R</div><div><h3>'+esc(t.title)+'</h3><p>'+esc(t.lead)+'</p></div></div><div class="cxReaderLineList">'+stepHtml+'</div><div class="cxReaderBoardWords"><h4>'+esc(t.board)+'</h4><div class="cxReaderChipGrid">'+chips+'</div></div><details class="cxReaderOriginal"><summary>'+esc(t.original)+'</summary><img loading="lazy" decoding="async" src="'+IMG_SRC+'" alt="'+esc(t.title)+'"></details>';
+ }
+ function schedule(){setTimeout(render,0);setTimeout(render,120);setTimeout(render,500)}
+ window.cxReaderStartLinesRender=render;
+ document.addEventListener('DOMContentLoaded',schedule);
+ document.addEventListener('click',schedule,true);
+ document.addEventListener('change',function(ev){if(ev.target&&ev.target.id==='cxFinalLangSelect')schedule()},true);
+ schedule();
+})();
 </script></body></html>
