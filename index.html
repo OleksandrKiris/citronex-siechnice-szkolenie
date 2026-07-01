@@ -7240,4 +7240,86 @@ img{
  try{new MutationObserver(function(){var v=document.getElementById('cxGreenhouseTopView');if(v&&v.getAttribute('data-orient-version')!=='compact-2026-07-01')schedule()}).observe(document.getElementById('orientationDiagrams')||document.body,{childList:true,subtree:true})}catch(e){}
  schedule();
 })();
+</script><style id="cxForbiddenFinalCss">
+#cxForbiddenFinalPanel{display:none!important;margin:12px 0 16px!important;border:1px solid #efb7b7!important;border-left:6px solid #b3261e!important;background:#fff!important;border-radius:20px!important;padding:14px!important;box-shadow:0 14px 32px rgba(80,20,20,.12)!important;color:#2a1717!important}
+#cxForbiddenFinalPanel.active{display:grid!important;gap:12px!important}
+.cxForbiddenFinalTop{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:start}
+.cxForbiddenFinalMark{width:48px;height:48px;border-radius:16px;background:#b3261e;color:#fff;display:grid;place-items:center}
+.cxForbiddenFinalMark svg,.cxForbiddenFinalItem i svg{width:25px;height:25px}
+.cxForbiddenFinalTop h3{margin:0!important;color:#551616!important;font-size:22px!important;line-height:1.08!important}
+.cxForbiddenFinalTop p{margin:5px 0 0!important;color:#684747!important;font-weight:850!important;line-height:1.3!important}
+.cxForbiddenFinalClose{min-height:42px!important;border:1px solid #efb7b7!important;background:#fff4f4!important;color:#8f1f1f!important;border-radius:13px!important;padding:8px 11px!important;font-weight:1000!important}
+.cxForbiddenFinalAlert{background:#fff1f1;border:1px solid #efb7b7;border-radius:16px;padding:11px;color:#551616;font-weight:1000;line-height:1.28}
+.cxForbiddenFinalGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cxForbiddenFinalItem{display:grid;grid-template-columns:38px 1fr;gap:8px;align-items:center;background:#fffafa;border:1px solid #f0dddd;border-radius:14px;padding:9px;color:#332323}
+.cxForbiddenFinalItem i{width:38px;height:38px;border-radius:13px;background:#fff0f0;color:#b3261e;display:grid;place-items:center;font-style:normal}
+.cxForbiddenFinalItem strong{display:block;color:#551616;font-size:14px;line-height:1.15}
+.cxForbiddenFinalItem span{display:block;color:#684747;font-size:12px;font-weight:850;line-height:1.22;margin-top:2px}
+.cxForbiddenFinalNotes{display:grid;gap:7px}
+.cxForbiddenFinalNotes div{background:#fff8df;border:1px solid #efd28a;border-radius:14px;padding:9px;color:#4a3510;font-size:12px;font-weight:900;line-height:1.28}
+@media(min-width:760px){.cxForbiddenFinalGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:430px){#cxForbiddenFinalPanel{padding:12px!important}.cxForbiddenFinalTop{grid-template-columns:42px 1fr}.cxForbiddenFinalClose{grid-column:1/-1;justify-self:start}.cxForbiddenFinalMark{width:42px;height:42px}.cxForbiddenFinalGrid{grid-template-columns:1fr}.cxForbiddenFinalItem{grid-template-columns:36px 1fr}.cxForbiddenFinalItem i{width:36px;height:36px}.cxForbiddenFinalTop h3{font-size:20px!important}}
+</style><script id="cxForbiddenFinalPatch">
+(function(){
+ if(window.cxForbiddenFinalLoaded)return;window.cxForbiddenFinalLoaded=true;
+ var ITEMS=['food','drink','candy','nuts','medicine','smoke','phone','jewelry','lashes','nails'];
+ var TX={
+  PL:{title:'Zakazy',lead:'Dotyczy szklarni, magazynu i produkcji. Tych rzeczy nie wnoś do strefy pracy.',close:'Zamknij',alert:'Najważniejsze: telefon, jedzenie, napoje, leki, papierosy, biżuteria, zegarki, sztuczne paznokcie i sztuczne rzęsy zostają poza strefą pracy.',items:{food:['Jedzenie','kanapki, przekąski, produkty'],drink:['Napoje','butelki, kubki, puszki'],candy:['Cukierki i guma','nie żuj gumy w pracy'],nuts:['Orzechy','nie wnoś do strefy pracy'],medicine:['Leki','przyjmuj tylko w jadalni'],smoke:['Papierosy','także wyroby tytoniowe'],phone:['Telefon','nie używaj w strefie pracy'],jewelry:['Biżuteria i zegarki','pierścionki, łańcuszki, bransoletki'],lashes:['Sztuczne rzęsy','przedłużane lub dekoracyjne'],nails:['Paznokcie','długie, sztuczne, ozdobne']},notes:['Jeśli musisz przyjmować leki, trzymaj je poza strefą pracy i używaj tylko w jadalni.','To jest zasada higieny produktu i bezpieczeństwa pracy.']},
+  EN:{title:'Prohibitions',lead:'Applies to greenhouse, warehouse and production. Do not bring these things into the work zone.',close:'Close',alert:'Most important: phone, food, drinks, medicines, cigarettes, jewelry, watches, artificial nails and false eyelashes stay outside the work zone.',items:{food:['Food','sandwiches, snacks, products'],drink:['Drinks','bottles, cups, cans'],candy:['Candy and gum','do not chew gum at work'],nuts:['Nuts','do not bring into the work zone'],medicine:['Medicines','take only in the dining room'],smoke:['Cigarettes','also tobacco products'],phone:['Phone','do not use in the work zone'],jewelry:['Jewelry and watches','rings, chains, bracelets'],lashes:['False eyelashes','extended or decorative'],nails:['Nails','long, artificial, decorative']},notes:['If you must take medicine, keep it outside the work zone and use it only in the dining room.','This is for product hygiene and work safety.']},
+  UA:{title:'Заборони',lead:'Стосується теплиці, складу і виробництва. Не вносьте ці речі в робочу зону.',close:'Закрити',alert:'Головне: телефон, їжа, напої, ліки, сигарети, прикраси, годинники, штучні нігті та штучні вії залишаються поза робочою зоною.',items:{food:['Їжа','бутерброди, перекуси, продукти'],drink:['Напої','пляшки, стакани, банки'],candy:['Цукерки і гумка','не жуйте гумку на роботі'],nuts:['Горіхи','не вносьте в робочу зону'],medicine:['Ліки','приймайте тільки в їдальні'],smoke:['Сигарети','також тютюнові вироби'],phone:['Телефон','не використовуйте в робочій зоні'],jewelry:['Прикраси і годинники','персні, ланцюжки, браслети'],lashes:['Штучні вії','нарощені або декоративні'],nails:['Нігті','довгі, штучні, декоративні']},notes:['Якщо потрібно приймати ліки, тримайте їх поза робочою зоною і використовуйте тільки в їдальні.','Це правило гігієни продукту і безпеки праці.']},
+  RU:{title:'Запреты',lead:'Относится к теплице, складу и производству. Не вносите эти вещи в рабочую зону.',close:'Закрыть',alert:'Главное: телефон, еда, напитки, лекарства, сигареты, украшения, часы, искусственные ногти и ресницы остаются вне рабочей зоны.',items:{food:['Еда','бутерброды, перекусы, продукты'],drink:['Напитки','бутылки, стаканы, банки'],candy:['Конфеты и жвачка','не жуйте жвачку на работе'],nuts:['Орехи','не вносить в рабочую зону'],medicine:['Лекарства','принимать только в столовой'],smoke:['Сигареты','также табачные изделия'],phone:['Телефон','не использовать в рабочей зоне'],jewelry:['Украшения и часы','кольца, цепочки, браслеты'],lashes:['Искусственные ресницы','нарощенные или декоративные'],nails:['Ногти','длинные, искусственные, декоративные']},notes:['Если нужно принимать лекарства, держите их вне рабочей зоны и используйте только в столовой.','Это правило гигиены продукта и безопасности труда.']},
+  AZ:{title:'Qadağalar',lead:'İstixana, anbar və istehsala aiddir. Bu əşyaları iş zonasına gətirməyin.',close:'Bağla',alert:'Əsas: telefon, yemək, içki, dərman, siqaret, bəzək, saat, süni dırnaq və süni kirpik iş zonasından kənarda qalır.',items:{food:['Yemək','sendviç, qəlyanaltı, məhsul'],drink:['İçki','butulka, stəkan, banka'],candy:['Konfet və saqqız','işdə saqqız çeynəməyin'],nuts:['Qoz-fındıq','iş zonasına gətirməyin'],medicine:['Dərman','yalnız yeməkxanada qəbul edin'],smoke:['Siqaret','tütün məhsulları da'],phone:['Telefon','iş zonasında istifadə etməyin'],jewelry:['Bəzək və saat','üzük, zəncir, qolbaq'],lashes:['Süni kirpik','uzadılmış və ya dekorativ'],nails:['Dırnaq','uzun, süni, dekorativ']},notes:['Dərman qəbul etməlisinizsə, iş zonasından kənarda saxlayın və yalnız yeməkxanada istifadə edin.','Bu məhsul gigiyenası və iş təhlükəsizliyi üçündür.']},
+  ES:{title:'Prohibiciones',lead:'Aplica al invernadero, almacén y producción. No lleves estas cosas a la zona de trabajo.',close:'Cerrar',alert:'Lo más importante: teléfono, comida, bebidas, medicamentos, cigarrillos, joyas, relojes, uñas artificiales y pestañas postizas quedan fuera de la zona de trabajo.',items:{food:['Comida','bocadillos, snacks, productos'],drink:['Bebidas','botellas, vasos, latas'],candy:['Dulces y chicle','no mastiques chicle en el trabajo'],nuts:['Frutos secos','no llevar a la zona de trabajo'],medicine:['Medicamentos','tomar solo en el comedor'],smoke:['Cigarrillos','también productos de tabaco'],phone:['Teléfono','no usar en la zona de trabajo'],jewelry:['Joyas y relojes','anillos, cadenas, pulseras'],lashes:['Pestañas postizas','extendidas o decorativas'],nails:['Uñas','largas, artificiales, decorativas']},notes:['Si debes tomar medicamentos, guárdalos fuera de la zona de trabajo y úsalos solo en el comedor.','Es una regla de higiene del producto y seguridad laboral.']},
+  FIL:{title:'Mga bawal',lead:'Para sa greenhouse, bodega at production. Huwag dalhin ang mga ito sa work zone.',close:'Isara',alert:'Pinakamahalaga: phone, pagkain, inumin, gamot, sigarilyo, alahas, relo, artificial nails at false eyelashes ay nasa labas ng work zone.',items:{food:['Pagkain','sandwich, snacks, produkto'],drink:['Inumin','bote, baso, lata'],candy:['Candy at gum','huwag mag-chewing gum sa trabaho'],nuts:['Nuts','huwag dalhin sa work zone'],medicine:['Gamot','inumin lang sa dining room'],smoke:['Sigarilyo','pati tobacco products'],phone:['Telepono','huwag gamitin sa work zone'],jewelry:['Alahas at relo','singsing, chain, bracelet'],lashes:['False eyelashes','extended o decorative'],nails:['Kuko','mahaba, artificial, decorative']},notes:['Kung kailangan mong uminom ng gamot, itago sa labas ng work zone at gamitin lang sa dining room.','Para ito sa hygiene ng produkto at safety sa trabaho.']},
+  ID:{title:'Larangan',lead:'Berlaku untuk greenhouse, gudang dan produksi. Jangan bawa barang ini ke area kerja.',close:'Tutup',alert:'Paling penting: telepon, makanan, minuman, obat, rokok, perhiasan, jam, kuku palsu dan bulu mata palsu tetap di luar area kerja.',items:{food:['Makanan','sandwich, snack, produk'],drink:['Minuman','botol, gelas, kaleng'],candy:['Permen dan gum','jangan mengunyah gum saat kerja'],nuts:['Kacang','jangan bawa ke area kerja'],medicine:['Obat','minum hanya di ruang makan'],smoke:['Rokok','juga produk tembakau'],phone:['Telepon','jangan gunakan di area kerja'],jewelry:['Perhiasan dan jam','cincin, rantai, gelang'],lashes:['Bulu mata palsu','sambung atau dekoratif'],nails:['Kuku','panjang, palsu, dekoratif']},notes:['Jika harus minum obat, simpan di luar area kerja dan gunakan hanya di ruang makan.','Ini aturan kebersihan produk dan keselamatan kerja.']},
+  NE:{title:'निषेध',lead:'Greenhouse, warehouse र production का लागि। यी सामान work zone मा नल्याउनुहोस्.',close:'बन्द गर्नुहोस्',alert:'मुख्य कुरा: phone, खाना, पेय, औषधि, चुरोट, गहना, घडी, artificial nails र false eyelashes work zone बाहिर राख्नुहोस्.',items:{food:['खाना','sandwich, snacks, products'],drink:['पेय','bottle, cup, can'],candy:['Candy र gum','काममा gum नचपाउनुहोस्'],nuts:['Nuts','work zone मा नल्याउनुहोस्'],medicine:['औषधि','dining room मा मात्र लिनुहोस्'],smoke:['चुरोट','tobacco products पनि'],phone:['Phone','work zone मा प्रयोग नगर्नुहोस्'],jewelry:['गहना र घडी','ring, chain, bracelet'],lashes:['False eyelashes','extended वा decorative'],nails:['Nails','long, artificial, decorative']},notes:['औषधि लिनुपर्छ भने work zone बाहिर राख्नुहोस् र dining room मा मात्र प्रयोग गर्नुहोस्.','यो product hygiene र work safety को नियम हो.']}
+ };
+ function langKey(){try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}}
+ function t(){return TX[langKey()]||TX.PL}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function icon(){return'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M5.7 5.7 18.3 18.3"></path></svg>'}
+ function panel(){
+  var main=document.querySelector('main')||document.body;
+  var p=document.getElementById('cxForbiddenFinalPanel');
+  if(!p){p=document.createElement('section');p.id='cxForbiddenFinalPanel'}
+  if(p.parentNode!==main){main.insertBefore(p,main.firstChild)}
+  return p;
+ }
+ function html(x){
+  return '<div class="cxForbiddenFinalTop"><span class="cxForbiddenFinalMark">'+icon()+'</span><div><h3>'+esc(x.title)+'</h3><p>'+esc(x.lead)+'</p></div><button type="button" class="cxForbiddenFinalClose">'+esc(x.close)+'</button></div>'+
+  '<div class="cxForbiddenFinalAlert">'+esc(x.alert)+'</div><div class="cxForbiddenFinalGrid">'+ITEMS.map(function(k){var it=x.items[k]||[k,''];return'<article class="cxForbiddenFinalItem"><i>'+icon()+'</i><div><strong>'+esc(it[0])+'</strong><span>'+esc(it[1])+'</span></div></article>'}).join('')+'</div>'+
+  '<div class="cxForbiddenFinalNotes">'+x.notes.map(function(n){return'<div>'+esc(n)+'</div>'}).join('')+'</div>';
+ }
+ function render(open){
+  var p=panel(),x=t();
+  if(p.getAttribute('data-lang')!==langKey()||p.innerHTML.indexOf(x.title)<0){p.innerHTML=html(x);p.setAttribute('data-lang',langKey())}
+  p.classList.toggle('active',!!open);
+  p.style.setProperty('display',open?'grid':'none','important');
+  var close=p.querySelector('.cxForbiddenFinalClose');
+  if(close)close.onclick=function(){try{localStorage.cx_forbidden_final='0'}catch(e){}render(false)};
+ }
+ function open(){
+  try{localStorage.cx_forbidden_final='1';localStorage.cx_active_home_tile='forbidden'}catch(e){}
+  try{localStorage.cx_forbiddenOpen='0'}catch(e){}
+  render(true);
+  setTimeout(function(){render(true);var p=panel();try{p.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){p.scrollIntoView()}},80);
+  setTimeout(function(){render(true)},420);
+ }
+ window.cxOpenForbiddenFinal=open;
+ var oldOpen=window.cxOpenForbidden;
+ window.cxOpenForbidden=function(){try{if(typeof oldOpen==='function')oldOpen.apply(this,arguments)}catch(e){}open()};
+ var oldHome=window.cxHomeGo;
+ window.cxHomeGo=function(kind){if(kind==='forbidden'){open();return}return oldHome?oldHome.apply(this,arguments):undefined};
+ document.addEventListener('click',function(ev){
+  var target=ev.target&&ev.target.closest?ev.target.closest('.cxHomeTile.forbidden,.cxTodayBtn[data-kind="forbidden"],button,a'):null;
+  if(!target)return;
+  var cls=String(target.className||''),txt=String(target.innerText||'');
+  if(cls.indexOf('forbidden')>-1||txt.indexOf('Zakazy')>-1||txt.indexOf('Prohibitions')>-1||txt.indexOf('Mga bawal')>-1||txt.indexOf('Larangan')>-1){
+   setTimeout(open,0);
+  }
+ },true);
+ document.addEventListener('DOMContentLoaded',function(){render(false)});
+ document.addEventListener('change',function(){try{if(localStorage.cx_forbidden_final==='1')setTimeout(open,80)}catch(e){}},true);
+ setTimeout(function(){render(false)},0);
+})();
 </script></body></html>
