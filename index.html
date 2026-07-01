@@ -6548,4 +6548,191 @@ body,button,select,input,textarea{font-family:Arial,"Segoe UI","Noto Sans","Noto
  try{new MutationObserver(function(){setTimeout(render,80)}).observe(document.body,{childList:true,subtree:true})}catch(e){}
  setTimeout(render,0);setTimeout(render,800);setTimeout(render,1800);
 })();
-</script></body></html>
+</script><style id="cxPolishedMobileCss">
+:root{
+  --cx-bg-soft:#f4f7f5;
+  --cx-surface:#ffffff;
+  --cx-ink-strong:#14211b;
+  --cx-ink-muted:#52695d;
+  --cx-line-soft:#d7e5da;
+  --cx-green:#0f5f3f;
+  --cx-blue:#1f63b5;
+  --cx-yellow:#fff4d6;
+  --cx-red:#b3261e;
+  --cx-radius-lg:22px;
+  --cx-radius-md:17px;
+  --cx-shadow-soft:0 12px 28px rgba(20,33,27,.08);
+  --cx-shadow-card:0 8px 18px rgba(20,33,27,.07);
+}
+html{background:var(--cx-bg-soft)!important;scroll-behavior:smooth}
+body{background:linear-gradient(180deg,#f7faf8 0,#eef5f1 100%)!important;color:var(--cx-ink-strong)!important}
+.app{max-width:960px!important;margin:0 auto!important}
+.top{
+  position:sticky!important;top:0!important;z-index:90!important;
+  background:rgba(255,255,255,.96)!important;
+  border-bottom:1px solid rgba(215,229,218,.95)!important;
+  box-shadow:0 8px 22px rgba(20,33,27,.08)!important;
+  backdrop-filter:blur(14px)
+}
+.topin{min-height:64px!important;align-items:center!important;gap:10px!important}
+.brand{min-width:0!important;display:flex!important;align-items:center!important;gap:10px!important}
+.brandLogo,.logo img{max-height:42px!important;width:auto!important;object-fit:contain!important}
+.brand h1,.brand b{font-size:16px!important;line-height:1.05!important;letter-spacing:0!important}
+.brand p,.brand span{line-height:1.18!important}
+#cxFinalLangSelectBox.cxFinalLangSelectBox{
+  height:42px!important;min-width:104px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:14px!important;border:1px solid #cfe2d6!important;
+  box-shadow:0 8px 18px rgba(20,33,27,.10)!important;
+  background:#fff!important
+}
+#cxFinalLangSelect{height:32px!important;width:100%!important;border:0!important;background:#fff!important;font-size:13px!important;font-weight:950!important;color:var(--cx-ink-strong)!important}
+.langs,.nav,.mobileDock{display:none!important}
+.humanPanel,.section,.cityInfo,.medical-help,.readerPhotoGuide,.cxHomeTiles,.cxWarehousePeoplePanel,.cxWorkGroupsCard,#cxForbiddenPanel.cxForbiddenHuman,#cxGreenhouseTopView.cxFullStageOrient{
+  border-radius:var(--cx-radius-lg)!important;
+  border:1px solid var(--cx-line-soft)!important;
+  background:var(--cx-surface)!important;
+  box-shadow:var(--cx-shadow-soft)!important
+}
+.cxHomeTiles{padding:14px!important;margin-top:12px!important}
+.cxHomeHead{margin-bottom:12px!important}
+.cxHomeHead b{font-size:22px!important;line-height:1.08!important;color:var(--cx-ink-strong)!important}
+.cxHomeHead span{font-size:14px!important;line-height:1.35!important;color:var(--cx-ink-muted)!important;font-weight:850!important}
+.cxTileGrid,.cxHomeGrid{gap:12px!important}
+.cxHomeTile{
+  min-height:116px!important;height:auto!important;
+  padding:14px!important;border-radius:18px!important;
+  display:grid!important;grid-template-columns:48px 1fr!important;
+  align-items:center!important;align-content:center!important;
+  gap:12px!important;text-align:left!important;
+  box-shadow:var(--cx-shadow-card)!important;
+  border-width:1px!important;overflow:hidden!important;
+  transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease!important
+}
+.cxHomeTile:active{transform:scale(.985)!important}
+.cxHomeTile:before{height:4px!important}
+.cxHomeTileIcon,
+.cxPeopleTitle .cxHomeTileIcon,
+.cxWarehouseHead .cxHomeTileIcon,
+.cxCityHero .cxHomeTileIcon{
+  width:48px!important;height:48px!important;min-width:48px!important;
+  border-radius:16px!important;display:grid!important;place-items:center!important;
+  align-self:center!important
+}
+.cxHomeTileIcon svg,
+.cxPeopleTitle .cxHomeTileIcon svg,
+.cxWarehouseHead .cxHomeTileIcon svg,
+.cxCityHero .cxHomeTileIcon svg{
+  width:24px!important;height:24px!important;display:block!important;margin:0!important
+}
+.cxHomeTile > span:not(.cxHomeTileIcon){min-width:0!important;display:block!important}
+.cxHomeTile b,.cxHomeTile strong{
+  font-size:17px!important;line-height:1.12!important;color:var(--cx-ink-strong)!important;
+  display:block!important;overflow-wrap:anywhere!important
+}
+.cxHomeTile span span,.cxHomeTile > span:not(.cxHomeTileIcon) > span{
+  margin-top:5px!important;font-size:12.5px!important;line-height:1.3!important;
+  color:var(--cx-ink-muted)!important;font-weight:850!important;
+  display:block!important;overflow-wrap:anywhere!important
+}
+button,a,.mapbtn,.medicalBtn,.cityLink,.cityCopyBtn,.examStartBtn,.examSendBtn,.examUtilityBtn,.readerPhotoOpen,.brigadierActions a,.placeBtn,.stage,.company,.modebtn,.readerBtn,.humanChoice,.cxFinalSetupSave,.cxWarehousePeopleActions a,.cxWarehousePeopleActions button,.cxWorkGroupBtn,.cxDuwBtn{
+  min-height:54px!important;border-radius:16px!important;
+  font-weight:950!important;letter-spacing:0!important;
+  touch-action:manipulation!important
+}
+.readerQuickActions button,.cxReaderNav button{
+  min-height:54px!important;border-radius:16px!important;
+  display:grid!important;grid-template-columns:32px 1fr!important;
+  gap:10px!important;align-items:center!important;text-align:left!important
+}
+.cxButtonIcon,.cxStepIcon,.cxForbidIcon,.cxWorkGroupsIcon,.cxDuwIcon{
+  display:grid!important;place-items:center!important;flex:0 0 auto!important
+}
+.step,.card,.cityCard,.medicalCard,.brigadierCard,.cxForbiddenGroup,.cxForbidItem,.cxWarehousePeoplePhotos figure,.readerPhotoCard,.cxReaderSlide img,.cxFullCard{
+  border-radius:18px!important;border-color:var(--cx-line-soft)!important;
+  box-shadow:0 6px 16px rgba(20,33,27,.05)!important
+}
+.step{gap:10px!important;align-items:flex-start!important}
+.step b,.card b,.cityCard b,.medicalCard b,.brigadierCard b{line-height:1.15!important}
+.step p,.card p,.cityCard p,.medicalCard p,.brigadierCard p{line-height:1.38!important;color:var(--cx-ink-muted)!important}
+img{
+  max-width:100%!important;
+  border-radius:16px!important
+}
+.readerPhotoCard img,.visual img,.cxWarehousePeoplePhotos img,.cxReaderSlide img,.cxFullExcelImage img{
+  background:#fff!important;border:1px solid var(--cx-line-soft)!important;
+  object-fit:cover!important
+}
+.cxReaderSlide img,.cxFullExcelImage img{object-fit:contain!important}
+.readerPhotoCaption,.cxWarehousePeoplePhotos figcaption,.cxFullExcelImage figcaption{
+  font-size:13px!important;line-height:1.35!important;color:var(--cx-ink-muted)!important;font-weight:850!important
+}
+#cxGreenhouseTopView.cxFullStageOrient{padding:14px!important;overflow:hidden!important}
+.cxFullHero{gap:8px!important}
+.cxFullHero h3{font-size:22px!important;line-height:1.08!important}
+.cxFullHero p{font-size:14px!important;line-height:1.38!important}
+.cxFullSteps{gap:7px!important}
+.cxFullSteps span,.cxFullBadge{
+  min-height:32px!important;display:inline-flex!important;align-items:center!important;
+  border-radius:999px!important;font-size:12px!important;line-height:1.1!important
+}
+.cxFullCard{padding:13px!important;margin-top:12px!important;background:#fff!important}
+.cxFullCard h4{font-size:18px!important;line-height:1.12!important;margin-bottom:6px!important}
+.cxFullCard p{font-size:13.5px!important;line-height:1.4!important}
+.cxFullPlan,.cxNaveScroll{border-radius:16px!important;background:#f8fbf8!important}
+.cxNaveLine{gap:8px!important}
+.cxNaveEntrance{border-radius:15px!important;box-shadow:0 5px 12px rgba(20,33,27,.05)!important}
+.cxPassageHuman{gap:8px!important}
+.cxPassageSide,.cxPassageMiddle{border-radius:16px!important;min-height:86px!important}
+.cxFullRemember{gap:8px!important}
+.cxFullRemember div{border-radius:15px!important;background:#f7fbf8!important}
+#cxForbiddenPanel.cxForbiddenHuman{padding:14px!important}
+.cxForbidItem{align-items:center!important;border-radius:15px!important}
+.cxForbidItem i{display:grid!important;place-items:center!important}
+.medicalCard,.cxDuwResidenceCard{border-left-width:6px!important}
+.medicalCard.urgent,.cxForbidAlert{border-color:#efb7b7!important;background:#fff5f5!important}
+.cxWarehousePeopleActions,.cxWorkGroupsButtons,.brigadierActions,.cxOfficeActions,.examActions{gap:10px!important}
+.cxWarehousePeopleActions a,.cxWarehousePeopleActions button,.cxWorkGroupBtn{
+  justify-content:center!important;text-align:center!important
+}
+@media(min-width:720px){
+  .cxTileGrid,.cxHomeGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .cxHomeTile{min-height:126px!important;grid-template-columns:52px 1fr!important}
+  .cxHomeTileIcon{width:52px!important;height:52px!important}
+}
+@media(max-width:520px){
+  .app{width:100%!important}
+  .topin{min-height:58px!important;padding-left:10px!important;padding-right:122px!important}
+  .brandLogo,.logo img{max-height:36px!important}
+  .brand h1,.brand b{font-size:14px!important}
+  #cxFinalLangSelectBox.cxFinalLangSelectBox{right:8px!important;top:8px!important;width:106px!important;min-width:106px!important}
+  .cxHomeTiles,.humanPanel,.section,.cityInfo,.medical-help,.readerPhotoGuide,.cxWarehousePeoplePanel,#cxForbiddenPanel.cxForbiddenHuman,#cxGreenhouseTopView.cxFullStageOrient{
+    margin-left:8px!important;margin-right:8px!important;padding:12px!important;border-radius:20px!important
+  }
+  .cxTileGrid,.cxHomeGrid{grid-template-columns:1fr!important;gap:10px!important}
+  .cxHomeTile{min-height:92px!important;padding:12px!important;grid-template-columns:44px 1fr!important;gap:11px!important}
+  .cxHomeTileIcon{width:44px!important;height:44px!important;min-width:44px!important;border-radius:15px!important}
+  .cxHomeTileIcon svg{width:22px!important;height:22px!important}
+  .cxHomeTile b,.cxHomeTile strong{font-size:16px!important;-webkit-line-clamp:2!important}
+  .cxHomeTile span span,.cxHomeTile > span:not(.cxHomeTileIcon) > span{font-size:12px!important;-webkit-line-clamp:2!important}
+  .cxFullHero h3{font-size:20px!important}
+  .cxFullCard{padding:11px!important}
+  .cxPassageHuman{grid-template-columns:1fr!important}
+  .cxPassageMiddle{min-height:44px!important}
+  .cxWarehousePeopleActions,.cxWorkGroupsButtons,.brigadierActions,.cxOfficeActions,.examActions,.cxReaderNav{grid-template-columns:1fr!important}
+}
+@media(max-width:360px){
+  .topin{padding-right:102px!important}
+  #cxFinalLangSelectBox.cxFinalLangSelectBox{width:88px!important;min-width:88px!important}
+  #cxFinalLangSelect{font-size:12px!important}
+  .cxHomeTiles,.humanPanel,.section,.cityInfo,.medical-help,.readerPhotoGuide,.cxWarehousePeoplePanel,#cxForbiddenPanel.cxForbiddenHuman,#cxGreenhouseTopView.cxFullStageOrient{
+    margin-left:6px!important;margin-right:6px!important;padding:10px!important
+  }
+  .cxHomeTile{min-height:88px!important;grid-template-columns:40px 1fr!important;padding:11px!important}
+  .cxHomeTileIcon{width:40px!important;height:40px!important;min-width:40px!important}
+  .cxHomeTileIcon svg{width:20px!important;height:20px!important}
+  .cxHomeTile b,.cxHomeTile strong{font-size:15px!important}
+  .cxHomeTile span span,.cxHomeTile > span:not(.cxHomeTileIcon) > span{font-size:11.5px!important}
+  button,a,.mapbtn,.medicalBtn,.cityLink,.cityCopyBtn,.readerPhotoOpen,.placeBtn,.stage,.company,.modebtn,.readerBtn,.humanChoice{min-height:52px!important}
+}
+</style></body></html>
