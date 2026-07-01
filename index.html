@@ -3081,6 +3081,27 @@ cleanMobileDock();
   cxSyncHumanApp();
 })();
 </script>
+<script id="cxStabilityGuard">
+(function(){
+ if(window.cxStabilityGuardLoaded)return;window.cxStabilityGuardLoaded=true;
+ var Native=window.MutationObserver||window.WebKitMutationObserver;
+ if(!Native)return;
+ window.MutationObserver=function(callback){
+  var scheduled=false,last=null,calls=0,maxCalls=18;
+  return new Native(function(mutations,observer){
+   last=[mutations,observer];
+   if(scheduled)return;
+   scheduled=true;
+   setTimeout(function(){
+    scheduled=false;
+    if(++calls>maxCalls)return;
+    try{callback(last[0],last[1])}catch(e){setTimeout(function(){throw e},0)}
+   },220);
+  });
+ };
+ window.MutationObserver.prototype=Native.prototype;
+})();
+</script>
 <style id="cxForbiddenPdfFix">
 @media(min-width:760px){
  .cxPosterSigns{grid-template-columns:repeat(5,1fr)!important}
