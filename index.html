@@ -6735,4 +6735,207 @@ img{
   .cxHomeTile span span,.cxHomeTile > span:not(.cxHomeTileIcon) > span{font-size:11.5px!important}
   button,a,.mapbtn,.medicalBtn,.cityLink,.cityCopyBtn,.readerPhotoOpen,.placeBtn,.stage,.company,.modebtn,.readerBtn,.humanChoice{min-height:52px!important}
 }
-</style></body></html>
+</style><style id="cxChosenTileGlowCss">
+.cxHomeTile.cxChosenTile,
+.cxTodayBtn.cxChosenTile{
+  border-color:#0f5f3f!important;
+  background:linear-gradient(180deg,#ffffff 0,#ecfff3 100%)!important;
+  box-shadow:0 0 0 3px rgba(15,95,63,.18),0 16px 36px rgba(15,95,63,.22)!important;
+  transform:translateY(-1px)!important
+}
+.cxHomeTile.cxChosenTile:before{height:7px!important;background:#0f5f3f!important}
+.cxHomeTile.cxChosenTile .cxHomeTileIcon,
+.cxTodayBtn.cxChosenTile .cxTodayIcon{
+  background:#0f5f3f!important;
+  color:#fff!important;
+  box-shadow:0 0 0 5px rgba(15,95,63,.14)!important
+}
+.cxHomeTile.cxChosenTile b,
+.cxHomeTile.cxChosenTile strong{
+  color:#0f5f3f!important
+}
+.cxHomeTile.map.cxChosenTile,
+.cxHomeTile.city.cxChosenTile,
+.cxHomeTile.groups.cxChosenTile{
+  border-color:#1f63b5!important;
+  background:linear-gradient(180deg,#ffffff 0,#eef6ff 100%)!important;
+  box-shadow:0 0 0 3px rgba(31,99,181,.16),0 16px 36px rgba(31,99,181,.20)!important
+}
+.cxHomeTile.map.cxChosenTile:before,
+.cxHomeTile.city.cxChosenTile:before,
+.cxHomeTile.groups.cxChosenTile:before{background:#1f63b5!important}
+.cxHomeTile.map.cxChosenTile .cxHomeTileIcon,
+.cxHomeTile.city.cxChosenTile .cxHomeTileIcon,
+.cxHomeTile.groups.cxChosenTile .cxHomeTileIcon{background:#1f63b5!important;color:#fff!important}
+.cxHomeTile.warehouse.cxChosenTile,
+.cxHomeTile.warehousePeople.cxChosenTile,
+.cxHomeTile.reader.cxChosenTile{
+  border-color:#b47a00!important;
+  background:linear-gradient(180deg,#ffffff 0,#fff8e3 100%)!important;
+  box-shadow:0 0 0 3px rgba(180,122,0,.18),0 16px 36px rgba(180,122,0,.20)!important
+}
+.cxHomeTile.warehouse.cxChosenTile:before,
+.cxHomeTile.warehousePeople.cxChosenTile:before,
+.cxHomeTile.reader.cxChosenTile:before{background:#b47a00!important}
+.cxHomeTile.warehouse.cxChosenTile .cxHomeTileIcon,
+.cxHomeTile.warehousePeople.cxChosenTile .cxHomeTileIcon,
+.cxHomeTile.reader.cxChosenTile .cxHomeTileIcon{background:#b47a00!important;color:#fff!important}
+.cxHomeTile.doctor.cxChosenTile,
+.cxHomeTile.forbidden.cxChosenTile{
+  border-color:#b3261e!important;
+  background:linear-gradient(180deg,#ffffff 0,#fff1f1 100%)!important;
+  box-shadow:0 0 0 3px rgba(179,38,30,.16),0 16px 36px rgba(179,38,30,.20)!important
+}
+.cxHomeTile.doctor.cxChosenTile:before,
+.cxHomeTile.forbidden.cxChosenTile:before{background:#b3261e!important}
+.cxHomeTile.doctor.cxChosenTile .cxHomeTileIcon,
+.cxHomeTile.forbidden.cxChosenTile .cxHomeTileIcon{background:#b3261e!important;color:#fff!important}
+.stage.active,
+.company.active,
+.modebtn.active,
+.readerBtn.active,
+.appTab.active,
+#brigadierStageTabs button.active{
+  border-color:#0f5f3f!important;
+  background:#0f5f3f!important;
+  color:#fff!important;
+  box-shadow:0 0 0 3px rgba(15,95,63,.16),0 10px 22px rgba(15,95,63,.18)!important
+}
+.stage.active *,
+.company.active *,
+.modebtn.active *,
+.readerBtn.active *,
+.appTab.active *,
+#brigadierStageTabs button.active *{color:#fff!important}
+@media(max-width:520px){
+  .cxHomeTile.cxChosenTile,
+  .cxTodayBtn.cxChosenTile{
+    box-shadow:0 0 0 3px rgba(15,95,63,.20),0 12px 26px rgba(15,95,63,.18)!important;
+    transform:none!important
+  }
+}
+</style><script id="cxChosenTileGlowPatch">
+(function(){
+ if(window.cxChosenTileGlowLoaded)return;window.cxChosenTileGlowLoaded=true;
+ var keys=['map','city','warehouse','warehousePeople','greenhouse','reader','doctor','contacts','groups','test','forbidden'];
+ function store(k){
+  if(!k)return;
+  try{localStorage.cx_active_home_tile=k}catch(e){}
+ }
+ function readStore(){
+  try{return localStorage.cx_active_home_tile||''}catch(e){return''}
+ }
+ function tabNow(){
+  try{if(typeof appTab!=='undefined'&&appTab)return String(appTab)}catch(e){}
+  try{return String(localStorage.cx_appTab||'home')}catch(e){return'home'}
+ }
+ function modeNow(){
+  try{if(typeof mode!=='undefined'&&mode)return String(mode)}catch(e){}
+  try{return String(localStorage.cx_mode||'')}catch(e){return''}
+ }
+ function contactNow(){
+  try{if(typeof cxContactMode!=='undefined'&&cxContactMode)return String(cxContactMode)}catch(e){}
+  return''
+ }
+ function tileKey(tile){
+  if(!tile)return'';
+  if(tile.matches('[data-cx-groups-tile],.groups'))return'groups';
+  if(tile.classList.contains('forbidden'))return'forbidden';
+  if(tile.classList.contains('warehousePeople'))return'warehousePeople';
+  if(tile.classList.contains('testTile'))return'test';
+  for(var i=0;i<keys.length;i++){if(tile.classList.contains(keys[i]))return keys[i]}
+  var raw=(tile.getAttribute('onclick')||'').toLowerCase();
+  for(var j=0;j<keys.length;j++){if(raw.indexOf(keys[j].toLowerCase())>-1)return keys[j]}
+  return'';
+ }
+ function fallbackKey(){
+  try{if(localStorage.cx_warehouse_people==='1')return'warehousePeople'}catch(e){}
+  try{if(localStorage.cx_forbiddenOpen==='1')return'forbidden'}catch(e){}
+  var saved=readStore();
+  if(saved)return saved;
+  var tab=tabNow();
+  if(tab==='route')return'map';
+  if(tab==='greenhouse')return modeNow()==='warehouse'?'warehouse':'greenhouse';
+  if(tab==='reader')return'reader';
+  if(tab==='test')return'test';
+  if(tab==='contacts')return contactNow()==='doctor'?'doctor':'contacts';
+  return'';
+ }
+ function selectorFor(k){
+  if(k==='warehousePeople')return'.cxHomeTile.warehousePeople';
+  if(k==='groups')return'.cxHomeTile.groups,[data-cx-groups-tile],[data-cx-today-groups]';
+  if(k==='test')return'.cxHomeTile.testTile,.cxTodayBtn[data-kind="test"]';
+  if(k==='forbidden')return'.cxHomeTile.forbidden,.cxTodayBtn[data-kind="forbidden"]';
+  if(keys.indexOf(k)>-1)return'.cxHomeTile.'+k+',.cxTodayBtn[data-kind="'+k+'"]';
+  return'';
+ }
+ function sync(){
+  var k=fallbackKey();
+  document.querySelectorAll('.cxHomeTile.cxChosenTile,.cxTodayBtn.cxChosenTile').forEach(function(n){
+   n.classList.remove('cxChosenTile');
+   n.removeAttribute('aria-current');
+  });
+  var sel=selectorFor(k);
+  if(!sel)return;
+  document.querySelectorAll(sel).forEach(function(n){
+   n.classList.add('cxChosenTile');
+   n.setAttribute('aria-current','true');
+  });
+ }
+ function after(){setTimeout(sync,0);setTimeout(sync,120);setTimeout(sync,420)}
+ document.addEventListener('click',function(ev){
+  var tile=ev.target&&ev.target.closest?ev.target.closest('.cxHomeTile,.cxTodayBtn'):null;
+  if(tile){
+   var k=tileKey(tile)||tile.getAttribute('data-kind')||'';
+   if(k)store(k);
+  }
+  after();
+ },true);
+ document.addEventListener('change',after,true);
+ try{
+  var oldHome=window.cxHomeGo;
+  if(typeof oldHome==='function'&&!window.cxChosenTileHomeWrapped){
+   window.cxChosenTileHomeWrapped=true;
+   window.cxHomeGo=function(kind){store(kind);var r=oldHome.apply(this,arguments);after();return r}
+  }
+ }catch(e){}
+ try{
+  var oldForbidden=window.cxOpenForbidden;
+  if(typeof oldForbidden==='function'&&!window.cxChosenTileForbiddenWrapped){
+   window.cxChosenTileForbiddenWrapped=true;
+   window.cxOpenForbidden=function(){store('forbidden');var r=oldForbidden.apply(this,arguments);after();return r}
+  }
+ }catch(e){}
+ try{
+  var oldWarehouse=window.cxOpenWarehousePeople;
+  if(typeof oldWarehouse==='function'&&!window.cxChosenTileWarehouseWrapped){
+   window.cxChosenTileWarehouseWrapped=true;
+   window.cxOpenWarehousePeople=function(){store('warehousePeople');var r=oldWarehouse.apply(this,arguments);after();return r}
+  }
+ }catch(e){}
+ try{
+  var oldGroups=window.cxOpenWorkGroups;
+  if(typeof oldGroups==='function'&&!window.cxChosenTileGroupsWrapped){
+   window.cxChosenTileGroupsWrapped=true;
+   window.cxOpenWorkGroups=function(){store('groups');var r=oldGroups.apply(this,arguments);after();return r}
+  }
+ }catch(e){}
+ try{
+  var oldSet=window.setAppTab;
+  if(typeof oldSet==='function'&&!window.cxChosenTileTabWrapped){
+   window.cxChosenTileTabWrapped=true;
+   window.setAppTab=function(tab){var r=oldSet.apply(this,arguments);after();return r}
+  }
+ }catch(e){}
+ try{
+  var oldApply=window.apply||apply;
+  if(typeof oldApply==='function'&&!window.cxChosenTileApplyWrapped){
+   window.cxChosenTileApplyWrapped=true;
+   window.apply=function(){var r=oldApply.apply(this,arguments);after();return r};
+   try{apply=window.apply}catch(e){}
+  }
+ }catch(e){}
+ document.addEventListener('DOMContentLoaded',after);
+ setTimeout(sync,0);setTimeout(sync,800);setInterval(sync,2500);
+})();
+</script></body></html>
