@@ -8990,4 +8990,161 @@ img{height:auto}
   .brand h1{font-size:10.2px!important}
 }
 </style>
+<style id="cxFinalHumanViewsCss">
+/* Human views patch: all visual improvements except the Reader module. */
+body.cxHubActive #cxHomeTiles{border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important}
+.cxDecisionPanel{background:#fff!important;border:1px solid #d7e5da!important;border-radius:18px!important;padding:10px!important;box-shadow:0 10px 26px rgba(20,33,27,.08)!important}
+.cxDecisionBtn{border-radius:16px!important}
+.cxDecisionBtn.new{box-shadow:0 12px 26px rgba(15,95,63,.18)!important}
+.cxNowStrip{border-radius:16px!important}
+.cxHomeTile{isolation:isolate}
+.cxHomeTile.cxSoloSelected,.cxHomeTile.cxChosenTile,.cxTodayBtn.cxSoloSelected,.cxTodayBtn.cxChosenTile{
+  transform:translateY(-1px)!important;
+  border-color:#0f5f3f!important;
+  box-shadow:0 0 0 3px rgba(15,95,63,.20),0 18px 38px rgba(15,95,63,.20)!important;
+}
+.cxHomeTile.cxSoloSelected:after,.cxHomeTile.cxChosenTile:after{
+  content:""!important;position:absolute!important;inset:0!important;border-radius:inherit!important;
+  background:linear-gradient(90deg,rgba(15,95,63,.08),transparent 42%)!important;pointer-events:none!important;
+}
+.cxVisualContextBar{border-width:2px!important;border-left-width:8px!important}
+.cxVisualContextActions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;margin-top:9px!important}
+.cxVisualContextActions button{min-height:42px!important;border:1px solid #d7e5da!important;border-radius:12px!important;background:#fff!important;color:#173b2a!important;font-weight:1000!important}
+.cxStartReturn{background:#0f5f3f!important;color:#fff!important;border-color:#0f5f3f!important}
+
+#cxGreenhouseStepView{display:grid;gap:10px;background:#fff;border:1px solid #d7e5da;border-radius:20px;padding:12px;margin:0 0 12px;box-shadow:0 12px 28px rgba(20,33,27,.09);color:#173b2a}
+#cxGreenhouseStepView *{box-sizing:border-box;min-width:0}
+.cxGhSimpleHead{display:grid;gap:5px}
+.cxGhSimpleBadge{width:max-content;max-width:100%;padding:6px 10px;border-radius:999px;background:#eaf8ef;color:#0f5f3f;border:1px solid #cfe4d6;font-size:11px;font-weight:1000;text-transform:uppercase}
+.cxGhSimpleHead h3{margin:0!important;color:#14211b!important;font-size:22px!important;line-height:1.06!important}
+.cxGhSimpleHead p{margin:0!important;color:#52695d!important;font-size:13px!important;font-weight:850!important;line-height:1.28!important}
+.cxGhSimpleGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cxGhSimpleCard{border:1px solid #dce7df;background:#fbfefc;border-radius:17px;padding:10px;box-shadow:0 6px 16px rgba(20,33,27,.045)}
+.cxGhSimpleCard h4{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:center;margin:0 0 7px!important;color:#173b2a!important;font-size:16px!important;line-height:1.1!important}
+.cxGhSimpleNo{width:30px;height:30px;border-radius:11px;background:#0f5f3f;color:#fff;display:grid;place-items:center;font-weight:1000;font-size:13px}
+.cxGhSimpleCard p{margin:0 0 8px!important;color:#52695d!important;font-size:12.5px!important;font-weight:850!important;line-height:1.28!important}
+.cxGhWholeSimple{display:grid;grid-template-columns:1fr 34px 1fr;gap:6px;align-items:stretch}
+.cxGhWholeSide{min-height:128px;border:1px solid #b9d7c4;border-radius:15px;background:#eef8f2;padding:7px;display:grid;grid-template-rows:auto 1fr auto;gap:5px}
+.cxGhWholeSide.right{background:#fff8df;border-color:#efd28a}
+.cxGhWholeSide b,.cxGhWholeSide span{text-align:center;font-weight:1000;line-height:1.08}
+.cxGhWholeSide b{font-size:11px;color:#0f5f3f}.cxGhWholeSide.right b{color:#6b4a00}.cxGhWholeSide span{font-size:9.5px;color:#52695d}
+.cxGhSimpleBars{display:grid;grid-template-rows:repeat(7,1fr);gap:3px}.cxGhSimpleBars i{border-radius:6px;background:#b8dda3}.cxGhWholeSide.right .cxGhSimpleBars i{background:#cfe0f5}
+.cxGhRoadSimple{display:grid;place-items:center;border-radius:14px;background:#173b2a;color:#fff;font-size:9px;font-weight:1000;line-height:1.05;text-align:center;writing-mode:vertical-rl;text-orientation:mixed}
+.cxGhNaveSimple{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.cxGhEntrySimple{border:1px solid #cfe4d6;border-radius:12px;overflow:hidden;background:#fff}
+.cxGhEntrySimple b{display:block;text-align:center;background:#0f5f3f;color:#fff;font-size:9px;padding:5px 1px;line-height:1}
+.cxGhRowsSimple{display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:3px}
+.cxGhRowsSimple span{min-height:34px;display:grid;place-items:center;border-radius:8px;background:#eaf8ef;color:#173b2a;font-size:12px;font-weight:1000}
+.cxGhRowsSimple span:last-child{background:#fff8df;color:#6b4a00}
+.cxGhPassageSimple{display:grid;grid-template-columns:1fr 34px 1fr;gap:6px}
+.cxGhWorkSide{min-height:92px;border:2px solid #0f5f3f;border-radius:15px;background:#eaf8ef;display:grid;place-items:center;text-align:center;padding:8px;color:#173b2a;font-weight:1000;line-height:1.12}
+.cxGhWorkSide.right{border-color:#c69220;background:#fff8df;color:#6b4a00}
+.cxGhReadSimple{display:grid;gap:6px}.cxGhReadItem{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:center;border:1px solid #dce7df;background:#fff;border-radius:12px;padding:7px;color:#173b2a;font-weight:950;line-height:1.18}.cxGhReadItem b{width:28px;height:28px;border-radius:9px;background:#0f5f3f;color:#fff;display:grid;place-items:center}
+#guide #cxGreenhouseHuman3View,#guide #orientationDiagrams,#guide #cxGreenCalc,#guide #cxFinalOrientationAlways,#guide #cxOrientFinalHuman,#guide #cxGreenHumanOrientation,#guide #cxOrientBigVisible,#guide #cxOrientHumanSimple{display:none!important}
+
+.cxWarehouseInlineContacts,.cxContactSplitPanel{border:1px solid #d7e5da;background:#fff;border-radius:18px;padding:11px;margin-top:12px;box-shadow:0 8px 22px rgba(20,33,27,.07)}
+.cxWarehouseInlineContacts h4,.cxContactSplitPanel h3{margin:0 0 8px!important;color:#173b2a!important;font-size:18px!important;line-height:1.1!important}
+.cxWarehouseContactGrid{display:grid;gap:8px}
+.cxWarehouseContactCard{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border:1px solid #dce7df;background:#fbfefc;border-radius:14px;padding:9px}
+.cxWarehouseContactCard b{display:block;color:#14211b;font-size:15px;line-height:1.1}.cxWarehouseContactCard span{display:block;color:#52695d;font-size:12px;font-weight:850;margin-top:2px}
+.cxWarehouseContactActions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.cxWarehouseContactActions a{min-height:38px;padding:8px 10px;border-radius:11px;text-decoration:none;display:grid;place-items:center;color:#fff;font-weight:1000;font-size:12px}
+.cxWarehouseContactActions .tel{background:#1f5b99}.cxWarehouseContactActions .wa{background:#1f8f52}
+.cxContactModeTabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}.cxContactModeTabs button{min-height:50px;border:1px solid #d7e5da;border-radius:14px;background:#fff;color:#173b2a;font-weight:1000}.cxContactModeTabs button.active{background:#0f5f3f;color:#fff;border-color:#0f5f3f}
+body.cxContactWarehouse #contactList{display:none!important}
+body.cxContactWarehouse #contacts{display:none!important}
+body.cxContactWarehouse #cxPeopleTitle,body.cxContactWarehouse .brigadierPanel,body.cxContactWarehouse .officeContacts{display:none!important}
+body:not(.cxContactWarehouse) .cxStageWarehouseTab{display:none!important}
+body.cxContactWarehouse #cxWarehouseContactsOnly{display:block!important}
+#cxWarehouseContactsOnly{display:none}
+
+#cxForbiddenLitePanel.active{border-left-width:0!important;border:3px solid #b3261e!important;background:#fff7f7!important}
+.cxForbiddenLiteTop{grid-template-columns:58px 1fr!important;align-items:center!important}
+.cxForbiddenLiteMark{position:relative!important;width:58px!important;height:58px!important;border-radius:50%!important;background:#fff!important;border:5px solid #b3261e!important;color:transparent!important}
+.cxForbiddenLiteMark:after{content:""!important;position:absolute!important;left:10px!important;right:10px!important;top:50%!important;height:5px!important;border-radius:99px!important;background:#b3261e!important;transform:translateY(-50%) rotate(-45deg)!important}
+.cxForbiddenLiteGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.cxForbiddenLiteChip{min-height:74px!important;background:#fff!important;border-color:#efb7b7!important}
+.cxForbiddenLiteChip b{position:relative!important;color:transparent!important;border:3px solid #b3261e!important;background:#fff!important;border-radius:50%!important}
+.cxForbiddenLiteChip b:after{content:""!important;position:absolute!important;left:5px!important;right:5px!important;top:50%!important;height:3px!important;background:#b3261e!important;border-radius:99px!important;transform:translateY(-50%) rotate(-45deg)!important}
+
+#test{background:#fff!important;border:1px solid #d7e5da!important;border-radius:20px!important;box-shadow:0 12px 28px rgba(20,33,27,.09)!important}
+#cxCalmTestHeader{display:grid;grid-template-columns:46px 1fr;gap:10px;align-items:center;border:1px solid #e0d9f4;background:#f7f4ff;border-radius:17px;padding:11px;margin:0 0 12px;color:#2a214d}
+.cxCalmTestIcon{width:46px;height:46px;border-radius:15px;background:#6750a4;color:#fff;display:grid;place-items:center;font-weight:1000}
+#cxCalmTestHeader b{display:block;font-size:18px;line-height:1.08;color:#2a214d}#cxCalmTestHeader span{display:block;margin-top:3px;color:#5a5270;font-size:12.5px;font-weight:850;line-height:1.25}
+#quiz{display:grid!important;gap:10px!important}
+#quiz button,.cxQuizChoice,.examStartBtn,.examUtilityBtn,.examSendBtn{width:100%!important;min-height:54px!important;border-radius:14px!important}
+.examProgressBox,.examSummary{border-radius:16px!important}
+
+@media(min-width:760px){.cxWarehouseContactGrid{grid-template-columns:repeat(3,1fr)}.cxGhSimpleGrid{grid-template-columns:1fr 1fr}.cxForbiddenLiteGrid{grid-template-columns:repeat(5,minmax(0,1fr))!important}}
+@media(max-width:430px){
+ .cxDecisionPanel{padding:9px!important}
+ .cxGhSimpleGrid{grid-template-columns:1fr}
+ #cxGreenhouseStepView{padding:10px;border-radius:18px}
+ .cxGhSimpleHead h3{font-size:19px!important}
+ .cxGhWholeSimple{grid-template-columns:1fr 30px 1fr}.cxGhWholeSide{min-height:116px;padding:6px 4px}.cxGhRoadSimple{font-size:8px}
+ .cxGhNaveSimple{gap:3px}.cxGhEntrySimple b{font-size:8px}.cxGhRowsSimple span{min-height:29px;font-size:11px}
+ .cxGhPassageSimple{grid-template-columns:1fr 30px 1fr}.cxGhWorkSide{min-height:78px;font-size:11px}
+ .cxWarehouseContactCard{grid-template-columns:1fr}.cxWarehouseContactActions{justify-content:stretch}.cxWarehouseContactActions a{flex:1 1 0}
+ .cxForbiddenLiteTop{grid-template-columns:48px 1fr!important}.cxForbiddenLiteMark{width:48px!important;height:48px!important}
+ .cxForbiddenLiteGrid{grid-template-columns:1fr!important}.cxForbiddenLiteChip{min-height:58px!important}
+}
+</style>
+<script id="cxFinalHumanViewsPatch">
+(function(){
+ if(window.cxFinalHumanViewsLoaded)return;window.cxFinalHumanViewsLoaded=true;
+ var WAREHOUSE=[['Paweł','+48785881165'],['Mateusz','+48606770754'],['Beata','+48500533643']];
+ var TX={
+  PL:{ghBadge:'Orientacja',ghTitle:'Szklarnia w 4 prostych krokach',ghLead:'Najpierw całość, potem nawa, potem wejście i strona pracy.',whole:'Cała szklarnia z góry',wholeTxt:'Dwie strony rozdziela droga. Stoisz plecami do pierwszych naw.',left:'LEWA STRONA',right:'PRAWA STRONA',road:'DROGA',nave:'Jedna nawa',naveTxt:'W jednej nawie jest 5 wejść. Każde wejście ma dwa rzędy: lewy i prawy.',entry:'Wejście / przejście',entryTxt:'Gdy patrzysz w przejście: z lewej jest lewe przęsło, z prawej prawe przęsło.',read:'Czytaj miejsce po kolei',readTxt:'Etap -> strona -> nawa -> wejście -> rząd/przęsło.',warehouseContacts:'Brygadziści magazynu',call:'Zadzwoń',wa:'WhatsApp',contactTitle:'Wybierz kontakt',greenContacts:'Szklarnia E1-E6',warehouse:'Magazyn',testTitle:'Test 30 pytań',testLead:'Jeden spokojny test. Odpowiedz, potem wyślij wynik.',steps:['Etap','Strona','Nawa','Wejście','Rząd']},
+  EN:{ghBadge:'Orientation',ghTitle:'Greenhouse in 4 simple steps',ghLead:'First the whole greenhouse, then one nave, then entrance and work side.',whole:'Whole greenhouse from above',wholeTxt:'The road separates two sides. Stand with your back to the first naves.',left:'LEFT SIDE',right:'RIGHT SIDE',road:'ROAD',nave:'One nave',naveTxt:'One nave has 5 entrances. Each entrance has two rows: left and right.',entry:'Entrance / passage',entryTxt:'When you look into the passage: left span is on the left, right span is on the right.',read:'Read the place in order',readTxt:'Stage -> side -> nave -> entrance -> row/span.',warehouseContacts:'Warehouse brigadiers',call:'Call',wa:'WhatsApp',contactTitle:'Choose contact',greenContacts:'Greenhouse E1-E6',warehouse:'Warehouse',testTitle:'30-question test',testLead:'One calm test. Answer, then send the result.',steps:['Stage','Side','Nave','Entrance','Row']},
+  UA:{ghBadge:'Орієнтація',ghTitle:'Теплиця у 4 прості кроки',ghLead:'Спочатку вся теплиця, потім одна нава, потім вхід і сторона роботи.',whole:'Вся теплиця зверху',wholeTxt:'Дорога розділяє дві сторони. Стань спиною до перших нав.',left:'ЛІВА СТОРОНА',right:'ПРАВА СТОРОНА',road:'ДОРОГА',nave:'Одна нава',naveTxt:'В одній наві є 5 входів. Кожен вхід має два ряди: лівий і правий.',entry:'Вхід / прохід',entryTxt:'Коли дивишся в прохід: зліва ліве прясло, справа праве прясло.',read:'Читай місце по черзі',readTxt:'Етап -> сторона -> нава -> вхід -> ряд/прясло.',warehouseContacts:'Бригадири складу',call:'Подзвонити',wa:'WhatsApp',contactTitle:'Оберіть контакт',greenContacts:'Теплиця E1-E6',warehouse:'Склад',testTitle:'Тест 30 питань',testLead:'Один спокійний тест. Дайте відповіді, потім надішліть результат.',steps:['Етап','Сторона','Нава','Вхід','Ряд']},
+  RU:{ghBadge:'Ориентация',ghTitle:'Теплица в 4 простых шага',ghLead:'Сначала вся теплица, потом одна нава, потом вход и сторона работы.',whole:'Вся теплица сверху',wholeTxt:'Дорога разделяет две стороны. Встань спиной к первым навам.',left:'ЛЕВАЯ СТОРОНА',right:'ПРАВАЯ СТОРОНА',road:'ДОРОГА',nave:'Одна нава',naveTxt:'В одной наве 5 входов. В каждом входе два ряда: левый и правый.',entry:'Вход / проход',entryTxt:'Когда смотришь в проход: слева левое прясло, справа правое прясло.',read:'Читай место по порядку',readTxt:'Этап -> сторона -> нава -> вход -> ряд/прясло.',warehouseContacts:'Бригадиры склада',call:'Позвонить',wa:'WhatsApp',contactTitle:'Выберите контакт',greenContacts:'Теплица E1-E6',warehouse:'Склад',testTitle:'Тест 30 вопросов',testLead:'Один спокойный тест. Ответьте, потом отправьте результат.',steps:['Этап','Сторона','Нава','Вход','Ряд']},
+  AZ:{ghBadge:'Orientasiya',ghTitle:'İstixana 4 sadə addımda',ghLead:'Əvvəl bütün istixana, sonra bir nava, sonra giriş və iş tərəfi.',whole:'Bütün istixana yuxarıdan',wholeTxt:'Yol iki tərəfi ayırır. Birinci navalara arxanızla dayanın.',left:'SOL TƏRƏF',right:'SAĞ TƏRƏF',road:'YOL',nave:'Bir nava',naveTxt:'Bir navada 5 giriş var. Hər girişdə iki sıra var: sol və sağ.',entry:'Giriş / keçid',entryTxt:'Keçidə baxanda: solda sol bölmə, sağda sağ bölmədir.',read:'Yeri ardıcıllıqla oxu',readTxt:'Etap -> tərəf -> nava -> giriş -> sıra/bölmə.',warehouseContacts:'Anbar briqadirləri',call:'Zəng et',wa:'WhatsApp',contactTitle:'Əlaqə seçin',greenContacts:'İstixana E1-E6',warehouse:'Anbar',testTitle:'30 suallıq test',testLead:'Bir sakit test. Cavab verin, sonra nəticəni göndərin.',steps:['Etap','Tərəf','Nava','Giriş','Sıra']},
+  ES:{ghBadge:'Orientación',ghTitle:'Invernadero en 4 pasos simples',ghLead:'Primero todo el invernadero, luego una nave, luego entrada y lado de trabajo.',whole:'Todo el invernadero desde arriba',wholeTxt:'La carretera separa dos lados. Ponte de espalda a las primeras naves.',left:'LADO IZQUIERDO',right:'LADO DERECHO',road:'CAMINO',nave:'Una nave',naveTxt:'Una nave tiene 5 entradas. Cada entrada tiene dos filas: izquierda y derecha.',entry:'Entrada / pasillo',entryTxt:'Cuando miras al pasillo: a la izquierda está el tramo izquierdo, a la derecha el derecho.',read:'Lee el lugar en orden',readTxt:'Etapa -> lado -> nave -> entrada -> fila/tramo.',warehouseContacts:'Encargados de almacén',call:'Llamar',wa:'WhatsApp',contactTitle:'Elige contacto',greenContacts:'Invernadero E1-E6',warehouse:'Almacén',testTitle:'Test de 30 preguntas',testLead:'Un test tranquilo. Responde y luego envía el resultado.',steps:['Etapa','Lado','Nave','Entrada','Fila']},
+  FIL:{ghBadge:'Orientation',ghTitle:'Greenhouse sa 4 madaling hakbang',ghLead:'Una buong greenhouse, pagkatapos isang nave, pagkatapos entrance at work side.',whole:'Buong greenhouse mula sa taas',wholeTxt:'Hinahati ng daan ang dalawang side. Tumayo nang nakatalikod sa unang naves.',left:'LEFT SIDE',right:'RIGHT SIDE',road:'DAAN',nave:'Isang nave',naveTxt:'May 5 entrance sa isang nave. Bawat entrance may dalawang row: left at right.',entry:'Entrance / passage',entryTxt:'Kapag nakatingin sa passage: sa kaliwa ang left span, sa kanan ang right span.',read:'Basahin ang lugar nang sunod-sunod',readTxt:'Stage -> side -> nave -> entrance -> row/span.',warehouseContacts:'Warehouse brigadiers',call:'Tumawag',wa:'WhatsApp',contactTitle:'Pumili ng contact',greenContacts:'Greenhouse E1-E6',warehouse:'Warehouse',testTitle:'30-question test',testLead:'Isang malinaw na test. Sagutin, pagkatapos ipadala ang resulta.',steps:['Stage','Side','Nave','Entrance','Row']},
+  ID:{ghBadge:'Orientasi',ghTitle:'Rumah kaca dalam 4 langkah sederhana',ghLead:'Pertama seluruh rumah kaca, lalu satu nave, lalu pintu masuk dan sisi kerja.',whole:'Seluruh rumah kaca dari atas',wholeTxt:'Jalan memisahkan dua sisi. Berdiri membelakangi nave pertama.',left:'SISI KIRI',right:'SISI KANAN',road:'JALAN',nave:'Satu nave',naveTxt:'Satu nave punya 5 pintu masuk. Setiap pintu punya dua baris: kiri dan kanan.',entry:'Pintu / lorong',entryTxt:'Saat melihat ke lorong: kiri adalah span kiri, kanan adalah span kanan.',read:'Baca tempat secara berurutan',readTxt:'Tahap -> sisi -> nave -> pintu -> baris/span.',warehouseContacts:'Brigadir gudang',call:'Telepon',wa:'WhatsApp',contactTitle:'Pilih kontak',greenContacts:'Rumah kaca E1-E6',warehouse:'Gudang',testTitle:'Tes 30 pertanyaan',testLead:'Satu tes tenang. Jawab, lalu kirim hasil.',steps:['Tahap','Sisi','Nave','Pintu','Baris']},
+  NE:{ghBadge:'दिशा',ghTitle:'ग्रीनहाउस 4 सजिला चरणमा',ghLead:'पहिले पूरै ग्रीनहाउस, त्यसपछि एउटा नावा, त्यसपछि प्रवेश र काम गर्ने साइड।',whole:'पूरै ग्रीनहाउस माथिबाट',wholeTxt:'बाटोले दुई साइड छुट्याउँछ। पहिलो नावातिर पिठ्यूँ फर्काएर उभिनुहोस्।',left:'बायाँ साइड',right:'दायाँ साइड',road:'बाटो',nave:'एउटा नावा',naveTxt:'एउटा नावामा 5 प्रवेश हुन्छ। प्रत्येक प्रवेशमा दुई लाइन हुन्छ: बायाँ र दायाँ।',entry:'प्रवेश / बाटो',entryTxt:'बाटोतिर हेर्दा: बायाँमा बायाँ भाग, दायाँमा दायाँ भाग।',read:'ठाउँ क्रमले पढ्नुहोस्',readTxt:'Etap -> साइड -> नावा -> प्रवेश -> लाइन/भाग।',warehouseContacts:'गोदाम ब्रिगेडियर',call:'फोन गर्नुहोस्',wa:'WhatsApp',contactTitle:'सम्पर्क छान्नुहोस्',greenContacts:'ग्रीनहाउस E1-E6',warehouse:'गोदाम',testTitle:'30 प्रश्नको टेस्ट',testLead:'एउटा सजिलो टेस्ट। उत्तर दिनुहोस्, त्यसपछि नतिजा पठाउनुहोस्।',steps:['Etap','साइड','नावा','प्रवेश','लाइन']}
+ };
+ function langKey(){try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}try{if(typeof window.lang!=='undefined'&&window.lang)return String(window.lang).toUpperCase()}catch(e){}try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}}
+ function tr(){return TX[langKey()]||TX.PL}
+ function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function phoneHref(p){return 'tel:'+String(p).replace(/[^\d+]/g,'')}
+ function waHref(p){return 'https://wa.me/'+String(p).replace(/\D/g,'')}
+ function bars(){return '<div class="cxGhSimpleBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>'}
+ function renderGreenhouse(){
+  var guide=document.getElementById('guide'); if(!guide)return; var t=tr(), box=document.getElementById('cxGreenhouseStepView');
+  if(!box){box=document.createElement('section');box.id='cxGreenhouseStepView';guide.insertBefore(box,guide.firstChild)}
+  box.innerHTML='<div class="cxGhSimpleHead"><span class="cxGhSimpleBadge">'+esc(t.ghBadge)+'</span><h3>'+esc(t.ghTitle)+'</h3><p>'+esc(t.ghLead)+'</p></div><div class="cxGhSimpleGrid">'+
+   '<article class="cxGhSimpleCard"><h4><span class="cxGhSimpleNo">1</span>'+esc(t.whole)+'</h4><p>'+esc(t.wholeTxt)+'</p><div class="cxGhWholeSimple"><div class="cxGhWholeSide"><b>'+esc(t.left)+'</b>'+bars()+'<span>'+esc(t.steps[1])+'</span></div><div class="cxGhRoadSimple">'+esc(t.road)+'</div><div class="cxGhWholeSide right"><b>'+esc(t.right)+'</b>'+bars()+'<span>'+esc(t.steps[1])+'</span></div></div></article>'+
+   '<article class="cxGhSimpleCard"><h4><span class="cxGhSimpleNo">2</span>'+esc(t.nave)+'</h4><p>'+esc(t.naveTxt)+'</p><div class="cxGhNaveSimple">'+[1,2,3,4,5].map(function(n){return '<div class="cxGhEntrySimple"><b>'+n+'</b><div class="cxGhRowsSimple"><span>'+((n-1)*2+1)+'</span><span>'+((n-1)*2+2)+'</span></div></div>'}).join('')+'</div></article>'+
+   '<article class="cxGhSimpleCard"><h4><span class="cxGhSimpleNo">3</span>'+esc(t.entry)+'</h4><p>'+esc(t.entryTxt)+'</p><div class="cxGhPassageSimple"><div class="cxGhWorkSide">'+esc(t.left)+'</div><div class="cxGhRoadSimple">'+esc(t.entry)+'</div><div class="cxGhWorkSide right">'+esc(t.right)+'</div></div></article>'+
+   '<article class="cxGhSimpleCard"><h4><span class="cxGhSimpleNo">4</span>'+esc(t.read)+'</h4><p>'+esc(t.readTxt)+'</p><div class="cxGhReadSimple">'+t.steps.map(function(s,i){return '<div class="cxGhReadItem"><b>'+(i+1)+'</b><span>'+esc(s)+'</span></div>'}).join('')+'</div></article>'+
+  '</div>';
+ }
+ function contactCard(name,phone,t){return '<article class="cxWarehouseContactCard"><div><b>'+esc(name)+'</b><span>'+esc(phone)+'</span></div><div class="cxWarehouseContactActions"><a class="tel" href="'+phoneHref(phone)+'">'+esc(t.call)+'</a><a class="wa" target="_blank" rel="noopener" href="'+waHref(phone)+'">'+esc(t.wa)+'</a></div></article>'}
+ function warehouseContactsHtml(id){var t=tr();return '<section class="cxWarehouseInlineContacts" id="'+id+'"><h4>'+esc(t.warehouseContacts)+'</h4><div class="cxWarehouseContactGrid">'+WAREHOUSE.map(function(x){return contactCard(x[0],x[1],t)}).join('')+'</div></section>'}
+ function enhanceWarehouse(){
+  var panel=document.getElementById('cxSoloPanel'); if(panel&&panel.classList.contains('active')&&!panel.querySelector('#cxWarehouseInlineContacts')){var txt=(panel.innerText||'').toLowerCase(); if(txt.indexOf('magazyn')>-1||txt.indexOf('warehouse')>-1||txt.indexOf('bodega')>-1||txt.indexOf('gudang')>-1||txt.indexOf('anbar')>-1||txt.indexOf('склад')>-1){panel.insertAdjacentHTML('beforeend',warehouseContactsHtml('cxWarehouseInlineContacts'))}}
+ }
+ function renderContactSplit(){
+  var host=document.getElementById('sosbox')||document.getElementById('contactList'); if(!host)return; var t=tr(), panel=document.getElementById('cxContactSplitPanel');
+  if(!panel){panel=document.createElement('section');panel.id='cxContactSplitPanel';panel.className='cxContactSplitPanel';host.insertBefore(panel,host.firstChild)}
+  var mode='green'; try{mode=localStorage.cx_contact_scope||'green'}catch(e){}
+  panel.innerHTML='<h3>'+esc(t.contactTitle)+'</h3><div class="cxContactModeTabs"><button type="button" data-contact-scope="green" class="'+(mode==='green'?'active':'')+'">'+esc(t.greenContacts)+'</button><button type="button" data-contact-scope="warehouse" class="'+(mode==='warehouse'?'active':'')+'">'+esc(t.warehouse)+'</button></div><div id="cxWarehouseContactsOnly">'+warehouseContactsHtml('cxWarehouseContactsInner')+'</div>';
+  var title=document.getElementById('contacts'), list=document.getElementById('contactList');
+  if(title&&title.parentNode===host)host.insertBefore(title,panel.nextSibling);
+  if(list&&list.parentNode===host)host.insertBefore(list,title&&title.parentNode===host?title.nextSibling:panel.nextSibling);
+  document.querySelectorAll('.brigadierStageTabs button').forEach(function(btn){var txt=(btn.innerText||btn.textContent||'').toLowerCase();btn.classList.toggle('cxStageWarehouseTab',txt.indexOf('magazyn')>-1||txt.indexOf('warehouse')>-1||txt.indexOf('bodega')>-1||txt.indexOf('gudang')>-1||txt.indexOf('anbar')>-1||txt.indexOf('склад')>-1)});
+  document.body.classList.toggle('cxContactWarehouse',mode==='warehouse');
+ }
+ function renderTestHeader(){
+  var test=document.getElementById('test'); if(!test)return; var t=tr(), h=document.getElementById('cxCalmTestHeader'); if(!h){h=document.createElement('div');h.id='cxCalmTestHeader';test.insertBefore(h,test.firstChild)}
+  h.innerHTML='<div class="cxCalmTestIcon">30</div><div><b>'+esc(t.testTitle)+'</b><span>'+esc(t.testLead)+'</span></div>';
+ }
+ function run(){renderGreenhouse();enhanceWarehouse();renderContactSplit();renderTestHeader()}
+ document.addEventListener('click',function(ev){var b=ev.target&&ev.target.closest?ev.target.closest('[data-contact-scope]'):null;if(b){try{localStorage.cx_contact_scope=b.getAttribute('data-contact-scope')||'green'}catch(e){}renderContactSplit();return}setTimeout(run,120)},true);
+ document.addEventListener('change',function(){setTimeout(run,120)},true);
+ document.addEventListener('DOMContentLoaded',run);
+ setTimeout(run,0);setTimeout(run,700);setTimeout(run,1800);
+})();
+</script>
 </body></html>
