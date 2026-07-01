@@ -7963,4 +7963,79 @@ body.cxSoloReader #reader{scroll-margin-top:88px!important}
  document.addEventListener('change',function(ev){if(ev.target&&ev.target.id==='cxFinalLangSelect'){var k='';try{k=localStorage.cx_active_home_tile||''}catch(e){}if(k==='map'||k==='warehouse'||k==='groups')openSolo(k);if(document.body.classList.contains('cxSoloReader'))renderReader();if(document.body.classList.contains('cxSoloForbidden'))setTimeout(function(){document.body.classList.add('cxSoloForbidden')},60)}},true);
  setTimeout(function(){if(document.body.classList.contains('cxSoloReader'))renderReader()},300);
 })();
+</script>
+<style id="cxModuleBackCss">
+#cxModuleBackHome{
+  display:none!important;
+  position:sticky!important;
+  top:66px!important;
+  z-index:180!important;
+  width:100%!important;
+  min-height:54px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  margin:8px 0 12px!important;
+  border:1px solid #cfe2d6!important;
+  border-radius:16px!important;
+  background:#ffffff!important;
+  color:#173b2a!important;
+  box-shadow:0 10px 26px rgba(20,33,27,.14)!important;
+  font-size:15px!important;
+  font-weight:1000!important;
+  letter-spacing:0!important;
+}
+#cxModuleBackHome:before{content:"‹";font-size:28px!important;line-height:1!important;margin-top:-2px!important}
+body.cxSoloOpen #cxModuleBackHome,
+body.cxSoloReader #cxModuleBackHome,
+body.cxSoloForbidden #cxModuleBackHome,
+body.cxCleanModuleOpen #cxModuleBackHome,
+body.cxCleanForbiddenOpen #cxModuleBackHome,
+body:has(#cxForbiddenLitePanel.active) #cxModuleBackHome,
+body:has(#cxForbiddenPanel.active) #cxModuleBackHome{
+  display:flex!important;
+}
+@media(max-width:430px){
+  #cxModuleBackHome{top:58px!important;min-height:52px!important;border-radius:15px!important;margin:7px 0 10px!important}
+}
+</style>
+<script id="cxModuleBackPatch">
+(function(){
+ if(window.cxModuleBackLoaded)return;window.cxModuleBackLoaded=true;
+ var TX={PL:'Wróć do kafelków',EN:'Back to tiles',UA:'Назад до плиток',RU:'Назад к плиткам',AZ:'Kafelə qayıt',ES:'Volver a bloques',FIL:'Bumalik sa tiles',ID:'Kembali ke pilihan',NE:'Tiles मा फर्कनुहोस्'};
+ function langKey(){try{var s=document.getElementById('cxFinalLangSelect');if(s&&s.value)return String(s.value).toUpperCase()}catch(e){}try{if(typeof lang!=='undefined'&&lang)return String(lang).toUpperCase()}catch(e){}try{return String(localStorage.cx_lang||'PL').toUpperCase()}catch(e){return'PL'}}
+ function label(){return TX[langKey()]||TX.PL}
+ function ensure(){
+  var main=document.querySelector('main')||document.body;
+  var btn=document.getElementById('cxModuleBackHome');
+  if(!btn){btn=document.createElement('button');btn.type='button';btn.id='cxModuleBackHome';btn.onclick=backHome}
+  btn.textContent=label();
+  if(btn.parentNode!==main)main.insertBefore(btn,main.firstChild);
+  return btn;
+ }
+ function hidePanels(){
+  document.body.classList.remove('cxSoloOpen','cxSoloReader','cxSoloForbidden','cxCleanModuleOpen','cxCleanForbiddenOpen');
+  document.querySelectorAll('#cxSoloPanel,#cxCleanModulePanel').forEach(function(p){p.classList.remove('active');p.classList.add('cxHidden');p.style.removeProperty('display')});
+  document.querySelectorAll('#cxForbiddenLitePanel,#cxForbiddenPanel').forEach(function(p){p.classList.remove('active');p.style.removeProperty('display')});
+  document.querySelectorAll('.cxHomeTile,.cxTodayBtn').forEach(function(n){n.classList.remove('cxSoloSelected','cxChosenTile')});
+  try{localStorage.removeItem('cx_active_home_tile')}catch(e){}
+ }
+ function scrollHome(){
+  var h=document.getElementById('cxHomeTiles')||document.getElementById('humanPanel')||document.querySelector('main');
+  try{h&&h.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){try{h&&h.scrollIntoView()}catch(_){window.scrollTo(0,0)}}
+ }
+ function backHome(){
+  hidePanels();
+  try{localStorage.cx_appTab='home';localStorage.cx_app_tab='home'}catch(e){}
+  try{if(typeof appTab!=='undefined')appTab='home'}catch(e){}
+  try{if(typeof setAppTab==='function')setAppTab('home')}catch(e){}
+  setTimeout(function(){hidePanels();document.body.classList.add('cxHubActive');ensure();scrollHome()},80);
+  setTimeout(function(){hidePanels();document.body.classList.add('cxHubActive');ensure()},350);
+ }
+ window.cxModuleBackHome=backHome;
+ document.addEventListener('DOMContentLoaded',ensure);
+ document.addEventListener('click',function(){setTimeout(ensure,80)},true);
+ document.addEventListener('change',function(ev){if(ev.target&&ev.target.id==='cxFinalLangSelect')setTimeout(ensure,80)},true);
+ ensure();
+})();
 </script></body></html>
