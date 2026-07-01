@@ -8038,4 +8038,133 @@ body:has(#cxForbiddenPanel.active) #cxModuleBackHome{
  document.addEventListener('change',function(ev){if(ev.target&&ev.target.id==='cxFinalLangSelect')setTimeout(ensure,80)},true);
  ensure();
 })();
+</script>
+<script id="cxHistoryBackAndOfflinePatch">
+(function(){
+ if(window.cxHistoryBackAndOfflineLoaded)return;window.cxHistoryBackAndOfflineLoaded=true;
+
+ var MODULE_KINDS={map:1,warehouse:1,greenhouse:1,reader:1,doctor:1,contacts:1,groups:1,forbidden:1,test:1,warehousePeople:1,city:1};
+ var inPopState=false;
+ var originalHomeGo=window.cxHomeGo;
+ var originalBackHome=window.cxModuleBackHome;
+
+ function homeUrl(){return location.pathname+location.search}
+ function moduleUrl(kind){return homeUrl()+"#"+encodeURIComponent(kind||"module")}
+ function isTrainingState(state){return !!(state&&state.cxTraining)}
+ function replaceHomeState(){
+  try{history.replaceState({cxTraining:1,cxView:"home"}, "", homeUrl())}catch(e){}
+ }
+ function rememberModule(kind){
+  if(inPopState||!kind||kind==="home"||!MODULE_KINDS[kind])return;
+  try{
+   var state=history.state||{};
+   var next={cxTraining:1,cxView:"module",kind:kind};
+   if(isTrainingState(state)&&state.cxView==="module"){
+    history.replaceState(next, "", moduleUrl(kind));
+   }else{
+    history.pushState(next, "", moduleUrl(kind));
+   }
+  }catch(e){}
+ }
+ function moduleIsOpen(){
+  try{
+   var body=document.body;
+   if(!body)return false;
+   if(body.classList.contains("cxSoloOpen")||body.classList.contains("cxSoloReader")||body.classList.contains("cxSoloForbidden")||body.classList.contains("cxCleanModuleOpen")||body.classList.contains("cxCleanForbiddenOpen"))return true;
+   if(document.querySelector(".cxHomeTile.cxSoloSelected,.cxTodayBtn.cxSoloSelected,.cxHomeTile.cxChosenTile,.cxTodayBtn.cxChosenTile"))return true;
+   return Array.prototype.some.call(document.querySelectorAll("#cxSoloPanel,#cxCleanModulePanel,#cxForbiddenLitePanel,#cxForbiddenPanel"),function(panel){
+    return panel&&panel.classList&&panel.classList.contains("active");
+   });
+  }catch(e){return false}
+ }
+ function fallbackHome(){
+  try{
+   document.body.classList.remove("cxSoloOpen","cxSoloReader","cxSoloForbidden","cxCleanModuleOpen","cxCleanForbiddenOpen");
+   document.querySelectorAll("#cxSoloPanel,#cxCleanModulePanel,#cxForbiddenLitePanel,#cxForbiddenPanel").forEach(function(panel){
+    panel.classList.remove("active");
+    panel.style.removeProperty("display");
+   });
+   document.querySelectorAll(".cxHomeTile,.cxTodayBtn").forEach(function(tile){
+    tile.classList.remove("cxSoloSelected","cxChosenTile");
+   });
+   document.body.classList.add("cxHubActive");
+   var home=document.getElementById("cxHomeTiles")||document.getElementById("humanPanel")||document.querySelector("main");
+   if(home)home.scrollIntoView({block:"start"});
+  }catch(e){}
+ }
+ function showHome(){
+  try{
+   if(typeof originalBackHome==="function")originalBackHome.call(window);
+   else fallbackHome();
+  }catch(e){fallbackHome()}
+ }
+
+ if(!isTrainingState(history.state))replaceHomeState();
+
+ if(typeof originalHomeGo==="function"){
+  window.cxHomeGo=function(kind){
+   var result=originalHomeGo.apply(this,arguments);
+   if(MODULE_KINDS[kind])setTimeout(function(){rememberModule(kind)},120);
+   return result;
+  };
+ }
+
+ window.cxModuleBackHome=function(){
+  showHome();
+  if(!inPopState)replaceHomeState();
+ };
+
+ window.addEventListener("popstate",function(event){
+  inPopState=true;
+  try{
+   if((event.state&&event.state.cxTraining&&event.state.cxView==="home")||moduleIsOpen()){
+    showHome();
+   }
+  }finally{
+   setTimeout(function(){inPopState=false},0);
+  }
+ });
+
+ function trackTileClick(event){
+  var tile=event.target&&event.target.closest?event.target.closest(".cxHomeTile,.cxTodayBtn,[data-kind]"):null;
+  if(!tile)return;
+  var kind=tile.getAttribute("data-kind")||"";
+  var cls=" "+String(tile.className||" ")+" ";
+  if(!kind){
+   ["warehousePeople","forbidden","greenhouse","warehouse","contacts","doctor","groups","reader","city","testTile","test","map"].some(function(name){
+    if(cls.indexOf(" "+name+" ")>-1){
+     kind=name==="testTile"?"test":name;
+     return true;
+    }
+    return false;
+   });
+  }
+  if(MODULE_KINDS[kind]){
+   rememberModule(kind);
+   [180,520,950].forEach(function(delay){
+    setTimeout(function(){if(moduleIsOpen())rememberModule(kind)},delay);
+   });
+  }
+ }
+ window.addEventListener("click",trackTileClick,true);
+ document.addEventListener("click",trackTileClick,true);
+
+ if(typeof window.cxOpenForbidden==="function"&&!window.cxHistoryForbiddenWrapped){
+  window.cxHistoryForbiddenWrapped=true;
+  var originalOpenForbidden=window.cxOpenForbidden;
+  window.cxOpenForbidden=function(){
+   var result=originalOpenForbidden.apply(this,arguments);
+   [0,140,520,980].forEach(function(delay){
+    setTimeout(function(){rememberModule("forbidden")},delay);
+   });
+   return result;
+  };
+ }
+
+ if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost"||location.hostname==="127.0.0.1")){
+  window.addEventListener("load",function(){
+   navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});
+  });
+ }
+})();
 </script></body></html>
