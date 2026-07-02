@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-training-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-01-06";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-01-07";
 
 const CORE_ASSETS = [
   "./",
@@ -9,13 +9,17 @@ const CORE_ASSETS = [
   "./stage-location.css",
   "./stage-location.js",
   "./terminology-fix.js",
+  "./greenhouse-glossary.js",
   "./assets/logo-citronex.svg"
 ];
 
 // Images are cached only when opened by the user.
 // This prevents slow phones from freezing during first page load.
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".svg"];
-const TERMINOLOGY_SCRIPT_TAG = '<script src="./terminology-fix.js?v=2026-07-01-06" defer></script>';
+const EXTRA_SCRIPT_TAGS = [
+  '<script src="./terminology-fix.js?v=2026-07-01-07" defer></script>',
+  '<script src="./greenhouse-glossary.js?v=2026-07-01-07" defer></script>'
+].join('');
 
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
@@ -50,13 +54,15 @@ async function putInCache(request, response) {
   await cache.put(request, response.clone());
 }
 
-async function addTerminologyFix(response) {
+async function addExtraScripts(response) {
   const contentType = response.headers.get("content-type") || "";
   if (!contentType.includes("text/html")) return response;
 
   let text = await response.text();
   if (!text.includes("terminology-fix.js")) {
-    text = text.replace("</body>", TERMINOLOGY_SCRIPT_TAG + "</body>");
+    text = text.replace("</body>", EXTRA_SCRIPT_TAGS + "</body>");
+  } else if (!text.includes("greenhouse-glossary.js")) {
+    text = text.replace("</body>", '<script src="./greenhouse-glossary.js?v=2026-07-01-07" defer></script></body>');
   }
 
   const headers = new Headers(response.headers);
@@ -71,7 +77,7 @@ async function addTerminologyFix(response) {
 async function networkFirst(request) {
   try {
     const response = await fetch(request);
-    const finalResponse = await addTerminologyFix(response);
+    const finalResponse = await addExtraScripts(response);
     await putInCache(request, finalResponse);
     return finalResponse.clone();
   } catch (error) {
