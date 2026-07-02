@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-training-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-01-03";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-01-04";
 
 const CORE_ASSETS = [
   "./",
@@ -23,7 +23,6 @@ const VIEW_STABILIZER_STYLE = `
   .app,
   .section,
   .card,
-  .guideShell,
   .appModeHero,
   .firstDayHelper,
   .firstDayPanel,
@@ -39,15 +38,20 @@ const VIEW_STABILIZER_STYLE = `
   .readerBtn,
   .liteBtn,
   .placeBtn,
-  .guidePill,
-  .firstDayOpen,
-  .fullToggle,
   [data-stage],
   [data-company],
   [data-mode],
   [data-reader],
   [data-place] {
     scroll-margin-top: 128px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .guidePill,
+  .firstDayOpen,
+  .fullToggle,
+  .guideActions button,
+  .miniQuiz button {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
@@ -67,16 +71,15 @@ const VIEW_STABILIZER_SCRIPT = `
   if (window.__citronexViewStabilizerInstalled) return;
   window.__citronexViewStabilizerInstalled = true;
 
-  var TILE_SELECTOR = [
+  // Main big tiles only. Do not stabilize top guide tabs such as Start/Map/Reader,
+  // because those tabs can replace content height and over-correct the scroll.
+  var STABLE_TILE_SELECTOR = [
     '.stage',
     '.company',
     '.modebtn',
     '.readerBtn',
     '.liteBtn',
     '.placeBtn',
-    '.guidePill',
-    '.firstDayOpen',
-    '.fullToggle',
     '[data-stage]',
     '[data-company]',
     '[data-mode]',
@@ -84,11 +87,26 @@ const VIEW_STABILIZER_SCRIPT = `
     '[data-place]'
   ].join(',');
 
+  var TOP_TAB_SELECTOR = [
+    '.guidePill',
+    '.firstDayOpen',
+    '.fullToggle',
+    '.guideActions button',
+    '.miniQuiz button',
+    'a[href="#"]'
+  ].join(',');
+
+  function maxScrollTop() {
+    var doc = document.documentElement;
+    return Math.max(0, doc.scrollHeight - window.innerHeight);
+  }
+
   function keepTileStable(tile) {
     if (!tile || !tile.getBoundingClientRect) return;
 
     var beforeTop = tile.getBoundingClientRect().top;
     var beforeScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var beforeMax = maxScrollTop();
 
     setTimeout(function () {
       if (tile.blur) tile.blur();
@@ -100,19 +118,31 @@ const VIEW_STABILIZER_SCRIPT = `
 
         var afterTop = tile.getBoundingClientRect().top;
         var delta = afterTop - beforeTop;
+        var afterMax = maxScrollTop();
 
-        if (Math.abs(delta) > 2) {
-          window.scrollTo({
-            top: Math.max(0, beforeScroll + delta),
-            behavior: 'auto'
-          });
-        }
+        // Guard: if a view changed a lot, do not jump to the bottom/blank page.
+        if (Math.abs(delta) < 3 || Math.abs(delta) > 280) return;
+        if (afterMax < beforeMax - 280) return;
+
+        var nextTop = Math.max(0, Math.min(afterMax, beforeScroll + delta));
+        window.scrollTo({ top: nextTop, behavior: 'auto' });
       });
     });
   }
 
   document.addEventListener('click', function (event) {
-    var target = event.target && event.target.closest ? event.target.closest(TILE_SELECTOR) : null;
+    var topTab = event.target && event.target.closest ? event.target.closest(TOP_TAB_SELECTOR) : null;
+    if (topTab) {
+      if (topTab.matches && topTab.matches('a[href="#"]')) {
+        event.preventDefault();
+      }
+      setTimeout(function () {
+        if (topTab.blur) topTab.blur();
+      }, 0);
+      return;
+    }
+
+    var target = event.target && event.target.closest ? event.target.closest(STABLE_TILE_SELECTOR) : null;
     if (!target) return;
     keepTileStable(target);
   }, true);
