@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const DATA = window.CX_DATA;
   const tx = (pl, en, ua, ru, az, es, fil, id, ne) => ({ pl, en, ua, ru, az, es, fil, id, ne });
   const validLangs = new Set(DATA.languages.map((item) => item.id));
@@ -438,7 +438,7 @@
                   <div class="work-passage">
                     <span class="passage-label">${esc(text(tx("przejście", "passage", "прохід", "проход", "keçid", "pasillo", "daanan", "lorong", "पासेज")))}</span>
                     <div class="floor-number-strip in-passage" aria-label="${esc(text(tx("Numeracja przęseł na podłodze", "Section numbers on the floor", "Нумерація секцій на підлозі", "Нумерация секций на полу", "Yerdə bölmə nömrələri", "Números de sección en el suelo", "Mga numero ng seksyon sa sahig", "Nomor bagian di lantai", "भुइँमा सेक्शन नम्बर"))) }">
-                      <span>1</span><span>2</span><span>3</span><span>...</span><span>25</span><span>26</span><span>27</span>
+                      <span>27</span><span>26</span><span>25</span><span>...</span><span>3</span><span>2</span><span>1</span>
                     </div>
                   </div>
                   <div class="span-side">${esc(text(tx("prawe przęsło", "right span", "праве прясло", "правое прясло", "sağ bölmə", "tramo derecho", "kanang seksyon", "bentang kanan", "दायाँ span")))}</div>
