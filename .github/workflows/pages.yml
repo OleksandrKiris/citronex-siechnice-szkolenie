@@ -1,13 +1,37 @@
-name: Pages workflow disabled
+name: Deploy GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  info:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Pages deployment mode
-        run: |
-          echo "This repository should be published from Settings -> Pages -> Deploy from a branch -> main -> /root."
-          echo "The old actions/deploy-pages workflow was disabled because deployments were failing."
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
