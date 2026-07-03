@@ -8,6 +8,7 @@
   const iconMap = {
     map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>',
     warehouse: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-9h10v9"/><path d="M9 16h6"/></svg>',
+    tablet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 6h6"/><path d="M8 10h8"/><path d="M8 14h8"/><circle cx="12" cy="18" r="1"/></svg>',
     greenhouse: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21V9a9 9 0 0 1 18 0v12"/><path d="M3 12h18"/><path d="M7 21V9"/><path d="M12 21V6"/><path d="M17 21V9"/></svg>',
     reader: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 6h4"/><path d="M10 17h4"/><circle cx="12" cy="12" r="2"/></svg>',
     medical: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14"/><path d="M5 12h14"/><path d="M6 3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z"/></svg>',
@@ -225,7 +226,6 @@
 
   function renderWarehouse() {
     const rules = DATA.warehouseRules.map((item) => `<li>${esc(text(item))}</li>`).join("");
-    const tabletSteps = DATA.warehouseTablet.steps.map((item) => `<li>${esc(text(item))}</li>`).join("");
     const warehouseMap = DATA.maps.find((item) => item.key === "warehouse");
     const oldWarehouseMap = DATA.maps.find((item) => item.key === "oldWarehouse");
     app.innerHTML = `
@@ -240,11 +240,7 @@
             ${action(oldWarehouseMap.url, `${ui("openMap")} - ${text(oldWarehouseMap.title)}`, "yellow")}
           </div>
         </section>
-        <section class="card blue section">
-          <h2>${esc(text(DATA.warehouseTablet.title))}</h2>
-          <p>${esc(text(DATA.warehouseTablet.lead))}</p>
-          <ul class="list">${tabletSteps}</ul>
-        </section>
+        ${tabletInstructionMarkup()}
         <section class="section">
           <h2>${esc(text(tx("Zdjęcia wejścia", "Entrance photos", "Фото входу", "Фото входа", "Giriş şəkilləri", "Fotos de entrada", "Larawan ng pasukan", "Foto pintu masuk", "प्रवेश फोटो")))}</h2>
           <div class="photo-grid">
@@ -254,6 +250,43 @@
         </section>
       </main>
     `;
+  }
+
+  function tabletInstructionMarkup() {
+    const tablet = DATA.warehouseTablet;
+    const steps = tablet.steps.map((item, index) => `
+      <article class="tablet-step">
+        <div class="step-number">${index + 1}</div>
+        <div class="tablet-step-body">
+          <h3>${esc(text(item.title))}</h3>
+          <p>${esc(text(item.note))}</p>
+          <div class="tablet-screen" aria-label="${esc(text(item.screen))}">
+            <span class="tablet-screen-top">${esc(text(tx("Tablet", "Tablet", "Планшет", "Планшет", "Planşet", "Tablet", "Tablet", "Tablet", "ट्याबलेट")))}</span>
+            <strong>${esc(text(item.screen))}</strong>
+          </div>
+        </div>
+      </article>
+    `).join("");
+    const tips = (tablet.tips || []).map((item) => `<li>${esc(text(item))}</li>`).join("");
+    return `
+      <section class="card blue section tablet-guide">
+        <div class="city-card-head">
+          <span class="city-card-icon">${iconMap.tablet}</span>
+          <div>
+            <span class="city-card-tag">${esc(text(tx("Instruktaż magazynowy", "Warehouse training", "Інструктаж складу", "Инструктаж склада", "Anbar təlimatı", "Instrucción de almacén", "Training sa bodega", "Instruksi gudang", "गोदाम निर्देशन")))}</span>
+            <h2>${esc(text(tablet.title))}</h2>
+          </div>
+        </div>
+        <p>${esc(text(tablet.lead))}</p>
+        <div class="notice yellow"><strong>${esc(ui("important"))}:</strong> ${esc(text(tablet.important))}</div>
+        <div class="tablet-steps">${steps}</div>
+        ${tips ? `<div class="notice"><ul class="list">${tips}</ul></div>` : ""}
+      </section>
+    `;
+  }
+
+  function renderTablet() {
+    app.innerHTML = `<main class="page">${pageHero()}${tabletInstructionMarkup()}</main>`;
   }
 
   function renderGreenhouse() {
@@ -670,6 +703,7 @@
       home: renderHome,
       mapa: renderMap,
       magazyn: renderWarehouse,
+      tablet: renderTablet,
       szklarnia: renderGreenhouse,
       reader: renderReader,
       lekarz: renderMedical,
