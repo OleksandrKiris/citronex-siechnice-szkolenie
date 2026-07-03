@@ -302,16 +302,130 @@
     ],
 
     city: [
-      { tone: "blue", title: tx("DUW - karta pobytu", "DUW - residence card", "DUW - карта побиту", "DUW - карта побыту", "DUW - yaşayış kartı", "DUW - tarjeta de residencia", "DUW - residence card", "DUW - kartu tinggal", "DUW - residence card"), note: tx("Tu składa się dokumenty na kartę pobytu i odbiera kartę pobytu.", "Here you submit residence card documents and collect the card.", "Тут подають документи на карту побиту і отримують карту.", "Здесь подают документы на карту побыту и получают карту.", "Burada yaşayış kartı sənədləri verilir və kart götürülür.", "Aquí se entregan documentos para la residencia y se recoge la tarjeta.", "Dito nagsusumite at kumukuha ng residence card.", "Di sini mengajukan dan mengambil kartu tinggal.", "यहाँ residence card का कागज बुझाउने र कार्ड लिने।"), url: "https://maps.app.goo.gl/NySReoBkGW3aoziv9" },
-      { tone: "yellow", title: tx("Bank i aplikacje", "Bank and apps", "Банк і додатки", "Банк и приложения", "Bank və tətbiqlər", "Banco y apps", "Bangko at apps", "Bank dan aplikasi", "बैंक र एपहरू"), note: tx("Do przejazdów używaj aplikacji komunikacji miejskiej, np. Jakdojade albo KOLEO zgodnie z trasą.", "For travel use public transport apps, e.g. Jakdojade or KOLEO according to the route.", "Для проїзду використовуйте додатки транспорту, наприклад Jakdojade або KOLEO.", "Для проезда используйте транспортные приложения, например Jakdojade или KOLEO.", "Gediş üçün Jakdojade və ya KOLEO kimi nəqliyyat tətbiqlərindən istifadə edin.", "Para viajar usa apps de transporte como Jakdojade o KOLEO.", "Para sa byahe, gumamit ng transport apps gaya ng Jakdojade o KOLEO.", "Untuk perjalanan gunakan aplikasi transportasi seperti Jakdojade atau KOLEO.", "यात्राका लागि Jakdojade वा KOLEO जस्ता यातायात एप प्रयोग गर्नुहोस्।") }
+      {
+        tone: "blue",
+        icon: "document",
+        tag: tx("Karta pobytu", "Residence card", "Карта побиту", "Карта побыту", "Yaşayış kartı", "Tarjeta de residencia", "Residence card", "Kartu tinggal", "Residence card"),
+        title: tx("DUW - karta pobytu", "DUW - residence card", "DUW - карта побиту", "DUW - карта побыту", "DUW - yaşayış kartı", "DUW - tarjeta de residencia", "DUW - residence card", "DUW - kartu tinggal", "DUW - residence card"),
+        note: tx("Tu składa się dokumenty na kartę pobytu i odbiera gotową kartę.", "Here you submit residence card documents and collect the ready card.", "Тут подають документи на карту побиту і забирають готову карту.", "Здесь подают документы на карту побыту и забирают готовую карту.", "Burada yaşayış kartı sənədləri verilir və hazır kart götürülür.", "Aquí se entregan documentos para la residencia y se recoge la tarjeta lista.", "Dito nagsusumite ng dokumento para sa residence card at kinukuha ang card.", "Di sini mengajukan dokumen kartu tinggal dan mengambil kartu yang sudah jadi.", "यहाँ residence card का कागज बुझाउने र बनेको कार्ड लिने।"),
+        list: [
+          tx("Zabierz paszport, telefon i dokumenty ze sprawy.", "Take your passport, phone and documents for the case.", "Візьміть паспорт, телефон і документи до справи.", "Возьмите паспорт, телефон и документы по делу.", "Pasport, telefon və işə aid sənədləri götürün.", "Lleva pasaporte, teléfono y documentos del trámite.", "Dalhin ang pasaporte, telepono at dokumento.", "Bawa paspor, telepon dan dokumen urusan.", "पासपोर्ट, फोन र कागजात लैजानुहोस्।")
+        ],
+        links: [
+          { url: "https://maps.app.goo.gl/NySReoBkGW3aoziv9", label: tx("Otwórz mapę DUW", "Open DUW map", "Відкрити карту DUW", "Открыть карту DUW", "DUW xəritəsini aç", "Abrir mapa DUW", "Buksan ang mapa ng DUW", "Buka peta DUW", "DUW नक्सा खोल्नुहोस्"), tone: "blue" }
+        ]
+      },
+      {
+        tone: "blue",
+        icon: "city",
+        tag: tx("Urząd", "Office", "Установа", "Ужонд", "İdarə", "Oficina", "Opisina", "Kantor", "कार्यालय"),
+        title: tx("Urząd Miejski w Siechnicach", "Siechnice City Office", "Міська рада в Siechnice", "Городская администрация в Siechnice", "Siechnice şəhər idarəsi", "Ayuntamiento de Siechnice", "Opisina ng lungsod sa Siechnice", "Kantor kota Siechnice", "Siechnice नगर कार्यालय"),
+        note: tx("Tu załatwia się sprawy miejskie: PESEL, meldunek, dokumenty, Profil Zaufany i informacje o mObywatel.", "Here you handle city matters: PESEL, registration, documents, Trusted Profile and mObywatel information.", "Тут вирішують міські справи: PESEL, реєстрацію, документи, Profil Zaufany та інформацію про mObywatel.", "Здесь решают городские дела: PESEL, meldunek, документы, Profil Zaufany и информацию по mObywatel.", "Burada şəhər işləri həll olunur: PESEL, qeydiyyat, sənədlər, Profil Zaufany və mObywatel məlumatı.", "Aquí se hacen trámites de ciudad: PESEL, registro, documentos, Perfil de confianza e información de mObywatel.", "Dito ginagawa ang city matters: PESEL, registration, documents, Trusted Profile at mObywatel.", "Di sini mengurus urusan kota: PESEL, registrasi, dokumen, Profil Zaufany dan info mObywatel.", "यहाँ शहरका काम हुन्छ: PESEL, दर्ता, कागजात, Profil Zaufany र mObywatel जानकारी।"),
+        list: [
+          tx("Przed wizytą sprawdź godziny pracy i potrzebne dokumenty.", "Before visiting, check opening hours and required documents.", "Перед візитом перевірте години роботи і потрібні документи.", "Перед визитом проверьте часы работы и нужные документы.", "Getməzdən əvvəl iş saatlarını və lazım olan sənədləri yoxlayın.", "Antes de ir, revisa el horario y los documentos necesarios.", "Bago pumunta, tingnan ang oras at kailangang dokumento.", "Sebelum pergi, cek jam buka dan dokumen yang dibutuhkan.", "जानु अघि खुल्ने समय र चाहिने कागजात जाँच गर्नुहोस्।")
+        ],
+        links: [
+          { url: "https://www.google.com/maps/search/?api=1&query=Urz%C4%85d+Miejski+w+Siechnicach", label: tx("Otwórz mapę urzędu", "Open office map", "Відкрити карту установи", "Открыть карту ужонда", "İdarənin xəritəsini aç", "Abrir mapa de la oficina", "Buksan ang mapa ng opisina", "Buka peta kantor", "कार्यालयको नक्सा खोल्नुहोस्"), tone: "blue" },
+          { url: "https://www.siechnice.gmina.pl/", label: tx("Otwórz stronę urzędu", "Open office website", "Відкрити сайт установи", "Открыть сайт ужонда", "İdarənin saytını aç", "Abrir web de la oficina", "Buksan ang website ng opisina", "Buka situs kantor", "कार्यालयको वेबसाइट खोल्नुहोस्"), tone: "blue" }
+        ]
+      },
+      {
+        tone: "yellow",
+        icon: "bank",
+        tag: tx("Bank", "Bank", "Банк", "Банк", "Bank", "Banco", "Bangko", "Bank", "बैंक"),
+        title: tx("PKO Bank Polski", "PKO Bank Polski", "PKO Bank Polski", "PKO Bank Polski", "PKO Bank Polski", "PKO Bank Polski", "PKO Bank Polski", "PKO Bank Polski", "PKO Bank Polski"),
+        address: "ul. Jana Pawła II 28/30, Siechnice",
+        phone: "800 302 302",
+        note: tx("Bank w Siechnicach. Przydatny do konta, karty i spraw bankowych.", "Bank in Siechnice. Useful for account, card and banking matters.", "Банк у Siechnice. Корисно для рахунку, картки і банківських справ.", "Банк в Siechnice. Полезно для счета, карты и банковских дел.", "Siechnice-də bank. Hesab, kart və bank işləri üçün faydalıdır.", "Banco en Siechnice. Útil para cuenta, tarjeta y trámites bancarios.", "Bangko sa Siechnice. Para sa account, card at bank matters.", "Bank di Siechnice. Untuk rekening, kartu dan urusan bank.", "Siechnice मा बैंक। खाता, कार्ड र बैंकका कामका लागि।"),
+        links: [
+          { url: "https://www.google.com/maps/place/Oddzia%C5%82+PKO+Banku+Polskiego/@51.0333025,17.1562485,1198m/data=!3m2!1e3!5s0x470fdc5d1d840fc7:0x44851fc9a86bd92e!4m10!1m2!2m1!1spko!3m6!1s0x470fdc5cd74ceb8f:0xe9ab50ad0c73dcd4!8m2!3d51.0323083!4d17.1490679!15sCgNwa28iA4gBAZIBBGJhbmvgAQA!16s%2Fg%2F11c1_w075g?hl=pl-pl&entry=ttu", label: tx("Otwórz mapę PKO", "Open PKO map", "Відкрити карту PKO", "Открыть карту PKO", "PKO xəritəsini aç", "Abrir mapa PKO", "Buksan ang mapa ng PKO", "Buka peta PKO", "PKO नक्सा खोल्नुहोस्"), tone: "yellow" }
+        ]
+      },
+      {
+        tone: "yellow",
+        icon: "bank",
+        tag: tx("Bank", "Bank", "Банк", "Банк", "Bank", "Banco", "Bangko", "Bank", "बैंक"),
+        title: tx("Alior Bank", "Alior Bank", "Alior Bank", "Alior Bank", "Alior Bank", "Alior Bank", "Alior Bank", "Alior Bank", "Alior Bank"),
+        address: "ul. Jarzębinowa 7-13/lok.2, Siechnice",
+        phone: "71 303 22 40",
+        note: tx("Drugi bank w Siechnicach. Sprawdź godziny przed wizytą.", "Another bank in Siechnice. Check opening hours before visiting.", "Другий банк у Siechnice. Перевірте години перед візитом.", "Еще один банк в Siechnice. Проверьте часы перед визитом.", "Siechnice-də başqa bank. Getməzdən əvvəl iş saatlarını yoxlayın.", "Otro banco en Siechnice. Revisa el horario antes de ir.", "Isa pang bangko sa Siechnice. Tingnan ang oras bago pumunta.", "Bank lain di Siechnice. Cek jam buka sebelum pergi.", "Siechnice मा अर्को बैंक। जानु अघि समय जाँच गर्नुहोस्।"),
+        links: [
+          { url: "https://www.google.com/maps/place/Alior+Bank/@51.0324975,17.1547473,2652m/data=!3m1!1e3!4m10!1m2!2m1!1salior!3m6!1s0x470fdc69c916aa27:0x360d79d4251341dc!8m2!3d51.0284489!4d17.1527781!15sCgVhbGlvciIDiAEBkgEMc2F2aW5nc19iYW5r4AEA!16s%2Fg%2F1ptw7mj8_?hl=pl-pl&entry=ttu", label: tx("Otwórz mapę Alior Bank", "Open Alior Bank map", "Відкрити карту Alior Bank", "Открыть карту Alior Bank", "Alior Bank xəritəsini aç", "Abrir mapa Alior Bank", "Buksan ang mapa ng Alior Bank", "Buka peta Alior Bank", "Alior Bank नक्सा खोल्नुहोस्"), tone: "yellow" }
+        ]
+      },
+      {
+        tone: "yellow",
+        icon: "bank",
+        tag: tx("Bankomat", "ATM", "Банкомат", "Банкомат", "Bankomat", "Cajero", "ATM", "ATM", "ATM"),
+        title: tx("Banki i bankomaty w pobliżu", "Nearby banks and ATMs", "Банки і банкомати поруч", "Банки и банкоматы рядом", "Yaxındakı banklar və bankomatlar", "Bancos y cajeros cerca", "Malapit na bangko at ATM", "Bank dan ATM terdekat", "नजिकका बैंक र ATM"),
+        note: tx("Użyj, gdy potrzebujesz najbliższego bankomatu albo innego banku.", "Use this when you need the nearest ATM or another bank.", "Використовуйте, коли потрібен найближчий банкомат або інший банк.", "Используйте, когда нужен ближайший банкомат или другой банк.", "Ən yaxın bankomat və ya başqa bank lazım olduqda istifadə edin.", "Úsalo si necesitas el cajero más cercano u otro banco.", "Gamitin kung kailangan ang pinakamalapit na ATM o ibang bangko.", "Gunakan jika perlu ATM terdekat atau bank lain.", "नजिकको ATM वा अर्को बैंक चाहिँदा प्रयोग गर्नुहोस्।"),
+        links: [
+          { url: "https://www.google.com/maps/search/?api=1&query=bank+bankomat+Siechnice", label: tx("Pokaż banki i bankomaty", "Show banks and ATMs", "Показати банки і банкомати", "Показать банки и банкоматы", "Bankları və bankomatları göstər", "Mostrar bancos y cajeros", "Ipakita ang bangko at ATM", "Tampilkan bank dan ATM", "बैंक र ATM देखाउनुहोस्"), tone: "yellow" }
+        ]
+      },
+      {
+        tone: "blue",
+        icon: "document",
+        tag: tx("Aplikacje urzędowe", "Official apps", "Державні додатки", "Гос. приложения", "Rəsmi tətbiqlər", "Apps oficiales", "Official apps", "Aplikasi resmi", "सरकारी एपहरू"),
+        title: tx("PESEL / Profil Zaufany / mObywatel", "PESEL / Trusted Profile / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Perfil de confianza / mObywatel", "PESEL / Trusted Profile / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel"),
+        note: tx("Do spraw urzędowych możesz potrzebować PESEL, Profil Zaufany i aplikację mObywatel.", "For official matters you may need PESEL, Trusted Profile and the mObywatel app.", "Для урядових справ можуть бути потрібні PESEL, Profil Zaufany і додаток mObywatel.", "Для официальных дел могут понадобиться PESEL, Profil Zaufany и приложение mObywatel.", "Rəsmi işlər üçün PESEL, Profil Zaufany və mObywatel tətbiqi lazım ola bilər.", "Para trámites oficiales puedes necesitar PESEL, Perfil de confianza y la app mObywatel.", "Para sa official matters, maaaring kailanganin ang PESEL, Trusted Profile at mObywatel app.", "Untuk urusan resmi mungkin perlu PESEL, Profil Zaufany dan aplikasi mObywatel.", "सरकारी कामका लागि PESEL, Profil Zaufany र mObywatel एप चाहिन सक्छ।"),
+        links: [
+          { url: "https://www.gov.pl/web/mobywatel", label: tx("Otwórz mObywatel", "Open mObywatel", "Відкрити mObywatel", "Открыть mObywatel", "mObywatel aç", "Abrir mObywatel", "Buksan mObywatel", "Buka mObywatel", "mObywatel खोल्नुहोस्"), tone: "blue" },
+          { url: "https://www.gov.pl/web/profilzaufany", label: tx("Otwórz Profil Zaufany", "Open Trusted Profile", "Відкрити Profil Zaufany", "Открыть Profil Zaufany", "Profil Zaufany aç", "Abrir Perfil de confianza", "Buksan Trusted Profile", "Buka Profil Zaufany", "Profil Zaufany खोल्नुहोस्"), tone: "blue" }
+        ]
+      },
+      {
+        tone: "blue",
+        icon: "map",
+        tag: tx("Dojazd", "Transport", "Доїзд", "Проезд", "Nəqliyyat", "Transporte", "Biyahe", "Transportasi", "यातायात"),
+        title: tx("Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade"),
+        note: tx("Aplikacja do autobusów i komunikacji miejskiej.", "App for buses and public transport.", "Додаток для автобусів і громадського транспорту.", "Приложение для автобусов и городского транспорта.", "Avtobuslar və ictimai nəqliyyat üçün tətbiq.", "App para buses y transporte público.", "App para sa bus at public transport.", "Aplikasi untuk bus dan transportasi umum.", "बस र सार्वजनिक यातायातको एप।"),
+        links: [
+          { url: "https://jakdojade.pl/", label: tx("Otwórz Jakdojade", "Open Jakdojade", "Відкрити Jakdojade", "Открыть Jakdojade", "Jakdojade aç", "Abrir Jakdojade", "Buksan Jakdojade", "Buka Jakdojade", "Jakdojade खोल्नुहोस्"), tone: "blue" }
+        ]
+      },
+      {
+        tone: "blue",
+        icon: "map",
+        tag: tx("Pociąg", "Train", "Поїзд", "Поезд", "Qatar", "Tren", "Tren", "Kereta", "रेल"),
+        title: tx("KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO"),
+        note: tx("Aplikacja do pociągów. Przydatna, gdy jedziesz koleją do Wrocławia albo Siechnic.", "Train app. Useful when you travel by train to Wrocław or Siechnice.", "Додаток для поїздів. Корисно, коли їдете поїздом до Wrocław або Siechnice.", "Приложение для поездов. Полезно, если едете поездом во Вроцлав или Siechnice.", "Qatar tətbiqi. Wrocław və ya Siechnice-yə qatarla gedəndə faydalıdır.", "App de trenes. Útil si viajas en tren a Wrocław o Siechnice.", "Train app. Kapaki-pakinabang kung sasakay ng tren papuntang Wrocław o Siechnice.", "Aplikasi kereta. Berguna jika naik kereta ke Wrocław atau Siechnice.", "रेल एप। Wrocław वा Siechnice रेलमा जाँदा उपयोगी हुन्छ।"),
+        links: [
+          { url: "https://koleo.pl/", label: tx("Otwórz KOLEO", "Open KOLEO", "Відкрити KOLEO", "Открыть KOLEO", "KOLEO aç", "Abrir KOLEO", "Buksan KOLEO", "Buka KOLEO", "KOLEO खोल्नुहोस्"), tone: "blue" }
+        ]
+      }
     ],
 
-    cityExtras: [
-      { tone: "blue", title: tx("Urząd Miejski w Siechnicach", "Siechnice City Office", "Міська рада в Siechnice", "Городская администрация в Siechnice", "Siechnice şəhər idarəsi", "Ayuntamiento de Siechnice", "Opisina ng lungsod sa Siechnice", "Kantor kota Siechnice", "Siechnice नगर कार्यालय"), note: tx("Sprawy miejskie i podstawowe formalności. Najpierw sprawdź godziny otwarcia.", "City matters and basic formalities. First check opening hours.", "Міські справи і базові формальності. Спочатку перевірте години роботи.", "Городские дела и базовые формальности. Сначала проверьте часы работы.", "Şəhər işləri və əsas sənədlər. Əvvəl iş saatlarını yoxlayın.", "Asuntos municipales y trámites básicos. Primero revisa el horario.", "City matters at basic formalities. Tingnan muna ang oras ng bukas.", "Urusan kota dan administrasi dasar. Cek jam buka dulu.", "शहरका काम र आधारभूत कागजी प्रक्रिया। पहिले खुल्ने समय जाँच गर्नुहोस्।"), url: "https://www.google.com/maps/search/?api=1&query=Urz%C4%85d+Miejski+w+Siechnicach", button: tx("Otwórz urząd w Google Maps", "Open the office in Google Maps", "Відкрити установу в Google Maps", "Открыть учреждение в Google Maps", "İdarəni Google Maps-da aç", "Abrir oficina en Google Maps", "Buksan ang opisina sa Google Maps", "Buka kantor di Google Maps", "कार्यालय Google Maps मा खोल्नुहोस्") },
-      { tone: "yellow", title: tx("Banki i bankomaty w Siechnicach", "Banks and ATMs in Siechnice", "Банки і банкомати в Siechnice", "Банки и банкоматы в Siechnice", "Siechnice-də banklar və bankomatlar", "Bancos y cajeros en Siechnice", "Bangko at ATM sa Siechnice", "Bank dan ATM di Siechnice", "Siechnice मा बैंक र ATM"), note: tx("Do konta, karty i wypłaty gotówki. Szukaj najbliższego banku albo bankomatu.", "For account, card and cash withdrawal. Search for the nearest bank or ATM.", "Для рахунку, карти і зняття готівки. Шукайте найближчий банк або банкомат.", "Для счета, карты и снятия наличных. Ищите ближайший банк или банкомат.", "Hesab, kart və nağd pul üçün. Ən yaxın bankı və ya bankomatı axtarın.", "Para cuenta, tarjeta y efectivo. Busca el banco o cajero más cercano.", "Para sa account, card at cash. Hanapin ang pinakamalapit na bangko o ATM.", "Untuk rekening, kartu dan tarik tunai. Cari bank atau ATM terdekat.", "खाता, कार्ड र नगद निकाल्न। नजिकको बैंक वा ATM खोज्नुहोस्।"), url: "https://www.google.com/maps/search/?api=1&query=bank+bankomat+Siechnice", button: tx("Pokaż banki i bankomaty", "Show banks and ATMs", "Показати банки і банкомати", "Показать банки и банкоматы", "Bankları və bankomatları göstər", "Mostrar bancos y cajeros", "Ipakita ang bangko at ATM", "Tampilkan bank dan ATM", "बैंक र ATM देखाउनुहोस्") },
-      { tone: "blue", title: tx("PESEL / Profil Zaufany / mObywatel", "PESEL / Trusted Profile / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Perfil de confianza / mObywatel", "PESEL / Trusted Profile / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel"), note: tx("Do spraw urzędowych możesz potrzebować PESEL, Profil Zaufany i aplikację mObywatel.", "For official matters you may need PESEL, Trusted Profile and the mObywatel app.", "Для урядових справ можуть бути потрібні PESEL, Profil Zaufany і додаток mObywatel.", "Для официальных дел могут понадобиться PESEL, Profil Zaufany и приложение mObywatel.", "Rəsmi işlər üçün PESEL, Profil Zaufany və mObywatel tətbiqi lazım ola bilər.", "Para trámites oficiales puedes necesitar PESEL, Perfil de confianza y la app mObywatel.", "Para sa official matters, maaaring kailanganin ang PESEL, Trusted Profile at mObywatel app.", "Untuk urusan resmi mungkin perlu PESEL, Profil Zaufany dan aplikasi mObywatel.", "सरकारी कामका लागि PESEL, Profil Zaufany र mObywatel एप चाहिन सक्छ।"), url: "https://www.gov.pl/web/mobywatel", button: tx("Otwórz informacje mObywatel", "Open mObywatel information", "Відкрити інформацію mObywatel", "Открыть информацию mObywatel", "mObywatel məlumatını aç", "Abrir información mObywatel", "Buksan ang impormasyon ng mObywatel", "Buka informasi mObywatel", "mObywatel जानकारी खोल्नुहोस्") },
-      { tone: "blue", title: tx("Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade", "Jakdojade"), note: tx("Aplikacja do komunikacji miejskiej. Pomaga sprawdzić przystanki, autobusy i tramwaje.", "Public transport app. It helps check stops, buses and trams.", "Додаток для міського транспорту. Допомагає перевірити зупинки, автобуси і трамваї.", "Приложение для городского транспорта. Помогает проверить остановки, автобусы и трамваи.", "İctimai nəqliyyat tətbiqi. Dayanacaqları, avtobusları və tramvayları yoxlamağa kömək edir.", "App de transporte público. Ayuda a revisar paradas, autobuses y tranvías.", "Public transport app. Tumutulong makita ang stops, bus at tram.", "Aplikasi transportasi umum. Membantu cek halte, bus dan trem.", "सार्वजनिक यातायात एप। बस स्टप, बस र ट्राम हेर्न मद्दत गर्छ।"), url: "https://jakdojade.pl/wroclaw", button: tx("Otwórz Jakdojade", "Open Jakdojade", "Відкрити Jakdojade", "Открыть Jakdojade", "Jakdojade aç", "Abrir Jakdojade", "Buksan Jakdojade", "Buka Jakdojade", "Jakdojade खोल्नुहोस्") },
-      { tone: "blue", title: tx("KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO", "KOLEO"), note: tx("Aplikacja do pociągów. Przydatna, gdy jedziesz koleją do Wrocławia albo Siechnic.", "Train app. Useful when you travel by train to Wrocław or Siechnice.", "Додаток для поїздів. Корисно, коли їдете поїздом до Wrocław або Siechnice.", "Приложение для поездов. Полезно, если едете поездом во Вроцлав или Siechnice.", "Qatar tətbiqi. Wrocław və ya Siechnice-yə qatarla gedəndə faydalıdır.", "App de trenes. Útil si viajas en tren a Wrocław o Siechnice.", "Train app. Kapaki-pakinabang kung sasakay ng tren papuntang Wrocław o Siechnice.", "Aplikasi kereta. Berguna jika naik kereta ke Wrocław atau Siechnice.", "रेल एप। Wrocław वा Siechnice रेलमा जाँदा उपयोगी हुन्छ।"), url: "https://koleo.pl/", button: tx("Otwórz KOLEO", "Open KOLEO", "Відкрити KOLEO", "Открыть KOLEO", "KOLEO aç", "Abrir KOLEO", "Buksan KOLEO", "Buka KOLEO", "KOLEO खोल्नुहोस्") }
+    cityExtras: [],
+
+    cityRules: [
+      {
+        tone: "yellow",
+        icon: "document",
+        tag: tx("Dokumenty", "Documents", "Документи", "Документы", "Sənədlər", "Documentos", "Dokumento", "Dokumen", "कागजात"),
+        title: tx("Ważne - dokument przy sobie", "Important - keep ID with you", "Важливо - документ із собою", "Важно - документ с собой", "Vacib - sənəd yanınızda olsun", "Importante - lleva documento", "Mahalaga - dalhin ang ID", "Penting - bawa dokumen", "महत्त्वपूर्ण - कागजात साथमा"),
+        note: tx("Kiedy wychodzisz do miasta, miej przy sobie paszport albo kartę pobytu.", "When you go to the city, keep your passport or residence card with you.", "Коли виходите в місто, майте при собі паспорт або карту побиту.", "Когда выходите в город, имейте при себе паспорт или карту побыту.", "Şəhərə çıxanda pasport və ya yaşayış kartı yanınızda olsun.", "Cuando sales a la ciudad, lleva pasaporte o tarjeta de residencia.", "Kapag lalabas sa lungsod, dalhin ang pasaporte o residence card.", "Saat pergi ke kota, bawa paspor atau kartu tinggal.", "शहर जाँदा पासपोर्ट वा residence card साथमा राख्नुहोस्।"),
+        list: [
+          tx("Dokument może być potrzebny przy kontroli, w urzędzie albo w banku.", "You may need the document during a check, at the office or in the bank.", "Документ може знадобитися при перевірці, в установі або банку.", "Документ может понадобиться при проверке, в ужонде или банке.", "Sənəd yoxlama zamanı, idarədə və ya bankda lazım ola bilər.", "El documento puede hacer falta en un control, oficina o banco.", "Maaaring kailanganin ang dokumento sa check, opisina o bangko.", "Dokumen bisa dibutuhkan saat pemeriksaan, di kantor atau bank.", "जाँच, कार्यालय वा बैंकमा कागजात चाहिन सक्छ।")
+        ]
+      },
+      {
+        tone: "red",
+        icon: "document",
+        tag: tx("Wejście", "Entrance", "Вхід", "Вход", "Giriş", "Entrada", "Pasukan", "Masuk", "प्रवेश"),
+        title: tx("Wejście na teren firmy", "Entering company premises", "Вхід на територію фірми", "Вход на территорию фирмы", "Firma ərazisinə giriş", "Entrada al terreno de la empresa", "Pagpasok sa kumpanya", "Masuk area perusahaan", "कम्पनी क्षेत्रमा प्रवेश"),
+        note: tx("Przy wejściu trzeba mieć przepustkę. Bez przepustki ochrona nie przepuści.", "At the entrance you need a pass. Without a pass, security will not let you in.", "При вході потрібна перепустка. Без перепустки охорона не пропустить.", "При входе нужен пропуск. Без пропуска охрана не пропустит.", "Girişdə keçid kartı olmalıdır. Keçid kartı olmadan mühafizə buraxmayacaq.", "En la entrada necesitas pase. Sin pase, seguridad no deja entrar.", "Sa pasukan kailangan ang pass. Kung walang pass, hindi papapasukin ng security.", "Di pintu masuk perlu kartu akses. Tanpa kartu, security tidak mengizinkan masuk.", "प्रवेशमा पास चाहिन्छ। पास बिना सुरक्षा भित्र छिर्न दिँदैन।")
+      },
+      {
+        tone: "yellow",
+        icon: "parcel",
+        tag: tx("Paczki", "Parcels", "Посилки", "Посылки", "Bağlamalar", "Paquetes", "Parcels", "Paket", "पार्सल"),
+        title: tx("Zamówienia i paczki", "Orders and parcels", "Замовлення і посилки", "Заказы и посылки", "Sifarişlər və bağlamalar", "Pedidos y paquetes", "Orders at parcels", "Pesanan dan paket", "अर्डर र पार्सल"),
+        note: tx("AliExpress, Allegro i inne paczki zamawiaj tylko do paczkomatu. Nie zamawiaj na adres firmy.", "Order AliExpress, Allegro and other parcels only to a parcel locker. Do not order to the company address.", "AliExpress, Allegro та інші посилки замовляйте тільки до Paczkomat. Не замовляйте на адресу фірми.", "AliExpress, Allegro и другие посылки заказывайте только в Paczkomat. Не заказывайте на адрес фирмы.", "AliExpress, Allegro və başqa bağlamaları yalnız Paczkomat-a sifariş edin. Firma ünvanına sifariş etməyin.", "Pide AliExpress, Allegro y otros paquetes solo a Paczkomat. No pidas a la dirección de la empresa.", "Ipadala ang AliExpress, Allegro at ibang parcel sa Paczkomat lang. Huwag sa address ng kumpanya.", "Pesan AliExpress, Allegro dan paket lain hanya ke Paczkomat. Jangan ke alamat perusahaan.", "AliExpress, Allegro र अरू पार्सल Paczkomat मा मात्र मगाउनुहोस्। कम्पनी ठेगानामा नमगाउनुहोस्।"),
+        list: [
+          tx("Ochrona nie przyjmuje paczek zamówionych na firmę.", "Security does not accept parcels ordered to the company.", "Охорона не приймає посилки, замовлені на фірму.", "Охрана не принимает посылки, заказанные на фирму.", "Mühafizə firmaya sifariş olunan bağlamaları qəbul etmir.", "Seguridad no acepta paquetes enviados a la empresa.", "Hindi tinatanggap ng security ang parcels na naka-address sa kumpanya.", "Security tidak menerima paket yang dikirim ke perusahaan.", "कम्पनीमा आएको पार्सल सुरक्षा लेिँदैन।")
+        ]
+      }
     ],
 
     bans: [

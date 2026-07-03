@@ -14,6 +14,9 @@
     phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>',
     groups: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>',
     city: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/><path d="M16 15h1"/><path d="M16 18h1"/></svg>',
+    bank: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 10h18"/><path d="M5 10V8l7-4 7 4v2"/><path d="M6 10v8"/><path d="M10 10v8"/><path d="M14 10v8"/><path d="M18 10v8"/><path d="M4 18h16"/><path d="M3 21h18"/></svg>',
+    document: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 3h7l5 5v13H7V3Z"/><path d="M14 3v6h5"/><path d="M10 13h6"/><path d="M10 17h6"/></svg>',
+    parcel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>',
     ban: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8"/></svg>',
     test: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l2 2 4-4"/><path d="M20 6 9 17l-5-5"/><path d="M4 19h16"/></svg>'
   };
@@ -75,7 +78,7 @@
 
   function action(url, label, tone = "") {
     const cls = tone ? `btn ${tone}` : "btn";
-    return `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a>`;
+    return `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
   }
 
   function phoneActions(phone, whatsappLabel = ui("whatsapp")) {
@@ -89,7 +92,7 @@
 
   function formatPhone(phone) {
     const cleaned = phone.replace(/[^\d+]/g, "");
-    if (!cleaned.startsWith("+48")) return cleaned;
+    if (!cleaned.startsWith("+48")) return phone.trim();
     const rest = cleaned.slice(3).replace(/(\d{3})(?=\d)/g, "$1 ").trim();
     return `+48 ${rest}`;
   }
@@ -492,11 +495,26 @@
 
   function renderCity() {
     const cityItems = [...DATA.city, ...(DATA.cityExtras || [])];
+    const cityLinks = (item) => {
+      const links = item.links || (item.url ? [{ url: item.url, label: item.button || DATA.ui.openMap, tone: item.tone }] : []);
+      const buttons = links.map((link) => action(link.url, text(link.label), link.tone || item.tone)).join("");
+      const phone = item.phone ? `<a class="btn secondary" href="${esc(telHref(item.phone))}">${esc(ui("call"))} ${esc(formatPhone(item.phone))}</a>` : "";
+      return buttons || phone ? `<div class="btn-row city-links">${buttons}${phone}</div>` : "";
+    };
+    const cityList = (items) => items && items.length ? `<ul class="list city-rule-list">${items.map((entry) => `<li>${esc(text(entry))}</li>`).join("")}</ul>` : "";
     const cards = cityItems.map((item) => `
-      <article class="${cardClass(item.tone)}">
-        <h2>${esc(text(item.title))}</h2>
+      <article class="${cardClass(item.tone)} city-card">
+        <div class="city-card-head">
+          <span class="city-card-icon">${iconMap[item.icon] || iconMap.city}</span>
+          <div>
+            ${item.tag ? `<span class="city-card-tag">${esc(text(item.tag))}</span>` : ""}
+            <h2>${esc(text(item.title))}</h2>
+          </div>
+        </div>
         <p>${esc(text(item.note))}</p>
-        ${item.url ? `<div class="btn-row">${action(item.url, text(item.button) || ui("openMap"), item.tone)}</div>` : ""}
+        ${item.address ? `<p class="city-meta">${esc(text(item.address))}</p>` : ""}
+        ${cityList(item.list)}
+        ${cityLinks(item)}
       </article>
     `).join("");
     const cityFlow = [
@@ -552,6 +570,19 @@
       tx("W banku i urzędzie podawaj tylko swoje dane.", "In the bank and office, give only your own data.", "У банку і установі подавайте тільки свої дані.", "В банке и учреждении давайте только свои данные.", "Bankda və idarədə yalnız öz məlumatlarınızı verin.", "En banco y oficina da solo tus datos.", "Sa bangko at opisina, sariling data lang.", "Di bank dan kantor berikan hanya data sendiri.", "बैंक र कार्यालयमा आफ्नै डाटा मात्र दिनुहोस्।"),
       tx("Jeśli nie rozumiesz pisma z urzędu, nie ignoruj go. Najpierw przetłumacz albo pokaż koordynatorowi.", "If you do not understand an office letter, do not ignore it. Translate it first or show it to a coordinator.", "Якщо не розумієте лист з установи, не ігноруйте. Спочатку перекладіть або покажіть координатору.", "Если не понимаете письмо из учреждения, не игнорируйте. Сначала переведите или покажите координатору.", "İdarədən məktubu başa düşmürsünüzsə, laqeyd qalmayın. Əvvəl tərcümə edin və ya koordinatora göstərin.", "Si no entiendes una carta oficial, no la ignores. Primero tradúcela o muéstrala al coordinador.", "Kung hindi naiintindihan ang sulat ng opisina, huwag balewalain. I-translate muna o ipakita sa coordinator.", "Jika tidak paham surat kantor, jangan diabaikan. Terjemahkan dulu atau tunjukkan ke koordinator.", "कार्यालयको पत्र नबुझे बेवास्ता नगर्नुहोस्। पहिले अनुवाद गर्नुहोस् वा कोर्डिनेटरलाई देखाउनुहोस्।")
     ].map((item) => `<li>${esc(text(item))}</li>`).join("");
+    const cityRules = (DATA.cityRules || []).map((item) => `
+      <article class="${cardClass(item.tone)} city-card">
+        <div class="city-card-head">
+          <span class="city-card-icon">${iconMap[item.icon] || iconMap.document}</span>
+          <div>
+            ${item.tag ? `<span class="city-card-tag">${esc(text(item.tag))}</span>` : ""}
+            <h2>${esc(text(item.title))}</h2>
+          </div>
+        </div>
+        <p>${esc(text(item.note))}</p>
+        ${cityList(item.list)}
+      </article>
+    `).join("");
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
@@ -562,6 +593,7 @@
         </section>
         <section class="module-grid city-decision-grid section">${cityDecisions}</section>
         <section class="module-grid two section">${cards}</section>
+        ${cityRules ? `<section class="module-grid two section">${cityRules}</section>` : ""}
         <section class="module-grid two section">
           <article class="card yellow">
             <h2>${esc(text(tx("Co zabrać ze sobą", "What to take with you", "Що взяти з собою", "Что взять с собой", "Özünüzlə nə götürmək", "Qué llevar contigo", "Ano ang dadalhin", "Apa yang dibawa", "के लिएर जाने")))}</h2>
