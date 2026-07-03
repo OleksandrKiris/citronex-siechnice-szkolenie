@@ -1,8 +1,6 @@
 name: Patch language selector to top
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

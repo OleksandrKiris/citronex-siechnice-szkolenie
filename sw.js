@@ -1,25 +1,33 @@
-const CACHE_PREFIX = "citronex-siechnice-training-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-01-07";
+const CACHE_PREFIX = "citronex-siechnice-modular-";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-03-02";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
-  "./style.css",
-  "./app.js",
-  "./stage-location.css",
-  "./stage-location.js",
-  "./terminology-fix.js",
-  "./greenhouse-glossary.js",
-  "./assets/logo-citronex.svg"
+  "./mapa.html",
+  "./magazyn.html",
+  "./szklarnia.html",
+  "./reader.html",
+  "./lekarz.html",
+  "./kontakty.html",
+  "./grupy.html",
+  "./miasto.html",
+  "./zakazy.html",
+  "./test.html",
+  "./manifest.webmanifest",
+  "./assets/css/training.css",
+  "./assets/js/training-data.js",
+  "./assets/js/training-app.js",
+  "./assets/logo-citronex.svg",
+  "./assets/orientation/sklarnia-etap-excel.png",
+  "./assets/inline/cart_pl.jpg",
+  "./assets/inline/cart_ua.jpg",
+  "./assets/inline/reader_start.jpg",
+  "./assets/inline/restart_1.jpg",
+  "./assets/inline/restart_2.jpg",
+  "./assets/warehouse/magazyn-wejscie-1.jpg",
+  "./assets/warehouse/magazyn-wejscie-2.jpg"
 ];
-
-// Images are cached only when opened by the user.
-// This prevents slow phones from freezing during first page load.
-const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".svg"];
-const EXTRA_SCRIPT_TAGS = [
-  '<script src="./terminology-fix.js?v=2026-07-01-07" defer></script>',
-  '<script src="./greenhouse-glossary.js?v=2026-07-01-07" defer></script>'
-].join('');
 
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
@@ -28,7 +36,7 @@ self.addEventListener("install", (event) => {
       try {
         await cache.add(new Request(asset, { cache: "reload" }));
       } catch (error) {
-        console.warn("[SW] Core asset was not cached:", asset, error);
+        // Offline cache stays resilient if a non-critical asset fails.
       }
     }));
     await self.skipWaiting();
@@ -39,7 +47,7 @@ self.addEventListener("activate", (event) => {
   event.waitUntil((async () => {
     const names = await caches.keys();
     await Promise.all(names.map((name) => {
-      if (name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME) {
+      if ((name.startsWith(CACHE_PREFIX) || name.startsWith("citronex-siechnice-training-")) && name !== CACHE_NAME) {
         return caches.delete(name);
       }
       return Promise.resolve();
@@ -54,32 +62,11 @@ async function putInCache(request, response) {
   await cache.put(request, response.clone());
 }
 
-async function addExtraScripts(response) {
-  const contentType = response.headers.get("content-type") || "";
-  if (!contentType.includes("text/html")) return response;
-
-  let text = await response.text();
-  if (!text.includes("terminology-fix.js")) {
-    text = text.replace("</body>", EXTRA_SCRIPT_TAGS + "</body>");
-  } else if (!text.includes("greenhouse-glossary.js")) {
-    text = text.replace("</body>", '<script src="./greenhouse-glossary.js?v=2026-07-01-07" defer></script></body>');
-  }
-
-  const headers = new Headers(response.headers);
-  headers.delete("content-length");
-  return new Response(text, {
-    status: response.status,
-    statusText: response.statusText,
-    headers
-  });
-}
-
 async function networkFirst(request) {
   try {
     const response = await fetch(request);
-    const finalResponse = await addExtraScripts(response);
-    await putInCache(request, finalResponse);
-    return finalResponse.clone();
+    await putInCache(request, response);
+    return response;
   } catch (error) {
     const cached = await caches.match(request);
     return cached || caches.match("./index.html");
@@ -89,15 +76,9 @@ async function networkFirst(request) {
 async function cacheFirst(request) {
   const cached = await caches.match(request);
   if (cached) return cached;
-
   const response = await fetch(request);
   await putInCache(request, response);
-  return response.clone();
-}
-
-function isImageRequest(url, request) {
-  if (request.destination === "image") return true;
-  return IMAGE_EXTENSIONS.some((ext) => url.pathname.toLowerCase().endsWith(ext));
+  return response;
 }
 
 self.addEventListener("fetch", (event) => {
@@ -107,16 +88,11 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  const acceptsHtml = request.headers.get("accept") || "";
-  if (request.mode === "navigate" || acceptsHtml.includes("text/html")) {
+  const accept = request.headers.get("accept") || "";
+  if (request.mode === "navigate" || accept.includes("text/html")) {
     event.respondWith(networkFirst(request));
     return;
   }
 
-  if (isImageRequest(url, request)) {
-    event.respondWith(cacheFirst(request));
-    return;
-  }
-
-  event.respondWith(networkFirst(request));
+  event.respondWith(cacheFirst(request));
 });

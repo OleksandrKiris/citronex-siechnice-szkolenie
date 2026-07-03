@@ -10,8 +10,10 @@ https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
 ## Najwazniejsze
 
-- Jedna strona: `index.html`.
-- Jezyki sa tylko na gorze strony: PL / EN / UA / RU / AZ.
+- Jeden link startowy: `index.html`.
+- System jest podzielony na lekkie moduly: `mapa.html`, `magazyn.html`, `szklarnia.html`, `reader.html`, `lekarz.html`, `kontakty.html`, `grupy.html`, `miasto.html`, `zakazy.html`, `test.html`.
+- Jezyk wybiera sie tylko na gorze strony.
+- Jezyki: PL / EN / UA / RU / AZ / ES / FIL / ID / NE.
 - System jest przygotowany pod telefony.
 - Nie ma wpisywania imienia i nazwiska.
 - Nie ma gotowych prosb o pomoc do kopiowania.
@@ -26,7 +28,7 @@ Publiczna strona dziala z GitHub Pages:
 
 https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
-Aktualna produkcja jest w `index.html`.
+Aktualna produkcja zaczyna sie w `index.html`, a tresc jest podzielona na osobne pliki modulow.
 Archiwum wersji jest w folderze `wersje`.
 
 ## Szybki test po zmianie
