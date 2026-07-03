@@ -278,6 +278,7 @@ h3 {
 }
 
 .card.soft { background: var(--surface-soft); box-shadow: none; }
+.card.green { background: var(--green-soft); border-color: #bfe4cb; }
 .card.blue { background: var(--blue-soft); border-color: #c9ddf6; }
 .card.yellow { background: var(--yellow-soft); border-color: #f0d281; }
 .card.red { background: var(--red-soft); border-color: #f2c1bd; }
@@ -532,6 +533,35 @@ details.card[open] > summary::after {
   gap: 12px;
 }
 
+.greenhouse-work {
+  scroll-margin-top: 88px;
+}
+
+.green-flow {
+  background:
+    linear-gradient(135deg, rgba(22,101,52,.1), rgba(20,103,179,.08)),
+    var(--surface);
+}
+
+.work-flow {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.flow-chip {
+  min-height: 50px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(22, 101, 52, .2);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .78);
+  color: var(--text);
+  font-weight: 950;
+}
+
 .schema {
   padding: 14px;
   border: 1px solid var(--line);
@@ -683,6 +713,7 @@ details.card[open] > summary::after {
   .tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .orientation-hero { grid-template-columns: 1fr 1fr; }
+  .work-flow { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .btn-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
