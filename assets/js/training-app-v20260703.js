@@ -152,8 +152,21 @@
         </div>
       </a>
     `).join("");
+    const install = DATA.install;
+    const installCard = install ? `
+      <details class="card install-card">
+        <summary>${esc(text(install.title))}</summary>
+        <div class="details-body">
+          <p>${esc(text(install.lead))}</p>
+          <ul class="list">
+            <li>${esc(text(install.android))}</li>
+            <li>${esc(text(install.iphone))}</li>
+          </ul>
+        </div>
+      </details>
+    ` : "";
 
-    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${tiles}</section><p class="footer-note">GitHub Pages • offline cache • v2026-07-03</p></main>`;
+    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${tiles}</section>${installCard}<p class="footer-note">GitHub Pages • offline cache • v2026-07-03</p></main>`;
   }
 
   function renderMap() {
@@ -164,11 +177,54 @@
         <div class="btn-row">${action(item.url, ui("openMap"), item.tone === "red" ? "red" : item.tone === "yellow" ? "yellow" : "blue")}</div>
       </article>
     `).join("");
-    app.innerHTML = `<main class="page">${pageHero()}<section class="module-grid two">${cards}</section></main>`;
+    const firstSteps = DATA.firstDay.steps.map((item, index) => `
+      <article class="step-card compact">
+        <span class="step-number">${index + 1}</span>
+        <div>
+          <h3>${esc(text(item.title))}</h3>
+          <p>${esc(text(item.note))}</p>
+        </div>
+      </article>
+    `).join("");
+    const photoGroups = (DATA.mapPhotos || []).map((group) => {
+      const photos = group.photos.map((src, index) => `
+        <figure class="media">
+          <img src="${esc(src)}" alt="${esc(text(group.title))}">
+          <figcaption>${esc(text(group.title))} ${index + 1}</figcaption>
+        </figure>
+      `).join("");
+      return `
+        <details class="${cardClass(group.tone)}">
+          <summary>${esc(text(group.title))}</summary>
+          <div class="details-body">
+            <p>${esc(text(group.note))}</p>
+            <div class="photo-grid">${photos}</div>
+          </div>
+        </details>
+      `;
+    }).join("");
+    app.innerHTML = `
+      <main class="page">
+        ${pageHero()}
+        <section class="card yellow">
+          <h2>${esc(text(DATA.firstDay.title))}</h2>
+          <p>${esc(text(DATA.firstDay.lead))}</p>
+          <div class="steps compact-list">${firstSteps}</div>
+        </section>
+        <section class="module-grid two section">${cards}</section>
+        <section class="section">
+          <h2>${esc(text(tx("Zdjęcia wejść", "Entrance photos", "Фото входів", "Фото входов", "Giriş şəkilləri", "Fotos de entradas", "Mga larawan ng pasukan", "Foto pintu masuk", "प्रवेश फोटो")))}</h2>
+          <div class="stack">${photoGroups}</div>
+        </section>
+      </main>
+    `;
   }
 
   function renderWarehouse() {
     const rules = DATA.warehouseRules.map((item) => `<li>${esc(text(item))}</li>`).join("");
+    const tabletSteps = DATA.warehouseTablet.steps.map((item) => `<li>${esc(text(item))}</li>`).join("");
+    const warehouseMap = DATA.maps.find((item) => item.url.includes("Staff+Entrance"));
+    const oldWarehouseMap = DATA.maps.find((item) => item.url.includes("5B47"));
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
@@ -176,9 +232,14 @@
           <h2>${esc(text(DATA.tiles.find((tile) => tile.page === "magazyn").title))}</h2>
           <ul class="list">${rules}</ul>
           <div class="btn-row">
-            ${action(DATA.maps.find((item) => text(item.title).toLowerCase().includes(text(DATA.pages.magazyn.title).toLowerCase()) || item.url.includes("Staff+Entrance")).url, ui("openMap"), "yellow")}
-            ${action("https://maps.app.goo.gl/5B47Av1GDhEUBM7M7", `${ui("openMap")} - ${text(DATA.maps.find((item) => item.url.includes("5B47")).title)}`, "yellow")}
+            ${action(warehouseMap.url, ui("openMap"), "yellow")}
+            ${action(oldWarehouseMap.url, `${ui("openMap")} - ${text(oldWarehouseMap.title)}`, "yellow")}
           </div>
+        </section>
+        <section class="card blue section">
+          <h2>${esc(text(DATA.warehouseTablet.title))}</h2>
+          <p>${esc(text(DATA.warehouseTablet.lead))}</p>
+          <ul class="list">${tabletSteps}</ul>
         </section>
         <section class="section">
           <h2>${esc(text(tx("Zdjęcia wejścia", "Entrance photos", "Фото входу", "Фото входа", "Giriş şəkilləri", "Fotos de entrada", "Larawan ng pasukan", "Foto pintu masuk", "प्रवेश फोटो")))}</h2>
@@ -363,11 +424,12 @@
   }
 
   function renderCity() {
-    const cards = DATA.city.map((item) => `
+    const cityItems = [...DATA.city, ...(DATA.cityExtras || [])];
+    const cards = cityItems.map((item) => `
       <article class="${cardClass(item.tone)}">
         <h2>${esc(text(item.title))}</h2>
         <p>${esc(text(item.note))}</p>
-        ${item.url ? `<div class="btn-row">${action(item.url, ui("openMap"), item.tone)}</div>` : ""}
+        ${item.url ? `<div class="btn-row">${action(item.url, text(item.button) || ui("openMap"), item.tone)}</div>` : ""}
       </article>
     `).join("");
     app.innerHTML = `<main class="page">${pageHero()}<section class="module-grid">${cards}</section></main>`;

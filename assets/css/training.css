@@ -282,6 +282,60 @@ h3 {
 .card.yellow { background: var(--yellow-soft); border-color: #f0d281; }
 .card.red { background: var(--red-soft); border-color: #f2c1bd; }
 
+details.card {
+  padding: 0;
+  overflow: hidden;
+}
+
+details.card > summary {
+  min-height: 58px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 950;
+}
+
+details.card > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.card > summary::after {
+  content: "+";
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .75);
+  color: var(--brand);
+}
+
+details.card[open] > summary {
+  border-bottom: 1px solid rgba(24, 37, 31, .1);
+}
+
+details.card[open] > summary::after {
+  content: "-";
+}
+
+.details-body {
+  padding: 16px;
+}
+
+.details-body > :first-child {
+  margin-top: 0;
+}
+
+.install-card {
+  margin-top: 16px;
+}
+
 .section {
   margin-top: 18px;
 }
@@ -293,6 +347,14 @@ h3 {
 .stack {
   display: grid;
   gap: 10px;
+}
+
+.compact-list {
+  margin-top: 14px;
+}
+
+.step-card.compact {
+  padding: 12px;
 }
 
 .btn-row {

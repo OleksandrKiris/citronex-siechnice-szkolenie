@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-03-03";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-03-04";
 
 const CORE_ASSETS = [
   "./",
@@ -25,6 +25,25 @@ const CORE_ASSETS = [
   "./assets/inline/reader_start.jpg",
   "./assets/inline/restart_1.jpg",
   "./assets/inline/restart_2.jpg",
+  "./assets/inline/hotel_1.jpg",
+  "./assets/inline/hotel_2.jpg",
+  "./assets/inline/hotel_3.jpg",
+  "./assets/inline/hotel_4.jpg",
+  "./assets/inline/hotel_5.jpg",
+  "./assets/inline/stage12_1.jpg",
+  "./assets/inline/stage12_2.jpg",
+  "./assets/inline/stage34_1.jpg",
+  "./assets/inline/stage34_2.jpg",
+  "./assets/inline/stage34_3.jpg",
+  "./assets/inline/stage5_1.jpg",
+  "./assets/inline/stage5_2.jpg",
+  "./assets/inline/stage5_3.jpg",
+  "./assets/inline/stage5_4.jpg",
+  "./assets/inline/stage6_1.jpg",
+  "./assets/inline/stage6_2.jpg",
+  "./assets/inline/stage6_3.jpg",
+  "./assets/inline/stage6_4.jpg",
+  "./assets/inline/stage6_5.jpg",
   "./assets/warehouse/magazyn-wejscie-1.jpg",
   "./assets/warehouse/magazyn-wejscie-2.jpg"
 ];
