@@ -236,18 +236,18 @@
           <p>${esc(text(warehouseMap.note))}</p>
           <ul class="list">${rules}</ul>
           <div class="btn-row">
-            ${action(warehouseMap.url, text(tx("Mapa wejść - magazyn", "Entrance map - warehouse", "Карта входів - склад", "Карта входов - склад", "Giriş xəritəsi - anbar", "Mapa de entradas - almacén", "Mapa ng pasukan - bodega", "Peta pintu masuk - gudang", "प्रवेश नक्सा - गोदाम")), "yellow")}
+            ${action(warehouseMap.url, text(tx("Mapa magazynu", "Warehouse map", "Карта складу", "Карта склада", "Anbar xəritəsi", "Mapa del almacén", "Mapa ng bodega", "Peta gudang", "गोदाम नक्सा")), "yellow")}
             ${action(oldWarehouseMap.url, text(oldWarehouseMap.title), "yellow")}
           </div>
         </section>
-        ${tabletInstructionMarkup()}
         <section class="section">
-          <h2>${esc(text(tx("Zdjęcia wejścia", "Entrance photos", "Фото входу", "Фото входа", "Giriş şəkilləri", "Fotos de entrada", "Larawan ng pasukan", "Foto pintu masuk", "प्रवेश फोटो")))}</h2>
+          <h2>${esc(text(tx("Zdjęcia magazynu", "Warehouse photos", "Фото складу", "Фото склада", "Anbar şəkilləri", "Fotos del almacén", "Mga larawan ng bodega", "Foto gudang", "गोदाम फोटो")))}</h2>
           <div class="photo-grid">
             <figure class="media"><img src="assets/warehouse/magazyn-wejscie-1.jpg" alt="Magazyn wejście"><figcaption>${esc(text(tx("Budynek magazynu - widok z parkingu.", "Warehouse building - view from parking.", "Будівля складу - вид з парковки.", "Здание склада - вид с парковки.", "Anbar binası - dayanacaqdan görünüş.", "Edificio de almacén - vista desde parking.", "Gusali ng bodega mula sa paradahan.", "Gedung gudang dari parkir.", "पार्किङबाट गोदाम भवन।")))}</figcaption></figure>
             <figure class="media"><img src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
           </div>
         </section>
+        ${tabletInstructionMarkup()}
       </main>
     `;
   }
