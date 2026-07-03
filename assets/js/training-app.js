@@ -413,9 +413,10 @@
   }
 
   function readerStep(item, index) {
-    const value = typeof item === "string" ? item : item.text;
-    const note = typeof item === "object" && item.note ? `<small>${esc(text(item.note))}</small>` : "";
-    const tone = typeof item === "object" && item.tone ? ` ${esc(item.tone)}` : "";
+    const isStructuredStep = item && typeof item === "object" && ("text" in item || "note" in item || "tone" in item);
+    const value = isStructuredStep ? item.text : item;
+    const note = isStructuredStep && item.note ? `<small>${esc(text(item.note))}</small>` : "";
+    const tone = isStructuredStep && item.tone ? ` ${esc(item.tone)}` : "";
     return `
       <article class="step-card reader-step${tone}">
         <span class="step-number">${index + 1}</span>
