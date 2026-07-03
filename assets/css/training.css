@@ -808,6 +808,68 @@ details.card[open] > summary::after {
   background: #f7faf8;
 }
 
+.reader-visual-frame {
+  position: relative;
+  background: #f7faf8;
+}
+
+.reader-visual-frame img {
+  max-height: none;
+}
+
+.reader-image-translation {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  max-height: 58%;
+  padding: 10px 11px;
+  overflow: auto;
+  border: 1px solid rgba(20,103,179,.18);
+  border-radius: 14px;
+  background: rgba(255,255,255,.94);
+  color: var(--text);
+  box-shadow: 0 14px 34px rgba(15,23,42,.18);
+  backdrop-filter: blur(8px);
+}
+
+.reader-image-translation strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.reader-image-translation ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 5px;
+}
+
+.reader-image-translation.compact ol {
+  display: block;
+  columns: 2;
+  column-gap: 18px;
+  padding-left: 18px;
+}
+
+.reader-image-translation li {
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 850;
+}
+
+.reader-image-translation.compact li {
+  margin: 0 0 4px;
+  break-inside: avoid;
+  font-size: 11px;
+  line-height: 1.18;
+}
+
 .media figcaption {
   padding: 10px 12px;
   color: var(--muted);

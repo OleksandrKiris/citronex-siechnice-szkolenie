@@ -477,6 +477,10 @@
     `;
   }
 
+  function readerStepValue(item) {
+    return item && typeof item === "object" && ("text" in item || "note" in item || "tone" in item) ? item.text : item;
+  }
+
   function readerStepList(steps) {
     return (steps || []).map((item, index) => readerStep(item, index)).join("");
   }
@@ -498,15 +502,28 @@
       ? active.sections.map(readerSection).join("")
       : `<div class="steps">${readerStepList(active.steps)}</div>`;
     const tips = (active.tips || []).map((tip) => `<li>${esc(text(tip))}</li>`).join("");
+    const imageOverlaySteps = (active.imageSteps || active.steps || []).map(readerStepValue).filter(Boolean);
     const imageBlocks = [
       active.image ? { src: active.image, caption: active.imageCaption } : null,
       ...(active.images || [])
-    ].filter(Boolean).map((image) => `
-      <figure class="media">
-        <img src="${esc(image.src)}" alt="${esc(text(image.caption))}">
+    ].filter(Boolean).map((image) => {
+      const overlaySteps = (image.steps || imageOverlaySteps).map(readerStepValue).filter(Boolean);
+      const overlay = overlaySteps.length ? `
+        <div class="reader-image-translation${overlaySteps.length > 5 ? " compact" : ""}">
+          <strong>${esc(text(tx("Tłumaczenie na zdjęciu", "Translation on the image", "Переклад на зображенні", "Перевод на изображении", "Şəkildə tərcümə", "Traducción en la imagen", "Salin sa larawan", "Terjemahan pada gambar", "तस्वीरमा अनुवाद")))}</strong>
+          <ol>${overlaySteps.map((step) => `<li>${esc(text(step))}</li>`).join("")}</ol>
+        </div>
+      ` : "";
+      return `
+      <figure class="media reader-visual">
+        <div class="reader-visual-frame">
+          <img src="${esc(image.src)}" alt="${esc(text(image.caption))}">
+          ${overlay}
+        </div>
         <figcaption>${esc(text(image.caption))}</figcaption>
       </figure>
-    `).join("");
+    `;
+    }).join("");
 
     app.innerHTML = `
       <main class="page">

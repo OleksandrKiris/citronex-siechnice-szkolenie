@@ -222,6 +222,17 @@
         lead: tx("To jest obrazkowy start pracy z readerem. Używaj centralnego przycisku readera.", "This is the visual start order for the reader. Use the reader's middle button.", "Це наочний порядок початку роботи з рідером. Використовуйте центральну кнопку рідера.", "Это наглядный порядок начала работы с ридером. Используйте центральную кнопку ридера.", "Bu reader ilə işə başlama ardıcıllığıdır. Reader-in orta düyməsindən istifadə edin.", "Este es el orden visual de inicio con el reader. Usa el botón central del reader.", "Ito ang visual na simula ng reader. Gamitin ang gitnang button ng reader.", "Ini urutan awal kerja dengan reader. Gunakan tombol tengah reader.", "यो reader सुरु गर्ने चित्रसहितको क्रम हो। reader को बीचको बटन प्रयोग गर्नुहोस्।"),
         image: "assets/inline/reader_start.jpg",
         imageCaption: tx("Instrukcja obrazkowa readera - 9 kroków.", "Reader visual instruction - 9 steps.", "Інструкція рідера з картинками - 9 кроків.", "Инструкция ридера с картинками - 9 шагов.", "Reader şəkilli təlimatı - 9 addım.", "Instrucción visual del reader - 9 pasos.", "Reader visual instruction - 9 steps.", "Instruksi gambar reader - 9 langkah.", "reader चित्र निर्देशन - ९ चरण।"),
+        imageSteps: [
+          tx("Weź reader", "Take reader", "Візьміть рідер", "Возьмите ридер", "Reader götürün", "Toma reader", "Kunin reader", "Ambil reader", "reader लिनुहोस्"),
+          tx("Tag personalny", "Personal tag", "Персональний тег", "Персональный тег", "Şəxsi tag", "Tag personal", "Personal tag", "Tag pribadi", "व्यक्तिगत tag"),
+          tx("Początek pracy", "Work start", "Початок роботи", "Начало работы", "İşin başlanğıcı", "Inicio trabajo", "Simula trabaho", "Mulai kerja", "काम सुरु"),
+          tx("Czynność", "Activity", "Дія", "Деятельность", "Fəaliyyət", "Actividad", "Gawain", "Aktivitas", "गतिविधि"),
+          tx("Wejdź do rzędu", "Enter row", "Зайдіть у ряд", "Зайдите в ряд", "Sıraya girin", "Entra a fila", "Pumasok sa row", "Masuk baris", "पङ्क्तिमा जानुहोस्"),
+          tx("Początek przerwy", "Break start", "Початок перерви", "Начало перерыва", "Fasilə başlanğıcı", "Inicio descanso", "Simula break", "Mulai istirahat", "ब्रेक सुरु"),
+          tx("Koniec przerwy", "Break end", "Кінець перерви", "Конец перерыва", "Fasilə sonu", "Fin descanso", "Tapos break", "Selesai istirahat", "ब्रेक अन्त्य"),
+          tx("Koniec pracy", "Work end", "Кінець роботи", "Конец работы", "İşin sonu", "Fin trabajo", "Tapos trabaho", "Selesai kerja", "काम अन्त्य"),
+          tx("Odłóż reader", "Return reader", "Покладіть рідер", "Положите ридер", "Reader-i qoyun", "Devuelve reader", "Ibalik reader", "Kembalikan reader", "reader राख्नुहोस्")
+        ],
         steps: [
           tx("Weź reader z ładowarki z wyznaczonego miejsca z numerem.", "Take the reader from the numbered charger in the assigned place.", "Візьміть рідер із зарядки з призначеного місця з номером.", "Возьмите ридер с зарядки с назначенного места с номером.", "Reader-i nömrəli təyin olunmuş şarj yerindən götürün.", "Toma el reader del cargador numerado en el lugar asignado.", "Kunin ang reader sa numbered charger sa nakatalagang lugar.", "Ambil reader dari charger bernomor di tempat yang ditentukan.", "तोकिएको नम्बर भएको चार्जरबाट reader लिनुहोस्।"),
           tx("Odbij swój tag personalny centralnym przyciskiem readera zgodnie z informacją startową.", "Scan your personal tag with the middle reader button according to the start information.", "Відбийте свій персональний тег центральною кнопкою рідера згідно стартової інформації.", "Отметьте свой персональный тег центральной кнопкой ридера согласно стартовой информации.", "Şəxsi tagınızı start məlumatına uyğun reader-in orta düyməsi ilə vurun.", "Marca tu tag personal con el botón central según la información de inicio.", "I-scan ang personal tag gamit ang gitnang button ayon sa start info.", "Scan tag pribadi dengan tombol tengah sesuai info awal.", "सुरु जानकारी अनुसार बीचको बटनले आफ्नो व्यक्तिगत tag स्क्यान गर्नुहोस्।"),
@@ -335,6 +346,13 @@
           { src: "assets/inline/cart_pl.jpg", caption: tx("Wózki - wersja polska.", "Carts - Polish version.", "Візки - польська версія.", "Тележки - польская версия.", "Arabalar - polyak versiyası.", "Carros - versión polaca.", "Carts - Polish version.", "Troli - versi Polandia.", "ट्रली - पोलिश संस्करण।") },
           { src: "assets/inline/cart_ua.jpg", caption: tx("Wózki - wersja ukraińska.", "Carts - Ukrainian version.", "Візки - українська версія.", "Тележки - украинская версия.", "Arabalar - ukrayna versiyası.", "Carros - versión ucraniana.", "Carts - Ukrainian version.", "Troli - versi Ukraina.", "ट्रली - युक्रेनी संस्करण।") }
         ],
+        imageSteps: [
+          tx("Tag wózka", "Cart tag", "Тег візка", "Тег тележки", "Araba tagı", "Tag del carro", "Cart tag", "Tag troli", "ट्रली tag"),
+          tx("Tag rzędu", "Row tag", "Тег ряду", "Тег ряда", "Sıra tagı", "Tag de fila", "Row tag", "Tag baris", "row tag"),
+          tx("Skończony: 1 raz", "Finished: once", "Закінчений: 1 раз", "Закончен: 1 раз", "Bitib: 1 dəfə", "Terminada: 1 vez", "Tapos: 1 beses", "Selesai: 1 kali", "सकिएको: १ पटक"),
+          tx("Nieskończony: 2 razy", "Unfinished: twice", "Не закінчений: 2 рази", "Не закончен: 2 раза", "Bitməyib: 2 dəfə", "No terminada: 2 veces", "Hindi tapos: 2 beses", "Belum selesai: 2 kali", "नसकिएको: २ पटक"),
+          tx("Wyślij po skanach", "Send after scans", "Надішліть після сканів", "Отправьте после сканов", "Skanlardan sonra göndərin", "Envía tras escanear", "Ipadala pagkatapos", "Kirim setelah scan", "स्क्यानपछि पठाउनुहोस्")
+        ],
         steps: [
           { tone: "warn", text: tx("Przy zbiorach skanujesz zawsze wychodząc z rzędu.", "During picking, always scan while leaving the row.", "Під час збору скануйте завжди при виході з ряду.", "При сборе всегда сканируйте при выходе из ряда.", "Yığım zamanı həmişə sıradan çıxanda skan edin.", "Durante la cosecha, escanea siempre al salir de la fila.", "Sa pagpitas, palaging mag-scan paglabas sa hanay.", "Saat panen, selalu scan saat keluar dari baris.", "टिपाइमा सधैं पङ्क्तिबाट निस्कँदा स्क्यान गर्नुहोस्।") },
           tx("Najpierw skanuj tag wózka - zawsze jeden raz.", "First scan the cart tag - always once.", "Спочатку скануйте тег візка - завжди один раз.", "Сначала сканируйте тег тележки - всегда один раз.", "Əvvəl araba tagını skan edin - həmişə bir dəfə.", "Primero marca el tag del carro - siempre una vez.", "Una, i-scan ang cart tag - laging isang beses.", "Pertama scan tag troli - selalu sekali.", "पहिले cart tag स्क्यान गर्नुहोस् - सधैं एक पटक।"),
@@ -350,6 +368,15 @@
         images: [
           { src: "assets/inline/restart_1.jpg", caption: tx("Przyciski readera: lewy, środkowy, prawy.", "Reader buttons: left, middle, right.", "Кнопки рідера: ліва, середня, права.", "Кнопки ридера: левая, средняя, правая.", "Reader düymələri: sol, orta, sağ.", "Botones del reader: izquierdo, central, derecho.", "Reader buttons: left, middle, right.", "Tombol reader: kiri, tengah, kanan.", "reader बटन: बायाँ, बीच, दायाँ।") },
           { src: "assets/inline/restart_2.jpg", caption: tx("Menu serwisowe: YES, SELECT, DOWN.", "Service menu: YES, SELECT, DOWN.", "Сервісне меню: YES, SELECT, DOWN.", "Сервисное меню: YES, SELECT, DOWN.", "Servis menyusu: YES, SELECT, DOWN.", "Menú de servicio: YES, SELECT, DOWN.", "Service menu: YES, SELECT, DOWN.", "Menu servis: YES, SELECT, DOWN.", "service menu: YES, SELECT, DOWN।") }
+        ],
+        imageSteps: [
+          tx("Trzymaj lewy", "Hold left", "Тримайте ліву", "Держите левую", "Solu saxlayın", "Mantén izquierdo", "Hawakan left", "Tahan kiri", "बायाँ थिचिराख्नुहोस्"),
+          tx("Prawy, środkowy, prawy", "Right, middle, right", "Права, середня, права", "Правая, средняя, правая", "Sağ, orta, sağ", "Derecho, central, derecho", "Right, middle, right", "Kanan, tengah, kanan", "दायाँ, बीच, दायाँ"),
+          tx("Puść lewy", "Release left", "Відпустіть ліву", "Отпустите левую", "Solu buraxın", "Suelta izquierdo", "Bitawan left", "Lepas kiri", "बायाँ छोड्नुहोस्"),
+          tx("DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5"),
+          tx("SELECT", "SELECT", "SELECT", "SELECT", "SELECT", "SELECT", "SELECT", "SELECT", "SELECT"),
+          tx("YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES"),
+          tx("Kontynuuj normalnie", "Continue normally", "Продовжуйте нормально", "Продолжайте нормально", "Normal davam edin", "Continúa normal", "Ituloy normal", "Lanjut normal", "सामान्य जारी राख्नुहोस्")
         ],
         steps: [
           tx("Trzymaj LEWY przycisk.", "Hold the LEFT button.", "Тримайте ЛІВУ кнопку.", "Держите ЛЕВУЮ кнопку.", "SOL düyməni saxlayın.", "Mantén presionado el botón IZQUIERDO.", "Hawakan ang LEFT button.", "Tahan tombol KIRI.", "बायाँ बटन थिचिराख्नुहोस्।"),
