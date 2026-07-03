@@ -338,7 +338,7 @@
         phone: "800 302 302",
         note: tx("Bank w Siechnicach. Przydatny do konta, karty i spraw bankowych.", "Bank in Siechnice. Useful for account, card and banking matters.", "Банк у Siechnice. Корисно для рахунку, картки і банківських справ.", "Банк в Siechnice. Полезно для счета, карты и банковских дел.", "Siechnice-də bank. Hesab, kart və bank işləri üçün faydalıdır.", "Banco en Siechnice. Útil para cuenta, tarjeta y trámites bancarios.", "Bangko sa Siechnice. Para sa account, card at bank matters.", "Bank di Siechnice. Untuk rekening, kartu dan urusan bank.", "Siechnice मा बैंक। खाता, कार्ड र बैंकका कामका लागि।"),
         links: [
-          { url: "https://www.google.com/maps/place/Oddzia%C5%82+PKO+Banku+Polskiego/@51.0333025,17.1562485,1198m/data=!3m2!1e3!5s0x470fdc5d1d840fc7:0x44851fc9a86bd92e!4m10!1m2!2m1!1spko!3m6!1s0x470fdc5cd74ceb8f:0xe9ab50ad0c73dcd4!8m2!3d51.0323083!4d17.1490679!15sCgNwa28iA4gBAZIBBGJhbmvgAQA!16s%2Fg%2F11c1_w075g?hl=pl-pl&entry=ttu", label: tx("Otwórz mapę PKO", "Open PKO map", "Відкрити карту PKO", "Открыть карту PKO", "PKO xəritəsini aç", "Abrir mapa PKO", "Buksan ang mapa ng PKO", "Buka peta PKO", "PKO नक्सा खोल्नुहोस्"), tone: "yellow" }
+          { url: "https://www.google.com/maps/search/?api=1&query=PKO+Bank+Polski+Jana+Paw%C5%82a+II+28%2F30+Siechnice", label: tx("Otwórz mapę do PKO Bank Polski", "Open map to PKO Bank Polski", "Відкрити карту до PKO Bank Polski", "Открыть карту к PKO Bank Polski", "PKO Bank Polski xəritəsini aç", "Abrir mapa a PKO Bank Polski", "Buksan ang mapa papuntang PKO Bank Polski", "Buka peta ke PKO Bank Polski", "PKO Bank Polski को नक्सा खोल्नुहोस्"), tone: "yellow" }
         ]
       },
       {
@@ -350,7 +350,7 @@
         phone: "71 303 22 40",
         note: tx("Drugi bank w Siechnicach. Sprawdź godziny przed wizytą.", "Another bank in Siechnice. Check opening hours before visiting.", "Другий банк у Siechnice. Перевірте години перед візитом.", "Еще один банк в Siechnice. Проверьте часы перед визитом.", "Siechnice-də başqa bank. Getməzdən əvvəl iş saatlarını yoxlayın.", "Otro banco en Siechnice. Revisa el horario antes de ir.", "Isa pang bangko sa Siechnice. Tingnan ang oras bago pumunta.", "Bank lain di Siechnice. Cek jam buka sebelum pergi.", "Siechnice मा अर्को बैंक। जानु अघि समय जाँच गर्नुहोस्।"),
         links: [
-          { url: "https://www.google.com/maps/place/Alior+Bank/@51.0324975,17.1547473,2652m/data=!3m1!1e3!4m10!1m2!2m1!1salior!3m6!1s0x470fdc69c916aa27:0x360d79d4251341dc!8m2!3d51.0284489!4d17.1527781!15sCgVhbGlvciIDiAEBkgEMc2F2aW5nc19iYW5r4AEA!16s%2Fg%2F1ptw7mj8_?hl=pl-pl&entry=ttu", label: tx("Otwórz mapę Alior Bank", "Open Alior Bank map", "Відкрити карту Alior Bank", "Открыть карту Alior Bank", "Alior Bank xəritəsini aç", "Abrir mapa Alior Bank", "Buksan ang mapa ng Alior Bank", "Buka peta Alior Bank", "Alior Bank नक्सा खोल्नुहोस्"), tone: "yellow" }
+          { url: "https://www.google.com/maps/search/?api=1&query=Alior+Bank+Jarz%C4%99binowa+7-13+lok.2+Siechnice", label: tx("Otwórz mapę do Alior Bank", "Open map to Alior Bank", "Відкрити карту до Alior Bank", "Открыть карту к Alior Bank", "Alior Bank xəritəsini aç", "Abrir mapa a Alior Bank", "Buksan ang mapa papuntang Alior Bank", "Buka peta ke Alior Bank", "Alior Bank को नक्सा खोल्नुहोस्"), tone: "yellow" }
         ]
       },
       {
