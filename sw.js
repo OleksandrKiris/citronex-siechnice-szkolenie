@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-03-25";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-03-26";
 
 const CORE_ASSETS = [
   "./",
@@ -16,9 +16,9 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260703-contact-oldwarehouse1",
-  "./assets/js/training-data-20260703-tablet1.js?v=20260703-contact-oldwarehouse1",
-  "./assets/js/training-app-20260703-passagefix1.js?v=20260703-contact-oldwarehouse1",
+  "./assets/css/training.css?v=20260703-bans-pro1",
+  "./assets/js/training-data-20260703-tablet1.js?v=20260703-bans-pro1",
+  "./assets/js/training-app-20260703-passagefix1.js?v=20260703-bans-pro1",
   "./assets/logo-citronex.svg",
   "./assets/orientation/sklarnia-etap-excel.png",
   "./assets/inline/cart_pl.jpg",

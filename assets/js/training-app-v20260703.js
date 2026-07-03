@@ -748,13 +748,89 @@
   }
 
   function renderBans() {
-    const cards = DATA.bans.map((item, index) => `
-      <article class="step-card">
-        <span class="step-number">${index + 1}</span>
-        <div><p>${esc(text(item))}</p></div>
+    const quickRules = [
+      {
+        tone: "red",
+        icon: "ban",
+        title: tx("Nie wnoś", "Do not bring", "Не вносити", "Не приносить", "Gətirməyin", "No traer", "Huwag dalhin", "Jangan bawa", "नल्याउनुहोस्"),
+        text: tx("Jedzenia, napojów, gumy, papierosów i prywatnych rzeczy do strefy pracy.", "Food, drinks, gum, cigarettes and private items into the work zone.", "Їжу, напої, жуйку, сигарети та особисті речі в робочу зону.", "Еду, напитки, жвачку, сигареты и личные вещи в рабочую зону.", "Yemək, içki, saqqız, siqaret və şəxsi əşyaları iş zonasına.", "Comida, bebidas, chicle, cigarrillos y cosas personales a la zona de trabajo.", "Pagkain, inumin, gum, sigarilyo at personal na gamit sa work zone.", "Makanan, minuman, permen karet, rokok dan barang pribadi ke area kerja.", "खाना, पेय, चुइङगम, चुरोट र निजी सामान काम क्षेत्रमा नल्याउनुहोस्।")
+      },
+      {
+        tone: "yellow",
+        icon: "phone",
+        title: tx("Nie używaj bez zgody", "Do not use without permission", "Не користуватися без дозволу", "Не использовать без разрешения", "İcazəsiz istifadə etməyin", "No usar sin permiso", "Huwag gamitin nang walang pahintulot", "Jangan pakai tanpa izin", "अनुमति बिना प्रयोग नगर्नुहोस्"),
+        text: tx("Telefonu, cudzych danych, cudzego PIN-u, taga albo readera.", "Phone, another person's data, PIN, tag or reader.", "Телефон, чужі дані, чужий PIN, тег або рідер.", "Телефон, чужие данные, чужой PIN, тег или ридер.", "Telefonu, başqasının məlumatını, PIN-i, tagını və ya readerini.", "Teléfono, datos de otra persona, PIN, tag o reader.", "Telepono, data ng iba, PIN, tag o reader ng iba.", "Telepon, data orang lain, PIN, tag atau reader orang lain.", "फोन, अरूको डाटा, PIN, tag वा reader प्रयोग नगर्नुहोस्।")
+      },
+      {
+        tone: "blue",
+        icon: "greenhouse",
+        title: tx("Nie wchodź sam", "Do not enter alone", "Не заходити самому", "Не входить одному", "Tək girməyin", "No entrar solo", "Huwag pumasok mag-isa", "Jangan masuk sendiri", "एक्लै नजानुहोस्"),
+        text: tx("Do niewłaściwej szklarni, magazynu albo strefy bez polecenia.", "Into the wrong greenhouse, warehouse or zone without instruction.", "У неправильну теплицю, склад або зону без вказівки.", "В неправильную теплицу, склад или зону без указания.", "Tapşırıq olmadan səhv istixana, anbar və ya zonaya.", "A un invernadero, almacén o zona equivocada sin indicación.", "Sa maling greenhouse, bodega o zone kung walang utos.", "Ke rumah kaca, gudang atau zona yang salah tanpa instruksi.", "निर्देशन बिना गलत ग्रीनहाउस, गोदाम वा क्षेत्रमा नजानुहोस्।")
+      }
+    ];
+
+    const groups = [
+      {
+        title: tx("Rzeczy, których nie wnosimy", "Items we do not bring", "Речі, які не вносимо", "Вещи, которые не приносим", "Gətirmədiyimiz əşyalar", "Cosas que no traemos", "Mga bagay na bawal dalhin", "Barang yang tidak dibawa", "नल्याउने सामान"),
+        lead: tx("Sprawdź kieszenie i torbę przed wejściem do pracy.", "Check pockets and bag before entering work.", "Перевірте кишені і сумку перед входом на роботу.", "Проверьте карманы и сумку перед входом на работу.", "İşə girməzdən əvvəl cibinizi və çantanızı yoxlayın.", "Revisa bolsillos y bolso antes de entrar al trabajo.", "I-check ang bulsa at bag bago pumasok sa trabaho.", "Cek saku dan tas sebelum masuk kerja.", "काममा प्रवेश गर्नु अघि खल्ती र झोला जाँच गर्नुहोस्।"),
+        indexes: [0, 1, 3, 4, 5]
+      },
+      {
+        title: tx("Zachowanie i dane", "Behaviour and personal data", "Поведінка і дані", "Поведение и данные", "Davranış və şəxsi məlumatlar", "Conducta y datos", "Ugali at personal na data", "Perilaku dan data pribadi", "व्यवहार र व्यक्तिगत डाटा"),
+        lead: tx("Używaj tylko swoich danych i pracuj tylko w miejscu, które zostało wskazane.", "Use only your own data and work only in the assigned place.", "Використовуйте тільки свої дані і працюйте тільки у вказаному місці.", "Используйте только свои данные и работайте только в указанном месте.", "Yalnız öz məlumatlarınızı istifadə edin və yalnız göstərilən yerdə işləyin.", "Usa solo tus datos y trabaja solo en el lugar indicado.", "Sariling data lang ang gamitin at magtrabaho lang sa itinalagang lugar.", "Gunakan hanya data sendiri dan bekerja hanya di tempat yang ditentukan.", "आफ्नै डाटा मात्र प्रयोग गर्नुहोस् र तोकिएको ठाउँमा मात्र काम गर्नुहोस्।"),
+        indexes: [2, 6, 7]
+      }
+    ];
+
+    const quickHtml = quickRules.map((item) => `
+      <article class="ban-quick ${esc(item.tone)}">
+        <div class="ban-quick-icon">${iconMap[item.icon] || iconMap.ban}</div>
+        <div>
+          <h3>${esc(text(item.title))}</h3>
+          <p>${esc(text(item.text))}</p>
+        </div>
       </article>
     `).join("");
-    app.innerHTML = `<main class="page">${pageHero()}<section class="steps">${cards}</section></main>`;
+
+    const groupHtml = groups.map((group) => {
+      const cards = group.indexes.map((banIndex, localIndex) => {
+        const ban = DATA.bans[banIndex];
+        if (!ban) return "";
+        return `
+          <article class="ban-card">
+            <div class="ban-card-mark">
+              <span>${localIndex + 1}</span>
+            </div>
+            <p>${esc(text(ban))}</p>
+          </article>
+        `;
+      }).join("");
+      return `
+        <section class="ban-section">
+          <div class="ban-section-head">
+            <h2>${esc(text(group.title))}</h2>
+            <p>${esc(text(group.lead))}</p>
+          </div>
+          <div class="ban-list">${cards}</div>
+        </section>
+      `;
+    }).join("");
+
+    app.innerHTML = `
+      <main class="page bans-page">
+        ${pageHero()}
+        <section class="ban-alert">
+          <div class="ban-alert-icon">${iconMap.ban}</div>
+          <div>
+            <p class="ban-alert-label">${esc(text(tx("Dotyczy szklarni i magazynu", "Applies to greenhouse and warehouse", "Стосується теплиці і складу", "Относится к теплице и складу", "İstixana və anbara aiddir", "Aplica a invernadero y almacén", "Para sa greenhouse at bodega", "Untuk rumah kaca dan gudang", "ग्रीनहाउस र गोदाममा लागू हुन्छ")))}</p>
+            <h2>${esc(text(tx("Przed wejściem sprawdź, czy nie masz rzeczy zakazanych.", "Before entering, check that you do not have forbidden items.", "Перед входом перевірте, чи не маєте заборонених речей.", "Перед входом проверьте, нет ли у вас запрещенных вещей.", "Girməzdən əvvəl qadağan olunmuş əşyalarınızın olmadığını yoxlayın.", "Antes de entrar, revisa que no tengas cosas prohibidas.", "Bago pumasok, i-check kung wala kang bawal na gamit.", "Sebelum masuk, pastikan tidak membawa barang terlarang.", "प्रवेश गर्नु अघि निषेधित सामान छैन भनेर जाँच गर्नुहोस्।")))}</h2>
+            <p>${esc(text(tx("Jeżeli masz coś z listy, zostaw to poza strefą pracy.", "If you have anything from the list, leave it outside the work zone.", "Якщо маєте щось зі списку, залиште це поза робочою зоною.", "Если у вас есть что-то из списка, оставьте это вне рабочей зоны.", "Siyahıdan bir şey varsa, onu iş zonasından kənarda saxlayın.", "Si tienes algo de la lista, déjalo fuera de la zona de trabajo.", "Kung may nasa listahan, iwan ito sa labas ng work zone.", "Jika ada barang dari daftar, tinggalkan di luar area kerja.", "सूचीमा भएको केही छ भने काम क्षेत्र बाहिर छोड्नुहोस्।")))}</p>
+          </div>
+        </section>
+        <section class="ban-quick-grid">${quickHtml}</section>
+        ${groupHtml}
+      </main>
+    `;
   }
 
   function renderTest() {
