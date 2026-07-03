@@ -178,7 +178,7 @@
       <article class="${cardClass(item.tone)}">
         <h3>${esc(text(item.title))}</h3>
         <p>${esc(text(item.note))}</p>
-        <div class="btn-row">${action(item.url, ui("openMap"), item.tone === "red" ? "red" : item.tone === "yellow" ? "yellow" : "blue")}</div>
+        <div class="btn-row">${action(item.url, `${ui("openMap")} - ${text(item.title)}`, item.tone === "red" ? "red" : item.tone === "yellow" ? "yellow" : "blue")}</div>
       </article>
     `).join("");
     const firstSteps = DATA.firstDay.steps.map((item, index) => `
@@ -236,8 +236,8 @@
           <p>${esc(text(warehouseMap.note))}</p>
           <ul class="list">${rules}</ul>
           <div class="btn-row">
-            ${action(warehouseMap.url, ui("openMap"), "yellow")}
-            ${action(oldWarehouseMap.url, `${ui("openMap")} - ${text(oldWarehouseMap.title)}`, "yellow")}
+            ${action(warehouseMap.url, text(tx("Mapa wejść - magazyn", "Entrance map - warehouse", "Карта входів - склад", "Карта входов - склад", "Giriş xəritəsi - anbar", "Mapa de entradas - almacén", "Mapa ng pasukan - bodega", "Peta pintu masuk - gudang", "प्रवेश नक्सा - गोदाम")), "yellow")}
+            ${action(oldWarehouseMap.url, text(oldWarehouseMap.title), "yellow")}
           </div>
         </section>
         ${tabletInstructionMarkup()}
