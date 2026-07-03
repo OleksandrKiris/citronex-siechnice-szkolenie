@@ -918,7 +918,7 @@ details.card[open] > summary::after {
 
 .passage-diagram {
   display: grid;
-  grid-template-columns: 1fr 68px 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(78px, 96px) minmax(0, 1fr);
   gap: 8px;
   align-items: stretch;
 }
@@ -937,14 +937,41 @@ details.card[open] > summary::after {
 }
 
 .work-passage {
+  min-height: 230px;
+  padding: 10px 6px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 16px;
-  background: #fff3c4;
+  background:
+    linear-gradient(90deg, rgba(115, 83, 0, .12), transparent 18%, transparent 82%, rgba(115, 83, 0, .12)),
+    #fff3c4;
   color: #735300;
   font-weight: 950;
+}
+
+.passage-label {
   writing-mode: vertical-rl;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.floor-number-strip.in-passage {
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 6px;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  background: #384238;
+}
+
+.floor-number-strip.in-passage span {
+  min-height: 24px;
+  border-radius: 8px;
+  font-size: 12px;
 }
 
 .floor-number-strip {
@@ -1073,7 +1100,7 @@ details.card[open] > summary::after {
   }
 
   .passage-diagram {
-    grid-template-columns: 1fr 52px 1fr;
+    grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr);
   }
 }
 
@@ -1085,4 +1112,5 @@ details.card[open] > summary::after {
   .tile-title { font-size: 17px; }
   .btn { min-height: 54px; padding-left: 12px; padding-right: 12px; }
   .nave-diagram { grid-template-columns: repeat(5, minmax(32px, 1fr)); }
+  .passage-diagram { grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr); }
 }
