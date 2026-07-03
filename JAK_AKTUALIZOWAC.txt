@@ -8,21 +8,22 @@ LINK DLA PRACOWNIKOW
 https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
 CO JEST WAZNE
-1. To ma byc jedna strona: index.html.
-2. Nie dodawac pol: imie, nazwisko, wybor etapu / miejsce jako formularz.
-3. Nie dodawac gotowych prosb o pomoc do kopiowania.
-4. Magazyn / sortownia nie ma readerow.
-5. Nie zmieniac logiki instrukcji readera bez sprawdzenia z materialami zrodlowymi.
-6. Jezyki maja zostac na gorze strony: PL / EN / UA / RU / AZ.
-7. Strona musi dobrze dzialac na malych telefonach.
+1. Pracownik dostaje jeden link: index.html.
+2. Technicznie system jest podzielony na lekkie moduly HTML, zeby telefon nie ladowal wszystkiego naraz.
+3. Nie dodawac pol: imie, nazwisko, wybor etapu / miejsce jako formularz.
+4. Nie dodawac gotowych prosb o pomoc do kopiowania.
+5. Magazyn / sortownia nie ma readerow.
+6. Nie zmieniac logiki instrukcji readera bez sprawdzenia z materialami zrodlowymi.
+7. Jezyki maja zostac tylko na gorze strony.
+8. Strona musi dobrze dzialac na malych telefonach.
 
 JAK ZROBIC ARCHIWUM PRZED ZMIANA
-Przed duza zmiana skopiuj aktualny index.html do folderu wersje.
+Przed duza zmiana skopiuj aktualna wersje do folderu wersje.
 Przyklad:
 wersje/2026-07-01.html
 
 JAK WGRAC ZMIANY
-1. Zmien index.html.
+1. Zmien potrzebny modul HTML albo pliki w assets/css i assets/js.
 2. Sprawdz lokalnie na telefonowym rozmiarze ekranu.
 3. Zrob commit na galezi main.
 4. Wgraj main na GitHub.
@@ -32,7 +33,7 @@ JAK WGRAC ZMIANY
 
 JAK SPRAWDZIC PO AKTUALIZACJI
 - Strona sie otwiera.
-- PL / EN / UA / RU / AZ dzialaja.
+- PL / EN / UA / RU / AZ / ES / FIL / ID / NE dzialaja.
 - Mapy sa widoczne na poczatku.
 - Zdjecia sie laduja.
 - Reader jest zgodny z instrukcjami.
