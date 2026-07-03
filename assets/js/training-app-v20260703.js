@@ -223,13 +223,14 @@
   function renderWarehouse() {
     const rules = DATA.warehouseRules.map((item) => `<li>${esc(text(item))}</li>`).join("");
     const tabletSteps = DATA.warehouseTablet.steps.map((item) => `<li>${esc(text(item))}</li>`).join("");
-    const warehouseMap = DATA.maps.find((item) => item.url.includes("Staff+Entrance"));
-    const oldWarehouseMap = DATA.maps.find((item) => item.url.includes("5B47"));
+    const warehouseMap = DATA.maps.find((item) => item.key === "warehouse");
+    const oldWarehouseMap = DATA.maps.find((item) => item.key === "oldWarehouse");
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
         <section class="card yellow">
           <h2>${esc(text(DATA.tiles.find((tile) => tile.page === "magazyn").title))}</h2>
+          <p>${esc(text(warehouseMap.note))}</p>
           <ul class="list">${rules}</ul>
           <div class="btn-row">
             ${action(warehouseMap.url, ui("openMap"), "yellow")}
