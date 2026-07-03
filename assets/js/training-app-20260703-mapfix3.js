@@ -510,7 +510,7 @@
       const overlaySteps = (image.steps || imageOverlaySteps).map(readerStepValue).filter(Boolean);
       const overlay = overlaySteps.length ? `
         <div class="reader-image-translation${overlaySteps.length > 5 ? " compact" : ""}">
-          <strong>${esc(text(tx("Tłumaczenie na zdjęciu", "Translation on the image", "Переклад на зображенні", "Перевод на изображении", "Şəkildə tərcümə", "Traducción en la imagen", "Salin sa larawan", "Terjemahan pada gambar", "तस्वीरमा अनुवाद")))}</strong>
+          <strong>${esc(text(tx("Tłumaczenie do zdjęcia", "Translation for the image", "Переклад до зображення", "Перевод к изображению", "Şəkil üçün tərcümə", "Traducción de la imagen", "Salin para sa larawan", "Terjemahan untuk gambar", "तस्वीरको अनुवाद")))}</strong>
           <ol>${overlaySteps.map((step) => `<li>${esc(text(step))}</li>`).join("")}</ol>
         </div>
       ` : "";
@@ -518,8 +518,8 @@
       <figure class="media reader-visual">
         <div class="reader-visual-frame">
           <img src="${esc(image.src)}" alt="${esc(text(image.caption))}">
-          ${overlay}
         </div>
+        ${overlay}
         <figcaption>${esc(text(image.caption))}</figcaption>
       </figure>
     `;
