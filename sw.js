@@ -1,5 +1,5 @@
 ﻿const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-03-20";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-03-21";
 
 const CORE_ASSETS = [
   "./",
@@ -16,9 +16,9 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260703-span-center1",
-  "./assets/js/training-data-20260703-office-route1.js",
-  "./assets/js/training-app-20260703-readerfix1.js",
+  "./assets/css/training.css?v=20260703-tablet1",
+  "./assets/js/training-data-20260703-tablet1.js",
+  "./assets/js/training-app-20260703-tablet1.js",
   "./assets/logo-citronex.svg",
   "./assets/orientation/sklarnia-etap-excel.png",
   "./assets/inline/cart_pl.jpg",
@@ -46,7 +46,15 @@ const CORE_ASSETS = [
   "./assets/inline/stage6_4.jpg",
   "./assets/inline/stage6_5.jpg",
   "./assets/warehouse/magazyn-wejscie-1.jpg",
-  "./assets/warehouse/magazyn-wejscie-2.jpg"
+  "./assets/warehouse/magazyn-wejscie-2.jpg",
+  "./assets/tablet/tablet-login-pin.jpg",
+  "./assets/tablet/tablet-start-work.jpg",
+  "./assets/tablet/tablet-activity.jpg",
+  "./assets/tablet/tablet-change-activity.jpg",
+  "./assets/tablet/tablet-break-start.jpg",
+  "./assets/tablet/tablet-after-break-activity.jpg",
+  "./assets/tablet/tablet-work-end.jpg",
+  "./assets/tablet/tablet-logout.jpg"
 ];
 
 self.addEventListener("install", (event) => {

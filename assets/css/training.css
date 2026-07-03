@@ -389,6 +389,67 @@ h3 {
     var(--surface);
 }
 
+.tablet-mode-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 14px;
+}
+
+.tablet-mode-btn {
+  min-height: 118px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.tablet-mode-btn strong,
+.tablet-mode-btn small {
+  display: block;
+  min-width: 0;
+}
+
+.tablet-mode-copy {
+  min-width: 0;
+}
+
+.tablet-mode-btn strong {
+  margin: 2px 0 6px;
+  font-size: 17px;
+  line-height: 1.15;
+  font-weight: 950;
+}
+
+.tablet-mode-btn small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 800;
+}
+
+.tablet-mode-btn.is-active {
+  border-color: rgba(20,103,179,.52);
+  box-shadow: 0 14px 32px rgba(20,103,179,.18);
+}
+
+.tablet-mode-btn[data-tone="green"].is-active {
+  border-color: rgba(32,133,91,.55);
+  box-shadow: 0 14px 32px rgba(32,133,91,.18);
+}
+
+.tablet-mode-panel:not(.is-active) {
+  display: none;
+}
+
 .tablet-steps {
   display: grid;
   gap: 12px;
@@ -445,6 +506,31 @@ h3 {
 .tablet-screen strong {
   overflow-wrap: anywhere;
   font-size: 16px;
+}
+
+.tablet-shot {
+  margin: 12px 0 0;
+  border: 1px solid rgba(15,23,42,.1);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7);
+}
+
+.tablet-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #eef3f8;
+}
+
+.tablet-shot figcaption {
+  padding: 9px 11px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 details.card {
@@ -1085,6 +1171,14 @@ details.card[open] > summary::after {
     grid-template-columns: 1fr;
   }
 
+  .tablet-mode-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .tablet-mode-btn {
+    min-height: 96px;
+  }
+
   .greenhouse-map {
     grid-template-columns: 1fr 34px 1fr;
     min-height: 220px;
@@ -1111,6 +1205,8 @@ details.card[open] > summary::after {
   .icon-box { width: 42px; height: 42px; flex-basis: 42px; }
   .tile-title { font-size: 17px; }
   .btn { min-height: 54px; padding-left: 12px; padding-right: 12px; }
+  .tablet-step { grid-template-columns: 36px minmax(0, 1fr); padding: 12px; }
+  .tablet-shot { border-radius: 12px; }
   .nave-diagram { grid-template-columns: repeat(5, minmax(32px, 1fr)); }
   .passage-diagram { grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr); }
 }

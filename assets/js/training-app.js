@@ -247,33 +247,41 @@
             <figure class="media"><img src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
           </div>
         </section>
-        ${tabletInstructionMarkup()}
+        ${tabletInstructionMarkup("warehouse", true)}
       </main>
     `;
   }
 
-  function tabletInstructionMarkup() {
-    const tablet = DATA.warehouseTablet;
-    const steps = tablet.steps.map((item, index) => `
+  function tabletInstructionMarkup(mode = "warehouse", active = true) {
+    const tablet = mode === "greenhouse" ? DATA.greenhouseTablet : DATA.warehouseTablet;
+    const stepsSource = tablet.steps || DATA.warehouseTablet.steps;
+    const steps = stepsSource.map((item, index) => `
       <article class="tablet-step">
         <div class="step-number">${index + 1}</div>
         <div class="tablet-step-body">
           <h3>${esc(text(item.title))}</h3>
           <p>${esc(text(item.note))}</p>
-          <div class="tablet-screen" aria-label="${esc(text(item.screen))}">
-            <span class="tablet-screen-top">${esc(text(tx("Tablet", "Tablet", "Планшет", "Планшет", "Planşet", "Tablet", "Tablet", "Tablet", "ट्याबलेट")))}</span>
-            <strong>${esc(text(item.screen))}</strong>
-          </div>
+          ${item.image ? `
+            <figure class="tablet-shot">
+              <img loading="eager" src="${esc(item.image)}" alt="${esc(text(item.screen))}">
+              <figcaption>${esc(text(item.screen))}</figcaption>
+            </figure>
+          ` : `
+            <div class="tablet-screen" aria-label="${esc(text(item.screen))}">
+              <span class="tablet-screen-top">${esc(text(tx("Tablet", "Tablet", "Планшет", "Планшет", "Planşet", "Tablet", "Tablet", "Tablet", "ट्याबलेट")))}</span>
+              <strong>${esc(text(item.screen))}</strong>
+            </div>
+          `}
         </div>
       </article>
     `).join("");
     const tips = (tablet.tips || []).map((item) => `<li>${esc(text(item))}</li>`).join("");
     return `
-      <section class="card blue section tablet-guide">
+      <section class="card ${mode === "greenhouse" ? "green" : "blue"} section tablet-guide tablet-mode-panel${active ? " is-active" : ""}" data-tablet-panel="${esc(mode)}">
         <div class="city-card-head">
           <span class="city-card-icon">${iconMap.tablet}</span>
           <div>
-            <span class="city-card-tag">${esc(text(tx("Instruktaż magazynowy", "Warehouse training", "Інструктаж складу", "Инструктаж склада", "Anbar təlimatı", "Instrucción de almacén", "Pagsasanay sa bodega", "Instruksi gudang", "गोदाम निर्देशन")))}</span>
+            <span class="city-card-tag">${esc(text(tablet.tag || tx("Instruktaż tablet", "Tablet training", "Інструктаж планшета", "Инструктаж планшета", "Planşet təlimatı", "Instrucción de tablet", "Tablet training", "Instruksi tablet", "ट्याबलेट निर्देशन")))}</span>
             <h2>${esc(text(tablet.title))}</h2>
           </div>
         </div>
@@ -286,7 +294,51 @@
   }
 
   function renderTablet() {
-    app.innerHTML = `<main class="page">${pageHero()}${tabletInstructionMarkup()}</main>`;
+    const modes = [
+      { id: "greenhouse", tone: "green", title: DATA.greenhouseTablet.title, text: DATA.greenhouseTablet.lead },
+      { id: "warehouse", tone: "blue", title: DATA.warehouseTablet.title, text: DATA.warehouseTablet.lead }
+    ];
+    const tabs = modes.map((item, index) => `
+      <button class="tablet-mode-btn ${index === 0 ? "is-active" : ""}" type="button" data-tablet-target="${esc(item.id)}" data-tone="${esc(item.tone)}">
+        <span class="icon-box">${iconMap.tablet}</span>
+        <span class="tablet-mode-copy">
+          <strong>${esc(text(item.title))}</strong>
+          <small>${esc(text(item.text))}</small>
+        </span>
+      </button>
+    `).join("");
+    app.innerHTML = `
+      <main class="page">
+        ${pageHero()}
+        <section class="tablet-mode-tabs" aria-label="${esc(text(tx("Wybierz instrukcję tabletu", "Choose tablet instruction", "Оберіть інструкцію планшета", "Выберите инструкцию планшета", "Planşet təlimatını seçin", "Elige instrucción de tablet", "Piliin ang tablet instruction", "Pilih instruksi tablet", "ट्याबलेट निर्देशन छान्नुहोस्")))}">${tabs}</section>
+        ${tabletInstructionMarkup("greenhouse", true)}
+        ${tabletInstructionMarkup("warehouse", false)}
+      </main>
+    `;
+    bindTabletModeTabs();
+  }
+
+  function bindTabletModeTabs() {
+    const buttons = [...document.querySelectorAll("[data-tablet-target]")];
+    const panels = [...document.querySelectorAll("[data-tablet-panel]")];
+    if (!buttons.length || !panels.length) return;
+
+    const activate = (target) => {
+      buttons.forEach((button) => button.classList.toggle("is-active", button.dataset.tabletTarget === target));
+      panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.tabletPanel === target));
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activate(button.dataset.tabletTarget);
+        history.replaceState(null, "", `#${button.dataset.tabletTarget}`);
+      });
+    });
+
+    const fromHash = location.hash.replace("#", "");
+    if (fromHash && buttons.some((button) => button.dataset.tabletTarget === fromHash)) {
+      activate(fromHash);
+    }
   }
 
   function renderGreenhouse() {
