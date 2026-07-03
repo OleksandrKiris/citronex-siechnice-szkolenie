@@ -247,33 +247,41 @@
             <figure class="media"><img src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
           </div>
         </section>
-        ${tabletInstructionMarkup()}
+        ${tabletInstructionMarkup("warehouse", true)}
       </main>
     `;
   }
 
-  function tabletInstructionMarkup() {
-    const tablet = DATA.warehouseTablet;
-    const steps = tablet.steps.map((item, index) => `
+  function tabletInstructionMarkup(mode = "warehouse", active = true) {
+    const tablet = mode === "greenhouse" ? DATA.greenhouseTablet : DATA.warehouseTablet;
+    const stepsSource = tablet.steps || DATA.warehouseTablet.steps;
+    const steps = stepsSource.map((item, index) => `
       <article class="tablet-step">
         <div class="step-number">${index + 1}</div>
         <div class="tablet-step-body">
           <h3>${esc(text(item.title))}</h3>
           <p>${esc(text(item.note))}</p>
-          <div class="tablet-screen" aria-label="${esc(text(item.screen))}">
-            <span class="tablet-screen-top">${esc(text(tx("Tablet", "Tablet", "Планшет", "Планшет", "Planşet", "Tablet", "Tablet", "Tablet", "ट्याबलेट")))}</span>
-            <strong>${esc(text(item.screen))}</strong>
-          </div>
+          ${item.image ? `
+            <figure class="tablet-shot">
+              <img loading="eager" src="${esc(item.image)}" alt="${esc(text(item.screen))}">
+              <figcaption>${esc(text(item.screen))}</figcaption>
+            </figure>
+          ` : `
+            <div class="tablet-screen" aria-label="${esc(text(item.screen))}">
+              <span class="tablet-screen-top">${esc(text(tx("Tablet", "Tablet", "Планшет", "Планшет", "Planşet", "Tablet", "Tablet", "Tablet", "ट्याबलेट")))}</span>
+              <strong>${esc(text(item.screen))}</strong>
+            </div>
+          `}
         </div>
       </article>
     `).join("");
     const tips = (tablet.tips || []).map((item) => `<li>${esc(text(item))}</li>`).join("");
     return `
-      <section class="card blue section tablet-guide">
+      <section class="card ${mode === "greenhouse" ? "green" : "blue"} section tablet-guide tablet-mode-panel${active ? " is-active" : ""}" data-tablet-panel="${esc(mode)}">
         <div class="city-card-head">
           <span class="city-card-icon">${iconMap.tablet}</span>
           <div>
-            <span class="city-card-tag">${esc(text(tx("Instruktaż magazynowy", "Warehouse training", "Інструктаж складу", "Инструктаж склада", "Anbar təlimatı", "Instrucción de almacén", "Pagsasanay sa bodega", "Instruksi gudang", "गोदाम निर्देशन")))}</span>
+            <span class="city-card-tag">${esc(text(tablet.tag || tx("Instruktaż tablet", "Tablet training", "Інструктаж планшета", "Инструктаж планшета", "Planşet təlimatı", "Instrucción de tablet", "Tablet training", "Instruksi tablet", "ट्याबलेट निर्देशन")))}</span>
             <h2>${esc(text(tablet.title))}</h2>
           </div>
         </div>
@@ -286,7 +294,51 @@
   }
 
   function renderTablet() {
-    app.innerHTML = `<main class="page">${pageHero()}${tabletInstructionMarkup()}</main>`;
+    const modes = [
+      { id: "greenhouse", tone: "green", title: DATA.greenhouseTablet.title, text: DATA.greenhouseTablet.lead },
+      { id: "warehouse", tone: "blue", title: DATA.warehouseTablet.title, text: DATA.warehouseTablet.lead }
+    ];
+    const tabs = modes.map((item, index) => `
+      <button class="tablet-mode-btn ${index === 0 ? "is-active" : ""}" type="button" data-tablet-target="${esc(item.id)}" data-tone="${esc(item.tone)}">
+        <span class="icon-box">${iconMap.tablet}</span>
+        <span class="tablet-mode-copy">
+          <strong>${esc(text(item.title))}</strong>
+          <small>${esc(text(item.text))}</small>
+        </span>
+      </button>
+    `).join("");
+    app.innerHTML = `
+      <main class="page">
+        ${pageHero()}
+        <section class="tablet-mode-tabs" aria-label="${esc(text(tx("Wybierz instrukcję tabletu", "Choose tablet instruction", "Оберіть інструкцію планшета", "Выберите инструкцию планшета", "Planşet təlimatını seçin", "Elige instrucción de tablet", "Piliin ang tablet instruction", "Pilih instruksi tablet", "ट्याबलेट निर्देशन छान्नुहोस्")))}">${tabs}</section>
+        ${tabletInstructionMarkup("greenhouse", true)}
+        ${tabletInstructionMarkup("warehouse", false)}
+      </main>
+    `;
+    bindTabletModeTabs();
+  }
+
+  function bindTabletModeTabs() {
+    const buttons = [...document.querySelectorAll("[data-tablet-target]")];
+    const panels = [...document.querySelectorAll("[data-tablet-panel]")];
+    if (!buttons.length || !panels.length) return;
+
+    const activate = (target) => {
+      buttons.forEach((button) => button.classList.toggle("is-active", button.dataset.tabletTarget === target));
+      panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.tabletPanel === target));
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activate(button.dataset.tabletTarget);
+        history.replaceState(null, "", `#${button.dataset.tabletTarget}`);
+      });
+    });
+
+    const fromHash = location.hash.replace("#", "");
+    if (fromHash && buttons.some((button) => button.dataset.tabletTarget === fromHash)) {
+      activate(fromHash);
+    }
   }
 
   function renderGreenhouse() {
@@ -296,7 +348,7 @@
       tx("Nawa", "Nave", "Нава", "Нава", "Nava", "Nave", "Nave", "Nave", "नावा"),
       tx("Wejście", "Entrance", "Вхід", "Вход", "Giriş", "Entrada", "Pasukan", "Pintu masuk", "प्रवेश"),
       tx("Rząd", "Row", "Ряд", "Ряд", "Sıra", "Fila", "Row", "Baris", "लाइन"),
-      tx("Przęsło", "Span", "Прясло", "Прясло", "Bölmə", "Tramo", "Span", "Bentang", "स्पान")
+      tx("Strona rzędu", "Row side", "Сторона ряду", "Сторона ряда", "Sıranın tərəfi", "Lado de la fila", "Bahagi ng hanay", "Sisi baris", "लाइनको भाग")
     ];
     const flowChips = flow.map((item, index) => `<span class="flow-chip">${index + 1}. ${esc(text(item))}</span>`).join("");
     const workCards = [
@@ -313,7 +365,7 @@
         tone: "blue",
         title: tx("W rzędzie", "Inside the row", "У ряду", "В ряду", "Sıranın içində", "Dentro de la fila", "Sa loob ng hanay", "Di dalam baris", "लाइन भित्र"),
         items: [
-          tx("Pracuj tylko w wyznaczonym rzędzie i na swojej stronie/przęśle.", "Work only in the assigned row and on your side/span.", "Працюйте тільки у призначеному ряду і на своїй стороні/пряслі.", "Работайте только в назначенном ряду и на своей стороне/прясле.", "Yalnız təyin edilmiş sırada və öz tərəfinizdə/bölmənizdə işləyin.", "Trabaja solo en la fila asignada y en tu lado/tramo.", "Magtrabaho lang sa nakatalagang hanay at sa sarili mong bahagi.", "Bekerja hanya di baris yang ditentukan dan di sisi/bentang Anda.", "तोकेको लाइन र आफ्नो भाग/स्पानमा मात्र काम गर्नुहोस्।"),
+          tx("Pracuj tylko w wyznaczonym rzędzie i na swojej stronie rzędu.", "Work only in the assigned row and on your row side.", "Працюйте тільки у призначеному ряду і на своїй стороні ряду.", "Работайте только в назначенном ряду и на своей стороне ряда.", "Yalnız təyin edilmiş sırada və sıranın öz tərəfinizdə işləyin.", "Trabaja solo en la fila asignada y en tu lado de la fila.", "Magtrabaho lang sa nakatalagang hanay at sa sarili mong bahagi ng hanay.", "Bekerja hanya di baris yang ditentukan dan di sisi baris Anda.", "तोकेको लाइन र लाइनको आफ्नो भागमा मात्र काम गर्नुहोस्।"),
           tx("Przejście zostawiaj przejezdne: narzędzia, wózek i odpady nie mogą blokować drogi.", "Keep the passage clear: tools, cart and waste must not block the way.", "Залишайте прохід вільним: інструменти, візок і відходи не повинні блокувати дорогу.", "Оставляйте проход свободным: инструменты, тележка и отходы не должны блокировать дорогу.", "Keçidi açıq saxlayın: alətlər, araba və tullantı yolu bağlamamalıdır.", "Deja el pasillo libre: herramientas, carro y residuos no deben bloquear el camino.", "Panatilihing maluwag ang daan: kagamitan, cart at basura ay hindi dapat humarang.", "Jaga lorong tetap kosong: alat, troli dan sampah tidak boleh menghalangi.", "बाटो खाली राख्नुहोस्: औजार, ट्रली र फोहोरले बाटो रोक्नु हुँदैन।"),
           tx("Nie przechodź na cudzy rząd albo drugą stronę bez polecenia.", "Do not move to another person's row or the other side without instruction.", "Не переходьте на чужий ряд або іншу сторону без вказівки.", "Не переходите на чужой ряд или другую сторону без указания.", "Tapşırıq olmadan başqa sıraya və ya o biri tərəfə keçməyin.", "No pases a otra fila o al otro lado sin instrucción.", "Huwag lumipat sa ibang hanay o kabilang bahagi kung walang utos.", "Jangan pindah ke baris orang lain atau sisi lain tanpa instruksi.", "निर्देशन बिना अरूको लाइन वा अर्को भागमा नजानुहोस्।")
         ]
@@ -378,18 +430,18 @@
           <article class="step-card">
             <span class="step-number">3</span>
             <div>
-              <h3>${esc(text(tx("Wejście do rzędu", "Entry into the row", "Вхід у ряд", "Вход в ряд", "Sıraya giriş", "Entrada al pasillo", "Pasok sa row", "Masuk ke baris", "पङ्क्तिमा प्रवेश")))}</h3>
-              <p>${esc(text(tx("Patrzysz w przejście. Z lewej strony masz lewe przęsło, z prawej prawe przęsło. Praca odbywa się w rzędzie, a nie 'obok rzędu'.", "You look into the passage. On the left is the left span; on the right is the right span. Work is in the row, not next to the row.", "Ви дивитесь у прохід. Зліва ліве прясло, справа праве. Робота відбувається в ряду, не біля ряду.", "Вы смотрите в проход. Слева левое прясло, справа правое. Работа в ряду, не возле ряда.", "Keçidə baxırsınız. Solda sol bölmə, sağda sağ bölmə. İş sıranın içindədir, sıranın yanında deyil.", "Miras al pasillo. A la izquierda está el tramo izquierdo, a la derecha el derecho. Se trabaja dentro de la fila, no al lado.", "Tumingin sa daanan. Sa kaliwa ang kaliwang seksyon, sa kanan ang kanang seksyon. Ang trabaho ay nasa hanay, hindi sa tabi.", "Lihat ke lorong. Kiri = bentang kiri, kanan = bentang kanan. Kerja di dalam baris, bukan di samping.", "पासेजतिर हेर्नुहोस्। बायाँमा left span, दायाँमा right span। काम पङ्क्तिभित्र हुन्छ, पङ्क्तिको छेउमा होइन।")))}</p>
+              <h3>${esc(text(tx("Wejście do rzędu", "Entry into the row", "Вхід у ряд", "Вход в ряд", "Sıraya giriş", "Entrada a la fila", "Pagpasok sa hanay", "Masuk ke baris", "पङ्क्तिमा प्रवेश")))}</h3>
+              <p>${esc(text(tx("Patrzysz w przejście. Po lewej jest lewa strona, czyli lewy rząd. Po prawej jest prawa strona, czyli prawy rząd. Praca odbywa się w rzędzie, a nie 'obok rzędu'.", "You look into the passage. On the left is the left side, the left row. On the right is the right side, the right row. Work is in the row, not next to the row.", "Ви дивитесь у прохід. Зліва є ліва сторона, тобто лівий ряд. Справа є права сторона, тобто правий ряд. Робота відбувається в ряду, не біля ряду.", "Вы смотрите в проход. Слева левая сторона, то есть левый ряд. Справа правая сторона, то есть правый ряд. Работа в ряду, не возле ряда.", "Keçidə baxırsınız. Solda sol tərəf, yəni sol sıra var. Sağda sağ tərəf, yəni sağ sıra var. İş sıranın içindədir, sıranın yanında deyil.", "Miras al pasillo. A la izquierda está el lado izquierdo, es decir la fila izquierda. A la derecha está el lado derecho, es decir la fila derecha. Se trabaja dentro de la fila, no al lado.", "Tumingin sa daanan. Sa kaliwa ang kaliwang bahagi, ibig sabihin kaliwang hanay. Sa kanan ang kanang bahagi, ibig sabihin kanang hanay. Ang trabaho ay nasa hanay, hindi sa tabi.", "Lihat ke lorong. Di kiri ada sisi kiri, yaitu baris kiri. Di kanan ada sisi kanan, yaitu baris kanan. Kerja di dalam baris, bukan di samping.", "पासेजतिर हेर्नुहोस्। बायाँतिर बायाँ भाग, अर्थात् बायाँ लाइन हुन्छ। दायाँतिर दायाँ भाग, अर्थात् दायाँ लाइन हुन्छ। काम लाइनभित्र हुन्छ, लाइनको छेउमा होइन।")))}</p>
               <div class="schema">
                 <div class="passage-diagram">
-                  <div class="span-side">${esc(text(tx("lewe przęsło", "left span", "ліве прясло", "левое прясло", "sol bölmə", "tramo izquierdo", "kaliwang seksyon", "bentang kiri", "बायाँ span")))}</div>
+                  <div class="row-side">${esc(text(tx("lewa strona / lewy rząd", "left side / left row", "ліва сторона / лівий ряд", "левая сторона / левый ряд", "sol tərəf / sol sıra", "lado izquierdo / fila izquierda", "kaliwang bahagi / kaliwang hanay", "sisi kiri / baris kiri", "बायाँ भाग / बायाँ लाइन")))}</div>
                   <div class="work-passage">
                     <span class="passage-label">${esc(text(tx("przejście", "passage", "прохід", "проход", "keçid", "pasillo", "daanan", "lorong", "पासेज")))}</span>
                     <div class="floor-number-strip in-passage" aria-label="${esc(text(tx("Numeracja przęseł na podłodze", "Section numbers on the floor", "Нумерація секцій на підлозі", "Нумерация секций на полу", "Yerdə bölmə nömrələri", "Números de sección en el suelo", "Mga numero ng seksyon sa sahig", "Nomor bagian di lantai", "भुइँमा सेक्शन नम्बर"))) }">
-                      <span>1</span><span>2</span><span>3</span><span>...</span><span>25</span><span>26</span><span>27</span>
+                      <span>27</span><span>26</span><span>25</span><span>...</span><span>3</span><span>2</span><span>1</span>
                     </div>
                   </div>
-                  <div class="span-side">${esc(text(tx("prawe przęsło", "right span", "праве прясло", "правое прясло", "sağ bölmə", "tramo derecho", "kanang seksyon", "bentang kanan", "दायाँ span")))}</div>
+                  <div class="row-side">${esc(text(tx("prawa strona / prawy rząd", "right side / right row", "права сторона / правий ряд", "правая сторона / правый ряд", "sağ tərəf / sağ sıra", "lado derecho / fila derecha", "kanang bahagi / kanang hanay", "sisi kanan / baris kanan", "दायाँ भाग / दायाँ लाइन")))}</div>
                 </div>
                 <p class="floor-note">${esc(text(tx("Numer przęsła jest oznaczony na podłodze w przejściu. Często numeracja jest od 1 do 27, ale na różnych szklarniach może być inna. Zawsze sprawdzaj numer w tej szklarni.", "The section number is marked on the floor in the passage. Often the numbers go from 1 to 27, but they can be different in different greenhouses. Always check the number in that greenhouse.", "Номер секції позначений на підлозі в проході. Часто нумерація йде від 1 до 27, але в різних теплицях може бути інакше. Завжди перевіряйте номер у цій теплиці.", "Номер секции указан на полу в проходе. Часто нумерация идет от 1 до 27, но в разных теплицах может быть по-разному. Всегда проверяйте номер в этой теплице.", "Bölmənin nömrəsi keçiddə yerdə göstərilir. Çox vaxt nömrələr 1-dən 27-yə qədərdir, amma müxtəlif istixanalarda fərqli ola bilər. Həmişə həmin istixanada nömrəni yoxlayın.", "El número de sección está marcado en el suelo del pasillo. A menudo va del 1 al 27, pero puede ser diferente según el invernadero. Revisa siempre el número en ese invernadero.", "Nakasulat sa sahig ng daanan ang numero ng seksyon. Kadalasan 1 hanggang 27, pero maaaring iba sa bawat bahay-taniman. Palaging tingnan ang numero sa bahay-taniman na iyon.", "Nomor bagian tertulis di lantai lorong. Biasanya dari 1 sampai 27, tetapi bisa berbeda di tiap rumah kaca. Selalu cek nomor di rumah kaca itu.", "सेक्शन नम्बर पासेजको भुइँमा लेखिएको हुन्छ। प्रायः १ देखि २७ सम्म हुन्छ, तर फरक ग्रीनहाउसमा फरक हुन सक्छ। सधैं त्यही ग्रीनहाउसको नम्बर जाँच गर्नुहोस्।")))}</p>
               </div>
@@ -425,6 +477,10 @@
     `;
   }
 
+  function readerStepValue(item) {
+    return item && typeof item === "object" && ("text" in item || "note" in item || "tone" in item) ? item.text : item;
+  }
+
   function readerStepList(steps) {
     return (steps || []).map((item, index) => readerStep(item, index)).join("");
   }
@@ -446,15 +502,28 @@
       ? active.sections.map(readerSection).join("")
       : `<div class="steps">${readerStepList(active.steps)}</div>`;
     const tips = (active.tips || []).map((tip) => `<li>${esc(text(tip))}</li>`).join("");
+    const imageOverlaySteps = (active.imageSteps || active.steps || []).map(readerStepValue).filter(Boolean);
     const imageBlocks = [
       active.image ? { src: active.image, caption: active.imageCaption } : null,
       ...(active.images || [])
-    ].filter(Boolean).map((image) => `
-      <figure class="media">
-        <img src="${esc(image.src)}" alt="${esc(text(image.caption))}">
+    ].filter(Boolean).map((image) => {
+      const overlaySteps = (image.steps || imageOverlaySteps).map(readerStepValue).filter(Boolean);
+      const overlay = overlaySteps.length ? `
+        <div class="reader-image-translation${overlaySteps.length > 5 ? " compact" : ""}">
+          <strong>${esc(text(tx("Tłumaczenie na zdjęciu", "Translation on the image", "Переклад на зображенні", "Перевод на изображении", "Şəkildə tərcümə", "Traducción en la imagen", "Salin sa larawan", "Terjemahan pada gambar", "तस्वीरमा अनुवाद")))}</strong>
+          <ol>${overlaySteps.map((step) => `<li>${esc(text(step))}</li>`).join("")}</ol>
+        </div>
+      ` : "";
+      return `
+      <figure class="media reader-visual">
+        <div class="reader-visual-frame">
+          <img src="${esc(image.src)}" alt="${esc(text(image.caption))}">
+          ${overlay}
+        </div>
         <figcaption>${esc(text(image.caption))}</figcaption>
       </figure>
-    `).join("");
+    `;
+    }).join("");
 
     app.innerHTML = `
       <main class="page">
@@ -520,7 +589,7 @@
               <div class="person-name">${esc(person.name)}</div>
               <div class="person-role">${esc(role)}</div>
             </div>
-            ${groupLabel ? `<span class="mini-tag">${esc(groupLabel)}</span>` : ""}
+            ${groupLabel && !person.role ? `<span class="mini-tag">${esc(groupLabel)}</span>` : ""}
           </div>
           ${phoneActions(person.phone, `${ui("whatsapp")} ${esc(message)}`)}
         </article>
@@ -679,13 +748,89 @@
   }
 
   function renderBans() {
-    const cards = DATA.bans.map((item, index) => `
-      <article class="step-card">
-        <span class="step-number">${index + 1}</span>
-        <div><p>${esc(text(item))}</p></div>
+    const quickRules = [
+      {
+        tone: "red",
+        icon: "ban",
+        title: tx("Nie wnoś", "Do not bring", "Не вносити", "Не приносить", "Gətirməyin", "No traer", "Huwag dalhin", "Jangan bawa", "नल्याउनुहोस्"),
+        text: tx("Jedzenia, napojów, gumy, papierosów i prywatnych rzeczy do strefy pracy.", "Food, drinks, gum, cigarettes and private items into the work zone.", "Їжу, напої, жуйку, сигарети та особисті речі в робочу зону.", "Еду, напитки, жвачку, сигареты и личные вещи в рабочую зону.", "Yemək, içki, saqqız, siqaret və şəxsi əşyaları iş zonasına.", "Comida, bebidas, chicle, cigarrillos y cosas personales a la zona de trabajo.", "Pagkain, inumin, gum, sigarilyo at personal na gamit sa work zone.", "Makanan, minuman, permen karet, rokok dan barang pribadi ke area kerja.", "खाना, पेय, चुइङगम, चुरोट र निजी सामान काम क्षेत्रमा नल्याउनुहोस्।")
+      },
+      {
+        tone: "yellow",
+        icon: "phone",
+        title: tx("Nie używaj bez zgody", "Do not use without permission", "Не користуватися без дозволу", "Не использовать без разрешения", "İcazəsiz istifadə etməyin", "No usar sin permiso", "Huwag gamitin nang walang pahintulot", "Jangan pakai tanpa izin", "अनुमति बिना प्रयोग नगर्नुहोस्"),
+        text: tx("Telefonu, cudzych danych, cudzego PIN-u, taga albo readera.", "Phone, another person's data, PIN, tag or reader.", "Телефон, чужі дані, чужий PIN, тег або рідер.", "Телефон, чужие данные, чужой PIN, тег или ридер.", "Telefonu, başqasının məlumatını, PIN-i, tagını və ya readerini.", "Teléfono, datos de otra persona, PIN, tag o reader.", "Telepono, data ng iba, PIN, tag o reader ng iba.", "Telepon, data orang lain, PIN, tag atau reader orang lain.", "फोन, अरूको डाटा, PIN, tag वा reader प्रयोग नगर्नुहोस्।")
+      },
+      {
+        tone: "blue",
+        icon: "greenhouse",
+        title: tx("Nie wchodź sam", "Do not enter alone", "Не заходити самому", "Не входить одному", "Tək girməyin", "No entrar solo", "Huwag pumasok mag-isa", "Jangan masuk sendiri", "एक्लै नजानुहोस्"),
+        text: tx("Do niewłaściwej szklarni, magazynu albo strefy bez polecenia.", "Into the wrong greenhouse, warehouse or zone without instruction.", "У неправильну теплицю, склад або зону без вказівки.", "В неправильную теплицу, склад или зону без указания.", "Tapşırıq olmadan səhv istixana, anbar və ya zonaya.", "A un invernadero, almacén o zona equivocada sin indicación.", "Sa maling greenhouse, bodega o zone kung walang utos.", "Ke rumah kaca, gudang atau zona yang salah tanpa instruksi.", "निर्देशन बिना गलत ग्रीनहाउस, गोदाम वा क्षेत्रमा नजानुहोस्।")
+      }
+    ];
+
+    const groups = [
+      {
+        title: tx("Rzeczy, których nie wnosimy", "Items we do not bring", "Речі, які не вносимо", "Вещи, которые не приносим", "Gətirmədiyimiz əşyalar", "Cosas que no traemos", "Mga bagay na bawal dalhin", "Barang yang tidak dibawa", "नल्याउने सामान"),
+        lead: tx("Sprawdź kieszenie i torbę przed wejściem do pracy.", "Check pockets and bag before entering work.", "Перевірте кишені і сумку перед входом на роботу.", "Проверьте карманы и сумку перед входом на работу.", "İşə girməzdən əvvəl cibinizi və çantanızı yoxlayın.", "Revisa bolsillos y bolso antes de entrar al trabajo.", "I-check ang bulsa at bag bago pumasok sa trabaho.", "Cek saku dan tas sebelum masuk kerja.", "काममा प्रवेश गर्नु अघि खल्ती र झोला जाँच गर्नुहोस्।"),
+        indexes: [0, 1, 3, 4, 5]
+      },
+      {
+        title: tx("Zachowanie i dane", "Behaviour and personal data", "Поведінка і дані", "Поведение и данные", "Davranış və şəxsi məlumatlar", "Conducta y datos", "Ugali at personal na data", "Perilaku dan data pribadi", "व्यवहार र व्यक्तिगत डाटा"),
+        lead: tx("Używaj tylko swoich danych i pracuj tylko w miejscu, które zostało wskazane.", "Use only your own data and work only in the assigned place.", "Використовуйте тільки свої дані і працюйте тільки у вказаному місці.", "Используйте только свои данные и работайте только в указанном месте.", "Yalnız öz məlumatlarınızı istifadə edin və yalnız göstərilən yerdə işləyin.", "Usa solo tus datos y trabaja solo en el lugar indicado.", "Sariling data lang ang gamitin at magtrabaho lang sa itinalagang lugar.", "Gunakan hanya data sendiri dan bekerja hanya di tempat yang ditentukan.", "आफ्नै डाटा मात्र प्रयोग गर्नुहोस् र तोकिएको ठाउँमा मात्र काम गर्नुहोस्।"),
+        indexes: [2, 6, 7]
+      }
+    ];
+
+    const quickHtml = quickRules.map((item) => `
+      <article class="ban-quick ${esc(item.tone)}">
+        <div class="ban-quick-icon">${iconMap[item.icon] || iconMap.ban}</div>
+        <div>
+          <h3>${esc(text(item.title))}</h3>
+          <p>${esc(text(item.text))}</p>
+        </div>
       </article>
     `).join("");
-    app.innerHTML = `<main class="page">${pageHero()}<section class="steps">${cards}</section></main>`;
+
+    const groupHtml = groups.map((group) => {
+      const cards = group.indexes.map((banIndex, localIndex) => {
+        const ban = DATA.bans[banIndex];
+        if (!ban) return "";
+        return `
+          <article class="ban-card">
+            <div class="ban-card-mark">
+              <span>${localIndex + 1}</span>
+            </div>
+            <p>${esc(text(ban))}</p>
+          </article>
+        `;
+      }).join("");
+      return `
+        <section class="ban-section">
+          <div class="ban-section-head">
+            <h2>${esc(text(group.title))}</h2>
+            <p>${esc(text(group.lead))}</p>
+          </div>
+          <div class="ban-list">${cards}</div>
+        </section>
+      `;
+    }).join("");
+
+    app.innerHTML = `
+      <main class="page bans-page">
+        ${pageHero()}
+        <section class="ban-alert">
+          <div class="ban-alert-icon">${iconMap.ban}</div>
+          <div>
+            <p class="ban-alert-label">${esc(text(tx("Dotyczy szklarni i magazynu", "Applies to greenhouse and warehouse", "Стосується теплиці і складу", "Относится к теплице и складу", "İstixana və anbara aiddir", "Aplica a invernadero y almacén", "Para sa greenhouse at bodega", "Untuk rumah kaca dan gudang", "ग्रीनहाउस र गोदाममा लागू हुन्छ")))}</p>
+            <h2>${esc(text(tx("Przed wejściem sprawdź, czy nie masz rzeczy zakazanych.", "Before entering, check that you do not have forbidden items.", "Перед входом перевірте, чи не маєте заборонених речей.", "Перед входом проверьте, нет ли у вас запрещенных вещей.", "Girməzdən əvvəl qadağan olunmuş əşyalarınızın olmadığını yoxlayın.", "Antes de entrar, revisa que no tengas cosas prohibidas.", "Bago pumasok, i-check kung wala kang bawal na gamit.", "Sebelum masuk, pastikan tidak membawa barang terlarang.", "प्रवेश गर्नु अघि निषेधित सामान छैन भनेर जाँच गर्नुहोस्।")))}</h2>
+            <p>${esc(text(tx("Jeżeli masz coś z listy, zostaw to poza strefą pracy.", "If you have anything from the list, leave it outside the work zone.", "Якщо маєте щось зі списку, залиште це поза робочою зоною.", "Если у вас есть что-то из списка, оставьте это вне рабочей зоны.", "Siyahıdan bir şey varsa, onu iş zonasından kənarda saxlayın.", "Si tienes algo de la lista, déjalo fuera de la zona de trabajo.", "Kung may nasa listahan, iwan ito sa labas ng work zone.", "Jika ada barang dari daftar, tinggalkan di luar area kerja.", "सूचीमा भएको केही छ भने काम क्षेत्र बाहिर छोड्नुहोस्।")))}</p>
+          </div>
+        </section>
+        <section class="ban-quick-grid">${quickHtml}</section>
+        ${groupHtml}
+      </main>
+    `;
   }
 
   function renderTest() {

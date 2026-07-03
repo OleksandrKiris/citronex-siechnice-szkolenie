@@ -1257,7 +1257,7 @@ details.card[open] > summary::after {
   align-items: stretch;
 }
 
-.span-side {
+.row-side {
   min-height: 230px;
   padding: 12px 8px;
   display: flex;
