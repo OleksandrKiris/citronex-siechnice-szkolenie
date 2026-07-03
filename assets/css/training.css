@@ -543,6 +543,12 @@ details.card[open] > summary::after {
     var(--surface);
 }
 
+.city-guide {
+  background:
+    linear-gradient(135deg, rgba(20,103,179,.1), rgba(245,184,46,.14)),
+    var(--surface);
+}
+
 .work-flow {
   margin-top: 14px;
   display: grid;
@@ -550,7 +556,15 @@ details.card[open] > summary::after {
   gap: 8px;
 }
 
-.flow-chip {
+.city-flow {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.flow-chip,
+.city-chip {
   min-height: 50px;
   padding: 10px 12px;
   display: flex;
@@ -560,6 +574,10 @@ details.card[open] > summary::after {
   background: rgba(255, 255, 255, .78);
   color: var(--text);
   font-weight: 950;
+}
+
+.city-chip {
+  border-color: rgba(20, 103, 179, .22);
 }
 
 .schema {
@@ -714,6 +732,7 @@ details.card[open] > summary::after {
   .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .orientation-hero { grid-template-columns: 1fr 1fr; }
   .work-flow { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .city-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .btn-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

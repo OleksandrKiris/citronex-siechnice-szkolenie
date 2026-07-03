@@ -494,7 +494,46 @@
         ${item.url ? `<div class="btn-row">${action(item.url, text(item.button) || ui("openMap"), item.tone)}</div>` : ""}
       </article>
     `).join("");
-    app.innerHTML = `<main class="page">${pageHero()}<section class="module-grid">${cards}</section></main>`;
+    const cityFlow = [
+      tx("Sprawa urzędowa", "Office matter", "Урядова справа", "Дело в ужонде", "Rəsmi iş", "Trámite oficial", "Official matter", "Urusan kantor", "कार्यालयको काम"),
+      tx("Dokumenty", "Documents", "Документи", "Документы", "Sənədlər", "Documentos", "Mga dokumento", "Dokumen", "कागजात"),
+      tx("Mapa / strona", "Map / website", "Карта / сайт", "Карта / сайт", "Xəritə / sayt", "Mapa / web", "Mapa / website", "Peta / situs", "नक्सा / वेबसाइट"),
+      tx("Potwierdzenie", "Confirmation", "Підтвердження", "Подтверждение", "Təsdiq", "Confirmación", "Kumpirmasyon", "Konfirmasi", "पुष्टि")
+    ].map((item, index) => `<span class="city-chip">${index + 1}. ${esc(text(item))}</span>`).join("");
+    const documents = [
+      tx("Paszport albo inny dokument tożsamości.", "Passport or another identity document.", "Паспорт або інший документ особи.", "Паспорт или другой документ личности.", "Pasport və ya başqa şəxsiyyət sənədi.", "Pasaporte u otro documento de identidad.", "Pasaporte o ibang ID.", "Paspor atau dokumen identitas lain.", "पासपोर्ट वा अरू परिचयपत्र।"),
+      tx("PESEL, jeśli już masz.", "PESEL, if you already have it.", "PESEL, якщо вже маєте.", "PESEL, если уже есть.", "PESEL, əgər artıq varsa.", "PESEL, si ya lo tienes.", "PESEL kung mayroon ka na.", "PESEL jika sudah punya.", "PESEL छ भने।"),
+      tx("Telefon z numerem, którego używasz w Polsce.", "Phone with the number you use in Poland.", "Телефон з номером, яким користуєтесь у Польщі.", "Телефон с номером, которым пользуетесь в Польше.", "Polşada istifadə etdiyiniz nömrəli telefon.", "Teléfono con el número que usas en Polonia.", "Telepono na may numerong ginagamit mo sa Poland.", "Telepon dengan nomor yang dipakai di Polandia.", "पोल्याण्डमा प्रयोग गर्ने नम्बर भएको फोन।"),
+      tx("Dokumenty z pracy albo z urzędu, jeśli sprawa ich dotyczy.", "Work or office documents if the matter needs them.", "Документи з роботи або уряду, якщо справа їх стосується.", "Документы с работы или из ужонда, если они нужны.", "İşdən və ya idarədən sənədlər, əgər lazımdırsa.", "Documentos del trabajo u oficina si el trámite los necesita.", "Dokumento mula sa trabaho o opisina kung kailangan.", "Dokumen dari kerja atau kantor jika diperlukan.", "काम वा कार्यालयका कागजात, आवश्यक भए।"),
+      tx("Zapisz albo zrób zdjęcie potwierdzenia po załatwieniu sprawy.", "Save or photograph the confirmation after the matter is handled.", "Збережіть або сфотографуйте підтвердження після справи.", "Сохраните или сфотографируйте подтверждение после дела.", "İş bitəndən sonra təsdiqi saxlayın və ya şəklini çəkin.", "Guarda o fotografía la confirmación después del trámite.", "I-save o picturan ang confirmation pagkatapos.", "Simpan atau foto konfirmasi setelah selesai.", "काम भएपछि पुष्टि सेभ वा फोटो गर्नुहोस्।")
+    ].map((item) => `<li>${esc(text(item))}</li>`).join("");
+    const warnings = [
+      tx("Godziny urzędu, banku i aplikacji mogą się zmieniać. Sprawdź przed wyjściem.", "Office, bank and app hours may change. Check before leaving.", "Години уряду, банку і додатків можуть змінюватися. Перевірте перед виходом.", "Часы ужонда, банка и приложений могут меняться. Проверьте перед выходом.", "İdarə, bank və tətbiq saatları dəyişə bilər. Çıxmadan əvvəl yoxlayın.", "Los horarios de oficina, banco y apps pueden cambiar. Revisa antes de salir.", "Maaaring magbago ang oras ng opisina, bangko at apps. I-check bago umalis.", "Jam kantor, bank dan aplikasi bisa berubah. Cek sebelum pergi.", "कार्यालय, बैंक र एपको समय बदलिन सक्छ। निस्कनु अघि जाँच गर्नुहोस्।"),
+      tx("Nie wysyłaj zdjęć paszportu, karty pobytu ani danych bankowych obcym osobom.", "Do not send passport, residence card or bank data photos to unknown people.", "Не надсилайте фото паспорта, карти побиту або банківських даних чужим людям.", "Не отправляйте фото паспорта, карты побыту или банковских данных чужим людям.", "Pasport, yaşayış kartı və bank məlumatı şəkillərini yad adamlara göndərməyin.", "No envíes fotos de pasaporte, residencia o datos bancarios a desconocidos.", "Huwag magpadala ng passport, residence card o bank data sa hindi kilala.", "Jangan kirim foto paspor, kartu tinggal atau data bank ke orang asing.", "पासपोर्ट, कार्ड pobytu वा बैंक डाटा अपरिचितलाई नपठाउनुहोस्।"),
+      tx("W banku używaj tylko swoich danych i swojego numeru telefonu.", "In the bank use only your own data and your own phone number.", "У банку використовуйте тільки свої дані і свій номер телефону.", "В банке используйте только свои данные и свой номер телефона.", "Bankda yalnız öz məlumatlarınızı və öz telefon nömrənizi istifadə edin.", "En el banco usa solo tus datos y tu número de teléfono.", "Sa bangko, gamitin lang ang sariling data at sariling phone number.", "Di bank gunakan hanya data dan nomor telepon sendiri.", "बैंकमा आफ्नै डाटा र आफ्नै फोन नम्बर मात्र प्रयोग गर्नुहोस्।"),
+      tx("Jeśli nie rozumiesz pisma z urzędu, nie ignoruj go. Najpierw przetłumacz albo pokaż koordynatorowi.", "If you do not understand an office letter, do not ignore it. Translate it first or show it to a coordinator.", "Якщо не розумієте лист з уряду, не ігноруйте. Спочатку перекладіть або покажіть координатору.", "Если не понимаете письмо из ужонда, не игнорируйте. Сначала переведите или покажите координатору.", "İdarədən məktubu başa düşmürsünüzsə, laqeyd qalmayın. Əvvəl tərcümə edin və ya koordinatora göstərin.", "Si no entiendes una carta oficial, no la ignores. Primero tradúcela o muéstrala al coordinador.", "Kung hindi naiintindihan ang sulat ng opisina, huwag balewalain. I-translate muna o ipakita sa coordinator.", "Jika tidak paham surat kantor, jangan diabaikan. Terjemahkan dulu atau tunjukkan ke koordinator.", "कार्यालयको पत्र नबुझे बेवास्ता नगर्नुहोस्। पहिले अनुवाद गर्नुहोस् वा कोर्डिनेटरलाई देखाउनुहोस्।")
+    ].map((item) => `<li>${esc(text(item))}</li>`).join("");
+    app.innerHTML = `
+      <main class="page">
+        ${pageHero()}
+        <section class="card city-guide">
+          <h2>${esc(text(tx("Najpierw ustal, jaką masz sprawę", "First decide what matter you have", "Спочатку визначте, яка у вас справа", "Сначала определите, какая у вас задача", "Əvvəl hansı işiniz olduğunu müəyyən edin", "Primero decide qué trámite tienes", "Alamin muna kung anong kailangan", "Tentukan dulu urusan Anda", "पहिले आफ्नो काम के हो तय गर्नुहोस्")))}</h2>
+          <p>${esc(text(tx("Ten moduł ma pomóc szybko wybrać właściwe miejsce: DUW, urząd, bank, aplikacje do dojazdu.", "This module helps you quickly choose the right place: DUW, city office, bank or travel apps.", "Цей модуль допомагає швидко вибрати правильне місце: DUW, уряд, банк або додатки для доїзду.", "Этот модуль помогает быстро выбрать место: DUW, ужонд, банк или приложения для дороги.", "Bu modul düzgün yeri tez seçməyə kömək edir: DUW, idarə, bank və ya yol tətbiqləri.", "Este módulo ayuda a elegir rápido: DUW, ayuntamiento, banco o apps de transporte.", "Tutulong ito pumili agad: DUW, opisina, bangko o travel apps.", "Modul ini membantu memilih cepat: DUW, kantor kota, bank atau aplikasi perjalanan.", "यसले छिटो सही ठाउँ छान्न मद्दत गर्छ: DUW, कार्यालय, बैंक वा यात्रा एप।")))}</p>
+          <div class="city-flow">${cityFlow}</div>
+        </section>
+        <section class="module-grid two section">${cards}</section>
+        <section class="module-grid two section">
+          <article class="card yellow">
+            <h2>${esc(text(tx("Co zabrać ze sobą", "What to take with you", "Що взяти з собою", "Что взять с собой", "Özünüzlə nə götürmək", "Qué llevar contigo", "Ano ang dadalhin", "Apa yang dibawa", "के लिएर जाने")))}</h2>
+            <ul class="list">${documents}</ul>
+          </article>
+          <article class="card red">
+            <h2>${esc(text(tx("Uważaj na te rzeczy", "Watch out for these things", "Будьте уважні до цих речей", "Будьте внимательны к этим вещам", "Bunlara diqqət edin", "Ten cuidado con esto", "Mag-ingat dito", "Hati-hati dengan ini", "यी कुरामा ध्यान दिनुहोस्")))}</h2>
+            <ul class="list">${warnings}</ul>
+          </article>
+        </section>
+      </main>
+    `;
   }
 
   function renderBans() {
