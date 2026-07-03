@@ -410,15 +410,39 @@
     return `<button class="pill${active ? " active" : ""}" type="button" data-reader-tab="${esc(tab.id)}">${esc(text(tab.title))}</button>`;
   }
 
+  function readerStep(item, index) {
+    const value = typeof item === "string" ? item : item.text;
+    const note = typeof item === "object" && item.note ? `<small>${esc(text(item.note))}</small>` : "";
+    const tone = typeof item === "object" && item.tone ? ` ${esc(item.tone)}` : "";
+    return `
+      <article class="step-card reader-step${tone}">
+        <span class="step-number">${index + 1}</span>
+        <div><p>${esc(text(value))}</p>${note}</div>
+      </article>
+    `;
+  }
+
+  function readerStepList(steps) {
+    return (steps || []).map((item, index) => readerStep(item, index)).join("");
+  }
+
+  function readerSection(section) {
+    return `
+      <section class="reader-section">
+        <h3>${esc(text(section.title))}</h3>
+        ${section.lead ? `<p class="reader-section-lead">${esc(text(section.lead))}</p>` : ""}
+        <div class="steps">${readerStepList(section.steps)}</div>
+      </section>
+    `;
+  }
+
   function renderReader(activeId = "start") {
     const active = DATA.readerTabs.find((tab) => tab.id === activeId) || DATA.readerTabs[0];
     const tabs = DATA.readerTabs.map((tab) => readerTabButton(tab, tab.id === active.id)).join("");
-    const steps = active.steps.map((item, index) => `
-      <article class="step-card">
-        <span class="step-number">${index + 1}</span>
-        <div><p>${esc(text(item))}</p></div>
-      </article>
-    `).join("");
+    const steps = active.sections
+      ? active.sections.map(readerSection).join("")
+      : `<div class="steps">${readerStepList(active.steps)}</div>`;
+    const tips = (active.tips || []).map((tip) => `<li>${esc(text(tip))}</li>`).join("");
     const imageBlocks = [
       active.image ? { src: active.image, caption: active.imageCaption } : null,
       ...(active.images || [])
@@ -437,7 +461,17 @@
         </section>
         <section class="section">
           <div class="pill-row">${tabs}</div>
-          <div class="steps">${steps}</div>
+          <section class="reader-panel">
+            <div class="reader-panel-head">
+              <span class="icon-box yellow">${iconMap.reader}</span>
+              <div>
+                <h2>${esc(text(active.title))}</h2>
+                ${active.lead ? `<p>${esc(text(active.lead))}</p>` : ""}
+              </div>
+            </div>
+            ${steps}
+            ${tips ? `<div class="reader-tips"><strong>${esc(ui("important"))}</strong><ul>${tips}</ul></div>` : ""}
+          </section>
           ${imageBlocks ? `<div class="section photo-grid">${imageBlocks}</div>` : ""}
         </section>
       </main>

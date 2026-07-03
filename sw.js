@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-03-11";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-03-12";
 
 const CORE_ASSETS = [
   "./",
