@@ -495,11 +495,45 @@
       </article>
     `).join("");
     const cityFlow = [
-      tx("Sprawa urzędowa", "Office matter", "Урядова справа", "Дело в ужонде", "Rəsmi iş", "Trámite oficial", "Official matter", "Urusan kantor", "कार्यालयको काम"),
+      tx("Sprawa urzędowa", "Office matter", "Адміністративна справа", "Дело в учреждении", "Rəsmi iş", "Trámite oficial", "Official matter", "Urusan kantor", "कार्यालयको काम"),
       tx("Dokumenty", "Documents", "Документи", "Документы", "Sənədlər", "Documentos", "Mga dokumento", "Dokumen", "कागजात"),
       tx("Mapa / strona", "Map / website", "Карта / сайт", "Карта / сайт", "Xəritə / sayt", "Mapa / web", "Mapa / website", "Peta / situs", "नक्सा / वेबसाइट"),
       tx("Potwierdzenie", "Confirmation", "Підтвердження", "Подтверждение", "Təsdiq", "Confirmación", "Kumpirmasyon", "Konfirmasi", "पुष्टि")
     ].map((item, index) => `<span class="city-chip">${index + 1}. ${esc(text(item))}</span>`).join("");
+    const cityDecisions = [
+      {
+        tone: "blue",
+        icon: "city",
+        title: tx("Karta pobytu / DUW", "Residence card / DUW", "Карта побиту / DUW", "Карта побыту / DUW", "Yaşayış kartı / DUW", "Residencia / DUW", "Residence card / DUW", "Kartu tinggal / DUW", "Residence card / DUW"),
+        note: tx("Składanie dokumentów i odbiór karty pobytu.", "Submit documents and collect the residence card.", "Подати документи і забрати карту побиту.", "Подать документы и забрать карту побыту.", "Sənədləri vermək və yaşayış kartını götürmək.", "Entregar documentos y recoger la tarjeta.", "Magpasa ng dokumento at kunin ang residence card.", "Mengajukan dokumen dan mengambil kartu tinggal.", "कागजात बुझाउने र residence card लिने।")
+      },
+      {
+        tone: "blue",
+        icon: "city",
+        title: tx("Urząd w Siechnicach", "Office in Siechnice", "Установа в Siechnice", "Учреждение в Siechnice", "Siechnice idarəsi", "Oficina en Siechnice", "Opisina sa Siechnice", "Kantor di Siechnice", "Siechnice को कार्यालय"),
+        note: tx("Sprawy miejskie, PESEL i podstawowe formalności.", "City matters, PESEL and basic formalities.", "Міські справи, PESEL і базові формальності.", "Городские дела, PESEL и базовые формальности.", "Şəhər işləri, PESEL və əsas sənədlər.", "Asuntos municipales, PESEL y trámites básicos.", "City matters, PESEL at basic formalities.", "Urusan kota, PESEL dan administrasi dasar.", "शहरका काम, PESEL र आधारभूत कागजी काम।")
+      },
+      {
+        tone: "yellow",
+        icon: "city",
+        title: tx("Bank / bankomat", "Bank / ATM", "Банк / банкомат", "Банк / банкомат", "Bank / bankomat", "Banco / cajero", "Bangko / ATM", "Bank / ATM", "बैंक / ATM"),
+        note: tx("Konto, karta, gotówka i bezpieczeństwo danych.", "Account, card, cash and data safety.", "Рахунок, карта, готівка і безпека даних.", "Счет, карта, наличные и безопасность данных.", "Hesab, kart, nağd pul və məlumat təhlükəsizliyi.", "Cuenta, tarjeta, efectivo y seguridad de datos.", "Account, card, cash at data safety.", "Rekening, kartu, uang tunai dan keamanan data.", "खाता, कार्ड, नगद र डाटा सुरक्षा।")
+      },
+      {
+        tone: "blue",
+        icon: "map",
+        title: tx("Dojazd po mieście", "Travel in the city", "Доїзд по місту", "Проезд по городу", "Şəhərdə yol", "Transporte en la ciudad", "Biyahe sa lungsod", "Perjalanan di kota", "शहरमा यात्रा"),
+        note: tx("Jakdojade do autobusów i tramwajów, KOLEO do pociągów.", "Jakdojade for buses and trams, KOLEO for trains.", "Jakdojade для автобусів і трамваїв, KOLEO для поїздів.", "Jakdojade для автобусов и трамваев, KOLEO для поездов.", "Avtobus və tramvay üçün Jakdojade, qatar üçün KOLEO.", "Jakdojade para buses y tranvías, KOLEO para trenes.", "Jakdojade para sa bus/tram, KOLEO para sa tren.", "Jakdojade untuk bus/tram, KOLEO untuk kereta.", "बस/ट्रामका लागि Jakdojade, रेलका लागि KOLEO।")
+      }
+    ].map((item) => `
+      <article class="city-decision ${item.tone}">
+        <div class="icon-box">${iconMap[item.icon] || iconMap.city}</div>
+        <div>
+          <h3>${esc(text(item.title))}</h3>
+          <p>${esc(text(item.note))}</p>
+        </div>
+      </article>
+    `).join("");
     const documents = [
       tx("Dokument tożsamości.", "Identity document.", "Документ особи.", "Документ личности.", "Şəxsiyyət sənədi.", "Documento de identidad.", "Identity document.", "Dokumen identitas.", "परिचयपत्र।"),
       tx("PESEL, jeśli już masz.", "PESEL, if you already have it.", "PESEL, якщо вже маєте.", "PESEL, если уже есть.", "PESEL, əgər artıq varsa.", "PESEL, si ya lo tienes.", "PESEL kung mayroon ka na.", "PESEL jika sudah punya.", "PESEL छ भने।"),
@@ -508,19 +542,20 @@
       tx("Zapisz albo zrób zdjęcie potwierdzenia po załatwieniu sprawy.", "Save or photograph the confirmation after the matter is handled.", "Збережіть або сфотографуйте підтвердження після справи.", "Сохраните или сфотографируйте подтверждение после дела.", "İş bitəndən sonra təsdiqi saxlayın və ya şəklini çəkin.", "Guarda o fotografía la confirmación después del trámite.", "I-save o picturan ang confirmation pagkatapos.", "Simpan atau foto konfirmasi setelah selesai.", "काम भएपछि पुष्टि सेभ वा फोटो गर्नुहोस्।")
     ].map((item) => `<li>${esc(text(item))}</li>`).join("");
     const warnings = [
-      tx("Godziny urzędu, banku i aplikacji mogą się zmieniać. Sprawdź przed wyjściem.", "Office, bank and app hours may change. Check before leaving.", "Години уряду, банку і додатків можуть змінюватися. Перевірте перед виходом.", "Часы ужонда, банка и приложений могут меняться. Проверьте перед выходом.", "İdarə, bank və tətbiq saatları dəyişə bilər. Çıxmadan əvvəl yoxlayın.", "Los horarios de oficina, banco y apps pueden cambiar. Revisa antes de salir.", "Maaaring magbago ang oras ng opisina, bangko at apps. I-check bago umalis.", "Jam kantor, bank dan aplikasi bisa berubah. Cek sebelum pergi.", "कार्यालय, बैंक र एपको समय बदलिन सक्छ। निस्कनु अघि जाँच गर्नुहोस्।"),
+      tx("Godziny urzędu, banku i aplikacji mogą się zmieniać. Sprawdź przed wyjściem.", "Office, bank and app hours may change. Check before leaving.", "Години установи, банку і додатків можуть змінюватися. Перевірте перед виходом.", "Часы учреждения, банка и приложений могут меняться. Проверьте перед выходом.", "İdarə, bank və tətbiq saatları dəyişə bilər. Çıxmadan əvvəl yoxlayın.", "Los horarios de oficina, banco y apps pueden cambiar. Revisa antes de salir.", "Maaaring magbago ang oras ng opisina, bangko at apps. I-check bago umalis.", "Jam kantor, bank dan aplikasi bisa berubah. Cek sebelum pergi.", "कार्यालय, बैंक र एपको समय बदलिन सक्छ। निस्कनु अघि जाँच गर्नुहोस्।"),
       tx("Korzystaj tylko z oficjalnych stron, map i aplikacji.", "Use only official websites, maps and apps.", "Користуйтеся тільки офіційними сайтами, картами і додатками.", "Используйте только официальные сайты, карты и приложения.", "Yalnız rəsmi sayt, xəritə və tətbiqlərdən istifadə edin.", "Usa solo páginas, mapas y apps oficiales.", "Gamitin lang ang official websites, mapa at apps.", "Gunakan hanya situs, peta dan aplikasi resmi.", "आधिकारिक वेबसाइट, नक्सा र एप मात्र प्रयोग गर्नुहोस्।"),
-      tx("W banku i urzędzie podawaj tylko swoje dane.", "In the bank and office, give only your own data.", "У банку і уряді подавайте тільки свої дані.", "В банке и ужонде давайте только свои данные.", "Bankda və idarədə yalnız öz məlumatlarınızı verin.", "En banco y oficina da solo tus datos.", "Sa bangko at opisina, sariling data lang.", "Di bank dan kantor berikan hanya data sendiri.", "बैंक र कार्यालयमा आफ्नै डाटा मात्र दिनुहोस्।"),
-      tx("Jeśli nie rozumiesz pisma z urzędu, nie ignoruj go. Najpierw przetłumacz albo pokaż koordynatorowi.", "If you do not understand an office letter, do not ignore it. Translate it first or show it to a coordinator.", "Якщо не розумієте лист з уряду, не ігноруйте. Спочатку перекладіть або покажіть координатору.", "Если не понимаете письмо из ужонда, не игнорируйте. Сначала переведите или покажите координатору.", "İdarədən məktubu başa düşmürsünüzsə, laqeyd qalmayın. Əvvəl tərcümə edin və ya koordinatora göstərin.", "Si no entiendes una carta oficial, no la ignores. Primero tradúcela o muéstrala al coordinador.", "Kung hindi naiintindihan ang sulat ng opisina, huwag balewalain. I-translate muna o ipakita sa coordinator.", "Jika tidak paham surat kantor, jangan diabaikan. Terjemahkan dulu atau tunjukkan ke koordinator.", "कार्यालयको पत्र नबुझे बेवास्ता नगर्नुहोस्। पहिले अनुवाद गर्नुहोस् वा कोर्डिनेटरलाई देखाउनुहोस्।")
+      tx("W banku i urzędzie podawaj tylko swoje dane.", "In the bank and office, give only your own data.", "У банку і установі подавайте тільки свої дані.", "В банке и учреждении давайте только свои данные.", "Bankda və idarədə yalnız öz məlumatlarınızı verin.", "En banco y oficina da solo tus datos.", "Sa bangko at opisina, sariling data lang.", "Di bank dan kantor berikan hanya data sendiri.", "बैंक र कार्यालयमा आफ्नै डाटा मात्र दिनुहोस्।"),
+      tx("Jeśli nie rozumiesz pisma z urzędu, nie ignoruj go. Najpierw przetłumacz albo pokaż koordynatorowi.", "If you do not understand an office letter, do not ignore it. Translate it first or show it to a coordinator.", "Якщо не розумієте лист з установи, не ігноруйте. Спочатку перекладіть або покажіть координатору.", "Если не понимаете письмо из учреждения, не игнорируйте. Сначала переведите или покажите координатору.", "İdarədən məktubu başa düşmürsünüzsə, laqeyd qalmayın. Əvvəl tərcümə edin və ya koordinatora göstərin.", "Si no entiendes una carta oficial, no la ignores. Primero tradúcela o muéstrala al coordinador.", "Kung hindi naiintindihan ang sulat ng opisina, huwag balewalain. I-translate muna o ipakita sa coordinator.", "Jika tidak paham surat kantor, jangan diabaikan. Terjemahkan dulu atau tunjukkan ke koordinator.", "कार्यालयको पत्र नबुझे बेवास्ता नगर्नुहोस्। पहिले अनुवाद गर्नुहोस् वा कोर्डिनेटरलाई देखाउनुहोस्।")
     ].map((item) => `<li>${esc(text(item))}</li>`).join("");
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
         <section class="card city-guide">
           <h2>${esc(text(tx("Najpierw ustal, jaką masz sprawę", "First decide what matter you have", "Спочатку визначте, яка у вас справа", "Сначала определите, какая у вас задача", "Əvvəl hansı işiniz olduğunu müəyyən edin", "Primero decide qué trámite tienes", "Alamin muna kung anong kailangan", "Tentukan dulu urusan Anda", "पहिले आफ्नो काम के हो तय गर्नुहोस्")))}</h2>
-          <p>${esc(text(tx("Ten moduł ma pomóc szybko wybrać właściwe miejsce: DUW, urząd, bank, aplikacje do dojazdu.", "This module helps you quickly choose the right place: DUW, city office, bank or travel apps.", "Цей модуль допомагає швидко вибрати правильне місце: DUW, уряд, банк або додатки для доїзду.", "Этот модуль помогает быстро выбрать место: DUW, ужонд, банк или приложения для дороги.", "Bu modul düzgün yeri tez seçməyə kömək edir: DUW, idarə, bank və ya yol tətbiqləri.", "Este módulo ayuda a elegir rápido: DUW, ayuntamiento, banco o apps de transporte.", "Tutulong ito pumili agad: DUW, opisina, bangko o travel apps.", "Modul ini membantu memilih cepat: DUW, kantor kota, bank atau aplikasi perjalanan.", "यसले छिटो सही ठाउँ छान्न मद्दत गर्छ: DUW, कार्यालय, बैंक वा यात्रा एप।")))}</p>
+          <p>${esc(text(tx("Ten moduł ma pomóc szybko wybrać właściwe miejsce: DUW, urząd, bank, aplikacje do dojazdu.", "This module helps you quickly choose the right place: DUW, city office, bank or travel apps.", "Цей модуль допомагає швидко вибрати правильне місце: DUW, установа, банк або додатки для доїзду.", "Этот модуль помогает быстро выбрать место: DUW, учреждение, банк или приложения для дороги.", "Bu modul düzgün yeri tez seçməyə kömək edir: DUW, idarə, bank və ya yol tətbiqləri.", "Este módulo ayuda a elegir rápido: DUW, ayuntamiento, banco o apps de transporte.", "Tutulong ito pumili agad: DUW, opisina, bangko o travel apps.", "Modul ini membantu memilih cepat: DUW, kantor kota, bank atau aplikasi perjalanan.", "यसले छिटो सही ठाउँ छान्न मद्दत गर्छ: DUW, कार्यालय, बैंक वा यात्रा एप।")))}</p>
           <div class="city-flow">${cityFlow}</div>
         </section>
+        <section class="module-grid city-decision-grid section">${cityDecisions}</section>
         <section class="module-grid two section">${cards}</section>
         <section class="module-grid two section">
           <article class="card yellow">

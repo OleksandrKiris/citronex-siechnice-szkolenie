@@ -266,7 +266,11 @@ h3 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.card, .step-card, .notice {
+.city-decision-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card, .step-card, .notice, .city-decision {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -282,6 +286,39 @@ h3 {
 .card.blue { background: var(--blue-soft); border-color: #c9ddf6; }
 .card.yellow { background: var(--yellow-soft); border-color: #f0d281; }
 .card.red { background: var(--red-soft); border-color: #f2c1bd; }
+
+.city-decision {
+  min-height: 112px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.city-decision.blue { background: var(--blue-soft); border-color: #c9ddf6; }
+.city-decision.yellow { background: var(--yellow-soft); border-color: #f0d281; }
+.city-decision.red { background: var(--red-soft); border-color: #f2c1bd; }
+
+.city-decision .icon-box {
+  width: 40px;
+  height: 40px;
+  flex-basis: 40px;
+}
+
+.city-decision h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  line-height: 1.15;
+  font-weight: 950;
+}
+
+.city-decision p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.35;
+}
 
 details.card {
   padding: 0;
@@ -733,6 +770,7 @@ details.card[open] > summary::after {
   .orientation-hero { grid-template-columns: 1fr 1fr; }
   .work-flow { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .city-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .city-decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .btn-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -765,7 +803,7 @@ details.card[open] > summary::after {
     min-height: 126px;
   }
 
-  .module-grid.two, .card-grid.two {
+  .module-grid.two, .card-grid.two, .city-decision-grid {
     grid-template-columns: 1fr;
   }
 
