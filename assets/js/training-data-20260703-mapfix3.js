@@ -348,7 +348,7 @@
         { name: "Yuliia", phone: "+48506845667", role: "Koordynator" },
         { name: "Yana", phone: "+48797066987", role: "Koordynator" },
         { name: "Fariz", phone: "+48504165739", role: "Koordynator" },
-        { name: "Eivaz", phone: "+48504724605", role: "Koordynator" },
+        { name: "Pomoc brygadzisty starego magazynu", phone: "+48504724605", role: "Stary magazyn" },
         { name: "Oleksandr", phone: "+48502251384", role: "Koordynator" }
       ],
       greenhouse: {

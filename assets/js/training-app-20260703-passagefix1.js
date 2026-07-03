@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   const DATA = window.CX_DATA;
   const tx = (pl, en, ua, ru, az, es, fil, id, ne) => ({ pl, en, ua, ru, az, es, fil, id, ne });
   const validLangs = new Set(DATA.languages.map((item) => item.id));
@@ -589,7 +589,7 @@
               <div class="person-name">${esc(person.name)}</div>
               <div class="person-role">${esc(role)}</div>
             </div>
-            ${groupLabel ? `<span class="mini-tag">${esc(groupLabel)}</span>` : ""}
+            ${groupLabel && !person.role ? `<span class="mini-tag">${esc(groupLabel)}</span>` : ""}
           </div>
           ${phoneActions(person.phone, `${ui("whatsapp")} ${esc(message)}`)}
         </article>
