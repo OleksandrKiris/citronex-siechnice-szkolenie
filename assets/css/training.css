@@ -552,67 +552,6 @@ h3 {
     var(--surface);
 }
 
-.tablet-mode-tabs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin: 0 0 14px;
-}
-
-.tablet-mode-btn {
-  min-height: 118px;
-  padding: 14px;
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
-  gap: 12px;
-  align-items: start;
-  border: 2px solid transparent;
-  border-radius: 20px;
-  background: var(--surface);
-  color: var(--text);
-  text-align: left;
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-}
-
-.tablet-mode-btn strong,
-.tablet-mode-btn small {
-  display: block;
-  min-width: 0;
-}
-
-.tablet-mode-copy {
-  min-width: 0;
-}
-
-.tablet-mode-btn strong {
-  margin: 2px 0 6px;
-  font-size: 17px;
-  line-height: 1.15;
-  font-weight: 950;
-}
-
-.tablet-mode-btn small {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.3;
-  font-weight: 800;
-}
-
-.tablet-mode-btn.is-active {
-  border-color: rgba(20,103,179,.52);
-  box-shadow: 0 14px 32px rgba(20,103,179,.18);
-}
-
-.tablet-mode-btn[data-tone="green"].is-active {
-  border-color: rgba(32,133,91,.55);
-  box-shadow: 0 14px 32px rgba(32,133,91,.18);
-}
-
-.tablet-mode-panel:not(.is-active) {
-  display: none;
-}
-
 .tablet-steps {
   display: grid;
   gap: 12px;
@@ -1736,14 +1675,6 @@ details.card[open] > summary::after {
 
   .ban-quick {
     min-height: 116px;
-  }
-
-  .tablet-mode-tabs {
-    grid-template-columns: 1fr;
-  }
-
-  .tablet-mode-btn {
-    min-height: 96px;
   }
 
   .greenhouse-map {
