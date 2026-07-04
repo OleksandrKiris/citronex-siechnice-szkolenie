@@ -265,14 +265,32 @@
             <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
           </div>
         </section>
-        ${tabletInstructionMarkup("warehouse", true)}
+        ${tabletLinkCard("yellow")}
       </main>
     `;
   }
 
-  function tabletInstructionMarkup(mode = "warehouse", active = true) {
-    const tablet = mode === "greenhouse" ? DATA.greenhouseTablet : DATA.warehouseTablet;
-    const stepsSource = tablet.steps || DATA.warehouseTablet.steps;
+  function tabletLinkCard(tone = "yellow") {
+    return `
+      <section class="${cardClass(tone)} section tablet-link-card">
+        <div class="city-card-head">
+          <span class="city-card-icon">${iconMap.tablet}</span>
+          <div>
+            <span class="city-card-tag">${esc(text(tx("Ten sam system", "Same system", "Та сама система", "Та же система", "Eyni sistem", "El mismo sistema", "Parehong system", "Sistem yang sama", "एउटै प्रणाली")))}</span>
+            <h2>${esc(text(DATA.pages.tablet.title))}</h2>
+          </div>
+        </div>
+        <p>${esc(text(tx("Tablet działa tak samo na szklarni i na magazynie. Otwórz jedną wspólną instrukcję krok po kroku.", "The tablet works the same in the greenhouse and warehouse. Open one shared step-by-step instruction.", "Планшет працює однаково в теплиці і на складі. Відкрийте одну спільну інструкцію крок за кроком.", "Планшет работает одинаково в теплице и на складе. Откройте одну общую инструкцию шаг за шагом.", "Planşet istixanada və anbarda eyni işləyir. Bir ümumi addım-addım təlimatı açın.", "La tablet funciona igual en invernadero y almacén. Abre una instrucción común paso a paso.", "Pareho ang tablet sa greenhouse at bodega. Buksan ang isang shared step-by-step instruction.", "Tablet bekerja sama di rumah kaca dan gudang. Buka satu instruksi bersama langkah demi langkah.", "ट्याबलेट ग्रीनहाउस र गोदाममा उस्तै चल्छ। एउटै साझा चरणबद्ध निर्देशन खोल्नुहोस्।")))}</p>
+        <div class="btn-row">
+          <a class="btn yellow" href="${esc(href("tablet"))}">${esc(text(tx("Otwórz instrukcję tabletu", "Open tablet instruction", "Відкрити інструкцію планшета", "Открыть инструкцию планшета", "Planşet təlimatını aç", "Abrir instrucción de tablet", "Buksan ang tablet instruction", "Buka instruksi tablet", "ट्याबलेट निर्देशन खोल्नुहोस्")))}</a>
+        </div>
+      </section>
+    `;
+  }
+
+  function tabletInstructionMarkup() {
+    const tablet = DATA.tabletGuide;
+    const stepsSource = tablet.steps || [];
     const steps = stepsSource.map((item, index) => `
       <article class="tablet-step">
         <div class="step-number">${index + 1}</div>
@@ -295,7 +313,7 @@
     `).join("");
     const tips = (tablet.tips || []).map((item) => `<li>${esc(text(item))}</li>`).join("");
     return `
-      <section class="card ${mode === "greenhouse" ? "green" : "blue"} section tablet-guide tablet-mode-panel${active ? " is-active" : ""}" data-tablet-panel="${esc(mode)}">
+      <section class="card yellow section tablet-guide">
         <div class="city-card-head">
           <span class="city-card-icon">${iconMap.tablet}</span>
           <div>
@@ -312,51 +330,16 @@
   }
 
   function renderTablet() {
-    const modes = [
-      { id: "greenhouse", tone: "green", title: DATA.greenhouseTablet.title, text: DATA.greenhouseTablet.lead },
-      { id: "warehouse", tone: "blue", title: DATA.warehouseTablet.title, text: DATA.warehouseTablet.lead }
-    ];
-    const tabs = modes.map((item, index) => `
-      <button class="tablet-mode-btn ${index === 0 ? "is-active" : ""}" type="button" data-tablet-target="${esc(item.id)}" data-tone="${esc(item.tone)}">
-        <span class="icon-box">${iconMap.tablet}</span>
-        <span class="tablet-mode-copy">
-          <strong>${esc(text(item.title))}</strong>
-          <small>${esc(text(item.text))}</small>
-        </span>
-      </button>
-    `).join("");
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
-        <section class="tablet-mode-tabs" aria-label="${esc(text(tx("Wybierz instrukcję tabletu", "Choose tablet instruction", "Оберіть інструкцію планшета", "Выберите инструкцию планшета", "Planşet təlimatını seçin", "Elige instrucción de tablet", "Piliin ang tablet instruction", "Pilih instruksi tablet", "ट्याबलेट निर्देशन छान्नुहोस्")))}">${tabs}</section>
-        ${tabletInstructionMarkup("greenhouse", true)}
-        ${tabletInstructionMarkup("warehouse", false)}
+        <section class="card blue">
+          <h2>${esc(text(tx("Jedna instrukcja dla szklarni i magazynu", "One instruction for greenhouse and warehouse", "Одна інструкція для теплиці і складу", "Одна инструкция для теплицы и склада", "İstixana və anbar üçün bir təlimat", "Una instrucción para invernadero y almacén", "Isang instruction para sa greenhouse at bodega", "Satu instruksi untuk rumah kaca dan gudang", "ग्रीनहाउस र गोदामका लागि एउटै निर्देशन")))}</h2>
+          <p>${esc(text(DATA.pages.tablet.lead))}</p>
+        </section>
+        ${tabletInstructionMarkup()}
       </main>
     `;
-    bindTabletModeTabs();
-  }
-
-  function bindTabletModeTabs() {
-    const buttons = [...document.querySelectorAll("[data-tablet-target]")];
-    const panels = [...document.querySelectorAll("[data-tablet-panel]")];
-    if (!buttons.length || !panels.length) return;
-
-    const activate = (target) => {
-      buttons.forEach((button) => button.classList.toggle("is-active", button.dataset.tabletTarget === target));
-      panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.tabletPanel === target));
-    };
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        activate(button.dataset.tabletTarget);
-        history.replaceState(null, "", `#${button.dataset.tabletTarget}`);
-      });
-    });
-
-    const fromHash = location.hash.replace("#", "");
-    if (fromHash && buttons.some((button) => button.dataset.tabletTarget === fromHash)) {
-      activate(fromHash);
-    }
   }
 
   function renderGreenhouse() {
@@ -474,6 +457,7 @@
           </section>
           <section class="module-grid two section">${workCardsHtml}</section>
         </section>
+        ${tabletLinkCard("yellow")}
       </main>
     `;
   }
