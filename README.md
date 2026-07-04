@@ -52,3 +52,19 @@ node tools/audit-project.js
 ```
 
 Skrypt sprawdza brakujace tlumaczenia, brakujace zdjecia i czy strony HTML uzywaja produkcyjnych plikow JS.
+
+## Audyt linkow map
+
+Pelna lista linkow map:
+
+```bash
+node tools/audit-map-links.js
+```
+
+Tylko problemy i ostrzezenia:
+
+```bash
+node tools/audit-map-links.js --only-problems
+```
+
+`Errors` trzeba poprawic od razu. `Warnings` oznacza link typu wyszukiwanie po nazwie/adresie - dziala, ale najlepiej zamienic go na staly link `maps.app.goo.gl` albo konkretne miejsce w Google Maps.

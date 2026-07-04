@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { auditMapLinks } = require("./audit-map-links");
 
 const root = path.resolve(__dirname, "..");
 const dataPath = path.join(root, "assets", "js", "training-data.js");
@@ -60,6 +61,7 @@ const wrongHtml = htmlFiles.filter((file) => {
   const html = fs.readFileSync(path.join(root, file), "utf8");
   return !html.includes("assets/js/training-data.js") || !html.includes("assets/js/training-app.js");
 });
+const mapAudit = auditMapLinks({ root, data: DATA });
 
 console.log("Citronex training audit");
 console.log(`Languages: ${langs.join(", ")}`);
@@ -70,6 +72,9 @@ console.log(`Asset refs: ${assets.size}`);
 console.log(`Missing assets: ${missingAssets.length}`);
 console.log(`Unique URLs: ${urls.size}`);
 console.log(`HTML files using old production scripts: ${wrongHtml.length}`);
+console.log(`Map links: ${mapAudit.items.length}`);
+console.log(`Map warnings: ${mapAudit.warnings.length}`);
+console.log(`Map errors: ${mapAudit.errors.length}`);
 
 if (missing.length) {
   console.log("\nMissing translations:");
@@ -87,4 +92,20 @@ if (wrongHtml.length) {
   wrongHtml.forEach((item) => console.log(`- ${item}`));
 }
 
-process.exit(missing.length || missingAssets.length || wrongHtml.length ? 1 : 0);
+if (mapAudit.errors.length) {
+  console.log("\nMap link errors:");
+  mapAudit.errors.forEach((item) => {
+    console.log(`- ${item.label}: ${item.reason}`);
+    console.log(`  ${item.url}`);
+  });
+}
+
+if (mapAudit.warnings.length) {
+  console.log("\nMap link warnings:");
+  mapAudit.warnings.forEach((item) => {
+    console.log(`- ${item.label}: ${item.reason}`);
+    console.log(`  ${item.url}`);
+  });
+}
+
+process.exit(missing.length || missingAssets.length || wrongHtml.length || mapAudit.errors.length ? 1 : 0);

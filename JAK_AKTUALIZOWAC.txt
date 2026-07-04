@@ -30,6 +30,8 @@ JAK WGRAC ZMIANY
 2. Sprawdz lokalnie na telefonowym rozmiarze ekranu.
 3. Uruchom audyt:
    node tools/audit-project.js
+   Pelna lista linkow map:
+   node tools/audit-map-links.js --only-problems
 4. Zrob commit na galezi main.
 5. Wgraj main na GitHub.
 6. Wgraj ta sama wersje na gh-pages.
@@ -46,6 +48,7 @@ JAK SPRAWDZIC PO AKTUALIZACJI
 - Nie ma poziomego przewijania na telefonie.
 - Nie ma pol imie / nazwisko.
 - Nie ma gotowej prosby o pomoc.
+- Linki map nie maja bledow w audycie.
 
 JAK DODAC DO EKRANU TELEFONU
 Android:
