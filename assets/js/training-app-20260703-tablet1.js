@@ -6,6 +6,7 @@
   const app = document.getElementById("app");
 
   const iconMap = {
+    home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10"/><path d="M9 21v-6h6v6"/></svg>',
     map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>',
     warehouse: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-9h10v9"/><path d="M9 16h6"/></svg>',
     tablet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 6h6"/><path d="M8 10h8"/><path d="M8 14h8"/><circle cx="12" cy="18" r="1"/></svg>',
@@ -18,6 +19,10 @@
     bank: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 10h18"/><path d="M5 10V8l7-4 7 4v2"/><path d="M6 10v8"/><path d="M10 10v8"/><path d="M14 10v8"/><path d="M18 10v8"/><path d="M4 18h16"/><path d="M3 21h18"/></svg>',
     document: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 3h7l5 5v13H7V3Z"/><path d="M14 3v6h5"/><path d="M10 13h6"/><path d="M10 17h6"/></svg>',
     parcel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>',
+    food: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 3v8"/><path d="M8 3v8"/><path d="M4 7h4"/><path d="M6 11v10"/><path d="M15 3v18"/><path d="M15 3c3 2 4 5 4 8 0 2-1 4-4 4"/></svg>',
+    smoke: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 15h11v4H3z"/><path d="M18 15h3v4h-3z"/><path d="M16 7c2 0 3 1 3 3"/><path d="M13 5c3 0 5 2 5 5"/></svg>',
+    jewelry: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 3h8l4 6-8 12L4 9l4-6Z"/><path d="M4 9h16"/><path d="m9 9 3 12 3-12"/></svg>',
+    id: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2"/><path d="M14 10h4"/><path d="M14 14h3"/></svg>',
     ban: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8"/></svg>',
     test: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l2 2 4-4"/><path d="M20 6 9 17l-5-5"/><path d="M4 19h16"/></svg>'
   };
@@ -103,6 +108,16 @@
     const selected = DATA.languages.map((item) => (
       `<option value="${esc(item.id)}"${item.id === lang ? " selected" : ""}>${esc(item.label)}</option>`
     )).join("");
+    const navItems = [
+      { page: "home", icon: "home", label: DATA.ui.home },
+      ...DATA.tiles.map((tile) => ({ page: tile.page, icon: tile.icon, label: tile.title }))
+    ];
+    const navHtml = navItems.map((item) => `
+      <a class="top-nav-link${item.page === page ? " is-active" : ""}" href="${esc(href(item.page))}"${item.page === page ? ' aria-current="page"' : ""}>
+        <span class="top-nav-icon">${iconMap[item.icon] || iconMap.home}</span>
+        <span>${esc(text(item.label))}</span>
+      </a>
+    `).join("");
 
     document.body.insertAdjacentHTML("afterbegin", `
       <header class="app-header">
@@ -117,6 +132,9 @@
           </div>
           <select class="lang-select" id="langSelect" aria-label="Language">${selected}</select>
         </div>
+        <nav class="top-nav" aria-label="${esc(text(tx("Główne moduły", "Main modules", "Головні модулі", "Главные модули", "Əsas modullar", "Módulos principales", "Pangunahing module", "Modul utama", "मुख्य मोड्युलहरू")))}">
+          <div class="top-nav-scroll">${navHtml}</div>
+        </nav>
       </header>
     `);
 
@@ -781,6 +799,7 @@
         indexes: [2, 6, 7]
       }
     ];
+    const banIcons = ["food", "food", "phone", "smoke", "jewelry", "parcel", "greenhouse", "id"];
 
     const quickHtml = quickRules.map((item) => `
       <article class="ban-quick ${esc(item.tone)}">
@@ -796,10 +815,11 @@
       const cards = group.indexes.map((banIndex, localIndex) => {
         const ban = DATA.bans[banIndex];
         if (!ban) return "";
+        const banIcon = iconMap[banIcons[banIndex]] || iconMap.ban;
         return `
           <article class="ban-card">
             <div class="ban-card-mark">
-              <span>${localIndex + 1}</span>
+              ${banIcon}
             </div>
             <p>${esc(text(ban))}</p>
           </article>
