@@ -23,13 +23,18 @@ Przyklad:
 wersje/2026-07-01.html
 
 JAK WGRAC ZMIANY
-1. Zmien potrzebny modul HTML albo pliki w assets/css i assets/js.
+1. Zmien potrzebny modul HTML albo produkcyjne pliki:
+   - assets/js/training-data.js
+   - assets/js/training-app.js
+   - assets/css/training.css
 2. Sprawdz lokalnie na telefonowym rozmiarze ekranu.
-3. Zrob commit na galezi main.
-4. Wgraj main na GitHub.
-5. Wgraj ta sama wersje na gh-pages.
-6. Poczekaj 1-3 minuty.
-7. Sprawdz publiczny link.
+3. Uruchom audyt:
+   node tools/audit-project.js
+4. Zrob commit na galezi main.
+5. Wgraj main na GitHub.
+6. Wgraj ta sama wersje na gh-pages.
+7. Poczekaj 1-3 minuty.
+8. Sprawdz publiczny link.
 
 JAK SPRAWDZIC PO AKTUALIZACJI
 - Strona sie otwiera.

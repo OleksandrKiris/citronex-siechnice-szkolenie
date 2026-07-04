@@ -1,11 +1,12 @@
-const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-03-03";
+﻿const CACHE_PREFIX = "citronex-siechnice-modular-";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-04-05";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./mapa.html",
   "./magazyn.html",
+  "./tablet.html",
   "./szklarnia.html",
   "./reader.html",
   "./lekarz.html",
@@ -15,18 +16,10 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css",
-  "./assets/js/training-data-v20260703.js",
-  "./assets/js/training-app-v20260703.js",
-  "./assets/logo-citronex.svg",
-  "./assets/orientation/sklarnia-etap-excel.png",
-  "./assets/inline/cart_pl.jpg",
-  "./assets/inline/cart_ua.jpg",
-  "./assets/inline/reader_start.jpg",
-  "./assets/inline/restart_1.jpg",
-  "./assets/inline/restart_2.jpg",
-  "./assets/warehouse/magazyn-wejscie-1.jpg",
-  "./assets/warehouse/magazyn-wejscie-2.jpg"
+  "./assets/css/training.css?v=20260704-ux-master5",
+  "./assets/js/training-data.js?v=20260704-ux-master5",
+  "./assets/js/training-app.js?v=20260704-ux-master5",
+  "./assets/logo-citronex.svg"
 ];
 
 self.addEventListener("install", (event) => {

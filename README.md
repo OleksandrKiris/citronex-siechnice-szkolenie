@@ -12,6 +12,8 @@ https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 
 - Jeden link startowy: `index.html`.
 - System jest podzielony na lekkie moduly: `mapa.html`, `magazyn.html`, `szklarnia.html`, `reader.html`, `lekarz.html`, `kontakty.html`, `grupy.html`, `miasto.html`, `zakazy.html`, `test.html`.
+- Produkcyjne pliki aplikacji to: `assets/js/training-data.js`, `assets/js/training-app.js`, `assets/css/training.css`.
+- Stare kopie plikow JS zostaja tylko jako zapas historyczny. Nie edytowac ich jako produkcji.
 - Jezyk wybiera sie tylko na gorze strony.
 - Jezyki: PL / EN / UA / RU / AZ / ES / FIL / ID / NE.
 - System jest przygotowany pod telefony.
@@ -40,3 +42,13 @@ Archiwum wersji jest w folderze `wersje`.
 - Reader nie pokazuje sie jako procedura magazynu.
 - Test dziala.
 - Zdjecia sa widoczne.
+
+## Audyt techniczny
+
+Po wiekszej zmianie uruchom:
+
+```bash
+node tools/audit-project.js
+```
+
+Skrypt sprawdza brakujace tlumaczenia, brakujace zdjecia i czy strony HTML uzywaja produkcyjnych plikow JS.
