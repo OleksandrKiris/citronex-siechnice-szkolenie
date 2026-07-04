@@ -188,7 +188,7 @@
       </details>
     ` : "";
 
-    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${tiles}</section>${installCard}<p class="footer-note">GitHub Pages • offline cache • v2026-07-03</p></main>`;
+    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${tiles}</section>${installCard}<p class="footer-note">GitHub Pages • offline cache • v2026-07-04 UX</p></main>`;
   }
 
   function renderMap() {
@@ -211,7 +211,7 @@
     const photoGroups = (DATA.mapPhotos || []).map((group) => {
       const photos = group.photos.map((src, index) => `
         <figure class="media">
-          <img src="${esc(src)}" alt="${esc(text(group.title))}">
+          <img loading="lazy" src="${esc(src)}" alt="${esc(text(group.title))}">
           <figcaption>${esc(text(group.title))} ${index + 1}</figcaption>
         </figure>
       `).join("");
@@ -261,8 +261,8 @@
         <section class="section">
           <h2>${esc(text(tx("Zdjęcia magazynu", "Warehouse photos", "Фото складу", "Фото склада", "Anbar şəkilləri", "Fotos del almacén", "Mga larawan ng bodega", "Foto gudang", "गोदाम फोटो")))}</h2>
           <div class="photo-grid">
-            <figure class="media"><img src="assets/warehouse/magazyn-wejscie-1.jpg" alt="Magazyn wejście"><figcaption>${esc(text(tx("Budynek magazynu - widok z parkingu.", "Warehouse building - view from parking.", "Будівля складу - вид з парковки.", "Здание склада - вид с парковки.", "Anbar binası - dayanacaqdan görünüş.", "Edificio de almacén - vista desde parking.", "Gusali ng bodega mula sa paradahan.", "Gedung gudang dari parkir.", "पार्किङबाट गोदाम भवन।")))}</figcaption></figure>
-            <figure class="media"><img src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
+            <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-1.jpg" alt="Magazyn wejście"><figcaption>${esc(text(tx("Budynek magazynu - widok z parkingu.", "Warehouse building - view from parking.", "Будівля складу - вид з парковки.", "Здание склада - вид с парковки.", "Anbar binası - dayanacaqdan görünüş.", "Edificio de almacén - vista desde parking.", "Gusali ng bodega mula sa paradahan.", "Gedung gudang dari parkir.", "पार्किङबाट गोदाम भवन।")))}</figcaption></figure>
+            <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
           </div>
         </section>
         ${tabletInstructionMarkup("warehouse", true)}
@@ -281,7 +281,7 @@
           <p>${esc(text(item.note))}</p>
           ${item.image ? `
             <figure class="tablet-shot">
-              <img loading="eager" src="${esc(item.image)}" alt="${esc(text(item.screen))}">
+              <img loading="lazy" src="${esc(item.image)}" alt="${esc(text(item.screen))}">
               <figcaption>${esc(text(item.screen))}</figcaption>
             </figure>
           ` : `
@@ -535,7 +535,7 @@
       return `
       <figure class="media reader-visual">
         <div class="reader-visual-frame">
-          <img src="${esc(image.src)}" alt="${esc(text(image.caption))}">
+          <img loading="lazy" src="${esc(image.src)}" alt="${esc(text(image.caption))}">
         </div>
         ${overlay}
         <figcaption>${esc(text(image.caption))}</figcaption>
@@ -659,7 +659,7 @@
       return buttons || phone ? `<div class="btn-row city-links">${buttons}${phone}</div>` : "";
     };
     const cityList = (items) => items && items.length ? `<ul class="list city-rule-list">${items.map((entry) => `<li>${esc(text(entry))}</li>`).join("")}</ul>` : "";
-    const cards = cityItems.map((item) => `
+    const cityCard = (item) => `
       <article class="${cardClass(item.tone)} city-card">
         <div class="city-card-head">
           <span class="city-card-icon">${iconMap[item.icon] || iconMap.city}</span>
@@ -673,7 +673,7 @@
         ${cityList(item.list)}
         ${cityLinks(item)}
       </article>
-    `).join("");
+    `;
     const cityFlow = [
       tx("Sprawa urzędowa", "Office matter", "Адміністративна справа", "Дело в учреждении", "Rəsmi iş", "Trámite oficial", "Opisyal na asunto", "Urusan kantor", "कार्यालयको काम"),
       tx("Dokumenty", "Documents", "Документи", "Документы", "Sənədlər", "Documentos", "Mga dokumento", "Dokumen", "कागजात"),
@@ -727,7 +727,7 @@
       tx("W banku i urzędzie podawaj tylko swoje dane.", "In the bank and office, give only your own data.", "У банку і установі подавайте тільки свої дані.", "В банке и учреждении давайте только свои данные.", "Bankda və idarədə yalnız öz məlumatlarınızı verin.", "En banco y oficina da solo tus datos.", "Sa bangko at opisina, sariling data lang.", "Di bank dan kantor berikan hanya data sendiri.", "बैंक र कार्यालयमा आफ्नै डाटा मात्र दिनुहोस्।"),
       tx("Jeśli nie rozumiesz pisma z urzędu, nie ignoruj go. Najpierw przetłumacz albo pokaż koordynatorowi.", "If you do not understand an office letter, do not ignore it. Translate it first or show it to a coordinator.", "Якщо не розумієте лист з установи, не ігноруйте. Спочатку перекладіть або покажіть координатору.", "Если не понимаете письмо из учреждения, не игнорируйте. Сначала переведите или покажите координатору.", "İdarədən məktubu başa düşmürsünüzsə, laqeyd qalmayın. Əvvəl tərcümə edin və ya koordinatora göstərin.", "Si no entiendes una carta oficial, no la ignores. Primero tradúcela o muéstrala al coordinador.", "Kung hindi naiintindihan ang sulat ng opisina, huwag balewalain. I-translate muna o ipakita sa coordinator.", "Jika tidak paham surat kantor, jangan diabaikan. Terjemahkan dulu atau tunjukkan ke koordinator.", "कार्यालयको पत्र नबुझे बेवास्ता नगर्नुहोस्। पहिले अनुवाद गर्नुहोस् वा कोर्डिनेटरलाई देखाउनुहोस्।")
     ].map((item) => `<li>${esc(text(item))}</li>`).join("");
-    const cityRules = (DATA.cityRules || []).map((item) => `
+    const cityRuleCard = (item) => `
       <article class="${cardClass(item.tone)} city-card">
         <div class="city-card-head">
           <span class="city-card-icon">${iconMap[item.icon] || iconMap.document}</span>
@@ -739,7 +739,83 @@
         <p>${esc(text(item.note))}</p>
         ${cityList(item.list)}
       </article>
+    `;
+    const cityMain = DATA.city || [];
+    const cityRuleMain = DATA.cityRules || [];
+    const cityCategories = [
+      {
+        id: "duw",
+        tone: "blue",
+        icon: "document",
+        title: tx("Karta pobytu / DUW", "Residence card / DUW", "Карта побиту / DUW", "Карта побыту / DUW", "Yaşayış kartı / DUW", "Residencia / DUW", "Residence card / DUW", "Kartu tinggal / DUW", "Residence card / DUW"),
+        lead: tx("Dokumenty, karta pobytu i sprawy urzędowe we Wrocławiu.", "Documents, residence card and official matters in Wrocław.", "Документи, карта побиту та справи у Вроцлаві.", "Документы, карта побыту и дела во Вроцлаве.", "Sənədlər, yaşayış kartı və Wrocław rəsmi işləri.", "Documentos, residencia y trámites en Wrocław.", "Dokumento, residence card at opisyal na gawain sa Wrocław.", "Dokumen, kartu tinggal dan urusan resmi di Wrocław.", "कागजात, residence card र Wrocław मा सरकारी काम।"),
+        items: [cityMain[0], cityMain[5]].filter(Boolean),
+        rules: []
+      },
+      {
+        id: "office",
+        tone: "blue",
+        icon: "city",
+        title: tx("Urząd w Siechnicach", "Office in Siechnice", "Установа в Siechnice", "Учреждение в Siechnice", "Siechnice idarəsi", "Oficina en Siechnice", "Opisina sa Siechnice", "Kantor di Siechnice", "Siechnice कार्यालय"),
+        lead: tx("PESEL, sprawy miejskie i podstawowe formalności.", "PESEL, city matters and basic formalities.", "PESEL, міські справи та основні формальності.", "PESEL, городские дела и основные формальности.", "PESEL, şəhər işləri və əsas sənədlər.", "PESEL, asuntos municipales y trámites básicos.", "PESEL, city matters at basic formalities.", "PESEL, urusan kota dan administrasi dasar.", "PESEL, शहरको काम र आधारभूत कागजात।"),
+        items: [cityMain[1]].filter(Boolean),
+        rules: [cityRuleMain[0], cityRuleMain[1]].filter(Boolean)
+      },
+      {
+        id: "banks",
+        tone: "yellow",
+        icon: "bank",
+        title: tx("Banki i bankomaty", "Banks and ATMs", "Банки і банкомати", "Банки и банкоматы", "Banklar və bankomatlar", "Bancos y cajeros", "Bangko at ATM", "Bank dan ATM", "बैंक र ATM"),
+        lead: tx("Konto, karta, gotówka i mapy do banków.", "Account, card, cash and maps to banks.", "Рахунок, карта, готівка та карти до банків.", "Счет, карта, наличные и карты к банкам.", "Hesab, kart, nağd pul və bank xəritələri.", "Cuenta, tarjeta, efectivo y mapas a bancos.", "Account, card, cash at mapa sa bangko.", "Rekening, kartu, tunai dan peta bank.", "खाता, कार्ड, नगद र बैंकको नक्सा।"),
+        items: [cityMain[2], cityMain[3], cityMain[4]].filter(Boolean),
+        rules: []
+      },
+      {
+        id: "transport",
+        tone: "blue",
+        icon: "map",
+        title: tx("Transport i aplikacje", "Transport and apps", "Транспорт і додатки", "Транспорт и приложения", "Nəqliyyat və tətbiqlər", "Transporte y apps", "Transport at apps", "Transportasi dan aplikasi", "यातायात र एपहरू"),
+        lead: tx("Jak dojechać po mieście i pociągiem.", "How to travel in the city and by train.", "Як їхати містом і потягом.", "Как ехать по городу и поездом.", "Şəhərdə və qatarla necə getmək.", "Cómo moverse por la ciudad y en tren.", "Paano bumiyahe sa city at tren.", "Cara pergi di kota dan dengan kereta.", "शहरमा र रेलबाट कसरी जाने।"),
+        items: [cityMain[6], cityMain[7]].filter(Boolean),
+        rules: []
+      },
+      {
+        id: "parcels",
+        tone: "yellow",
+        icon: "parcel",
+        title: tx("Paczki i zasady", "Parcels and rules", "Посилки і правила", "Посылки и правила", "Bağlamalar və qaydalar", "Paquetes y normas", "Parcels at rules", "Paket dan aturan", "पार्सल र नियमहरू"),
+        lead: tx("Co robić z zamówieniami, paczkami i ważnymi dokumentami.", "What to do with orders, parcels and important documents.", "Що робити із замовленнями, посилками та важливими документами.", "Что делать с заказами, посылками и важными документами.", "Sifariş, bağlama və vacib sənədlərlə nə etmək.", "Qué hacer con pedidos, paquetes y documentos importantes.", "Ano ang gagawin sa orders, parcels at important documents.", "Apa yang dilakukan dengan pesanan, paket dan dokumen penting.", "अर्डर, पार्सल र महत्त्वपूर्ण कागजातमा के गर्ने।"),
+        items: [],
+        rules: [cityRuleMain[2]].filter(Boolean)
+      }
+    ];
+    const cityCategoryTabs = cityCategories.map((category, index) => `
+      <button class="city-category-btn ${index === 0 ? "is-active" : ""}" type="button" data-city-filter="${esc(category.id)}" data-tone="${esc(category.tone)}">
+        <span class="city-card-icon">${iconMap[category.icon] || iconMap.city}</span>
+        <span>${esc(text(category.title))}</span>
+      </button>
     `).join("");
+    const cityCategoryPanels = cityCategories.map((category, index) => {
+      const panelItems = [
+        ...category.items.map(cityCard),
+        ...category.rules.map(cityRuleCard)
+      ].join("");
+      return `
+        <section class="city-category-panel${index === 0 ? " is-active" : ""}" data-city-panel="${esc(category.id)}"${index === 0 ? "" : " hidden"}>
+          <article class="${cardClass(category.tone)} city-card city-category-intro">
+            <div class="city-card-head">
+              <span class="city-card-icon">${iconMap[category.icon] || iconMap.city}</span>
+              <div>
+                <span class="city-card-tag">${esc(text(tx("Wybierz i otwórz mapę", "Choose and open map", "Оберіть і відкрийте карту", "Выберите и откройте карту", "Seçin və xəritəni açın", "Elige y abre el mapa", "Piliin at buksan ang mapa", "Pilih dan buka peta", "छानेर नक्सा खोल्नुहोस्")))}</span>
+                <h2>${esc(text(category.title))}</h2>
+              </div>
+            </div>
+            <p>${esc(text(category.lead))}</p>
+          </article>
+          <div class="module-grid two city-panel-grid">${panelItems}</div>
+        </section>
+      `;
+    }).join("");
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
@@ -749,8 +825,10 @@
           <div class="city-flow">${cityFlow}</div>
         </section>
         <section class="module-grid city-decision-grid section">${cityDecisions}</section>
-        <section class="module-grid two section">${cards}</section>
-        ${cityRules ? `<section class="module-grid two section">${cityRules}</section>` : ""}
+        <section class="section">
+          <div class="city-category-tabs">${cityCategoryTabs}</div>
+          ${cityCategoryPanels}
+        </section>
         <section class="module-grid two section">
           <article class="card yellow">
             <h2>${esc(text(tx("Co zabrać ze sobą", "What to take with you", "Що взяти з собою", "Что взять с собой", "Özünüzlə nə götürmək", "Qué llevar contigo", "Ano ang dadalhin", "Apa yang dibawa", "के लिएर जाने")))}</h2>
@@ -763,6 +841,20 @@
         </section>
       </main>
     `;
+
+    app.querySelectorAll("[data-city-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.cityFilter;
+        app.querySelectorAll("[data-city-filter]").forEach((item) => {
+          item.classList.toggle("is-active", item === button);
+        });
+        app.querySelectorAll("[data-city-panel]").forEach((panel) => {
+          const isActive = panel.dataset.cityPanel === target;
+          panel.hidden = !isActive;
+          panel.classList.toggle("is-active", isActive);
+        });
+      });
+    });
   }
 
   function renderBans() {
@@ -854,49 +946,115 @@
   }
 
   function renderTest() {
-    const questions = DATA.test.map((item, index) => `
-      <article class="test-question" data-q="${index}" data-ok="${item.ok ? "1" : "0"}">
-        <h3>${index + 1}. ${esc(text(item.text))}</h3>
-        <label><input type="radio" name="q${index}" value="1"> ${esc(ui("yes"))}</label>
-        <label><input type="radio" name="q${index}" value="0"> ${esc(ui("no"))}</label>
-      </article>
-    `).join("");
+    const total = DATA.test.length;
+    const answers = new Array(total).fill(null);
+    let current = 0;
+
+    const label = {
+      prev: tx("Wstecz", "Back", "Назад", "Назад", "Geri", "Atrás", "Bumalik", "Kembali", "पछाडि"),
+      next: tx("Dalej", "Next", "Далі", "Далее", "İrəli", "Siguiente", "Susunod", "Lanjut", "अगाडि"),
+      finish: tx("Zakończ test", "Finish test", "Завершити тест", "Завершить тест", "Testi bitir", "Terminar test", "Tapusin ang test", "Selesai tes", "टेस्ट समाप्त गर्नुहोस्"),
+      progress: tx("Pytanie", "Question", "Питання", "Вопрос", "Sual", "Pregunta", "Tanong", "Pertanyaan", "प्रश्न"),
+      choose: tx("Zaznacz odpowiedź, potem przejdź dalej.", "Choose an answer, then go next.", "Оберіть відповідь, потім перейдіть далі.", "Выберите ответ, потом нажмите далее.", "Cavabı seçin, sonra irəli gedin.", "Marca una respuesta y sigue.", "Pumili ng sagot, pagkatapos susunod.", "Pilih jawaban, lalu lanjut.", "उत्तर छानेर अगाडि जानुहोस्।"),
+      missing: tx("Odpowiedz na wszystkie pytania przed wysłaniem wyniku.", "Answer all questions before sending the result.", "Дайте відповідь на всі питання перед відправкою результату.", "Ответьте на все вопросы перед отправкой результата.", "Nəticəni göndərməzdən əvvəl bütün suallara cavab verin.", "Responde todas las preguntas antes de enviar.", "Sagutin ang lahat bago ipadala ang resulta.", "Jawab semua pertanyaan sebelum kirim hasil.", "नतिजा पठाउनु अघि सबै प्रश्नको उत्तर दिनुहोस्।"),
+      send: tx("Po sprawdzeniu wyślij wynik przez WhatsApp albo Viber.", "After checking, send the result by WhatsApp or Viber.", "Після перевірки надішліть результат через WhatsApp або Viber.", "После проверки отправьте результат через WhatsApp или Viber.", "Yoxladıqdan sonra nəticəni WhatsApp və ya Viber ilə göndərin.", "Después de revisar, envía el resultado por WhatsApp o Viber.", "Pagkatapos, ipadala ang resulta sa WhatsApp o Viber.", "Setelah dicek, kirim hasil via WhatsApp atau Viber.", "जाँचपछि WhatsApp वा Viber बाट नतिजा पठाउनुहोस्।")
+    };
 
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
-        <form id="testForm" class="stack">
-          ${questions}
-          <button class="btn yellow" type="submit">${esc(ui("score"))}</button>
-        </form>
+        <section class="test-shell">
+          <div class="test-progress-head">
+            <span id="testProgressText"></span>
+            <span id="testAnsweredText"></span>
+          </div>
+          <div class="test-progress-bar" aria-hidden="true"><span id="testProgressBar"></span></div>
+          <form id="testForm" class="test-step-form"></form>
+        </section>
         <div id="testResult"></div>
       </main>
     `;
 
-    document.getElementById("testForm").addEventListener("submit", (event) => {
-      event.preventDefault();
-      let score = 0;
-      let answered = 0;
-      DATA.test.forEach((item, index) => {
-        const selected = app.querySelector(`input[name="q${index}"]:checked`);
-        if (!selected) return;
-        answered += 1;
-        if ((selected.value === "1") === item.ok) score += 1;
+    const form = document.getElementById("testForm");
+    const result = document.getElementById("testResult");
+
+    function renderQuestion() {
+      const item = DATA.test[current];
+      const selected = answers[current];
+      const answered = answers.filter((answer) => answer !== null).length;
+      document.getElementById("testProgressText").textContent = `${text(label.progress)} ${current + 1}/${total}`;
+      document.getElementById("testAnsweredText").textContent = `${answered}/${total}`;
+      document.getElementById("testProgressBar").style.width = `${Math.max(4, ((current + 1) / total) * 100)}%`;
+
+      form.innerHTML = `
+        <article class="test-question is-single" data-q="${current}" data-ok="${item.ok ? "1" : "0"}">
+          <p class="test-helper">${esc(text(label.choose))}</p>
+          <h3>${current + 1}. ${esc(text(item.text))}</h3>
+          <div class="test-answer-grid">
+            <label class="${selected === true ? "is-picked" : ""}">
+              <input type="radio" name="testAnswer" value="1"${selected === true ? " checked" : ""}> 
+              <span>${esc(ui("yes"))}</span>
+            </label>
+            <label class="${selected === false ? "is-picked" : ""}">
+              <input type="radio" name="testAnswer" value="0"${selected === false ? " checked" : ""}> 
+              <span>${esc(ui("no"))}</span>
+            </label>
+          </div>
+        </article>
+        <div class="test-nav-row">
+          <button class="btn secondary" type="button" id="testPrev"${current === 0 ? " disabled" : ""}>${esc(text(label.prev))}</button>
+          <button class="btn yellow" type="button" id="testNext">${esc(text(current === total - 1 ? label.finish : label.next))}</button>
+        </div>
+      `;
+
+      form.querySelectorAll("input[name='testAnswer']").forEach((input) => {
+        input.addEventListener("change", () => {
+          answers[current] = input.value === "1";
+          renderQuestion();
+        });
       });
-      const total = DATA.test.length;
+      document.getElementById("testPrev").addEventListener("click", () => {
+        if (current > 0) {
+          current -= 1;
+          renderQuestion();
+          form.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+      document.getElementById("testNext").addEventListener("click", () => {
+        if (current < total - 1) {
+          current += 1;
+          renderQuestion();
+          form.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        showResult();
+      });
+    }
+
+    function showResult() {
+      const answered = answers.filter((answer) => answer !== null).length;
+      if (answered < total) {
+        result.innerHTML = `<section class="notice yellow"><strong>${esc(ui("important"))}:</strong> ${esc(text(label.missing))}</section>`;
+        result.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      const score = DATA.test.reduce((sum, item, index) => sum + (answers[index] === item.ok ? 1 : 0), 0);
       const message = `Wynik testu Citronex Siechnice: ${score}/${total}. Odpowiedzi: ${answered}/${total}. Jezyk: ${lang.toUpperCase()}.`;
-      document.getElementById("testResult").innerHTML = `
+      result.innerHTML = `
         <section class="result-box">
           <h2>${esc(ui("score"))}: ${score}/${total}</h2>
-          <p>${esc(text(tx("Po sprawdzeniu wyślij wynik przez WhatsApp albo Viber.", "After checking, send the result by WhatsApp or Viber.", "Після перевірки надішліть результат через WhatsApp або Viber.", "После проверки отправьте результат через WhatsApp или Viber.", "Yoxladıqdan sonra nəticəni WhatsApp və ya Viber ilə göndərin.", "Después de revisar, envía el resultado por WhatsApp o Viber.", "Pagkatapos, ipadala ang resulta sa WhatsApp o Viber.", "Setelah dicek, kirim hasil via WhatsApp atau Viber.", "जाँचपछि WhatsApp वा Viber बाट नतिजा पठाउनुहोस्।")))}</p>
+          <p>${esc(text(label.send))}</p>
           <div class="btn-row">
             <a class="btn" target="_blank" rel="noopener" href="${esc(waHref("+48502251384", message))}">${esc(ui("sendResult"))} WhatsApp</a>
             <a class="btn secondary" href="${esc(viberHref("+48794912552", message))}">${esc(ui("sendResult"))} Viber</a>
           </div>
         </section>
       `;
-      document.getElementById("testResult").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    renderQuestion();
   }
 
   function renderPage() {

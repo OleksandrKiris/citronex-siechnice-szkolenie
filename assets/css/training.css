@@ -481,6 +481,71 @@ h3 {
   margin-top: 0;
 }
 
+.city-category-tabs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 0 0 14px;
+}
+
+.city-category-btn {
+  min-height: 58px;
+  width: 100%;
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  font-weight: 950;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.city-category-btn .city-card-icon {
+  width: 40px;
+  height: 40px;
+  flex-basis: 40px;
+  border-radius: 13px;
+}
+
+.city-category-btn.is-active {
+  border-color: var(--brand);
+  background: linear-gradient(135deg, rgba(22,101,52,.12), rgba(255,255,255,.92));
+  box-shadow: 0 14px 28px rgba(22, 101, 52, .14);
+}
+
+.city-category-btn[data-tone="blue"].is-active {
+  border-color: var(--blue);
+  background: linear-gradient(135deg, rgba(20,103,179,.14), rgba(255,255,255,.94));
+}
+
+.city-category-btn[data-tone="yellow"].is-active {
+  border-color: var(--yellow);
+  background: linear-gradient(135deg, rgba(245,184,46,.2), rgba(255,255,255,.94));
+}
+
+.city-category-panel[hidden] {
+  display: none;
+}
+
+.city-category-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.city-panel-grid {
+  margin-top: 0;
+}
+
+.city-category-intro {
+  box-shadow: var(--shadow-sm);
+}
+
 .tablet-guide {
   background:
     linear-gradient(135deg, rgba(245,184,46,.18), rgba(20,103,179,.1)),
@@ -1454,6 +1519,71 @@ details.card[open] > summary::after {
   background: var(--surface);
 }
 
+.test-shell {
+  padding: 14px;
+  border: 1px solid rgba(217, 228, 221, .95);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(22,101,52,.08), rgba(245,184,46,.12)),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.test-progress-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.test-progress-bar {
+  height: 10px;
+  margin: 10px 0 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(24, 37, 31, .1);
+}
+
+.test-progress-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--brand), var(--yellow));
+  transition: width .2s ease;
+}
+
+.test-step-form {
+  display: grid;
+  gap: 12px;
+}
+
+.test-question.is-single {
+  padding: 16px;
+  box-shadow: none;
+}
+
+.test-question.is-single h3 {
+  margin: 4px 0 14px;
+  font-size: clamp(18px, 4vw, 24px);
+  line-height: 1.25;
+}
+
+.test-helper {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.test-answer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
 .test-question label {
   min-height: 48px;
   display: flex;
@@ -1462,6 +1592,39 @@ details.card[open] > summary::after {
   padding: 10px 0;
   color: var(--muted);
   font-weight: 750;
+}
+
+.test-question.is-single label {
+  min-height: 58px;
+  padding: 12px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 950;
+}
+
+.test-question.is-single label.is-picked {
+  border-color: var(--brand);
+  background: var(--green-soft);
+  box-shadow: 0 10px 22px rgba(22, 101, 52, .12);
+}
+
+.test-question.is-single input {
+  width: 20px;
+  height: 20px;
+}
+
+.test-nav-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn[disabled] {
+  opacity: .45;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .result-box {
@@ -1490,8 +1653,10 @@ details.card[open] > summary::after {
   .work-flow { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .city-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .city-decision-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .city-category-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .btn-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .test-answer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 430px) {

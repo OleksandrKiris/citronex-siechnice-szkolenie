@@ -1,5 +1,5 @@
 ﻿const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "2026-07-04-04";
+const CACHE_NAME = CACHE_PREFIX + "2026-07-04-05";
 
 const CORE_ASSETS = [
   "./",
@@ -16,45 +16,10 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260704-visual-master4",
-  "./assets/js/training-data-20260703-tablet1.js?v=20260704-visual-master4",
-  "./assets/js/training-app-20260703-passagefix1.js?v=20260704-visual-master4",
-  "./assets/logo-citronex.svg",
-  "./assets/orientation/sklarnia-etap-excel.png",
-  "./assets/inline/cart_pl.jpg",
-  "./assets/inline/cart_ua.jpg",
-  "./assets/inline/reader_start.jpg",
-  "./assets/inline/restart_1.jpg",
-  "./assets/inline/restart_2.jpg",
-  "./assets/inline/hotel_1.jpg",
-  "./assets/inline/hotel_2.jpg",
-  "./assets/inline/hotel_3.jpg",
-  "./assets/inline/hotel_4.jpg",
-  "./assets/inline/hotel_5.jpg",
-  "./assets/inline/stage12_1.jpg",
-  "./assets/inline/stage12_2.jpg",
-  "./assets/inline/stage34_1.jpg",
-  "./assets/inline/stage34_2.jpg",
-  "./assets/inline/stage34_3.jpg",
-  "./assets/inline/stage5_1.jpg",
-  "./assets/inline/stage5_2.jpg",
-  "./assets/inline/stage5_3.jpg",
-  "./assets/inline/stage5_4.jpg",
-  "./assets/inline/stage6_1.jpg",
-  "./assets/inline/stage6_2.jpg",
-  "./assets/inline/stage6_3.jpg",
-  "./assets/inline/stage6_4.jpg",
-  "./assets/inline/stage6_5.jpg",
-  "./assets/warehouse/magazyn-wejscie-1.jpg",
-  "./assets/warehouse/magazyn-wejscie-2.jpg",
-  "./assets/tablet/tablet-login-pin.jpg",
-  "./assets/tablet/tablet-start-work.jpg",
-  "./assets/tablet/tablet-activity.jpg",
-  "./assets/tablet/tablet-change-activity.jpg",
-  "./assets/tablet/tablet-break-start.jpg",
-  "./assets/tablet/tablet-after-break-activity.jpg",
-  "./assets/tablet/tablet-work-end.jpg",
-  "./assets/tablet/tablet-logout.jpg"
+  "./assets/css/training.css?v=20260704-ux-master5",
+  "./assets/js/training-data.js?v=20260704-ux-master5",
+  "./assets/js/training-app.js?v=20260704-ux-master5",
+  "./assets/logo-citronex.svg"
 ];
 
 self.addEventListener("install", (event) => {
