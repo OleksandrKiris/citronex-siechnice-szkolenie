@@ -134,14 +134,36 @@ function collectMapLinks(data) {
   return items;
 }
 
+function loadCriticalLinks(root = DEFAULT_ROOT) {
+  const criticalPath = path.join(root, "data", "critical-links.json");
+  if (!fs.existsSync(criticalPath)) return [];
+  const parsed = JSON.parse(fs.readFileSync(criticalPath, "utf8"));
+  return Array.isArray(parsed.links) ? parsed.links : [];
+}
+
+function checkCriticalLinks(items, criticalLinks) {
+  const urls = new Set(items.map((item) => item.url));
+  return criticalLinks
+    .filter((item) => !urls.has(item.url))
+    .map((item) => ({
+      status: "error",
+      label: item.label || item.id || "(critical link)",
+      url: item.url,
+      trail: `data/critical-links.json:${item.id || item.label || "link"}`,
+      reason: "Krytyczny link nie wystepuje w aktywnych danych szkolenia."
+    }));
+}
+
 function auditMapLinks(options = {}) {
   const root = options.root || DEFAULT_ROOT;
   const data = options.data || loadData(root);
   const items = collectMapLinks(data);
+  const criticalLinks = loadCriticalLinks(root);
+  const criticalErrors = checkCriticalLinks(items, criticalLinks);
   const errors = items.filter((item) => item.status === "error");
   const warnings = items.filter((item) => item.status === "warning");
   const ok = items.filter((item) => item.status === "ok");
-  return { items, ok, warnings, errors };
+  return { items, ok, warnings, errors, criticalLinks, criticalErrors };
 }
 
 function formatMapAudit(result, options = {}) {
@@ -156,8 +178,20 @@ function formatMapAudit(result, options = {}) {
     `Map links: ${result.items.length}`,
     `OK: ${result.ok.length}`,
     `Warnings: ${result.warnings.length}`,
-    `Errors: ${result.errors.length}`
+    `Errors: ${result.errors.length}`,
+    `Critical links: ${result.criticalLinks.length}`,
+    `Critical missing: ${result.criticalErrors.length}`
   ];
+
+  if (verbose && result.criticalErrors.length) {
+    lines.push("");
+    for (const item of result.criticalErrors) {
+      lines.push(`[CRITICAL] ${item.label}`);
+      lines.push(`  path: ${item.trail}`);
+      lines.push(`  note: ${item.reason}`);
+      lines.push(`  url:  ${item.url}`);
+    }
+  }
 
   if (verbose && rows.length) {
     lines.push("");
@@ -177,7 +211,7 @@ if (require.main === module) {
   const strict = process.argv.includes("--strict");
   const onlyProblems = process.argv.includes("--only-problems");
   console.log(formatMapAudit(result, { onlyProblems }));
-  process.exit(result.errors.length || (strict && result.warnings.length) ? 1 : 0);
+  process.exit(result.errors.length || result.criticalErrors.length || (strict && result.warnings.length) ? 1 : 0);
 }
 
 module.exports = { auditMapLinks, formatMapAudit, classifyMapUrl, isMapUrl };

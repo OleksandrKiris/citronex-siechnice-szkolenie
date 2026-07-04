@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { auditMapLinks } = require("./audit-map-links");
+const { auditButtons } = require("./audit-buttons");
 
 const root = path.resolve(__dirname, "..");
 const dataPath = path.join(root, "assets", "js", "training-data.js");
@@ -62,6 +63,7 @@ const wrongHtml = htmlFiles.filter((file) => {
   return !html.includes("assets/js/training-data.js") || !html.includes("assets/js/training-app.js");
 });
 const mapAudit = auditMapLinks({ root, data: DATA });
+const buttonAudit = auditButtons({ root, data: DATA });
 
 console.log("Citronex training audit");
 console.log(`Languages: ${langs.join(", ")}`);
@@ -75,6 +77,10 @@ console.log(`HTML files using old production scripts: ${wrongHtml.length}`);
 console.log(`Map links: ${mapAudit.items.length}`);
 console.log(`Map warnings: ${mapAudit.warnings.length}`);
 console.log(`Map errors: ${mapAudit.errors.length}`);
+console.log(`Critical map links: ${mapAudit.criticalLinks.length}`);
+console.log(`Critical map links missing: ${mapAudit.criticalErrors.length}`);
+console.log(`Button/link audit errors: ${buttonAudit.errors.length}`);
+console.log(`Button/link audit warnings: ${buttonAudit.warnings.length}`);
 
 if (missing.length) {
   console.log("\nMissing translations:");
@@ -100,6 +106,14 @@ if (mapAudit.errors.length) {
   });
 }
 
+if (mapAudit.criticalErrors.length) {
+  console.log("\nCritical map link errors:");
+  mapAudit.criticalErrors.forEach((item) => {
+    console.log(`- ${item.label}: ${item.reason}`);
+    console.log(`  ${item.url}`);
+  });
+}
+
 if (mapAudit.warnings.length) {
   console.log("\nMap link warnings:");
   mapAudit.warnings.forEach((item) => {
@@ -108,4 +122,14 @@ if (mapAudit.warnings.length) {
   });
 }
 
-process.exit(missing.length || missingAssets.length || wrongHtml.length || mapAudit.errors.length ? 1 : 0);
+if (buttonAudit.errors.length) {
+  console.log("\nButton/link errors:");
+  buttonAudit.errors.forEach((item) => console.log(`- ${item}`));
+}
+
+if (buttonAudit.warnings.length) {
+  console.log("\nButton/link warnings:");
+  buttonAudit.warnings.forEach((item) => console.log(`- ${item}`));
+}
+
+process.exit(missing.length || missingAssets.length || wrongHtml.length || mapAudit.errors.length || mapAudit.criticalErrors.length || buttonAudit.errors.length ? 1 : 0);

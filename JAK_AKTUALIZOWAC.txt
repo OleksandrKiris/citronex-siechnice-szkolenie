@@ -32,6 +32,8 @@ JAK WGRAC ZMIANY
    node tools/audit-project.js
    Pelna lista linkow map:
    node tools/audit-map-links.js --only-problems
+   Kontrola przyciskow i linkow:
+   node tools/audit-buttons.js
 4. Zrob commit na galezi main.
 5. Wgraj main na GitHub.
 6. Wgraj ta sama wersje na gh-pages.
@@ -49,6 +51,9 @@ JAK SPRAWDZIC PO AKTUALIZACJI
 - Nie ma pol imie / nazwisko.
 - Nie ma gotowej prosby o pomoc.
 - Linki map nie maja bledow w audycie.
+- Krytyczne linki w data/critical-links.json nadal sa w aktywnym szkoleniu.
+- Przyciski i linki nie maja bledow w audycie.
+- W stopce widac aktualna wersje systemu.
 
 JAK DODAC DO EKRANU TELEFONU
 Android:

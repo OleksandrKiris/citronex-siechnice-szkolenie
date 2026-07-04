@@ -1,0 +1,66 @@
+{
+  "version": "2026-07-04",
+  "description": "Krytyczne linki map. Nie zmieniac bez sprawdzenia z wlascicielem procesu.",
+  "links": [
+    {
+      "id": "office_meeting_point",
+      "label": "Biuro / punkt spotkania",
+      "url": "https://maps.app.goo.gl/55Bq5cMM5omaDihv6"
+    },
+    {
+      "id": "entrance_map",
+      "label": "Mapa wejsc",
+      "url": "https://www.google.com/maps/d/viewer?mid=1VcKjk2pZ1RgER3GV2DrH8u699hZnnts"
+    },
+    {
+      "id": "greenhouse_e1_e2",
+      "label": "Szklarnia E1 / E2",
+      "url": "https://maps.app.goo.gl/kG99UiAv9FRvb6DG9?g_st=ic"
+    },
+    {
+      "id": "greenhouse_e3_e4",
+      "label": "Szklarnia E3 / E4",
+      "url": "https://maps.google.com?q=51.0173459,17.1570148&entry=gps"
+    },
+    {
+      "id": "greenhouse_e5",
+      "label": "Szklarnia E5",
+      "url": "https://maps.app.goo.gl/ccG5vb6oE26NDsS76?g_st=ic"
+    },
+    {
+      "id": "greenhouse_e6",
+      "label": "Szklarnia E6",
+      "url": "https://maps.app.goo.gl/DH8J1Rtea55mXsoTA?g_st=ic"
+    },
+    {
+      "id": "warehouse",
+      "label": "Magazyn - lokalizacja",
+      "url": "https://maps.app.goo.gl/vVWEFUUHDt8qxzVw9"
+    },
+    {
+      "id": "old_warehouse",
+      "label": "Stary magazyn",
+      "url": "https://maps.app.goo.gl/5B47Av1GDhEUBM7M7"
+    },
+    {
+      "id": "goz_siechnice",
+      "label": "GOZ Siechnice",
+      "url": "https://www.google.com/maps/place/GOZ+Siechnice/@51.0312338,17.1495451,274m/data=!3m2!1e3!4b1!4m12!1m5!3m4!2zNTHCsDAxJzAyLjUiTiAxN8KwMDknMjUuMyJF!8m2!3d51.0173459!4d17.1570148!3m5!1s0x470fdd006716aeb7:0x34fbd349a5cac4d5!8m2!3d51.031233!4d17.1501888!16s%2Fg%2F11yycs9lf9?entry=ttu"
+    },
+    {
+      "id": "sor_olawa",
+      "label": "SOR Olawa",
+      "url": "https://maps.app.goo.gl/9oCDLCRmdZHyJ6wi8"
+    },
+    {
+      "id": "sor_wroclaw",
+      "label": "SOR Wroclaw",
+      "url": "https://maps.app.goo.gl/PTFDRQC7fnsVRqhY8"
+    },
+    {
+      "id": "duw",
+      "label": "DUW - karta pobytu",
+      "url": "https://maps.app.goo.gl/NySReoBkGW3aoziv9"
+    }
+  ]
+}

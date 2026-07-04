@@ -4,6 +4,10 @@
   const gozMap = "https://www.google.com/maps/place/GOZ+Siechnice/@51.0312338,17.1495451,274m/data=!3m2!1e3!4b1!4m12!1m5!3m4!2zNTHCsDAxJzAyLjUiTiAxN8KwMDknMjUuMyJF!8m2!3d51.0173459!4d17.1570148!3m5!1s0x470fdd006716aeb7:0x34fbd349a5cac4d5!8m2!3d51.031233!4d17.1501888!16s%2Fg%2F11yycs9lf9?entry=ttu";
 
   window.CX_DATA = {
+    meta: {
+      version: "20260704-tech-audit1"
+    },
+
     languages: [
       { id: "pl", label: "Polski" },
       { id: "en", label: "English" },

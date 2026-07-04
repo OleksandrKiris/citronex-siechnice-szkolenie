@@ -68,3 +68,19 @@ node tools/audit-map-links.js --only-problems
 ```
 
 `Errors` trzeba poprawic od razu. `Warnings` oznacza link typu wyszukiwanie po nazwie/adresie - dziala, ale najlepiej zamienic go na staly link `maps.app.goo.gl` albo konkretne miejsce w Google Maps.
+
+Krytyczne linki sa zapisane w:
+
+```text
+data/critical-links.json
+```
+
+Audyt sprawdza, czy te adresy nadal wystepuja w aktywnych danych szkolenia.
+
+## Audyt przyciskow i linkow
+
+```bash
+node tools/audit-buttons.js
+```
+
+Skrypt sprawdza, czy kafelki maja swoje pliki HTML, czy linki nie sa puste, czy nie prowadza do `#`, czy pliki CSS/JS/manifest istnieja i czy numery telefonu maja poprawna dlugosc.

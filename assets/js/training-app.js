@@ -188,7 +188,18 @@
       </details>
     ` : "";
 
-    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${tiles}</section>${installCard}<p class="footer-note">GitHub Pages • offline cache • v2026-07-04 UX</p></main>`;
+    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${tiles}</section>${installCard}</main>`;
+  }
+
+  function renderVersionFooter() {
+    const main = app.querySelector("main.page");
+    if (!main || main.querySelector(".app-version-footer")) return;
+    const version = DATA.meta && DATA.meta.version ? DATA.meta.version : "dev";
+    main.insertAdjacentHTML("beforeend", `
+      <p class="footer-note app-version-footer">
+        GitHub Pages &middot; offline cache &middot; v${esc(version)}
+      </p>
+    `);
   }
 
   function renderMap() {
@@ -1058,6 +1069,7 @@
       test: renderTest
     };
     (renderers[page] || renderHome)();
+    renderVersionFooter();
   }
 
   function upgradeCache() {

@@ -1582,6 +1582,12 @@ details.card[open] > summary::after {
   text-align: center;
 }
 
+.app-version-footer {
+  padding: 10px 0 0;
+  opacity: .78;
+  font-size: 12px;
+}
+
 @media (min-width: 760px) {
   .header-inner { padding: 14px 18px; }
   .top-nav-scroll { padding-left: 18px; padding-right: 18px; }
