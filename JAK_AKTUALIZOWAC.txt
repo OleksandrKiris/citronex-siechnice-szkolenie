@@ -11,7 +11,7 @@ CO JEST WAZNE
 1. Pracownik dostaje jeden link: index.html.
 2. Technicznie system jest podzielony na lekkie moduly HTML, zeby telefon nie ladowal wszystkiego naraz.
 3. Nie dodawac pol: imie, nazwisko, wybor etapu / miejsce jako formularz.
-4. Nie dodawac gotowych prosb o pomoc do kopiowania.
+4. Modul "Powiedz po polsku" moze miec gotowe zdania, ale telefon ma mowic po polsku.
 5. Magazyn / sortownia nie ma readerow.
 6. Nie zmieniac logiki instrukcji readera bez sprawdzenia z materialami zrodlowymi.
 7. Jezyki maja zostac tylko na gorze strony.
@@ -27,6 +27,7 @@ JAK WGRAC ZMIANY
    - assets/js/training-data.js
    - assets/js/training-app.js
    - assets/css/training.css
+   - sw.js, jezeli dodajesz nowy plik HTML
 2. Sprawdz lokalnie na telefonowym rozmiarze ekranu.
 3. Uruchom audyt:
    node tools/audit-project.js

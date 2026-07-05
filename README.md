@@ -11,14 +11,14 @@ https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 ## Najwazniejsze
 
 - Jeden link startowy: `index.html`.
-- System jest podzielony na lekkie moduly: `mapa.html`, `magazyn.html`, `szklarnia.html`, `reader.html`, `lekarz.html`, `kontakty.html`, `grupy.html`, `miasto.html`, `zakazy.html`, `test.html`.
+- System jest podzielony na lekkie moduly: `mapa.html`, `magazyn.html`, `tablet.html`, `szklarnia.html`, `reader.html`, `lekarz.html`, `kontakty.html`, `grupy.html`, `miasto.html`, `mowa.html`, `slownik.html`, `zakazy.html`, `test.html`.
 - Produkcyjne pliki aplikacji to: `assets/js/training-data.js`, `assets/js/training-app.js`, `assets/css/training.css`.
 - Stare kopie plikow JS zostaja tylko jako zapas historyczny. Nie edytowac ich jako produkcji.
 - Jezyk wybiera sie tylko na gorze strony.
 - Jezyki: PL / EN / UA / RU / AZ / ES / FIL / ID / NE.
 - System jest przygotowany pod telefony.
 - Nie ma wpisywania imienia i nazwiska.
-- Nie ma gotowych prosb o pomoc do kopiowania.
+- Jest modul `Powiedz po polsku`: pracownik wybiera zdanie w swoim jezyku, a telefon mowi je po polsku.
 - Mapy i wejscia sa na poczatku szkolenia.
 - Magazyn / sortownia nie ma readerow.
 - Reader, rzed, przerwa, wozek i restart sa opisane wedlug instrukcji.

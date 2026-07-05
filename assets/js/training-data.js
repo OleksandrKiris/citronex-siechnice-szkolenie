@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260705-contrast-fix2"
+      version: "20260705-mowa2"
     },
 
     languages: [
@@ -644,4 +644,178 @@
       { ok: false, text: tx("U brygadzistów musi być Viber.", "Brigadiers must have Viber.", "У бригадирів має бути Viber.", "У бригадиров должен быть Viber.", "Briqadirlərdə mütləq Viber olmalıdır.", "Los encargados deben tener Viber.", "Dapat may Viber ang brigadier.", "Mandor harus punya Viber.", "ब्रिगेडियरसँग Viber हुनै पर्छ।") }
     ]
   };
+
+window.CX_DATA.pages.mowa = {
+  title: tx("Powiedz po polsku", "Say it in Polish", "Скажи польською", "Скажи по-польски", "Polyakca de", "Dilo en polaco", "Sabihin sa Polish", "Katakan dalam bahasa Polandia", "पोलिसमा भन्नुहोस्"),
+  lead: tx("Gotowe zdania do pracy. Wybierz zdanie w swoim języku, a telefon powie je po polsku.", "Ready sentences for work. Choose a sentence in your language and the phone will say it in Polish.", "Готові речення для роботи. Оберіть речення своєю мовою, і телефон скаже його польською.", "Готовые фразы для работы. Выберите фразу на своём языке, и телефон скажет её по-польски.", "İş üçün hazır cümlələr. Cümləni öz dilinizdə seçin, telefon onu polyakca deyəcək.", "Frases listas para el trabajo. Elige una frase en tu idioma y el teléfono la dirá en polaco.", "Mga handang pangungusap para sa trabaho. Pumili sa iyong wika at sasabihin ito ng telepono sa Polish.", "Kalimat siap pakai untuk kerja. Pilih dalam bahasa Anda, telepon akan mengucapkannya dalam bahasa Polandia.", "कामका लागि तयार वाक्यहरू। आफ्नो भाषामा वाक्य छान्नुहोस्, फोनले पोलिसमा भन्छ।")
+};
+
+window.CX_DATA.tiles.splice(
+  window.CX_DATA.tiles.findIndex((tile) => tile.page === "slownik"),
+  0,
+  {
+    page: "mowa",
+    tone: "blue",
+    icon: "speech",
+    title: tx("Powiedz po polsku", "Say it in Polish", "Скажи польською", "Скажи по-польски", "Polyakca de", "Dilo en polaco", "Sabihin sa Polish", "Katakan Polandia", "पोलिसमा भन्नुहोस्"),
+    text: tx("Kliknij zdanie w swoim języku, telefon powie je po polsku.", "Tap a sentence in your language; the phone will say it in Polish.", "Натисніть речення своєю мовою, телефон скаже його польською.", "Нажмите фразу на своём языке, телефон скажет её по-польски.", "Cümləyə öz dilinizdə toxunun, telefon polyakca deyəcək.", "Toca una frase en tu idioma y el teléfono la dirá en polaco.", "Pindutin ang pangungusap sa iyong wika, sasabihin ito ng telepono sa Polish.", "Tekan kalimat dalam bahasa Anda, telepon akan mengucapkannya dalam bahasa Polandia.", "आफ्नो भाषामा वाक्य थिच्नुहोस्, फोनले पोलिसमा भन्छ।")
+  }
+);
+
+window.CX_DATA.speechGroups = [
+  { id: "understand", tone: "blue", icon: "speech", title: tx("Nie rozumiem", "I do not understand", "Не розумію", "Не понимаю", "Başa düşmürəm", "No entiendo", "Hindi ko maintindihan", "Saya tidak mengerti", "मैले बुझिनँ") },
+  { id: "place", tone: "green", icon: "map", title: tx("Gdzie mam iść", "Where should I go", "Куди мені йти", "Куда мне идти", "Hara getməliyəm", "Dónde debo ir", "Saan ako pupunta", "Saya harus ke mana", "म कहाँ जानु") },
+  { id: "greenhouse", tone: "green", icon: "greenhouse", title: tx("Szklarnia i rzędy", "Greenhouse and rows", "Теплиця і ряди", "Теплица и ряды", "İstixana və sıralar", "Invernadero y filas", "Greenhouse at rows", "Rumah kaca dan baris", "ग्रीनहाउस र लाइन") },
+  { id: "equipment", tone: "yellow", icon: "reader", title: tx("Reader, tablet, tag", "Reader, tablet, tag", "Рідер, планшет, тег", "Ридер, планшет, тег", "Reader, tablet, tag", "Reader, tablet, tag", "Reader, tablet, tag", "Reader, tablet, tag", "reader, tablet, tag") },
+  { id: "break", tone: "blue", icon: "city", title: tx("Przerwa i socjal", "Break and social room", "Перерва і соціал", "Перерыв и социал", "Fasilə və sosial otaq", "Pausa y sala social", "Break at social room", "Istirahat dan ruang sosial", "ब्रेक र सोसियल") },
+  { id: "health", tone: "red", icon: "medical", title: tx("Zdrowie i spóźnienie", "Health and lateness", "Здоров'я і запізнення", "Здоровье и опоздание", "Sağlamlıq və gecikmə", "Salud y retraso", "Kalusugan at late", "Kesehatan dan terlambat", "स्वास्थ्य र ढिलो") },
+  { id: "warehouse", tone: "yellow", icon: "warehouse", title: tx("Magazyn", "Warehouse", "Склад", "Склад", "Anbar", "Almacén", "Bodega", "Gudang", "गोदाम") }
+];
+
+const speechPhrase = (group, polish, en, ua, ru, az, es, fil, id, ne) => ({ group, say: polish, label: tx(polish, en, ua, ru, az, es, fil, id, ne) });
+
+window.CX_DATA.speechPhrases = [
+  speechPhrase("understand", "Nie rozumiem.", "I do not understand.", "Я не розумію.", "Я не понимаю.", "Başa düşmürəm.", "No entiendo.", "Hindi ko maintindihan.", "Saya tidak mengerti.", "मैले बुझिनँ।"),
+  speechPhrase("understand", "Proszę powiedzieć wolniej.", "Please speak more slowly.", "Будь ласка, говоріть повільніше.", "Пожалуйста, говорите медленнее.", "Zəhmət olmasa daha yavaş deyin.", "Por favor, hable más despacio.", "Pakisabi nang mas mabagal.", "Tolong bicara lebih pelan.", "कृपया बिस्तारै भन्नुहोस्।"),
+  speechPhrase("understand", "Proszę pokazać jeszcze raz.", "Please show me one more time.", "Будь ласка, покажіть ще раз.", "Пожалуйста, покажите ещё раз.", "Zəhmət olmasa bir dəfə də göstərin.", "Por favor, muéstreme otra vez.", "Pakipakita ulit.", "Tolong tunjukkan sekali lagi.", "कृपया फेरि देखाउनुहोस्।"),
+  speechPhrase("understand", "Proszę powtórzyć.", "Please repeat.", "Будь ласка, повторіть.", "Пожалуйста, повторите.", "Zəhmət olmasa təkrar edin.", "Por favor, repita.", "Pakiulit.", "Tolong ulangi.", "कृपया दोहोर्याउनुहोस्।"),
+  speechPhrase("understand", "Proszę napisać mi to w wiadomości.", "Please write it to me in a message.", "Будь ласка, напишіть мені це в повідомленні.", "Пожалуйста, напишите мне это в сообщении.", "Zəhmət olmasa bunu mənə mesajda yazın.", "Por favor, escríbamelo en un mensaje.", "Pakisulat ito sa mensahe.", "Tolong tuliskan ini di pesan.", "कृपया यो मलाई सन्देशमा लेख्नुहोस्।"),
+  speechPhrase("understand", "Proszę pokazać ręką, gdzie mam iść.", "Please show with your hand where I should go.", "Будь ласка, покажіть рукою, куди мені йти.", "Пожалуйста, покажите рукой, куда мне идти.", "Zəhmət olmasa əlinizlə hara getməli olduğumu göstərin.", "Por favor, indíqueme con la mano dónde debo ir.", "Pakitudlo gamit ang kamay kung saan ako pupunta.", "Tolong tunjukkan dengan tangan saya harus ke mana.", "कृपया हातले देखाउनुहोस् म कहाँ जानु।"),
+
+  speechPhrase("place", "Gdzie mam iść?", "Where should I go?", "Куди мені йти?", "Куда мне идти?", "Hara getməliyəm?", "¿Dónde debo ir?", "Saan ako pupunta?", "Saya harus ke mana?", "म कहाँ जानु?"),
+  speechPhrase("place", "Gdzie jest wejście?", "Where is the entrance?", "Де вхід?", "Где вход?", "Giriş haradadır?", "¿Dónde está la entrada?", "Nasaan ang pasukan?", "Di mana pintu masuk?", "प्रवेश कहाँ छ?"),
+  speechPhrase("place", "Gdzie jest biuro?", "Where is the office?", "Де офіс?", "Где офис?", "Ofis haradadır?", "¿Dónde está la oficina?", "Nasaan ang opisina?", "Di mana kantor?", "कार्यालय कहाँ छ?"),
+  speechPhrase("place", "Gdzie mam czekać?", "Where should I wait?", "Де мені чекати?", "Где мне ждать?", "Harada gözləməliyəm?", "¿Dónde debo esperar?", "Saan ako maghihintay?", "Saya harus menunggu di mana?", "म कहाँ कुर्नु?"),
+  speechPhrase("place", "Szukam brygadzisty.", "I am looking for the brigadier.", "Я шукаю бригадира.", "Я ищу бригадира.", "Briqadiri axtarıram.", "Busco al encargado.", "Hinahanap ko ang brigadier.", "Saya mencari mandor.", "म ब्रिगेडियर खोज्दैछु।"),
+  speechPhrase("place", "Czy to jest moja grupa?", "Is this my group?", "Це моя група?", "Это моя группа?", "Bu mənim qrupumdur?", "¿Este es mi grupo?", "Ito ba ang grupo ko?", "Apakah ini grup saya?", "यो मेरो समूह हो?"),
+  speechPhrase("place", "Gdzie jest moja szklarnia?", "Where is my greenhouse?", "Де моя теплиця?", "Где моя теплица?", "Mənim istixanam haradadır?", "¿Dónde está mi invernadero?", "Nasaan ang greenhouse ko?", "Di mana rumah kaca saya?", "मेरो ग्रीनहाउस कहाँ छ?"),
+  speechPhrase("place", "Gdzie jest magazyn?", "Where is the warehouse?", "Де склад?", "Где склад?", "Anbar haradadır?", "¿Dónde está el almacén?", "Nasaan ang bodega?", "Di mana gudang?", "गोदाम कहाँ छ?"),
+  speechPhrase("place", "Gdzie jest stary magazyn?", "Where is the old warehouse?", "Де старий склад?", "Где старый склад?", "Köhnə anbar haradadır?", "¿Dónde está el almacén antiguo?", "Nasaan ang lumang bodega?", "Di mana gudang lama?", "पुरानो गोदाम कहाँ छ?"),
+
+  speechPhrase("greenhouse", "Do której nawy mam iść?", "Which nave should I go to?", "До якої нави мені йти?", "В какую наву мне идти?", "Hansı navaya getməliyəm?", "¿A qué nave debo ir?", "Saang nave ako pupunta?", "Saya harus ke nave yang mana?", "म कुन नावामा जानु?"),
+  speechPhrase("greenhouse", "Nie wiem, jaka to nawa.", "I do not know which nave this is.", "Я не знаю, яка це нава.", "Я не знаю, какая это нава.", "Bunun hansı nava olduğunu bilmirəm.", "No sé qué nave es.", "Hindi ko alam kung anong nave ito.", "Saya tidak tahu ini nave yang mana.", "मलाई थाहा छैन यो कुन नावा हो।"),
+  speechPhrase("greenhouse", "Nie wiem, jaki to rząd.", "I do not know which row this is.", "Я не знаю, який це ряд.", "Я не знаю, какой это ряд.", "Bunun hansı sıra olduğunu bilmirəm.", "No sé qué fila es.", "Hindi ko alam kung anong row ito.", "Saya tidak tahu ini baris yang mana.", "मलाई थाहा छैन यो कुन लाइन हो।"),
+  speechPhrase("greenhouse", "Nie wiem, które to przęsło.", "I do not know which section this is.", "Я не знаю, яка це секція.", "Я не знаю, какая это секция.", "Bunun hansı bölmə olduğunu bilmirəm.", "No sé qué sección es.", "Hindi ko alam kung anong section ito.", "Saya tidak tahu ini bagian yang mana.", "मलाई थाहा छैन यो कुन सेक्सन हो।"),
+  speechPhrase("greenhouse", "Gdzie jest lewa strona?", "Where is the left side?", "Де ліва сторона?", "Где левая сторона?", "Sol tərəf haradadır?", "¿Dónde está el lado izquierdo?", "Nasaan ang kaliwang bahagi?", "Di mana sisi kiri?", "बायाँ साइड कहाँ छ?"),
+  speechPhrase("greenhouse", "Gdzie jest prawa strona?", "Where is the right side?", "Де права сторона?", "Где правая сторона?", "Sağ tərəf haradadır?", "¿Dónde está el lado derecho?", "Nasaan ang kanang bahagi?", "Di mana sisi kanan?", "दायाँ साइड कहाँ छ?"),
+  speechPhrase("greenhouse", "Skończyłem rząd.", "I finished the row.", "Я закінчив ряд.", "Я закончил ряд.", "Sıranı bitirdim.", "Terminé la fila.", "Natapos ko ang row.", "Saya sudah selesai baris.", "मैले लाइन सकेँ।"),
+  speechPhrase("greenhouse", "Nie skończyłem rzędu.", "I did not finish the row.", "Я не закінчив ряд.", "Я не закончил ряд.", "Sıranı bitirməmişəm.", "No terminé la fila.", "Hindi ko natapos ang row.", "Saya belum selesai baris.", "मैले लाइन सकेको छैन।"),
+  speechPhrase("greenhouse", "Potrzebuję nowego zadania.", "I need a new task.", "Мені потрібне нове завдання.", "Мне нужно новое задание.", "Mənə yeni tapşırıq lazımdır.", "Necesito una nueva tarea.", "Kailangan ko ng bagong gawain.", "Saya butuh tugas baru.", "मलाई नयाँ काम चाहिन्छ।"),
+
+  speechPhrase("equipment", "Reader nie działa.", "The reader does not work.", "Рідер не працює.", "Ридер не работает.", "Reader işləmir.", "El reader no funciona.", "Hindi gumagana ang reader.", "Reader tidak berfungsi.", "reader चलेन।"),
+  speechPhrase("equipment", "Tablet nie działa.", "The tablet does not work.", "Планшет не працює.", "Планшет не работает.", "Tablet işləmir.", "La tablet no funciona.", "Hindi gumagana ang tablet.", "Tablet tidak berfungsi.", "tablet चलेन।"),
+  speechPhrase("equipment", "Nie mogę się zalogować.", "I cannot log in.", "Я не можу увійти.", "Я не могу войти.", "Daxil ola bilmirəm.", "No puedo iniciar sesión.", "Hindi ako maka-login.", "Saya tidak bisa login.", "म login गर्न सक्दिनँ।"),
+  speechPhrase("equipment", "Nie wiem, jaki tag odbić.", "I do not know which tag to scan.", "Я не знаю, який тег відбити.", "Я не знаю, какой тег отметить.", "Hansı tagı vurmalı olduğumu bilmirəm.", "No sé qué tag marcar.", "Hindi ko alam kung aling tag ang i-scan.", "Saya tidak tahu tag mana yang harus discan.", "कुन tag स्क्यान गर्ने थाहा छैन।"),
+  speechPhrase("equipment", "Zapomniałem odbić tag.", "I forgot to scan the tag.", "Я забув відбити тег.", "Я забыл отметить тег.", "Tag vurmağı unutdum.", "Olvidé marcar el tag.", "Nakalimutan kong i-scan ang tag.", "Saya lupa scan tag.", "मैले tag स्क्यान गर्न बिर्सिएँ।"),
+  speechPhrase("equipment", "Gdzie mam odłożyć reader?", "Where should I put the reader back?", "Куди покласти рідер?", "Куда положить ридер?", "Reader-i hara qoymalıyam?", "¿Dónde debo dejar el reader?", "Saan ko ibabalik ang reader?", "Reader harus saya taruh di mana?", "reader कहाँ राख्नु?"),
+  speechPhrase("equipment", "Nie mam internetu w telefonie.", "I do not have internet on my phone.", "У мене немає інтернету в телефоні.", "У меня нет интернета в телефоне.", "Telefonumda internet yoxdur.", "No tengo internet en el teléfono.", "Wala akong internet sa telepono.", "Saya tidak punya internet di telepon.", "मेरो फोनमा इन्टरनेट छैन।"),
+
+  speechPhrase("break", "Idę na przerwę.", "I am going on break.", "Я йду на перерву.", "Я иду на перерыв.", "Fasiləyə gedirəm.", "Voy a la pausa.", "Magbe-break ako.", "Saya pergi istirahat.", "म ब्रेकमा जाँदैछु।"),
+  speechPhrase("break", "Wracam z przerwy.", "I am coming back from break.", "Я повертаюся з перерви.", "Я возвращаюсь с перерыва.", "Fasilədən qayıdıram.", "Vuelvo de la pausa.", "Babalik ako mula sa break.", "Saya kembali dari istirahat.", "म ब्रेकबाट फर्किँदैछु।"),
+  speechPhrase("break", "Kończę pracę.", "I am finishing work.", "Я закінчую роботу.", "Я заканчиваю работу.", "İşi bitirirəm.", "Termino el trabajo.", "Tatapusin ko ang trabaho.", "Saya selesai kerja.", "म काम सक्दैछु।"),
+  speechPhrase("break", "Gdzie jest socjal?", "Where is the social room?", "Де соціал?", "Где социал?", "Sosial otaq haradadır?", "¿Dónde está la sala social?", "Nasaan ang social room?", "Di mana ruang sosial?", "सोसियल कहाँ छ?"),
+  speechPhrase("break", "Gdzie jest toaleta?", "Where is the toilet?", "Де туалет?", "Где туалет?", "Tualet haradadır?", "¿Dónde está el baño?", "Nasaan ang banyo?", "Di mana toilet?", "शौचालय कहाँ छ?"),
+  speechPhrase("break", "Potrzebuję wody.", "I need water.", "Мені потрібна вода.", "Мне нужна вода.", "Mənə su lazımdır.", "Necesito agua.", "Kailangan ko ng tubig.", "Saya butuh air.", "मलाई पानी चाहिन्छ।"),
+  speechPhrase("break", "Potrzebuję rękawiczek.", "I need gloves.", "Мені потрібні рукавички.", "Мне нужны перчатки.", "Mənə əlcək lazımdır.", "Necesito guantes.", "Kailangan ko ng guwantes.", "Saya butuh sarung tangan.", "मलाई पञ्जा चाहिन्छ।"),
+
+  speechPhrase("health", "Spóźnię się.", "I will be late.", "Я запізнюся.", "Я опоздаю.", "Gecikəcəyəm.", "Llegaré tarde.", "Male-late ako.", "Saya akan terlambat.", "म ढिलो हुनेछु।"),
+  speechPhrase("health", "Jestem chory.", "I am sick.", "Я хворий.", "Я болею.", "Xəstəyəm.", "Estoy enfermo.", "May sakit ako.", "Saya sakit.", "म बिरामी छु।"),
+  speechPhrase("health", "Źle się czuję.", "I feel unwell.", "Я погано себе почуваю.", "Мне плохо.", "Özümü pis hiss edirəm.", "Me siento mal.", "Masama ang pakiramdam ko.", "Saya merasa tidak enak badan.", "मलाई सन्चो छैन।"),
+  speechPhrase("health", "Potrzebuję lekarza.", "I need a doctor.", "Мені потрібен лікар.", "Мне нужен врач.", "Mənə həkim lazımdır.", "Necesito un médico.", "Kailangan ko ng doktor.", "Saya butuh dokter.", "मलाई डाक्टर चाहिन्छ।"),
+  speechPhrase("health", "Boli mnie głowa.", "My head hurts.", "У мене болить голова.", "У меня болит голова.", "Başım ağrıyır.", "Me duele la cabeza.", "Masakit ang ulo ko.", "Kepala saya sakit.", "मेरो टाउको दुख्छ।"),
+  speechPhrase("health", "Boli mnie brzuch.", "My stomach hurts.", "У мене болить живіт.", "У меня болит живот.", "Qarnım ağrıyır.", "Me duele el estómago.", "Masakit ang tiyan ko.", "Perut saya sakit.", "मेरो पेट दुख्छ।"),
+  speechPhrase("health", "Potrzebuję pomocy.", "I need help.", "Мені потрібна допомога.", "Мне нужна помощь.", "Mənə kömək lazımdır.", "Necesito ayuda.", "Kailangan ko ng tulong.", "Saya butuh bantuan.", "मलाई सहयोग चाहिन्छ।"),
+  speechPhrase("health", "Muszę zadzwonić do brygadzisty.", "I need to call the brigadier.", "Мені треба подзвонити бригадиру.", "Мне нужно позвонить бригадиру.", "Briqadirə zəng etməliyəm.", "Necesito llamar al encargado.", "Kailangan kong tumawag sa brigadier.", "Saya perlu menelepon mandor.", "मलाई ब्रिगेडियरलाई फोन गर्नुपर्छ।"),
+
+  speechPhrase("warehouse", "Pracuję na magazynie.", "I work in the warehouse.", "Я працюю на складі.", "Я работаю на складе.", "Mən anbarda işləyirəm.", "Trabajo en el almacén.", "Nagtatrabaho ako sa bodega.", "Saya bekerja di gudang.", "म गोदाममा काम गर्छु।"),
+  speechPhrase("warehouse", "Szukam wejścia do magazynu.", "I am looking for the warehouse entrance.", "Я шукаю вхід до складу.", "Я ищу вход на склад.", "Anbar girişini axtarıram.", "Busco la entrada del almacén.", "Hinahanap ko ang pasukan ng bodega.", "Saya mencari pintu masuk gudang.", "म गोदामको प्रवेश खोज्दैछु।"),
+  speechPhrase("warehouse", "Szukam starego magazynu.", "I am looking for the old warehouse.", "Я шукаю старий склад.", "Я ищу старый склад.", "Köhnə anbarı axtarıram.", "Busco el almacén antiguo.", "Hinahanap ko ang lumang bodega.", "Saya mencari gudang lama.", "म पुरानो गोदाम खोज्दैछु।"),
+  speechPhrase("warehouse", "Nie wiem, gdzie mam iść na magazynie.", "I do not know where to go in the warehouse.", "Я не знаю, куди йти на складі.", "Я не знаю, куда идти на складе.", "Anbarda hara getməli olduğumu bilmirəm.", "No sé adónde ir en el almacén.", "Hindi ko alam saan pupunta sa bodega.", "Saya tidak tahu harus ke mana di gudang.", "गोदाममा कहाँ जानु थाहा छैन।"),
+  speechPhrase("warehouse", "Gdzie mam zostawić rzeczy?", "Where should I leave my things?", "Де мені залишити речі?", "Где мне оставить вещи?", "Əşyalarımı harada qoymalıyam?", "¿Dónde debo dejar mis cosas?", "Saan ko iiwan ang gamit ko?", "Barang saya harus ditaruh di mana?", "मेरा सामान कहाँ राख्नु?"),
+  speechPhrase("warehouse", "Mam problem z zadaniem.", "I have a problem with the task.", "У мене проблема із завданням.", "У меня проблема с заданием.", "Tapşırıqla bağlı problemim var.", "Tengo un problema con la tarea.", "May problema ako sa gawain.", "Saya punya masalah dengan tugas.", "मलाई काममा समस्या छ।"),
+  speechPhrase("warehouse", "Potrzebuję pomocy brygadzisty magazynu.", "I need help from the warehouse brigadier.", "Мені потрібна допомога бригадира складу.", "Мне нужна помощь бригадира склада.", "Anbar briqadirinin köməyinə ehtiyacım var.", "Necesito ayuda del encargado del almacén.", "Kailangan ko ng tulong ng brigadier ng bodega.", "Saya butuh bantuan mandor gudang.", "मलाई गोदाम ब्रिगेडियरको सहयोग चाहिन्छ।")
+];
+
+window.CX_DATA.pages.slownik = {
+  title: tx("Mini słownik pracy", "Mini work dictionary", "Міні словник роботи", "Мини-словарь работы", "Kiçik iş lüğəti", "Mini diccionario de trabajo", "Mini diksyunaryo sa trabaho", "Kamus kerja mini", "कामको सानो शब्दकोश"),
+  lead: tx("Najważniejsze słowa, które możesz usłyszeć w pracy. Najpierw widzisz polskie słowo, potem proste znaczenie w swoim języku.", "The most important words you may hear at work. First you see the Polish word, then a simple meaning in your language.", "Найважливіші слова, які ви можете почути на роботі. Спочатку польське слово, потім просте значення вашою мовою.", "Самые важные слова, которые можно услышать на работе. Сначала польское слово, потом простое значение на вашем языке.", "İşdə eşidə biləcəyiniz ən vacib sözlər. Əvvəl polyak sözü, sonra öz dilinizdə sadə məna.", "Las palabras más importantes que puedes oír en el trabajo. Primero ves la palabra polaca y luego el significado simple en tu idioma.", "Mahahalagang salita na maaari mong marinig sa trabaho. Una ang Polish na salita, pagkatapos ang simpleng kahulugan sa iyong wika.", "Kata penting yang mungkin Anda dengar di tempat kerja. Pertama kata Polandia, lalu arti sederhana dalam bahasa Anda.", "काममा सुन्न सक्ने मुख्य शब्दहरू। पहिले पोलिस शब्द, त्यसपछि तपाईंको भाषामा सरल अर्थ।")
+};
+
+window.CX_DATA.tiles.splice(
+  window.CX_DATA.tiles.findIndex((tile) => tile.page === "zakazy"),
+  0,
+  {
+    page: "slownik",
+    tone: "blue",
+    icon: "document",
+    title: tx("Słownik", "Dictionary", "Словник", "Словарь", "Lüğət", "Diccionario", "Diksyunaryo", "Kamus", "शब्दकोश"),
+    text: tx("Nawa, rząd, przęsło, tag i inne słowa z pracy.", "Nave, row, section, tag and other work words.", "Нава, ряд, секція, тег та інші робочі слова.", "Нава, ряд, секция, тег и другие рабочие слова.", "Nava, sıra, bölmə, tag və başqa iş sözləri.", "Nave, fila, sección, tag y otras palabras del trabajo.", "Nave, row, section, tag at ibang salita sa trabaho.", "Nave, baris, bagian, tag dan kata kerja lain.", "नावा, लाइन, सेक्सन, tag र कामका अन्य शब्दहरू।")
+  }
+);
+
+window.CX_DATA.glossaryGroups = [
+  { id: "greenhouse", tone: "green", title: tx("Szklarnia", "Greenhouse", "Теплиця", "Теплица", "İstixana", "Invernadero", "Greenhouse", "Rumah kaca", "ग्रीनहाउस") },
+  { id: "device", tone: "yellow", title: tx("Sprzęt i rejestracja", "Equipment and registration", "Обладнання і реєстрація", "Оборудование и регистрация", "Avadanlıq və qeydiyyat", "Equipo y registro", "Kagamitan at rehistro", "Alat dan pencatatan", "सामान र दर्ता") },
+  { id: "people", tone: "blue", title: tx("Ludzie", "People", "Люди", "Люди", "İnsanlar", "Personas", "Mga tao", "Orang", "मानिसहरू") },
+  { id: "place", tone: "blue", title: tx("Miejsca", "Places", "Місця", "Места", "Yerlər", "Lugares", "Mga lugar", "Tempat", "ठाउँहरू") }
+];
+
+window.CX_DATA.glossary = [
+  {
+    group: "greenhouse",
+    term: "nawa",
+    local: tx("nawa / część szklarni", "nave / greenhouse section", "нава / частина теплиці", "нава / часть теплицы", "nava / istixana hissəsi", "nave / parte del invernadero", "nave / bahagi ng greenhouse", "nave / bagian rumah kaca", "नावा / ग्रीनहाउसको भाग"),
+    meaning: tx("Duża część szklarni. W jednej nawie są wejścia i rzędy pracy.", "A large part of the greenhouse. One nave has entrances and work rows.", "Велика частина теплиці. В одній наві є входи і робочі ряди.", "Большая часть теплицы. В одной наве есть входы и рабочие ряды.", "İstixananın böyük hissəsi. Bir navada girişlər və iş sıraları var.", "Una parte grande del invernadero. En una nave hay entradas y filas de trabajo.", "Malaking bahagi ng greenhouse. Sa isang nave may mga pasukan at work rows.", "Bagian besar rumah kaca. Dalam satu nave ada pintu masuk dan baris kerja.", "ग्रीनहाउसको ठूलो भाग। एउटा नावामा प्रवेश र काम गर्ने लाइन हुन्छ।"),
+    example: tx("Przykład: idziesz do nawy 12.", "Example: go to nave 12.", "Приклад: йдете до нави 12.", "Пример: идёте в наву 12.", "Məsələn: 12-ci navaya gedirsiniz.", "Ejemplo: vas a la nave 12.", "Halimbawa: pumunta sa nave 12.", "Contoh: pergi ke nave 12.", "उदाहरण: नावा 12 मा जानुहोस्।")
+  },
+  {
+    group: "greenhouse",
+    term: "rząd",
+    local: tx("rząd / linia pracy", "row / work row", "ряд / робочий ряд", "ряд / рабочий ряд", "sıra / iş sırası", "fila / fila de trabajo", "row / hanay ng trabaho", "baris / baris kerja", "लाइन / काम गर्ने लाइन"),
+    meaning: tx("Miejsce, w którym pracujesz przy roślinach. Praca jest w rzędzie, nie obok rzędu.", "The place where you work with plants. Work is in the row, not next to the row.", "Місце, де ви працюєте біля рослин. Робота в ряду, не біля ряду.", "Место, где вы работаете с растениями. Работа в ряду, не возле ряда.", "Bitkilərlə işlədiyiniz yer. İş sıranın içindədir, yanında deyil.", "Lugar donde trabajas con plantas. Se trabaja dentro de la fila, no al lado.", "Lugar kung saan nagtatrabaho sa halaman. Ang trabaho ay sa loob ng row, hindi sa tabi.", "Tempat bekerja dengan tanaman. Kerja di dalam baris, bukan di samping baris.", "बिरुवासँग काम गर्ने ठाउँ। काम लाइनभित्र हुन्छ, लाइनको छेउमा होइन।"),
+    example: tx("Przykład: pracujesz w rzędzie 4.", "Example: you work in row 4.", "Приклад: працюєте в ряду 4.", "Пример: работаете в ряду 4.", "Məsələn: 4-cü sırada işləyirsiniz.", "Ejemplo: trabajas en la fila 4.", "Halimbawa: nagtatrabaho ka sa row 4.", "Contoh: Anda bekerja di baris 4.", "उदाहरण: तपाईं लाइन 4 मा काम गर्नुहुन्छ।")
+  },
+  {
+    group: "greenhouse",
+    term: "przęsło",
+    local: tx("przęsło / numer odcinka", "section / numbered part", "секція / номер частини", "секция / номер участка", "bölmə / nömrəli hissə", "sección / parte numerada", "section / may numerong bahagi", "bagian / nomor bagian", "सेक्सन / नम्बर भएको भाग"),
+    meaning: tx("Numerowany odcinek w przejściu. Numer przęsła sprawdzasz na podłodze w przejściu.", "A numbered part in the passage. Check the section number on the floor in the passage.", "Пронумерована частина в проході. Номер секції перевіряйте на підлозі в проході.", "Пронумерованный участок в проходе. Номер секции проверяйте на полу в проходе.", "Keçiddə nömrəli hissə. Bölmə nömrəsini keçiddə yerdə yoxlayın.", "Parte numerada del pasillo. Revisa el número en el suelo del pasillo.", "May numerong bahagi sa daanan. Tingnan ang numero sa sahig ng daanan.", "Bagian bernomor di lorong. Cek nomor di lantai lorong.", "बाटोमा नम्बर भएको भाग। सेक्सन नम्बर बाटोको भुइँमा हेर्नुहोस्।"),
+    example: tx("Przykład: przęsło 1-27, ale numeracja może być różna.", "Example: section 1-27, but numbering may differ.", "Приклад: секція 1-27, але нумерація може бути різна.", "Пример: секция 1-27, но нумерация может отличаться.", "Məsələn: bölmə 1-27, amma nömrələmə fərqli ola bilər.", "Ejemplo: sección 1-27, pero puede variar.", "Halimbawa: section 1-27, pero maaaring iba ang numbering.", "Contoh: bagian 1-27, tetapi nomor bisa berbeda.", "उदाहरण: सेक्सन 1-27, तर नम्बर फरक हुन सक्छ।")
+  },
+  {
+    group: "device",
+    term: "tag",
+    local: tx("tag / znacznik do odbicia", "tag / scan marker", "тег / мітка для сканування", "тег / метка для отметки", "tag / vurmaq üçün nişan", "tag / marcador para escanear", "tag / marker na ini-scan", "tag / penanda untuk scan", "tag / स्क्यान गर्ने चिन्ह"),
+    meaning: tx("Mała tabliczka albo punkt, który odbijasz readerem. Tag mówi systemowi, co robisz albo gdzie pracujesz.", "A small plate or point scanned with the reader. The tag tells the system what you do or where you work.", "Маленька табличка або точка, яку скануєте рідером. Тег показує системі, що ви робите або де працюєте.", "Маленькая табличка или точка, которую отмечаете ридером. Тег показывает системе, что вы делаете или где работаете.", "Reader ilə vurulan kiçik lövhə və ya nöqtə. Tag sistemə nə etdiyinizi və harada işlədiyinizi göstərir.", "Pequeña placa o punto que marcas con el reader. El tag dice al sistema qué haces o dónde trabajas.", "Maliit na plate o point na ini-scan ng reader. Sinasabi ng tag sa system kung ano ang ginagawa mo o saan ka nagtatrabaho.", "Papan kecil atau titik yang discan dengan reader. Tag memberi tahu sistem apa yang Anda lakukan atau di mana bekerja.", "reader ले स्क्यान गर्ने सानो चिन्ह। tag ले सिस्टमलाई तपाईं के गर्दै हुनुहुन्छ वा कहाँ काम गर्दै हुनुहुन्छ भन्छ।"),
+    example: tx("Przykład: odbij tag początku pracy.", "Example: scan the work-start tag.", "Приклад: відбийте тег початку роботи.", "Пример: отметьте тег начала работы.", "Məsələn: işin başlanğıc tagını vurun.", "Ejemplo: marca el tag de inicio de trabajo.", "Halimbawa: i-scan ang tag ng simula ng trabaho.", "Contoh: scan tag mulai kerja.", "उदाहरण: काम सुरु tag स्क्यान गर्नुहोस्।")
+  },
+  {
+    group: "device",
+    term: "reader",
+    local: tx("reader / urządzenie do odbijania", "reader / scanning device", "рідер / пристрій для відміток", "ридер / устройство для отметок", "reader / qeyd cihazı", "reader / aparato para marcar", "reader / device para mag-scan", "reader / alat scan", "reader / स्क्यान गर्ने उपकरण"),
+    meaning: tx("Urządzenie używane na szklarni do odbijania tagów. Na magazynie readerów nie używa się.", "A device used in the greenhouse to scan tags. Readers are not used in the warehouse.", "Пристрій на теплиці для сканування тегів. На складі рідери не використовуються.", "Устройство на теплице для отметки тегов. На складе ридеры не используются.", "İstixanada tag vurmaq üçün cihaz. Anbarda reader istifadə olunmur.", "Aparato usado en invernadero para marcar tags. En almacén no se usa reader.", "Device sa greenhouse para mag-scan ng tags. Sa bodega walang reader.", "Alat di rumah kaca untuk scan tag. Di gudang tidak memakai reader.", "ग्रीनहाउसमा tag स्क्यान गर्ने उपकरण। गोदाममा reader प्रयोग हुँदैन।"),
+    example: tx("Przykład: po pracy odłóż reader na ładowarkę.", "Example: after work put the reader back on the charger.", "Приклад: після роботи покладіть рідер на зарядку.", "Пример: после работы положите ридер на зарядку.", "Məsələn: işdən sonra reader-i şarja qoyun.", "Ejemplo: después del trabajo deja el reader en el cargador.", "Halimbawa: pagkatapos ng trabaho ibalik ang reader sa charger.", "Contoh: setelah kerja taruh reader di charger.", "उदाहरण: कामपछि reader चार्जरमा राख्नुहोस्।")
+  },
+  {
+    group: "people",
+    term: "brygadzista",
+    local: tx("brygadzista / osoba prowadząca grupę", "brigadier / team leader", "бригадир / керівник групи", "бригадир / руководитель группы", "briqadir / qrup rəhbəri", "encargado / jefe de grupo", "brigadier / team leader", "mandor / pemimpin tim", "ब्रिगेडियर / समूह प्रमुख"),
+    meaning: tx("Osoba, która mówi, gdzie pracujesz i co robisz. Do brygadzisty piszesz, gdy chorujesz, spóźniasz się albo masz problem.", "The person who tells you where you work and what to do. Contact the brigadier if you are sick, late or have a problem.", "Людина, яка каже, де працювати і що робити. Бригадиру пишете, якщо хворієте, запізнюєтесь або маєте проблему.", "Человек, который говорит, где работать и что делать. Бригадиру пишете, если болеете, опаздываете или есть проблема.", "Harada işləyəcəyinizi və nə edəcəyinizi deyən şəxs. Xəstə, gecikmə və ya problem olanda briqadirə yazın.", "Persona que dice dónde trabajas y qué haces. Contacta al encargado si estás enfermo, tarde o tienes problema.", "Taong nagsasabi kung saan ka magtatrabaho at ano ang gagawin. Kontakin ang brigadier kung may sakit, late o may problema.", "Orang yang memberi tahu tempat kerja dan tugas. Hubungi mandor jika sakit, terlambat, atau ada masalah.", "कहाँ काम गर्ने र के गर्ने भनेर बताउने व्यक्ति। बिरामी, ढिलो वा समस्या हुँदा ब्रिगेडियरलाई लेख्नुहोस्।"),
+    example: tx("Przykład: napisz do brygadzisty, że się spóźnisz.", "Example: write to the brigadier that you will be late.", "Приклад: напишіть бригадиру, що запізнитесь.", "Пример: напишите бригадиру, что опоздаете.", "Məsələn: gecikəcəyinizi briqadirə yazın.", "Ejemplo: escribe al encargado que llegarás tarde.", "Halimbawa: isulat sa brigadier na male-late ka.", "Contoh: tulis ke mandor bahwa Anda terlambat.", "उदाहरण: ढिलो हुन्छ भनेर ब्रिगेडियरलाई लेख्नुहोस्।")
+  },
+  {
+    group: "place",
+    term: "socjal",
+    local: tx("socjal / pomieszczenie socjalne", "social room / break room", "соціал / кімната для перерви", "социал / комната для перерыва", "sosial otaq / fasilə yeri", "sala social / sala de descanso", "social room / break room", "ruang sosial / ruang istirahat", "सोसियल / विश्राम कोठा"),
+    meaning: tx("Miejsce na przerwę, przebranie się albo sprawy pracownicze. Nie jest to miejsce pracy w rzędzie.", "A place for breaks, changing clothes or staff matters. It is not the work row.", "Місце для перерви, переодягання або робочих справ. Це не місце роботи в ряду.", "Место для перерыва, переодевания или рабочих дел. Это не место работы в ряду.", "Fasilə, paltar dəyişmək və işçi məsələləri üçün yer. Bu iş sırası deyil.", "Lugar para descanso, cambiarse o asuntos de empleados. No es la fila de trabajo.", "Lugar para break, pagpapalit ng damit o staff matters. Hindi ito work row.", "Tempat istirahat, ganti baju atau urusan karyawan. Ini bukan baris kerja.", "ब्रेक, कपडा फेर्न वा कर्मचारी कामको ठाउँ। यो काम गर्ने लाइन होइन।"),
+    example: tx("Przykład: idziesz na socjal po wyjściu z rzędu i odbiciu tagu.", "Example: go to the social room after leaving the row and scanning the tag.", "Приклад: йдете в соціал після виходу з ряду і сканування тегу.", "Пример: идёте в социал после выхода из ряда и отметки тега.", "Məsələn: sıradan çıxıb tag vurandan sonra sosial otağa gedirsiniz.", "Ejemplo: vas a la sala social después de salir de la fila y marcar el tag.", "Halimbawa: pumunta sa social room pagkatapos lumabas sa row at mag-scan ng tag.", "Contoh: pergi ke ruang sosial setelah keluar dari baris dan scan tag.", "उदाहरण: लाइनबाट निस्केर tag स्क्यान गरेपछि सोसियलमा जानुहोस्।")
+  },
+  {
+    group: "place",
+    term: "stary magazyn",
+    local: tx("stary magazyn / druga lokalizacja magazynu", "old warehouse / second warehouse location", "старий склад / друга локація складу", "старый склад / вторая локация склада", "köhnə anbar / ikinci anbar yeri", "almacén antiguo / segunda ubicación", "lumang bodega / pangalawang lokasyon", "gudang lama / lokasi gudang kedua", "पुरानो गोदाम / दोस्रो गोदाम स्थान"),
+    meaning: tx("Osobne miejsce magazynowe. Jeśli wiadomość mówi stary magazyn, nie idź automatycznie do głównego magazynu.", "A separate warehouse place. If the message says old warehouse, do not automatically go to the main warehouse.", "Окреме складське місце. Якщо в повідомленні написано старий склад, не йдіть автоматично на головний склад.", "Отдельное складское место. Если в сообщении написано старый склад, не идите автоматически на главный склад.", "Ayrı anbar yeridir. Mesajda köhnə anbar yazılıbsa, avtomatik əsas anbara getməyin.", "Lugar de almacén separado. Si el mensaje dice almacén antiguo, no vayas automáticamente al almacén principal.", "Hiwalay na lugar ng bodega. Kung ang mensahe ay lumang bodega, huwag awtomatikong pumunta sa main bodega.", "Tempat gudang terpisah. Jika pesan mengatakan gudang lama, jangan langsung pergi ke gudang utama.", "अलग गोदाम स्थान। सन्देशमा पुरानो गोदाम भए मुख्य गोदाममा सिधै नजानुहोस्।"),
+    example: tx("Przykład: w mapie wybierz przycisk Stary magazyn.", "Example: in the map choose the Old warehouse button.", "Приклад: на карті виберіть кнопку Старий склад.", "Пример: на карте выберите кнопку Старый склад.", "Məsələn: xəritədə Köhnə anbar düyməsini seçin.", "Ejemplo: en el mapa elige el botón Almacén antiguo.", "Halimbawa: sa mapa piliin ang button na Lumang bodega.", "Contoh: di peta pilih tombol Gudang lama.", "उदाहरण: नक्सामा पुरानो गोदाम बटन छान्नुहोस्।")
+  }
+];
 })();

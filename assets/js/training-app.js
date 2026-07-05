@@ -14,6 +14,7 @@
     reader: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 6h4"/><path d="M10 17h4"/><circle cx="12" cy="12" r="2"/></svg>',
     medical: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14"/><path d="M5 12h14"/><path d="M6 3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z"/></svg>',
     phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>',
+    speech: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v10H8l-4 4V5Z"/><path d="M8 9h8"/><path d="M8 12h5"/><path d="M18 18c1.7-.6 3-2.2 3-4"/><path d="M18 21c3.4-.8 6-3.7 6-7"/></svg>',
     groups: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>',
     city: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/><path d="M16 15h1"/><path d="M16 18h1"/></svg>',
     bank: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 10h18"/><path d="M5 10V8l7-4 7 4v2"/><path d="M6 10v8"/><path d="M10 10v8"/><path d="M14 10v8"/><path d="M18 10v8"/><path d="M4 18h16"/><path d="M3 21h18"/></svg>',
@@ -718,6 +719,165 @@
     }
   }
 
+  function renderGlossary() {
+    const groups = DATA.glossaryGroups || [];
+    const entries = DATA.glossary || [];
+    const entryCard = (item) => `
+      <article class="glossary-card">
+        <div class="glossary-term-row">
+          <span class="glossary-term">${esc(item.term)}</span>
+          <span class="glossary-local">${esc(text(item.local))}</span>
+        </div>
+        <p>${esc(text(item.meaning))}</p>
+        <div class="glossary-example">${esc(text(item.example))}</div>
+      </article>
+    `;
+    const groupHtml = groups.map((group) => {
+      const cards = entries.filter((item) => item.group === group.id).map(entryCard).join("");
+      if (!cards) return "";
+      return `
+        <section class="${cardClass(group.tone)} glossary-group">
+          <div class="city-card-head">
+            <span class="city-card-icon">${iconMap.document}</span>
+            <h2>${esc(text(group.title))}</h2>
+          </div>
+          <div class="glossary-list">${cards}</div>
+        </section>
+      `;
+    }).join("");
+
+    app.innerHTML = `
+      <main class="page glossary-page">
+        ${pageHero()}
+        <section class="card blue glossary-help">
+          <h2>${esc(text(tx("Jak tego używać", "How to use it", "Як цим користуватись", "Как этим пользоваться", "Necə istifadə etmək", "Cómo usarlo", "Paano gamitin", "Cara memakai", "यसलाई कसरी प्रयोग गर्ने")))}</h2>
+          <p>${esc(text(tx("Gdy usłyszysz polskie słowo w pracy, znajdź je tutaj i sprawdź proste znaczenie.", "When you hear a Polish word at work, find it here and check the simple meaning.", "Коли почуєте польське слово на роботі, знайдіть його тут і перевірте просте значення.", "Когда услышите польское слово на работе, найдите его здесь и посмотрите простое значение.", "İşdə polyak sözü eşidəndə onu burada tapın və sadə mənasını yoxlayın.", "Cuando oigas una palabra polaca en el trabajo, búscala aquí y mira el significado simple.", "Kapag narinig mo ang Polish na salita sa trabaho, hanapin dito at tingnan ang simpleng kahulugan.", "Saat mendengar kata Polandia di kerja, cari di sini dan cek arti sederhana.", "काममा पोलिस शब्द सुन्दा यहाँ खोज्नुहोस् र सरल अर्थ हेर्नुहोस्।")))}</p>
+        </section>
+        <section class="stack section">${groupHtml}</section>
+      </main>
+    `;
+  }
+
+  function renderSpeech() {
+    const groups = DATA.speechGroups || [];
+    const phrases = DATA.speechPhrases || [];
+    const labels = {
+      how: tx("Jak to działa", "How it works", "Як це працює", "Как это работает", "Bu necə işləyir", "Cómo funciona", "Paano ito gumagana", "Cara kerjanya", "यसले कसरी काम गर्छ"),
+      howText: tx("Wybierz zdanie w swoim języku. Telefon powie je po polsku. Możesz też pokazać polskie zdanie brygadziście.", "Choose a sentence in your language. The phone will say it in Polish. You can also show the Polish sentence to the brigadier.", "Оберіть речення своєю мовою. Телефон скаже його польською. Також можна показати польське речення бригадиру.", "Выберите фразу на своём языке. Телефон скажет её по-польски. Можно также показать польскую фразу бригадиру.", "Cümləni öz dilinizdə seçin. Telefon onu polyakca deyəcək. Polyak cümləni briqadirə də göstərə bilərsiniz.", "Elige una frase en tu idioma. El teléfono la dirá en polaco. También puedes mostrar la frase polaca al encargado.", "Pumili ng pangungusap sa iyong wika. Sasabihin ito ng telepono sa Polish. Maaari mo ring ipakita ang Polish na pangungusap sa brigadier.", "Pilih kalimat dalam bahasa Anda. Telepon akan mengucapkannya dalam bahasa Polandia. Anda juga bisa menunjukkan kalimat Polandia kepada mandor.", "आफ्नो भाषामा वाक्य छान्नुहोस्। फोनले पोलिसमा बोल्छ। पोलिस वाक्य ब्रिगेडियरलाई देखाउन पनि सक्नुहुन्छ।"),
+      search: tx("Szukaj...", "Search...", "Пошук...", "Поиск...", "Axtar...", "Buscar...", "Hanapin...", "Cari...", "खोज्नुहोस्..."),
+      polish: tx("Telefon powie po polsku:", "The phone will say in Polish:", "Телефон скаже польською:", "Телефон скажет по-польски:", "Telefon polyakca deyəcək:", "El teléfono dirá en polaco:", "Sasabihin ng telepono sa Polish:", "Telepon akan mengatakan dalam bahasa Polandia:", "फोनले पोलिसमा भन्छ:"),
+      speak: tx("Powiedz po polsku", "Say in Polish", "Сказати польською", "Сказать по-польски", "Polyakca de", "Decir en polaco", "Sabihin sa Polish", "Ucapkan Polandia", "पोलिसमा बोल्नुहोस्"),
+      copy: tx("Kopiuj", "Copy", "Копіювати", "Копировать", "Kopyala", "Copiar", "Kopyahin", "Salin", "कपी गर्नुहोस्"),
+      copied: tx("Skopiowano polskie zdanie.", "Polish sentence copied.", "Польське речення скопійовано.", "Польская фраза скопирована.", "Polyak cümlə kopyalandı.", "Frase polaca copiada.", "Nakopya ang Polish na pangungusap.", "Kalimat Polandia disalin.", "पोलिस वाक्य कपी भयो।"),
+      speaking: tx("Telefon mówi po polsku:", "Phone is speaking in Polish:", "Телефон говорить польською:", "Телефон говорит по-польски:", "Telefon polyakca danışır:", "El teléfono habla en polaco:", "Nagsasalita ang telepono sa Polish:", "Telepon berbicara dalam bahasa Polandia:", "फोन पोलिसमा बोल्दैछ:"),
+      noVoice: tx("Ten telefon nie pozwolił uruchomić głosu. Pokaż albo skopiuj polskie zdanie.", "This phone did not allow voice. Show or copy the Polish sentence.", "Цей телефон не дозволив увімкнути голос. Покажіть або скопіюйте польське речення.", "Этот телефон не разрешил включить голос. Покажите или скопируйте польскую фразу.", "Bu telefon səsi işə salmağa icazə vermədi. Polyak cümləni göstərin və ya kopyalayın.", "Este teléfono no permitió activar la voz. Muestra o copia la frase polaca.", "Hindi pinayagan ng telepono ang boses. Ipakita o kopyahin ang Polish na pangungusap.", "Telepon ini tidak mengizinkan suara. Tunjukkan atau salin kalimat Polandia.", "यो फोनले आवाज चलाउन दिएन। पोलिस वाक्य देखाउनुहोस् वा कपी गर्नुहोस्।"),
+      empty: tx("Nie znaleziono takiego zdania.", "No sentence found.", "Такого речення не знайдено.", "Такая фраза не найдена.", "Belə cümlə tapılmadı.", "No se encontró esa frase.", "Walang nahanap na pangungusap.", "Kalimat tidak ditemukan.", "यस्तो वाक्य भेटिएन।")
+    };
+    const phraseCard = (item) => {
+      const nativeText = text(item.label);
+      const polishText = item.say || "";
+      const searchable = `${polishText} ${nativeText}`.toLowerCase();
+      return `
+        <article class="speech-card" data-speech-card data-key="${esc(searchable)}">
+          <div class="speech-card-main">
+            <p class="speech-native">${esc(nativeText)}</p>
+            <p class="speech-polish-label">${esc(text(labels.polish))}</p>
+            <p class="speech-polish">${esc(polishText)}</p>
+          </div>
+          <div class="speech-actions">
+            <button type="button" class="btn speech-play" data-speech="${esc(polishText)}">${iconMap.speech}${esc(text(labels.speak))}</button>
+            <button type="button" class="btn secondary speech-copy" data-copy="${esc(polishText)}">${esc(text(labels.copy))}</button>
+          </div>
+        </article>
+      `;
+    };
+    const groupHtml = groups.map((group) => {
+      const cards = phrases.filter((item) => item.group === group.id).map(phraseCard).join("");
+      if (!cards) return "";
+      return `
+        <details class="${cardClass(group.tone)} speech-group" open data-speech-group>
+          <summary>
+            <span class="city-card-icon">${iconMap[group.icon] || iconMap.speech}</span>
+            <span>${esc(text(group.title))}</span>
+          </summary>
+          <div class="speech-list">${cards}</div>
+        </details>
+      `;
+    }).join("");
+
+    app.innerHTML = `
+      <main class="page speech-page">
+        ${pageHero()}
+        <section class="card blue speech-intro">
+          <h2>${esc(text(labels.how))}</h2>
+          <p>${esc(text(labels.howText))}</p>
+          <label class="speech-search-label" for="speechSearch">${esc(text(labels.search))}</label>
+          <input id="speechSearch" class="speech-search" type="search" aria-label="${esc(text(labels.search))}" autocomplete="off">
+          <p id="speechStatus" class="speech-status" aria-live="polite"></p>
+        </section>
+        <section class="speech-groups">${groupHtml}</section>
+        <p class="speech-empty" hidden>${esc(text(labels.empty))}</p>
+      </main>
+    `;
+
+    const status = app.querySelector("#speechStatus");
+    const setStatus = (value) => {
+      if (status) status.textContent = value;
+    };
+    const speakPolish = (value) => {
+      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        setStatus(`${text(labels.noVoice)} ${value}`);
+        return;
+      }
+      const utterance = new SpeechSynthesisUtterance(value);
+      utterance.lang = "pl-PL";
+      utterance.rate = 0.92;
+      utterance.pitch = 1;
+      const voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
+      const polishVoice = voices.find((voice) => voice.lang && voice.lang.toLowerCase().startsWith("pl"));
+      if (polishVoice) utterance.voice = polishVoice;
+      utterance.onstart = () => setStatus(`${text(labels.speaking)} ${value}`);
+      utterance.onerror = () => setStatus(`${text(labels.noVoice)} ${value}`);
+      utterance.onend = () => setStatus(value);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    };
+    const copyPolish = async (value) => {
+      try {
+        await navigator.clipboard.writeText(value);
+        setStatus(`${text(labels.copied)} ${value}`);
+      } catch {
+        setStatus(value);
+      }
+    };
+    app.querySelectorAll("[data-speech]").forEach((button) => {
+      button.addEventListener("click", () => speakPolish(button.dataset.speech || ""));
+    });
+    app.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", () => copyPolish(button.dataset.copy || ""));
+    });
+    const searchInput = app.querySelector("#speechSearch");
+    const empty = app.querySelector(".speech-empty");
+    searchInput?.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleTotal = 0;
+      app.querySelectorAll("[data-speech-group]").forEach((group) => {
+        let groupVisible = 0;
+        group.querySelectorAll("[data-speech-card]").forEach((card) => {
+          const match = !query || (card.dataset.key || "").includes(query);
+          card.hidden = !match;
+          if (match) groupVisible += 1;
+        });
+        group.hidden = groupVisible === 0;
+        if (groupVisible > 0) {
+          group.open = true;
+          visibleTotal += groupVisible;
+        }
+      });
+      if (empty) empty.hidden = visibleTotal > 0;
+    });
+  }
+
   function renderBans() {
     const quickRules = [
       {
@@ -931,6 +1091,8 @@
       kontakty: renderContacts,
       grupy: renderGroups,
       miasto: renderCity,
+      mowa: renderSpeech,
+      slownik: renderGlossary,
       zakazy: renderBans,
       test: renderTest
     };
