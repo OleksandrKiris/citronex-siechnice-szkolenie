@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260706-color-system1"
+      version: "20260706-slownik-plus1"
     },
 
     languages: [
@@ -798,8 +798,8 @@ window.CX_DATA.speechPhrases = [
 ];
 
 window.CX_DATA.pages.slownik = {
-  title: tx("Mini słownik pracy", "Mini work dictionary", "Міні словник роботи", "Мини-словарь работы", "Kiçik iş lüğəti", "Mini diccionario de trabajo", "Mini diksyunaryo sa trabaho", "Kamus kerja mini", "कामको सानो शब्दकोश"),
-  lead: tx("Najważniejsze słowa, które możesz usłyszeć w pracy. Najpierw widzisz polskie słowo, potem proste znaczenie w swoim języku.", "The most important words you may hear at work. First you see the Polish word, then a simple meaning in your language.", "Найважливіші слова, які ви можете почути на роботі. Спочатку польське слово, потім просте значення вашою мовою.", "Самые важные слова, которые можно услышать на работе. Сначала польское слово, потом простое значение на вашем языке.", "İşdə eşidə biləcəyiniz ən vacib sözlər. Əvvəl polyak sözü, sonra öz dilinizdə sadə məna.", "Las palabras más importantes que puedes oír en el trabajo. Primero ves la palabra polaca y luego el significado simple en tu idioma.", "Mahahalagang salita na maaari mong marinig sa trabaho. Una ang Polish na salita, pagkatapos ang simpleng kahulugan sa iyong wika.", "Kata penting yang mungkin Anda dengar di tempat kerja. Pertama kata Polandia, lalu arti sederhana dalam bahasa Anda.", "काममा सुन्न सक्ने मुख्य शब्दहरू। पहिले पोलिस शब्द, त्यसपछि तपाईंको भाषामा सरल अर्थ।")
+  title: tx("Słownik prostych słów", "Simple work words", "Словник простих слів", "Словарь простых слов", "Sadə iş sözləri", "Palabras simples del trabajo", "Simpleng salita sa trabaho", "Kata kerja sederhana", "सरल कामका शब्दहरू"),
+  lead: tx("Krótko i praktycznie: polskie słowo, znaczenie w Twoim języku i przykład z pracy.", "Short and practical: Polish word, meaning in your language and a work example.", "Коротко і практично: польське слово, значення вашою мовою і приклад з роботи.", "Коротко и практично: польское слово, значение на вашем языке и пример с работы.", "Qısa və praktik: polyak sözü, öz dilinizdə məna və iş nümunəsi.", "Corto y práctico: palabra polaca, significado en tu idioma y ejemplo del trabajo.", "Maikli at praktikal: Polish na salita, kahulugan sa iyong wika at halimbawa sa trabaho.", "Singkat dan praktis: kata Polandia, arti dalam bahasa Anda dan contoh kerja.", "छोटो र उपयोगी: पोलिस शब्द, तपाईंको भाषामा अर्थ र कामको उदाहरण।")
 };
 
 window.CX_DATA.tiles.splice(
@@ -810,15 +810,19 @@ window.CX_DATA.tiles.splice(
     tone: "blue",
     icon: "document",
     title: tx("Słownik", "Dictionary", "Словник", "Словарь", "Lüğət", "Diccionario", "Diksyunaryo", "Kamus", "शब्दकोश"),
-    text: tx("Nawa, rząd, przęsło, tag i inne słowa z pracy.", "Nave, row, section, tag and other work words.", "Нава, ряд, секція, тег та інші робочі слова.", "Нава, ряд, секция, тег и другие рабочие слова.", "Nava, sıra, bölmə, tag və başqa iş sözləri.", "Nave, fila, sección, tag y otras palabras del trabajo.", "Nave, row, section, tag at ibang salita sa trabaho.", "Nave, baris, bagian, tag dan kata kerja lain.", "नावा, लाइन, सेक्सन, tag र कामका अन्य शब्दहरू।")
+    text: tx("Proste słowa z pracy: szklarnia, magazyn, reader, tablet, urząd.", "Simple work words: greenhouse, warehouse, reader, tablet, office.", "Прості слова з роботи: теплиця, склад, рідер, планшет, установа.", "Простые рабочие слова: теплица, склад, ридер, планшет, учреждение.", "Sadə iş sözləri: istixana, anbar, reader, planşet, idarə.", "Palabras simples: invernadero, almacén, reader, tablet, oficina.", "Simpleng salita: greenhouse, bodega, reader, tablet, opisina.", "Kata sederhana: rumah kaca, gudang, reader, tablet, kantor.", "सरल शब्दहरू: ग्रीनहाउस, गोदाम, reader, tablet, कार्यालय।")
   }
 );
 
 window.CX_DATA.glossaryGroups = [
   { id: "greenhouse", tone: "green", title: tx("Szklarnia", "Greenhouse", "Теплиця", "Теплица", "İstixana", "Invernadero", "Greenhouse", "Rumah kaca", "ग्रीनहाउस") },
+  { id: "direction", tone: "blue", title: tx("Kierunki i orientacja", "Directions and orientation", "Напрямки і орієнтація", "Направления и ориентация", "İstiqamət və orientasiya", "Direcciones y orientación", "Direksyon at orientasyon", "Arah dan orientasi", "दिशा र बाटो") },
   { id: "device", tone: "yellow", title: tx("Sprzęt i rejestracja", "Equipment and registration", "Обладнання і реєстрація", "Оборудование и регистрация", "Avadanlıq və qeydiyyat", "Equipo y registro", "Kagamitan at rehistro", "Alat dan pencatatan", "सामान र दर्ता") },
+  { id: "tablet", tone: "yellow", title: tx("Tablet i system", "Tablet and system", "Планшет і система", "Планшет и система", "Planşet və sistem", "Tablet y sistema", "Tablet at system", "Tablet dan sistem", "ट्याबलेट र सिस्टम") },
   { id: "people", tone: "blue", title: tx("Ludzie", "People", "Люди", "Люди", "İnsanlar", "Personas", "Mga tao", "Orang", "मानिसहरू") },
-  { id: "place", tone: "blue", title: tx("Miejsca", "Places", "Місця", "Места", "Yerlər", "Lugares", "Mga lugar", "Tempat", "ठाउँहरू") }
+  { id: "place", tone: "blue", title: tx("Miejsca", "Places", "Місця", "Места", "Yerlər", "Lugares", "Mga lugar", "Tempat", "ठाउँहरू") },
+  { id: "message", tone: "green", title: tx("Komunikaty w pracy", "Work messages", "Повідомлення на роботі", "Сообщения на работе", "İşdə mesajlar", "Mensajes en el trabajo", "Mga mensahe sa trabaho", "Pesan di kerja", "कामका सन्देशहरू") },
+  { id: "documents", tone: "blue", title: tx("Dokumenty i miasto", "Documents and city", "Документи і місто", "Документы и город", "Sənədlər və şəhər", "Documentos y ciudad", "Dokumento at lungsod", "Dokumen dan kota", "कागजात र शहर") }
 ];
 
 window.CX_DATA.glossary = [
@@ -877,6 +881,272 @@ window.CX_DATA.glossary = [
     local: tx("stary magazyn / druga lokalizacja magazynu", "old warehouse / second warehouse location", "старий склад / друга локація складу", "старый склад / вторая локация склада", "köhnə anbar / ikinci anbar yeri", "almacén antiguo / segunda ubicación", "lumang bodega / pangalawang lokasyon", "gudang lama / lokasi gudang kedua", "पुरानो गोदाम / दोस्रो गोदाम स्थान"),
     meaning: tx("Osobne miejsce magazynowe. Jeśli wiadomość mówi stary magazyn, nie idź automatycznie do głównego magazynu.", "A separate warehouse place. If the message says old warehouse, do not automatically go to the main warehouse.", "Окреме складське місце. Якщо в повідомленні написано старий склад, не йдіть автоматично на головний склад.", "Отдельное складское место. Если в сообщении написано старый склад, не идите автоматически на главный склад.", "Ayrı anbar yeridir. Mesajda köhnə anbar yazılıbsa, avtomatik əsas anbara getməyin.", "Lugar de almacén separado. Si el mensaje dice almacén antiguo, no vayas automáticamente al almacén principal.", "Hiwalay na lugar ng bodega. Kung ang mensahe ay lumang bodega, huwag awtomatikong pumunta sa main bodega.", "Tempat gudang terpisah. Jika pesan mengatakan gudang lama, jangan langsung pergi ke gudang utama.", "अलग गोदाम स्थान। सन्देशमा पुरानो गोदाम भए मुख्य गोदाममा सिधै नजानुहोस्।"),
     example: tx("Przykład: w mapie wybierz przycisk Stary magazyn.", "Example: in the map choose the Old warehouse button.", "Приклад: на карті виберіть кнопку Старий склад.", "Пример: на карте выберите кнопку Старый склад.", "Məsələn: xəritədə Köhnə anbar düyməsini seçin.", "Ejemplo: en el mapa elige el botón Almacén antiguo.", "Halimbawa: sa mapa piliin ang button na Lumang bodega.", "Contoh: di peta pilih tombol Gudang lama.", "उदाहरण: नक्सामा पुरानो गोदाम बटन छान्नुहोस्।")
+  },
+  {
+    group: "greenhouse",
+    term: "przejście",
+    local: tx("przejście / wejście między rzędami", "passage / way between rows", "прохід / вхід між рядами", "проход / вход между рядами", "keçid / sıralar arasında yol", "pasillo / entrada entre filas", "daanan / pasukan sa pagitan ng rows", "lorong / jalan antar baris", "बाटो / लाइनबीचको प्रवेश"),
+    meaning: tx("Długi korytarz w nawie. Z przejścia wchodzisz do pracy po lewej albo prawej stronie.", "A long corridor in the nave. From the passage you enter work on the left or right side.", "Довгий коридор у наві. З проходу заходите працювати з лівого або правого боку.", "Длинный коридор в наве. Из прохода заходите работать с левой или правой стороны.", "Navada uzun yol. Keçiddən sol və ya sağ tərəfdə işə girirsiniz.", "Pasillo largo en la nave. Desde allí entras a trabajar al lado izquierdo o derecho.", "Mahabang daanan sa nave. Mula rito papasok sa trabaho sa kaliwa o kanan.", "Lorong panjang di nave. Dari lorong masuk kerja di sisi kiri atau kanan.", "नावामा लामो बाटो। त्यहाँबाट बायाँ वा दायाँतर्फ काममा जानुहुन्छ।"),
+    example: tx("Przykład: wejdź w pierwsze przejście.", "Example: enter the first passage.", "Приклад: зайдіть у перший прохід.", "Пример: зайдите в первый проход.", "Məsələn: birinci keçidə girin.", "Ejemplo: entra al primer pasillo.", "Halimbawa: pumasok sa unang daanan.", "Contoh: masuk lorong pertama.", "उदाहरण: पहिलो बाटोमा पस्नुहोस्।")
+  },
+  {
+    group: "greenhouse",
+    term: "lewa strona",
+    local: tx("lewa strona / lewy rząd", "left side / left row", "ліва сторона / лівий ряд", "левая сторона / левый ряд", "sol tərəf / sol sıra", "lado izquierdo / fila izquierda", "kaliwang side / kaliwang row", "sisi kiri / baris kiri", "बायाँ साइड / बायाँ लाइन"),
+    meaning: tx("Strona po lewej, gdy stoisz w przejściu i patrzysz w głąb rzędu.", "The side on your left when you stand in the passage and look along the row.", "Сторона зліва, коли стоїте в проході і дивитесь у ряд.", "Сторона слева, когда стоите в проходе и смотрите в ряд.", "Keçiddə dayanıb sıraya baxanda sol tərəf.", "El lado a la izquierda cuando estás en el pasillo mirando la fila.", "Side sa kaliwa kapag nakatayo sa daanan at nakatingin sa row.", "Sisi kiri saat berdiri di lorong dan melihat ke baris.", "बाटोमा उभिएर लाइनतर्फ हेर्दा बायाँ साइड।"),
+    example: tx("Przykład: pracujesz lewa strona, rząd 3.", "Example: you work left side, row 3.", "Приклад: працюєте ліва сторона, ряд 3.", "Пример: работаете левая сторона, ряд 3.", "Məsələn: sol tərəf, 3-cü sıra.", "Ejemplo: trabajas lado izquierdo, fila 3.", "Halimbawa: trabaho sa kaliwang side, row 3.", "Contoh: kerja sisi kiri, baris 3.", "उदाहरण: बायाँ साइड, लाइन 3 मा काम।")
+  },
+  {
+    group: "greenhouse",
+    term: "prawa strona",
+    local: tx("prawa strona / prawy rząd", "right side / right row", "права сторона / правий ряд", "правая сторона / правый ряд", "sağ tərəf / sağ sıra", "lado derecho / fila derecha", "kanang side / kanang row", "sisi kanan / baris kanan", "दायाँ साइड / दायाँ लाइन"),
+    meaning: tx("Strona po prawej, gdy stoisz w przejściu i patrzysz w głąb rzędu.", "The side on your right when you stand in the passage and look along the row.", "Сторона справа, коли стоїте в проході і дивитесь у ряд.", "Сторона справа, когда стоите в проходе и смотрите в ряд.", "Keçiddə dayanıb sıraya baxanda sağ tərəf.", "El lado a la derecha cuando estás en el pasillo mirando la fila.", "Side sa kanan kapag nakatayo sa daanan at nakatingin sa row.", "Sisi kanan saat berdiri di lorong dan melihat ke baris.", "बाटोमा उभिएर लाइनतर्फ हेर्दा दायाँ साइड।"),
+    example: tx("Przykład: przejdź na prawą stronę.", "Example: move to the right side.", "Приклад: перейдіть на праву сторону.", "Пример: перейдите на правую сторону.", "Məsələn: sağ tərəfə keçin.", "Ejemplo: pasa al lado derecho.", "Halimbawa: lumipat sa kanang side.", "Contoh: pindah ke sisi kanan.", "उदाहरण: दायाँ साइडमा जानुहोस्।")
+  },
+  {
+    group: "greenhouse",
+    term: "początek rzędu",
+    local: tx("początek rzędu / start pracy w rzędzie", "row start / start of work in row", "початок ряду / старт роботи в ряду", "начало ряда / старт работы в ряду", "sıranın başlanğıcı / işin başlanğıcı", "inicio de fila / comienzo del trabajo", "simula ng row / simula ng trabaho", "awal baris / mulai kerja", "लाइन सुरु / काम सुरु"),
+    meaning: tx("Miejsce, gdzie zaczynasz pracę w danym rzędzie.", "The place where you start work in that row.", "Місце, де починаєте роботу в цьому ряду.", "Место, где начинаете работу в этом ряду.", "Həmin sırada işi başladığınız yer.", "Lugar donde empiezas el trabajo en esa fila.", "Lugar kung saan nagsisimula ang trabaho sa row.", "Tempat mulai kerja di baris itu.", "त्यो लाइनमा काम सुरु गर्ने ठाउँ।"),
+    example: tx("Przykład: odbij początek pracy i początek rzędu.", "Example: scan work start and row start.", "Приклад: відбийте початок роботи і початок ряду.", "Пример: отметьте начало работы и начало ряда.", "Məsələn: işin başlanğıcını və sıranın başlanğıcını vurun.", "Ejemplo: marca inicio de trabajo e inicio de fila.", "Halimbawa: i-scan ang simula ng trabaho at simula ng row.", "Contoh: scan mulai kerja dan awal baris.", "उदाहरण: काम सुरु र लाइन सुरु scan गर्नुहोस्।")
+  },
+  {
+    group: "greenhouse",
+    term: "koniec rzędu",
+    local: tx("koniec rzędu / zakończenie pracy w rzędzie", "row end / finish in row", "кінець ряду / завершення в ряду", "конец ряда / завершение в ряду", "sıranın sonu / sırada işin bitməsi", "fin de fila / terminar en fila", "dulo ng row / tapos sa row", "akhir baris / selesai di baris", "लाइन अन्त्य / लाइनमा काम सकियो"),
+    meaning: tx("Miejsce albo moment, gdy kończysz pracę w rzędzie.", "The place or moment when you finish work in the row.", "Місце або момент, коли закінчуєте роботу в ряду.", "Место или момент, когда заканчиваете работу в ряду.", "Sırada işi bitirdiyiniz yer və ya vaxt.", "Lugar o momento cuando terminas en la fila.", "Lugar o oras kapag tapos na sa row.", "Tempat atau saat selesai kerja di baris.", "लाइनमा काम सकिने ठाउँ वा समय।"),
+    example: tx("Przykład: jeśli rząd skończony, odbijasz jeden raz.", "Example: if the row is finished, scan once.", "Приклад: якщо ряд закінчений, відбийте один раз.", "Пример: если ряд закончен, отметьте один раз.", "Məsələn: sıra bitibsə, bir dəfə vurun.", "Ejemplo: si la fila está terminada, marca una vez.", "Halimbawa: kung tapos ang row, i-scan isang beses.", "Contoh: jika baris selesai, scan satu kali.", "उदाहरण: लाइन सकियो भने एक पटक scan गर्नुहोस्।")
+  },
+  {
+    group: "direction",
+    term: "wejście",
+    local: tx("wejście / drzwi lub miejsce wejścia", "entrance / door or entry place", "вхід / двері або місце входу", "вход / дверь или место входа", "giriş / qapı və ya giriş yeri", "entrada / puerta o lugar de entrada", "pasukan / pinto o entry place", "pintu masuk / tempat masuk", "प्रवेश / ढोका वा पस्ने ठाउँ"),
+    meaning: tx("Miejsce, którym wchodzisz do budynku, magazynu albo szklarni.", "The place where you enter a building, warehouse or greenhouse.", "Місце, яким заходите в будівлю, склад або теплицю.", "Место, где входите в здание, склад или теплицу.", "Bina, anbar və ya istixanaya girdiyiniz yer.", "Lugar por donde entras al edificio, almacén o invernadero.", "Lugar kung saan papasok sa building, bodega o greenhouse.", "Tempat masuk ke gedung, gudang atau rumah kaca.", "भवन, गोदाम वा ग्रीनहाउसमा पस्ने ठाउँ।"),
+    example: tx("Przykład: szukaj wejścia dla personelu.", "Example: look for the staff entrance.", "Приклад: шукайте вхід для персоналу.", "Пример: ищите вход для персонала.", "Məsələn: personal girişini axtarın.", "Ejemplo: busca la entrada del personal.", "Halimbawa: hanapin ang staff entrance.", "Contoh: cari pintu masuk staf.", "उदाहरण: कर्मचारी प्रवेश खोज्नुहोस्।")
+  },
+  {
+    group: "direction",
+    term: "wyjście",
+    local: tx("wyjście / droga na zewnątrz", "exit / way out", "вихід / дорога назовні", "выход / дорога наружу", "çıxış / bayıra yol", "salida / camino hacia fuera", "labasan / daan palabas", "keluar / jalan keluar", "निकास / बाहिर जाने बाटो"),
+    meaning: tx("Miejsce, którym wychodzisz. W pracy często: wychodzisz z rzędu i dopiero odbijasz tag.", "The place where you leave. At work often: leave the row first, then scan the tag.", "Місце, яким виходите. На роботі часто: спочатку виходите з ряду, потім скануєте тег.", "Место, где выходите. На работе часто: сначала выходите из ряда, потом отмечаете тег.", "Çıxdığınız yer. İşdə çox vaxt: əvvəl sıradan çıxın, sonra tag vurun.", "Lugar por donde sales. En trabajo: primero sales de la fila, luego marcas tag.", "Lugar kung saan lalabas. Sa trabaho: lumabas muna sa row, saka scan tag.", "Tempat keluar. Di kerja: keluar dari baris dulu, lalu scan tag.", "बाहिर निस्कने ठाउँ। काममा पहिले लाइनबाट निस्कनुहोस्, अनि tag scan गर्नुहोस्।"),
+    example: tx("Przykład: przy przerwie wychodzisz z rzędu.", "Example: on break you leave the row.", "Приклад: на перерву виходите з ряду.", "Пример: на перерыв выходите из ряда.", "Məsələn: fasiləyə çıxanda sıradan çıxırsınız.", "Ejemplo: para pausa sales de la fila.", "Halimbawa: kapag break, lalabas sa row.", "Contoh: saat istirahat keluar dari baris.", "उदाहरण: ब्रेकमा लाइनबाट निस्कनुहोस्।")
+  },
+  {
+    group: "direction",
+    term: "droga główna",
+    local: tx("droga główna / szerokie przejście", "main road / wide passage", "головна дорога / широкий прохід", "главная дорога / широкий проход", "əsas yol / geniş keçid", "camino principal / pasillo ancho", "main road / malawak na daanan", "jalan utama / lorong lebar", "मुख्य बाटो / फराकिलो बाटो"),
+    meaning: tx("Szeroka droga między częściami szklarni albo przy budynkach.", "A wide road between greenhouse parts or near buildings.", "Широка дорога між частинами теплиці або біля будівель.", "Широкая дорога между частями теплицы или возле зданий.", "İstixana hissələri arasında və ya binaların yanında geniş yol.", "Camino ancho entre partes del invernadero o junto a edificios.", "Malawak na daan sa pagitan ng greenhouse parts o building.", "Jalan lebar antara bagian rumah kaca atau dekat gedung.", "ग्रीनहाउसका भागहरू वा भवन नजिकको फराकिलो बाटो।"),
+    example: tx("Przykład: idź drogą główną do biura.", "Example: go by the main road to the office.", "Приклад: йдіть головною дорогою до офісу.", "Пример: идите главной дорогой к офису.", "Məsələn: ofisə əsas yolla gedin.", "Ejemplo: ve por el camino principal a la oficina.", "Halimbawa: dumaan sa main road papunta sa opisina.", "Contoh: lewat jalan utama ke kantor.", "उदाहरण: कार्यालयमा मुख्य बाटोबाट जानुहोस्।")
+  },
+  {
+    group: "direction",
+    term: "łącznik",
+    local: tx("łącznik / przejście między budynkami", "connector / passage between buildings", "з'єднання / прохід між будівлями", "соединение / проход между зданиями", "birləşdirici keçid / binalar arası yol", "conector / paso entre edificios", "connector / daanan sa pagitan ng building", "penghubung / lorong antar gedung", "जोड्ने बाटो / भवनबीचको बाटो"),
+    meaning: tx("Przejście, które łączy dwie części miejsca pracy.", "A passage that connects two parts of the workplace.", "Прохід, який з'єднує дві частини місця роботи.", "Проход, который соединяет две части рабочего места.", "İş yerinin iki hissəsini birləşdirən keçid.", "Paso que conecta dos partes del lugar de trabajo.", "Daan na nagdudugtong ng dalawang bahagi ng trabaho.", "Lorong yang menghubungkan dua bagian tempat kerja.", "काम ठाउँका दुई भाग जोड्ने बाटो।"),
+    example: tx("Przykład: przejdź łącznikiem do drugiej części.", "Example: use the connector to the second part.", "Приклад: пройдіть з'єднанням до другої частини.", "Пример: пройдите через соединение во вторую часть.", "Məsələn: ikinci hissəyə birləşdirici keçidlə gedin.", "Ejemplo: pasa por el conector a la segunda parte.", "Halimbawa: dumaan sa connector papunta sa pangalawang bahagi.", "Contoh: lewat penghubung ke bagian kedua.", "उदाहरण: जोड्ने बाटोबाट दोस्रो भागमा जानुहोस्।")
+  },
+  {
+    group: "direction",
+    term: "tablica",
+    local: tx("tablica / miejsce z tagami lub informacją", "board / place with tags or information", "дошка / місце з тегами або інформацією", "доска / место с тегами или информацией", "lövhə / tag və ya məlumat yeri", "tablero / lugar con tags o información", "board / lugar ng tags o impormasyon", "papan / tempat tag atau informasi", "बोर्ड / tag वा जानकारी भएको ठाउँ"),
+    meaning: tx("Miejsce, gdzie mogą wisieć tagi, czynności albo informacje.", "A place where tags, activities or information may be hanging.", "Місце, де можуть висіти теги, дії або інформація.", "Место, где могут висеть теги, действия или информация.", "Taglar, fəaliyyətlər və ya məlumat ola bilən yer.", "Lugar donde pueden estar tags, actividades o información.", "Lugar kung saan may tags, activities o impormasyon.", "Tempat tag, aktivitas atau informasi.", "tag, गतिविधि वा जानकारी भएको ठाउँ।"),
+    example: tx("Przykład: na tablicy wybierz czynność.", "Example: choose the activity on the board.", "Приклад: на дошці виберіть дію.", "Пример: на доске выберите деятельность.", "Məsələn: lövhədə fəaliyyəti seçin.", "Ejemplo: en el tablero elige la actividad.", "Halimbawa: sa board piliin ang activity.", "Contoh: di papan pilih aktivitas.", "उदाहरण: बोर्डमा गतिविधि छान्नुहोस्।")
+  },
+  {
+    group: "device",
+    term: "tag personalny",
+    local: tx("tag personalny / Twój osobisty tag", "personal tag / your own tag", "персональний тег / ваш особистий тег", "персональный тег / ваш личный тег", "personal tag / şəxsi tagınız", "tag personal / tu tag propio", "personal tag / sariling tag mo", "tag pribadi / tag Anda sendiri", "व्यक्तिगत tag / तपाईंको आफ्नै tag"),
+    meaning: tx("Tag przypisany do Ciebie. Na nim system rozpoznaje osobę.", "A tag assigned to you. The system uses it to identify the person.", "Тег, призначений вам. Система розпізнає людину по ньому.", "Тег, назначенный вам. Система узнаёт человека по нему.", "Sizə verilən tag. Sistem şəxsi onunla tanıyır.", "Tag asignado a ti. El sistema reconoce a la persona con él.", "Tag na para sa iyo. Nakikilala ng system ang tao gamit ito.", "Tag yang diberikan kepada Anda. Sistem mengenali orang dengan ini.", "तपाईंलाई दिइएको tag। सिस्टमले यसबाट व्यक्ति चिन्छ।"),
+    example: tx("Przykład: tag personalny odbij zgodnie z informacją startową.", "Example: scan the personal tag according to start information.", "Приклад: персональний тег відбийте згідно зі стартовою інформацією.", "Пример: персональный тег отметьте согласно стартовой информации.", "Məsələn: personal tagı start məlumatına görə vurun.", "Ejemplo: marca el tag personal según la información inicial.", "Halimbawa: i-scan ang personal tag ayon sa start info.", "Contoh: scan tag pribadi sesuai info start.", "उदाहरण: व्यक्तिगत tag सुरु जानकारी अनुसार scan गर्नुहोस्।")
+  },
+  {
+    group: "device",
+    term: "czynność",
+    local: tx("czynność / rodzaj pracy", "activity / type of work", "дія / вид роботи", "деятельность / вид работы", "fəaliyyət / iş növü", "actividad / tipo de trabajo", "activity / uri ng trabaho", "aktivitas / jenis kerja", "गतिविधि / कामको प्रकार"),
+    meaning: tx("To, co masz robić w pracy, na przykład zbiór, pielęgnacja albo inne zadanie.", "What you have to do at work, for example harvesting, care or another task.", "Те, що маєте робити на роботі, наприклад збір, догляд або інше завдання.", "То, что нужно делать на работе, например сбор, уход или другое задание.", "İşdə etməli olduğunuz şey, məsələn yığım, qulluq və ya başqa tapşırıq.", "Lo que debes hacer en el trabajo, por ejemplo cosecha, cuidado u otra tarea.", "Ang gagawin sa trabaho, halimbawa ani, pag-aalaga o ibang task.", "Yang harus dikerjakan, misalnya panen, perawatan atau tugas lain.", "काममा गर्नुपर्ने कुरा, जस्तै टिप्ने, हेरचाह वा अर्को काम।"),
+    example: tx("Przykład: przed pracą wybierz właściwą czynność.", "Example: before work choose the correct activity.", "Приклад: перед роботою виберіть правильну дію.", "Пример: перед работой выберите правильную деятельность.", "Məsələn: işdən əvvəl düzgün fəaliyyəti seçin.", "Ejemplo: antes del trabajo elige la actividad correcta.", "Halimbawa: bago magtrabaho piliin ang tamang activity.", "Contoh: sebelum kerja pilih aktivitas yang benar.", "उदाहरण: काम अघि सही गतिविधि छान्नुहोस्।")
+  },
+  {
+    group: "device",
+    term: "początek pracy",
+    local: tx("początek pracy / start w systemie", "work start / start in system", "початок роботи / старт у системі", "начало работы / старт в системе", "işin başlanğıcı / sistemdə start", "inicio de trabajo / inicio en sistema", "simula ng trabaho / start sa system", "mulai kerja / mulai di sistem", "काम सुरु / सिस्टममा सुरु"),
+    meaning: tx("Moment, gdy zaczynasz pracę i trzeba to zarejestrować.", "The moment when you start work and must register it.", "Момент, коли починаєте роботу і треба це зареєструвати.", "Момент, когда начинаете работу и нужно это зарегистрировать.", "İşə başladığınız və bunu qeyd etməli olduğunuz an.", "Momento cuando empiezas el trabajo y debes registrarlo.", "Oras ng pagsisimula ng trabaho at kailangan i-record.", "Saat mulai kerja dan harus dicatat.", "काम सुरु गर्ने र दर्ता गर्नुपर्ने समय।"),
+    example: tx("Przykład: odbij początek pracy na readerze albo tablecie.", "Example: register work start on the reader or tablet.", "Приклад: відбийте початок роботи на рідері або планшеті.", "Пример: отметьте начало работы на ридере или планшете.", "Məsələn: işin başlanğıcını reader və ya planşetdə qeyd edin.", "Ejemplo: marca inicio de trabajo en reader o tablet.", "Halimbawa: i-record ang simula sa reader o tablet.", "Contoh: catat mulai kerja di reader atau tablet.", "उदाहरण: reader वा tablet मा काम सुरु दर्ता गर्नुहोस्।")
+  },
+  {
+    group: "device",
+    term: "koniec pracy",
+    local: tx("koniec pracy / zakończenie w systemie", "work end / finish in system", "кінець роботи / завершення в системі", "конец работы / завершение в системе", "işin sonu / sistemdə bitirmə", "fin de trabajo / terminar en sistema", "tapos ng trabaho / finish sa system", "selesai kerja / selesai di sistem", "काम अन्त्य / सिस्टममा अन्त्य"),
+    meaning: tx("Moment, gdy kończysz pracę i trzeba zamknąć rejestrację.", "The moment when you finish work and must close registration.", "Момент, коли закінчуєте роботу і треба закрити реєстрацію.", "Момент, когда заканчиваете работу и нужно закрыть регистрацию.", "İşi bitirdiyiniz və qeydiyyatı bağlamalı olduğunuz an.", "Momento cuando terminas y debes cerrar el registro.", "Oras kapag tapos na at kailangan isara ang record.", "Saat selesai kerja dan harus menutup catatan.", "काम सकिँदा दर्ता बन्द गर्नुपर्ने समय।"),
+    example: tx("Przykład: po pracy odbij koniec pracy.", "Example: after work register work end.", "Приклад: після роботи відбийте кінець роботи.", "Пример: после работы отметьте конец работы.", "Məsələn: işdən sonra işin sonunu qeyd edin.", "Ejemplo: después del trabajo marca fin de trabajo.", "Halimbawa: pagkatapos ng trabaho i-record ang tapos.", "Contoh: setelah kerja catat selesai kerja.", "उदाहरण: कामपछि काम अन्त्य दर्ता गर्नुहोस्।")
+  },
+  {
+    group: "device",
+    term: "przerwa początek",
+    local: tx("przerwa początek / start przerwy", "break start / start of break", "початок перерви / старт перерви", "начало перерыва / старт перерыва", "fasilə başlanğıcı / fasilənin startı", "inicio de pausa / empezar pausa", "simula ng break / start break", "mulai istirahat / awal istirahat", "ब्रेक सुरु / विश्राम सुरु"),
+    meaning: tx("Rejestracja momentu, gdy zaczynasz przerwę.", "Registration of the moment when you start a break.", "Реєстрація моменту, коли починаєте перерву.", "Регистрация момента, когда начинаете перерыв.", "Fasiləyə başladığınız anın qeydiyyatı.", "Registro del momento cuando empiezas pausa.", "Pag-record ng oras kapag nagsisimula ang break.", "Pencatatan saat mulai istirahat.", "ब्रेक सुरु भएको समय दर्ता।"),
+    example: tx("Przykład: przed przerwą wyjdź z rzędu i odbij tag.", "Example: before break leave the row and scan the tag.", "Приклад: перед перервою вийдіть з ряду і відбийте тег.", "Пример: перед перерывом выйдите из ряда и отметьте тег.", "Məsələn: fasilədən əvvəl sıradan çıxın və tag vurun.", "Ejemplo: antes de pausa sal de la fila y marca tag.", "Halimbawa: bago break, lumabas sa row at i-scan ang tag.", "Contoh: sebelum istirahat keluar dari baris dan scan tag.", "उदाहरण: ब्रेक अघि लाइनबाट निस्केर tag scan गर्नुहोस्।")
+  },
+  {
+    group: "device",
+    term: "przerwa koniec",
+    local: tx("przerwa koniec / powrót po przerwie", "break end / return after break", "кінець перерви / повернення після перерви", "конец перерыва / возврат после перерыва", "fasilə sonu / fasilədən qayıtma", "fin de pausa / vuelta después de pausa", "tapos ng break / balik pagkatapos", "akhir istirahat / kembali setelah istirahat", "ब्रेक अन्त्य / ब्रेकपछि फर्कने"),
+    meaning: tx("Rejestracja momentu, gdy kończysz przerwę i wracasz do pracy.", "Registration of the moment when you end break and return to work.", "Реєстрація моменту, коли закінчуєте перерву і повертаєтесь до роботи.", "Регистрация момента, когда заканчиваете перерыв и возвращаетесь к работе.", "Fasiləni bitirib işə qayıtdığınız anın qeydiyyatı.", "Registro cuando terminas pausa y vuelves al trabajo.", "Pag-record kapag tapos ang break at balik sa trabaho.", "Pencatatan saat selesai istirahat dan kembali kerja.", "ब्रेक सकिएर काममा फर्किएको समय दर्ता।"),
+    example: tx("Przykład: po przerwie odbij koniec przerwy i czynność.", "Example: after break register break end and activity.", "Приклад: після перерви відбийте кінець перерви і дію.", "Пример: после перерыва отметьте конец перерыва и деятельность.", "Məsələn: fasilədən sonra fasilə sonunu və fəaliyyəti qeyd edin.", "Ejemplo: después de pausa marca fin de pausa y actividad.", "Halimbawa: pagkatapos ng break, i-record ang end break at activity.", "Contoh: setelah istirahat catat akhir istirahat dan aktivitas.", "उदाहरण: ब्रेकपछि ब्रेक अन्त्य र गतिविधि दर्ता गर्नुहोस्।")
+  },
+  {
+    group: "device",
+    term: "ładowarka",
+    local: tx("ładowarka / miejsce ładowania", "charger / charging place", "зарядка / місце заряджання", "зарядка / место зарядки", "şarj yeri / şarj cihazı", "cargador / lugar de carga", "charger / charging place", "charger / tempat mengisi daya", "चार्जर / चार्ज गर्ने ठाउँ"),
+    meaning: tx("Miejsce, gdzie reader ma wrócić po pracy.", "The place where the reader must return after work.", "Місце, куди рідер має повернутися після роботи.", "Место, куда ридер нужно вернуть после работы.", "Reader işdən sonra qaytarılmalı olan yer.", "Lugar donde debe volver el reader después del trabajo.", "Lugar kung saan ibabalik ang reader pagkatapos ng trabaho.", "Tempat reader dikembalikan setelah kerja.", "कामपछि reader राख्नुपर्ने ठाउँ।"),
+    example: tx("Przykład: odłóż reader na ładowarkę z numerem.", "Example: put the reader on the numbered charger.", "Приклад: покладіть рідер на зарядку з номером.", "Пример: положите ридер на зарядку с номером.", "Məsələn: reader-i nömrəli şarja qoyun.", "Ejemplo: deja el reader en el cargador con número.", "Halimbawa: ilagay ang reader sa charger na may numero.", "Contoh: taruh reader di charger bernomor.", "उदाहरण: reader नम्बर भएको चार्जरमा राख्नुहोस्।")
+  },
+  {
+    group: "tablet",
+    term: "PIN",
+    local: tx("PIN / osobisty kod", "PIN / personal code", "PIN / особистий код", "PIN / личный код", "PIN / şəxsi kod", "PIN / código personal", "PIN / personal code", "PIN / kode pribadi", "PIN / व्यक्तिगत कोड"),
+    meaning: tx("Kod do logowania na tablecie. Nie podawaj go innej osobie.", "Code for logging in on the tablet. Do not give it to another person.", "Код для входу на планшеті. Не передавайте його іншій людині.", "Код для входа на планшете. Не передавайте его другому человеку.", "Planşetə giriş kodu. Başqa şəxsə verməyin.", "Código para entrar en tablet. No lo des a otra persona.", "Code para mag-login sa tablet. Huwag ibigay sa iba.", "Kode untuk login tablet. Jangan berikan ke orang lain.", "tablet मा login गर्ने कोड। अरूलाई नदिनुहोस्।"),
+    example: tx("Przykład: wpisz swój PIN na tablecie.", "Example: enter your PIN on the tablet.", "Приклад: введіть свій PIN на планшеті.", "Пример: введите свой PIN на планшете.", "Məsələn: planşetdə öz PIN-inizi yazın.", "Ejemplo: introduce tu PIN en la tablet.", "Halimbawa: ilagay ang PIN mo sa tablet.", "Contoh: masukkan PIN Anda di tablet.", "उदाहरण: tablet मा आफ्नो PIN लेख्नुहोस्।")
+  },
+  {
+    group: "tablet",
+    term: "zaloguj",
+    local: tx("zaloguj / wejdź do systemu", "log in / enter the system", "увійти / зайти в систему", "войти / зайти в систему", "daxil ol / sistemə gir", "iniciar sesión / entrar al sistema", "mag-login / pumasok sa system", "login / masuk sistem", "login / सिस्टममा पस्नु"),
+    meaning: tx("Wejście do systemu na swoim koncie.", "Entering the system on your own account.", "Вхід у систему на своєму акаунті.", "Вход в систему на своём аккаунте.", "Öz hesabınızla sistemə giriş.", "Entrar al sistema con tu cuenta.", "Pagpasok sa system gamit ang sariling account.", "Masuk sistem dengan akun sendiri.", "आफ्नो खाताबाट सिस्टममा पस्ने।"),
+    example: tx("Przykład: zaloguj się przed rozpoczęciem pracy.", "Example: log in before starting work.", "Приклад: увійдіть перед початком роботи.", "Пример: войдите перед началом работы.", "Məsələn: işə başlamazdan əvvəl daxil olun.", "Ejemplo: inicia sesión antes de trabajar.", "Halimbawa: mag-login bago magtrabaho.", "Contoh: login sebelum mulai kerja.", "उदाहरण: काम सुरु गर्नु अघि login गर्नुहोस्।")
+  },
+  {
+    group: "tablet",
+    term: "wyloguj",
+    local: tx("wyloguj / wyjdź z systemu", "log out / leave the system", "вийти / вийти з системи", "выйти / выйти из системы", "çıx / sistemdən çıx", "cerrar sesión / salir del sistema", "mag-logout / lumabas sa system", "logout / keluar sistem", "logout / सिस्टमबाट निस्कनु"),
+    meaning: tx("Zamknięcie swojego konta na tablecie po pracy.", "Closing your account on the tablet after work.", "Закриття свого акаунта на планшеті після роботи.", "Закрытие своего аккаунта на планшете после работы.", "İşdən sonra planşetdə hesabdan çıxmaq.", "Cerrar tu cuenta en la tablet después del trabajo.", "Pagsara ng account sa tablet pagkatapos ng trabaho.", "Keluar dari akun tablet setelah kerja.", "कामपछि tablet बाट आफ्नो खाता बन्द गर्नु।"),
+    example: tx("Przykład: po zakończeniu pracy wyloguj się.", "Example: after finishing work, log out.", "Приклад: після завершення роботи вийдіть із системи.", "Пример: после окончания работы выйдите из системы.", "Məsələn: işi bitirdikdən sonra çıxın.", "Ejemplo: al terminar el trabajo, cierra sesión.", "Halimbawa: pagkatapos ng trabaho, mag-logout.", "Contoh: setelah selesai kerja, logout.", "उदाहरण: काम सकिएपछि logout गर्नुहोस्।")
+  },
+  {
+    group: "tablet",
+    term: "produkcja",
+    local: tx("produkcja / praca wykonywana w systemie", "production / work recorded in system", "продукція / робота в системі", "производство / работа в системе", "istehsalat / sistemdə iş", "producción / trabajo en sistema", "production / trabaho sa system", "produksi / kerja di sistem", "उत्पादन / सिस्टममा काम"),
+    meaning: tx("Część systemu tabletu, gdzie wybierasz pracę i czynność.", "The tablet system part where you choose work and activity.", "Частина системи планшета, де вибираєте роботу і дію.", "Часть системы планшета, где выбираете работу и деятельность.", "Planşet sistemində iş və fəaliyyəti seçdiyiniz hissə.", "Parte de la tablet donde eliges trabajo y actividad.", "Bahagi ng tablet kung saan pipili ng trabaho at activity.", "Bagian tablet untuk memilih kerja dan aktivitas.", "tablet मा काम र गतिविधि छान्ने भाग।"),
+    example: tx("Przykład: w produkcji wybierz właściwą czynność.", "Example: in production choose the correct activity.", "Приклад: у продукції виберіть правильну дію.", "Пример: в производстве выберите правильную деятельность.", "Məsələn: istehsalatda düzgün fəaliyyəti seçin.", "Ejemplo: en producción elige la actividad correcta.", "Halimbawa: sa production piliin ang tamang activity.", "Contoh: di produksi pilih aktivitas yang benar.", "उदाहरण: उत्पादनमा सही गतिविधि छान्नुहोस्।")
+  },
+  {
+    group: "people",
+    term: "koordynator",
+    local: tx("koordynator / osoba z biura", "coordinator / office person", "координатор / людина з офісу", "координатор / человек из офиса", "koordinator / ofisdən şəxs", "coordinador / persona de oficina", "coordinator / tao sa opisina", "koordinator / orang kantor", "समन्वयक / कार्यालयको व्यक्ति"),
+    meaning: tx("Osoba, która pomaga w sprawach organizacyjnych, dokumentach i informacji.", "A person who helps with organization, documents and information.", "Людина, яка допомагає з організацією, документами та інформацією.", "Человек, который помогает с организацией, документами и информацией.", "Təşkilat, sənəd və məlumat məsələlərində kömək edən şəxs.", "Persona que ayuda con organización, documentos e información.", "Taong tumutulong sa organisasyon, dokumento at impormasyon.", "Orang yang membantu urusan organisasi, dokumen dan informasi.", "व्यवस्था, कागजात र जानकारीमा सहयोग गर्ने व्यक्ति।"),
+    example: tx("Przykład: w sprawie dokumentów pisz do koordynatora.", "Example: for documents write to the coordinator.", "Приклад: щодо документів пишіть координатору.", "Пример: по документам пишите координатору.", "Məsələn: sənədlər üçün koordinatora yazın.", "Ejemplo: por documentos escribe al coordinador.", "Halimbawa: tungkol sa dokumento, sumulat sa coordinator.", "Contoh: untuk dokumen tulis ke koordinator.", "उदाहरण: कागजातका लागि समन्वयकलाई लेख्नुहोस्।")
+  },
+  {
+    group: "people",
+    term: "brygada",
+    local: tx("brygada / grupa pracowników", "brigade / worker group", "бригада / група працівників", "бригада / группа работников", "briqada / işçi qrupu", "brigada / grupo de trabajadores", "brigada / grupo ng workers", "tim / kelompok pekerja", "टोली / कामदार समूह"),
+    meaning: tx("Grupa ludzi pracująca z tym samym brygadzistą albo na tym samym dziale.", "A group of people working with the same brigadier or department.", "Група людей, яка працює з тим самим бригадиром або у тому самому відділі.", "Группа людей, которая работает с одним бригадиром или в одном отделе.", "Eyni briqadir və ya şöbə ilə işləyən insanlar qrupu.", "Grupo de personas con el mismo encargado o departamento.", "Grupo ng tao na may parehong brigadier o department.", "Kelompok orang dengan mandor atau departemen yang sama.", "एउटै ब्रिगेडियर वा विभागसँग काम गर्ने समूह।"),
+    example: tx("Przykład: jesteś w brygadzie E3.", "Example: you are in brigade E3.", "Приклад: ви в бригаді E3.", "Пример: вы в бригаде E3.", "Məsələn: siz E3 briqadasındasınız.", "Ejemplo: estás en la brigada E3.", "Halimbawa: nasa brigada E3 ka.", "Contoh: Anda di tim E3.", "उदाहरण: तपाईं E3 टोलीमा हुनुहुन्छ।")
+  },
+  {
+    group: "people",
+    term: "zmiana",
+    local: tx("zmiana / czas pracy grupy", "shift / work time of a group", "зміна / час роботи групи", "смена / время работы группы", "növbə / qrupun iş vaxtı", "turno / tiempo de trabajo", "shift / oras ng trabaho", "shift / waktu kerja", "शिफ्ट / काम गर्ने समय"),
+    meaning: tx("Godziny, w których dana grupa pracuje.", "The hours when a given group works.", "Години, коли працює дана група.", "Часы, когда работает данная группа.", "Müəyyən qrupun işlədiyi saatlar.", "Horas en las que trabaja el grupo.", "Oras kung kailan nagtatrabaho ang grupo.", "Jam kerja kelompok tertentu.", "कुनै समूहले काम गर्ने समय।"),
+    example: tx("Przykład: Twoja zmiana zaczyna się według informacji startowej.", "Example: your shift starts according to start information.", "Приклад: ваша зміна починається згідно зі стартовою інформацією.", "Пример: ваша смена начинается по стартовой информации.", "Məsələn: növbəniz start məlumatına görə başlayır.", "Ejemplo: tu turno empieza según la información inicial.", "Halimbawa: ang shift mo ay ayon sa start info.", "Contoh: shift Anda mulai sesuai info start.", "उदाहरण: तपाईंको शिफ्ट सुरु जानकारी अनुसार सुरु हुन्छ।")
+  },
+  {
+    group: "place",
+    term: "magazyn",
+    local: tx("magazyn / miejsce pracy poza szklarnią", "warehouse / work place outside greenhouse", "склад / місце роботи поза теплицею", "склад / место работы вне теплицы", "anbar / istixanadan kənar iş yeri", "almacén / lugar fuera del invernadero", "bodega / lugar sa labas ng greenhouse", "gudang / tempat kerja di luar rumah kaca", "गोदाम / ग्रीनहाउस बाहिरको काम ठाउँ"),
+    meaning: tx("Osobny dział pracy. Na magazynie nie ma readerów szklarniowych.", "A separate work department. The warehouse does not use greenhouse readers.", "Окремий відділ роботи. На складі немає тепличних рідерів.", "Отдельный отдел работы. На складе нет тепличных ридеров.", "Ayrı iş şöbəsi. Anbarda istixana readerləri yoxdur.", "Departamento separado. En almacén no hay readers de invernadero.", "Hiwalay na department. Sa bodega walang greenhouse reader.", "Departemen terpisah. Di gudang tidak ada reader rumah kaca.", "अलग काम विभाग। गोदाममा ग्रीनहाउस reader हुँदैन।"),
+    example: tx("Przykład: jeśli pracujesz na magazynie, wybierz kafelek Magazyn.", "Example: if you work in warehouse, choose Warehouse tile.", "Приклад: якщо працюєте на складі, виберіть блок Склад.", "Пример: если работаете на складе, выберите блок Склад.", "Məsələn: anbarda işləyirsinizsə, Anbar bölməsini seçin.", "Ejemplo: si trabajas en almacén, elige Almacén.", "Halimbawa: kung bodega ang trabaho, piliin ang Bodega.", "Contoh: jika kerja di gudang, pilih Gudang.", "उदाहरण: गोदाममा काम भए गोदाम टाइल छान्नुहोस्।")
+  },
+  {
+    group: "place",
+    term: "biuro",
+    local: tx("biuro / miejsce spraw organizacyjnych", "office / place for organization matters", "офіс / місце організаційних справ", "офис / место организационных вопросов", "ofis / təşkilati məsələlər yeri", "oficina / lugar de asuntos organizativos", "opisina / lugar ng admin matters", "kantor / tempat urusan organisasi", "कार्यालय / व्यवस्थापन कामको ठाउँ"),
+    meaning: tx("Miejsce, gdzie załatwia się sprawy z koordynatorem albo dokumentami.", "A place for coordinator or document matters.", "Місце, де вирішують справи з координатором або документами.", "Место, где решают вопросы с координатором или документами.", "Koordinator və ya sənəd məsələləri üçün yer.", "Lugar para asuntos con coordinador o documentos.", "Lugar para coordinator o dokumento.", "Tempat urusan koordinator atau dokumen.", "समन्वयक वा कागजातको काम गर्ने ठाउँ।"),
+    example: tx("Przykład: droga do biura jest w module mapy.", "Example: route to the office is in the map module.", "Приклад: дорога до офісу є в модулі карти.", "Пример: дорога в офис есть в модуле карты.", "Məsələn: ofisə yol xəritə modulundadır.", "Ejemplo: la ruta a la oficina está en el módulo mapa.", "Halimbawa: ruta sa opisina ay nasa map module.", "Contoh: rute ke kantor ada di modul peta.", "उदाहरण: कार्यालय जाने बाटो नक्सा मोड्युलमा छ।")
+  },
+  {
+    group: "place",
+    term: "punkt spotkania",
+    local: tx("punkt spotkania / miejsce czekania", "meeting point / waiting place", "пункт зустрічі / місце очікування", "точка встречи / место ожидания", "görüş yeri / gözləmə yeri", "punto de encuentro / lugar de espera", "meeting point / hintayan", "titik temu / tempat menunggu", "भेट्ने ठाउँ / पर्खने ठाउँ"),
+    meaning: tx("Miejsce, gdzie czekasz na informację albo osobę z firmy.", "A place where you wait for information or a company person.", "Місце, де чекаєте інформацію або людину з фірми.", "Место, где ждёте информацию или человека из фирмы.", "Məlumatı və ya firmadan şəxsi gözlədiyiniz yer.", "Lugar donde esperas información o una persona de la empresa.", "Lugar kung saan naghihintay ng info o tao ng company.", "Tempat menunggu informasi atau orang perusahaan.", "कम्पनीको जानकारी वा व्यक्तिलाई पर्खने ठाउँ।"),
+    example: tx("Przykład: przyjdź do punktu spotkania i czekaj.", "Example: come to the meeting point and wait.", "Приклад: прийдіть у пункт зустрічі і чекайте.", "Пример: придите в точку встречи и ждите.", "Məsələn: görüş yerinə gəlin və gözləyin.", "Ejemplo: ven al punto de encuentro y espera.", "Halimbawa: pumunta sa meeting point at maghintay.", "Contoh: datang ke titik temu dan tunggu.", "उदाहरण: भेट्ने ठाउँमा आएर पर्खनुहोस्।")
+  },
+  {
+    group: "place",
+    term: "toaleta",
+    local: tx("toaleta / WC", "toilet / WC", "туалет / WC", "туалет / WC", "tualet / WC", "baño / WC", "toilet / CR", "toilet / WC", "शौचालय / WC"),
+    meaning: tx("Miejsce, gdzie możesz iść do toalety. Jeśli nie wiesz gdzie, zapytaj brygadzistę.", "The place where you can use the toilet. If you do not know where, ask the brigadier.", "Місце, де можна піти в туалет. Якщо не знаєте де, запитайте бригадира.", "Место, где можно пойти в туалет. Если не знаете где, спросите бригадира.", "Tualetə gedə biləcəyiniz yer. Bilmirsinizsə, briqadirdən soruşun.", "Lugar para ir al baño. Si no sabes dónde, pregunta al encargado.", "Lugar para mag-CR. Kung hindi alam, tanungin ang brigadier.", "Tempat toilet. Jika tidak tahu, tanya mandor.", "शौचालय जाने ठाउँ। थाहा छैन भने ब्रिगेडियरलाई सोध्नुहोस्।"),
+    example: tx("Przykład: gdzie jest toaleta?", "Example: where is the toilet?", "Приклад: де туалет?", "Пример: где туалет?", "Məsələn: tualet haradadır?", "Ejemplo: ¿dónde está el baño?", "Halimbawa: nasaan ang toilet?", "Contoh: di mana toilet?", "उदाहरण: शौचालय कहाँ छ?")
+  },
+  {
+    group: "message",
+    term: "skończony",
+    local: tx("skończony / zrobiony do końca", "finished / done to the end", "закінчений / зроблений до кінця", "законченный / сделанный до конца", "bitmiş / sona qədər edilmiş", "terminado / hecho hasta el final", "tapos / natapos hanggang dulo", "selesai / dikerjakan sampai akhir", "सकिएको / अन्त्यसम्म गरिएको"),
+    meaning: tx("Używane przy rzędzie lub zadaniu, gdy praca jest wykonana do końca.", "Used for a row or task when work is completed.", "Використовується для ряду або завдання, коли робота зроблена до кінця.", "Используется для ряда или задания, когда работа сделана до конца.", "Sıra və ya tapşırıq tam bitəndə istifadə olunur.", "Se usa para fila o tarea cuando está completa.", "Ginagamit kapag tapos ang row o task.", "Dipakai jika baris atau tugas sudah selesai.", "लाइन वा काम पूरा हुँदा प्रयोग हुन्छ।"),
+    example: tx("Przykład: rząd skończony.", "Example: the row is finished.", "Приклад: ряд закінчений.", "Пример: ряд закончен.", "Məsələn: sıra bitib.", "Ejemplo: la fila está terminada.", "Halimbawa: tapos ang row.", "Contoh: baris selesai.", "उदाहरण: लाइन सकियो।")
+  },
+  {
+    group: "message",
+    term: "nieskończony",
+    local: tx("nieskończony / nie zrobiony do końca", "not finished / not done to the end", "не закінчений / не зроблений до кінця", "незаконченный / не сделан до конца", "bitməmiş / sona qədər edilməmiş", "no terminado / no hecho hasta el final", "hindi tapos / hindi pa natapos", "belum selesai / belum sampai akhir", "नसकिएको / अन्त्यसम्म नभएको"),
+    meaning: tx("Używane, gdy zostaje jeszcze praca w rzędzie albo zadaniu.", "Used when work remains in a row or task.", "Використовується, коли ще лишається робота в ряду або завданні.", "Используется, когда ещё осталась работа в ряду или задании.", "Sırada və ya tapşırıqda hələ iş qalanda istifadə olunur.", "Se usa cuando queda trabajo en la fila o tarea.", "Ginagamit kapag may natitirang trabaho sa row o task.", "Dipakai jika masih ada kerja di baris atau tugas.", "लाइन वा काममा अझै काम बाँकी हुँदा प्रयोग हुन्छ।"),
+    example: tx("Przykład: rząd nieskończony, odbij dwa razy.", "Example: row not finished, scan twice.", "Приклад: ряд не закінчений, відбийте два рази.", "Пример: ряд не закончен, отметьте два раза.", "Məsələn: sıra bitməyib, iki dəfə vurun.", "Ejemplo: fila no terminada, marca dos veces.", "Halimbawa: row hindi tapos, i-scan dalawang beses.", "Contoh: baris belum selesai, scan dua kali.", "उदाहरण: लाइन सकिएको छैन, दुई पटक scan गर्नुहोस्।")
+  },
+  {
+    group: "message",
+    term: "spóźnię się",
+    local: tx("spóźnię się / będę później", "I will be late / I will arrive later", "запізнюся / буду пізніше", "опоздаю / буду позже", "gecikəcəyəm / gec gələcəyəm", "llegaré tarde / estaré más tarde", "male-late ako / darating ako mamaya", "saya terlambat / datang lebih lambat", "म ढिलो हुन्छु / पछि आउँछु"),
+    meaning: tx("Informacja, którą wysyłasz, gdy nie zdążysz na czas.", "Information you send when you will not arrive on time.", "Інформація, яку надсилаєте, якщо не встигаєте вчасно.", "Информация, которую отправляете, если не успеваете вовремя.", "Vaxtında gəlməyəndə göndərdiyiniz məlumat.", "Información que envías si no llegas a tiempo.", "Impormasyon na ipinapadala kung hindi aabot sa oras.", "Informasi yang dikirim jika tidak datang tepat waktu.", "समयमा नपुग्दा पठाउने जानकारी।"),
+    example: tx("Przykład: spóźnię się 15 minut.", "Example: I will be 15 minutes late.", "Приклад: запізнюся на 15 хвилин.", "Пример: опоздаю на 15 минут.", "Məsələn: 15 dəqiqə gecikəcəyəm.", "Ejemplo: llegaré 15 minutos tarde.", "Halimbawa: male-late ako ng 15 minuto.", "Contoh: saya terlambat 15 menit.", "उदाहरण: म 15 मिनेट ढिलो हुन्छु।")
+  },
+  {
+    group: "message",
+    term: "jestem chory",
+    local: tx("jestem chory / źle się czuję", "I am sick / I feel unwell", "я хворий / погано себе почуваю", "я болею / плохо себя чувствую", "xəstəyəm / özümü pis hiss edirəm", "estoy enfermo / me siento mal", "may sakit ako / masama pakiramdam", "saya sakit / merasa tidak enak", "म बिरामी छु / मलाई ठीक छैन"),
+    meaning: tx("Informacja do brygadzisty, gdy nie możesz pracować albo potrzebujesz lekarza.", "Information for the brigadier when you cannot work or need a doctor.", "Інформація для бригадира, коли не можете працювати або потрібен лікар.", "Информация для бригадира, когда не можете работать или нужен врач.", "İşləyə bilməyəndə və ya həkim lazım olanda briqadirə məlumat.", "Información al encargado si no puedes trabajar o necesitas médico.", "Info sa brigadier kung hindi makapagtrabaho o kailangan ng doktor.", "Info ke mandor jika tidak bisa kerja atau butuh dokter.", "काम गर्न नसक्दा वा डाक्टर चाहिँदा ब्रिगेडियरलाई जानकारी।"),
+    example: tx("Przykład: jestem chory, potrzebuję lekarza.", "Example: I am sick, I need a doctor.", "Приклад: я хворий, потрібен лікар.", "Пример: я болею, нужен врач.", "Məsələn: xəstəyəm, həkim lazımdır.", "Ejemplo: estoy enfermo, necesito médico.", "Halimbawa: may sakit ako, kailangan ko ng doktor.", "Contoh: saya sakit, butuh dokter.", "उदाहरण: म बिरामी छु, डाक्टर चाहिन्छ।")
+  },
+  {
+    group: "documents",
+    term: "PESEL",
+    local: tx("PESEL / polski numer osoby", "PESEL / Polish personal number", "PESEL / польський номер особи", "PESEL / польский номер человека", "PESEL / Polşa şəxsi nömrəsi", "PESEL / número personal polaco", "PESEL / Polish personal number", "PESEL / nomor pribadi Polandia", "PESEL / पोलिस व्यक्तिगत नम्बर"),
+    meaning: tx("Numer potrzebny w wielu sprawach w Polsce, na przykład u lekarza.", "A number needed for many matters in Poland, for example at a doctor.", "Номер, потрібний у багатьох справах у Польщі, наприклад у лікаря.", "Номер, нужный во многих делах в Польше, например у врача.", "Polşada çox iş üçün lazım olan nömrə, məsələn həkimdə.", "Número necesario para muchos trámites en Polonia, por ejemplo médico.", "Numero na kailangan sa Poland, halimbawa sa doktor.", "Nomor yang dibutuhkan untuk banyak urusan di Polandia, misalnya dokter.", "पोल्याण्डमा धेरै काममा चाहिने नम्बर, जस्तै डाक्टरमा।"),
+    example: tx("Przykład: do przychodni zabierz PESEL.", "Example: take PESEL to the clinic.", "Приклад: у поліклініку візьміть PESEL.", "Пример: в поликлинику возьмите PESEL.", "Məsələn: poliklinikaya PESEL götürün.", "Ejemplo: lleva PESEL a la clínica.", "Halimbawa: dalhin ang PESEL sa clinic.", "Contoh: bawa PESEL ke klinik.", "उदाहरण: क्लिनिकमा PESEL लिएर जानुहोस्।")
+  },
+  {
+    group: "documents",
+    term: "paszport",
+    local: tx("paszport / dokument tożsamości", "passport / identity document", "паспорт / документ особи", "паспорт / документ личности", "pasport / şəxsiyyət sənədi", "pasaporte / documento de identidad", "pasaporte / ID document", "paspor / dokumen identitas", "पासपोर्ट / परिचय कागजात"),
+    meaning: tx("Dokument, który potwierdza kim jesteś.", "A document that confirms who you are.", "Документ, який підтверджує, хто ви.", "Документ, который подтверждает, кто вы.", "Kim olduğunuzu təsdiqləyən sənəd.", "Documento que confirma quién eres.", "Dokumento na nagpapatunay kung sino ka.", "Dokumen yang membuktikan identitas.", "तपाईं को हो भनेर देखाउने कागजात।"),
+    example: tx("Przykład: do lekarza zabierz paszport.", "Example: take your passport to the doctor.", "Приклад: до лікаря візьміть паспорт.", "Пример: к врачу возьмите паспорт.", "Məsələn: həkimə pasport götürün.", "Ejemplo: lleva pasaporte al médico.", "Halimbawa: dalhin ang pasaporte sa doktor.", "Contoh: bawa paspor ke dokter.", "उदाहरण: डाक्टरकहाँ पासपोर्ट लिएर जानुहोस्।")
+  },
+  {
+    group: "documents",
+    term: "karta pobytu",
+    local: tx("karta pobytu / dokument pobytowy", "residence card / stay document", "карта побиту / документ перебування", "карта побыту / документ пребывания", "yaşayış kartı / qalma sənədi", "tarjeta de residencia / documento de estancia", "residence card / stay document", "kartu tinggal / dokumen tinggal", "residence card / बसाइ कागजात"),
+    meaning: tx("Dokument związany z legalnym pobytem w Polsce.", "A document connected with legal stay in Poland.", "Документ, пов'язаний з легальним перебуванням у Польщі.", "Документ, связанный с легальным пребыванием в Польше.", "Polşada qanuni qalmaqla bağlı sənəd.", "Documento relacionado con estancia legal en Polonia.", "Dokumento para legal stay sa Poland.", "Dokumen untuk tinggal legal di Polandia.", "पोल्याण्डमा कानुनी बसाइसँग सम्बन्धित कागजात।"),
+    example: tx("Przykład: w DUW składasz albo odbierasz kartę pobytu.", "Example: in DUW you submit or collect the residence card.", "Приклад: у DUW подаєте або забираєте карту побиту.", "Пример: в DUW подаете или забираете карту побыту.", "Məsələn: DUW-da yaşayış kartını verirsiniz və ya götürürsünüz.", "Ejemplo: en DUW entregas o recoges la tarjeta de residencia.", "Halimbawa: sa DUW nagsusumite o kumukuha ng residence card.", "Contoh: di DUW mengajukan atau mengambil kartu tinggal.", "उदाहरण: DUW मा residence card पेश वा लिनुहुन्छ।")
+  },
+  {
+    group: "documents",
+    term: "urząd",
+    local: tx("urząd / instytucja publiczna", "office / public institution", "установа / державна інституція", "учреждение / государственная организация", "idarə / dövlət qurumu", "oficina / institución pública", "opisina / public office", "kantor pemerintah / instansi publik", "कार्यालय / सरकारी संस्था"),
+    meaning: tx("Miejsce, gdzie załatwia się sprawy oficjalne, na przykład dokumenty.", "A place for official matters, for example documents.", "Місце, де вирішують офіційні справи, наприклад документи.", "Место, где решают официальные дела, например документы.", "Rəsmi işlər üçün yer, məsələn sənədlər.", "Lugar para trámites oficiales, por ejemplo documentos.", "Lugar para official matters, halimbawa dokumento.", "Tempat urusan resmi, misalnya dokumen.", "आधिकारिक काम गर्ने ठाउँ, जस्तै कागजात।"),
+    example: tx("Przykład: urząd otworzysz z mapy w module Miasto.", "Example: open the office from the map in City module.", "Приклад: установу відкрийте з карти в модулі Місто.", "Пример: учреждение откройте с карты в модуле Город.", "Məsələn: idarəni Şəhər modulunda xəritədən açın.", "Ejemplo: abre la oficina desde el mapa en Ciudad.", "Halimbawa: buksan ang opisina sa mapa sa City module.", "Contoh: buka kantor dari peta di modul Kota.", "उदाहरण: शहर मोड्युलको नक्साबाट कार्यालय खोल्नुहोस्।")
+  },
+  {
+    group: "documents",
+    term: "bank",
+    local: tx("bank / miejsce konta i pieniędzy", "bank / place for account and money", "банк / місце рахунку і грошей", "банк / место счёта и денег", "bank / hesab və pul yeri", "banco / cuenta y dinero", "bangko / account at pera", "bank / rekening dan uang", "बैंक / खाता र पैसा"),
+    meaning: tx("Miejsce, gdzie można załatwić konto, kartę albo sprawy z pieniędzmi.", "A place for account, card or money matters.", "Місце, де можна вирішити справи з рахунком, карткою або грошима.", "Место, где можно решить вопросы со счётом, картой или деньгами.", "Hesab, kart və pul məsələləri üçün yer.", "Lugar para cuenta, tarjeta o dinero.", "Lugar para account, card o pera.", "Tempat urusan rekening, kartu atau uang.", "खाता, कार्ड वा पैसाको काम गर्ने ठाउँ।"),
+    example: tx("Przykład: linki do banków są w module Miasto.", "Example: bank links are in the City module.", "Приклад: посилання на банки є в модулі Місто.", "Пример: ссылки на банки есть в модуле Город.", "Məsələn: bank linkləri Şəhər modulundadır.", "Ejemplo: los enlaces de bancos están en Ciudad.", "Halimbawa: bank links ay nasa City module.", "Contoh: link bank ada di modul Kota.", "उदाहरण: बैंक लिंक शहर मोड्युलमा छन्।")
+  },
+  {
+    group: "documents",
+    term: "przychodnia",
+    local: tx("przychodnia / lekarz rodzinny", "clinic / family doctor", "поліклініка / сімейний лікар", "поликлиника / семейный врач", "poliklinika / ailə həkimi", "clínica / médico de familia", "clinic / family doctor", "klinik / dokter keluarga", "क्लिनिक / परिवार डाक्टर"),
+    meaning: tx("Miejsce, gdzie szukasz lekarza w normalnych sprawach zdrowotnych.", "A place where you look for a doctor for normal health issues.", "Місце, де шукаєте лікаря у звичайних питаннях здоров'я.", "Место, где ищете врача по обычным вопросам здоровья.", "Adi sağlamlıq məsələləri üçün həkim axtardığınız yer.", "Lugar para buscar médico en casos normales de salud.", "Lugar para doktor sa normal health problems.", "Tempat mencari dokter untuk masalah kesehatan biasa.", "सामान्य स्वास्थ्य समस्यामा डाक्टर खोज्ने ठाउँ।"),
+    example: tx("Przykład: do GOZ Siechnice przyjdź o 8:00.", "Example: come to GOZ Siechnice at 8:00.", "Приклад: до GOZ Siechnice прийдіть о 8:00.", "Пример: в GOZ Siechnice приходите в 8:00.", "Məsələn: GOZ Siechnice-yə saat 8:00-da gəlin.", "Ejemplo: llega a GOZ Siechnice a las 8:00.", "Halimbawa: pumunta sa GOZ Siechnice ng 8:00.", "Contoh: datang ke GOZ Siechnice jam 8:00.", "उदाहरण: GOZ Siechnice मा 8:00 बजे आउनुहोस्।")
   }
 ];
 

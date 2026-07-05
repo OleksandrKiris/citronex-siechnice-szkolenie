@@ -724,8 +724,22 @@
   function renderGlossary() {
     const groups = DATA.glossaryGroups || [];
     const entries = DATA.glossary || [];
-    const entryCard = (item) => `
-      <article class="glossary-card">
+    const labels = {
+      search: tx("Szukaj słowa, np. reader, rząd, przerwa...", "Search a word, e.g. reader, row, break...", "Шукайте слово, напр. reader, ряд, перерва...", "Ищите слово, напр. reader, ряд, перерыв...", "Söz axtarın, məsələn reader, sıra, fasilə...", "Busca una palabra, por ejemplo reader, fila, pausa...", "Maghanap ng salita, hal. reader, row, break...", "Cari kata, mis. reader, baris, istirahat...", "शब्द खोज्नुहोस्, जस्तै reader, लाइन, ब्रेक..."),
+      count: tx("haseł", "terms", "слів", "слов", "söz", "términos", "salita", "istilah", "शब्द"),
+      empty: tx("Nie znaleziono hasła. Spróbuj krócej, np. tag albo przerwa.", "No term found. Try shorter, e.g. tag or break.", "Не знайдено. Спробуйте коротше, напр. tag або перерва.", "Не найдено. Попробуйте короче, напр. tag или перерыв.", "Tapılmadı. Daha qısa yazın, məsələn tag və ya fasilə.", "No encontrado. Prueba más corto, por ejemplo tag o pausa.", "Walang nahanap. Subukan mas maikli, hal. tag o break.", "Tidak ditemukan. Coba lebih pendek, mis. tag atau istirahat.", "भेटिएन। छोटो लेख्नुहोस्, जस्तै tag वा break।"),
+      tipTitle: tx("Jak korzystać", "How to use", "Як користуватись", "Как пользоваться", "Necə istifadə etmək", "Cómo usarlo", "Paano gamitin", "Cara memakai", "कसरी प्रयोग गर्ने"),
+      tip: tx("Gdy ktoś powie polskie słowo, wpisz je w wyszukiwarkę albo znajdź w grupie. Czytaj tylko krótkie znaczenie i przykład.", "When someone says a Polish word, type it in search or find it in a group. Read only the short meaning and example.", "Коли хтось скаже польське слово, впишіть його в пошук або знайдіть у групі. Читайте коротке значення і приклад.", "Когда кто-то скажет польское слово, введите его в поиск или найдите в группе. Читайте короткое значение и пример.", "Kimsə polyak sözü deyəndə onu axtarışa yazın və ya qrupda tapın. Qısa mənanı və nümunəni oxuyun.", "Cuando alguien diga una palabra polaca, escríbela en búsqueda o búscala en el grupo. Lee el significado corto y el ejemplo.", "Kapag may nagsabi ng Polish na salita, i-type sa search o hanapin sa grupo. Basahin ang maikling kahulugan at halimbawa.", "Saat ada kata Polandia, ketik di pencarian atau cari di grup. Baca arti pendek dan contoh.", "कसैले पोलिस शब्द भने खोजीमा लेख्नुहोस् वा समूहमा खोज्नुहोस्। छोटो अर्थ र उदाहरण मात्र पढ्नुहोस्।")
+    };
+    const entryCard = (item) => {
+      const searchable = [
+        item.term,
+        text(item.local),
+        text(item.meaning),
+        text(item.example)
+      ].join(" ").toLowerCase();
+      return `
+      <article class="glossary-card" data-glossary-card data-search="${esc(searchable)}">
         <div class="glossary-term-row">
           <span class="glossary-term">${esc(item.term)}</span>
           <span class="glossary-local">${esc(text(item.local))}</span>
@@ -734,11 +748,12 @@
         <div class="glossary-example">${esc(text(item.example))}</div>
       </article>
     `;
+    };
     const groupHtml = groups.map((group) => {
       const cards = entries.filter((item) => item.group === group.id).map(entryCard).join("");
       if (!cards) return "";
       return `
-        <section class="${cardClass(group.tone)} glossary-group">
+        <section class="${cardClass(group.tone)} glossary-group" data-glossary-group>
           <div class="city-card-head">
             <span class="city-card-icon">${iconMap.document}</span>
             <h2>${esc(text(group.title))}</h2>
@@ -752,12 +767,39 @@
       <main class="page glossary-page">
         ${pageHero()}
         <section class="card blue glossary-help">
-          <h2>${esc(text(tx("Jak tego używać", "How to use it", "Як цим користуватись", "Как этим пользоваться", "Necə istifadə etmək", "Cómo usarlo", "Paano gamitin", "Cara memakai", "यसलाई कसरी प्रयोग गर्ने")))}</h2>
-          <p>${esc(text(tx("Gdy usłyszysz polskie słowo w pracy, znajdź je tutaj i sprawdź proste znaczenie.", "When you hear a Polish word at work, find it here and check the simple meaning.", "Коли почуєте польське слово на роботі, знайдіть його тут і перевірте просте значення.", "Когда услышите польское слово на работе, найдите его здесь и посмотрите простое значение.", "İşdə polyak sözü eşidəndə onu burada tapın və sadə mənasını yoxlayın.", "Cuando oigas una palabra polaca en el trabajo, búscala aquí y mira el significado simple.", "Kapag narinig mo ang Polish na salita sa trabaho, hanapin dito at tingnan ang simpleng kahulugan.", "Saat mendengar kata Polandia di kerja, cari di sini dan cek arti sederhana.", "काममा पोलिस शब्द सुन्दा यहाँ खोज्नुहोस् र सरल अर्थ हेर्नुहोस्।")))}</p>
+          <div>
+            <h2>${esc(text(labels.tipTitle))}</h2>
+            <p>${esc(text(labels.tip))}</p>
+          </div>
+          <strong class="glossary-count">${entries.length} ${esc(text(labels.count))}</strong>
+        </section>
+        <section class="glossary-search-box">
+          <input class="glossary-search" type="search" inputmode="search" autocomplete="off" placeholder="${esc(text(labels.search))}" data-glossary-search>
+          <div class="glossary-empty is-hidden" data-glossary-empty>${esc(text(labels.empty))}</div>
         </section>
         <section class="stack section">${groupHtml}</section>
       </main>
     `;
+    const search = app.querySelector("[data-glossary-search]");
+    const cards = Array.from(app.querySelectorAll("[data-glossary-card]"));
+    const groupNodes = Array.from(app.querySelectorAll("[data-glossary-group]"));
+    const empty = app.querySelector("[data-glossary-empty]");
+    if (search) {
+      search.addEventListener("input", () => {
+        const query = search.value.trim().toLowerCase();
+        let visible = 0;
+        cards.forEach((card) => {
+          const show = !query || (card.dataset.search || "").includes(query);
+          card.classList.toggle("is-hidden", !show);
+          if (show) visible += 1;
+        });
+        groupNodes.forEach((group) => {
+          const hasVisibleCard = !!group.querySelector("[data-glossary-card]:not(.is-hidden)");
+          group.classList.toggle("is-hidden", !hasVisibleCard);
+        });
+        if (empty) empty.classList.toggle("is-hidden", visible !== 0);
+      });
+    }
   }
 
   function renderSpeech() {
