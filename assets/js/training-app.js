@@ -793,14 +793,16 @@
         </article>
       `;
     };
-    const groupHtml = groups.map((group) => {
-      const cards = phrases.filter((item) => item.group === group.id).map(phraseCard).join("");
+    const groupHtml = groups.map((group, index) => {
+      const groupPhrases = phrases.filter((item) => item.group === group.id);
+      const cards = groupPhrases.map(phraseCard).join("");
       if (!cards) return "";
       return `
-        <details class="${cardClass(group.tone)} speech-group" open data-speech-group>
+        <details class="${cardClass(group.tone)} speech-group"${index === 0 ? " open" : ""} data-speech-group>
           <summary>
             <span class="city-card-icon">${iconMap[group.icon] || iconMap.speech}</span>
             <span>${esc(text(group.title))}</span>
+            <span class="speech-count">${groupPhrases.length}</span>
           </summary>
           <div class="speech-list">${cards}</div>
         </details>
