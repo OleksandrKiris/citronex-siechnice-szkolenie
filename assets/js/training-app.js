@@ -110,13 +110,13 @@
       `<option value="${esc(item.id)}"${item.id === lang ? " selected" : ""}>${esc(item.label)}</option>`
     )).join("");
     const navItems = [
-      { page: "home", icon: "home", label: DATA.ui.home },
-      { page: "mapa", icon: "map", label: tx("Mapa", "Map", "Карта", "Карта", "Xəritə", "Mapa", "Mapa", "Peta", "नक्सा") },
-      { page: "kontakty", icon: "phone", label: tx("Kontakt", "Contact", "Контакт", "Контакт", "Əlaqə", "Contacto", "Contact", "Kontak", "सम्पर्क") },
-      { page: "lekarz", icon: "medical", label: tx("Lekarz", "Doctor", "Лікар", "Врач", "Həkim", "Médico", "Doktor", "Dokter", "डाक्टर") }
+      { page: "home", icon: "home", tone: "green", label: DATA.ui.home },
+      { page: "mapa", icon: "map", tone: "blue", label: tx("Mapa", "Map", "Карта", "Карта", "Xəritə", "Mapa", "Mapa", "Peta", "नक्सा") },
+      { page: "kontakty", icon: "phone", tone: "green", label: tx("Kontakt", "Contact", "Контакт", "Контакт", "Əlaqə", "Contacto", "Contact", "Kontak", "सम्पर्क") },
+      { page: "lekarz", icon: "medical", tone: "red", label: tx("Lekarz", "Doctor", "Лікар", "Врач", "Həkim", "Médico", "Doktor", "Dokter", "डाक्टर") }
     ];
     const navHtml = navItems.map((item) => `
-      <a class="top-nav-link${item.page === page ? " is-active" : ""}" href="${esc(href(item.page))}"${item.page === page ? ' aria-current="page"' : ""}>
+      <a class="top-nav-link${item.page === page ? " is-active" : ""}" data-tone="${esc(item.tone)}" href="${esc(href(item.page))}"${item.page === page ? ' aria-current="page"' : ""}>
         <span class="top-nav-icon">${iconMap[item.icon] || iconMap.home}</span>
         <span>${esc(text(item.label))}</span>
       </a>
