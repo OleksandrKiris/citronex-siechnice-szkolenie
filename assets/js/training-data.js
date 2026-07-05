@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260705-global-simple1"
+      version: "20260705-contrast-fix2"
     },
 
     languages: [

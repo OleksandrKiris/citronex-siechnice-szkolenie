@@ -100,9 +100,9 @@ a { color: inherit; }
   font-weight: 950;
   letter-spacing: 0;
   text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.1;
 }
 
 .brand-subtitle {
@@ -110,9 +110,9 @@ a { color: inherit; }
   color: var(--muted);
   font-size: 12px;
   font-weight: 750;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.15;
 }
 
 .lang-select {
@@ -734,6 +734,10 @@ details.card > summary {
   font-weight: 950;
 }
 
+details.card > summary > * {
+  min-width: 0;
+}
+
 details.card > summary::-webkit-details-marker {
   display: none;
 }
@@ -757,6 +761,32 @@ details.card[open] > summary {
 
 details.card[open] > summary::after {
   content: "-";
+}
+
+details.card.city-simple-group > summary {
+  min-height: 64px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 32px;
+  gap: 12px;
+}
+
+details.card.city-simple-group > summary::after {
+  position: static;
+  grid-column: 3;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,.75);
+  color: var(--brand);
+  font-size: 22px;
+}
+
+details.card.city-simple-group > summary span:nth-child(2) {
+  overflow-wrap: anywhere;
 }
 
 .details-body {
@@ -1710,6 +1740,14 @@ details.ban-section .ban-section-head {
   .brand img {
     width: 34px;
     height: 34px;
+  }
+
+  .brand-title {
+    font-size: 12px;
+  }
+
+  .brand-subtitle {
+    font-size: 11px;
   }
 
   .lang-select {
