@@ -239,11 +239,13 @@
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
-        <section class="card yellow">
-          <h2>${esc(text(DATA.firstDay.title))}</h2>
-          <p>${esc(text(DATA.firstDay.lead))}</p>
-          <div class="steps compact-list">${firstSteps}</div>
-        </section>
+        <details class="card yellow module-details">
+          <summary>${esc(text(DATA.firstDay.title))}</summary>
+          <div class="details-body">
+            <p>${esc(text(DATA.firstDay.lead))}</p>
+            <div class="steps compact-list">${firstSteps}</div>
+          </div>
+        </details>
         <section class="module-grid two section">${cards}</section>
         <section class="section">
           <h2>${esc(text(tx("Zdjęcia wejść", "Entrance photos", "Фото входів", "Фото входов", "Giriş şəkilləri", "Fotos de entradas", "Mga larawan ng pasukan", "Foto pintu masuk", "प्रवेश फोटो")))}</h2>
@@ -269,13 +271,15 @@
             ${action(oldWarehouseMap.url, text(oldWarehouseMap.title), "yellow")}
           </div>
         </section>
-        <section class="section">
-          <h2>${esc(text(tx("Zdjęcia magazynu", "Warehouse photos", "Фото складу", "Фото склада", "Anbar şəkilləri", "Fotos del almacén", "Mga larawan ng bodega", "Foto gudang", "गोदाम फोटो")))}</h2>
-          <div class="photo-grid">
+        <details class="card yellow section media-details">
+          <summary>${esc(text(tx("Zdjęcia magazynu", "Warehouse photos", "Фото складу", "Фото склада", "Anbar şəkilləri", "Fotos del almacén", "Mga larawan ng bodega", "Foto gudang", "गोदाम फोटो")))}</summary>
+          <div class="details-body">
+            <div class="photo-grid">
             <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-1.jpg" alt="Magazyn wejście"><figcaption>${esc(text(tx("Budynek magazynu - widok z parkingu.", "Warehouse building - view from parking.", "Будівля складу - вид з парковки.", "Здание склада - вид с парковки.", "Anbar binası - dayanacaqdan görünüş.", "Edificio de almacén - vista desde parking.", "Gusali ng bodega mula sa paradahan.", "Gedung gudang dari parkir.", "पार्किङबाट गोदाम भवन।")))}</figcaption></figure>
             <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
           </div>
-        </section>
+          </div>
+        </details>
         ${tabletLinkCard("yellow")}
       </main>
     `;
@@ -303,10 +307,12 @@
     const tablet = DATA.tabletGuide;
     const stepsSource = tablet.steps || [];
     const steps = stepsSource.map((item, index) => `
-      <article class="tablet-step">
-        <div class="step-number">${index + 1}</div>
+      <details class="tablet-step">
+        <summary>
+          <span class="step-number">${index + 1}</span>
+          <span>${esc(text(item.title))}</span>
+        </summary>
         <div class="tablet-step-body">
-          <h3>${esc(text(item.title))}</h3>
           <p>${esc(text(item.note))}</p>
           ${item.image ? `
             <figure class="tablet-shot">
@@ -320,7 +326,7 @@
             </div>
           `}
         </div>
-      </article>
+      </details>
     `).join("");
     const tips = (tablet.tips || []).map((item) => `<li>${esc(text(item))}</li>`).join("");
     return `
@@ -335,7 +341,7 @@
         <p>${esc(text(tablet.lead))}</p>
         <div class="notice yellow"><strong>${esc(ui("important"))}:</strong> ${esc(text(tablet.important))}</div>
         <div class="tablet-steps">${steps}</div>
-        ${tips ? `<div class="notice"><ul class="list">${tips}</ul></div>` : ""}
+        ${tips ? `<details class="card section module-details"><summary>${esc(ui("important"))}</summary><div class="details-body"><ul class="list">${tips}</ul></div></details>` : ""}
       </section>
     `;
   }
@@ -557,7 +563,7 @@
             ${steps}
             ${tips ? `<div class="reader-tips"><strong>${esc(ui("important"))}</strong><ul>${tips}</ul></div>` : ""}
           </section>
-          ${imageBlocks ? `<div class="section photo-grid">${imageBlocks}</div>` : ""}
+          ${imageBlocks ? `<details class="card section media-details"><summary>${esc(text(tx("Zdj\u0119cia i t\u0142umaczenia", "Photos and translations", "\u0424\u043e\u0442\u043e \u0456 \u043f\u0435\u0440\u0435\u043a\u043b\u0430\u0434", "\u0424\u043e\u0442\u043e \u0438 \u043f\u0435\u0440\u0435\u0432\u043e\u0434", "\u015e\u0259kill\u0259r v\u0259 t\u0259rc\u00fcm\u0259l\u0259r", "Fotos y traducciones", "Mga larawan at salin", "Foto dan terjemahan", "\u092b\u094b\u091f\u094b \u0930 \u0905\u0928\u0941\u0935\u093e\u0926")))}</summary><div class="details-body photo-grid">${imageBlocks}</div></details>` : ""}
         </section>
       </main>
     `;
@@ -654,202 +660,62 @@
       return buttons || phone ? `<div class="btn-row city-links">${buttons}${phone}</div>` : "";
     };
     const cityList = (items) => items && items.length ? `<ul class="list city-rule-list">${items.map((entry) => `<li>${esc(text(entry))}</li>`).join("")}</ul>` : "";
-    const cityCard = (item) => `
-      <article class="${cardClass(item.tone)} city-card">
-        <div class="city-card-head">
-          <span class="city-card-icon">${iconMap[item.icon] || iconMap.city}</span>
-          <div>
-            ${item.tag ? `<span class="city-card-tag">${esc(text(item.tag))}</span>` : ""}
-            <h2>${esc(text(item.title))}</h2>
+    {
+      const cityMain = DATA.city || [];
+      const compactCityCategories = [
+        {
+          tone: "blue",
+          icon: "document",
+          title: tx("Urząd i dokumenty", "Office and documents", "Установа і документи", "Учреждение и документы", "İdarə və sənədlər", "Oficina y documentos", "Opisina at dokumento", "Kantor dan dokumen", "कार्यालय र कागजात"),
+          lead: tx("Karta pobytu, PESEL, urząd i aplikacje urzędowe.", "Residence card, PESEL, office and official apps.", "Карта побиту, PESEL, установа і державні додатки.", "Карта побыту, PESEL, учреждение и официальные приложения.", "Yaşayış kartı, PESEL, idarə və rəsmi tətbiqlər.", "Residencia, PESEL, oficina y apps oficiales.", "Residence card, PESEL, opisina at official apps.", "Kartu tinggal, PESEL, kantor dan aplikasi resmi.", "Residence card, PESEL, कार्यालय र सरकारी एपहरू।"),
+          items: [cityMain[0], cityMain[1], cityMain[5]].filter(Boolean)
+        },
+        {
+          tone: "yellow",
+          icon: "bank",
+          title: tx("Banki i bankomaty", "Banks and ATMs", "Банки і банкомати", "Банки и банкоматы", "Banklar və bankomatlar", "Bancos y cajeros", "Bangko at ATM", "Bank dan ATM", "बैंक र ATM"),
+          lead: tx("Mapy do banków i najbliższych bankomatów.", "Maps to banks and nearby ATMs.", "Карти до банків і найближчих банкоматів.", "Карты к банкам и ближайшим банкоматам.", "Banklara və yaxın bankomatlara xəritələr.", "Mapas a bancos y cajeros cercanos.", "Mapa papuntang bangko at malapit na ATM.", "Peta ke bank dan ATM terdekat.", "बैंक र नजिकका ATM का नक्सा।"),
+          items: [cityMain[2], cityMain[3], cityMain[4]].filter(Boolean)
+        },
+        {
+          tone: "blue",
+          icon: "map",
+          title: tx("Transport", "Transport", "Транспорт", "Транспорт", "Nəqliyyat", "Transporte", "Transport", "Transportasi", "यातायात"),
+          lead: tx("Aplikacje do jazdy po mieście i pociągów.", "Apps for city travel and trains.", "Додатки для міста і поїздів.", "Приложения для города и поездов.", "Şəhər və qatar üçün tətbiqlər.", "Apps para ciudad y trenes.", "Apps para sa city at tren.", "Aplikasi untuk kota dan kereta.", "शहर र रेलका एपहरू।"),
+          items: [cityMain[6], cityMain[7]].filter(Boolean)
+        }
+      ];
+      const citySimpleItem = (item) => `
+        <div class="city-simple-item">
+          <div class="city-simple-text">
+            <h3>${esc(text(item.title))}</h3>
+            ${item.address ? `<p class="city-meta">${esc(text(item.address))}</p>` : ""}
+            <p>${esc(text(item.note))}</p>
+            ${cityList(item.list)}
           </div>
+          ${cityLinks(item)}
         </div>
-        <p>${esc(text(item.note))}</p>
-        ${item.address ? `<p class="city-meta">${esc(text(item.address))}</p>` : ""}
-        ${cityList(item.list)}
-        ${cityLinks(item)}
-      </article>
-    `;
-    const cityFlow = [
-      tx("Sprawa urzędowa", "Office matter", "Адміністративна справа", "Дело в учреждении", "Rəsmi iş", "Trámite oficial", "Opisyal na asunto", "Urusan kantor", "कार्यालयको काम"),
-      tx("Dokumenty", "Documents", "Документи", "Документы", "Sənədlər", "Documentos", "Mga dokumento", "Dokumen", "कागजात"),
-      tx("Mapa / strona", "Map / website", "Карта / сайт", "Карта / сайт", "Xəritə / sayt", "Mapa / web", "Mapa / opisyal na site", "Peta / situs", "नक्सा / वेबसाइट"),
-      tx("Potwierdzenie", "Confirmation", "Підтвердження", "Подтверждение", "Təsdiq", "Confirmación", "Kumpirmasyon", "Konfirmasi", "पुष्टि")
-    ].map((item, index) => `<span class="city-chip">${index + 1}. ${esc(text(item))}</span>`).join("");
-    const cityDecisions = [
-      {
-        tone: "blue",
-        icon: "city",
-        title: tx("Karta pobytu / DUW", "Residence card / DUW", "Карта побиту / DUW", "Карта побыту / DUW", "Yaşayış kartı / DUW", "Residencia / DUW", "Card ng paninirahan / DUW", "Kartu tinggal / DUW", "Card ng paninirahan / DUW"),
-        note: tx("Składanie dokumentów i odbiór karty pobytu.", "Submit documents and collect the residence card.", "Подати документи і забрати карту побиту.", "Подать документы и забрать карту побыту.", "Sənədləri vermək və yaşayış kartını götürmək.", "Entregar documentos y recoger la tarjeta.", "Magpasa ng dokumento at kunin ang card ng paninirahan.", "Mengajukan dokumen dan mengambil kartu tinggal.", "कागजात बुझाउने र residence card लिने।")
-      },
-      {
-        tone: "blue",
-        icon: "city",
-        title: tx("Urząd w Siechnicach", "Office in Siechnice", "Установа в Siechnice", "Учреждение в Siechnice", "Siechnice idarəsi", "Oficina en Siechnice", "Opisina sa Siechnice", "Kantor di Siechnice", "Siechnice को कार्यालय"),
-        note: tx("Sprawy miejskie, PESEL i podstawowe formalności.", "City matters, PESEL and basic formalities.", "Міські справи, PESEL і базові формальності.", "Городские дела, PESEL и базовые формальности.", "Şəhər işləri, PESEL və əsas sənədlər.", "Asuntos municipales, PESEL y trámites básicos.", "Asunto sa lungsod, PESEL at pangunahing pormalidad.", "Urusan kota, PESEL dan administrasi dasar.", "शहरका काम, PESEL र आधारभूत कागजी काम।")
-      },
-      {
-        tone: "yellow",
-        icon: "city",
-        title: tx("Bank / bankomat", "Bank / ATM", "Банк / банкомат", "Банк / банкомат", "Bank / bankomat", "Banco / cajero", "Bangko / ATM", "Bank / ATM", "बैंक / ATM"),
-        note: tx("Konto, karta, gotówka i bezpieczeństwo danych.", "Account, card, cash and data safety.", "Рахунок, карта, готівка і безпека даних.", "Счет, карта, наличные и безопасность данных.", "Hesab, kart, nağd pul və məlumat təhlükəsizliyi.", "Cuenta, tarjeta, efectivo y seguridad de datos.", "Account, card, cash at seguridad ng datos.", "Rekening, kartu, uang tunai dan keamanan data.", "खाता, कार्ड, नगद र डाटा सुरक्षा।")
-      },
-      {
-        tone: "blue",
-        icon: "map",
-        title: tx("Dojazd po mieście", "Travel in the city", "Доїзд по місту", "Проезд по городу", "Şəhərdə yol", "Transporte en la ciudad", "Biyahe sa lungsod", "Perjalanan di kota", "शहरमा यात्रा"),
-        note: tx("Jakdojade do autobusów i tramwajów, KOLEO do pociągów.", "Jakdojade for buses and trams, KOLEO for trains.", "Jakdojade для автобусів і трамваїв, KOLEO для поїздів.", "Jakdojade для автобусов и трамваев, KOLEO для поездов.", "Avtobus və tramvay üçün Jakdojade, qatar üçün KOLEO.", "Jakdojade para buses y tranvías, KOLEO para trenes.", "Jakdojade para sa bus/tram, KOLEO para sa tren.", "Jakdojade untuk bus/tram, KOLEO untuk kereta.", "बस/ट्रामका लागि Jakdojade, रेलका लागि KOLEO।")
-      }
-    ].map((item) => `
-      <article class="city-decision ${item.tone}">
-        <div class="icon-box">${iconMap[item.icon] || iconMap.city}</div>
-        <div>
-          <h3>${esc(text(item.title))}</h3>
-          <p>${esc(text(item.note))}</p>
-        </div>
-      </article>
-    `).join("");
-    const documents = [
-      tx("Dokument tożsamości.", "Identity document.", "Документ особи.", "Документ личности.", "Şəxsiyyət sənədi.", "Documento de identidad.", "Identity document.", "Dokumen identitas.", "परिचयपत्र।"),
-      tx("PESEL, jeśli już masz.", "PESEL, if you already have it.", "PESEL, якщо вже маєте.", "PESEL, если уже есть.", "PESEL, əgər artıq varsa.", "PESEL, si ya lo tienes.", "PESEL kung mayroon ka na.", "PESEL jika sudah punya.", "PESEL छ भने।"),
-      tx("Telefon z numerem, którego używasz w Polsce.", "Phone with the number you use in Poland.", "Телефон з номером, яким користуєтесь у Польщі.", "Телефон с номером, которым пользуетесь в Польше.", "Polşada istifadə etdiyiniz nömrəli telefon.", "Teléfono con el número que usas en Polonia.", "Telepono na may numerong ginagamit mo sa Poland.", "Telepon dengan nomor yang dipakai di Polandia.", "पोल्याण्डमा प्रयोग गर्ने नम्बर भएको फोन।"),
-      tx("Dokumenty dotyczące tej sprawy, jeśli je masz.", "Documents for this matter, if you have them.", "Документи до цієї справи, якщо маєте.", "Документы по этой задаче, если они есть.", "Bu işə aid sənədlər, əgər varsa.", "Documentos de este trámite, si los tienes.", "Mga dokumento para dito, kung mayroon.", "Dokumen untuk urusan ini, jika ada.", "यो कामका कागजात, छन् भने।"),
-      tx("Zapisz albo zrób zdjęcie potwierdzenia po załatwieniu sprawy.", "Save or photograph the confirmation after the matter is handled.", "Збережіть або сфотографуйте підтвердження після справи.", "Сохраните или сфотографируйте подтверждение после дела.", "İş bitəndən sonra təsdiqi saxlayın və ya şəklini çəkin.", "Guarda o fotografía la confirmación después del trámite.", "I-save o picturan ang confirmation pagkatapos.", "Simpan atau foto konfirmasi setelah selesai.", "काम भएपछि पुष्टि सेभ वा फोटो गर्नुहोस्।")
-    ].map((item) => `<li>${esc(text(item))}</li>`).join("");
-    const warnings = [
-      tx("Godziny urzędu, banku i aplikacji mogą się zmieniać. Sprawdź przed wyjściem.", "Office, bank and app hours may change. Check before leaving.", "Години установи, банку і додатків можуть змінюватися. Перевірте перед виходом.", "Часы учреждения, банка и приложений могут меняться. Проверьте перед выходом.", "İdarə, bank və tətbiq saatları dəyişə bilər. Çıxmadan əvvəl yoxlayın.", "Los horarios de oficina, banco y apps pueden cambiar. Revisa antes de salir.", "Maaaring magbago ang oras ng opisina, bangko at apps. I-check bago umalis.", "Jam kantor, bank dan aplikasi bisa berubah. Cek sebelum pergi.", "कार्यालय, बैंक र एपको समय बदलिन सक्छ। निस्कनु अघि जाँच गर्नुहोस्।"),
-      tx("Korzystaj tylko z oficjalnych stron, map i aplikacji.", "Use only official websites, maps and apps.", "Користуйтеся тільки офіційними сайтами, картами і додатками.", "Используйте только официальные сайты, карты и приложения.", "Yalnız rəsmi sayt, xəritə və tətbiqlərdən istifadə edin.", "Usa solo páginas, mapas y apps oficiales.", "Gamitin lang ang official websites, mapa at apps.", "Gunakan hanya situs, peta dan aplikasi resmi.", "आधिकारिक वेबसाइट, नक्सा र एप मात्र प्रयोग गर्नुहोस्।"),
-      tx("W banku i urzędzie podawaj tylko swoje dane.", "In the bank and office, give only your own data.", "У банку і установі подавайте тільки свої дані.", "В банке и учреждении давайте только свои данные.", "Bankda və idarədə yalnız öz məlumatlarınızı verin.", "En banco y oficina da solo tus datos.", "Sa bangko at opisina, sariling data lang.", "Di bank dan kantor berikan hanya data sendiri.", "बैंक र कार्यालयमा आफ्नै डाटा मात्र दिनुहोस्।"),
-      tx("Jeśli nie rozumiesz pisma z urzędu, nie ignoruj go. Najpierw przetłumacz albo pokaż koordynatorowi.", "If you do not understand an office letter, do not ignore it. Translate it first or show it to a coordinator.", "Якщо не розумієте лист з установи, не ігноруйте. Спочатку перекладіть або покажіть координатору.", "Если не понимаете письмо из учреждения, не игнорируйте. Сначала переведите или покажите координатору.", "İdarədən məktubu başa düşmürsünüzsə, laqeyd qalmayın. Əvvəl tərcümə edin və ya koordinatora göstərin.", "Si no entiendes una carta oficial, no la ignores. Primero tradúcela o muéstrala al coordinador.", "Kung hindi naiintindihan ang sulat ng opisina, huwag balewalain. I-translate muna o ipakita sa coordinator.", "Jika tidak paham surat kantor, jangan diabaikan. Terjemahkan dulu atau tunjukkan ke koordinator.", "कार्यालयको पत्र नबुझे बेवास्ता नगर्नुहोस्। पहिले अनुवाद गर्नुहोस् वा कोर्डिनेटरलाई देखाउनुहोस्।")
-    ].map((item) => `<li>${esc(text(item))}</li>`).join("");
-    const cityRuleCard = (item) => `
-      <article class="${cardClass(item.tone)} city-card">
-        <div class="city-card-head">
-          <span class="city-card-icon">${iconMap[item.icon] || iconMap.document}</span>
-          <div>
-            ${item.tag ? `<span class="city-card-tag">${esc(text(item.tag))}</span>` : ""}
-            <h2>${esc(text(item.title))}</h2>
-          </div>
-        </div>
-        <p>${esc(text(item.note))}</p>
-        ${cityList(item.list)}
-      </article>
-    `;
-    const cityMain = DATA.city || [];
-    const cityRuleMain = DATA.cityRules || [];
-    const cityCategories = [
-      {
-        id: "duw",
-        tone: "blue",
-        icon: "document",
-        title: tx("Karta pobytu / DUW", "Residence card / DUW", "Карта побиту / DUW", "Карта побыту / DUW", "Yaşayış kartı / DUW", "Residencia / DUW", "Residence card / DUW", "Kartu tinggal / DUW", "Residence card / DUW"),
-        lead: tx("Dokumenty, karta pobytu i sprawy urzędowe we Wrocławiu.", "Documents, residence card and official matters in Wrocław.", "Документи, карта побиту та справи у Вроцлаві.", "Документы, карта побыту и дела во Вроцлаве.", "Sənədlər, yaşayış kartı və Wrocław rəsmi işləri.", "Documentos, residencia y trámites en Wrocław.", "Dokumento, residence card at opisyal na gawain sa Wrocław.", "Dokumen, kartu tinggal dan urusan resmi di Wrocław.", "कागजात, residence card र Wrocław मा सरकारी काम।"),
-        items: [cityMain[0], cityMain[5]].filter(Boolean),
-        rules: []
-      },
-      {
-        id: "office",
-        tone: "blue",
-        icon: "city",
-        title: tx("Urząd w Siechnicach", "Office in Siechnice", "Установа в Siechnice", "Учреждение в Siechnice", "Siechnice idarəsi", "Oficina en Siechnice", "Opisina sa Siechnice", "Kantor di Siechnice", "Siechnice कार्यालय"),
-        lead: tx("PESEL, sprawy miejskie i podstawowe formalności.", "PESEL, city matters and basic formalities.", "PESEL, міські справи та основні формальності.", "PESEL, городские дела и основные формальности.", "PESEL, şəhər işləri və əsas sənədlər.", "PESEL, asuntos municipales y trámites básicos.", "PESEL, city matters at basic formalities.", "PESEL, urusan kota dan administrasi dasar.", "PESEL, शहरको काम र आधारभूत कागजात।"),
-        items: [cityMain[1]].filter(Boolean),
-        rules: [cityRuleMain[0], cityRuleMain[1]].filter(Boolean)
-      },
-      {
-        id: "banks",
-        tone: "yellow",
-        icon: "bank",
-        title: tx("Banki i bankomaty", "Banks and ATMs", "Банки і банкомати", "Банки и банкоматы", "Banklar və bankomatlar", "Bancos y cajeros", "Bangko at ATM", "Bank dan ATM", "बैंक र ATM"),
-        lead: tx("Konto, karta, gotówka i mapy do banków.", "Account, card, cash and maps to banks.", "Рахунок, карта, готівка та карти до банків.", "Счет, карта, наличные и карты к банкам.", "Hesab, kart, nağd pul və bank xəritələri.", "Cuenta, tarjeta, efectivo y mapas a bancos.", "Account, card, cash at mapa sa bangko.", "Rekening, kartu, tunai dan peta bank.", "खाता, कार्ड, नगद र बैंकको नक्सा।"),
-        items: [cityMain[2], cityMain[3], cityMain[4]].filter(Boolean),
-        rules: []
-      },
-      {
-        id: "transport",
-        tone: "blue",
-        icon: "map",
-        title: tx("Transport i aplikacje", "Transport and apps", "Транспорт і додатки", "Транспорт и приложения", "Nəqliyyat və tətbiqlər", "Transporte y apps", "Transport at apps", "Transportasi dan aplikasi", "यातायात र एपहरू"),
-        lead: tx("Jak dojechać po mieście i pociągiem.", "How to travel in the city and by train.", "Як їхати містом і потягом.", "Как ехать по городу и поездом.", "Şəhərdə və qatarla necə getmək.", "Cómo moverse por la ciudad y en tren.", "Paano bumiyahe sa city at tren.", "Cara pergi di kota dan dengan kereta.", "शहरमा र रेलबाट कसरी जाने।"),
-        items: [cityMain[6], cityMain[7]].filter(Boolean),
-        rules: []
-      },
-      {
-        id: "parcels",
-        tone: "yellow",
-        icon: "parcel",
-        title: tx("Paczki i zasady", "Parcels and rules", "Посилки і правила", "Посылки и правила", "Bağlamalar və qaydalar", "Paquetes y normas", "Parcels at rules", "Paket dan aturan", "पार्सल र नियमहरू"),
-        lead: tx("Co robić z zamówieniami, paczkami i ważnymi dokumentami.", "What to do with orders, parcels and important documents.", "Що робити із замовленнями, посилками та важливими документами.", "Что делать с заказами, посылками и важными документами.", "Sifariş, bağlama və vacib sənədlərlə nə etmək.", "Qué hacer con pedidos, paquetes y documentos importantes.", "Ano ang gagawin sa orders, parcels at important documents.", "Apa yang dilakukan dengan pesanan, paket dan dokumen penting.", "अर्डर, पार्सल र महत्त्वपूर्ण कागजातमा के गर्ने।"),
-        items: [],
-        rules: [cityRuleMain[2]].filter(Boolean)
-      }
-    ];
-    const cityCategoryTabs = cityCategories.map((category, index) => `
-      <button class="city-category-btn ${index === 0 ? "is-active" : ""}" type="button" data-city-filter="${esc(category.id)}" data-tone="${esc(category.tone)}">
-        <span class="city-card-icon">${iconMap[category.icon] || iconMap.city}</span>
-        <span>${esc(text(category.title))}</span>
-      </button>
-    `).join("");
-    const cityCategoryPanels = cityCategories.map((category, index) => {
-      const panelItems = [
-        ...category.items.map(cityCard),
-        ...category.rules.map(cityRuleCard)
-      ].join("");
-      return `
-        <section class="city-category-panel${index === 0 ? " is-active" : ""}" data-city-panel="${esc(category.id)}"${index === 0 ? "" : " hidden"}>
-          <article class="${cardClass(category.tone)} city-card city-category-intro">
-            <div class="city-card-head">
-              <span class="city-card-icon">${iconMap[category.icon] || iconMap.city}</span>
-              <div>
-                <span class="city-card-tag">${esc(text(tx("Wybierz i otwórz mapę", "Choose and open map", "Оберіть і відкрийте карту", "Выберите и откройте карту", "Seçin və xəritəni açın", "Elige y abre el mapa", "Piliin at buksan ang mapa", "Pilih dan buka peta", "छानेर नक्सा खोल्नुहोस्")))}</span>
-                <h2>${esc(text(category.title))}</h2>
-              </div>
-            </div>
-            <p>${esc(text(category.lead))}</p>
-          </article>
-          <div class="module-grid two city-panel-grid">${panelItems}</div>
-        </section>
       `;
-    }).join("");
-    app.innerHTML = `
-      <main class="page">
-        ${pageHero()}
-        <section class="card city-guide">
-          <h2>${esc(text(tx("Najpierw ustal, jaką masz sprawę", "First decide what matter you have", "Спочатку визначте, яка у вас справа", "Сначала определите, какая у вас задача", "Əvvəl hansı işiniz olduğunu müəyyən edin", "Primero decide qué trámite tienes", "Alamin muna kung anong kailangan", "Tentukan dulu urusan Anda", "पहिले आफ्नो काम के हो तय गर्नुहोस्")))}</h2>
-          <p>${esc(text(tx("Ten moduł ma pomóc szybko wybrać właściwe miejsce: DUW, urząd, bank, aplikacje do dojazdu.", "This module helps you quickly choose the right place: DUW, city office, bank or travel apps.", "Цей модуль допомагає швидко вибрати правильне місце: DUW, установа, банк або додатки для доїзду.", "Этот модуль помогает быстро выбрать место: DUW, учреждение, банк или приложения для дороги.", "Bu modul düzgün yeri tez seçməyə kömək edir: DUW, idarə, bank və ya yol tətbiqləri.", "Este módulo ayuda a elegir rápido: DUW, ayuntamiento, banco o apps de transporte.", "Tutulong ito pumili agad: DUW, opisina, bangko o app sa biyahe.", "Modul ini membantu memilih cepat: DUW, kantor kota, bank atau aplikasi perjalanan.", "यसले छिटो सही ठाउँ छान्न मद्दत गर्छ: DUW, कार्यालय, बैंक वा यात्रा एप।")))}</p>
-          <div class="city-flow">${cityFlow}</div>
-        </section>
-        <section class="module-grid city-decision-grid section">${cityDecisions}</section>
-        <section class="section">
-          <div class="city-category-tabs">${cityCategoryTabs}</div>
-          ${cityCategoryPanels}
-        </section>
-        <section class="module-grid two section">
-          <article class="card yellow">
-            <h2>${esc(text(tx("Co zabrać ze sobą", "What to take with you", "Що взяти з собою", "Что взять с собой", "Özünüzlə nə götürmək", "Qué llevar contigo", "Ano ang dadalhin", "Apa yang dibawa", "के लिएर जाने")))}</h2>
-            <ul class="list">${documents}</ul>
-          </article>
-          <article class="card red">
-            <h2>${esc(text(tx("Uważaj na te rzeczy", "Watch out for these things", "Будьте уважні до цих речей", "Будьте внимательны к этим вещам", "Bunlara diqqət edin", "Ten cuidado con esto", "Mag-ingat dito", "Hati-hati dengan ini", "यी कुरामा ध्यान दिनुहोस्")))}</h2>
-            <ul class="list">${warnings}</ul>
-          </article>
-        </section>
-      </main>
-    `;
-
-    app.querySelectorAll("[data-city-filter]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const target = button.dataset.cityFilter;
-        app.querySelectorAll("[data-city-filter]").forEach((item) => {
-          item.classList.toggle("is-active", item === button);
-        });
-        app.querySelectorAll("[data-city-panel]").forEach((panel) => {
-          const isActive = panel.dataset.cityPanel === target;
-          panel.hidden = !isActive;
-          panel.classList.toggle("is-active", isActive);
-        });
-      });
-    });
+      const citySimpleGroups = compactCityCategories.map((category) => `
+        <details class="${cardClass(category.tone)} city-simple-group">
+          <summary>
+            <span class="city-card-icon">${iconMap[category.icon] || iconMap.city}</span>
+            <span>${esc(text(category.title))}</span>
+          </summary>
+          <div class="city-simple-body">
+            <p class="city-simple-lead">${esc(text(category.lead))}</p>
+            ${category.items.map(citySimpleItem).join("")}
+          </div>
+        </details>
+      `).join("");
+      app.innerHTML = `
+        <main class="page city-page-simple">
+          ${pageHero()}
+          <section class="city-simple-list">${citySimpleGroups}</section>
+        </main>
+      `;
+      return;
+    }
   }
 
   function renderBans() {
@@ -913,13 +779,13 @@
         `;
       }).join("");
       return `
-        <section class="ban-section">
-          <div class="ban-section-head">
-            <h2>${esc(text(group.title))}</h2>
+        <details class="card ban-section">
+          <summary>${esc(text(group.title))}</summary>
+          <div class="details-body ban-section-head">
             <p>${esc(text(group.lead))}</p>
+            <div class="ban-list">${cards}</div>
           </div>
-          <div class="ban-list">${cards}</div>
-        </section>
+        </details>
       `;
     }).join("");
 
