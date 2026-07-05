@@ -111,7 +111,9 @@
     )).join("");
     const navItems = [
       { page: "home", icon: "home", label: DATA.ui.home },
-      ...DATA.tiles.map((tile) => ({ page: tile.page, icon: tile.icon, label: tile.title }))
+      { page: "mapa", icon: "map", label: tx("Mapa", "Map", "Карта", "Карта", "Xəritə", "Mapa", "Mapa", "Peta", "नक्सा") },
+      { page: "kontakty", icon: "phone", label: tx("Kontakt", "Contact", "Контакт", "Контакт", "Əlaqə", "Contacto", "Contact", "Kontak", "सम्पर्क") },
+      { page: "lekarz", icon: "medical", label: tx("Lekarz", "Doctor", "Лікар", "Врач", "Həkim", "Médico", "Doktor", "Dokter", "डाक्टर") }
     ];
     const navHtml = navItems.map((item) => `
       <a class="top-nav-link${item.page === page ? " is-active" : ""}" href="${esc(href(item.page))}"${item.page === page ? ' aria-current="page"' : ""}>
@@ -133,7 +135,7 @@
           </div>
           <select class="lang-select" id="langSelect" aria-label="Language">${selected}</select>
         </div>
-        <nav class="top-nav" aria-label="${esc(text(tx("Główne moduły", "Main modules", "Головні модулі", "Главные модули", "Əsas modullar", "Módulos principales", "Pangunahing module", "Modul utama", "मुख्य मोड्युलहरू")))}">
+        <nav class="top-nav" aria-label="${esc(text(tx("Szybkie przyciski", "Quick buttons", "Швидкі кнопки", "Быстрые кнопки", "Sürətli düymələr", "Botones rápidos", "Mabilis na buttons", "Tombol cepat", "छिटो बटनहरू")))}">
           <div class="top-nav-scroll">${navHtml}</div>
         </nav>
       </header>

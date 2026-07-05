@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260705-mowa2"
+      version: "20260705-topnav3"
     },
 
     languages: [

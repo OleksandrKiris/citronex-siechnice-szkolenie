@@ -180,6 +180,34 @@ a { color: inherit; }
   stroke-width: 2.6;
 }
 
+@media (max-width: 480px) {
+  .top-nav-scroll {
+    padding: 8px 8px 10px;
+    gap: 6px;
+    overflow-x: hidden;
+  }
+
+  .top-nav-link {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 42px;
+    justify-content: center;
+    gap: 5px;
+    padding: 7px 6px;
+    font-size: 12px;
+  }
+
+  .top-nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .top-nav-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+
 .page {
   width: min(1120px, 100%);
   margin: 0 auto;

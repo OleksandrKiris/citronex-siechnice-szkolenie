@@ -15,6 +15,7 @@ https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 - Produkcyjne pliki aplikacji to: `assets/js/training-data.js`, `assets/js/training-app.js`, `assets/css/training.css`.
 - Stare kopie plikow JS zostaja tylko jako zapas historyczny. Nie edytowac ich jako produkcji.
 - Jezyk wybiera sie tylko na gorze strony.
+- Gorny pasek ma tylko szybkie przyciski: Start, mapa, kontakt i lekarz.
 - Jezyki: PL / EN / UA / RU / AZ / ES / FIL / ID / NE.
 - System jest przygotowany pod telefony.
 - Nie ma wpisywania imienia i nazwiska.
