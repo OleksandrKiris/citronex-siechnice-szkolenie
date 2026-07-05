@@ -970,6 +970,85 @@
     `;
   }
 
+  function renderBans() {
+    const quickRules = DATA.banQuickRules || [];
+    const groups = DATA.banGroups || [];
+    const bans = DATA.bans || [];
+    const labels = {
+      scope: tx("Dotyczy szklarni i magazynu", "Applies to greenhouse and warehouse", "Стосується теплиці і складу", "Относится к теплице и складу", "İstixana və anbara aiddir", "Aplica a invernadero y almacén", "Para sa greenhouse at bodega", "Untuk rumah kaca dan gudang", "ग्रीनहाउस र गोदाममा लागू हुन्छ"),
+      title: tx("Przed wejściem sprawdź kieszenie i torbę.", "Before entering, check your pockets and bag.", "Перед входом перевірте кишені і сумку.", "Перед входом проверьте карманы и сумку.", "Girməzdən əvvəl ciblərinizi və çantanızı yoxlayın.", "Antes de entrar, revisa bolsillos y bolso.", "Bago pumasok, i-check ang bulsa at bag.", "Sebelum masuk, cek saku dan tas.", "प्रवेश गर्नु अघि खल्ती र झोला जाँच गर्नुहोस्।"),
+      lead: tx("Jeśli masz coś zakazanego, zostaw to poza strefą pracy albo w miejscu wskazanym.", "If you have something forbidden, leave it outside the work zone or in the indicated place.", "Якщо маєте щось заборонене, залиште це поза робочою зоною або у вказаному місці.", "Если у вас есть что-то запрещенное, оставьте это вне рабочей зоны или в указанном месте.", "Qadağan olunmuş bir şeyiniz varsa, onu iş zonasından kənarda və ya göstərilən yerdə saxlayın.", "Si tienes algo prohibido, déjalo fuera de la zona de trabajo o en el sitio indicado.", "Kung may bawal na gamit, iwan ito sa labas ng work zone o sa itinalagang lugar.", "Jika ada barang terlarang, tinggalkan di luar area kerja atau di tempat yang ditunjuk.", "निषेधित सामान छ भने काम क्षेत्र बाहिर वा देखाइएको ठाउँमा छोड्नुहोस्।"),
+      no: tx("Nie wolno", "Forbidden", "Заборонено", "Запрещено", "Qadağandır", "Prohibido", "Bawal", "Dilarang", "निषेध"),
+      checkTitle: tx("Przed wejściem - 3 kroki", "Before entering - 3 steps", "Перед входом - 3 кроки", "Перед входом - 3 шага", "Girişdən əvvəl - 3 addım", "Antes de entrar - 3 pasos", "Bago pumasok - 3 hakbang", "Sebelum masuk - 3 langkah", "प्रवेश अघि - ३ चरण"),
+      check1: tx("Sprawdź kieszenie, torbę i telefon.", "Check pockets, bag and phone.", "Перевірте кишені, сумку і телефон.", "Проверьте карманы, сумку и телефон.", "Cibləri, çantanı və telefonu yoxlayın.", "Revisa bolsillos, bolso y teléfono.", "I-check ang bulsa, bag at telepono.", "Cek saku, tas dan telepon.", "खल्ती, झोला र फोन जाँच गर्नुहोस्।"),
+      check2: tx("Zostaw prywatne rzeczy poza strefą pracy.", "Leave private items outside the work zone.", "Залиште особисті речі поза робочою зоною.", "Оставьте личные вещи вне рабочей зоны.", "Şəxsi əşyaları iş zonasından kənarda saxlayın.", "Deja las cosas personales fuera de la zona.", "Iwan ang personal na gamit sa labas ng work zone.", "Tinggalkan barang pribadi di luar area kerja.", "निजी सामान काम क्षेत्र बाहिर छोड्नुहोस्।"),
+      check3: tx("Jeśli nie wiesz, zapytaj brygadzistę przed wejściem.", "If you are not sure, ask the brigadier before entering.", "Якщо не знаєте, запитайте бригадира перед входом.", "Если не знаете, спросите бригадира перед входом.", "Əmin deyilsinizsə, girməzdən əvvəl briqadirdən soruşun.", "Si no sabes, pregunta al encargado antes de entrar.", "Kung hindi sigurado, magtanong sa brigadier bago pumasok.", "Jika tidak tahu, tanya mandor sebelum masuk.", "थाहा छैन भने प्रवेश अघि ब्रिगेडियरलाई सोध्नुहोस्।")
+    };
+
+    const quickHtml = quickRules.map((item) => `
+      <article class="ban-quick ${esc(item.tone || "red")}">
+        <div class="ban-quick-icon">${iconMap[item.icon] || iconMap.ban}</div>
+        <div>
+          <h3>${esc(text(item.title))}</h3>
+          <p>${esc(text(item.text))}</p>
+        </div>
+      </article>
+    `).join("");
+
+    const groupsHtml = groups.map((group, index) => {
+      const groupBans = bans.filter((item) => item.group === group.id);
+      if (!groupBans.length) return "";
+      const cards = groupBans.map((item) => `
+        <article class="ban-card ban-card-modern">
+          <div class="ban-card-mark">${iconMap[item.icon] || iconMap.ban}</div>
+          <div>
+            <span class="ban-card-label">${esc(text(labels.no))}</span>
+            <h3>${esc(text(item.title))}</h3>
+            <p>${esc(text(item.detail))}</p>
+          </div>
+        </article>
+      `).join("");
+
+      return `
+        <details class="${cardClass(group.tone)} ban-section ban-group-panel"${index === 0 ? " open" : ""}>
+          <summary>
+            <span class="city-card-icon">${iconMap[group.icon] || iconMap.ban}</span>
+            <span>${esc(text(group.title))}</span>
+            <span class="speech-count">${groupBans.length}</span>
+          </summary>
+          <div class="details-body ban-section-head">
+            <p>${esc(text(group.lead))}</p>
+            <div class="ban-list ban-list-modern">${cards}</div>
+          </div>
+        </details>
+      `;
+    }).join("");
+
+    app.innerHTML = `
+      <main class="page bans-page">
+        ${pageHero()}
+        <section class="ban-alert ban-alert-modern">
+          <div class="ban-alert-icon">${iconMap.ban}</div>
+          <div>
+            <p class="ban-alert-label">${esc(text(labels.scope))}</p>
+            <h2>${esc(text(labels.title))}</h2>
+            <p>${esc(text(labels.lead))}</p>
+          </div>
+        </section>
+        <section class="ban-quick-grid">${quickHtml}</section>
+        <section class="ban-before-card">
+          <h2>${esc(text(labels.checkTitle))}</h2>
+          <ol>
+            <li>${esc(text(labels.check1))}</li>
+            <li>${esc(text(labels.check2))}</li>
+            <li>${esc(text(labels.check3))}</li>
+          </ol>
+        </section>
+        <section class="ban-groups">${groupsHtml}</section>
+      </main>
+    `;
+  }
+
   function renderTest() {
     const total = DATA.test.length;
     const answers = new Array(total).fill(null);

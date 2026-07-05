@@ -1331,6 +1331,39 @@ details.card.city-simple-group > summary span:nth-child(2) {
   font-weight: 750;
 }
 
+.ban-before-card {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid #f1d186;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #fffbeb, #fff7d1);
+  box-shadow: var(--shadow-sm);
+}
+
+.ban-before-card h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.ban-before-card ol {
+  margin: 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 8px;
+}
+
+.ban-before-card li {
+  color: var(--text);
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.ban-groups {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
 .ban-section {
   margin-top: 18px;
   padding: 16px;
@@ -1347,6 +1380,45 @@ details.ban-section {
 
 details.ban-section > summary {
   color: var(--red);
+}
+
+.ban-group-panel {
+  margin-top: 0;
+}
+
+.ban-group-panel > summary {
+  min-height: 66px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  font-weight: 950;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ban-group-panel > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ban-group-panel > summary::after {
+  content: "+";
+  margin-left: 6px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, .84);
+  color: #111827;
+  font-size: 1.25rem;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .08);
+}
+
+.ban-group-panel[open] > summary::after {
+  content: "-";
 }
 
 .ban-section-head {
@@ -1374,6 +1446,10 @@ details.ban-section .ban-section-head {
   gap: 10px;
 }
 
+.ban-list-modern {
+  margin-top: 13px;
+}
+
 .ban-card {
   min-height: 96px;
   padding: 12px;
@@ -1384,6 +1460,14 @@ details.ban-section .ban-section-head {
   border: 1px solid #f0c8c4;
   border-radius: 17px;
   background: #fffafa;
+}
+
+.ban-card-modern {
+  min-height: 126px;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+  border-color: rgba(199, 53, 46, .22);
+  background: linear-gradient(180deg, #fff, #fff7f6);
 }
 
 .ban-card-mark {
@@ -1404,11 +1488,31 @@ details.ban-section .ban-section-head {
   stroke-width: 2.7;
 }
 
+.ban-card-label {
+  display: inline-flex;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #fee2e2;
+  color: #9f1c18;
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.ban-card h3 {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
 .ban-card p {
   margin: 0;
   color: var(--text);
-  font-size: 15px;
-  font-weight: 850;
+  font-size: 14px;
+  font-weight: 760;
   line-height: 1.35;
 }
 
@@ -1594,7 +1698,6 @@ details.ban-section .ban-section-head {
 
 .media,
 .reader-visual,
-.ban-card,
 .glossary-card,
 .speech-card,
 .person,

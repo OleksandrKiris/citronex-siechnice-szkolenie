@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260705-mowa-plus1"
+      version: "20260706-zakazy-plus1"
     },
 
     languages: [
@@ -877,6 +877,189 @@ window.CX_DATA.glossary = [
     local: tx("stary magazyn / druga lokalizacja magazynu", "old warehouse / second warehouse location", "старий склад / друга локація складу", "старый склад / вторая локация склада", "köhnə anbar / ikinci anbar yeri", "almacén antiguo / segunda ubicación", "lumang bodega / pangalawang lokasyon", "gudang lama / lokasi gudang kedua", "पुरानो गोदाम / दोस्रो गोदाम स्थान"),
     meaning: tx("Osobne miejsce magazynowe. Jeśli wiadomość mówi stary magazyn, nie idź automatycznie do głównego magazynu.", "A separate warehouse place. If the message says old warehouse, do not automatically go to the main warehouse.", "Окреме складське місце. Якщо в повідомленні написано старий склад, не йдіть автоматично на головний склад.", "Отдельное складское место. Если в сообщении написано старый склад, не идите автоматически на главный склад.", "Ayrı anbar yeridir. Mesajda köhnə anbar yazılıbsa, avtomatik əsas anbara getməyin.", "Lugar de almacén separado. Si el mensaje dice almacén antiguo, no vayas automáticamente al almacén principal.", "Hiwalay na lugar ng bodega. Kung ang mensahe ay lumang bodega, huwag awtomatikong pumunta sa main bodega.", "Tempat gudang terpisah. Jika pesan mengatakan gudang lama, jangan langsung pergi ke gudang utama.", "अलग गोदाम स्थान। सन्देशमा पुरानो गोदाम भए मुख्य गोदाममा सिधै नजानुहोस्।"),
     example: tx("Przykład: w mapie wybierz przycisk Stary magazyn.", "Example: in the map choose the Old warehouse button.", "Приклад: на карті виберіть кнопку Старий склад.", "Пример: на карте выберите кнопку Старый склад.", "Məsələn: xəritədə Köhnə anbar düyməsini seçin.", "Ejemplo: en el mapa elige el botón Almacén antiguo.", "Halimbawa: sa mapa piliin ang button na Lumang bodega.", "Contoh: di peta pilih tombol Gudang lama.", "उदाहरण: नक्सामा पुरानो गोदाम बटन छान्नुहोस्।")
+  }
+];
+
+window.CX_DATA.banQuickRules = [
+  {
+    tone: "red",
+    icon: "ban",
+    title: tx("Nie wnoś do pracy", "Do not bring to work", "Не вносити на роботу", "Не приносить на работу", "İşə gətirməyin", "No traer al trabajo", "Huwag dalhin sa trabaho", "Jangan bawa ke area kerja", "काममा नल्याउनुहोस्"),
+    text: tx("Jedzenia, napojów, papierosów, prywatnych rzeczy i paczek do strefy pracy.", "Food, drinks, cigarettes, private items and parcels into the work zone.", "Їжу, напої, сигарети, особисті речі та посилки в робочу зону.", "Еду, напитки, сигареты, личные вещи и посылки в рабочую зону.", "Yemək, içki, siqaret, şəxsi əşya və bağlamaları iş zonasına gətirməyin.", "Comida, bebidas, cigarrillos, cosas personales y paquetes a la zona de trabajo.", "Pagkain, inumin, sigarilyo, personal na gamit at parcel sa work zone.", "Makanan, minuman, rokok, barang pribadi dan paket ke area kerja.", "खाना, पेय, चुरोट, निजी सामान र पार्सल काम क्षेत्रमा नल्याउनुहोस्।")
+  },
+  {
+    tone: "yellow",
+    icon: "phone",
+    title: tx("Nie używaj bez zgody", "Do not use without permission", "Не користуватися без дозволу", "Не использовать без разрешения", "İcazəsiz istifadə etməyin", "No usar sin permiso", "Huwag gamitin nang walang pahintulot", "Jangan pakai tanpa izin", "अनुमति बिना प्रयोग नगर्नुहोस्"),
+    text: tx("Telefonu, cudzego PIN-u, cudzego taga, readera albo danych innej osoby.", "Phone, another person's PIN, tag, reader or personal data.", "Телефон, чужий PIN, чужий тег, рідер або дані іншої людини.", "Телефон, чужой PIN, чужой тег, ридер или данные другого человека.", "Telefon, başqasının PIN-i, tagı, reader-i və ya şəxsi məlumatları.", "Teléfono, PIN, tag, reader o datos de otra persona.", "Telepono, PIN, tag, reader o data ng ibang tao.", "Telepon, PIN, tag, reader atau data orang lain.", "फोन, अरूको PIN, tag, reader वा व्यक्तिगत डाटा।")
+  },
+  {
+    tone: "blue",
+    icon: "greenhouse",
+    title: tx("Nie wchodź sam", "Do not enter alone", "Не заходити самому", "Не входить одному", "Tək girməyin", "No entrar solo", "Huwag pumasok mag-isa", "Jangan masuk sendiri", "एक्लै नजानुहोस्"),
+    text: tx("Do niewłaściwej szklarni, magazynu, strefy albo przejścia bez polecenia.", "Into the wrong greenhouse, warehouse, zone or passage without instruction.", "У неправильну теплицю, склад, зону або прохід без вказівки.", "В неправильную теплицу, склад, зону или проход без указания.", "Tapşırıq olmadan səhv istixana, anbar, zona və ya keçidə girməyin.", "A un invernadero, almacén, zona o pasillo equivocado sin indicación.", "Sa maling greenhouse, bodega, zone o daanan kung walang utos.", "Ke rumah kaca, gudang, zona atau lorong yang salah tanpa instruksi.", "निर्देशन बिना गलत ग्रीनहाउस, गोदाम, क्षेत्र वा बाटोमा नजानुहोस्।")
+  }
+];
+
+window.CX_DATA.banGroups = [
+  {
+    id: "food",
+    tone: "red",
+    icon: "food",
+    title: tx("Jedzenie, napoje, palenie", "Food, drinks, smoking", "Їжа, напої, куріння", "Еда, напитки, курение", "Yemək, içki, siqaret", "Comida, bebidas, fumar", "Pagkain, inumin, paninigarilyo", "Makanan, minuman, merokok", "खाना, पेय, धूम्रपान"),
+    lead: tx("Do strefy pracy nie wnosimy niczego, co może zabrudzić produkt albo miejsce pracy.", "Do not bring anything into the work zone that can contaminate the product or workplace.", "У робочу зону не вносимо нічого, що може забруднити продукт або місце роботи.", "В рабочую зону не приносим ничего, что может загрязнить продукт или место работы.", "Məhsulu və ya iş yerini çirkləndirə bilən heç nə iş zonasına gətirməyin.", "No traemos nada que pueda contaminar el producto o el lugar de trabajo.", "Huwag magdala ng maaaring dumumi sa produkto o lugar ng trabaho.", "Jangan bawa apa pun yang bisa mengotori produk atau area kerja.", "उत्पादन वा काम गर्ने ठाउँ फोहोर बनाउन सक्ने कुरा काम क्षेत्रमा नल्याउनुहोस्।")
+  },
+  {
+    id: "hygiene",
+    tone: "red",
+    icon: "jewelry",
+    title: tx("Higiena i wygląd", "Hygiene and appearance", "Гігієна і зовнішній вигляд", "Гигиена и внешний вид", "Gigiyena və görünüş", "Higiene y apariencia", "Kalinisan at hitsura", "Kebersihan dan penampilan", "स्वच्छता र रूप"),
+    lead: tx("Te zasady chronią żywność, rośliny i pracownika.", "These rules protect food, plants and the worker.", "Ці правила захищають їжу, рослини і працівника.", "Эти правила защищают еду, растения и работника.", "Bu qaydalar qidanı, bitkiləri və işçini qoruyur.", "Estas reglas protegen alimentos, plantas y al trabajador.", "Pinoprotektahan nito ang pagkain, halaman at manggagawa.", "Aturan ini melindungi makanan, tanaman dan pekerja.", "यी नियमले खाना, बिरुवा र कामदारलाई जोगाउँछन्।")
+  },
+  {
+    id: "private",
+    tone: "yellow",
+    icon: "parcel",
+    title: tx("Rzeczy prywatne i paczki", "Private items and parcels", "Особисті речі та посилки", "Личные вещи и посылки", "Şəxsi əşyalar və bağlamalar", "Cosas personales y paquetes", "Personal na gamit at parcel", "Barang pribadi dan paket", "निजी सामान र पार्सल"),
+    lead: tx("Rzeczy prywatne zostawiamy poza miejscem pracy albo w miejscu wskazanym.", "Leave private items outside the workplace or in the indicated place.", "Особисті речі залишаємо поза місцем роботи або у вказаному місці.", "Личные вещи оставляем вне рабочего места или в указанном месте.", "Şəxsi əşyaları iş yerindən kənarda və ya göstərilən yerdə saxlayın.", "Deja las cosas personales fuera del lugar de trabajo o en el sitio indicado.", "Iwan ang personal na gamit sa labas ng work area o sa itinalagang lugar.", "Tinggalkan barang pribadi di luar area kerja atau di tempat yang ditunjuk.", "निजी सामान काम गर्ने ठाउँ बाहिर वा देखाइएको ठाउँमा छोड्नुहोस्।")
+  },
+  {
+    id: "phone",
+    tone: "yellow",
+    icon: "phone",
+    title: tx("Telefon i zdjęcia", "Phone and photos", "Телефон і фото", "Телефон и фото", "Telefon və şəkillər", "Teléfono y fotos", "Telepono at larawan", "Telepon dan foto", "फोन र फोटो"),
+    lead: tx("Telefon nie może przeszkadzać w pracy i bezpieczeństwie.", "The phone must not disturb work or safety.", "Телефон не може заважати роботі та безпеці.", "Телефон не должен мешать работе и безопасности.", "Telefon işə və təhlükəsizliyə mane olmamalıdır.", "El teléfono no debe molestar el trabajo ni la seguridad.", "Hindi dapat makaistorbo ang telepono sa trabaho at kaligtasan.", "Telepon tidak boleh mengganggu kerja dan keselamatan.", "फोनले काम र सुरक्षामा बाधा पुर्‍याउनु हुँदैन।")
+  },
+  {
+    id: "access",
+    tone: "blue",
+    icon: "greenhouse",
+    title: tx("Wejście i poruszanie się", "Entry and movement", "Вхід і пересування", "Вход и передвижение", "Giriş və hərəkət", "Entrada y movimiento", "Pagpasok at paggalaw", "Masuk dan bergerak", "प्रवेश र हिँडडुल"),
+    lead: tx("Idziemy tylko tam, gdzie mamy zadanie albo zgodę przełożonego.", "Go only where you have a task or supervisor permission.", "Йдемо тільки туди, де є завдання або дозвіл керівника.", "Идем только туда, где есть задание или разрешение руководителя.", "Yalnız tapşırıq və ya rəhbər icazəsi olan yerə gedin.", "Ve solo donde tienes tarea o permiso del supervisor.", "Pumunta lang kung saan may task o pahintulot ng supervisor.", "Pergi hanya ke tempat tugas atau dengan izin atasan.", "काम वा सुपरभाइजरको अनुमति भएको ठाउँमा मात्र जानुहोस्।")
+  },
+  {
+    id: "data",
+    tone: "red",
+    icon: "id",
+    title: tx("Dane, PIN, tag, reader", "Data, PIN, tag, reader", "Дані, PIN, тег, рідер", "Данные, PIN, тег, ридер", "Məlumat, PIN, tag, reader", "Datos, PIN, tag, reader", "Data, PIN, tag, reader", "Data, PIN, tag, reader", "डाटा, PIN, tag, reader"),
+    lead: tx("Każdy pracuje na swoich danych. Nie wolno używać danych innej osoby.", "Everyone works on their own data. Do not use another person's data.", "Кожен працює на своїх даних. Не можна використовувати дані іншої людини.", "Каждый работает на своих данных. Нельзя использовать данные другого человека.", "Hər kəs öz məlumatı ilə işləyir. Başqasının məlumatından istifadə etmək olmaz.", "Cada persona trabaja con sus propios datos. No uses datos de otra persona.", "Sariling data lang ang gamit. Bawal gumamit ng data ng iba.", "Setiap orang memakai data sendiri. Jangan gunakan data orang lain.", "सबैले आफ्नै डाटामा काम गर्छन्। अरूको डाटा प्रयोग गर्न पाइँदैन।")
+  }
+];
+
+window.CX_DATA.bans = [
+  {
+    group: "food",
+    icon: "food",
+    title: tx("Jedzenie w strefie pracy", "Food in the work zone", "Їжа в робочій зоні", "Еда в рабочей зоне", "İş zonasında yemək", "Comida en zona de trabajo", "Pagkain sa work zone", "Makanan di area kerja", "काम क्षेत्रमा खाना"),
+    detail: tx("Nie jedz i nie wnoś jedzenia do miejsca pracy.", "Do not eat or bring food into the workplace.", "Не їжте і не вносьте їжу на місце роботи.", "Не ешьте и не приносите еду на рабочее место.", "İş yerində yeməyin və yemək gətirməyin.", "No comas ni traigas comida al lugar de trabajo.", "Huwag kumain o magdala ng pagkain sa work area.", "Jangan makan atau membawa makanan ke tempat kerja.", "काम गर्ने ठाउँमा खाना नखानुहोस् र नल्याउनुहोस्।")
+  },
+  {
+    group: "food",
+    icon: "food",
+    title: tx("Napoje w strefie pracy", "Drinks in the work zone", "Напої в робочій зоні", "Напитки в рабочей зоне", "İş zonasında içki", "Bebidas en zona de trabajo", "Inumin sa work zone", "Minuman di area kerja", "काम क्षेत्रमा पेय"),
+    detail: tx("Napoje zostaw poza strefą pracy. Korzystaj tylko z miejsca wskazanego.", "Leave drinks outside the work zone. Use only the indicated place.", "Напої залишайте поза робочою зоною. Користуйтеся тільки вказаним місцем.", "Напитки оставляйте вне рабочей зоны. Используйте только указанное место.", "İçkiləri iş zonasından kənarda saxlayın. Yalnız göstərilən yerdən istifadə edin.", "Deja bebidas fuera de la zona de trabajo. Usa solo el lugar indicado.", "Iwan ang inumin sa labas ng work zone. Gamitin lang ang itinalagang lugar.", "Tinggalkan minuman di luar area kerja. Gunakan hanya tempat yang ditunjuk.", "पेय काम क्षेत्र बाहिर राख्नुहोस्। देखाइएको ठाउँ मात्र प्रयोग गर्नुहोस्।")
+  },
+  {
+    group: "food",
+    icon: "food",
+    title: tx("Guma, cukierki, orzechy", "Gum, candy, nuts", "Жуйка, цукерки, горіхи", "Жвачка, конфеты, орехи", "Saqqız, konfet, qoz-fındıq", "Chicle, dulces, nueces", "Gum, candy, mani", "Permen karet, permen, kacang", "चुइंगम, मिठाई, नट्स"),
+    detail: tx("Nie żuj gumy i nie trzymaj przekąsek przy stanowisku.", "Do not chew gum or keep snacks at the work station.", "Не жуйте жуйку і не тримайте перекуси біля робочого місця.", "Не жуйте жвачку и не держите перекусы у рабочего места.", "Saqqız çeynəməyin və iş yerində qəlyanaltı saxlamayın.", "No mastiques chicle ni guardes snacks en el puesto.", "Huwag mag-chewing gum o magtago ng snacks sa puwesto.", "Jangan mengunyah permen karet atau menyimpan camilan di tempat kerja.", "चुइंगम नचपाउनुहोस् र काम ठाउँमा खाजा नराख्नुहोस्।")
+  },
+  {
+    group: "food",
+    icon: "smoke",
+    title: tx("Papierosy i e-papierosy", "Cigarettes and e-cigarettes", "Сигарети та електронні сигарети", "Сигареты и электронные сигареты", "Siqaret və elektron siqaret", "Cigarrillos y vape", "Sigarilyo at vape", "Rokok dan vape", "चुरोट र vape"),
+    detail: tx("Nie wnoś papierosów, e-papierosów ani zapalniczek do strefy pracy.", "Do not bring cigarettes, e-cigarettes or lighters into the work zone.", "Не вносьте сигарети, електронні сигарети або запальнички в робочу зону.", "Не приносите сигареты, электронные сигареты или зажигалки в рабочую зону.", "İş zonasına siqaret, elektron siqaret və alışqan gətirməyin.", "No traigas cigarrillos, vape ni encendedores a la zona de trabajo.", "Huwag magdala ng sigarilyo, vape o lighter sa work zone.", "Jangan bawa rokok, vape atau korek ke area kerja.", "काम क्षेत्रमा चुरोट, vape वा लाइटर नल्याउनुहोस्।")
+  },
+  {
+    group: "hygiene",
+    icon: "jewelry",
+    title: tx("Biżuteria", "Jewelry", "Біжутерія", "Украшения", "Zinət əşyası", "Joyería", "Alahas", "Perhiasan", "गहना"),
+    detail: tx("Nie wnoś biżuterii do strefy pracy, jeśli zasady tego zabraniają.", "Do not bring jewelry into the work zone if the rules prohibit it.", "Не вносьте біжутерію в робочу зону, якщо правила це забороняють.", "Не приносите украшения в рабочую зону, если правила это запрещают.", "Qaydalar qadağan edirsə, zinət əşyasını iş zonasına gətirməyin.", "No traigas joyería a la zona si las reglas lo prohíben.", "Huwag magdala ng alahas kung bawal sa rules.", "Jangan bawa perhiasan jika aturan melarang.", "नियमले रोक्छ भने काम क्षेत्रमा गहना नल्याउनुहोस्।")
+  },
+  {
+    group: "hygiene",
+    icon: "jewelry",
+    title: tx("Sztuczne paznokcie i rzęsy", "Artificial nails and eyelashes", "Штучні нігті та вії", "Искусственные ногти и ресницы", "Süni dırnaq və kirpik", "Uñas y pestañas postizas", "Artipisyal na kuko at pilikmata", "Kuku dan bulu mata palsu", "कृत्रिम नङ र परेला"),
+    detail: tx("Nie używaj ich w strefie pracy, jeśli obowiązuje zakaz higieniczny.", "Do not use them in the work zone if hygiene rules prohibit them.", "Не використовуйте їх у робочій зоні, якщо діє гігієнічна заборона.", "Не используйте их в рабочей зоне, если действует гигиенический запрет.", "Gigiyena qaydası qadağan edirsə, iş zonasında istifadə etməyin.", "No los uses en la zona si hay prohibición higiénica.", "Huwag gamitin sa work zone kung bawal sa hygiene rules.", "Jangan gunakan di area kerja jika dilarang aturan kebersihan.", "स्वच्छता नियमले रोक्छ भने काम क्षेत्रमा प्रयोग नगर्नुहोस्।")
+  },
+  {
+    group: "hygiene",
+    icon: "ban",
+    title: tx("Brudne ręce lub rękawiczki", "Dirty hands or gloves", "Брудні руки або рукавички", "Грязные руки или перчатки", "Çirkli əl və ya əlcək", "Manos o guantes sucios", "Maruming kamay o guwantes", "Tangan atau sarung tangan kotor", "फोहोर हात वा पञ्जा"),
+    detail: tx("Przed pracą i po zabrudzeniu zadbaj o czystość rąk albo rękawiczek.", "Before work and after getting dirty, make sure hands or gloves are clean.", "Перед роботою і після забруднення подбайте про чисті руки або рукавички.", "Перед работой и после загрязнения следите за чистотой рук или перчаток.", "İşdən əvvəl və çirklənəndə əllərin və ya əlcəklərin təmizliyinə baxın.", "Antes del trabajo y después de ensuciarse, cuida manos o guantes limpios.", "Bago magtrabaho at kapag nadumihan, siguraduhing malinis ang kamay o guwantes.", "Sebelum kerja dan setelah kotor, pastikan tangan atau sarung tangan bersih.", "काम अघि र फोहोर भएपछि हात वा पञ्जा सफा राख्नुहोस्।")
+  },
+  {
+    group: "private",
+    icon: "parcel",
+    title: tx("Prywatne rzeczy", "Private items", "Особисті речі", "Личные вещи", "Şəxsi əşyalar", "Cosas personales", "Personal na gamit", "Barang pribadi", "निजी सामान"),
+    detail: tx("Torby, ubrania i prywatne rzeczy nie mogą leżeć w miejscu pracy.", "Bags, clothes and private items must not be kept at the workplace.", "Сумки, одяг і особисті речі не можуть лежати на місці роботи.", "Сумки, одежда и личные вещи не должны лежать на рабочем месте.", "Çanta, paltar və şəxsi əşyalar iş yerində olmamalıdır.", "Bolsos, ropa y cosas personales no deben estar en el puesto.", "Bag, damit at personal na gamit ay hindi dapat nasa work area.", "Tas, pakaian dan barang pribadi tidak boleh berada di tempat kerja.", "झोला, कपडा र निजी सामान काम गर्ने ठाउँमा राख्न पाइँदैन।")
+  },
+  {
+    group: "private",
+    icon: "parcel",
+    title: tx("Paczki i zakupy", "Parcels and shopping", "Посилки і покупки", "Посылки и покупки", "Bağlama və alış-veriş", "Paquetes y compras", "Parcel at pinamili", "Paket dan belanja", "पार्सल र किनमेल"),
+    detail: tx("Nie zamawiaj paczek na adres firmy. Korzystaj z paczkomatu albo własnego adresu.", "Do not order parcels to the company address. Use a parcel locker or your own address.", "Не замовляйте посилки на адресу фірми. Користуйтеся поштоматом або власною адресою.", "Не заказывайте посылки на адрес фирмы. Используйте постамат или свой адрес.", "Bağlamaları firma ünvanına sifariş etməyin. Paczkomat və ya öz ünvanınızdan istifadə edin.", "No pidas paquetes a la dirección de la empresa. Usa Paczkomat o tu dirección.", "Huwag ipadala ang parcel sa company address. Gumamit ng parcel locker o sariling address.", "Jangan kirim paket ke alamat perusahaan. Gunakan loker paket atau alamat sendiri.", "कम्पनीको ठेगानामा पार्सल नमगाउनुहोस्। parcel locker वा आफ्नो ठेगाना प्रयोग गर्नुहोस्।")
+  },
+  {
+    group: "private",
+    icon: "document",
+    title: tx("Dokumenty prywatne", "Private documents", "Особисті документи", "Личные документы", "Şəxsi sənədlər", "Documentos privados", "Personal na dokumento", "Dokumen pribadi", "निजी कागजात"),
+    detail: tx("Nie zostawiaj paszportu, karty pobytu ani pieniędzy w miejscu pracy.", "Do not leave passport, residence card or money at the workplace.", "Не залишайте паспорт, карту побиту або гроші на місці роботи.", "Не оставляйте паспорт, карту побыту или деньги на рабочем месте.", "Pasport, yaşayış kartı və pulu iş yerində qoymayın.", "No dejes pasaporte, tarjeta de residencia ni dinero en el puesto.", "Huwag iwan ang pasaporte, residence card o pera sa work area.", "Jangan tinggalkan paspor, kartu tinggal atau uang di tempat kerja.", "पासपोर्ट, residence card वा पैसा काम ठाउँमा नछोड्नुहोस्।")
+  },
+  {
+    group: "phone",
+    icon: "phone",
+    title: tx("Telefon bez pozwolenia", "Phone without permission", "Телефон без дозволу", "Телефон без разрешения", "İcazəsiz telefon", "Teléfono sin permiso", "Telepono nang walang pahintulot", "Telepon tanpa izin", "अनुमति बिना फोन"),
+    detail: tx("W produkcji nie używaj telefonu bez zgody przełożonego.", "In production, do not use the phone without supervisor permission.", "На продукції не користуйтеся телефоном без дозволу керівника.", "На производстве не используйте телефон без разрешения руководителя.", "İstehsalatda rəhbər icazəsi olmadan telefon istifadə etməyin.", "En producción no uses teléfono sin permiso del supervisor.", "Sa production, huwag gumamit ng phone kung walang pahintulot ng supervisor.", "Di produksi jangan gunakan telepon tanpa izin atasan.", "उत्पादन क्षेत्रमा सुपरभाइजरको अनुमति बिना फोन प्रयोग नगर्नुहोस्।")
+  },
+  {
+    group: "phone",
+    icon: "phone",
+    title: tx("Zdjęcia i nagrania", "Photos and recordings", "Фото і відео", "Фото и видео", "Şəkil və video", "Fotos y grabaciones", "Larawan at video", "Foto dan rekaman", "फोटो र भिडियो"),
+    detail: tx("Nie rób zdjęć ani nagrań w pracy bez zgody.", "Do not take photos or recordings at work without permission.", "Не робіть фото або відео на роботі без дозволу.", "Не делайте фото или видео на работе без разрешения.", "İşdə icazəsiz şəkil və video çəkməyin.", "No hagas fotos ni grabaciones en el trabajo sin permiso.", "Huwag kumuha ng larawan o video sa trabaho nang walang pahintulot.", "Jangan foto atau merekam di tempat kerja tanpa izin.", "काममा अनुमति बिना फोटो वा भिडियो नखिच्नुहोस्।")
+  },
+  {
+    group: "phone",
+    icon: "phone",
+    title: tx("Słuchawki", "Headphones", "Навушники", "Наушники", "Qulaqlıq", "Auriculares", "Headphones", "Headphone", "हेडफोन"),
+    detail: tx("Nie używaj słuchawek w pracy, jeśli przeszkadzają w bezpieczeństwie lub komunikacji.", "Do not use headphones at work if they disturb safety or communication.", "Не використовуйте навушники, якщо вони заважають безпеці або комунікації.", "Не используйте наушники, если они мешают безопасности или общению.", "Təhlükəsizlik və ünsiyyətə mane olursa, işdə qulaqlıq istifadə etməyin.", "No uses auriculares si molestan la seguridad o comunicación.", "Huwag gumamit ng headphones kung nakakaistorbo sa safety o komunikasyon.", "Jangan pakai headphone jika mengganggu keselamatan atau komunikasi.", "सुरक्षा वा कुराकानीमा बाधा भए काममा हेडफोन प्रयोग नगर्नुहोस्।")
+  },
+  {
+    group: "access",
+    icon: "greenhouse",
+    title: tx("Wejście do złej strefy", "Entering the wrong zone", "Вхід у неправильну зону", "Вход в неправильную зону", "Səhv zonaya giriş", "Entrar a zona equivocada", "Pagpasok sa maling zone", "Masuk ke zona yang salah", "गलत क्षेत्रमा प्रवेश"),
+    detail: tx("Nie wchodź do szklarni, magazynu, przejścia ani strefy bez polecenia.", "Do not enter a greenhouse, warehouse, passage or zone without instruction.", "Не заходьте в теплицю, склад, прохід або зону без вказівки.", "Не входите в теплицу, склад, проход или зону без указания.", "Tapşırıq olmadan istixana, anbar, keçid və zonaya girməyin.", "No entres a invernadero, almacén, pasillo o zona sin indicación.", "Huwag pumasok sa greenhouse, bodega, daanan o zone kung walang utos.", "Jangan masuk rumah kaca, gudang, lorong atau zona tanpa instruksi.", "निर्देशन बिना ग्रीनहाउस, गोदाम, बाटो वा क्षेत्रमा नजानुहोस्।")
+  },
+  {
+    group: "access",
+    icon: "greenhouse",
+    title: tx("Przechodzenie na cudze miejsce", "Moving to another person's place", "Перехід на чуже місце", "Переход на чужое место", "Başqasının yerinə keçmək", "Pasar al lugar de otra persona", "Paglipat sa puwesto ng iba", "Pindah ke tempat orang lain", "अरूको ठाउँमा जानु"),
+    detail: tx("Nie zmieniaj rzędu, strony ani zadania bez informacji od brygadzisty.", "Do not change row, side or task without information from the brigadier.", "Не змінюйте ряд, сторону або завдання без інформації від бригадира.", "Не меняйте ряд, сторону или задание без информации от бригадира.", "Briqadirdən məlumat olmadan sıra, tərəf və tapşırığı dəyişməyin.", "No cambies fila, lado o tarea sin información del encargado.", "Huwag lumipat ng row, side o task kung walang sinabi ang brigadier.", "Jangan ganti baris, sisi atau tugas tanpa informasi dari mandor.", "ब्रिगेडियरको जानकारी बिना लाइन, साइड वा काम नबदल्नुहोस्।")
+  },
+  {
+    group: "access",
+    icon: "warehouse",
+    title: tx("Magazyn bez zadania", "Warehouse without task", "Склад без завдання", "Склад без задания", "Tapşırıqsız anbar", "Almacén sin tarea", "Bodega nang walang task", "Gudang tanpa tugas", "काम बिना गोदाम"),
+    detail: tx("Na magazyn idziesz tylko wtedy, gdy masz tam pracę albo polecenie.", "Go to the warehouse only when you have work there or an instruction.", "На склад йдіть тільки тоді, коли маєте там роботу або вказівку.", "На склад идите только если у вас там работа или указание.", "Anbara yalnız orada işiniz və ya tapşırığınız olduqda gedin.", "Ve al almacén solo si tienes trabajo allí o indicación.", "Pumunta lang sa bodega kung may trabaho o utos doon.", "Pergi ke gudang hanya jika ada tugas atau instruksi.", "त्यहाँ काम वा निर्देशन हुँदा मात्र गोदाम जानुहोस्।")
+  },
+  {
+    group: "data",
+    icon: "id",
+    title: tx("Cudzy PIN", "Another person's PIN", "Чужий PIN", "Чужой PIN", "Başqasının PIN-i", "PIN de otra persona", "PIN ng ibang tao", "PIN orang lain", "अरूको PIN"),
+    detail: tx("Nie używaj PIN-u innej osoby. To powoduje błędną rejestrację pracy.", "Do not use another person's PIN. It causes wrong work registration.", "Не використовуйте PIN іншої людини. Це дає неправильну реєстрацію роботи.", "Не используйте PIN другого человека. Это дает неправильную регистрацию работы.", "Başqasının PIN-indən istifadə etməyin. Bu iş qeydiyyatını səhv edir.", "No uses PIN de otra persona. Causa registro incorrecto del trabajo.", "Huwag gumamit ng PIN ng iba. Magiging mali ang work registration.", "Jangan pakai PIN orang lain. Ini membuat pencatatan kerja salah.", "अरूको PIN प्रयोग नगर्नुहोस्। यसले कामको रेकर्ड गलत बनाउँछ।")
+  },
+  {
+    group: "data",
+    icon: "reader",
+    title: tx("Cudzy tag albo reader", "Another person's tag or reader", "Чужий тег або рідер", "Чужой тег или ридер", "Başqasının tagı və ya reader-i", "Tag o reader de otra persona", "Tag o reader ng ibang tao", "Tag atau reader orang lain", "अरूको tag वा reader"),
+    detail: tx("Używaj tylko tego, co zostało Ci wydane albo wskazane.", "Use only what was given or indicated to you.", "Використовуйте тільки те, що вам видали або вказали.", "Используйте только то, что вам выдали или указали.", "Yalnız sizə verilən və ya göstərilən şeyi istifadə edin.", "Usa solo lo que te dieron o indicaron.", "Gamitin lang ang ibinigay o itinuro sa iyo.", "Gunakan hanya yang diberikan atau ditunjukkan kepada Anda.", "तपाईंलाई दिइएको वा देखाइएको कुरा मात्र प्रयोग गर्नुहोस्।")
+  },
+  {
+    group: "data",
+    icon: "document",
+    title: tx("Dane innej osoby", "Another person's data", "Дані іншої людини", "Данные другого человека", "Başqasının məlumatı", "Datos de otra persona", "Data ng ibang tao", "Data orang lain", "अरूको डाटा"),
+    detail: tx("Nie loguj się i nie zapisuj pracy na dane innej osoby.", "Do not log in or register work on another person's data.", "Не входьте і не записуйте роботу на дані іншої людини.", "Не входите и не записывайте работу на данные другого человека.", "Başqasının məlumatı ilə daxil olmayın və iş qeyd etməyin.", "No inicies sesión ni registres trabajo con datos de otra persona.", "Huwag mag-login o mag-record ng trabaho gamit ang data ng iba.", "Jangan login atau mencatat kerja dengan data orang lain.", "अरूको डाटामा लगइन वा काम रेकर्ड नगर्नुहोस्।")
   }
 ];
 })();
