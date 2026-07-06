@@ -749,13 +749,45 @@ h3 {
   gap: 12px;
 }
 
-.glossary-group .city-card-head h2 {
+.glossary-summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 58px;
+  cursor: pointer;
+}
+
+.glossary-summary::-webkit-details-marker {
+  display: none;
+}
+
+.glossary-summary h2 {
   margin: 0;
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+.glossary-summary::after {
+  content: "+";
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 950;
+}
+
+.glossary-group[open] .glossary-summary::after {
+  content: "-";
 }
 
 .glossary-list {
   display: grid;
   gap: 10px;
+  margin-top: 12px;
 }
 
 .glossary-card {
@@ -806,6 +838,10 @@ h3 {
 .glossary-card.is-hidden,
 .glossary-group.is-hidden,
 .glossary-empty.is-hidden {
+  display: none;
+}
+
+.speech-status:empty {
   display: none;
 }
 
@@ -1819,17 +1855,41 @@ details.ban-section .ban-section-head {
 }
 
 .media figcaption {
-  padding: 11px 13px;
+  display: grid;
+  gap: 3px;
+  padding: 12px 13px;
   border-top: 1px solid rgba(217,228,221,.72);
   background: #fff;
-  color: var(--muted);
+  color: var(--text);
   font-size: 13px;
+  line-height: 1.25;
+  font-weight: 850;
+}
+
+.media figcaption strong {
+  color: var(--accent);
+  font-size: 13.5px;
+  font-weight: 950;
+}
+
+.media figcaption span {
+  color: var(--muted);
   font-weight: 800;
 }
 
 .photo-grid {
   display: grid;
   gap: 12px;
+}
+
+.warehouse-photos h2 {
+  margin-bottom: 6px;
+}
+
+.warehouse-photos > p {
+  margin-bottom: 12px;
+  font-weight: 850;
+  color: var(--muted);
 }
 
 .media,
@@ -1938,23 +1998,30 @@ details.ban-section .ban-section-head {
   display: grid;
   grid-template-columns: 1fr 46px 1fr;
   gap: 8px;
-  min-height: 260px;
+  min-height: 172px;
   align-items: stretch;
 }
 
 .green-side {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 3px;
   padding: 8px;
   border: 2px solid #1d4d2b;
-  background: #e7f4db;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #eef9e7, #dcf0d4);
 }
 
 .nave-cell {
-  min-height: 20px;
+  min-height: 34px;
+  display: grid;
+  place-items: center;
   border: 1px solid rgba(24,65,36,.35);
-  background: repeating-linear-gradient(180deg, #b9dc9a 0 12px, #d8e9ff 12px 24px);
+  border-radius: 7px;
+  background: linear-gradient(180deg, #b9dc9a, #d8e9ff);
+  color: #1c4b2a;
+  font-size: 11px;
+  font-weight: 950;
 }
 
 .center-road {
@@ -1974,11 +2041,11 @@ details.ban-section .ban-section-head {
 .nave-diagram {
   display: grid;
   grid-template-columns: repeat(5, minmax(42px, 1fr));
-  gap: 8px;
+  gap: 7px;
 }
 
 .entry {
-  min-height: 220px;
+  min-height: 238px;
   display: grid;
   grid-template-rows: auto 1fr;
   border: 2px solid #224d2b;
@@ -1997,14 +2064,21 @@ details.ban-section .ban-section-head {
 
 .entry-rows {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 3px;
   padding: 6px;
 }
 
 .row-line {
-  background: repeating-linear-gradient(180deg, #c6e5b4 0 16px, #dbeafe 16px 32px);
+  min-height: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(90deg, #c6e5b4, #dbeafe);
   border: 1px solid rgba(33,72,38,.25);
+  border-radius: 5px;
+  color: #28522c;
+  font-size: 10px;
+  font-weight: 950;
 }
 
 .passage-diagram {

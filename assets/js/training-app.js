@@ -206,6 +206,8 @@
   }
 
   function renderMap() {
+    const photoWord = tx("zdjęcie", "photo", "фото", "фото", "şəkil", "foto", "larawan", "foto", "फोटो");
+    const placeHint = tx("Rozpoznaj to miejsce przed wejściem.", "Recognize this place before entering.", "Впізнайте це місце перед входом.", "Узнайте это место перед входом.", "Girməzdən əvvəl bu yeri tanıyın.", "Reconoce este lugar antes de entrar.", "Kilalanin ang lugar bago pumasok.", "Kenali tempat ini sebelum masuk.", "प्रवेश अघि यो ठाउँ चिन्नुहोस्।");
     const cards = DATA.maps.map((item) => `
       <article class="${cardClass(item.tone)}">
         <h3>${esc(text(item.title))}</h3>
@@ -226,7 +228,7 @@
       const photos = group.photos.map((src, index) => `
         <figure class="media">
           <img loading="lazy" src="${esc(src)}" alt="${esc(text(group.title))}">
-          <figcaption>${esc(text(group.title))} ${index + 1}</figcaption>
+          <figcaption><strong>${esc(text(group.title))}</strong><span>${esc(text(photoWord))} ${index + 1}. ${esc(text(placeHint))}</span></figcaption>
         </figure>
       `).join("");
       return `
@@ -274,15 +276,16 @@
             ${action(oldWarehouseMap.url, text(oldWarehouseMap.title), "yellow")}
           </div>
         </section>
-        <details class="card yellow section media-details">
-          <summary>${esc(text(tx("Zdjęcia magazynu", "Warehouse photos", "Фото складу", "Фото склада", "Anbar şəkilləri", "Fotos del almacén", "Mga larawan ng bodega", "Foto gudang", "गोदाम फोटो")))}</summary>
+        <section class="card yellow section media-details warehouse-photos">
+          <h2>${esc(text(tx("Zdjęcia magazynu", "Warehouse photos", "Фото складу", "Фото склада", "Anbar şəkilləri", "Fotos del almacén", "Mga larawan ng bodega", "Foto gudang", "गोदाम फोटो")))}</h2>
+          <p>${esc(text(tx("Najpierw otwórz mapę, potem porównaj wejście ze zdjęciem.", "First open the map, then compare the entrance with the photo.", "Спочатку відкрийте карту, потім порівняйте вхід із фото.", "Сначала откройте карту, потом сравните вход с фото.", "Əvvəl xəritəni açın, sonra girişi şəkillə müqayisə edin.", "Primero abre el mapa y luego compara la entrada con la foto.", "Buksan muna ang mapa, pagkatapos ihambing ang pasukan sa larawan.", "Buka peta dulu, lalu cocokkan pintu masuk dengan foto.", "पहिले नक्सा खोल्नुहोस्, अनि प्रवेशलाई फोटोसँग मिलाउनुहोस्।")))}</p>
           <div class="details-body">
             <div class="photo-grid">
             <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-1.jpg" alt="Magazyn wejście"><figcaption>${esc(text(tx("Budynek magazynu - widok z parkingu.", "Warehouse building - view from parking.", "Будівля складу - вид з парковки.", "Здание склада - вид с парковки.", "Anbar binası - dayanacaqdan görünüş.", "Edificio de almacén - vista desde parking.", "Gusali ng bodega mula sa paradahan.", "Gedung gudang dari parkir.", "पार्किङबाट गोदाम भवन।")))}</figcaption></figure>
             <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
           </div>
           </div>
-        </details>
+        </section>
         ${tabletLinkCard("yellow")}
       </main>
     `;
@@ -428,9 +431,9 @@
               <p>${esc(text(tx("Stoisz plecami do pierwszych naw. Po środku jest droga. Po jednej stronie jest lewa część, po drugiej prawa część. Liczba naw może być różna: 37, 38 albo 39.", "Stand with your back to the first naves. The road is in the middle. One side is left, the other is right. The number of naves may be 37, 38 or 39.", "Станьте спиною до перших нав. Посередині дорога. З одного боку ліва частина, з іншого права. Нав може бути 37, 38 або 39.", "Встаньте спиной к первым навам. Посередине дорога. С одной стороны левая часть, с другой правая. Нав может быть 37, 38 или 39.", "İlk navalara arxanızla dayanın. Ortada yol var. Bir tərəf sol, o biri sağdır. Nava sayı 37, 38 və ya 39 ola bilər.", "Ponte de espaldas a las primeras naves. En el medio está el camino. Un lado es izquierdo y otro derecho. Puede haber 37, 38 o 39 naves.", "Tumayo na nakatalikod sa unang mga nawa. Nasa gitna ang daan. Isang bahagi ay kaliwa, isa ay kanan. Puwedeng 37, 38 o 39 nawa.", "Berdiri membelakangi nave pertama. Jalan ada di tengah. Satu sisi kiri, satu sisi kanan. Jumlah nave bisa 37, 38 atau 39.", "पहिलो नावातिर ढाड फर्काएर उभिनुहोस्। बीचमा बाटो छ। एक भाग बायाँ, अर्को दायाँ। नावा ३७, ३८ वा ३९ हुन सक्छ।")))}</p>
               <div class="schema">
                 <div class="greenhouse-map" aria-label="greenhouse schema">
-                  <div class="green-side">${Array.from({ length: 35 }, () => '<span class="nave-cell"></span>').join("")}</div>
+                  <div class="green-side">${Array.from({ length: 12 }, (_, i) => `<span class="nave-cell">${i === 0 ? "1" : i === 11 ? "..." : ""}</span>`).join("")}</div>
                   <div class="center-road">${esc(text(tx("droga środkowa", "middle road", "центральна дорога", "центральная дорога", "orta yol", "camino central", "gitnang daan", "jalan tengah", "बीच बाटो")))}</div>
-                  <div class="green-side">${Array.from({ length: 35 }, () => '<span class="nave-cell"></span>').join("")}</div>
+                  <div class="green-side">${Array.from({ length: 12 }, (_, i) => `<span class="nave-cell">${i === 0 ? "1" : i === 11 ? "..." : ""}</span>`).join("")}</div>
                 </div>
               </div>
               <div class="btn-row">${action("assets/orientation/sklarnia-etap-excel.png", ui("showFullImage"), "secondary")}</div>
@@ -443,7 +446,7 @@
               <p>${esc(text(tx("Patrzysz na nawę. Nie ma tu różnicy prawa/lewa strona szklarni. Od lewej zaczyna się pierwsze wejście. W nawie jest 5 wejść obok siebie i 10 rzędów.", "You look at one nave. Here we do not use greenhouse left/right. The first entrance starts from the left. One nave has 5 entrances next to each other and 10 rows.", "Ви дивитесь на одну наву. Тут не ділимо на праву/ліву сторону теплиці. Зліва починається перший вхід. У наві 5 входів поруч і 10 рядів.", "Вы смотрите на одну наву. Здесь не делим на правую/левую сторону теплицы. Слева начинается первый вход. В наве 5 входов рядом и 10 рядов.", "Bir navaya baxırsınız. Burada istixananın sağ/sol tərəfi fərqləndirilmir. Soldan birinci giriş başlayır. Navada yanaşı 5 giriş və 10 sıra var.", "Miras una nave. Aqui no usamos lado derecho/izquierdo del invernadero. Desde la izquierda empieza la primera entrada. Hay 5 entradas y 10 filas.", "Tinitingnan ang isang nawa. Dito hindi ginagamit ang kanan/kaliwa ng bahay-taniman. Sa kaliwa nagsisimula ang unang pasukan. May 5 pasukan at 10 hanay.", "Anda melihat satu nave. Di sini tidak memakai kanan/kiri rumah kaca. Dari kiri mulai pintu pertama. Ada 5 pintu dan 10 baris.", "एउटा नावा हेर्दै हुनुहुन्छ। यहाँ ग्रीनहाउसको दायाँ/बायाँ फरक छैन। बायाँबाट पहिलो प्रवेश सुरु हुन्छ। ५ प्रवेश र १० पङ्क्ति हुन्छ।")))}</p>
               <div class="schema">
                 <div class="nave-diagram">
-                  ${Array.from({ length: 5 }, (_, i) => `<div class="entry"><span>${i + 1}</span><div class="entry-rows"><div class="row-line"></div><div class="row-line"></div></div></div>`).join("")}
+                  ${Array.from({ length: 5 }, (_, i) => `<div class="entry"><span>${i + 1}</span><div class="entry-rows">${Array.from({ length: 10 }, (_, r) => `<div class="row-line">${r + 1}</div>`).join("")}</div></div>`).join("")}
                 </div>
               </div>
             </div>
@@ -749,17 +752,19 @@
       </article>
     `;
     };
-    const groupHtml = groups.map((group) => {
-      const cards = entries.filter((item) => item.group === group.id).map(entryCard).join("");
+    const groupHtml = groups.map((group, index) => {
+      const groupEntries = entries.filter((item) => item.group === group.id);
+      const cards = groupEntries.map(entryCard).join("");
       if (!cards) return "";
       return `
-        <section class="${cardClass(group.tone)} glossary-group" data-glossary-group>
-          <div class="city-card-head">
+        <details class="${cardClass(group.tone)} glossary-group" data-glossary-group data-first="${index === 0 ? "true" : "false"}"${index === 0 ? " open" : ""}>
+          <summary class="glossary-summary">
             <span class="city-card-icon">${iconMap.document}</span>
             <h2>${esc(text(group.title))}</h2>
-          </div>
+            <span class="speech-count">${groupEntries.length}</span>
+          </summary>
           <div class="glossary-list">${cards}</div>
-        </section>
+        </details>
       `;
     }).join("");
 
@@ -796,6 +801,11 @@
         groupNodes.forEach((group) => {
           const hasVisibleCard = !!group.querySelector("[data-glossary-card]:not(.is-hidden)");
           group.classList.toggle("is-hidden", !hasVisibleCard);
+          if (query && hasVisibleCard) {
+            group.open = true;
+          } else if (!query) {
+            group.open = group.dataset.first === "true";
+          }
         });
         if (empty) empty.classList.toggle("is-hidden", visible !== 0);
       });
@@ -922,94 +932,6 @@
       });
       if (empty) empty.hidden = visibleTotal > 0;
     });
-  }
-
-  function renderBans() {
-    const quickRules = [
-      {
-        tone: "red",
-        icon: "ban",
-        title: tx("Nie wnoś", "Do not bring", "Не вносити", "Не приносить", "Gətirməyin", "No traer", "Huwag dalhin", "Jangan bawa", "नल्याउनुहोस्"),
-        text: tx("Jedzenia, napojów, gumy, papierosów i prywatnych rzeczy do strefy pracy.", "Food, drinks, gum, cigarettes and private items into the work zone.", "Їжу, напої, жуйку, сигарети та особисті речі в робочу зону.", "Еду, напитки, жвачку, сигареты и личные вещи в рабочую зону.", "Yemək, içki, saqqız, siqaret və şəxsi əşyaları iş zonasına.", "Comida, bebidas, chicle, cigarrillos y cosas personales a la zona de trabajo.", "Pagkain, inumin, gum, sigarilyo at personal na gamit sa work zone.", "Makanan, minuman, permen karet, rokok dan barang pribadi ke area kerja.", "खाना, पेय, चुइङगम, चुरोट र निजी सामान काम क्षेत्रमा नल्याउनुहोस्।")
-      },
-      {
-        tone: "yellow",
-        icon: "phone",
-        title: tx("Nie używaj bez zgody", "Do not use without permission", "Не користуватися без дозволу", "Не использовать без разрешения", "İcazəsiz istifadə etməyin", "No usar sin permiso", "Huwag gamitin nang walang pahintulot", "Jangan pakai tanpa izin", "अनुमति बिना प्रयोग नगर्नुहोस्"),
-        text: tx("Telefonu, cudzych danych, cudzego PIN-u, taga albo readera.", "Phone, another person's data, PIN, tag or reader.", "Телефон, чужі дані, чужий PIN, тег або рідер.", "Телефон, чужие данные, чужой PIN, тег или ридер.", "Telefonu, başqasının məlumatını, PIN-i, tagını və ya readerini.", "Teléfono, datos de otra persona, PIN, tag o reader.", "Telepono, data ng iba, PIN, tag o reader ng iba.", "Telepon, data orang lain, PIN, tag atau reader orang lain.", "फोन, अरूको डाटा, PIN, tag वा reader प्रयोग नगर्नुहोस्।")
-      },
-      {
-        tone: "blue",
-        icon: "greenhouse",
-        title: tx("Nie wchodź sam", "Do not enter alone", "Не заходити самому", "Не входить одному", "Tək girməyin", "No entrar solo", "Huwag pumasok mag-isa", "Jangan masuk sendiri", "एक्लै नजानुहोस्"),
-        text: tx("Do niewłaściwej szklarni, magazynu albo strefy bez polecenia.", "Into the wrong greenhouse, warehouse or zone without instruction.", "У неправильну теплицю, склад або зону без вказівки.", "В неправильную теплицу, склад или зону без указания.", "Tapşırıq olmadan səhv istixana, anbar və ya zonaya.", "A un invernadero, almacén o zona equivocada sin indicación.", "Sa maling greenhouse, bodega o zone kung walang utos.", "Ke rumah kaca, gudang atau zona yang salah tanpa instruksi.", "निर्देशन बिना गलत ग्रीनहाउस, गोदाम वा क्षेत्रमा नजानुहोस्।")
-      }
-    ];
-
-    const groups = [
-      {
-        title: tx("Rzeczy, których nie wnosimy", "Items we do not bring", "Речі, які не вносимо", "Вещи, которые не приносим", "Gətirmədiyimiz əşyalar", "Cosas que no traemos", "Mga bagay na bawal dalhin", "Barang yang tidak dibawa", "नल्याउने सामान"),
-        lead: tx("Sprawdź kieszenie i torbę przed wejściem do pracy.", "Check pockets and bag before entering work.", "Перевірте кишені і сумку перед входом на роботу.", "Проверьте карманы и сумку перед входом на работу.", "İşə girməzdən əvvəl cibinizi və çantanızı yoxlayın.", "Revisa bolsillos y bolso antes de entrar al trabajo.", "I-check ang bulsa at bag bago pumasok sa trabaho.", "Cek saku dan tas sebelum masuk kerja.", "काममा प्रवेश गर्नु अघि खल्ती र झोला जाँच गर्नुहोस्।"),
-        indexes: [0, 1, 3, 4, 5]
-      },
-      {
-        title: tx("Zachowanie i dane", "Behaviour and personal data", "Поведінка і дані", "Поведение и данные", "Davranış və şəxsi məlumatlar", "Conducta y datos", "Ugali at personal na data", "Perilaku dan data pribadi", "व्यवहार र व्यक्तिगत डाटा"),
-        lead: tx("Używaj tylko swoich danych i pracuj tylko w miejscu, które zostało wskazane.", "Use only your own data and work only in the assigned place.", "Використовуйте тільки свої дані і працюйте тільки у вказаному місці.", "Используйте только свои данные и работайте только в указанном месте.", "Yalnız öz məlumatlarınızı istifadə edin və yalnız göstərilən yerdə işləyin.", "Usa solo tus datos y trabaja solo en el lugar indicado.", "Sariling data lang ang gamitin at magtrabaho lang sa itinalagang lugar.", "Gunakan hanya data sendiri dan bekerja hanya di tempat yang ditentukan.", "आफ्नै डाटा मात्र प्रयोग गर्नुहोस् र तोकिएको ठाउँमा मात्र काम गर्नुहोस्।"),
-        indexes: [2, 6, 7]
-      }
-    ];
-    const banIcons = ["food", "food", "phone", "smoke", "jewelry", "parcel", "greenhouse", "id"];
-
-    const quickHtml = quickRules.map((item) => `
-      <article class="ban-quick ${esc(item.tone)}">
-        <div class="ban-quick-icon">${iconMap[item.icon] || iconMap.ban}</div>
-        <div>
-          <h3>${esc(text(item.title))}</h3>
-          <p>${esc(text(item.text))}</p>
-        </div>
-      </article>
-    `).join("");
-
-    const groupHtml = groups.map((group) => {
-      const cards = group.indexes.map((banIndex, localIndex) => {
-        const ban = DATA.bans[banIndex];
-        if (!ban) return "";
-        const banIcon = iconMap[banIcons[banIndex]] || iconMap.ban;
-        return `
-          <article class="ban-card">
-            <div class="ban-card-mark">
-              ${banIcon}
-            </div>
-            <p>${esc(text(ban))}</p>
-          </article>
-        `;
-      }).join("");
-      return `
-        <details class="card ban-section">
-          <summary>${esc(text(group.title))}</summary>
-          <div class="details-body ban-section-head">
-            <p>${esc(text(group.lead))}</p>
-            <div class="ban-list">${cards}</div>
-          </div>
-        </details>
-      `;
-    }).join("");
-
-    app.innerHTML = `
-      <main class="page bans-page">
-        ${pageHero()}
-        <section class="ban-alert">
-          <div class="ban-alert-icon">${iconMap.ban}</div>
-          <div>
-            <p class="ban-alert-label">${esc(text(tx("Dotyczy szklarni i magazynu", "Applies to greenhouse and warehouse", "Стосується теплиці і складу", "Относится к теплице и складу", "İstixana və anbara aiddir", "Aplica a invernadero y almacén", "Para sa greenhouse at bodega", "Untuk rumah kaca dan gudang", "ग्रीनहाउस र गोदाममा लागू हुन्छ")))}</p>
-            <h2>${esc(text(tx("Przed wejściem sprawdź, czy nie masz rzeczy zakazanych.", "Before entering, check that you do not have forbidden items.", "Перед входом перевірте, чи не маєте заборонених речей.", "Перед входом проверьте, нет ли у вас запрещенных вещей.", "Girməzdən əvvəl qadağan olunmuş əşyalarınızın olmadığını yoxlayın.", "Antes de entrar, revisa que no tengas cosas prohibidas.", "Bago pumasok, i-check kung wala kang bawal na gamit.", "Sebelum masuk, pastikan tidak membawa barang terlarang.", "प्रवेश गर्नु अघि निषेधित सामान छैन भनेर जाँच गर्नुहोस्।")))}</h2>
-            <p>${esc(text(tx("Jeżeli masz coś z listy, zostaw to poza strefą pracy.", "If you have anything from the list, leave it outside the work zone.", "Якщо маєте щось зі списку, залиште це поза робочою зоною.", "Если у вас есть что-то из списка, оставьте это вне рабочей зоны.", "Siyahıdan bir şey varsa, onu iş zonasından kənarda saxlayın.", "Si tienes algo de la lista, déjalo fuera de la zona de trabajo.", "Kung may nasa listahan, iwan ito sa labas ng work zone.", "Jika ada barang dari daftar, tinggalkan di luar area kerja.", "सूचीमा भएको केही छ भने काम क्षेत्र बाहिर छोड्नुहोस्।")))}</p>
-          </div>
-        </section>
-        <section class="ban-quick-grid">${quickHtml}</section>
-        ${groupHtml}
-      </main>
-    `;
   }
 
   function renderBans() {

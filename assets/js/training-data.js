@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260706-slownik-plus1"
+      version: "20260706-human-polish1"
     },
 
     languages: [
@@ -715,6 +715,10 @@ window.CX_DATA.speechPhrases = [
   speechPhrase("equipment", "Zapomniałem odbić tag.", "I forgot to scan the tag.", "Я забув відбити тег.", "Я забыл отметить тег.", "Tag vurmağı unutdum.", "Olvidé marcar el tag.", "Nakalimutan kong i-scan ang tag.", "Saya lupa scan tag.", "मैले tag स्क्यान गर्न बिर्सिएँ।"),
   speechPhrase("equipment", "Gdzie mam odłożyć reader?", "Where should I put the reader back?", "Куди покласти рідер?", "Куда положить ридер?", "Reader-i hara qoymalıyam?", "¿Dónde debo dejar el reader?", "Saan ko ibabalik ang reader?", "Reader harus saya taruh di mana?", "reader कहाँ राख्नु?"),
   speechPhrase("equipment", "Nie mam internetu w telefonie.", "I do not have internet on my phone.", "У мене немає інтернету в телефоні.", "У меня нет интернета в телефоне.", "Telefonumda internet yoxdur.", "No tengo internet en el teléfono.", "Wala akong internet sa telepono.", "Saya tidak punya internet di telepon.", "मेरो फोनमा इन्टरनेट छैन।"),
+  speechPhrase("equipment", "Nie widzę mojego nazwiska na tablecie.", "I cannot see my surname on the tablet.", "Я не бачу свого прізвища на планшеті.", "Я не вижу свою фамилию на планшете.", "Planşetdə soyadımı görmürəm.", "No veo mi apellido en la tablet.", "Hindi ko makita ang apelyido ko sa tablet.", "Saya tidak melihat nama saya di tablet.", "tablet मा आफ्नो थर देखिनँ।"),
+  speechPhrase("equipment", "Nie pamiętam PIN-u.", "I do not remember the PIN.", "Я не пам'ятаю PIN.", "Я не помню PIN.", "PIN-i xatırlamıram.", "No recuerdo el PIN.", "Hindi ko maalala ang PIN.", "Saya tidak ingat PIN.", "मलाई PIN याद छैन।"),
+  speechPhrase("equipment", "Tablet pokazuje błąd.", "The tablet shows an error.", "Планшет показує помилку.", "Планшет показывает ошибку.", "Planşet xəta göstərir.", "La tablet muestra un error.", "May error ang tablet.", "Tablet menampilkan error.", "tablet ले त्रुटि देखाउँछ।"),
+  speechPhrase("equipment", "Czy mam wybrać tę czynność?", "Should I choose this activity?", "Чи маю вибрати цю дію?", "Мне выбрать эту деятельность?", "Bu fəaliyyəti seçməliyəm?", "¿Debo elegir esta actividad?", "Ito ba ang pipiliin kong activity?", "Apakah saya harus memilih aktivitas ini?", "के मैले यो गतिविधि छान्ने?"),
 
   speechPhrase("break", "Idę na przerwę.", "I am going on break.", "Я йду на перерву.", "Я иду на перерыв.", "Fasiləyə gedirəm.", "Voy a la pausa.", "Magbe-break ako.", "Saya pergi istirahat.", "म ब्रेकमा जाँदैछु।"),
   speechPhrase("break", "Wracam z przerwy.", "I am coming back from break.", "Я повертаюся з перерви.", "Я возвращаюсь с перерыва.", "Fasilədən qayıdıram.", "Vuelvo de la pausa.", "Babalik ako mula sa break.", "Saya kembali dari istirahat.", "म ब्रेकबाट फर्किँदैछु।"),
@@ -740,6 +744,10 @@ window.CX_DATA.speechPhrases = [
   speechPhrase("warehouse", "Gdzie mam zostawić rzeczy?", "Where should I leave my things?", "Де мені залишити речі?", "Где мне оставить вещи?", "Əşyalarımı harada qoymalıyam?", "¿Dónde debo dejar mis cosas?", "Saan ko iiwan ang gamit ko?", "Barang saya harus ditaruh di mana?", "मेरा सामान कहाँ राख्नु?"),
   speechPhrase("warehouse", "Mam problem z zadaniem.", "I have a problem with the task.", "У мене проблема із завданням.", "У меня проблема с заданием.", "Tapşırıqla bağlı problemim var.", "Tengo un problema con la tarea.", "May problema ako sa gawain.", "Saya punya masalah dengan tugas.", "मलाई काममा समस्या छ।"),
   speechPhrase("warehouse", "Potrzebuję pomocy brygadzisty magazynu.", "I need help from the warehouse brigadier.", "Мені потрібна допомога бригадира складу.", "Мне нужна помощь бригадира склада.", "Anbar briqadirinin köməyinə ehtiyacım var.", "Necesito ayuda del encargado del almacén.", "Kailangan ko ng tulong ng brigadier ng bodega.", "Saya butuh bantuan mandor gudang.", "मलाई गोदाम ब्रिगेडियरको सहयोग चाहिन्छ।"),
+  speechPhrase("warehouse", "To jest mój pierwszy dzień na magazynie.", "This is my first day in the warehouse.", "Це мій перший день на складі.", "Это мой первый день на складе.", "Bu anbarda birinci günümdür.", "Es mi primer día en el almacén.", "Unang araw ko ito sa bodega.", "Ini hari pertama saya di gudang.", "यो गोदाममा मेरो पहिलो दिन हो।"),
+  speechPhrase("warehouse", "Proszę pokazać moje stanowisko.", "Please show me my work station.", "Будь ласка, покажіть моє робоче місце.", "Пожалуйста, покажите мое рабочее место.", "Zəhmət olmasa iş yerimi göstərin.", "Por favor, muéstreme mi puesto.", "Pakipakita ang puwesto ko.", "Tolong tunjukkan tempat kerja saya.", "कृपया मेरो काम गर्ने ठाउँ देखाउनुहोस्।"),
+  speechPhrase("warehouse", "Nie wiem, gdzie jest wejście dla personelu.", "I do not know where the staff entrance is.", "Я не знаю, де вхід для персоналу.", "Я не знаю, где вход для персонала.", "Personal girişinin harada olduğunu bilmirəm.", "No sé dónde está la entrada del personal.", "Hindi ko alam nasaan ang staff entrance.", "Saya tidak tahu pintu masuk staf di mana.", "कर्मचारी प्रवेश कहाँ छ थाहा छैन।"),
+  speechPhrase("warehouse", "Czy mam iść do nowego czy starego magazynu?", "Should I go to the new or old warehouse?", "Мені йти на новий чи старий склад?", "Мне идти на новый или старый склад?", "Yeni anbara, yoxsa köhnə anbara getməliyəm?", "¿Debo ir al almacén nuevo o antiguo?", "Sa bagong bodega ba o lumang bodega ako pupunta?", "Saya harus ke gudang baru atau lama?", "नयाँ गोदाम कि पुरानो गोदाम जानु?"),
 
   speechPhrase("contacts", "Proszę zadzwonić do mnie.", "Please call me.", "Будь ласка, подзвоніть мені.", "Пожалуйста, позвоните мне.", "Zəhmət olmasa mənə zəng edin.", "Por favor, llámeme.", "Pakisawagan ako.", "Tolong telepon saya.", "कृपया मलाई फोन गर्नुहोस्।"),
   speechPhrase("contacts", "Proszę wysłać mi lokalizację.", "Please send me the location.", "Будь ласка, надішліть мені локацію.", "Пожалуйста, отправьте мне локацию.", "Zəhmət olmasa mənə lokasiya göndərin.", "Por favor, envíeme la ubicación.", "Pakipadala sa akin ang lokasyon.", "Tolong kirim lokasi kepada saya.", "कृपया मलाई लोकेसन पठाउनुहोस्।"),
@@ -777,6 +785,9 @@ window.CX_DATA.speechPhrases = [
   speechPhrase("safety", "Potrzebuję przełożonego.", "I need a supervisor.", "Мені потрібен керівник.", "Мне нужен руководитель.", "Mənə rəhbər lazımdır.", "Necesito un supervisor.", "Kailangan ko ng supervisor.", "Saya butuh atasan.", "मलाई सुपरभाइजर चाहिन्छ।"),
   speechPhrase("safety", "Nie wiem, czy to jest dozwolone.", "I do not know if this is allowed.", "Я не знаю, чи це дозволено.", "Я не знаю, разрешено ли это.", "Bunun icazəli olub-olmadığını bilmirəm.", "No sé si esto está permitido.", "Hindi ko alam kung pwede ito.", "Saya tidak tahu apakah ini diperbolehkan.", "यो अनुमति छ कि छैन थाहा छैन।"),
   speechPhrase("safety", "Proszę pokazać zasady.", "Please show me the rules.", "Будь ласка, покажіть правила.", "Пожалуйста, покажите правила.", "Zəhmət olmasa qaydaları göstərin.", "Por favor, muéstreme las reglas.", "Pakipakita ang mga patakaran.", "Tolong tunjukkan aturan.", "कृपया नियम देखाउनुहोस्।"),
+  speechPhrase("safety", "Mam rzecz zakazaną. Gdzie mogę ją zostawić?", "I have a forbidden item. Where can I leave it?", "У мене є заборонена річ. Де я можу її залишити?", "У меня есть запрещенная вещь. Где я могу ее оставить?", "Qadağan olunmuş əşyam var. Onu harada qoya bilərəm?", "Tengo una cosa prohibida. ¿Dónde puedo dejarla?", "May bawal akong gamit. Saan ko ito iiwan?", "Saya membawa barang terlarang. Di mana bisa ditinggalkan?", "मसँग निषेधित सामान छ। कहाँ छोड्न सक्छु?"),
+  speechPhrase("safety", "Nie wiem, czy mogę wnieść tę rzecz.", "I do not know if I can bring this item in.", "Я не знаю, чи можу внести цю річ.", "Я не знаю, можно ли принести эту вещь.", "Bu əşyanı içəri gətirə biləcəyimi bilmirəm.", "No sé si puedo traer esta cosa.", "Hindi ko alam kung puwedeng dalhin ito.", "Saya tidak tahu apakah barang ini boleh dibawa masuk.", "यो सामान भित्र ल्याउन मिल्छ कि मिल्दैन थाहा छैन।"),
+  speechPhrase("safety", "Proszę sprawdzić, czy dobrze rozumiem.", "Please check if I understand correctly.", "Будь ласка, перевірте, чи я правильно розумію.", "Пожалуйста, проверьте, правильно ли я понимаю.", "Zəhmət olmasa düzgün başa düşdüyümü yoxlayın.", "Por favor, compruebe si entiendo bien.", "Pakicheck kung tama ang pagkaintindi ko.", "Tolong cek apakah saya mengerti dengan benar.", "मैले सही बुझेँ कि भनेर जाँच्नुहोस्।"),
 
   speechPhrase("homeLife", "Gdzie jest mój pokój?", "Where is my room?", "Де моя кімната?", "Где моя комната?", "Mənim otağım haradadır?", "¿Dónde está mi habitación?", "Nasaan ang kuwarto ko?", "Di mana kamar saya?", "मेरो कोठा कहाँ छ?"),
   speechPhrase("homeLife", "Nie działa ogrzewanie.", "The heating does not work.", "Опалення не працює.", "Отопление не работает.", "İsitmə işləmir.", "La calefacción no funciona.", "Hindi gumagana ang heating.", "Pemanas tidak berfungsi.", "हिटर चलेन।"),
@@ -1147,6 +1158,62 @@ window.CX_DATA.glossary = [
     local: tx("przychodnia / lekarz rodzinny", "clinic / family doctor", "поліклініка / сімейний лікар", "поликлиника / семейный врач", "poliklinika / ailə həkimi", "clínica / médico de familia", "clinic / family doctor", "klinik / dokter keluarga", "क्लिनिक / परिवार डाक्टर"),
     meaning: tx("Miejsce, gdzie szukasz lekarza w normalnych sprawach zdrowotnych.", "A place where you look for a doctor for normal health issues.", "Місце, де шукаєте лікаря у звичайних питаннях здоров'я.", "Место, где ищете врача по обычным вопросам здоровья.", "Adi sağlamlıq məsələləri üçün həkim axtardığınız yer.", "Lugar para buscar médico en casos normales de salud.", "Lugar para doktor sa normal health problems.", "Tempat mencari dokter untuk masalah kesehatan biasa.", "सामान्य स्वास्थ्य समस्यामा डाक्टर खोज्ने ठाउँ।"),
     example: tx("Przykład: do GOZ Siechnice przyjdź o 8:00.", "Example: come to GOZ Siechnice at 8:00.", "Приклад: до GOZ Siechnice прийдіть о 8:00.", "Пример: в GOZ Siechnice приходите в 8:00.", "Məsələn: GOZ Siechnice-yə saat 8:00-da gəlin.", "Ejemplo: llega a GOZ Siechnice a las 8:00.", "Halimbawa: pumunta sa GOZ Siechnice ng 8:00.", "Contoh: datang ke GOZ Siechnice jam 8:00.", "उदाहरण: GOZ Siechnice मा 8:00 बजे आउनुहोस्।")
+  },
+  {
+    group: "greenhouse",
+    term: "wózek",
+    local: tx("wózek / cart do zbioru", "cart / picking cart", "візок / візок для збору", "тележка / тележка для сбора", "araba / yığım arabası", "carro / carro de cosecha", "cart / pang-pitas", "troli / troli panen", "ट्रली / टिप्ने ट्रली"),
+    meaning: tx("Wózek używany przy zbiorze, na przykład pomidorów. Przy wózku mogą być osobne tagi.", "A cart used during picking, for example tomatoes. The cart may have separate tags.", "Візок для збору, наприклад помідорів. Біля візка можуть бути окремі теги.", "Тележка для сбора, например помидоров. У тележки могут быть отдельные теги.", "Məsələn pomidor yığımı üçün araba. Arabada ayrıca tag ola bilər.", "Carro usado en cosecha, por ejemplo tomates. Puede tener tags separados.", "Cart na gamit sa pagpitas, halimbawa kamatis. Puwedeng may sariling tag.", "Troli untuk panen, misalnya tomat. Bisa ada tag khusus.", "टमाटर जस्ता चीज टिप्दा प्रयोग हुने ट्रली। ट्रलीमा अलग tag हुन सक्छ।"),
+    example: tx("Przykład: przy zbiorze najpierw odbij tag wózka.", "Example: during picking, scan the cart tag first.", "Приклад: при зборі спочатку відбийте тег візка.", "Пример: при сборе сначала отметьте тег тележки.", "Məsələn: yığımda əvvəl araba tagını vurun.", "Ejemplo: en cosecha primero marca el tag del carro.", "Halimbawa: sa pagpitas, unahin ang cart tag.", "Contoh: saat panen scan tag troli dulu.", "उदाहरण: टिपाइमा पहिले ट्रली tag स्क्यान गर्नुहोस्।")
+  },
+  {
+    group: "greenhouse",
+    term: "zbiór",
+    local: tx("zbiór / zbieranie produktu", "picking / harvesting product", "збір / збирання продукту", "сбор / сбор продукта", "yığım / məhsul toplama", "cosecha / recoger producto", "pagpitas / pag-ani", "panen / memetik produk", "टिपाइ / उत्पादन टिप्ने"),
+    meaning: tx("Praca polegająca na zbieraniu produktu z roślin.", "Work that means collecting product from plants.", "Робота, коли збираєте продукт з рослин.", "Работа, когда собираете продукт с растений.", "Bitkilərdən məhsul toplamaq işi.", "Trabajo de recoger producto de las plantas.", "Trabaho ng pagkuha ng produkto sa halaman.", "Pekerjaan mengambil produk dari tanaman.", "बिरुवाबाट उत्पादन टिप्ने काम।"),
+    example: tx("Przykład: dziś masz zbiór pomidora.", "Example: today you have tomato picking.", "Приклад: сьогодні у вас збір помідора.", "Пример: сегодня у вас сбор помидора.", "Məsələn: bu gün pomidor yığımınız var.", "Ejemplo: hoy tienes cosecha de tomate.", "Halimbawa: ngayon ay pagpitas ng kamatis.", "Contoh: hari ini panen tomat.", "उदाहरण: आज टमाटर टिपाइ छ।")
+  },
+  {
+    group: "place",
+    term: "brama",
+    local: tx("brama / wjazd lub wejście na teren", "gate / site entrance", "брама / в'їзд або вхід на територію", "ворота / въезд или вход на территорию", "darvaza / əraziyə giriş", "puerta / entrada al terreno", "gate / pasukan sa area", "gerbang / pintu area", "गेट / क्षेत्र प्रवेश"),
+    meaning: tx("Miejsce wejścia albo wjazdu na teren firmy.", "A place to enter the company site.", "Місце входу або в'їзду на територію фірми.", "Место входа или въезда на территорию фирмы.", "Firma ərazisinə giriş yeri.", "Lugar de entrada al terreno de la empresa.", "Lugar ng pasukan sa kumpanya.", "Tempat masuk area perusahaan.", "कम्पनी क्षेत्रमा प्रवेश गर्ने ठाउँ।"),
+    example: tx("Przykład: jestem przy bramie.", "Example: I am at the gate.", "Приклад: я біля брами.", "Пример: я у ворот.", "Məsələn: darvazanın yanındayam.", "Ejemplo: estoy en la puerta.", "Halimbawa: nasa gate ako.", "Contoh: saya di gerbang.", "उदाहरण: म गेटमा छु।")
+  },
+  {
+    group: "people",
+    term: "ochrona",
+    local: tx("ochrona / security", "security / guards", "охорона / security", "охрана / security", "mühafizə / security", "seguridad / vigilancia", "security / guwardiya", "security / satpam", "सुरक्षा / गार्ड"),
+    meaning: tx("Osoby przy wejściu, które pilnują terenu i przepustek.", "People at the entrance who control the site and passes.", "Люди при вході, які контролюють територію і перепустки.", "Люди на входе, которые контролируют территорию и пропуска.", "Girişdə əraziyə və keçid kartlarına nəzarət edən şəxslər.", "Personas en entrada que controlan el terreno y pases.", "Mga tao sa pasukan na nagche-check ng area at pass.", "Orang di pintu masuk yang memeriksa area dan kartu akses.", "प्रवेशमा क्षेत्र र पास जाँच गर्ने मानिसहरू।"),
+    example: tx("Przykład: ochrona może poprosić o przepustkę.", "Example: security may ask for a pass.", "Приклад: охорона може попросити перепустку.", "Пример: охрана может попросить пропуск.", "Məsələn: mühafizə keçid kartı istəyə bilər.", "Ejemplo: seguridad puede pedir pase.", "Halimbawa: maaaring hingin ng security ang pass.", "Contoh: security bisa meminta kartu akses.", "उदाहरण: सुरक्षाले पास माग्न सक्छ।")
+  },
+  {
+    group: "documents",
+    term: "przepustka",
+    local: tx("przepustka / karta wejścia", "pass / entry card", "перепустка / карта входу", "пропуск / карта входа", "keçid kartı / giriş kartı", "pase / tarjeta de entrada", "pass / entry card", "kartu akses / kartu masuk", "पास / प्रवेश कार्ड"),
+    meaning: tx("Karta albo zgoda potrzebna do wejścia na teren firmy.", "A card or permission needed to enter the company site.", "Карта або дозвіл, потрібний для входу на територію фірми.", "Карта или разрешение для входа на территорию фирмы.", "Firma ərazisinə girmək üçün kart və ya icazə.", "Tarjeta o permiso para entrar al terreno de la empresa.", "Card o permiso para pumasok sa kumpanya.", "Kartu atau izin untuk masuk area perusahaan.", "कम्पनी क्षेत्रमा प्रवेश गर्न चाहिने कार्ड वा अनुमति।"),
+    example: tx("Przykład: bez przepustki ochrona może nie wpuścić.", "Example: without a pass, security may not let you in.", "Приклад: без перепустки охорона може не впустити.", "Пример: без пропуска охрана может не пустить.", "Məsələn: keçid kartı olmadan mühafizə buraxmaya bilər.", "Ejemplo: sin pase, seguridad puede no dejar entrar.", "Halimbawa: kung walang pass, hindi ka papapasukin.", "Contoh: tanpa kartu akses, security bisa menolak masuk.", "उदाहरण: पास बिना सुरक्षा भित्र जान नदिन सक्छ।")
+  },
+  {
+    group: "documents",
+    term: "bankomat",
+    local: tx("bankomat / ATM", "ATM / cash machine", "банкомат / ATM", "банкомат / ATM", "bankomat / ATM", "cajero automático / ATM", "ATM / cash machine", "ATM / mesin uang", "ATM / पैसा निकाल्ने मेसिन"),
+    meaning: tx("Maszyna do wypłaty pieniędzy z karty.", "A machine for withdrawing cash from a card.", "Машина для зняття грошей з картки.", "Машина для снятия денег с карты.", "Kartdan pul çıxarmaq üçün cihaz.", "Máquina para sacar dinero con tarjeta.", "Makina para mag-withdraw ng pera.", "Mesin untuk tarik uang dari kartu.", "कार्डबाट पैसा निकाल्ने मेसिन।"),
+    example: tx("Przykład: najbliższy bankomat znajdziesz w module Miasto.", "Example: find the nearest ATM in the City module.", "Приклад: найближчий банкомат знайдете в модулі Місто.", "Пример: ближайший банкомат найдете в модуле Город.", "Məsələn: ən yaxın bankomatı Şəhər modulunda tapın.", "Ejemplo: busca el cajero más cercano en Ciudad.", "Halimbawa: hanapin ang ATM sa City module.", "Contoh: cari ATM terdekat di modul Kota.", "उदाहरण: नजिकको ATM शहर मोड्युलमा खोज्नुहोस्।")
+  },
+  {
+    group: "documents",
+    term: "paczkomat",
+    local: tx("paczkomat / automat na paczki", "parcel locker / package machine", "поштомат / автомат для посилок", "постамат / автомат для посылок", "paczkomat / bağlama avtomatı", "taquilla de paquetes / Paczkomat", "parcel locker / lagayan ng package", "loker paket / mesin paket", "parcel locker / पार्सल मेसिन"),
+    meaning: tx("Automat, do którego zamawia się paczki. Nie zamawiaj paczek na adres firmy.", "A machine where parcels are delivered. Do not order parcels to the company address.", "Автомат, куди замовляють посилки. Не замовляйте посилки на адресу фірми.", "Автомат, куда заказывают посылки. Не заказывайте посылки на адрес фирмы.", "Bağlamaların gəldiyi avtomat. Bağlamaları firma ünvanına sifariş etməyin.", "Máquina donde llegan paquetes. No pidas paquetes a la dirección de la empresa.", "Machine kung saan dumadating ang parcel. Huwag magpadala sa address ng kumpanya.", "Mesin tempat paket dikirim. Jangan pesan paket ke alamat perusahaan.", "पार्सल आउने मेसिन। कम्पनी ठेगानामा पार्सल नमगाउनुहोस्।"),
+    example: tx("Przykład: paczkę zamów do paczkomatu.", "Example: order the parcel to a parcel locker.", "Приклад: посилку замовте до поштомату.", "Пример: посылку закажите в постамат.", "Məsələn: bağlamanı paczkomat-a sifariş edin.", "Ejemplo: pide el paquete al Paczkomat.", "Halimbawa: ipadala ang parcel sa parcel locker.", "Contoh: kirim paket ke loker paket.", "उदाहरण: पार्सल parcel locker मा मगाउनुहोस्।")
+  },
+  {
+    group: "documents",
+    term: "SOR",
+    local: tx("SOR / szpitalny oddział ratunkowy", "ER / emergency department", "SOR / відділення невідкладної допомоги", "SOR / приемное отделение скорой помощи", "SOR / təcili yardım şöbəsi", "urgencias / emergencia hospitalaria", "ER / emergency department", "IGD / unit gawat darurat", "ER / आपतकालीन विभाग"),
+    meaning: tx("Miejsce w szpitalu na nagłe przypadki, np. silny ból, uraz, problemy z oddychaniem.", "A hospital place for emergencies, e.g. strong pain, injury, breathing problems.", "Місце в лікарні для термінових випадків, напр. сильний біль, травма, проблеми з диханням.", "Место в больнице для срочных случаев, например сильная боль, травма, проблемы с дыханием.", "Güclü ağrı, zədə, nəfəs problemi kimi təcili hallar üçün xəstəxana şöbəsi.", "Lugar del hospital para urgencias: dolor fuerte, lesión, problemas respiratorios.", "Lugar sa ospital para emergency: matinding sakit, injury, hirap huminga.", "Tempat di rumah sakit untuk darurat: sakit parah, cedera, sulit bernapas.", "अस्पतालको आपतकालीन ठाउँ: धेरै दुखाइ, चोट, सास समस्या।"),
+    example: tx("Przykład: przy problemie z oddychaniem jedź na SOR albo dzwoń 112.", "Example: with breathing problems go to ER or call 112.", "Приклад: при проблемі з диханням їдьте на SOR або дзвоніть 112.", "Пример: при проблеме с дыханием едьте в SOR или звоните 112.", "Məsələn: nəfəs problemi varsa SOR-a gedin və ya 112-yə zəng edin.", "Ejemplo: con problemas respiratorios ve a urgencias o llama 112.", "Halimbawa: kung hirap huminga, pumunta sa ER o tumawag 112.", "Contoh: jika sulit bernapas, ke IGD atau hubungi 112.", "उदाहरण: सास समस्या भए ER जानुहोस् वा 112 फोन गर्नुहोस्।")
   }
 ];
 
