@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260706-human-polish1"
+      version: "20260713-phone1-siechnice"
     },
 
     languages: [
