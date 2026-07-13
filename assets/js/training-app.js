@@ -933,6 +933,14 @@
           <section class="city-simple-list">${citySimpleGroups}</section>
         </main>
       `;
+      app.querySelectorAll(".city-simple-group").forEach((group) => {
+        group.addEventListener("toggle", () => {
+          if (!group.open) return;
+          app.querySelectorAll(".city-simple-group[open]").forEach((other) => {
+            if (other !== group) other.open = false;
+          });
+        });
+      });
       return;
     }
   }
