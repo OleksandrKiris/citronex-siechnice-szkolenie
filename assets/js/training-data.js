@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260714-greenhouse-view3-siechnice"
+      version: "20260714-phonefit2-siechnice"
     },
 
     languages: [
