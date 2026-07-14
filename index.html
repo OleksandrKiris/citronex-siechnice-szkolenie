@@ -14,5 +14,51 @@
   <div id="app"></div>
   <script src="assets/js/training-data.js?v=20260713-moduleunified3-siechnice" defer></script>
   <script src="assets/js/training-app.js?v=20260714-telegram-groups1-siechnice" defer></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const tiles = document.querySelector(".tiles");
+      if (!tiles || tiles.querySelector('[data-external-tile="mapa-zakladu-3d"]')) return;
+
+      const translations = {
+        pl: { title: "Mapa zakładu 3D", text: "Interaktywna mapa 3D zakładu w Siechnicach." },
+        en: { title: "3D facility map", text: "Interactive 3D map of the Siechnice facility." },
+        ua: { title: "3D-карта підприємства", text: "Інтерактивна 3D-карта підприємства в Сєхніцах." },
+        ru: { title: "3D-карта предприятия", text: "Интерактивная 3D-карта предприятия в Сехнице." },
+        az: { title: "Müəssisənin 3D xəritəsi", text: "Siechnice müəssisəsinin interaktiv 3D xəritəsi." },
+        es: { title: "Mapa 3D de la planta", text: "Mapa 3D interactivo de la planta de Siechnice." },
+        fil: { title: "3D mapa ng pasilidad", text: "Interactive na 3D mapa ng pasilidad sa Siechnice." },
+        id: { title: "Peta 3D fasilitas", text: "Peta 3D interaktif fasilitas di Siechnice." },
+        ne: { title: "कारखानाको 3D नक्सा", text: "Siechnice कारखानाको अन्तरक्रियात्मक 3D नक्सा।" }
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const requestedLang = (params.get("lang") || localStorage.getItem("cx-lang") || "pl").toLowerCase();
+      const copy = translations[requestedLang] || translations.pl;
+      const tile = document.createElement("a");
+
+      tile.className = "tile";
+      tile.dataset.tone = "blue";
+      tile.dataset.externalTile = "mapa-zakladu-3d";
+      tile.href = "https://oleksandrkiris.github.io/mapa-zakladu-3d/";
+      tile.innerHTML = `
+        <div class="tile-top">
+          <div>
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>
+            </div>
+          </div>
+          <span class="arrow">›</span>
+        </div>
+        <div>
+          <p class="tile-title"></p>
+          <p class="tile-text"></p>
+        </div>
+      `;
+      tile.querySelector(".tile-title").textContent = copy.title;
+      tile.querySelector(".tile-text").textContent = copy.text;
+
+      tiles.insertBefore(tile, tiles.children[1] || null);
+    });
+  </script>
 </body>
 </html>
