@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260714-telegram-groups1-siechnice"
+      version: "20260715-release-img1-siechnice"
     },
 
     languages: [

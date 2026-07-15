@@ -385,7 +385,7 @@
     const photoGroups = (DATA.mapPhotos || []).map((group) => {
       const photos = group.photos.map((src, index) => `
         <figure class="media">
-          <img loading="lazy" src="${esc(src)}" alt="${esc(text(group.title))}">
+          <img loading="eager" src="${esc(src)}" alt="${esc(text(group.title))}">
           <figcaption><strong>${esc(text(group.title))}</strong><span>${esc(text(photoWord))} ${index + 1}. ${esc(text(placeHint))}</span></figcaption>
         </figure>
       `).join("");
@@ -442,8 +442,8 @@
           <p>${esc(text(tx("Najpierw otwórz mapę, potem porównaj wejście ze zdjęciem.", "First open the map, then compare the entrance with the photo.", "Спочатку відкрийте карту, потім порівняйте вхід із фото.", "Сначала откройте карту, потом сравните вход с фото.", "Əvvəl xəritəni açın, sonra girişi şəkillə müqayisə edin.", "Primero abre el mapa y luego compara la entrada con la foto.", "Buksan muna ang mapa, pagkatapos ihambing ang pasukan sa larawan.", "Buka peta dulu, lalu cocokkan pintu masuk dengan foto.", "पहिले नक्सा खोल्नुहोस्, अनि प्रवेशलाई फोटोसँग मिलाउनुहोस्।")))}</p>
           <div class="details-body">
             <div class="photo-grid">
-            <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-1.jpg" alt="Magazyn wejście"><figcaption>${esc(text(tx("Budynek magazynu - widok z parkingu.", "Warehouse building - view from parking.", "Будівля складу - вид з парковки.", "Здание склада - вид с парковки.", "Anbar binası - dayanacaqdan görünüş.", "Edificio de almacén - vista desde parking.", "Gusali ng bodega mula sa paradahan.", "Gedung gudang dari parkir.", "पार्किङबाट गोदाम भवन।")))}</figcaption></figure>
-            <figure class="media"><img loading="lazy" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
+            <figure class="media"><img loading="eager" src="assets/warehouse/magazyn-wejscie-1.jpg" alt="Magazyn wejście"><figcaption>${esc(text(tx("Budynek magazynu - widok z parkingu.", "Warehouse building - view from parking.", "Будівля складу - вид з парковки.", "Здание склада - вид с парковки.", "Anbar binası - dayanacaqdan görünüş.", "Edificio de almacén - vista desde parking.", "Gusali ng bodega mula sa paradahan.", "Gedung gudang dari parkir.", "पार्किङबाट गोदाम भवन।")))}</figcaption></figure>
+            <figure class="media"><img loading="eager" src="assets/warehouse/magazyn-wejscie-2.jpg" alt="Magazyn wejście drzwi"><figcaption>${esc(text(tx("Wejście dla personelu.", "Staff entrance.", "Вхід для персоналу.", "Вход для персонала.", "Personal girişi.", "Entrada de personal.", "Pasukan ng staff.", "Pintu masuk staf.", "कर्मचारी प्रवेश।")))}</figcaption></figure>
           </div>
           </div>
         </section>
@@ -483,7 +483,7 @@
           <p>${esc(text(item.note))}</p>
           ${item.image ? `
             <figure class="tablet-shot">
-              <img loading="lazy" src="${esc(item.image)}" alt="${esc(text(item.screen))}">
+              <img loading="eager" src="${esc(item.image)}" alt="${esc(text(item.screen))}">
               <figcaption>${esc(text(item.screen))}</figcaption>
             </figure>
           ` : `
@@ -1023,7 +1023,7 @@
       return `
       <figure class="media reader-visual">
         <div class="reader-visual-frame">
-          <img loading="lazy" src="${esc(image.src)}" alt="${esc(text(image.caption))}">
+          <img loading="eager" src="${esc(image.src)}" alt="${esc(text(image.caption))}">
         </div>
         ${overlay}
         <figcaption>${esc(text(image.caption))}</figcaption>
