@@ -1,5 +1,5 @@
-const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260715-loader-hotfix1-siechnice";
+﻿const CACHE_PREFIX = "citronex-siechnice-modular-";
+const CACHE_NAME = CACHE_PREFIX + "20260715-nav-stability1-siechnice";
 
 const CORE_ASSETS = [
   "./",
@@ -18,9 +18,9 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260715-loader-hotfix1-siechnice",
-  "./assets/js/training-data.js?v=20260715-loader-hotfix1-siechnice",
-  "./assets/js/training-app.js?v=20260715-loader-hotfix1-siechnice",
+  "./assets/css/training.css?v=20260715-nav-stability1-siechnice",
+  "./assets/js/training-data.js?v=20260715-nav-stability1-siechnice",
+  "./assets/js/training-app.js?v=20260715-nav-stability1-siechnice",
   "./assets/logo-citronex.svg"
 ];
 
@@ -57,23 +57,46 @@ async function putInCache(request, response) {
   await cache.put(request, response.clone());
 }
 
+function networkTimeout(ms = 1400) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(null), ms);
+  });
+}
+
+async function matchCached(request, fallback = "./index.html") {
+  const cache = await caches.open(CACHE_NAME);
+  const cached = await cache.match(request, { ignoreSearch: true }) || await caches.match(request, { ignoreSearch: true });
+  if (cached) return cached;
+  if (!fallback) return null;
+  return cache.match(fallback, { ignoreSearch: true }) || caches.match(fallback, { ignoreSearch: true });
+}
+
 async function networkFirst(request) {
+  const cached = await matchCached(request, null);
   try {
-    const response = await fetch(request);
+    const response = await Promise.race([fetch(request), networkTimeout()]);
+    if (!response) return cached || matchCached(request);
     await putInCache(request, response);
     return response;
   } catch (error) {
-    const cached = await caches.match(request);
-    return cached || caches.match("./index.html");
+    return cached || matchCached(request);
   }
 }
 
 async function cacheFirst(request) {
-  const cached = await caches.match(request);
-  if (cached) return cached;
-  const response = await fetch(request);
-  await putInCache(request, response);
-  return response;
+  const cached = await matchCached(request, null);
+  if (cached) {
+    fetch(request).then((response) => putInCache(request, response)).catch(() => {});
+    return cached;
+  }
+  try {
+    const response = await Promise.race([fetch(request), networkTimeout()]);
+    if (!response) return matchCached(request);
+    await putInCache(request, response);
+    return response;
+  } catch (error) {
+    return matchCached(request);
+  }
 }
 
 self.addEventListener("fetch", (event) => {
