@@ -1,5 +1,5 @@
-﻿const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260715-release-img1-siechnice";
+const CACHE_PREFIX = "citronex-siechnice-modular-";
+const CACHE_NAME = CACHE_PREFIX + "20260716-hardening1-siechnice";
 
 const CORE_ASSETS = [
   "./",
@@ -18,9 +18,9 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260715-release-img1-siechnice",
-  "./assets/js/training-data.js?v=20260715-release-img1-siechnice",
-  "./assets/js/training-app.js?v=20260715-release-img1-siechnice",
+  "./assets/css/training.css?v=20260716-hardening1-siechnice",
+  "./assets/js/training-data.js?v=20260716-hardening1-siechnice",
+  "./assets/js/training-app.js?v=20260716-hardening1-siechnice",
   "./assets/logo-citronex.svg"
 ];
 
@@ -63,7 +63,7 @@ function networkTimeout(ms = 1400) {
   });
 }
 
-async function matchCached(request, fallback = "./index.html") {
+async function matchCached(request, fallback = null) {
   const cache = await caches.open(CACHE_NAME);
   const cached = await cache.match(request, { ignoreSearch: true }) || await caches.match(request, { ignoreSearch: true });
   if (cached) return cached;
@@ -71,15 +71,15 @@ async function matchCached(request, fallback = "./index.html") {
   return cache.match(fallback, { ignoreSearch: true }) || caches.match(fallback, { ignoreSearch: true });
 }
 
-async function networkFirst(request) {
+async function networkFirst(request, fallback = null) {
   const cached = await matchCached(request, null);
   try {
     const response = await Promise.race([fetch(request), networkTimeout()]);
-    if (!response) return cached || matchCached(request);
+    if (!response) return cached || await matchCached(request, fallback) || Response.error();
     await putInCache(request, response);
     return response;
   } catch (error) {
-    return cached || matchCached(request);
+    return cached || await matchCached(request, fallback) || Response.error();
   }
 }
 
@@ -91,11 +91,11 @@ async function cacheFirst(request) {
   }
   try {
     const response = await Promise.race([fetch(request), networkTimeout()]);
-    if (!response) return matchCached(request);
+    if (!response) return await matchCached(request, null) || Response.error();
     await putInCache(request, response);
     return response;
   } catch (error) {
-    return matchCached(request);
+    return await matchCached(request, null) || Response.error();
   }
 }
 
@@ -108,7 +108,7 @@ self.addEventListener("fetch", (event) => {
 
   const accept = request.headers.get("accept") || "";
   if (request.mode === "navigate" || accept.includes("text/html")) {
-    event.respondWith(networkFirst(request));
+    event.respondWith(networkFirst(request, "./index.html"));
     return;
   }
 
