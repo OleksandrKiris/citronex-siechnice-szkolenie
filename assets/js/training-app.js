@@ -62,17 +62,39 @@
 
   const voiceLocales = { pl: "pl-PL", en: "en-US", ua: "uk-UA", ru: "ru-RU", az: "az-AZ", es: "es-ES", fil: "fil-PH", id: "id-ID", ne: "ne-NP" };
   const voiceProfiles = {
-    pl: { rate: .84, pitch: 1 }, en: { rate: .88, pitch: 1 }, ua: { rate: .82, pitch: 1.02 },
-    ru: { rate: .82, pitch: 1 }, az: { rate: .78, pitch: 1 }, es: { rate: .86, pitch: 1.02 },
-    fil: { rate: .82, pitch: 1.03 }, id: { rate: .82, pitch: 1.02 }, ne: { rate: .76, pitch: 1.05 }
+    pl: { rate: .78, pitch: 1 }, en: { rate: .82, pitch: 1 }, ua: { rate: .76, pitch: 1 },
+    ru: { rate: .76, pitch: 1 }, az: { rate: .72, pitch: 1 }, es: { rate: .80, pitch: 1 },
+    fil: { rate: .76, pitch: 1 }, id: { rate: .76, pitch: 1 }, ne: { rate: .70, pitch: 1 }
   };
+  function speechReady(value, selectedLang = "pl") {
+    let result = String(value || "")
+      .replace(/S\.R\.Z\.B\.?/gi, "")
+      .replace(/\s*\/\s*/g, " lub ")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+    if (selectedLang === "pl") result = result.replace(/\breader\b/gi, "czytnik");
+    return result.replace(/\s+([,.!?])/g, "$1");
+  }
   function findSpeechVoice(locale) {
     const voices = window.speechSynthesis?.getVoices?.() || [];
     const exact = locale.toLowerCase();
     const prefix = exact.split("-")[0];
-    return voices.find((voice) => String(voice.lang || "").toLowerCase() === exact)
-      || voices.find((voice) => String(voice.lang || "").toLowerCase().startsWith(`${prefix}-`))
-      || null;
+    const matching = voices.filter((voice) => {
+      const language = String(voice.lang || "").toLowerCase();
+      return language === exact || language.startsWith(`${prefix}-`);
+    });
+    return matching.sort((left, right) => {
+      const score = (voice) => {
+        const language = String(voice.lang || "").toLowerCase();
+        const name = String(voice.name || "").toLowerCase();
+        let value = language === exact ? 100 : 60;
+        if (/natural|neural|google|microsoft|enhanced|premium|siri/.test(name)) value += 35;
+        if (/compact|espeak|robot/.test(name)) value -= 20;
+        if (voice.default) value += 3;
+        return value;
+      };
+      return score(right) - score(left);
+    })[0] || null;
   }
   function waitForSpeechVoice(locale, callback) {
     const synth = window.speechSynthesis;
@@ -143,7 +165,19 @@
     id: "Selamat datang. Ini adalah sistem informasi dan pelatihan untuk " + getLocationName() + ". Tersedia peta, informasi kerja, petunjuk, kontak, bantuan medis, aturan keselamatan dan tes. Pilih bagian yang Anda perlukan.",
     ne: "\u0938\u094d\u0935\u093e\u0917\u0924 \u091b\u0964 \u092f\u094b " + getLocationName() + " \u0915\u093e \u0932\u093e\u0917\u093f \u091c\u093e\u0928\u0915\u093e\u0930\u0940 \u0924\u0925\u093e \u092a\u094d\u0930\u0936\u093f\u0915\u094d\u0937\u0923 \u092a\u094d\u0930\u0923\u093e\u0932\u0940 \u0939\u094b\u0964 \u092f\u0939\u093e\u0901 \u0928\u0915\u094d\u0938\u093e, \u0915\u093e\u092e\u0938\u092e\u094d\u092c\u0928\u094d\u0927\u0940 \u091c\u093e\u0928\u0915\u093e\u0930\u0940, \u0928\u093f\u0930\u094d\u0926\u0947\u0936\u0928, \u0938\u092e\u094d\u092a\u0930\u094d\u0915, \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f \u0938\u0939\u093e\u092f\u0924\u093e, \u0938\u0941\u0930\u0915\u094d\u0937\u093e \u0928\u093f\u092f\u092e \u0930 \u092a\u0930\u0940\u0915\u094d\u0937\u0923 \u091b\u0928\u094d\u0964 \u0906\u0935\u0936\u094d\u092f\u0915 \u092d\u093e\u0917 \u091b\u093e\u0928\u094d\u0928\u0941\u0939\u094b\u0938\u094d\u0964"
   };
-  getWelcomeSpeech = (selectedLang) => welcomeSpeechTexts[selectedLang] || welcomeSpeechTexts.pl;
+  const speechGuideTemplates = {
+    pl: ["Witaj. To jest system szkoleniowy dla {location}.", "Nie wiesz, gdzie iść? Otwórz mapę i wybierz miejsce pracy.", "Po przyjściu wybierz potrzebną sekcję."],
+    en: ["Welcome. This is the training system for {location}.", "Do not know where to go? Open the map and choose your workplace.", "When you arrive, choose the section you need."],
+    ua: ["Вітаємо. Це система навчання для {location}.", "Не знаєте, куди йти? Відкрийте карту і виберіть місце роботи.", "Після прибуття виберіть потрібний розділ."],
+    ru: ["Добро пожаловать. Это система обучения для {location}.", "Не знаете, куда идти? Откройте карту и выберите место работы.", "После прибытия выберите нужный раздел."],
+    az: ["Xoş gəlmisiniz. Bu, {location} üçün təlim sistemidir.", "Hara gedəcəyinizi bilmirsiniz? Xəritəni açın və iş yerinizi seçin.", "Çatdıqdan sonra lazım olan bölməni seçin."],
+    es: ["Bienvenido. Este es el sistema de formación para {location}.", "¿No sabes adónde ir? Abre el mapa y elige tu lugar de trabajo.", "Cuando llegues, elige la sección que necesitas."],
+    fil: ["Maligayang pagdating. Ito ang training system para sa {location}.", "Hindi mo alam kung saan pupunta? Buksan ang mapa at piliin ang lugar ng trabaho.", "Pagdating mo, piliin ang seksiyong kailangan mo."],
+    id: ["Selamat datang. Ini adalah sistem pelatihan untuk {location}.", "Tidak tahu harus pergi ke mana? Buka peta dan pilih tempat kerja Anda.", "Setelah tiba, pilih bagian yang Anda perlukan."],
+    ne: ["स्वागत छ। यो {location} का लागि तालिम प्रणाली हो।", "कहाँ जाने थाहा छैन? नक्सा खोल्नुहोस् र आफ्नो काम गर्ने ठाउँ छान्नुहोस्।", "पुगेपछि आवश्यक भाग छान्नुहोस्।"]
+  };
+  getWelcomeSpeech = (selectedLang) => (speechGuideTemplates[selectedLang] || speechGuideTemplates.pl)
+    .map((line) => line.replace("{location}", getLocationName())).join(" ");
   function esc(value) {
     return String(value ?? "")
       .replaceAll("&", "&amp;")
@@ -1496,7 +1530,7 @@
         return;
       }
       waitForSpeechVoice("pl-PL", (polishVoice) => {
-        const utterance = new SpeechSynthesisUtterance(value);
+        const utterance = new SpeechSynthesisUtterance(speechReady(value, "pl"));
         utterance.lang = "pl-PL";
         utterance.rate = voiceProfiles.pl.rate;
         utterance.pitch = voiceProfiles.pl.pitch;
@@ -1963,7 +1997,7 @@
     };
     const profile = voiceProfiles[selectedLang] || voiceProfiles.en;
     waitForSpeechVoice(locale, (voice) => {
-      const utterance = new SpeechSynthesisUtterance(value);
+      const utterance = new SpeechSynthesisUtterance(speechReady(value, selectedLang));
       utterance.lang = locale;
       utterance.rate = profile.rate;
       utterance.pitch = profile.pitch;
@@ -2146,6 +2180,9 @@
 
   function guideText(selectedLang, location) {
     const name = String(location || "Citronex");
+    if (speechGuideTemplates[selectedLang]) {
+      return speechGuideTemplates[selectedLang].map((line) => line.replace("{location}", name));
+    }
     const copies = {
       pl: [
         "Witaj. To jest system informacyjno-ucz\u0105cy dla lokalizacji " + name + ".",
@@ -2212,7 +2249,7 @@
       update(index, sentences[index]);
       waitForSpeechVoice(locale, (voice) => {
         if (token !== run || !active) return;
-        const utterance = new SpeechSynthesisUtterance(sentences[index]);
+        const utterance = new SpeechSynthesisUtterance(speechReady(sentences[index], selectedLang));
         utterance.lang = locale;
         utterance.rate = (voiceProfiles[selectedLang] || voiceProfiles.en).rate;
         utterance.pitch = (voiceProfiles[selectedLang] || voiceProfiles.en).pitch;
