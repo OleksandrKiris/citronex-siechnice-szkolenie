@@ -2187,8 +2187,7 @@
     setupPageLoading();
     setupFrontendStandard();
     setupContrastGuard();
-    showHydraEntrySplash();
-    showLocationWelcome();
+    // Location pages open directly. No automatic splash or dragon welcome.
   }
 
   function upgradeCache() {
