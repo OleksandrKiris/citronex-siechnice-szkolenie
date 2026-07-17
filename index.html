@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta name="theme-color" content="#166534">
-  <meta name="description" content="System informacyjno-uczĂ„â€¦cy Citronex Siechnice dla pracownikÄ‚Ĺ‚w.">
+  <meta name="description" content="System informacyjno-uczący Citronex Siechnice dla pracowników.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/logo-citronex.svg">
 <link rel="stylesheet" href="assets/css/training.css?v=20260717-clear-3d-map">
@@ -21,15 +21,15 @@
       if (!tiles || tiles.querySelector('[data-external-tile="mapa-zakladu-3d"]')) return;
 
       const translations = {
-        pl: { title: "Mapa zakÄąâ€šadu 3D", text: "Interaktywna mapa 3D zakÄąâ€šadu w Siechnicach." },
+        pl: { title: "Mapa zakładu 3D", text: "Interaktywna mapa 3D zakładu w Siechnicach." },
         en: { title: "3D facility map", text: "Interactive 3D map of the Siechnice facility." },
-        ua: { title: "3D-ÄĹźÄÂ°Ĺâ‚¬Ĺâ€šÄÂ° ÄĹĽĹâ€“ÄÂ´ÄĹĽĹâ‚¬ÄÂ¸Ĺâ€ťÄÄ˝ĹÂĹâ€šÄË›ÄÂ°", text: "Äâ€ ÄËťĹâ€šÄÂµĹâ‚¬ÄÂ°ÄĹźĹâ€šÄÂ¸ÄË›ÄËťÄÂ° 3D-ÄĹźÄÂ°Ĺâ‚¬Ĺâ€šÄÂ° ÄĹĽĹâ€“ÄÂ´ÄĹĽĹâ‚¬ÄÂ¸Ĺâ€ťÄÄ˝ĹÂĹâ€šÄË›ÄÂ° ÄË› ÄË‡Ĺâ€ťĹâ€¦ÄËťĹâ€“Ĺâ€ ÄÂ°Ĺâ€¦." },
-        ru: { title: "3D-ÄĹźÄÂ°Ĺâ‚¬Ĺâ€šÄÂ° ÄĹĽĹâ‚¬ÄÂµÄÂ´ÄĹĽĹâ‚¬ÄÂ¸ĹĹąĹâ€šÄÂ¸ĹĹą", text: "ÄÂÄËťĹâ€šÄÂµĹâ‚¬ÄÂ°ÄĹźĹâ€šÄÂ¸ÄË›ÄËťÄÂ°ĹĹą 3D-ÄĹźÄÂ°Ĺâ‚¬Ĺâ€šÄÂ° ÄĹĽĹâ‚¬ÄÂµÄÂ´ÄĹĽĹâ‚¬ÄÂ¸ĹĹąĹâ€šÄÂ¸ĹĹą ÄË› ÄË‡ÄÂµĹâ€¦ÄËťÄÂ¸Ĺâ€ ÄÂµ." },
-        az: { title: "MÄ‚Ä˝Ă‰â„˘ssisĂ‰â„˘nin 3D xĂ‰â„˘ritĂ‰â„˘si", text: "Siechnice mÄ‚Ä˝Ă‰â„˘ssisĂ‰â„˘sinin interaktiv 3D xĂ‰â„˘ritĂ‰â„˘si." },
+        ua: { title: "3D-карта підприємства", text: "Інтерактивна 3D-карта підприємства в Siechnice." },
+        ru: { title: "3D-карта предприятия", text: "Интерактивная 3D-карта предприятия в Siechnice." },
+        az: { title: "Müəssisənin 3D xəritəsi", text: "Siechnice müəssisəsinin interaktiv 3D xəritəsi." },
         es: { title: "Mapa 3D de la planta", text: "Mapa 3D interactivo de la planta de Siechnice." },
         fil: { title: "3D mapa ng pasilidad", text: "Interactive na 3D mapa ng pasilidad sa Siechnice." },
         id: { title: "Peta 3D fasilitas", text: "Peta 3D interaktif fasilitas di Siechnice." },
-        ne: { title: "Ĺ•Â¤â€˘Ĺ•Â¤ÄľĹ•Â¤Â°Ĺ•Â¤â€“Ĺ•Â¤ÄľĹ•Â¤Â¨Ĺ•Â¤ÄľĹ•Â¤â€˘Ĺ•Ä„â€ą 3D Ĺ•Â¤Â¨Ĺ•Â¤â€˘Ĺ•Ä„Ĺ¤Ĺ•Â¤Â¸Ĺ•Â¤Äľ", text: "Siechnice Ĺ•Â¤â€˘Ĺ•Â¤ÄľĹ•Â¤Â°Ĺ•Â¤â€“Ĺ•Â¤ÄľĹ•Â¤Â¨Ĺ•Â¤ÄľĹ•Â¤â€˘Ĺ•Ä„â€ą Ĺ•Â¤â€¦Ĺ•Â¤Â¨Ĺ•Ä„Ĺ¤Ĺ•Â¤Â¤Ĺ•Â¤Â°Ĺ•Â¤â€˘Ĺ•Ä„Ĺ¤Ĺ•Â¤Â°Ĺ•Â¤ĹĽĹ•Â¤Ĺ»Ĺ•Â¤ÄľĹ•Â¤Â¤Ĺ•Ä„Ĺ¤Ĺ•Â¤Â®Ĺ•Â¤â€˘ 3D Ĺ•Â¤Â¨Ĺ•Â¤â€˘Ĺ•Ä„Ĺ¤Ĺ•Â¤Â¸Ĺ•Â¤ÄľĹ•Ä„Â¤" }
+        ne: { title: "३डी परिसरको नक्सा", text: "Siechnice परिसरको अन्तरक्रियात्मक ३डी नक्सा।" }
       };
 
       const params = new URLSearchParams(window.location.search);
@@ -48,7 +48,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>
             </div>
           </div>
-          <span class="arrow">Ă˘â‚¬Ĺź</span>
+          <span class="arrow">›</span>
         </div>
         <div>
           <p class="tile-title"></p>
