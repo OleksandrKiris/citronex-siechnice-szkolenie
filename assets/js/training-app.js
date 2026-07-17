@@ -469,7 +469,8 @@
 
   function renderHome() {
     const priorityPages = new Set(["mapa", "szklarnia", "reader", "lekarz"]);
-    const tiles = DATA.tiles.map((tile) => `
+    const primaryPages = new Set(["mapa", "magazyn", "szklarnia", "reader", "lekarz", "kontakty", "zakazy", "test"]);
+    const renderTile = (tile) => `
       <a class="tile${priorityPages.has(tile.page) ? " tile-priority" : ""}" data-tone="${esc(tile.tone)}" href="${esc(href(tile.page))}">
         <div class="tile-top">
           <div>
@@ -482,7 +483,21 @@
           <p class="tile-text">${esc(text(tile.text))}</p>
         </div>
       </a>
-    `).join("");
+    `;
+    const primaryTiles = DATA.tiles.filter((tile) => primaryPages.has(tile.page));
+    const extraTiles = DATA.tiles.filter((tile) => !primaryPages.has(tile.page));
+    const tiles = primaryTiles.map(renderTile).join("");
+    const moreModulesLabel = text(tx("Pozost\u0142e modu\u0142y", "More modules", "\u0406\u043d\u0448\u0456 \u043c\u043e\u0434\u0443\u043b\u0456", "\u0414\u0440\u0443\u0433\u0438\u0435 \u043c\u043e\u0434\u0443\u043b\u0438", "Dig\u0259r modullar", "M\u00e1s m\u00f3dulos", "Iba pang mga module", "Modul lainnya", "\u0915\u093e\u0928\u094d\u092f \u092e\u094b\u0921\u094d\u092f\u0941\u0932\u0939\u0930\u0942"));
+    const fixMoreModulesLabel = () => {
+      const summary = app.querySelector(".more-modules > summary");
+      if (summary) summary.textContent = moreModulesLabel;
+    };
+    const extraModules = extraTiles.length ? `
+      <details class="card more-modules section">
+        <summary>${esc(text(tx("Pozostałe moduły", "More modules", "\\u0406\\u043d\\u0448\\u0456 \\u043c\\u043e\\u0434\\u0443\\u043b\\u0456", "\\u0414\\u0440\\u0443\\u0433\\u0438\\u0435 \\u043c\\u043e\\u0434\\u0443\\u043b\\u0438", "Digər modullar", "M\\u00e1s m\\u00f3dulos", "Iba pang mga module", "Modul lainnya", "\\u0915\\u093e\\u0928\\u094d\\u092f \\u092e\\u094b\\u0921\\u094d\\u092f\\u0941\\u0932\\u0939\\u0930\\u0942")))}</summary>
+        <div class="details-body"><section class="tiles compact-tiles">${extraTiles.map(renderTile).join("")}</section></div>
+      </details>
+    ` : "";
     const install = DATA.install;
     const installCard = install ? `
       <details class="card install-card">
@@ -497,7 +512,8 @@
       </details>
     ` : "";
 
-    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${tiles}</section>${installCard}</main>`;
+    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${tiles}</section>${extraModules}${installCard}</main>`;
+    fixMoreModulesLabel();
   }
 
   function renderVersionFooter() {

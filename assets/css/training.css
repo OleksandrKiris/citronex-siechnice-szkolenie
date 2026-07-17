@@ -8616,6 +8616,11 @@ body { background: var(--bg) !important; color: var(--text) !important; }
 .btn { min-height: 52px; border-radius: 12px !important; box-shadow: none !important; }
 .btn.secondary, .btn.ghost { background: #ffffff !important; color: var(--text) !important; border-color: var(--line) !important; }
 .btn.yellow { color: #241a05 !important; }
+.more-modules { padding: 0 !important; overflow: hidden; }
+.more-modules > summary { min-height: 52px; padding: 15px 16px; display: flex; align-items: center; font-weight: 800; color: var(--text); cursor: pointer; }
+.more-modules[open] > summary { border-bottom: 1px solid var(--line); }
+.more-modules .details-body { padding: 10px; }
+.more-modules .compact-tiles { margin: 0; }
 
 @media (max-width: 430px) {
   .page { padding-top: 10px; }
