@@ -8561,6 +8561,43 @@ video {
   }
 }
 
+/* Greenhouse 3D labels must stay readable on narrow phone screens. */
+body[data-page="szklarnia"] .greenhouse-3d-overview .center-road {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  transform: none !important;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  padding: 6px 3px;
+  line-height: 1.05;
+  text-align: center;
+}
+
+body[data-page="szklarnia"] .nave-3d-view .nave-side small {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  transform: none !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  font-size: clamp(8px, 2.5vw, 10px) !important;
+  line-height: 1.05;
+}
+
+body[data-page="szklarnia"] .passage-3d-view .passage-label {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  transform: translate(-50%, -50%) !important;
+  width: max-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  padding: 6px 10px;
+  line-height: 1.05;
+}
+
 /* Final shared palette and density pass. */
 :root {
   --bg: #f3f6f4 !important;
