@@ -366,10 +366,21 @@
       </a>
     `).join("");
     const hydraHref = `https://oleksandrkiris.github.io/citronex-hydra-project/?lang=${encodeURIComponent(lang)}`;
+    const hydraLabel = text(tx(
+      "Wróć do Hydry",
+      "Back to Hydra",
+      "Повернутися до Hydra",
+      "Вернуться в Hydra",
+      "Hydra-ya qayıt",
+      "Volver a Hydra",
+      "Bumalik sa Hydra",
+      "Kembali ke Hydra",
+      "Hydra मा फर्कनुहोस्"
+    ));
     const hydraHtml = `
-      <a class="top-nav-link hydra-link" href="${esc(hydraHref)}">
+      <a class="top-nav-link hydra-link" href="${esc(hydraHref)}" aria-label="${esc(hydraLabel)}">
         <span class="top-nav-icon" aria-hidden="true">${iconMap.hub}</span>
-        <span>HYDRA</span>
+        <span>${esc(hydraLabel)}</span>
       </a>
     `;
     const homeReturn = isHome ? "" : `
