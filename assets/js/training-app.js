@@ -1,6 +1,7 @@
 (() => {
   const DATA = window.CX_DATA;
   const tx = (pl, en, ua, ru, az, es, fil, id, ne) => ({ pl, en, ua, ru, az, es, fil, id, ne });
+  const hydraBrand = "CITRONEX hydra S.R.Z.B.";
   const validLangs = new Set(DATA.languages.map((item) => item.id));
   const page = document.body.dataset.page || "home";
   const app = document.getElementById("app");
@@ -397,7 +398,7 @@
           <div class="brand">
             <img src="assets/logo-citronex.svg" alt="Citronex">
             <div>
-              <p class="brand-title">${esc(ui("brand"))}</p>
+              <p class="brand-title">${esc(hydraBrand)}</p>
               <p class="brand-subtitle">${esc(ui("subtitle"))}</p>
             </div>
           </div>
@@ -438,7 +439,7 @@
   function showHydraEntrySplash() {
     const params = new URLSearchParams(location.search);
     if (params.get("from") !== "hydra" || document.querySelector(".location-splash")) return;
-    const appTitle = DATA.meta && DATA.meta.appTitle ? DATA.meta.appTitle : ui("brand");
+    const appTitle = DATA.meta && DATA.meta.appTitle ? DATA.meta.appTitle : hydraBrand;
     const logoSrc = DATA.meta && DATA.meta.logo ? DATA.meta.logo : "assets/logo-citronex.svg";
     const logoAlt = DATA.meta && DATA.meta.logoAlt ? DATA.meta.logoAlt : appTitle;
     const cleanUrl = new URL(location.href);
@@ -468,10 +469,10 @@
 
   function pageHero(pageName = page) {
     const info = DATA.pages[pageName] || DATA.pages.home;
-    document.title = `${text(info.title)} - Citronex Siechnice`;
+    document.title = `${text(info.title)} - ${text(ui("brand"))}`;
     return `
       <section class="hero">
-        <p class="eyebrow">Citronex Siechnice</p>
+        <p class="eyebrow">${esc(hydraBrand)}</p>
         <h1>${esc(text(info.title))}</h1>
         <p class="lead">${esc(text(info.lead))}</p>
       </section>

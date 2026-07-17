@@ -1,7 +1,7 @@
 {
-  "name": "Citronex Siechnice Szkolenie",
-  "short_name": "Citronex",
-  "description": "System informacyjno-uczący Citronex Siechnice",
+  "name": "CITRONEX hydra S.R.Z.B. - Siechnice",
+  "short_name": "CITRONEX hydra",
+  "description": "Szkolenie CITRONEX hydra S.R.Z.B. dla Siechnic",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
