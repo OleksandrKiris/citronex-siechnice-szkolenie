@@ -8669,6 +8669,7 @@ body[data-page="home"] .tile-text {
 body[data-page="home"] .hero .lead { -webkit-line-clamp: 2; }
 body[data-page="home"] .tile-text { -webkit-line-clamp: 2; }
 body[data-page="home"] .tile-title { overflow-wrap: anywhere; }
+body .brand-title { text-transform: none !important; }
 
 @media (max-width: 430px) {
   .page { padding-top: 10px; }
