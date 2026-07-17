@@ -774,6 +774,37 @@
       nextStep: tx("Następny krok: wejście do rzędu", "Next step: enter the row", "Наступний крок: вхід у ряд", "Следующий шаг: вход в ряд", "Növbəti addım: sıraya giriş", "Siguiente paso: entrar en la fila", "Susunod: pumasok sa hanay", "Langkah berikutnya: masuk ke baris", "अर्को चरण: लाइनमा प्रवेश")
     };
 
+    // Visible diagram labels use short, direct words so the map is readable at a glance.
+    const diagram = {
+      back: tx("PIERWSZE NAWY - ZA TOB\u0104", "FIRST NAVES - BEHIND YOU", "\u041f\u0415\u0420\u0428\u0406 \u041d\u0410\u0412\u0418 - \u0417\u0410 \u0421\u041f\u0418\u041d\u041e\u042e", "\u041f\u0415\u0420\u0412\u042b\u0415 \u041f\u0420\u041e\u041b\u0415\u0422\u042b - \u0417\u0410 \u0421\u041f\u0418\u041d\u041e\u0419", "\u0130LK B\u00d6LM\u018fL\u018fR - ARXANDA", "PRIMERAS NAVES - DETR\u00c1S DE TI", "UNANG NAVE - NASA LIKOD MO", "NAVE PERTAMA - DI BELAKANG ANDA", "\u092a\u0939\u093f\u0932\u094b \u0928\u093e\u0935\u093e - \u0924\u092a\u093e\u0908\u0902\u0915\u094b \u092a\u091b\u093e\u0921\u093f"),
+      left: tx("LEWA STRONA", "LEFT SIDE", "\u041b\u0406\u0412\u0410 \u0421\u0422\u041e\u0420\u041e\u041d\u0410", "\u041b\u0415\u0412\u0410\u042f \u0421\u0422\u041e\u0420\u041e\u041d\u0410", "SOL T\u018fR\u018fF", "LADO IZQUIERDO", "KALIWANG BAHAGI", "SISI KIRI", "\u092c\u093e\u092f\u093e\u0901 \u092a\u0915\u094d\u0937"),
+      right: tx("PRAWA STRONA", "RIGHT SIDE", "\u041f\u0420\u0410\u0412\u0410 \u0421\u0422\u041e\u0420\u041e\u041d\u0410", "\u041f\u0420\u0410\u0412\u0410\u042f \u0421\u0422\u041e\u0420\u041e\u041d\u0410", "SA\u011e T\u018fR\u018fF", "LADO DERECHO", "KANANG BAHAGI", "SISI KANAN", "\u0926\u093e\u092f\u093e\u0901 \u092a\u0915\u094d\u0937"),
+      look: tx("PATRZYSZ NA NAWY", "LOOK TOWARD THE NAVES", "\u0414\u0418\u0412\u0418\u0428\u0421\u042f \u041d\u0410 \u041d\u0410\u0412\u0418", "\u0421\u041c\u041e\u0422\u0420\u0418\u0428\u042c \u041d\u0410 \u041f\u0420\u041e\u041b\u0415\u0422\u042b", "NAVALARA BAXIRSAN", "MIRAS HACIA LAS NAVES", "NAKATINGIN SA MGA NAVE", "LIHAT KE ARAH NAVE", "\u0928\u093e\u0935\u093e\u0924\u093f\u0930 \u0939\u0947\u0930\u094d\u0926\u0948"),
+      stand: tx("STOJESZ TUTAJ", "YOU STAND HERE", "\u0422\u0418 \u0421\u0422\u041e\u0407\u0428 \u0422\u0423\u0422", "\u0422\u042b \u0421\u0422\u041e\u0418\u0428\u042c \u0417\u0414\u0415\u0421\u042c", "BURADA DAYANIRSAN", "EST\u00c1S AQU\u00cd", "DITO KA NAKATAYO", "ANDA BERDIRI DI SINI", "\u092f\u0939\u093e\u0901 \u092c\u0938\u094d\u0928\u0941\u0939\u094b\u0938\u094d"),
+      road: tx("DROGA \u015aRODKOWA", "MIDDLE ROAD", "\u0426\u0415\u041d\u0422\u0420\u0410\u041b\u042c\u041d\u0410 \u0414\u041e\u0420\u041e\u0413\u0410", "\u0426\u0415\u041d\u0422\u0420\u0410\u041b\u042c\u041d\u0410\u042f \u0414\u041e\u0420\u041e\u0413\u0410", "ORTA YOL", "CAMINO CENTRAL", "GITNANG DAAN", "JALAN TENGAH", "\u092c\u0940\u091a\u0915\u094b \u092c\u093e\u091f\u094b"),
+      passages: tx("5 PRZEJ\u015a\u0106 - OD LEWEJ: 1-5", "5 PASSAGES - FROM LEFT: 1-5", "5 \u041f\u0420\u041e\u0425\u041e\u0414\u0406\u0412 - \u0417\u041b\u0406\u0412\u0410: 1-5", "5 \u041f\u0420\u041e\u0425\u041e\u0414\u041e\0412 - \u0421\u041b\u0415\u0412\u0410: 1-5", "5 KE\u00c7\u0130D - SOLDAN: 1-5", "5 PASILLOS - DESDE LA IZQUIERDA: 1-5", "5 DAANAN - MULA KALIWA: 1-5", "5 LORONG - DARI KIRI: 1-5", "5 \u092c\u093e\u091f\u094b - \u092c\u093e\u092f\u093e\u0901\u092c\u093e\u091f: 1-5"),
+      choose: tx("WYBIERZ PRZEJ\u015aCIE 1-5", "CHOOSE PASSAGE 1-5", "\u041e\u0411\u0415\u0420\u0406\u0422\u042c \u041f\u0420\u041e\u0425\u0406\u0414 1-5", "\u0412\u042b\u0411\u0415\u0420\u0418 \u041f\u0420\u041e\u0425\u041e\0414 1-5", "1-5 KE\u00c7\u0130D\u0414\u0415\u041d BIRINI SE\u00c7", "ELIGE EL PASILLO 1-5", "PILIIN ANG DAANAN 1-5", "PILIH LORONG 1-5", "1-5 \u092c\u093e\u091f\u094b \u091b\u093e\u0928\u094d\u0928\u0941\u0939\u094b\u0938\u094d"),
+      leftRow: tx("LEWY RZ\u0104D", "LEFT ROW", "\u041b\u0406\u0412\u0418\u0419 \u0420\u042f\u0414", "\u041b\u0415\u0412\u042b\u0419 \u0420\u042f\u0414", "SOL SIRA", "FILA IZQUIERDA", "KALIWANG HANAY", "BARIS KIRI", "\u092c\u093e\u092f\u093e\u0901 \u0932\u093e\u0907\u0928"),
+      rightRow: tx("PRAWY RZ\u0104D", "RIGHT ROW", "\u041f\u0420\u0410\u0412\u0418\u0419 \u0420\u042f\u0414", "\u041f\u0420\u0410\u0412\u042b\u0419 \u0420\u042f\u0414", "SA\u011e SIRA", "FILA DERECHA", "KANANG HANAY", "BARIS KANAN", "\u0926\u093e\u092f\u093e\u0901 \u0932\u093e\u0907\u0928"),
+      passage: tx("PRZEJ\u015aCIE", "PASSAGE", "\u041f\u0420\u041e\u0425\u0406\u0414", "\u041f\u0420\u041e\u0425\u041e\0414", "KE\u00c7\u0130D", "PASILLO", "DAANAN", "LORONG", "\u092c\u093e\u091f\u094b"),
+      depth: tx("IDZIESZ W G\u0141\u0104B", "WALK DEEPER INTO THE PASSAGE", "\u0406\u0414\u0415\u0428 \u0423\u0413\u041b\u0418\u0411 \u041f\u0420\u041e\0425\u041e\0414\u0423", "\u0418\u0414\u0418 \u0412\u0413\u041b\u0423\u0411\042c \u041f\u0420\u041e\0425\u041e\0414\0410", "KE\u00c7\u0130D\u0130N \u0130\u00c7\u0130N\u018f GET", "CAMINA HACIA DENTRO", "PUMASOK SA DAANAN", "KE DALAM LORONG", "\u092c\u093e\u091f\u094b\u092d\u093f\u0924\u094d\u0930 \u091c\u093e\u0928\u0941\u0939\u094b\u0938\u094d"),
+      floor: tx("NUMERY PRZ\u0118SE\u0141 NA POD\u0141ODZE", "SECTION NUMBERS ON THE FLOOR", "\u041d\u041e\u041c\u0415\u0420\u0418 \u041f\u0420\u041e\u041b\u0415\u0422\u0406\u0412 \u041d\u0410 \u041f\u0406\u0414\u041b\u041e\u0417\u0406", "\u041d\u041e\u041c\u0415\u0420\u0410 \u041f\u0420\u041e\u041b\u0415\u0422\u041e\u0412 \u041d\u0410 \u041f\u041e\u041b\u0423", "D\u00d6\u015e\u018fM\u018fD\u018f B\u00d6LM\u018f N\u00d6MR\u018fL\u018fR\u0130", "N\u00daMEROS EN EL SUELO", "NUMERO SA SAHIG", "NOMOR DI LANTAI", "\u092d\u0941\u0915\u094d\u092f\u092e\u093e \u0928\u092e\u094d\u092c\u0930"),
+      selected: tx("WYBRANE PRZEJ\u015aCIE", "SELECTED PASSAGE", "\u041e\u0431\u0440\u0430\u043d\u0438\u0439 \u043f\u0440\u043e\u0445\u0456\u0434", "\u0412\u044b\u0431\u0440\u0430\u043d\u043d\u044b\u0439 \u043f\u0440\u043e\u0445\u043e\0434", "SE\u00c7\u0130LM\u0130\u015e KE\u00c7\u0130D", "PASILLO ELEGIDO", "NAPILING DAANAN", "LORONG DIPILIH", "\u091b\u093e\u0928\u093f\u090f\u0915\u094b \u092c\u093e\u091f\u094b")
+    };
+    // Keep the technical words natural in every language used by the workers.
+    Object.assign(diagram, {
+      passages: tx("5 PRZEJŚĆ - OD LEWEJ: 1-5", "5 PASSAGES - FROM LEFT: 1-5", "5 ПРОХОДІВ - ЗЛІВА: 1-5", "5 ПРОХОДОВ - СЛЕВА: 1-5", "5 KEÇİD - SOLDAN: 1-5", "5 PASILLOS - DESDE LA IZQUIERDA: 1-5", "5 DAANAN - MULA KALIWA: 1-5", "5 LORONG - DARI KIRI: 1-5", "5 बाटो - बायाँबाट: 1-5"),
+      choose: tx("WYBIERZ PRZEJŚCIE 1-5", "CHOOSE PASSAGE 1-5", "ОБЕРІТЬ ПРОХІД 1-5", "ВЫБЕРИ ПРОХОД 1-5", "1-5 KEÇİDDƏN BİRİNİ SEÇ", "ELIGE EL PASILLO 1-5", "PILIIN ANG DAANAN 1-5", "PILIH LORONG 1-5", "1-5 बाटो छान्नुहोस्"),
+      passage: tx("PRZEJŚCIE", "PASSAGE", "ПРОХІД", "ПРОХОД", "KEÇİD", "PASILLO", "DAANAN", "LORONG", "बाटो"),
+      depth: tx("IDZIESZ W GŁĄB", "WALK DEEPER INTO THE PASSAGE", "ІДЕШ УГЛИБ ПРОХОДУ", "ИДИ ВГЛУБЬ ПРОХОДА", "KEÇİDİN İÇİNƏ GET", "CAMINA HACIA DENTRO", "PUMASOK SA DAANAN", "KE DALAM LORONG", "बाटोभित्र जानुहोस्"),
+      floor: tx("NUMERY PRZĘSEŁ NA PODŁODZE", "SECTION NUMBERS ON THE FLOOR", "НОМЕРИ ПРОЛЬОТІВ НА ПІДЛОЗІ", "НОМЕРА ПРОЛЕТОВ НА ПОЛУ", "DÖŞƏMƏDƏ BÖLMƏ NÖMRƏLƏRİ", "NÚMEROS EN EL SUELO", "NUMERO SA SAHIG", "NOMOR DI LANTAI", "भुइँमा नम्बर"),
+      selected: tx("WYBRANE PRZEJŚCIE", "SELECTED PASSAGE", "ОБРАНИЙ ПРОХІД", "ВЫБРАННЫЙ ПРОХОД", "SEÇİLMİŞ KEÇİD", "PASILLO ELEGIDO", "NAPILING DAANAN", "LORONG DIPILIH", "छानिएको बाटो")
+    });
+    const overviewCells = Array.from({ length: 12 }, (_, i) => {
+      const label = i === 0 ? "1" : i === 1 ? "2" : i === 2 ? "3" : i === 11 ? "37-39" : "";
+      return `<span class="nave-cell">${label}</span>`;
+    }).join("");
+
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
@@ -792,14 +823,14 @@
               <p>${esc(text(tx("Stoisz plecami do pierwszych naw. Po środku jest droga. Po jednej stronie jest lewa część, po drugiej prawa część. Liczba naw może być różna: 37, 38 albo 39.", "Stand with your back to the first naves. The road is in the middle. One side is left, the other is right. The number of naves may be 37, 38 or 39.", "Станьте спиною до перших нав. Посередині дорога. З одного боку ліва частина, з іншого права. Нав може бути 37, 38 або 39.", "Встаньте спиной к первым навам. Посередине дорога. С одной стороны левая часть, с другой правая. Нав может быть 37, 38 или 39.", "İlk navalara arxanızla dayanın. Ortada yol var. Bir tərəf sol, o biri sağdır. Nava sayı 37, 38 və ya 39 ola bilər.", "Ponte de espaldas a las primeras naves. En el medio está el camino. Un lado es izquierdo y otro derecho. Puede haber 37, 38 o 39 naves.", "Tumayo na nakatalikod sa unang mga nawa. Nasa gitna ang daan. Isang bahagi ay kaliwa, isa ay kanan. Puwedeng 37, 38 o 39 nawa.", "Berdiri membelakangi nave pertama. Jalan ada di tengah. Satu sisi kiri, satu sisi kanan. Jumlah nave bisa 37, 38 atau 39.", "पहिलो नावातिर ढाड फर्काएर उभिनुहोस्। बीचमा बाटो छ। एक भाग बायाँ, अर्को दायाँ। नावा ३७, ३८ वा ३९ हुन सक्छ।")))}</p>
               <div class="schema">
                 <div class="greenhouse-map greenhouse-3d-overview" aria-label="greenhouse schema">
-                  <div class="orientation-badge overview-back">${esc(text(orient.back))}</div>
-                  <div class="orientation-badge overview-left">${esc(text(orient.left))}</div>
-                  <div class="orientation-badge overview-right">${esc(text(orient.right))}</div>
-                  <div class="orientation-badge overview-look">${esc(text(orient.look))}</div>
-                  <div class="orientation-badge overview-stand">${esc(text(orient.stand))}</div>
-                  <div class="green-side">${Array.from({ length: 12 }, (_, i) => `<span class="nave-cell">${i === 0 ? "1" : i === 11 ? "..." : ""}</span>`).join("")}</div>
-                  <div class="center-road">${esc(text(tx("droga środkowa", "middle road", "центральна дорога", "центральная дорога", "orta yol", "camino central", "gitnang daan", "jalan tengah", "बीच बाटो")))}</div>
-                  <div class="green-side">${Array.from({ length: 12 }, (_, i) => `<span class="nave-cell">${i === 0 ? "1" : i === 11 ? "..." : ""}</span>`).join("")}</div>
+                  <div class="orientation-badge overview-back">${esc(text(diagram.back))}</div>
+                  <div class="orientation-badge overview-left">${esc(text(diagram.left))}</div>
+                  <div class="orientation-badge overview-right">${esc(text(diagram.right))}</div>
+                  <div class="orientation-badge overview-look">${esc(text(diagram.look))}</div>
+                  <div class="orientation-badge overview-stand">${esc(text(diagram.stand))}</div>
+                  <div class="green-side">${overviewCells}</div>
+                  <div class="center-road">${esc(text(diagram.road))}</div>
+                  <div class="green-side">${overviewCells}</div>
                 </div>
               </div>
               <div class="btn-row">${action("assets/orientation/sklarnia-etap-excel.png", ui("showFullImage"), "secondary")}</div>
@@ -812,17 +843,17 @@
               <p>${esc(text(tx("Patrzysz na jedną nawę od wejścia. W tym kroku nie liczysz rzędów. Widzisz tylko 5 przejść obok siebie. Pierwsze przejście zaczyna się z lewej strony.", "You look at one nave from the entrance. In this step you do not count rows. You only see 5 passages next to each other. The first passage starts on the left.", "Ви дивитесь на одну наву від входу. На цьому кроці не рахуйте ряди. Ви бачите тільки 5 проходів поруч. Перший прохід починається зліва.", "Вы смотрите на одну наву со входа. На этом шаге не считайте ряды. Вы видите только 5 проходов рядом. Первый проход начинается слева.", "Bir navaya giriş tərəfdən baxırsınız. Bu addımda sıraları saymayın. Yalnız yanaşı 5 keçidi görürsünüz. Birinci keçid soldan başlayır.", "Miras una nave desde la entrada. En este paso no cuentas las filas. Solo ves 5 pasillos juntos. El primer pasillo empieza a la izquierda.", "Tinitingnan mo ang isang nave mula sa pasukan. Sa hakbang na ito huwag bilangin ang mga hanay. Nakikita mo lang ang 5 daanan na magkakatabi. Ang unang daanan ay nagsisimula sa kaliwa.", "Anda melihat satu nave dari pintu masuk. Pada langkah ini jangan menghitung baris. Anda hanya melihat 5 lorong berdampingan. Lorong pertama mulai dari kiri.", "तपाईं प्रवेशबाट एउटा नावा हेर्दै हुनुहुन्छ। यो चरणमा लाइन नगन्नुहोस्। तपाईंले सँगसँगै ५ वटा बाटो मात्र देख्नुहुन्छ। पहिलो बाटो बायाँबाट सुरु हुन्छ।")))}</p>
               <div class="schema">
                 <div class="nave-diagram nave-3d-view">
-                  <div class="orientation-badge nave-entrances">${esc(text(orient.entrances))}</div>
-                  <div class="orientation-badge nave-rows">${esc(text(orient.rows))}</div>
-                  <div class="orientation-badge nave-stand">${esc(text(orient.stand))}</div>
+                  <div class="orientation-badge nave-entrances">${esc(text(diagram.passages))}</div>
+                  <div class="orientation-badge nave-rows">${esc(text(diagram.choose))}</div>
+                  <div class="orientation-badge nave-stand">${esc(text(diagram.stand))}</div>
                   ${Array.from({ length: 5 }, (_, i) => {
                     const passageNumber = i + 1;
                     return `<div class="entry nave-entry">
-                      <button class="nave-pick-btn" type="button" data-nave-passage="${passageNumber}" aria-label="${esc(text(orient.passage))} ${passageNumber}">${passageNumber}</button>
+                      <button class="nave-pick-btn" type="button" data-nave-passage="${passageNumber}" aria-label="${esc(text(diagram.passage))} ${passageNumber}"><span class="nave-number">${passageNumber}</span><span class="nave-button-label">${esc(text(diagram.passage))}</span></button>
                       <div class="entry-rows entry-two-rows">
-                        <div class="nave-side nave-side-left"><small>${esc(text(orient.leftRow))}</small></div>
-                        <div class="entry-corridor"><small>${esc(text(orient.passage))}</small></div>
-                        <div class="nave-side nave-side-right"><small>${esc(text(orient.rightRow))}</small></div>
+                        <div class="nave-side nave-side-left"><small>${esc(text(diagram.leftRow))}</small></div>
+                        <div class="entry-corridor"><small>${esc(text(diagram.passage))}</small></div>
+                        <div class="nave-side nave-side-right"><small>${esc(text(diagram.rightRow))}</small></div>
                       </div>
                     </div>`;
                   }).join("")}
@@ -842,18 +873,18 @@
               <p>${esc(text(tx("Patrzysz w przejście. Po lewej jest lewa strona, czyli lewy rząd. Po prawej jest prawa strona, czyli prawy rząd. Praca odbywa się w rzędzie, a nie 'obok rzędu'.", "You look into the passage. On the left is the left side, the left row. On the right is the right side, the right row. Work is in the row, not next to the row.", "Ви дивитесь у прохід. Зліва є ліва сторона, тобто лівий ряд. Справа є права сторона, тобто правий ряд. Робота відбувається в ряду, не біля ряду.", "Вы смотрите в проход. Слева левая сторона, то есть левый ряд. Справа правая сторона, то есть правый ряд. Работа в ряду, не возле ряда.", "Keçidə baxırsınız. Solda sol tərəf, yəni sol sıra var. Sağda sağ tərəf, yəni sağ sıra var. İş sıranın içindədir, sıranın yanında deyil.", "Miras al pasillo. A la izquierda está el lado izquierdo, es decir la fila izquierda. A la derecha está el lado derecho, es decir la fila derecha. Se trabaja dentro de la fila, no al lado.", "Tumingin sa daanan. Sa kaliwa ang kaliwang bahagi, ibig sabihin kaliwang hanay. Sa kanan ang kanang bahagi, ibig sabihin kanang hanay. Ang trabaho ay nasa hanay, hindi sa tabi.", "Lihat ke lorong. Di kiri ada sisi kiri, yaitu baris kiri. Di kanan ada sisi kanan, yaitu baris kanan. Kerja di dalam baris, bukan di samping.", "पासेजतिर हेर्नुहोस्। बायाँतिर बायाँ भाग, अर्थात् बायाँ लाइन हुन्छ। दायाँतिर दायाँ भाग, अर्थात् दायाँ लाइन हुन्छ। काम लाइनभित्र हुन्छ, लाइनको छेउमा होइन।")))}</p>
               <div class="schema">
                 <div class="passage-diagram passage-3d-view">
-                  <div class="orientation-badge passage-depth">${esc(text(orient.depth))}</div>
-                  <div class="orientation-badge passage-floor">${esc(text(orient.floor))}</div>
-                  <div class="orientation-badge passage-stand">${esc(text(orient.stand))}</div>
-                  <div class="orientation-badge passage-selected" data-passage-current data-default-label="${esc(text(tx("wybierz przejście w kroku 2", "choose a passage in step 2", "виберіть прохід у кроці 2", "выберите проход в шаге 2", "2-ci addımda keçidi seçin", "elige el pasillo en el paso 2", "piliin ang daanan sa hakbang 2", "pilih lorong di langkah 2", "चरण २ मा बाटो छान्नुहोस्")))}" data-label="${esc(text(orient.selected))}">${esc(text(tx("wybierz przejście w kroku 2", "choose a passage in step 2", "виберіть прохід у кроці 2", "выберите проход в шаге 2", "2-ci addımda keçidi seçin", "elige el pasillo en el paso 2", "piliin ang daanan sa hakbang 2", "pilih lorong di langkah 2", "चरण २ मा बाटो छान्नुहोस्")))}</div>
-                  <div class="row-side">${esc(text(tx("lewa strona / lewy rząd", "left side / left row", "ліва сторона / лівий ряд", "левая сторона / левый ряд", "sol tərəf / sol sıra", "lado izquierdo / fila izquierda", "kaliwang bahagi / kaliwang hanay", "sisi kiri / baris kiri", "बायाँ भाग / बायाँ लाइन")))}</div>
+                  <div class="orientation-badge passage-depth">${esc(text(diagram.depth))}</div>
+                  <div class="orientation-badge passage-floor">${esc(text(diagram.floor))}</div>
+                  <div class="orientation-badge passage-stand">${esc(text(diagram.stand))}</div>
+                  <div class="orientation-badge passage-selected" data-passage-current data-default-label="${esc(text(diagram.choose))}" data-label="${esc(text(diagram.selected))}">${esc(text(diagram.choose))}</div>
+                  <div class="row-side">${esc(text(diagram.leftRow))}</div>
                   <div class="work-passage">
-                    <span class="passage-label">${esc(text(tx("przejście", "passage", "прохід", "проход", "keçid", "pasillo", "daanan", "lorong", "पासेज")))}</span>
-                    <div class="floor-number-strip in-passage" aria-label="${esc(text(tx("Numeracja przęseł na podłodze", "Section numbers on the floor", "Нумерація секцій на підлозі", "Нумерация секций на полу", "Yerdə bölmə nömrələri", "Números de sección en el suelo", "Mga numero ng seksyon sa sahig", "Nomor bagian di lantai", "भुइँमा सेक्शन नम्बर"))) }">
+                    <span class="passage-label">${esc(text(diagram.passage))}</span>
+                    <div class="floor-number-strip in-passage" aria-label="${esc(text(diagram.floor))}">
                       <span>1</span><span>2</span><span>3</span><span>...</span><span>25</span><span>26</span><span>27</span>
                     </div>
                   </div>
-                  <div class="row-side">${esc(text(tx("prawa strona / prawy rząd", "right side / right row", "права сторона / правий ряд", "правая сторона / правый ряд", "sağ tərəf / sağ sıra", "lado derecho / fila derecha", "kanang bahagi / kanang hanay", "sisi kanan / baris kanan", "दायाँ भाग / दायाँ लाइन")))}</div>
+                  <div class="row-side">${esc(text(diagram.rightRow))}</div>
                 </div>
                 <p class="floor-note">${esc(text(tx("Numer przęsła jest oznaczony na podłodze w przejściu. Często numeracja jest od 1 do 27, ale na różnych szklarniach może być inna. Zawsze sprawdzaj numer w tej szklarni.", "The section number is marked on the floor in the passage. Often the numbers go from 1 to 27, but they can be different in different greenhouses. Always check the number in that greenhouse.", "Номер секції позначений на підлозі в проході. Часто нумерація йде від 1 до 27, але в різних теплицях може бути інакше. Завжди перевіряйте номер у цій теплиці.", "Номер секции указан на полу в проходе. Часто нумерация идет от 1 до 27, но в разных теплицах может быть по-разному. Всегда проверяйте номер в этой теплице.", "Bölmənin nömrəsi keçiddə yerdə göstərilir. Çox vaxt nömrələr 1-dən 27-yə qədərdir, amma müxtəlif istixanalarda fərqli ola bilər. Həmişə həmin istixanada nömrəni yoxlayın.", "El número de sección está marcado en el suelo del pasillo. A menudo va del 1 al 27, pero puede ser diferente según el invernadero. Revisa siempre el número en ese invernadero.", "Nakasulat sa sahig ng daanan ang numero ng seksyon. Kadalasan 1 hanggang 27, pero maaaring iba sa bawat bahay-taniman. Palaging tingnan ang numero sa bahay-taniman na iyon.", "Nomor bagian tertulis di lantai lorong. Biasanya dari 1 sampai 27, tetapi bisa berbeda di tiap rumah kaca. Selalu cek nomor di rumah kaca itu.", "सेक्शन नम्बर पासेजको भुइँमा लेखिएको हुन्छ। प्रायः १ देखि २७ सम्म हुन्छ, तर फरक ग्रीनहाउसमा फरक हुन सक्छ। सधैं त्यही ग्रीनहाउसको नम्बर जाँच गर्नुहोस्।")))}</p>
               </div>

@@ -18,7 +18,7 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260717-no-auto-overlay-siechnice",
+  "./assets/css/training.css?v=20260717-clear-3d-map",
   "./assets/js/training-data.js?v=20260717-no-auto-overlay-siechnice",
   "./assets/js/training-app.js?v=20260717-hydra-return",
   "./assets/logo-citronex.svg"

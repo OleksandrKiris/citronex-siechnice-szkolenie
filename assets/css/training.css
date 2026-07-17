@@ -8664,3 +8664,231 @@ body { background: var(--bg) !important; color: var(--text) !important; }
   .hero { padding: 14px !important; }
   .tile { min-height: 128px !important; padding: 12px !important; }
 }
+
+/* Greenhouse map: labels are short, horizontal and readable on small phones. */
+body[data-page="szklarnia"] .greenhouse-steps .step-card {
+  display: block !important;
+}
+
+body[data-page="szklarnia"] .greenhouse-steps .step-card > .step-number {
+  margin-bottom: 10px;
+}
+
+body[data-page="szklarnia"] .greenhouse-steps .step-card > div {
+  width: 100%;
+  min-width: 0;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview,
+body[data-page="szklarnia"] .nave-3d-view,
+body[data-page="szklarnia"] .passage-3d-view {
+  overflow: hidden;
+}
+
+/* Keep the full-screen hint below the drawing, never on top of a label. */
+body[data-page="szklarnia"] .greenhouse-steps .orientation-zoom-pill {
+  position: static;
+  width: max-content;
+  max-width: 100%;
+  margin: 10px 0 0 auto;
+  pointer-events: none;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview .orientation-badge,
+body[data-page="szklarnia"] .nave-3d-view .orientation-badge,
+body[data-page="szklarnia"] .passage-3d-view .orientation-badge {
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  hyphens: none;
+  text-transform: uppercase;
+  font-size: clamp(9px, 2.45vw, 12px) !important;
+  font-weight: 950;
+  line-height: 1.08;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview {
+  min-height: 320px;
+  grid-template-columns: minmax(0, 1fr) clamp(42px, 12vw, 58px) minmax(0, 1fr) !important;
+  gap: clamp(5px, 1.8vw, 9px) !important;
+  padding: 76px 8px 72px !important;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview .green-side {
+  min-height: 220px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 7px;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview .nave-cell {
+  min-height: 30px;
+  font-size: clamp(8px, 2.2vw, 11px);
+  color: #14532d;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview .center-road {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  transform: perspective(720px) rotateX(10deg) !important;
+  padding: 8px 3px;
+  text-align: center;
+  font-size: clamp(8px, 2.25vw, 11px) !important;
+  line-height: 1.08;
+  white-space: normal !important;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview .overview-left,
+body[data-page="szklarnia"] .greenhouse-3d-overview .overview-right {
+  top: 47px;
+  max-width: calc(50% - 14px) !important;
+  padding: 6px 7px;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview .overview-back {
+  max-width: calc(100% - 24px) !important;
+  padding: 6px 8px;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview .overview-look {
+  bottom: 42px;
+  max-width: calc(100% - 28px) !important;
+  padding: 6px 8px;
+}
+
+body[data-page="szklarnia"] .greenhouse-3d-overview .overview-stand {
+  bottom: 8px;
+  padding: 5px 8px;
+}
+
+body[data-page="szklarnia"] .nave-3d-view {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+  padding: 68px 6px 24px !important;
+}
+
+body[data-page="szklarnia"] .nave-3d-view .nave-entry {
+  min-width: 0;
+  grid-template-rows: 46px minmax(0, 1fr);
+}
+
+body[data-page="szklarnia"] .nave-3d-view .nave-pick-btn {
+  min-height: 46px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 3px 1px;
+}
+
+body[data-page="szklarnia"] .nave-3d-view .nave-number {
+  display: block;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 18px;
+  line-height: 1;
+}
+
+body[data-page="szklarnia"] .nave-3d-view .nave-button-label {
+  display: block;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 7px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+body[data-page="szklarnia"] .nave-3d-view .entry-two-rows {
+  grid-template-columns: minmax(0, 1fr) 9px minmax(0, 1fr) !important;
+  gap: 2px;
+  padding: 5px 2px;
+}
+
+body[data-page="szklarnia"] .nave-3d-view .nave-side,
+body[data-page="szklarnia"] .nave-3d-view .entry-corridor {
+  min-height: 102px;
+}
+
+body[data-page="szklarnia"] .nave-3d-view .nave-side small {
+  display: block !important;
+  writing-mode: horizontal-tb !important;
+  transform: none !important;
+  max-width: 100%;
+  font-size: 7px !important;
+  line-height: 1.05;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+body[data-page="szklarnia"] .nave-3d-view .entry-corridor small {
+  display: none !important;
+}
+
+body[data-page="szklarnia"] .passage-3d-view {
+  grid-template-columns: minmax(0, 1fr) minmax(68px, 82px) minmax(0, 1fr) !important;
+  gap: 7px !important;
+  padding: 82px 7px 58px !important;
+}
+
+body[data-page="szklarnia"] .passage-3d-view .row-side {
+  min-height: 224px;
+  padding: 8px 4px;
+  font-size: clamp(9px, 2.55vw, 12px);
+  line-height: 1.08;
+  text-align: center;
+}
+
+body[data-page="szklarnia"] .passage-3d-view .work-passage {
+  min-height: 224px;
+}
+
+body[data-page="szklarnia"] .passage-3d-view .passage-label {
+  width: max-content !important;
+  max-width: calc(100% - 8px) !important;
+  white-space: nowrap !important;
+  transform: translate(-50%, -50%) !important;
+  padding: 5px 6px;
+  font-size: 9px;
+}
+
+body[data-page="szklarnia"] .passage-3d-view .passage-depth {
+  max-width: 46% !important;
+  padding: 6px 7px;
+}
+
+body[data-page="szklarnia"] .passage-3d-view .passage-floor {
+  max-width: 48% !important;
+  padding: 6px 7px;
+  font-size: clamp(8px, 2.1vw, 10px) !important;
+}
+
+body[data-page="szklarnia"] .passage-3d-view .passage-selected {
+  max-width: 46% !important;
+  padding: 6px 7px;
+  font-size: clamp(8px, 2.1vw, 10px) !important;
+}
+
+@media (max-width: 360px) {
+  body[data-page="szklarnia"] .greenhouse-3d-overview {
+    grid-template-columns: minmax(0, 1fr) 39px minmax(0, 1fr) !important;
+    padding-inline: 5px !important;
+  }
+
+  body[data-page="szklarnia"] .nave-3d-view {
+    gap: 4px !important;
+    padding-inline: 3px !important;
+  }
+
+  body[data-page="szklarnia"] .nave-3d-view .nave-button-label {
+    font-size: 6px;
+  }
+
+  body[data-page="szklarnia"] .passage-3d-view {
+    grid-template-columns: minmax(0, 1fr) 62px minmax(0, 1fr) !important;
+    gap: 5px !important;
+    padding-inline: 4px !important;
+  }
+}
