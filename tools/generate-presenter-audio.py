@@ -1,108 +1,96 @@
-"""Generate clear, natural male presenter recordings for every supported language."""
+"""Generate chapter-based male presenter recordings for every supported language."""
 
 from __future__ import annotations
 
 import argparse
 import asyncio
-import subprocess
+import json
+import sys
 from pathlib import Path
 
-import edge_tts
+try:
+    import edge_tts
+except ModuleNotFoundError:  # Local reproducible dependency cache used in this workspace.
+    dependency_cache = Path(__file__).resolve().parents[3] / "python-packages"
+    if dependency_cache.is_dir():
+        sys.path.insert(0, str(dependency_cache))
+    import edge_tts
 
 
 VOICE_JOBS = {
-    "pl": (
-        "pl-PL-MarekNeural",
-        "Witaj. To jest system szkoleniowy dla Citronex Siechnice. "
-        "Nie wiesz, gdzie iść? Otwórz mapę i wybierz miejsce pracy. "
-        "Po przyjściu wybierz potrzebną sekcję.",
-    ),
-    "en": (
-        "en-GB-RyanNeural",
-        "Welcome. This is the training system for Citronex in Siechnice. "
-        "If you do not know where to go, open the map and choose your workplace. "
-        "When you arrive, choose the section you need.",
-    ),
-    "ua": (
-        "uk-UA-OstapNeural",
-        "Вітаємо. Це система навчання для Сітронекс у Сехніце. "
-        "Не знаєте, куди йти? Відкрийте карту та виберіть місце роботи. "
-        "Після прибуття виберіть потрібний розділ.",
-    ),
-    "ru": (
-        "ru-RU-DmitryNeural",
-        "Здравствуйте! Меня зовут Александр. Я ваш цифровой помощник по обучению в Сехнице. "
-        "Сначала откройте карту и проверьте, куда вам нужно приехать. "
-        "Если вы работаете в теплице, изучите разделы: «Теплица», «Ридер» и «Планшет». "
-        "Если вы работаете на складе, откройте раздел «Склад». "
-        "Не спешите. Просмотрите инструкцию полностью. После приезда обязательно пройдите очный инструктаж у руководителя. "
-        "Желаю вам спокойной и безопасной работы!",
-    ),
-    "az": (
-        "az-AZ-BabekNeural",
-        "Salam. Bu, Citronex Siechnice üçün təlim sistemidir. "
-        "Hara gedəcəyinizi bilmirsiniz? Xəritəni açın və iş yerinizi seçin. "
-        "Gəldikdən sonra lazım olan bölməni seçin.",
-    ),
-    "es": (
-        "es-ES-AlvaroNeural",
-        "Bienvenido. Este es el sistema de formación de Citronex en Siechnice. "
-        "¿No sabes adónde ir? Abre el mapa y elige tu lugar de trabajo. "
-        "Cuando llegues, elige la sección que necesitas.",
-    ),
-    "fil": (
-        "fil-PH-AngeloNeural",
-        "Maligayang pagdating. Ito ang training system para sa Citronex Siechnice. "
-        "Kung hindi mo alam kung saan pupunta, buksan ang mapa at piliin ang lugar ng trabaho. "
-        "Pagdating mo, piliin ang seksiyong kailangan mo.",
-    ),
-    "id": (
-        "id-ID-ArdiNeural",
-        "Selamat datang. Ini adalah sistem pelatihan Citronex di Siechnice. "
-        "Jika Anda tidak tahu harus pergi ke mana, buka peta dan pilih tempat kerja Anda. "
-        "Setelah tiba, pilih bagian yang Anda perlukan.",
-    ),
-    "ne": (
-        "ne-NP-SagarNeural",
-        "सिट्रोनेक्स सिएखनित्सेमा स्वागत छ। यो प्रशिक्षण प्रणाली हो। "
-        "कहाँ जाने थाहा छैन? नक्सा खोल्नुहोस् र काम गर्ने ठाउँ छान्नुहोस्। "
-        "पुगेपछि आवश्यक भाग छान्नुहोस्।",
-    ),
+    "pl": "pl-PL-MarekNeural",
+    "en": "en-GB-RyanNeural",
+    "ua": "uk-UA-OstapNeural",
+    "ru": "ru-RU-DmitryNeural",
+    "az": "az-AZ-BabekNeural",
+    "es": "es-ES-AlvaroNeural",
+    "fil": "fil-PH-AngeloNeural",
+    "id": "id-ID-ArdiNeural",
+    "ne": "ne-NP-SagarNeural",
 }
 
 
-async def generate(output_dir: Path, ffmpeg: Path) -> None:
+async def save_with_retry(script: str, voice: str, target: Path) -> None:
+    error: Exception | None = None
+    for attempt in range(1, 4):
+        try:
+            communicate = edge_tts.Communicate(
+                script,
+                voice,
+                rate="-3%",
+                volume="+0%",
+                pitch="-2Hz",
+            )
+            await communicate.save(str(target))
+            return
+        except Exception as exc:  # pragma: no cover - network retry
+            error = exc
+            if attempt < 3:
+                await asyncio.sleep(attempt * 1.5)
+    raise RuntimeError(f"failed to generate {target.name}") from error
+
+
+async def generate(guide_path: Path, output_dir: Path, force: bool, concurrency: int) -> None:
+    guide = json.loads(guide_path.read_text(encoding="utf-8"))
+    languages = guide.get("languages", {})
+    missing = sorted(set(VOICE_JOBS) - set(languages))
+    if missing:
+        raise ValueError(f"guide is missing languages: {', '.join(missing)}")
+
     output_dir.mkdir(parents=True, exist_ok=True)
-    for language, (voice, script) in VOICE_JOBS.items():
-        mp3_path = output_dir / f"intro-{language}.mp3"
-        wav_path = output_dir / f"intro-{language}.wav"
-        communicate = edge_tts.Communicate(
-            script,
-            voice,
-            rate="-2%",
-            volume="+0%",
-            pitch="-2Hz",
-        )
-        await communicate.save(str(mp3_path))
-        subprocess.run(
-            [
-                str(ffmpeg), "-hide_banner", "-loglevel", "error", "-y",
-                "-i", str(mp3_path), "-ac", "1", "-ar", "44100",
-                "-c:a", "pcm_s16le", str(wav_path),
-            ],
-            check=True,
-        )
-        print(f"generated {language}: {voice}")
+    semaphore = asyncio.Semaphore(max(1, concurrency))
+    jobs: list[tuple[str, str, str, Path]] = []
+    for language, voice in VOICE_JOBS.items():
+        language_dir = output_dir / language
+        language_dir.mkdir(parents=True, exist_ok=True)
+        sections = languages[language].get("sections", [])
+        for index, section in enumerate(sections, start=1):
+            section_id = section.get("id", f"chapter-{index}")
+            mp3_path = language_dir / f"{index:02d}-{section_id}.mp3"
+            if mp3_path.exists() and not force:
+                print(f"kept {language}/{mp3_path.name}", flush=True)
+                continue
+            jobs.append((language, voice, section["text"], mp3_path))
+
+    async def render(job: tuple[str, str, str, Path]) -> None:
+        language, voice, script, mp3_path = job
+        async with semaphore:
+            await save_with_retry(script, voice, mp3_path)
+        print(f"generated {language}/{mp3_path.name}: {voice}", flush=True)
+
+    await asyncio.gather(*(render(job) for job in jobs))
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--guide", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--ffmpeg", type=Path, required=True)
+    parser.add_argument("--force", action="store_true")
+    parser.add_argument("--concurrency", type=int, default=4)
     args = parser.parse_args()
-    if not args.ffmpeg.is_file():
-        parser.error(f"ffmpeg not found: {args.ffmpeg}")
-    asyncio.run(generate(args.output, args.ffmpeg))
+    if not args.guide.is_file():
+        parser.error(f"guide not found: {args.guide}")
+    asyncio.run(generate(args.guide, args.output, args.force, args.concurrency))
 
 
 if __name__ == "__main__":

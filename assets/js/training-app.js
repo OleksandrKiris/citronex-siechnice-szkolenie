@@ -592,6 +592,9 @@
     const title = text(tx("Aleksandr — cyfrowy przewodnik", "Aleksandr — digital guide", "Олександр — цифровий провідник", "Александр — цифровой помощник", "Aleksandr — rəqəmsal bələdçi", "Aleksandr — guía digital", "Aleksandr — digital na gabay", "Aleksandr — pemandu digital", "अलेक्जेन्डर — डिजिटल मार्गदर्शक"));
     const badge = text(tx("Przed rozpoczęciem", "Before you start", "Перед початком", "Перед началом", "Başlamazdan əvvəl", "Antes de empezar", "Bago magsimula", "Sebelum mulai", "सुरु गर्नु अघि"));
     const stop = text(tx("Zatrzymaj", "Stop", "Зупинити", "Остановить", "Dayandır", "Detener", "Ihinto", "Hentikan", "रोक्नुहोस्"));
+    const previous = text(tx("Poprzedni", "Previous", "Попередній", "Предыдущий", "Əvvəlki", "Anterior", "Nakaraan", "Sebelumnya", "अघिल्लो"));
+    const fullText = text(tx("Pełny tekst instruktażu", "Full briefing transcript", "Повний текст інструктажу", "Полный текст инструктажа", "Təlimatın tam mətni", "Texto completo de la formación", "Buong teksto ng orientation", "Teks pengarahan lengkap", "पूर्ण निर्देशन पाठ"));
+    const loading = text(tx("Ładowanie rozdziałów...", "Loading chapters...", "Завантаження розділів...", "Загрузка глав...", "Bölmələr yüklənir...", "Cargando capítulos...", "Nilo-load ang mga kabanata...", "Memuat bab...", "अध्याय लोड हुँदैछ..."));
     const map = text(tx("Najpierw: droga i mapa", "First: route and map", "Спочатку: дорога і карта", "Сначала: дорога и карта", "Əvvəlcə: yol və xəritə", "Primero: ruta y mapa", "Una: daan at mapa", "Pertama: rute dan peta", "पहिले: बाटो र नक्सा"));
     const note = text(tx(
       "To przygotowanie nie zastępuje instruktażu stanowiskowego. Na miejscu słuchaj kierownika i zasad BHP.",
@@ -605,32 +608,40 @@
       "यो तयारीले कार्यस्थलको प्रत्यक्ष निर्देशनलाई प्रतिस्थापन गर्दैन। सुपरभाइजर र सुरक्षा नियम पालना गर्नुहोस्।"
     ));
     return `
-      <section class="presenter-card" data-presenter-card aria-labelledby="presenterTitle">
-        <div class="presenter-media">
+      <section class="presenter-card presenter-card-v2" data-presenter-card aria-labelledby="presenterTitle">
+        <div class="presenter-media presenter-stage">
+          <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
           <div class="presenter-portrait" data-presenter-portrait>
             <img src="assets/brand/digital-presenter.png" alt="${esc(title)}" width="1536" height="1024">
-            <span class="presenter-face" aria-hidden="true">
-              <span class="presenter-eye presenter-eye-left"></span>
-              <span class="presenter-eye presenter-eye-right"></span>
-              <span class="presenter-mouth"><span class="presenter-teeth"></span></span>
-            </span>
           </div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
+          <div class="presenter-overall-progress" aria-hidden="true"><span data-presenter-overall-progress></span></div>
         </div>
         <div class="presenter-content">
           <p class="presenter-badge">${esc(badge)}</p>
           <h2 id="presenterTitle">${esc(title)}</h2>
+          <p class="presenter-chapter-counter"><span data-presenter-step>${esc(labels.step)}</span> <strong data-presenter-current>1</strong> / <span data-presenter-total>1</span></p>
+          <h3 class="presenter-chapter-title" data-presenter-chapter-title>${esc(badge)}</h3>
           <p class="presenter-script" data-presenter-script aria-live="polite">${esc(sentences.join(" "))}</p>
+          <div class="presenter-timeline">
+            <input type="range" min="0" max="1000" value="0" step="1" data-presenter-seek aria-label="${esc(labels.speaking)}">
+            <div class="presenter-times"><span data-presenter-time>0:00</span><span data-presenter-duration>0:00</span></div>
+          </div>
           <p class="presenter-note">${esc(note)}</p>
-          <div class="presenter-actions">
-            <button type="button" class="btn secondary" data-presenter-stop hidden>${esc(stop)}</button>
+          <div class="presenter-actions presenter-controls">
+            <button type="button" class="btn secondary presenter-control-small" data-presenter-previous aria-label="${esc(previous)}">← <span>${esc(previous)}</span></button>
+            <button type="button" class="btn presenter-play" data-presenter-play><span data-presenter-play-icon>▶</span> <span data-presenter-play-label>${esc(labels.start)}</span></button>
+            <button type="button" class="btn secondary presenter-control-small" data-presenter-next><span>${esc(labels.next)}</span> →</button>
+            <button type="button" class="btn secondary presenter-stop" data-presenter-stop>■ ${esc(stop)}</button>
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
-          <audio data-presenter-audio preload="auto" autoplay playsinline>
-            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper10" type="audio/wav">
-            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper10" type="audio/mpeg">
-          </audio>
         </div>
+        <nav class="presenter-chapters" data-presenter-chapters aria-label="${esc(fullText)}"><span class="presenter-loading">${esc(loading)}</span></nav>
+        <details class="presenter-transcript">
+          <summary>${esc(fullText)}</summary>
+          <div class="presenter-transcript-body" data-presenter-transcript></div>
+        </details>
+        <audio data-presenter-audio preload="metadata" playsinline></audio>
       </section>`;
   }
 
@@ -2527,222 +2538,270 @@
     };
   }
 
-  function setupDigitalPresenter() {
+  async function setupDigitalPresenter() {
     const card = document.querySelector("[data-presenter-card]");
     if (!card) return;
-    const stop = card.querySelector("[data-presenter-stop]");
-    const script = card.querySelector("[data-presenter-script]");
-    const recording = card.querySelector("[data-presenter-audio]");
-    const mouth = card.querySelector(".presenter-mouth");
+
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
-    const sentences = guideText(lang, getLocationName());
-    const avatarDemo = new URLSearchParams(location.search).get("avatar") === "demo";
-    if (!recording) return;
+    const recording = card.querySelector("[data-presenter-audio]");
+    const video = card.querySelector("[data-presenter-video]");
+    const portrait = card.querySelector("[data-presenter-portrait]");
+    const script = card.querySelector("[data-presenter-script]");
+    const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
+    const chaptersNav = card.querySelector("[data-presenter-chapters]");
+    const transcript = card.querySelector("[data-presenter-transcript]");
+    const currentLabel = card.querySelector("[data-presenter-current]");
+    const totalLabel = card.querySelector("[data-presenter-total]");
+    const timeLabel = card.querySelector("[data-presenter-time]");
+    const durationLabel = card.querySelector("[data-presenter-duration]");
+    const seek = card.querySelector("[data-presenter-seek]");
+    const overallProgress = card.querySelector("[data-presenter-overall-progress]");
+    const playButton = card.querySelector("[data-presenter-play]");
+    const playIcon = card.querySelector("[data-presenter-play-icon]");
+    const playLabel = card.querySelector("[data-presenter-play-label]");
+    const previousButton = card.querySelector("[data-presenter-previous]");
+    const nextButton = card.querySelector("[data-presenter-next]");
+    const stopButton = card.querySelector("[data-presenter-stop]");
+    if (!recording || !playButton) return;
+
     const touchToStart = text(tx(
-      "Dotknij strony, aby włączyć głos.",
-      "Touch the page to enable voice.",
-      "Торкніться сторінки, щоб увімкнути голос.",
-      "Коснитесь страницы, чтобы включить голос.",
-      "Səsi açmaq üçün səhifəyə toxunun.",
-      "Toca la página para activar la voz.",
-      "Pindutin ang pahina para marinig ang boses.",
-      "Sentuh halaman untuk mengaktifkan suara.",
-      "आवाज सुरु गर्न पृष्ठ छुनुहोस्।"
+      "Dotknij, aby włączyć głos", "Touch to enable voice", "Торкніться, щоб увімкнути голос",
+      "Коснитесь, чтобы включить голос", "Səsi açmaq üçün toxunun", "Toca para activar la voz",
+      "Pindutin para marinig ang boses", "Sentuh untuk mengaktifkan suara", "आवाज सुरु गर्न छुनुहोस्"
     ));
-    let speaking = false;
+    const fullGuideUrl = `assets/content/presenter-guide.json${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
+    const fallbackSentences = guideText(lang, getLocationName());
+    const fallbackChapter = {
+      id: "welcome",
+      title: text(tx("Przed rozpoczęciem", "Before you start", "Перед початком", "Перед началом", "Başlamazdan əvvəl", "Antes de empezar", "Bago magsimula", "Sebelum mulai", "सुरु गर्नु अघि")),
+      text: fallbackSentences.join(" "),
+      legacyAudio: `assets/audio/male/intro-${lang}.mp3`
+    };
+
+    let chapters = [fallbackChapter];
+    let chapterIndex = 0;
     let waitingForGesture = false;
-    let motionFrame = 0;
-    let speechEnvelope = null;
-    let envelopeStep = 0.05;
-    let demoStartedAt = 0;
+    let loadToken = 0;
+    const avatarAvailability = new Map();
 
-    const setMouth = (level) => {
-      if (!mouth) return;
-      const safe = Math.max(0, Math.min(1, Number(level) || 0));
-      mouth.style.setProperty("--mouth-height", `${(2.5 + safe * 15).toFixed(1)}px`);
-      mouth.style.setProperty("--mouth-scale", (0.82 + safe * 0.18).toFixed(3));
-      mouth.style.setProperty("--teeth-opacity", safe > 0.42 ? "0.92" : "0");
+    const formatTime = (seconds) => {
+      const safe = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
+      return `${Math.floor(safe / 60)}:${String(safe % 60).padStart(2, "0")}`;
     };
 
-    const readChunkName = (view, offset) => String.fromCharCode(
-      view.getUint8(offset), view.getUint8(offset + 1),
-      view.getUint8(offset + 2), view.getUint8(offset + 3)
-    );
+    const chapterAudioUrl = (chapter, index) => chapter.legacyAudio ||
+      `assets/audio/guide/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp3${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
+    const chapterVideoUrl = (chapter, index) =>
+      `assets/avatar/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp4${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
 
-    const buildSpeechEnvelope = (buffer) => {
-      const view = new DataView(buffer);
-      if (view.byteLength < 44 || readChunkName(view, 0) !== "RIFF" || readChunkName(view, 8) !== "WAVE") return null;
-      let offset = 12;
-      let format = 1;
-      let channels = 1;
-      let sampleRate = 44100;
-      let blockAlign = 2;
-      let bits = 16;
-      let dataOffset = 0;
-      let dataLength = 0;
-      while (offset + 8 <= view.byteLength) {
-        const name = readChunkName(view, offset);
-        const size = view.getUint32(offset + 4, true);
-        const start = offset + 8;
-        if (name === "fmt " && size >= 16 && start + 16 <= view.byteLength) {
-          format = view.getUint16(start, true);
-          channels = Math.max(1, view.getUint16(start + 2, true));
-          sampleRate = view.getUint32(start + 4, true) || sampleRate;
-          blockAlign = view.getUint16(start + 12, true) || blockAlign;
-          bits = view.getUint16(start + 14, true) || bits;
-        } else if (name === "data") {
-          dataOffset = start;
-          dataLength = Math.min(size, view.byteLength - start);
-          break;
+    const setPlaying = (playing) => {
+      card.classList.toggle("is-speaking", playing);
+      card.classList.remove("is-autoplay-blocked");
+      playIcon.textContent = playing ? "Ⅱ" : "▶";
+      playLabel.textContent = playing ? labels.pause : labels.resume;
+      playButton.setAttribute("aria-pressed", playing ? "true" : "false");
+    };
+
+    const updateProgress = () => {
+      const duration = Number.isFinite(recording.duration) ? recording.duration : 0;
+      const current = Number.isFinite(recording.currentTime) ? recording.currentTime : 0;
+      const fraction = duration > 0 ? Math.min(1, current / duration) : 0;
+      seek.value = String(Math.round(fraction * 1000));
+      timeLabel.textContent = formatTime(current);
+      durationLabel.textContent = formatTime(duration);
+      const totalFraction = chapters.length ? (chapterIndex + fraction) / chapters.length : 0;
+      overallProgress.style.width = `${Math.min(100, Math.max(0, totalFraction * 100)).toFixed(2)}%`;
+      if (video && !video.hidden && Number.isFinite(video.currentTime) && Math.abs(video.currentTime - current) > .35) {
+        try { video.currentTime = current; } catch (error) { /* Metadata may still be loading. */ }
+      }
+    };
+
+    const updateChapterButtons = () => {
+      chaptersNav.querySelectorAll("[data-presenter-chapter]").forEach((button) => {
+        const active = Number(button.dataset.presenterChapter) === chapterIndex;
+        button.classList.toggle("is-active", active);
+        if (active) button.setAttribute("aria-current", "step");
+        else button.removeAttribute("aria-current");
+      });
+      previousButton.disabled = chapterIndex === 0;
+      nextButton.disabled = chapterIndex >= chapters.length - 1;
+    };
+
+    const showStaticPortrait = () => {
+      if (video) {
+        video.pause();
+        video.hidden = true;
+        video.removeAttribute("src");
+      }
+      if (portrait) portrait.hidden = false;
+      card.dataset.avatarMode = "photo";
+    };
+
+    const prepareVideo = async (chapter, index, token) => {
+      if (!video || !portrait) return;
+      const url = chapterVideoUrl(chapter, index);
+      let available = avatarAvailability.get(url);
+      if (available == null) {
+        try {
+          const response = await fetch(url, { method: "HEAD", cache: "no-cache" });
+          available = response.ok;
+        } catch (error) {
+          available = false;
         }
-        offset = start + size + (size % 2);
+        avatarAvailability.set(url, available);
       }
-      if (!dataOffset || !dataLength || !blockAlign) return null;
-      const bytesPerSample = Math.max(1, Math.ceil(bits / 8));
-      const frameCount = Math.floor(dataLength / blockAlign);
-      const framesPerWindow = Math.max(1, Math.floor(sampleRate * envelopeStep));
-      const stride = Math.max(1, Math.floor(sampleRate / 8000));
-      const values = [];
-      const sampleAt = (sampleOffset) => {
-        if (sampleOffset + bytesPerSample > view.byteLength) return 0;
-        if (format === 3 && bits === 32) return view.getFloat32(sampleOffset, true);
-        if (bits === 8) return (view.getUint8(sampleOffset) - 128) / 128;
-        if (bits === 16) return view.getInt16(sampleOffset, true) / 32768;
-        if (bits === 24) {
-          let value = view.getUint8(sampleOffset) | (view.getUint8(sampleOffset + 1) << 8) | (view.getUint8(sampleOffset + 2) << 16);
-          if (value & 0x800000) value |= 0xff000000;
-          return value / 8388608;
+      if (token !== loadToken || !available) return;
+      video.src = url;
+      try { video.currentTime = recording.currentTime || 0; } catch (error) { /* Metadata may still be loading. */ }
+      video.hidden = false;
+      portrait.hidden = true;
+      card.dataset.avatarMode = "video";
+      if (!recording.paused) video.play().catch(() => {});
+    };
+
+    const requestPlayback = () => {
+      recording.play().then(() => {
+        waitingForGesture = false;
+        setPlaying(true);
+        if (video && !video.hidden) {
+          video.currentTime = recording.currentTime || 0;
+          video.play().catch(() => {});
         }
-        if (bits === 32) return view.getInt32(sampleOffset, true) / 2147483648;
-        return 0;
-      };
-      for (let first = 0; first < frameCount; first += framesPerWindow) {
-        const last = Math.min(frameCount, first + framesPerWindow);
-        let sum = 0;
-        let count = 0;
-        for (let frame = first; frame < last; frame += stride) {
-          let mixed = 0;
-          for (let channel = 0; channel < channels; channel += 1) {
-            mixed += Math.abs(sampleAt(dataOffset + frame * blockAlign + channel * bytesPerSample));
-          }
-          sum += mixed / channels;
-          count += 1;
-        }
-        values.push(count ? sum / count : 0);
-      }
-      if (!values.length) return null;
-      const sorted = values.slice().sort((a, b) => a - b);
-      const reference = sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.92))] || 1;
-      return values.map((value) => Math.min(1, Math.pow(Math.max(0, value - reference * 0.035) / reference, 0.68)));
-    };
-
-    const wavSource = recording.querySelector('source[type="audio/wav"]');
-    if (wavSource) {
-      fetch(wavSource.src, { cache: "force-cache" })
-        .then((response) => response.ok ? response.arrayBuffer() : Promise.reject(new Error("avatar-audio")))
-        .then((buffer) => {
-          speechEnvelope = buildSpeechEnvelope(buffer);
-          card.dataset.lipSync = speechEnvelope ? "audio" : "fallback";
-        })
-        .catch(() => {
-          speechEnvelope = null;
-          card.dataset.lipSync = "fallback";
-        });
-    }
-
-    const stopMotion = () => {
-      if (motionFrame) cancelAnimationFrame(motionFrame);
-      motionFrame = 0;
-      card.classList.remove("is-blinking");
-      setMouth(0);
-    };
-
-    const animateFace = () => {
-      if (!speaking || (!avatarDemo && (recording.paused || recording.ended))) {
-        stopMotion();
-        return;
-      }
-      const current = avatarDemo
-        ? Math.max(0, (performance.now() - demoStartedAt) / 1000)
-        : Math.max(0, recording.currentTime || 0);
-      let level;
-      if (speechEnvelope && speechEnvelope.length) {
-        level = speechEnvelope[Math.min(speechEnvelope.length - 1, Math.floor(current / envelopeStep))] || 0;
-      } else {
-        const rhythm = Math.abs(Math.sin(current * 12.7) * 0.72 + Math.sin(current * 20.3) * 0.28);
-        const pause = Math.sin(current * 2.13 + 0.8) > 0.9 ? 0.12 : 1;
-        level = (0.16 + rhythm * 0.84) * pause;
-      }
-      setMouth(level);
-      const blinkPhase = current % 4.65;
-      card.classList.toggle("is-blinking", blinkPhase > 4.48 && blinkPhase < 4.62);
-      motionFrame = requestAnimationFrame(animateFace);
-    };
-
-    const startMotion = () => {
-      stopMotion();
-      motionFrame = requestAnimationFrame(animateFace);
-    };
-
-    const finish = () => {
-      speaking = false;
-      stopMotion();
-      card.classList.remove("is-speaking");
-      stop.hidden = true;
-      script.textContent = sentences.join(" ");
-    };
-
-    const startSpeaking = () => {
-      if (speaking) return;
-      speaking = true;
-      stop.hidden = false;
-      card.classList.add("is-speaking");
-      script.textContent = sentences.join(" ");
-      recording.play().then(startMotion).catch((error) => {
-        speaking = false;
-        stopMotion();
-        card.classList.remove("is-speaking");
-        stop.hidden = true;
+      }).catch((error) => {
+        setPlaying(false);
         if (error && error.name === "NotAllowedError") {
-          script.textContent = touchToStart;
+          card.classList.add("is-autoplay-blocked");
+          playLabel.textContent = touchToStart;
           if (!waitingForGesture) {
             waitingForGesture = true;
-            const unlock = () => {
+            const unlock = (event) => {
               waitingForGesture = false;
               document.removeEventListener("pointerdown", unlock, true);
               document.removeEventListener("keydown", unlock, true);
-              startSpeaking();
+              if (event.target && event.target.closest && event.target.closest("button, a, input, select, summary")) return;
+              requestPlayback();
             };
             document.addEventListener("pointerdown", unlock, { once: true, capture: true, passive: true });
             document.addEventListener("keydown", unlock, { once: true, capture: true });
           }
         } else {
-          script.textContent = labels.unavailable;
+          playLabel.textContent = labels.unavailable;
         }
       });
     };
 
-    stop.addEventListener("click", () => {
+    const activateChapter = (index, autoplay = true) => {
+      chapterIndex = Math.max(0, Math.min(chapters.length - 1, Number(index) || 0));
+      const chapter = chapters[chapterIndex];
+      const token = ++loadToken;
+      recording.pause();
+      showStaticPortrait();
+      recording.src = chapterAudioUrl(chapter, chapterIndex);
+      recording.currentTime = 0;
+      chapterTitle.textContent = chapter.title;
+      script.textContent = chapter.text;
+      currentLabel.textContent = String(chapterIndex + 1);
+      totalLabel.textContent = String(chapters.length);
+      timeLabel.textContent = "0:00";
+      durationLabel.textContent = "0:00";
+      seek.value = "0";
+      updateChapterButtons();
+      updateProgress();
+      prepareVideo(chapter, chapterIndex, token);
+      if (autoplay) requestPlayback();
+      else setPlaying(false);
+    };
+
+    const renderGuide = () => {
+      chaptersNav.innerHTML = chapters.map((chapter, index) => `
+        <button type="button" class="presenter-chapter-button" data-presenter-chapter="${index}">
+          <span class="presenter-chapter-number">${String(index + 1).padStart(2, "0")}</span>
+          <span>${esc(chapter.title)}</span>
+        </button>`).join("");
+      transcript.innerHTML = chapters.map((chapter, index) => `
+        <article class="presenter-transcript-chapter">
+          <h4>${index + 1}. ${esc(chapter.title)}</h4>
+          <p>${esc(chapter.text)}</p>
+        </article>`).join("");
+      totalLabel.textContent = String(chapters.length);
+      chaptersNav.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-presenter-chapter]");
+        if (!button) return;
+        activateChapter(Number(button.dataset.presenterChapter), true);
+      });
+    };
+
+    playButton.addEventListener("click", () => {
+      if (recording.paused) {
+        if (recording.ended || (recording.duration && recording.currentTime >= recording.duration - .1)) recording.currentTime = 0;
+        requestPlayback();
+      } else {
+        recording.pause();
+        if (video) video.pause();
+        setPlaying(false);
+      }
+    });
+    previousButton.addEventListener("click", () => {
+      if (recording.currentTime > 4 || chapterIndex === 0) activateChapter(chapterIndex, true);
+      else activateChapter(chapterIndex - 1, true);
+    });
+    nextButton.addEventListener("click", () => {
+      if (chapterIndex < chapters.length - 1) activateChapter(chapterIndex + 1, true);
+    });
+    stopButton.addEventListener("click", () => {
       recording.pause();
       recording.currentTime = 0;
-      finish();
+      if (video) {
+        video.pause();
+        try { video.currentTime = 0; } catch (error) { /* No metadata yet. */ }
+      }
+      setPlaying(false);
+      playLabel.textContent = labels.start;
+      updateProgress();
     });
-    recording.addEventListener("ended", finish);
+    seek.addEventListener("input", () => {
+      if (!Number.isFinite(recording.duration) || recording.duration <= 0) return;
+      recording.currentTime = (Number(seek.value) / 1000) * recording.duration;
+      updateProgress();
+    });
+    recording.addEventListener("loadedmetadata", updateProgress);
+    recording.addEventListener("durationchange", updateProgress);
+    recording.addEventListener("timeupdate", updateProgress);
+    recording.addEventListener("play", () => setPlaying(true));
+    recording.addEventListener("pause", () => {
+      if (!recording.ended) setPlaying(false);
+    });
+    recording.addEventListener("ended", () => {
+      if (chapterIndex < chapters.length - 1) activateChapter(chapterIndex + 1, true);
+      else {
+        setPlaying(false);
+        playLabel.textContent = labels.repeat;
+        seek.value = "1000";
+        overallProgress.style.width = "100%";
+      }
+    });
     recording.addEventListener("error", () => {
-      script.textContent = labels.unavailable;
-      speaking = false;
-      card.classList.remove("is-speaking");
-      stop.hidden = true;
+      setPlaying(false);
+      playLabel.textContent = labels.unavailable;
     });
-    if (avatarDemo) {
-      speaking = true;
-      demoStartedAt = performance.now();
-      card.classList.add("is-speaking");
-      startMotion();
-      return;
+
+    try {
+      const response = await fetch(fullGuideUrl, { cache: "no-cache" });
+      if (!response.ok) throw new Error("presenter-guide");
+      const guide = await response.json();
+      const localized = guide.languages && guide.languages[lang];
+      if (!localized || !Array.isArray(localized.sections) || !localized.sections.length) throw new Error("presenter-language");
+      chapters = localized.sections;
+    } catch (error) {
+      chapters = [fallbackChapter];
     }
-    startSpeaking();
-    window.addEventListener("pagehide", () => recording.pause(), { once: true });
+
+    renderGuide();
+    activateChapter(0, true);
+    window.addEventListener("pagehide", () => {
+      recording.pause();
+      if (video) video.pause();
+    }, { once: true });
   }
   function showLocationWelcome() {
     // The standalone dragon guide is the only welcome screen.

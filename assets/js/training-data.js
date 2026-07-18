@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260716-data-audit1-siechnice"
+      version: "20260718-presenter-guide1-siechnice"
     },
 
     languages: [

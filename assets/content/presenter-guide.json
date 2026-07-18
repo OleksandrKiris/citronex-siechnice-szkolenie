@@ -1,0 +1,501 @@
+{
+  "version": "20260718-siechnice-guide1",
+  "chapterCount": 10,
+  "languages": {
+    "pl": {
+      "totalCharacters": 6728,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "Najważniejsze informacje przed rozpoczęciem",
+          "text": "Dzień dobry. Nazywam się Aleksandr i jestem Twoim cyfrowym przewodnikiem po przygotowaniu do pracy w Citronex Siechnice. Wybierz jeden kafelek. Na telefonie zobaczysz tylko ten moduł, bez mieszania informacji. Najpierw wybierz miejsce, otwórz mapę i kieruj się do wejścia. Po przyjściu czekaj na osobę odpowiedzialną. Nie wchodź sam."
+        },
+        {
+          "id": "arrival",
+          "title": "Pierwszy dzień / pierwsze wejście",
+          "text": "Najpierw wybierz miejsce. Przycisk otworzy mapę albo trasę w telefonie. Wybierz miejsce. Etap, magazyn albo punkt spotkania wybierasz zgodnie z wiadomością startową. Otwórz mapę. Przycisk otwiera Google Maps albo trasę do wybranego miejsca. Kieruj się do wejścia. To nie jest polecenie jazdy samochodem. Po prostu kieruj się trasą do punktu. Po przyjściu czekaj. Czekaj przy wejściu lub w miejscu wskazanym w wiadomości. Nie wchodź sam na szklarnię ani magazyn."
+        },
+        {
+          "id": "warehouse",
+          "title": "Magazyn",
+          "text": "Dla magazynu nie pokazujemy readera. Tu są tylko mapy, wejście i podstawowe zasady magazynu. Na magazynie nie używa się readerów. Najpierw sprawdź mapę i zdjęcie wejścia. W razie spóźnienia lub choroby kontaktuj się z brygadzistą magazynu. Ten sam system tabletu działa na szklarni i na magazynie. Instrukcja pokazuje: logowanie PIN, początek pracy, czynność, przerwę, koniec pracy i wylogowanie."
+        },
+        {
+          "id": "greenhouse",
+          "title": "Orientacja w szklarni",
+          "text": "Szklarnia jest pokazana w 3 prostych krokach: całość, jedna nawa, wejście do rzędu. Reader dotyczy pracy na szklarni. Magazyn nie używa readerów. Weź reader z ładowarki z wyznaczonego miejsca z numerem. Odbij swój tag personalny centralnym przyciskiem readera zgodnie z informacją startową. Na tablicy odbij tag 'początek pracy'. Na tablicy odbij przydzieloną czynność. Jeżeli pracujesz w rzędzie, wejdź do wyznaczonego rzędu. Tag rzędu odbijasz dopiero przy wyjściu z rzędu. Nie zabieraj readera do domu i nie używaj cudzego taga. Magazyn nie używa readerów. Tablet ma jedną wspólną instrukcję dla magazynu i szklarni."
+        },
+        {
+          "id": "reader",
+          "title": "Praca w rzędach",
+          "text": "Ta procedura jest dla osób pracujących w rzędach szklarni. Najważniejsze: tag rzędu odbijasz przy WYJŚCIU. Jeżeli rząd jest skończony - odbij tag rzędu jeden raz. Jeżeli rząd nie jest skończony - odbij tag rzędu dwa razy. Jeżeli zbierasz pomidor do wózka, użyj zakładki 'Wózki'. Idziesz na przerwę: wyjdź z rzędu i odbij tag rzędu. Na tablicy odbij 'początek przerwy'. Po przerwie odbij 'koniec przerwy'. Idź do rzędu nieskończonego albo nowego. Tag rzędu znowu odbijasz dopiero przy wyjściu. Każda zmiana czynności: wyjdź z rzędu, odbij tag rzędu, potem na tablicy odbij nową czynność. Kończysz pracę w rzędach: wychodząc z rzędu odbij tag rzędu, potem odbij 'koniec pracy'. Jeżeli kończysz pracę w rzędach i przechodzisz do pracy poza rzędami, dalej użyj procedury 'Poza rzędami'. Przy zbiorach używaj kolejności z obrazka: zawsze wychodząc z rzędu. Najpierw skanuj tag wózka - zawsze jeden raz. Następnie skanuj tag rzędu: skończony jeden raz, nieskończony dwa razy. Dopiero po tych skanach naciśnij wskazany przycisk na readerze. Jeżeli nie zbierasz do wózka, wróć do zwykłej procedury rzędu. Restart wykonuj tylko wtedy, gdy reader się zawiesi."
+        },
+        {
+          "id": "tablet",
+          "title": "Tablet - rejestracja pracy",
+          "text": "Tablet działa tak samo na szklarni i na magazynie. Używaj swojego nazwiska i PIN-u, a potem wybieraj tylko czynność, którą naprawdę wykonujesz. Używaj tylko swojego nazwiska i swojego PIN-u. Nie wolno używać danych innej osoby. Znajdź swoje nazwisko i zaloguj się. Rozpoczynając pracę znajdź swoje imię i nazwisko. Zaloguj się swoim numerem PIN. Kliknij „Początek pracy”. Znajdź czynność „Początek pracy” i kliknij ją. Wybierz wykonywaną czynność. Zaloguj się ponownie i wybierz wykonywaną czynność. Zmiana czynności. Jeśli zmieniasz wykonywaną czynność, zaloguj się ponownie i wybierz nową czynność. Początek przerwy. Zaczynając przerwę zaloguj się i wybierz „Przerwa”. Koniec przerwy. Kończąc przerwę zaloguj się i wybierz wykonywaną czynność. Koniec pracy. Kończąc pracę zaloguj się ponownie i wybierz „Koniec pracy”. Wyloguj się. Zaloguj się ponownie i wybierz „Wyloguj się”. Jeśli tablet nie działa, nie widzisz swojego nazwiska albo nie znasz PIN-u, zgłoś to swojemu brygadziście. Nie zostawiaj swojej sesji zalogowanej dla kolejnej osoby."
+        },
+        {
+          "id": "safety",
+          "title": "Zakazy i zasady",
+          "text": "Te zasady dotyczą szklarni i magazynu. To ma być proste: czego nie wolno wnosić i robić. Nie wnoś do pracy. Jedzenia, napojów, papierosów, prywatnych rzeczy i paczek do strefy pracy. Nie używaj bez zgody. Telefonu, cudzego PIN-u, cudzego taga, readera albo danych innej osoby. Nie wchodź sam. Do niewłaściwej szklarni, magazynu, strefy albo przejścia bez polecenia. Nie jedz i nie wnoś jedzenia do miejsca pracy. Napoje zostaw poza strefą pracy. Korzystaj tylko z miejsca wskazanego. Nie żuj gumy i nie trzymaj przekąsek przy stanowisku. Nie wnoś papierosów, e-papierosów ani zapalniczek do strefy pracy. Nie wnoś biżuterii do strefy pracy, jeśli zasady tego zabraniają. Nie używaj ich w strefie pracy, jeśli obowiązuje zakaz higieniczny. Przed pracą i po zabrudzeniu zadbaj o czystość rąk albo rękawiczek. Torby, ubrania i prywatne rzeczy nie mogą leżeć w miejscu pracy. Nie zamawiaj paczek na adres firmy. Korzystaj z paczkomatu albo własnego adresu. Nie zostawiaj paszportu, karty pobytu ani pieniędzy w miejscu pracy. W produkcji nie używaj telefonu bez zgody przełożonego. Nie rób zdjęć ani nagrań w pracy bez zgody. Nie używaj słuchawek w pracy, jeśli przeszkadzają w bezpieczeństwie lub komunikacji. Nie wchodź do szklarni, magazynu, przejścia ani strefy bez polecenia. Nie zmieniaj rzędu, strony ani zadania bez informacji od brygadzisty. Na magazyn idziesz tylko wtedy, gdy masz tam pracę albo polecenie. Nie używaj PIN-u innej osoby. To powoduje błędną rejestrację pracy. Używaj tylko tego, co zostało Ci wydane albo wskazane. Nie loguj się i nie zapisuj pracy na dane innej osoby."
+        },
+        {
+          "id": "documents",
+          "title": "Miasto, urząd i banki",
+          "text": "Praktyczne miejsca: urząd, karta pobytu, aplikacje do transportu i podstawowe sprawy w mieście. Ważne - dokument przy sobie. Kiedy wychodzisz do miasta, miej przy sobie paszport albo kartę pobytu. Dokument może być potrzebny przy kontroli, w urzędzie albo w banku. Wejście na teren firmy. Przy wejściu trzeba mieć przepustkę. Bez przepustki ochrona nie przepuści. Zamówienia i paczki. AliExpress, Allegro i inne paczki zamawiaj tylko do paczkomatu. Nie zamawiaj na adres firmy. Ochrona nie przyjmuje paczek zamówionych na firmę."
+        },
+        {
+          "id": "help",
+          "title": "Kontakty / Gdzie szukać lekarza?",
+          "text": "Najpierw wybierz dział. Przy brygadzistach są tylko przyciski telefonu i WhatsApp. Najpierw wybierz: przychodnia, SOR albo dentysta. W nagłym zagrożeniu dzwoń 112. Jedź na SOR przy silnym bólu, urazie, gorączce, problemach z oddychaniem, omdleniu albo poważnym pogorszeniu zdrowia."
+        },
+        {
+          "id": "finish",
+          "title": "Sprawdzenie wiedzy i instruktaż na miejscu",
+          "text": "30 krótkich pytań. Po zakończeniu wyślij wynik wiadomością. Obejrzyj wszystkie potrzebne moduły i wykonaj test. To przygotowanie nie zastępuje instruktażu stanowiskowego. Po przyjeździe słuchaj kierownika, brygadzisty i zasad BHP. Jeśli czegoś nie rozumiesz, zatrzymaj pracę i zapytaj. Życzę Ci spokojnej i bezpiecznej pracy."
+        }
+      ]
+    },
+    "en": {
+      "totalCharacters": 6594,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "Important information before you start",
+          "text": "Hello. My name is Aleksandr, and I am your digital guide for preparing to work at Citronex Siechnice. Choose one tile. On the phone you will see only that module, without mixed information. First choose the place, open the map and go to the entrance. After arrival, wait for the responsible person. Do not enter alone."
+        },
+        {
+          "id": "arrival",
+          "title": "First day / first entry",
+          "text": "First choose the place. The button opens the map or route on your phone. Choose the place. Choose the stage, warehouse or meeting point according to the start message. Open the map. The button opens Google Maps or a route to the selected place. Go to the entrance. This does not mean driving a car. Simply follow the route to the point. After arrival, wait. Wait at the entrance or at the place shown in the message. Do not enter the greenhouse or warehouse alone."
+        },
+        {
+          "id": "warehouse",
+          "title": "Warehouse",
+          "text": "For warehouse work we do not show the reader. Here you only have maps, entrance and warehouse rules. Readers are not used in the warehouse. First check the map and entrance photo. If you are late or sick, contact the warehouse brigadier. The same tablet system is used in the greenhouse and warehouse. The instruction shows: PIN login, work start, activity, break, work end and logout."
+        },
+        {
+          "id": "greenhouse",
+          "title": "Greenhouse orientation",
+          "text": "The greenhouse is shown in 3 simple steps: whole greenhouse, one nave, one passage. Reader is for greenhouse work. The warehouse does not use readers. Take the reader from the numbered charger in the assigned place. Scan your personal tag with the middle reader button according to the start information. On the board, scan the 'start work' tag. On the board, scan the assigned activity. If you work in a row, enter the assigned row. Scan the row tag only when leaving the row. Do not take the reader home and do not use someone else's tag. The warehouse does not use readers. The tablet has one shared instruction for warehouse and greenhouse."
+        },
+        {
+          "id": "reader",
+          "title": "Work in rows",
+          "text": "This procedure is for people working in greenhouse rows. Most important: scan the row tag when LEAVING. If the row is finished - scan the row tag once. If the row is not finished - scan the row tag twice. If you pick tomatoes to a cart, use the 'Carts' tab. Going on break: leave the row and scan the row tag. On the board, scan 'break start'. After the break, scan 'break end'. Go to the unfinished row or a new row. Scan the row tag again only when leaving. Every activity change: leave the row, scan the row tag, then scan the new activity on the board. Ending work in rows: when leaving the row, scan the row tag, then scan 'end work'. If you finish work in rows and move to work outside rows, continue with the 'Outside rows' procedure. During picking, use the order from the picture: always while leaving the row. First scan the cart tag - always once. Then scan the row tag: finished once, unfinished twice. Only after these scans, press the indicated button on the reader. If you are not picking to a cart, return to the normal row procedure. Restart only when the reader freezes."
+        },
+        {
+          "id": "tablet",
+          "title": "Tablet - work registration",
+          "text": "The tablet works the same in the greenhouse and warehouse. Use your surname and PIN, then choose only the activity you are really doing. Use only your own surname and your own PIN. Do not use another person's data. Find your surname and log in. When starting work, find your first name and surname. Log in with your PIN number. Tap “Work start”. Find the activity “Work start” and tap it. Choose the activity you do. Log in again and choose the activity you are doing. Changing activity. If you change the activity, log in again and choose the new activity. Break start. When starting a break, log in and choose “Break”. Break end. When ending a break, log in and choose the activity you are doing. Work end. When finishing work, log in again and choose “Work end”. Log out. Log in again and choose “Log out”. If the tablet does not work, you do not see your surname or you do not know your PIN, report it to your brigadier. Do not leave your session logged in for the next person."
+        },
+        {
+          "id": "safety",
+          "title": "Bans and rules",
+          "text": "These rules apply to greenhouse and warehouse. Simple: what you cannot bring and do. Do not bring to work. Food, drinks, cigarettes, private items and parcels into the work zone. Do not use without permission. Phone, another person's PIN, tag, reader or personal data. Do not enter alone. Into the wrong greenhouse, warehouse, zone or passage without instruction. Do not eat or bring food into the workplace. Leave drinks outside the work zone. Use only the indicated place. Do not chew gum or keep snacks at the work station. Do not bring cigarettes, e-cigarettes or lighters into the work zone. Do not bring jewelry into the work zone if the rules prohibit it. Do not use them in the work zone if hygiene rules prohibit them. Before work and after getting dirty, make sure hands or gloves are clean. Bags, clothes and private items must not be kept at the workplace. Do not order parcels to the company address. Use a parcel locker or your own address. Do not leave passport, residence card or money at the workplace. In production, do not use the phone without supervisor permission. Do not take photos or recordings at work without permission. Do not use headphones at work if they disturb safety or communication. Do not enter a greenhouse, warehouse, passage or zone without instruction. Do not change row, side or task without information from the brigadier. Go to the warehouse only when you have work there or an instruction. Do not use another person's PIN. It causes wrong work registration. Use only what was given or indicated to you. Do not log in or register work on another person's data."
+        },
+        {
+          "id": "documents",
+          "title": "City, office and banks",
+          "text": "Practical places: office, residence card, transport apps and basic city matters. Important - keep ID with you. When you go to the city, keep your passport or residence card with you. You may need the document during a check, at the office or in the bank. Entering company premises. At the entrance you need a pass. Without a pass, security will not let you in. Orders and parcels. Order AliExpress, Allegro and other parcels only to a parcel locker. Do not order to the company address. Security does not accept parcels ordered to the company."
+        },
+        {
+          "id": "help",
+          "title": "Contacts / Where to find a doctor?",
+          "text": "Choose the department first. Brigadiers have only phone and WhatsApp buttons. First choose: clinic, emergency room or dentist. In danger call 112. Go to emergency for severe pain, injury, fever, breathing problems, fainting or serious worsening."
+        },
+        {
+          "id": "finish",
+          "title": "Knowledge check and on-site briefing",
+          "text": "30 short questions. After finishing, send the result by message. Review every module you need and complete the test. This preparation does not replace workplace instruction. After arrival, follow the supervisor, team leader and safety rules. If you do not understand something, stop and ask. I wish you calm and safe work."
+        }
+      ]
+    },
+    "ua": {
+      "totalCharacters": 6449,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "Важлива інформація перед початком",
+          "text": "Добрий день. Мене звати Олександр, і я ваш цифровий помічник з підготовки до роботи в Citronex Siechnice. Оберіть один блок. На телефоні ви побачите тільки цей модуль без зайвої інформації. Спочатку оберіть місце, відкрийте карту і прямуйте до входу. Після приходу чекайте відповідальну особу. Не заходьте самі."
+        },
+        {
+          "id": "arrival",
+          "title": "Перший день / перший вхід",
+          "text": "Спочатку оберіть місце. Кнопка відкриє карту або маршрут у телефоні. Оберіть місце. Етап, склад або пункт зустрічі обирайте згідно зі стартовим повідомленням. Відкрийте карту. Кнопка відкриває Google Maps або маршрут до вибраного місця. Прямуйте до входу. Це не означає їхати машиною. Просто рухайтесь за маршрутом до пункту. Після приходу чекайте. Чекайте біля входу або в місці з повідомлення. Не заходьте самі в теплицю або склад."
+        },
+        {
+          "id": "warehouse",
+          "title": "Склад",
+          "text": "Для складу рідер не показуємо. Тут тільки карти, вхід і основні правила складу. На складі рідер не використовується. Спочатку перевірте карту і фото входу. Якщо запізнюєтесь або хворієте, зв'яжіться з бригадиром складу. Однакова система планшета працює в теплиці і на складі. Інструкція показує: вхід PIN, початок роботи, дію, перерву, кінець роботи і вихід."
+        },
+        {
+          "id": "greenhouse",
+          "title": "Орієнтація в теплиці",
+          "text": "Теплиця показана у 3 простих кроках: вся теплиця, одна нава, вхід у ряд. Рідер стосується роботи в теплиці. На складі рідер не використовується. Візьміть рідер із зарядки з призначеного місця з номером. Відбийте свій персональний тег центральною кнопкою рідера згідно стартової інформації. На дошці відбийте тег 'початок роботи'. На дошці відбийте призначену дію. Якщо працюєте в ряду, зайдіть у призначений ряд. Тег ряду відбивайте тільки при виході з ряду. Не забирайте рідер додому і не використовуйте чужий тег. На складі рідер не використовується. Планшет має одну спільну інструкцію для складу і теплиці."
+        },
+        {
+          "id": "reader",
+          "title": "Робота в рядах",
+          "text": "Ця процедура для роботи в рядах теплиці. Найважливіше: тег ряду відбивається при ВИХОДІ. Якщо ряд закінчений - відбийте тег ряду один раз. Якщо ряд не закінчений - відбийте тег ряду два рази. Якщо збираєте помідор у візок, відкрийте вкладку 'Візки'. Йдете на перерву: вийдіть з ряду і відбийте тег ряду. На дошці відбийте 'початок перерви'. Після перерви відбийте 'кінець перерви'. Йдіть у незакінчений або новий ряд. Тег ряду знову відбивається тільки при виході. Кожна зміна дії: вийдіть з ряду, відбийте тег ряду, потім на дошці нову дію. Закінчуєте роботу в рядах: при виході з ряду відбийте тег ряду, потім 'кінець роботи'. Якщо закінчуєте роботу в рядах і переходите до роботи поза рядами, далі використовуйте процедуру 'Поза рядами'. Під час збору використовуйте порядок з картинки: завжди при виході з ряду. Спочатку скануйте тег візка - завжди один раз. Потім скануйте тег ряду: закінчений один раз, незакінчений два рази. Тільки після цих сканів натисніть вказану кнопку на рідері. Якщо не збираєте у візок, поверніться до звичайної процедури ряду. Рестарт робіть тільки тоді, коли рідер завис."
+        },
+        {
+          "id": "tablet",
+          "title": "Планшет - реєстрація роботи",
+          "text": "Планшет працює однаково в теплиці і на складі. Використовуйте своє прізвище і PIN, потім обирайте тільки дію, яку справді виконуєте. Використовуйте тільки своє прізвище і свій PIN. Не можна використовувати дані іншої людини. Знайдіть своє прізвище і увійдіть. Починаючи роботу, знайдіть своє ім'я та прізвище. Увійдіть своїм PIN-кодом. Натисніть «Початок роботи». Знайдіть дію «Початок роботи» і натисніть її. Оберіть дію, яку виконуєте. Увійдіть знову і виберіть дію, яку виконуєте. Зміна дії. Якщо змінюєте дію, увійдіть знову і виберіть нову дію. Початок перерви. Починаючи перерву, увійдіть і виберіть «Перерва». Кінець перерви. Закінчуючи перерву, увійдіть і виберіть дію, яку виконуєте. Кінець роботи. Закінчуючи роботу, увійдіть знову і виберіть «Кінець роботи». Вийдіть із системи. Увійдіть знову і виберіть «Вийти». Якщо планшет не працює, не бачите свого прізвища або не знаєте PIN, повідомте свого бригадира. Не залишайте свою сесію відкритою для наступної людини."
+        },
+        {
+          "id": "safety",
+          "title": "Заборони і правила",
+          "text": "Ці правила стосуються теплиці і складу. Просто: що не можна вносити і робити. Не вносити на роботу. Їжу, напої, сигарети, особисті речі та посилки в робочу зону. Не користуватися без дозволу. Телефон, чужий PIN, чужий тег, рідер або дані іншої людини. Не заходити самому. У неправильну теплицю, склад, зону або прохід без вказівки. Не їжте і не вносьте їжу на місце роботи. Напої залишайте поза робочою зоною. Користуйтеся тільки вказаним місцем. Не жуйте жуйку і не тримайте перекуси біля робочого місця. Не вносьте сигарети, електронні сигарети або запальнички в робочу зону. Не вносьте біжутерію в робочу зону, якщо правила це забороняють. Не використовуйте їх у робочій зоні, якщо діє гігієнічна заборона. Перед роботою і після забруднення подбайте про чисті руки або рукавички. Сумки, одяг і особисті речі не можуть лежати на місці роботи. Не замовляйте посилки на адресу фірми. Користуйтеся поштоматом або власною адресою. Не залишайте паспорт, карту побиту або гроші на місці роботи. На продукції не користуйтеся телефоном без дозволу керівника. Не робіть фото або відео на роботі без дозволу. Не використовуйте навушники, якщо вони заважають безпеці або комунікації. Не заходьте в теплицю, склад, прохід або зону без вказівки. Не змінюйте ряд, сторону або завдання без інформації від бригадира. На склад йдіть тільки тоді, коли маєте там роботу або вказівку. Не використовуйте PIN іншої людини. Це дає неправильну реєстрацію роботи. Використовуйте тільки те, що вам видали або вказали. Не входьте і не записуйте роботу на дані іншої людини."
+        },
+        {
+          "id": "documents",
+          "title": "Місто, установи і банки",
+          "text": "Практичні місця: установа, карта побиту, транспортні додатки та міські справи. Важливо - документ із собою. Коли виходите в місто, майте при собі паспорт або карту побиту. Документ може знадобитися при перевірці, в установі або банку. Вхід на територію фірми. При вході потрібна перепустка. Без перепустки охорона не пропустить. Замовлення і посилки. AliExpress, Allegro та інші посилки замовляйте тільки до Paczkomat. Не замовляйте на адресу фірми. Охорона не приймає посилки, замовлені на фірму."
+        },
+        {
+          "id": "help",
+          "title": "Контакти / Де шукати лікаря?",
+          "text": "Спочатку оберіть відділ. Біля бригадирів є тільки кнопки телефону і WhatsApp. Спочатку оберіть: поліклініка, SOR або стоматолог. При небезпеці телефонуйте 112. Їдьте на SOR при сильному болю, травмі, температурі, проблемах з диханням, непритомності або різкому погіршенні."
+        },
+        {
+          "id": "finish",
+          "title": "Перевірка знань та інструктаж на місці",
+          "text": "30 коротких питань. Після завершення надішліть результат повідомленням. Перегляньте всі потрібні розділи та пройдіть тест. Ця підготовка не замінює інструктажу на робочому місці. Після прибуття виконуйте вказівки керівника, бригадира та правила безпеки. Якщо щось незрозуміло, зупиніться і запитайте. Бажаю вам спокійної та безпечної роботи."
+        }
+      ]
+    },
+    "ru": {
+      "totalCharacters": 6473,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "Главное перед началом",
+          "text": "Здравствуйте. Меня зовут Александр. Я ваш цифровой помощник по подготовке к работе в Citronex Siechnice. Выберите один блок. На телефоне будет только этот модуль без лишней информации. Сначала выберите место, откройте карту и идите ко входу. После прихода ждите ответственного человека. Не входите сами."
+        },
+        {
+          "id": "arrival",
+          "title": "Первый день / первый вход",
+          "text": "Сначала выберите место. Кнопка откроет карту или маршрут в телефоне. Выберите место. Этап, склад или место встречи выбирайте по стартовому сообщению. Откройте карту. Кнопка открывает Google Maps или маршрут к выбранному месту. Идите ко входу. Это не значит ехать на машине. Просто идите по маршруту к точке. После прихода ждите. Ждите у входа или в месте из сообщения. Не входите сами в теплицу или склад."
+        },
+        {
+          "id": "warehouse",
+          "title": "Склад",
+          "text": "Для склада ридер не показываем. Здесь только карты, вход и основные правила склада. На складе ридер не используется. Сначала проверьте карту и фото входа. Если опаздываете или болеете, свяжитесь с бригадиром склада. Одна и та же система планшета работает в теплице и на складе. Инструкция показывает: вход PIN, начало работы, деятельность, перерыв, конец работы и выход."
+        },
+        {
+          "id": "greenhouse",
+          "title": "Ориентация в теплице",
+          "text": "Теплица показана в 3 шагах: вся теплица, одна нава, вход в ряд. Ридер относится к работе в теплице. На складе ридер не используется. Возьмите ридер с зарядки с назначенного места с номером. Отметьте свой персональный тег центральной кнопкой ридера согласно стартовой информации. На доске отметьте тег 'начало работы'. На доске отметьте назначенную деятельность. Если работаете в ряду, зайдите в назначенный ряд. Тег ряда отмечайте только при выходе из ряда. Не забирайте ридер домой и не используйте чужой тег. На складе ридер не используется. У планшета одна общая инструкция для склада и теплицы."
+        },
+        {
+          "id": "reader",
+          "title": "Работа в рядах",
+          "text": "Эта процедура для работы в рядах теплицы. Главное: тег ряда отмечается при ВЫХОДЕ. Если ряд закончен - отметьте тег ряда один раз. Если ряд не закончен - отметьте тег ряда два раза. Если собираете помидор в тележку, откройте вкладку 'Тележки'. Идете на перерыв: выйдите из ряда и отметьте тег ряда. На доске отметьте 'начало перерыва'. После перерыва отметьте 'конец перерыва'. Идите в незаконченный или новый ряд. Тег ряда снова отмечается только при выходе. Каждая смена деятельности: выйдите из ряда, отметьте тег ряда, потом на доске новую деятельность. Заканчиваете работу в рядах: при выходе из ряда отметьте тег ряда, потом 'конец работы'. Если заканчиваете работу в рядах и переходите к работе вне рядов, дальше используйте процедуру 'Вне рядов'. При сборе используйте порядок с картинки: всегда при выходе из ряда. Сначала сканируйте тег тележки - всегда один раз. Потом сканируйте тег ряда: законченный один раз, незаконченный два раза. Только после этих сканов нажмите указанную кнопку на ридере. Если не собираете в тележку, вернитесь к обычной процедуре ряда. Рестарт делайте только когда ридер завис."
+        },
+        {
+          "id": "tablet",
+          "title": "Планшет - регистрация работы",
+          "text": "Планшет работает одинаково в теплице и на складе. Используйте свою фамилию и PIN, затем выбирайте только деятельность, которую реально выполняете. Используйте только свою фамилию и свой PIN. Нельзя использовать данные другого человека. Найдите свою фамилию и войдите. Начиная работу, найдите свое имя и фамилию. Войдите своим PIN-кодом. Нажмите «Начало работы». Найдите действие «Начало работы» и нажмите его. Выберите выполняемую деятельность. Войдите снова и выберите выполняемую деятельность. Смена деятельности. Если меняете деятельность, войдите снова и выберите новую деятельность. Начало перерыва. Начиная перерыв, войдите и выберите «Перерыв». Конец перерыва. Заканчивая перерыв, войдите и выберите выполняемую деятельность. Конец работы. Заканчивая работу, войдите снова и выберите «Конец работы». Выйдите из системы. Войдите снова и выберите «Выйти». Если планшет не работает, вы не видите свою фамилию или не знаете PIN, сообщите своему бригадиру. Не оставляйте свою сессию открытой для следующего человека."
+        },
+        {
+          "id": "safety",
+          "title": "Запреты и правила",
+          "text": "Эти правила для теплицы и склада. Просто: что нельзя приносить и делать. Не приносить на работу. Еду, напитки, сигареты, личные вещи и посылки в рабочую зону. Не использовать без разрешения. Телефон, чужой PIN, чужой тег, ридер или данные другого человека. Не входить одному. В неправильную теплицу, склад, зону или проход без указания. Не ешьте и не приносите еду на рабочее место. Напитки оставляйте вне рабочей зоны. Используйте только указанное место. Не жуйте жвачку и не держите перекусы у рабочего места. Не приносите сигареты, электронные сигареты или зажигалки в рабочую зону. Не приносите украшения в рабочую зону, если правила это запрещают. Не используйте их в рабочей зоне, если действует гигиенический запрет. Перед работой и после загрязнения следите за чистотой рук или перчаток. Сумки, одежда и личные вещи не должны лежать на рабочем месте. Не заказывайте посылки на адрес фирмы. Используйте постамат или свой адрес. Не оставляйте паспорт, карту побыту или деньги на рабочем месте. На производстве не используйте телефон без разрешения руководителя. Не делайте фото или видео на работе без разрешения. Не используйте наушники, если они мешают безопасности или общению. Не входите в теплицу, склад, проход или зону без указания. Не меняйте ряд, сторону или задание без информации от бригадира. На склад идите только если у вас там работа или указание. Не используйте PIN другого человека. Это дает неправильную регистрацию работы. Используйте только то, что вам выдали или указали. Не входите и не записывайте работу на данные другого человека."
+        },
+        {
+          "id": "documents",
+          "title": "Город, учреждения и банки",
+          "text": "Практичные места: учреждение, карта побыту, транспортные приложения и городские дела. Важно - документ с собой. Когда выходите в город, имейте при себе паспорт или карту побыту. Документ может понадобиться при проверке, в ужонде или банке. Вход на территорию фирмы. При входе нужен пропуск. Без пропуска охрана не пропустит. Заказы и посылки. AliExpress, Allegro и другие посылки заказывайте только в Paczkomat. Не заказывайте на адрес фирмы. Охрана не принимает посылки, заказанные на фирму."
+        },
+        {
+          "id": "help",
+          "title": "Контакты / Где искать врача?",
+          "text": "Сначала выберите отдел. У бригадиров есть только кнопки телефона и WhatsApp. Сначала выберите: поликлиника, SOR или стоматолог. При опасности звоните 112. Езжайте на SOR при сильной боли, травме, температуре, проблемах с дыханием, обмороке или сильном ухудшении."
+        },
+        {
+          "id": "finish",
+          "title": "Проверка знаний и инструктаж на месте",
+          "text": "30 коротких вопросов. После завершения отправьте результат сообщением. Просмотрите все необходимые разделы и пройдите тест. Эта подготовка не заменяет инструктаж на рабочем месте. После приезда выполняйте указания руководителя, бригадира и правила безопасности. Если что-то непонятно, остановитесь и спросите. Желаю вам спокойной и безопасной работы."
+        }
+      ]
+    },
+    "az": {
+      "totalCharacters": 6294,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "Başlamazdan əvvəl əsas məlumat",
+          "text": "Salam. Mənim adım Aleksandrdır. Mən Citronex Siechnice-də işə hazırlıq üzrə rəqəmsal bələdçinizəm. Bir bölmə seçin. Telefonda yalnız həmin modul görünəcək. Əvvəl yeri seçin, xəritəni açın və girişə tərəf gedin. Gələndən sonra məsul şəxsi gözləyin. Tək daxil olmayın."
+        },
+        {
+          "id": "arrival",
+          "title": "İlk gün / ilk giriş",
+          "text": "Əvvəl yeri seçin. Düymə telefonda xəritəni və ya marşrutu açır. Yeri seçin. Etap, anbar və ya görüş yerini başlanğıc mesajına görə seçin. Xəritəni açın. Düymə Google Maps və ya seçilmiş yerə marşrutu açır. Girişə tərəf gedin. Bu maşınla getmək demək deyil. Sadəcə marşrutla nöqtəyə gedin. Gələndən sonra gözləyin. Girişdə və ya mesajda göstərilən yerdə gözləyin. İstixanaya və ya anbara tək girməyin."
+        },
+        {
+          "id": "warehouse",
+          "title": "Anbar",
+          "text": "Anbar üçün reader göstərilmir. Burada yalnız xəritə, giriş və əsas qaydalar var. Anbarda reader istifadə olunmur. Əvvəl xəritəni və giriş şəklini yoxlayın. Gecikirsinizsə və ya xəstəsinizsə, anbar briqadiri ilə əlaqə saxlayın. Eyni planşet sistemi istixanada və anbarda işləyir. Təlimat göstərir: PIN ilə giriş, işin başlanğıcı, fəaliyyət, fasilə, işin sonu və çıxış."
+        },
+        {
+          "id": "greenhouse",
+          "title": "İstixanada istiqamət",
+          "text": "İstixana 3 sadə addımda göstərilir: hamısı, bir nava, sıraya giriş. Reader istixana işi üçündür. Anbarda reader istifadə olunmur. Reader-i nömrəli təyin olunmuş şarj yerindən götürün. Şəxsi tagınızı start məlumatına uyğun reader-in orta düyməsi ilə vurun. Lövhədə 'işin başlanğıcı' tagını vurun. Lövhədə təyin olunan fəaliyyəti vurun. Sırada işləyirsinizsə, təyin olunan sıraya girin. Sıra tagını yalnız sıradan çıxanda vurun. Reader-i evə aparmayın və başqasının tagını istifadə etməyin. Anbarda reader istifadə olunmur. Planşet üçün anbar və istixana üzrə bir ümumi təlimat var."
+        },
+        {
+          "id": "reader",
+          "title": "Sıralarda iş",
+          "text": "Bu prosedur istixana sıralarında işləyənlər üçündür. Əsas: sıra tagı ÇIXANDA vurulur. Sıra bitibsə - sıra tagını bir dəfə vurun. Sıra bitməyibsə - sıra tagını iki dəfə vurun. Pomidoru arabaya yığırsınızsa, 'Arabalar' bölməsindən istifadə edin. Fasiləyə gedirsiniz: sıradan çıxın və sıra tagını vurun. Lövhədə 'fasilə başlanğıcı' vurun. Fasilədən sonra 'fasilə sonu' vurun. Bitməmiş və ya yeni sıraya gedin. Sıra tagını yenə yalnız çıxanda vurun. Hər fəaliyyət dəyişikliyi: sıradan çıxın, sıra tagını vurun, sonra lövhədə yeni fəaliyyəti vurun. Sıralarda işi bitirirsiniz: çıxanda sıra tagını vurun, sonra 'işin sonu' vurun. Sıralarda işi bitirib sıradan kənar işə keçirsinizsə, 'Sıradan kənar' proseduru ilə davam edin. Yığım zamanı şəkildəki ardıcıllıqdan istifadə edin: həmişə sıradan çıxanda. Əvvəl araba tagını skan edin - həmişə bir dəfə. Sonra sıra tagını skan edin: bitmiş bir dəfə, bitməmiş iki dəfə. Yalnız bu skanlardan sonra reader-də göstərilən düyməni basın. Arabaya yığmırsınızsa, adi sıra proseduruna qayıdın. Restartı yalnız reader donanda edin."
+        },
+        {
+          "id": "tablet",
+          "title": "Planşet - işin qeydiyyatı",
+          "text": "Planşet istixanada və anbarda eyni işləyir. Öz soyadınızı və PIN-inizi istifadə edin, sonra yalnız həqiqətən etdiyiniz fəaliyyəti seçin. Yalnız öz soyadınızı və öz PIN-inizi istifadə edin. Başqa şəxsin məlumatlarından istifadə etmək olmaz. Soyadınızı tapın və daxil olun. İşə başlayanda adınızı və soyadınızı tapın. Öz PIN kodunuzla daxil olun. “İşin başlanğıcı” seçin. “İşin başlanğıcı” fəaliyyətini tapın və seçin. Gördüyünüz fəaliyyəti seçin. Yenidən daxil olun və gördüyünüz fəaliyyəti seçin. Fəaliyyəti dəyişmək. Fəaliyyəti dəyişirsinizsə, yenidən daxil olun və yeni fəaliyyəti seçin. Fasilənin başlanğıcı. Fasiləyə başlayanda daxil olun və “Fasilə” seçin. Fasilənin sonu. Fasiləni bitirəndə daxil olun və gördüyünüz fəaliyyəti seçin. İşin sonu. İşi bitirəndə yenidən daxil olun və “İşin sonu” seçin. Çıxış edin. Yenidən daxil olun və “Çıxış” seçin. Planşet işləmirsə, soyadınızı görmürsünüzsə və ya PIN bilmirsinizsə, öz briqadirinizə deyin. Sessiyanızı növbəti şəxs üçün açıq saxlamayın."
+        },
+        {
+          "id": "safety",
+          "title": "Qadağalar və qaydalar",
+          "text": "Bu qaydalar istixana və anbardadır. Sadə: nə gətirmək və etmək olmaz. İşə gətirməyin. Yemək, içki, siqaret, şəxsi əşya və bağlamaları iş zonasına gətirməyin. İcazəsiz istifadə etməyin. Telefon, başqasının PIN-i, tagı, reader-i və ya şəxsi məlumatları. Tək girməyin. Tapşırıq olmadan səhv istixana, anbar, zona və ya keçidə girməyin. İş yerində yeməyin və yemək gətirməyin. İçkiləri iş zonasından kənarda saxlayın. Yalnız göstərilən yerdən istifadə edin. Saqqız çeynəməyin və iş yerində qəlyanaltı saxlamayın. İş zonasına siqaret, elektron siqaret və alışqan gətirməyin. Qaydalar qadağan edirsə, zinət əşyasını iş zonasına gətirməyin. Gigiyena qaydası qadağan edirsə, iş zonasında istifadə etməyin. İşdən əvvəl və çirklənəndə əllərin və ya əlcəklərin təmizliyinə baxın. Çanta, paltar və şəxsi əşyalar iş yerində olmamalıdır. Bağlamaları firma ünvanına sifariş etməyin. Paczkomat və ya öz ünvanınızdan istifadə edin. Pasport, yaşayış kartı və pulu iş yerində qoymayın. İstehsalatda rəhbər icazəsi olmadan telefon istifadə etməyin. İşdə icazəsiz şəkil və video çəkməyin. Təhlükəsizlik və ünsiyyətə mane olursa, işdə qulaqlıq istifadə etməyin. Tapşırıq olmadan istixana, anbar, keçid və zonaya girməyin. Briqadirdən məlumat olmadan sıra, tərəf və tapşırığı dəyişməyin. Anbara yalnız orada işiniz və ya tapşırığınız olduqda gedin. Başqasının PIN-indən istifadə etməyin. Bu iş qeydiyyatını səhv edir. Yalnız sizə verilən və ya göstərilən şeyi istifadə edin. Başqasının məlumatı ilə daxil olmayın və iş qeyd etməyin."
+        },
+        {
+          "id": "documents",
+          "title": "Şəhər, idarələr və banklar",
+          "text": "Lazımlı yerlər: idarə, yaşayış kartı, nəqliyyat tətbiqləri və şəhər işləri. Vacib - sənəd yanınızda olsun. Şəhərə çıxanda pasport və ya yaşayış kartı yanınızda olsun. Sənəd yoxlama zamanı, idarədə və ya bankda lazım ola bilər. Firma ərazisinə giriş. Girişdə keçid kartı olmalıdır. Keçid kartı olmadan mühafizə buraxmayacaq. Sifarişlər və bağlamalar. AliExpress, Allegro və başqa bağlamaları yalnız Paczkomat-a sifariş edin. Firma ünvanına sifariş etməyin. Mühafizə firmaya sifariş olunan bağlamaları qəbul etmir."
+        },
+        {
+          "id": "help",
+          "title": "Əlaqələr / Həkimi harada tapmaq olar?",
+          "text": "Əvvəl şöbəni seçin. Briqadirlərdə yalnız telefon və WhatsApp düymələri var. Əvvəl seçin: poliklinika, təcili yardım və ya diş həkimi. Təhlükədə 112-yə zəng edin. Güclü ağrı, zədə, qızdırma, nəfəs problemi, huş itirmə və ya ciddi pisləşmə varsa təciliyə gedin."
+        },
+        {
+          "id": "finish",
+          "title": "Bilik yoxlaması və yerində təlimat",
+          "text": "30 qısa sual. Bitirdikdən sonra nəticəni mesajla göndərin. Lazım olan bütün bölmələrə baxın və testi tamamlayın. Bu hazırlıq iş yerindəki təlimatı əvəz etmir. Gəldikdən sonra rəhbərin, briqadirin və təhlükəsizlik qaydalarının göstərişlərinə əməl edin. Nəyisə başa düşmürsünüzsə, işi dayandırın və soruşun. Sizə sakit və təhlükəsiz iş arzulayıram."
+        }
+      ]
+    },
+    "es": {
+      "totalCharacters": 6453,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "Información importante antes de empezar",
+          "text": "Hola. Me llamo Aleksandr y soy tu guía digital para prepararte para el trabajo en Citronex Siechnice. Elige una tarjeta. En el teléfono verás solo ese módulo. Primero elige el lugar, abre el mapa y dirígete a la entrada. Al llegar, espera a la persona responsable. No entres solo."
+        },
+        {
+          "id": "arrival",
+          "title": "Primer día / primera entrada",
+          "text": "Primero elige el lugar. El botón abre el mapa o la ruta. Elige el lugar. Elige etapa, almacén o punto de encuentro según el mensaje inicial. Abre el mapa. El botón abre Google Maps o una ruta al lugar elegido. Dirígete a la entrada. No significa ir en coche. Simplemente sigue la ruta hasta el punto. Al llegar, espera. Espera en la entrada o en el lugar indicado. No entres solo al invernadero ni al almacén."
+        },
+        {
+          "id": "warehouse",
+          "title": "Almacén",
+          "text": "Para almacén no mostramos reader. Aquí solo están mapas, entrada y reglas básicas. En almacén no se usa reader. Primero revisa el mapa y la foto de entrada. Si llegas tarde o estás enfermo, contacta al jefe de almacén. El mismo sistema de tablet funciona en invernadero y almacén. La instrucción muestra: PIN, inicio de trabajo, actividad, descanso, fin de trabajo y cierre de sesión."
+        },
+        {
+          "id": "greenhouse",
+          "title": "Orientación en el invernadero",
+          "text": "El invernadero se muestra en 3 pasos: completo, una nave, entrada al pasillo. Reader es para el trabajo en invernadero. En almacén no se usa reader. Toma el reader del cargador numerado en el lugar asignado. Marca tu tag personal con el botón central según la información de inicio. En el tablero, marca el tag 'inicio de trabajo'. En el tablero, marca la actividad asignada. Si trabajas en una fila, entra en la fila asignada. Marca el tag de fila solo al salir. No lleves el reader a casa y no uses el tag de otra persona. En almacén no se usa reader. La tablet tiene una instrucción común para almacén e invernadero."
+        },
+        {
+          "id": "reader",
+          "title": "Trabajo en filas",
+          "text": "Este procedimiento es para trabajar en filas del invernadero. Lo más importante: el tag se marca al SALIR. Si la fila está terminada - marca el tag una vez. Si la fila no está terminada - marca el tag dos veces. Si recoges tomate al carro, usa la pestaña 'Carros'. Vas al descanso: sal de la fila y marca el tag de fila. En el tablero, marca 'inicio de descanso'. Después del descanso, marca 'fin de descanso'. Ve a la fila no terminada o a una nueva. Marca el tag de fila otra vez solo al salir. Cada cambio de actividad: sal de la fila, marca tag de fila y luego nueva actividad en el tablero. Terminas trabajo en filas: al salir marca el tag de fila, luego 'fin de trabajo'. Si terminas en filas y pasas a trabajo fuera de filas, sigue con 'Fuera de filas'. En la cosecha usa el orden de la imagen: siempre al salir de la fila. Primero marca el tag del carro - siempre una vez. Después marca el tag de fila: terminada una vez, no terminada dos veces. Solo después de estos escaneos pulsa el botón indicado del reader. Si no recoges al carro, vuelve al procedimiento normal de fila. Haz reinicio solo cuando el reader se bloquea."
+        },
+        {
+          "id": "tablet",
+          "title": "Tablet - registro de trabajo",
+          "text": "La tablet funciona igual en invernadero y almacén. Usa tu apellido y PIN, después elige solo la actividad que realmente haces. Usa solo tu apellido y tu PIN. No se pueden usar datos de otra persona. Busca tu apellido e inicia sesión. Al empezar el trabajo, busca tu nombre y apellido. Entra con tu PIN. Pulsa “Inicio de trabajo”. Busca la actividad “Inicio de trabajo” y selecciónala. Elige la actividad que haces. Inicia sesión otra vez y elige la actividad que realizas. Cambio de actividad. Si cambias de actividad, inicia sesión otra vez y elige la nueva actividad. Inicio de descanso. Al empezar descanso, inicia sesión y elige “Descanso”. Fin de descanso. Al terminar descanso, inicia sesión y elige la actividad que realizas. Fin de trabajo. Al terminar el trabajo, inicia sesión otra vez y elige “Fin de trabajo”. Cerrar sesión. Inicia sesión otra vez y elige “Cerrar sesión”. Si la tablet no funciona, no ves tu apellido o no sabes el PIN, avisa a tu encargado. No dejes tu sesión abierta para otra persona."
+        },
+        {
+          "id": "safety",
+          "title": "Prohibiciones y reglas",
+          "text": "Estas reglas son para invernadero y almacén. Simple: qué no se puede traer ni hacer. No traer al trabajo. Comida, bebidas, cigarrillos, cosas personales y paquetes a la zona de trabajo. No usar sin permiso. Teléfono, PIN, tag, reader o datos de otra persona. No entrar solo. A un invernadero, almacén, zona o pasillo equivocado sin indicación. No comas ni traigas comida al lugar de trabajo. Deja bebidas fuera de la zona de trabajo. Usa solo el lugar indicado. No mastiques chicle ni guardes snacks en el puesto. No traigas cigarrillos, vape ni encendedores a la zona de trabajo. No traigas joyería a la zona si las reglas lo prohíben. No los uses en la zona si hay prohibición higiénica. Antes del trabajo y después de ensuciarse, cuida manos o guantes limpios. Bolsos, ropa y cosas personales no deben estar en el puesto. No pidas paquetes a la dirección de la empresa. Usa Paczkomat o tu dirección. No dejes pasaporte, tarjeta de residencia ni dinero en el puesto. En producción no uses teléfono sin permiso del supervisor. No hagas fotos ni grabaciones en el trabajo sin permiso. No uses auriculares si molestan la seguridad o comunicación. No entres a invernadero, almacén, pasillo o zona sin indicación. No cambies fila, lado o tarea sin información del encargado. Ve al almacén solo si tienes trabajo allí o indicación. No uses PIN de otra persona. Causa registro incorrecto del trabajo. Usa solo lo que te dieron o indicaron. No inicies sesión ni registres trabajo con datos de otra persona."
+        },
+        {
+          "id": "documents",
+          "title": "Ciudad, oficina y bancos",
+          "text": "Lugares útiles: oficina, tarjeta de residencia, apps de transporte y asuntos básicos. Importante - lleva documento. Cuando sales a la ciudad, lleva pasaporte o tarjeta de residencia. El documento puede hacer falta en un control, oficina o banco. Entrada al terreno de la empresa. En la entrada necesitas pase. Sin pase, seguridad no deja entrar. Pedidos y paquetes. Pide AliExpress, Allegro y otros paquetes solo a Paczkomat. No pidas a la dirección de la empresa. Seguridad no acepta paquetes enviados a la empresa."
+        },
+        {
+          "id": "help",
+          "title": "Contactos / ¿Dónde buscar médico?",
+          "text": "Primero elige el departamento. Los encargados tienen solo botones de teléfono y WhatsApp. Primero elige: clínica, urgencias o dentista. En peligro llama al 112. Ve a urgencias por dolor fuerte, lesión, fiebre, problemas respiratorios, desmayo o empeoramiento serio."
+        },
+        {
+          "id": "finish",
+          "title": "Comprobación y formación en el lugar",
+          "text": "30 preguntas cortas. Al terminar envía el resultado por mensaje. Revisa todos los módulos necesarios y completa el test. Esta preparación no sustituye la instrucción en el puesto. Al llegar, sigue al supervisor, al encargado y las normas de seguridad. Si no entiendes algo, detente y pregunta. Te deseo un trabajo tranquilo y seguro."
+        }
+      ]
+    },
+    "fil": {
+      "totalCharacters": 6803,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "Mahahalagang impormasyon bago magsimula",
+          "text": "Magandang araw. Ako si Aleksandr, ang digital mong gabay sa paghahanda para sa trabaho sa Citronex Siechnice. Pumili ng isang tile. Sa telepono, iyon lang ang makikita mo. Piliin muna ang lugar, buksan ang mapa at pumunta sa pasukan. Pagdating, hintayin ang taong responsable. Huwag pumasok mag-isa."
+        },
+        {
+          "id": "arrival",
+          "title": "Unang araw / unang pasok",
+          "text": "Piliin muna ang lugar. Bubuksan ng pindutan ang mapa o ruta. Piliin ang lugar. Piliin ang etap, bodega o lugar ng pagkikita ayon sa unang mensahe. Buksan ang mapa. Bubuksan ng pindutan ang Google Maps o ruta sa piniling lugar. Pumunta sa pasukan. Hindi ibig sabihin nito na magmaneho. Sundan lang ang ruta papunta sa punto. Pagdating, maghintay. Maghintay sa pasukan o sa lugar sa mensahe. Huwag pumasok mag-isa sa bahay-taniman o bodega."
+        },
+        {
+          "id": "warehouse",
+          "title": "Bodega",
+          "text": "Para sa bodega, walang reader. Narito ang mapa, pasukan at pangunahing patakaran. Walang reader sa bodega. Tingnan muna ang mapa at larawan ng pasukan. Kung late o may sakit, kontakin ang brigadier ng bodega. Parehong tablet sistema ang gamit sa bahay-taniman at bodega. Ipinapakita ng instruksyon: PIN login, simula ng trabaho, gawain, pahinga, tapos ng trabaho at logout."
+        },
+        {
+          "id": "greenhouse",
+          "title": "Pagkilala sa bahay-taniman",
+          "text": "Ipinapakita ang bahay-taniman sa 3 hakbang: buong lugar, isang nawa, pasukan sa hanay. Ang reader ay para sa trabaho sa bahay-taniman. Walang reader sa bodega. Kunin ang reader sa numbered charger sa nakatalagang lugar. I-scan ang personal tag gamit ang gitnang pindutan ayon sa start info. Sa board, i-scan ang 'start trabaho' tag. Sa board, i-scan ang nakatalagang gawain. Kung nagtatrabaho sa hanay, pumasok sa assigned hanay. I-scan ang hanay tag paglabas lang. Huwag iuwi ang reader at huwag gumamit ng tag ng iba. Walang reader sa bodega. Ang tablet ay may isang magkasanib instruksiyon para sa bodega at bahay-taniman."
+        },
+        {
+          "id": "reader",
+          "title": "Trabaho sa mga hanay",
+          "text": "Para ito sa nagtatrabaho sa mga hanay ng bahay-taniman. Pinakamahalaga: i-scan ang tag ng hanay PAGLABAS. Kung tapos ang hanay - i-scan ang hanay tag isang beses. Kung hindi tapos ang hanay - i-scan ang hanay tag dalawang beses. Kung nagpipitas ng kamatis sa cart, gamitin ang tab na 'Carts'. Pupunta sa pahinga: lumabas sa hanay at i-scan ang hanay tag. Sa board, i-scan ang 'pahinga start'. Pagkatapos ng pahinga, i-scan ang 'pahinga end'. Pumunta sa hindi tapos o bagong hanay. I-scan ulit ang hanay tag paglabas lang. Bawat palit ng gawain: lumabas sa hanay, scan hanay tag, pagkatapos bagong gawain sa board. Tatapusin ang trabaho sa mga hanay: paglabas scan hanay tag, pagkatapos 'end trabaho'. Kung tapos ka sa mga hanay at lilipat sa trabaho outside mga hanay, sundin ang 'Outside mga hanay'. Sa pagpitas, sundin ang ayos sa larawan: palaging paglabas sa hanay. Una, i-scan ang cart tag - laging isang beses. Pagkatapos scan hanay tag: tapos isang beses, hindi tapos dalawang beses. Pagkatapos lamang ng mga scan na ito, pindutin ang ipinakitang pindutan sa reader. Kung hindi sa cart ang pagpitas, bumalik sa normal na proseso ng hanay. Mag-restart lang kapag nag-freeze ang reader."
+        },
+        {
+          "id": "tablet",
+          "title": "Tablet - pag-register ng trabaho",
+          "text": "Pareho ang gamit ng tablet sa bahay-taniman at bodega. Gamitin ang sariling apelyido at PIN, pagkatapos piliin lang ang gawain na ginagawa mo talaga. Gamitin lang ang sariling apelyido at sariling PIN. Bawal gumamit ng data ng ibang tao. Hanapin ang apelyido at mag-log in. Sa simula ng trabaho, hanapin ang pangalan at apelyido. Mag-login gamit ang sariling PIN. Pindutin ang “Simula ng trabaho”. Hanapin ang gawain na “Simula ng trabaho” at pindutin. Piliin ang ginagawa mong gawain. Mag-login ulit at piliin ang ginagawa mong gawain. Pagpalit ng gawain. Kung magpapalit ng gawain, mag-login ulit at piliin ang bagong gawain. Simula ng pahinga. Kapag magsisimula ng pahinga, mag-login at piliin ang “Pahinga”. Tapos ng pahinga. Pagkatapos ng pahinga, mag-login at piliin ang ginagawa mong gawain. Tapos ng trabaho. Kapag tapos na ang trabaho, mag-login ulit at piliin ang “Tapos ng trabaho”. Mag-log out. Mag-login ulit at piliin ang “Log out”. Kung hindi gumagana ang tablet, wala ang apelyido mo o hindi mo alam ang PIN, sabihin sa iyong brigadier. Huwag iwanang naka-login ang session para sa susunod na tao."
+        },
+        {
+          "id": "safety",
+          "title": "Mga bawal at patakaran",
+          "text": "Para ito sa bahay-taniman at bodega. Simple: ano ang bawal dalhin at gawin. Huwag dalhin sa trabaho. Pagkain, inumin, sigarilyo, personal na gamit at parcel sa trabaho zone. Huwag gamitin nang walang pahintulot. Telepono, PIN, tag, reader o data ng ibang tao. Huwag pumasok mag-isa. Sa maling bahay-taniman, bodega, zone o daanan kung walang utos. Huwag kumain o magdala ng pagkain sa trabaho area. Iwan ang inumin sa labas ng trabaho zone. Gamitin lang ang itinalagang lugar. Huwag mag-chewing gum o magtago ng snacks sa puwesto. Huwag magdala ng sigarilyo, vape o lighter sa trabaho zone. Huwag magdala ng alahas kung bawal sa rules. Huwag gamitin sa trabaho zone kung bawal sa hygiene rules. Bago magtrabaho at kapag nadumihan, siguraduhing malinis ang kamay o guwantes. Bag, damit at personal na gamit ay hindi dapat nasa trabaho area. Huwag ipadala ang parcel sa company tirahan. Gumamit ng parcel locker o sariling tirahan. Huwag iwan ang pasaporte, residence card o pera sa trabaho area. Sa production, huwag gumamit ng telepono kung walang pahintulot ng supervisor. Huwag kumuha ng larawan o video sa trabaho nang walang pahintulot. Huwag gumamit ng mga headphone kung nakakaistorbo sa safety o komunikasyon. Huwag pumasok sa bahay-taniman, bodega, daanan o zone kung walang utos. Huwag lumipat ng hanay, side o task kung walang sinabi ang brigadier. Pumunta lang sa bodega kung may trabaho o utos doon. Huwag gumamit ng PIN ng iba. Magiging mali ang trabaho pagpaparehistro. Gamitin lang ang ibinigay o itinuro sa iyo. Huwag mag-login o mag-record ng trabaho gamit ang data ng iba."
+        },
+        {
+          "id": "documents",
+          "title": "Lungsod, opisina at bangko",
+          "text": "Mahahalagang lugar: opisina, card ng paninirahan, app sa transportasyon at pangunahing asunto sa lungsod. Mahalaga - dalhin ang ID. Kapag lalabas sa lungsod, dalhin ang pasaporte o card ng paninirahan. Maaaring kailanganin ang dokumento sa check, opisina o bangko. Pagpasok sa kumpanya. Sa pasukan kailangan ang pass. Kung walang pass, hindi papapasukin ng security. Orders at parcels. Ipadala ang AliExpress, Allegro at ibang parcel sa Paczkomat lang. Huwag sa tirahan ng kumpanya. Hindi tinatanggap ng security ang parcels na naka-tirahan sa kumpanya."
+        },
+        {
+          "id": "help",
+          "title": "Mga ugnayan / Saan maghahanap ng doktor?",
+          "text": "Piliin muna ang departamento. Sa brigadier, telepono at WhatsApp buttons lang. Piliin muna: klinika, emerhensiya room o dentista. Kung delikado, tumawag sa 112. Pumunta sa emerhensiya kung matinding sakit, injury, lagnat, hirap huminga, nahimatay o malubhang lumala."
+        },
+        {
+          "id": "finish",
+          "title": "Pagsusuri at orientation sa lugar",
+          "text": "30 maikling tanong. Pagkatapos, ipadala ang resulta sa mensahe. Tingnan ang lahat ng kailangang module at sagutan ang test. Hindi nito pinapalitan ang aktuwal na orientation sa trabaho. Pagdating, sundin ang supervisor, brigadier at mga tuntunin sa kaligtasan. Kapag may hindi malinaw, huminto at magtanong. Nais ko sa iyo ang maayos at ligtas na trabaho."
+        }
+      ]
+    },
+    "id": {
+      "totalCharacters": 6262,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "Informasi penting sebelum mulai",
+          "text": "Halo. Nama saya Aleksandr. Saya adalah pemandu digital Anda untuk persiapan kerja di Citronex Siechnice. Pilih satu kartu. Di ponsel hanya modul itu yang tampil. Pilih tempat dulu, buka peta, lalu menuju pintu masuk. Setelah tiba, tunggu orang yang bertanggung jawab. Jangan masuk sendiri."
+        },
+        {
+          "id": "arrival",
+          "title": "Hari pertama / masuk pertama",
+          "text": "Pilih tempat dulu. Tombol membuka peta atau rute. Pilih tempat. Pilih tahap, gudang, atau titik temu sesuai pesan awal. Buka peta. Tombol membuka Google Maps atau rute ke tempat pilihan. Menuju pintu masuk. Ini bukan berarti harus naik mobil. Ikuti saja rute ke titik. Setelah tiba, tunggu. Tunggu di pintu masuk atau tempat yang tertulis di pesan. Jangan masuk sendiri ke rumah kaca atau gudang."
+        },
+        {
+          "id": "warehouse",
+          "title": "Gudang",
+          "text": "Untuk gudang tidak ada reader. Di sini hanya peta, pintu masuk, dan aturan dasar. Di gudang tidak memakai reader. Pertama cek peta dan foto pintu masuk. Jika terlambat atau sakit, hubungi mandor gudang. Sistem tablet yang sama dipakai di rumah kaca dan gudang. Instruksi menunjukkan: login PIN, mulai kerja, aktivitas, istirahat, selesai kerja dan logout."
+        },
+        {
+          "id": "greenhouse",
+          "title": "Orientasi rumah kaca",
+          "text": "Rumah kaca ditampilkan dalam 3 langkah: keseluruhan, satu nave, pintu masuk baris. Reader untuk kerja rumah kaca. Gudang tidak memakai reader. Ambil reader dari charger bernomor di tempat yang ditentukan. Scan tag pribadi dengan tombol tengah sesuai info awal. Di papan, scan tag 'mulai kerja'. Di papan, scan aktivitas yang ditugaskan. Jika bekerja di baris, masuk ke baris yang ditentukan. Scan tag baris hanya saat keluar. Jangan bawa reader pulang dan jangan pakai tag orang lain. Gudang tidak memakai reader. Tablet punya satu instruksi bersama untuk gudang dan rumah kaca."
+        },
+        {
+          "id": "reader",
+          "title": "Kerja di baris",
+          "text": "Prosedur ini untuk kerja di baris rumah kaca. Yang paling penting: scan tag baris SAAT KELUAR. Jika baris selesai - scan tag baris sekali. Jika baris belum selesai - scan tag baris dua kali. Jika memetik tomat ke troli, gunakan tab 'Troli'. Pergi istirahat: keluar dari baris dan scan tag baris. Di papan, scan 'mulai istirahat'. Setelah istirahat, scan 'selesai istirahat'. Pergi ke baris yang belum selesai atau baru. Scan tag baris lagi hanya saat keluar. Setiap ganti aktivitas: keluar dari baris, scan tag baris, lalu scan aktivitas baru di papan. Selesai kerja di baris: saat keluar scan tag baris, lalu 'selesai kerja'. Jika selesai di baris dan pindah ke kerja di luar baris, lanjut dengan prosedur 'Di luar baris'. Saat panen, gunakan urutan pada gambar: selalu saat keluar dari baris. Pertama scan tag troli - selalu sekali. Lalu scan tag baris: selesai sekali, belum selesai dua kali. Hanya setelah pemindaian ini, tekan tombol yang ditunjukkan pada reader. Jika tidak memetik ke troli, kembali ke prosedur baris biasa. Restart hanya saat reader macet."
+        },
+        {
+          "id": "tablet",
+          "title": "Tablet - pencatatan kerja",
+          "text": "Tablet bekerja sama di rumah kaca dan gudang. Gunakan nama keluarga dan PIN sendiri, lalu pilih hanya aktivitas yang benar-benar dikerjakan. Gunakan hanya nama keluarga sendiri dan PIN sendiri. Tidak boleh memakai data orang lain. Cari nama keluarga dan login. Saat mulai kerja, cari nama depan dan nama keluarga Anda. Login dengan PIN sendiri. Klik “Mulai kerja”. Cari aktivitas “Mulai kerja” lalu klik. Pilih aktivitas yang dikerjakan. Login lagi dan pilih aktivitas yang dikerjakan. Ganti aktivitas. Jika ganti aktivitas, login lagi dan pilih aktivitas baru. Mulai istirahat. Saat mulai istirahat, login dan pilih “Istirahat”. Selesai istirahat. Saat selesai istirahat, login dan pilih aktivitas yang dikerjakan. Selesai kerja. Saat selesai kerja, login lagi dan pilih “Selesai kerja”. Logout. Login lagi lalu pilih “Logout”. Jika tablet tidak berfungsi, nama Anda tidak terlihat atau tidak tahu PIN, laporkan ke mandor Anda. Jangan tinggalkan sesi Anda masih login untuk orang berikutnya."
+        },
+        {
+          "id": "safety",
+          "title": "Larangan dan aturan",
+          "text": "Aturan ini untuk rumah kaca dan gudang. Sederhana: apa yang tidak boleh dibawa dan dilakukan. Jangan bawa ke area kerja. Makanan, minuman, rokok, barang pribadi dan paket ke area kerja. Jangan pakai tanpa izin. Telepon, PIN, tag, reader atau data orang lain. Jangan masuk sendiri. Ke rumah kaca, gudang, zona atau lorong yang salah tanpa instruksi. Jangan makan atau membawa makanan ke tempat kerja. Tinggalkan minuman di luar area kerja. Gunakan hanya tempat yang ditunjuk. Jangan mengunyah permen karet atau menyimpan camilan di tempat kerja. Jangan bawa rokok, vape atau korek ke area kerja. Jangan bawa perhiasan jika aturan melarang. Jangan gunakan di area kerja jika dilarang aturan kebersihan. Sebelum kerja dan setelah kotor, pastikan tangan atau sarung tangan bersih. Tas, pakaian dan barang pribadi tidak boleh berada di tempat kerja. Jangan kirim paket ke alamat perusahaan. Gunakan loker paket atau alamat sendiri. Jangan tinggalkan paspor, kartu tinggal atau uang di tempat kerja. Di produksi jangan gunakan telepon tanpa izin atasan. Jangan foto atau merekam di tempat kerja tanpa izin. Jangan pakai headphone jika mengganggu keselamatan atau komunikasi. Jangan masuk rumah kaca, gudang, lorong atau zona tanpa instruksi. Jangan ganti baris, sisi atau tugas tanpa informasi dari mandor. Pergi ke gudang hanya jika ada tugas atau instruksi. Jangan pakai PIN orang lain. Ini membuat pencatatan kerja salah. Gunakan hanya yang diberikan atau ditunjukkan kepada Anda. Jangan login atau mencatat kerja dengan data orang lain."
+        },
+        {
+          "id": "documents",
+          "title": "Kota, kantor dan bank",
+          "text": "Tempat penting: kantor, kartu tinggal, aplikasi transportasi dan urusan kota. Penting - bawa dokumen. Saat pergi ke kota, bawa paspor atau kartu tinggal. Dokumen bisa dibutuhkan saat pemeriksaan, di kantor atau bank. Masuk area perusahaan. Di pintu masuk perlu kartu akses. Tanpa kartu, security tidak mengizinkan masuk. Pesanan dan paket. Pesan AliExpress, Allegro dan paket lain hanya ke Paczkomat. Jangan ke alamat perusahaan. Security tidak menerima paket yang dikirim ke perusahaan."
+        },
+        {
+          "id": "help",
+          "title": "Kontak / Di mana mencari dokter?",
+          "text": "Pilih departemen dulu. Mandor hanya punya tombol telepon dan WhatsApp. Pilih dulu: klinik, IGD, atau dokter gigi. Jika darurat hubungi 112. Ke IGD jika nyeri berat, cedera, demam, sesak napas, pingsan, atau kondisi memburuk."
+        },
+        {
+          "id": "finish",
+          "title": "Pemeriksaan dan pengarahan di lokasi",
+          "text": "30 pertanyaan singkat. Setelah selesai kirim hasil lewat pesan. Pelajari semua modul yang diperlukan dan selesaikan tes. Persiapan ini tidak menggantikan pengarahan di tempat kerja. Setelah tiba, ikuti supervisor, mandor, dan aturan keselamatan. Jika ada yang tidak dimengerti, berhenti dan bertanya. Semoga Anda bekerja dengan tenang dan aman."
+        }
+      ]
+    },
+    "ne": {
+      "totalCharacters": 6015,
+      "sections": [
+        {
+          "id": "welcome",
+          "title": "सुरु गर्नुअघि महत्त्वपूर्ण जानकारी",
+          "text": "नमस्कार। मेरो नाम अलेक्जेन्डर हो। म Citronex Siechnice मा कामको तयारीका लागि तपाईंको डिजिटल मार्गदर्शक हुँ।. एउटा टाइल छान्नुहोस्। फोनमा त्यही मोड्युल मात्र देखिन्छ।. पहिले ठाउँ छान्नुहोस्, नक्सा खोल्नुहोस् र प्रवेशतिर जानुहोस्। पुगेपछि जिम्मेवार व्यक्तिलाई पर्खनुहोस्। एक्लै नजानुहोस्।."
+        },
+        {
+          "id": "arrival",
+          "title": "पहिलो दिन / पहिलो प्रवेश",
+          "text": "पहिले ठाउँ छान्नुहोस्। बटनले नक्सा वा बाटो खोल्छ।. ठाउँ छान्नुहोस्. सुरुको सन्देश अनुसार चरण, गोदाम वा भेट्ने ठाउँ छान्नुहोस्।. नक्सा खोल्नुहोस्. बटनले Google Maps वा छानेको ठाउँसम्मको बाटो खोल्छ।. प्रवेशतिर जानुहोस्. यसको अर्थ गाडी चलाउनु होइन। केवल बाटो पछ्याएर ठाउँसम्म जानुहोस्।. पुगेपछि पर्खनुहोस्. प्रवेशमा वा सन्देशमा दिएको ठाउँमा पर्खनुहोस्। ग्रीनहाउस वा गोदाममा एक्लै नजानुहोस्।."
+        },
+        {
+          "id": "warehouse",
+          "title": "गोदाम",
+          "text": "गोदामका लागि reader छैन। यहाँ नक्सा, प्रवेश र आधारभूत नियम मात्र छन्।. गोदाममा reader प्रयोग हुँदैन।. पहिले नक्सा र प्रवेशको फोटो हेर्नुहोस्।. ढिलो वा बिरामी भए गोदाम ब्रिगेडियरलाई सम्पर्क गर्नुहोस्।. एउटै ट्याबलेट प्रणाली ग्रीनहाउस र गोदाममा प्रयोग हुन्छ। निर्देशनले PIN login, काम सुरु, गतिविधि, ब्रेक, काम अन्त्य र logout देखाउँछ।."
+        },
+        {
+          "id": "greenhouse",
+          "title": "ग्रीनहाउसमा बाटो बुझ्ने",
+          "text": "ग्रीनहाउस ३ चरणमा देखाइएको छ: पूरै, एउटा नावा, पङ्क्तिमा प्रवेश।. Reader ग्रीनहाउसको कामका लागि हो। गोदाममा reader प्रयोग हुँदैन।. तोकिएको नम्बर भएको चार्जरबाट reader लिनुहोस्।. सुरु जानकारी अनुसार बीचको बटनले आफ्नो व्यक्तिगत tag स्क्यान गर्नुहोस्।. बोर्डमा 'काम सुरु' tag स्क्यान गर्नुहोस्।. बोर्डमा तोकेको गतिविधि स्क्यान गर्नुहोस्।. यदि पङ्क्तिमा काम गर्नुहुन्छ भने तोकिएको पङ्क्तिमा जानुहोस्। row tag निस्किँदा मात्र स्क्यान गर्नुहोस्।. reader घर नलैजानुहोस् र अरूको tag प्रयोग नगर्नुहोस्।. गोदाममा reader प्रयोग हुँदैन। ट्याबलेटको गोदाम र ग्रीनहाउसका लागि एउटै साझा निर्देशन छ।."
+        },
+        {
+          "id": "reader",
+          "title": "पङ्क्तिमा काम",
+          "text": "यो ग्रीनहाउस पङ्क्तिमा काम गर्नेहरूका लागि हो। मुख्य कुरा: row tag निस्कँदा स्क्यान हुन्छ।. पङ्क्ति सकिएको भए row tag एक पटक स्क्यान गर्नुहोस्।. पङ्क्ति नसकिएको भए row tag दुई पटक स्क्यान गर्नुहोस्।. ट्रलीमा टमाटर टिप्दा 'ट्रली' ट्याब प्रयोग गर्नुहोस्।. ब्रेकमा जाँदा: पङ्क्तिबाट निस्केर row tag स्क्यान गर्नुहोस्।. बोर्डमा 'ब्रेक सुरु' स्क्यान गर्नुहोस्।. ब्रेकपछि 'ब्रेक समाप्त' स्क्यान गर्नुहोस्।. नसकिएको वा नयाँ पङ्क्तिमा जानुहोस्। row tag फेरि निस्कँदा मात्र स्क्यान गर्नुहोस्।. हरेक गतिविधि बदल्दा: पङ्क्तिबाट निस्केर row tag स्क्यान गर्नुहोस्, त्यसपछि बोर्डमा नयाँ गतिविधि।. पङ्क्तिको काम सक्दा: निस्कँदा row tag स्क्यान गर्नुहोस्, त्यसपछि 'काम समाप्त'।. यदि पङ्क्तिको काम सकेर पङ्क्ति बाहिर काममा जानुहुन्छ भने 'पङ्क्ति बाहिर' प्रक्रिया प्रयोग गर्नुहोस्।. टिपाइमा चित्रको क्रम प्रयोग गर्नुहोस्: सधैं पङ्क्तिबाट निस्कँदा।. पहिले cart tag स्क्यान गर्नुहोस् - सधैं एक पटक।. त्यसपछि row tag स्क्यान गर्नुहोस्: सकिएको एक पटक, नसकिएको दुई पटक।. यी स्क्यानपछि मात्र reader मा देखाइएको बटन थिच्नुहोस्।. यदि ट्रलीमा टिप्नुहुन्न भने सामान्य row प्रक्रिया प्रयोग गर्नुहोस्।. reader अड्किएपछि मात्र restart गर्नुहोस्।."
+        },
+        {
+          "id": "tablet",
+          "title": "ट्याबलेट - काम दर्ता",
+          "text": "ट्याबलेट ग्रीनहाउस र गोदाममा उस्तै चल्छ। आफ्नै थर र PIN प्रयोग गर्नुहोस्, अनि आफूले साँच्चै गर्ने गतिविधि मात्र छान्नुहोस्।. आफ्नै थर र आफ्नै PIN मात्र प्रयोग गर्नुहोस्। अरूको डाटा प्रयोग गर्न पाइँदैन।. आफ्नो थर खोजेर लगइन गर्नुहोस्. काम सुरु गर्दा आफ्नो नाम र थर खोज्नुहोस्। आफ्नै PIN बाट लगइन गर्नुहोस्।. “काम सुरु” थिच्नुहोस्. “काम सुरु” गतिविधि खोजेर थिच्नुहोस्।. आफूले गर्ने गतिविधि छान्नुहोस्. फेरि लगइन गरेर आफूले गर्ने गतिविधि छान्नुहोस्।. गतिविधि बदल्ने. गतिविधि बदल्दा फेरि लगइन गरेर नयाँ गतिविधि छान्नुहोस्।. ब्रेक सुरु. ब्रेक सुरु गर्दा लगइन गरेर “ब्रेक” छान्नुहोस्।. ब्रेक अन्त्य. ब्रेक सकेपछि लगइन गरेर आफूले गर्ने गतिविधि छान्नुहोस्।. काम अन्त्य. काम सकेपछि फेरि लगइन गरेर “काम अन्त्य” छान्नुहोस्।. Logout गर्नुहोस्. फेरि लगइन गरेर “Logout” छान्नुहोस्।. ट्याबलेट चलेन, आफ्नो थर देखिएन वा PIN थाहा छैन भने आफ्नो ब्रिगेडियरलाई भन्नुहोस्।. अर्को व्यक्तिका लागि आफ्नो session खुला नछोड्नुहोस्।."
+        },
+        {
+          "id": "safety",
+          "title": "निषेध र नियम",
+          "text": "यी नियम ग्रीनहाउस र गोदामका लागि हुन्। सरल: के ल्याउन र गर्न पाइँदैन।. काममा नल्याउनुहोस्. खाना, पेय, चुरोट, निजी सामान र पार्सल काम क्षेत्रमा नल्याउनुहोस्।. अनुमति बिना प्रयोग नगर्नुहोस्. फोन, अरूको PIN, tag, reader वा व्यक्तिगत डाटा।. एक्लै नजानुहोस्. निर्देशन बिना गलत ग्रीनहाउस, गोदाम, क्षेत्र वा बाटोमा नजानुहोस्।. काम गर्ने ठाउँमा खाना नखानुहोस् र नल्याउनुहोस्।. पेय काम क्षेत्र बाहिर राख्नुहोस्। देखाइएको ठाउँ मात्र प्रयोग गर्नुहोस्।. चुइंगम नचपाउनुहोस् र काम ठाउँमा खाजा नराख्नुहोस्।. काम क्षेत्रमा चुरोट, vape वा लाइटर नल्याउनुहोस्।. नियमले रोक्छ भने काम क्षेत्रमा गहना नल्याउनुहोस्।. स्वच्छता नियमले रोक्छ भने काम क्षेत्रमा प्रयोग नगर्नुहोस्।. काम अघि र फोहोर भएपछि हात वा पञ्जा सफा राख्नुहोस्।. झोला, कपडा र निजी सामान काम गर्ने ठाउँमा राख्न पाइँदैन।. कम्पनीको ठेगानामा पार्सल नमगाउनुहोस्। parcel locker वा आफ्नो ठेगाना प्रयोग गर्नुहोस्।. पासपोर्ट, residence card वा पैसा काम ठाउँमा नछोड्नुहोस्।. उत्पादन क्षेत्रमा सुपरभाइजरको अनुमति बिना फोन प्रयोग नगर्नुहोस्।. काममा अनुमति बिना फोटो वा भिडियो नखिच्नुहोस्।. सुरक्षा वा कुराकानीमा बाधा भए काममा हेडफोन प्रयोग नगर्नुहोस्।. निर्देशन बिना ग्रीनहाउस, गोदाम, बाटो वा क्षेत्रमा नजानुहोस्।. ब्रिगेडियरको जानकारी बिना लाइन, साइड वा काम नबदल्नुहोस्।. त्यहाँ काम वा निर्देशन हुँदा मात्र गोदाम जानुहोस्।. अरूको PIN प्रयोग नगर्नुहोस्। यसले कामको रेकर्ड गलत बनाउँछ।. तपाईंलाई दिइएको वा देखाइएको कुरा मात्र प्रयोग गर्नुहोस्।. अरूको डाटामा लगइन वा काम रेकर्ड नगर्नुहोस्।."
+        },
+        {
+          "id": "documents",
+          "title": "शहर, कार्यालय र बैंक",
+          "text": "काम लाग्ने ठाउँहरू: कार्यालय, residence card, यातायात एप र शहरका काम।. महत्त्वपूर्ण - कागजात साथमा. शहर जाँदा पासपोर्ट वा residence card साथमा राख्नुहोस्।. जाँच, कार्यालय वा बैंकमा कागजात चाहिन सक्छ।. कम्पनी क्षेत्रमा प्रवेश. प्रवेशमा पास चाहिन्छ। पास बिना सुरक्षा भित्र छिर्न दिँदैन।. अर्डर र पार्सल. AliExpress, Allegro र अरू पार्सल Paczkomat मा मात्र मगाउनुहोस्। कम्पनी ठेगानामा नमगाउनुहोस्।. कम्पनीमा आएको पार्सल सुरक्षा लेिँदैन।."
+        },
+        {
+          "id": "help",
+          "title": "सम्पर्क / डाक्टर कहाँ खोज्ने?",
+          "text": "पहिले विभाग छान्नुहोस्। ब्रिगेडियरमा फोन र WhatsApp बटन मात्र छन्।. पहिले छान्नुहोस्: क्लिनिक, आपतकालीन वा दन्त चिकित्सक। खतरा भए 112 मा फोन गर्नुहोस्।. धेरै दुखाइ, चोट, ज्वरो, सास समस्या, बेहोस वा स्वास्थ्य धेरै बिग्रिए आपतकालीन जानुहोस्।."
+        },
+        {
+          "id": "finish",
+          "title": "ज्ञान जाँच र कार्यस्थल निर्देशन",
+          "text": "३० छोटा प्रश्न। सकेपछि नतिजा सन्देशबाट पठाउनुहोस्।. आवश्यक सबै मोड्युल हेर्नुहोस् र परीक्षा पूरा गर्नुहोस्। यो तयारीले कार्यस्थलको प्रत्यक्ष निर्देशनलाई प्रतिस्थापन गर्दैन। पुगेपछि सुपरभाइजर, टोली प्रमुख र सुरक्षा नियम पालना गर्नुहोस्। केही नबुझे काम रोक्नुहोस् र सोध्नुहोस्। तपाईंको काम शान्त र सुरक्षित होस्।."
+        }
+      ]
+    }
+  }
+}
