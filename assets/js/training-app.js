@@ -618,7 +618,8 @@
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
           <audio data-presenter-audio preload="metadata">
-            <source src="assets/audio/compatible/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper3" type="audio/mpeg">
+            <source src="assets/audio/compatible/intro-${esc(lang)}.wav?v=20260718-siechnice-helper4" type="audio/wav">
+            <source src="assets/audio/compatible/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper4" type="audio/mpeg">
           </audio>
         </div>
       </section>`;
