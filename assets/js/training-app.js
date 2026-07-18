@@ -607,7 +607,14 @@
     return `
       <section class="presenter-card" data-presenter-card aria-labelledby="presenterTitle">
         <div class="presenter-media">
-          <img src="assets/brand/digital-presenter.png" alt="${esc(title)}" width="1536" height="1024">
+          <div class="presenter-portrait" data-presenter-portrait>
+            <img src="assets/brand/digital-presenter.png" alt="${esc(title)}" width="1536" height="1024">
+            <span class="presenter-face" aria-hidden="true">
+              <span class="presenter-eye presenter-eye-left"></span>
+              <span class="presenter-eye presenter-eye-right"></span>
+              <span class="presenter-mouth"><span class="presenter-teeth"></span></span>
+            </span>
+          </div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
         </div>
         <div class="presenter-content">
@@ -620,8 +627,8 @@
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
           <audio data-presenter-audio preload="auto" autoplay>
-            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper8" type="audio/wav">
-            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper8" type="audio/mpeg">
+            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper9" type="audio/wav">
+            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper9" type="audio/mpeg">
           </audio>
         </div>
       </section>`;
@@ -2526,8 +2533,10 @@
     const stop = card.querySelector("[data-presenter-stop]");
     const script = card.querySelector("[data-presenter-script]");
     const recording = card.querySelector("[data-presenter-audio]");
+    const mouth = card.querySelector(".presenter-mouth");
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
     const sentences = guideText(lang, getLocationName());
+    const avatarDemo = new URLSearchParams(location.search).get("avatar") === "demo";
     if (!recording) return;
     const touchToStart = text(tx(
       "Dotknij strony, aby włączyć głos.",
@@ -2542,9 +2551,142 @@
     ));
     let speaking = false;
     let waitingForGesture = false;
+    let motionFrame = 0;
+    let speechEnvelope = null;
+    let envelopeStep = 0.05;
+    let demoStartedAt = 0;
+
+    const setMouth = (level) => {
+      if (!mouth) return;
+      const safe = Math.max(0, Math.min(1, Number(level) || 0));
+      mouth.style.setProperty("--mouth-height", `${(2.5 + safe * 15).toFixed(1)}px`);
+      mouth.style.setProperty("--mouth-scale", (0.82 + safe * 0.18).toFixed(3));
+      mouth.style.setProperty("--teeth-opacity", safe > 0.42 ? "0.92" : "0");
+    };
+
+    const readChunkName = (view, offset) => String.fromCharCode(
+      view.getUint8(offset), view.getUint8(offset + 1),
+      view.getUint8(offset + 2), view.getUint8(offset + 3)
+    );
+
+    const buildSpeechEnvelope = (buffer) => {
+      const view = new DataView(buffer);
+      if (view.byteLength < 44 || readChunkName(view, 0) !== "RIFF" || readChunkName(view, 8) !== "WAVE") return null;
+      let offset = 12;
+      let format = 1;
+      let channels = 1;
+      let sampleRate = 44100;
+      let blockAlign = 2;
+      let bits = 16;
+      let dataOffset = 0;
+      let dataLength = 0;
+      while (offset + 8 <= view.byteLength) {
+        const name = readChunkName(view, offset);
+        const size = view.getUint32(offset + 4, true);
+        const start = offset + 8;
+        if (name === "fmt " && size >= 16 && start + 16 <= view.byteLength) {
+          format = view.getUint16(start, true);
+          channels = Math.max(1, view.getUint16(start + 2, true));
+          sampleRate = view.getUint32(start + 4, true) || sampleRate;
+          blockAlign = view.getUint16(start + 12, true) || blockAlign;
+          bits = view.getUint16(start + 14, true) || bits;
+        } else if (name === "data") {
+          dataOffset = start;
+          dataLength = Math.min(size, view.byteLength - start);
+          break;
+        }
+        offset = start + size + (size % 2);
+      }
+      if (!dataOffset || !dataLength || !blockAlign) return null;
+      const bytesPerSample = Math.max(1, Math.ceil(bits / 8));
+      const frameCount = Math.floor(dataLength / blockAlign);
+      const framesPerWindow = Math.max(1, Math.floor(sampleRate * envelopeStep));
+      const stride = Math.max(1, Math.floor(sampleRate / 8000));
+      const values = [];
+      const sampleAt = (sampleOffset) => {
+        if (sampleOffset + bytesPerSample > view.byteLength) return 0;
+        if (format === 3 && bits === 32) return view.getFloat32(sampleOffset, true);
+        if (bits === 8) return (view.getUint8(sampleOffset) - 128) / 128;
+        if (bits === 16) return view.getInt16(sampleOffset, true) / 32768;
+        if (bits === 24) {
+          let value = view.getUint8(sampleOffset) | (view.getUint8(sampleOffset + 1) << 8) | (view.getUint8(sampleOffset + 2) << 16);
+          if (value & 0x800000) value |= 0xff000000;
+          return value / 8388608;
+        }
+        if (bits === 32) return view.getInt32(sampleOffset, true) / 2147483648;
+        return 0;
+      };
+      for (let first = 0; first < frameCount; first += framesPerWindow) {
+        const last = Math.min(frameCount, first + framesPerWindow);
+        let sum = 0;
+        let count = 0;
+        for (let frame = first; frame < last; frame += stride) {
+          let mixed = 0;
+          for (let channel = 0; channel < channels; channel += 1) {
+            mixed += Math.abs(sampleAt(dataOffset + frame * blockAlign + channel * bytesPerSample));
+          }
+          sum += mixed / channels;
+          count += 1;
+        }
+        values.push(count ? sum / count : 0);
+      }
+      if (!values.length) return null;
+      const sorted = values.slice().sort((a, b) => a - b);
+      const reference = sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.92))] || 1;
+      return values.map((value) => Math.min(1, Math.pow(Math.max(0, value - reference * 0.035) / reference, 0.68)));
+    };
+
+    const wavSource = recording.querySelector('source[type="audio/wav"]');
+    if (wavSource) {
+      fetch(wavSource.src, { cache: "force-cache" })
+        .then((response) => response.ok ? response.arrayBuffer() : Promise.reject(new Error("avatar-audio")))
+        .then((buffer) => {
+          speechEnvelope = buildSpeechEnvelope(buffer);
+          card.dataset.lipSync = speechEnvelope ? "audio" : "fallback";
+        })
+        .catch(() => {
+          speechEnvelope = null;
+          card.dataset.lipSync = "fallback";
+        });
+    }
+
+    const stopMotion = () => {
+      if (motionFrame) cancelAnimationFrame(motionFrame);
+      motionFrame = 0;
+      card.classList.remove("is-blinking");
+      setMouth(0);
+    };
+
+    const animateFace = () => {
+      if (!speaking || (!avatarDemo && (recording.paused || recording.ended))) {
+        stopMotion();
+        return;
+      }
+      const current = avatarDemo
+        ? Math.max(0, (performance.now() - demoStartedAt) / 1000)
+        : Math.max(0, recording.currentTime || 0);
+      let level;
+      if (speechEnvelope && speechEnvelope.length) {
+        level = speechEnvelope[Math.min(speechEnvelope.length - 1, Math.floor(current / envelopeStep))] || 0;
+      } else {
+        const rhythm = Math.abs(Math.sin(current * 12.7) * 0.72 + Math.sin(current * 20.3) * 0.28);
+        const pause = Math.sin(current * 2.13 + 0.8) > 0.9 ? 0.12 : 1;
+        level = (0.16 + rhythm * 0.84) * pause;
+      }
+      setMouth(level);
+      const blinkPhase = current % 4.65;
+      card.classList.toggle("is-blinking", blinkPhase > 4.48 && blinkPhase < 4.62);
+      motionFrame = requestAnimationFrame(animateFace);
+    };
+
+    const startMotion = () => {
+      stopMotion();
+      motionFrame = requestAnimationFrame(animateFace);
+    };
 
     const finish = () => {
       speaking = false;
+      stopMotion();
       card.classList.remove("is-speaking");
       stop.hidden = true;
       script.textContent = sentences.join(" ");
@@ -2556,8 +2698,9 @@
       stop.hidden = false;
       card.classList.add("is-speaking");
       script.textContent = sentences.join(" ");
-      recording.play().catch((error) => {
+      recording.play().then(startMotion).catch((error) => {
         speaking = false;
+        stopMotion();
         card.classList.remove("is-speaking");
         stop.hidden = true;
         if (error && error.name === "NotAllowedError") {
@@ -2591,6 +2734,13 @@
       card.classList.remove("is-speaking");
       stop.hidden = true;
     });
+    if (avatarDemo) {
+      speaking = true;
+      demoStartedAt = performance.now();
+      card.classList.add("is-speaking");
+      startMotion();
+      return;
+    }
     window.setTimeout(startSpeaking, 350);
     window.addEventListener("pagehide", () => recording.pause(), { once: true });
   }

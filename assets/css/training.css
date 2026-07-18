@@ -9087,8 +9087,15 @@ body[data-page="home"] .tile {
   background: var(--surface);
   box-shadow: 0 14px 34px rgba(18, 48, 35, .12);
 }
-.presenter-media { position: relative; min-height: 280px; overflow: hidden; background: #1f4b36; }
+.presenter-media { position: relative; min-height: 280px; overflow: hidden; background: #1f4b36; perspective: 900px; }
+.presenter-portrait { position: absolute; inset: -1.5%; transform-origin: 50% 58%; will-change: transform; }
 .presenter-media img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 38%; }
+.presenter-face { position: absolute; left: 50%; top: 28%; width: clamp(62px, 17%, 116px); aspect-ratio: .82; transform: translate(-50%, -50%); transform-origin: 50% 68%; pointer-events: none; }
+.presenter-eye { position: absolute; top: 37%; width: 22%; height: 2px; border-radius: 999px; background: rgba(42, 24, 19, .9); box-shadow: 0 1px 1px rgba(255,255,255,.22); opacity: 0; transform: scaleX(.8); transition: opacity 45ms linear; }
+.presenter-eye-left { left: 13%; transform: rotate(2deg) scaleX(.8); }
+.presenter-eye-right { right: 13%; transform: rotate(-2deg) scaleX(.8); }
+.presenter-mouth { --mouth-height: 2.5px; --mouth-scale: .82; --teeth-opacity: 0; position: absolute; left: 50%; top: 69%; width: 32%; min-width: 20px; height: var(--mouth-height); overflow: hidden; border: 1px solid rgba(75, 23, 20, .78); border-radius: 48% 48% 52% 52%; background: radial-gradient(ellipse at 50% 16%, #5d2723 0 24%, #2b0d0d 62%, #160607 100%); box-shadow: 0 1px 2px rgba(51, 17, 12, .45); opacity: 0; transform: translate(-50%, -50%) scaleX(var(--mouth-scale)); transform-origin: 50% 16%; transition: opacity 90ms ease; }
+.presenter-teeth { position: absolute; top: 0; left: 14%; width: 72%; height: 28%; border-radius: 0 0 50% 50%; background: rgba(255, 250, 238, .95); opacity: var(--teeth-opacity); transition: opacity 40ms linear; }
 .presenter-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, rgba(7,34,24,.38)); pointer-events: none; }
 .presenter-content { display: flex; flex-direction: column; justify-content: center; padding: clamp(20px, 4vw, 38px); }
 .presenter-content h2 { margin: 4px 0 12px; font-size: clamp(23px, 3vw, 34px); line-height: 1.08; }
@@ -9102,16 +9109,15 @@ body[data-page="home"] .tile {
 .presenter-card.is-speaking .presenter-speaking span { animation: presenter-wave 720ms ease-in-out infinite alternate; }
 .presenter-card.is-speaking .presenter-speaking span:nth-child(2) { animation-delay: 160ms; }
 .presenter-card.is-speaking .presenter-speaking span:nth-child(3) { animation-delay: 320ms; }
-.presenter-card.is-speaking .presenter-media img {
-  transform-origin: 50% 38%;
-  animation: presenter-natural-motion 5.2s ease-in-out infinite;
-}
+.presenter-card.is-speaking .presenter-portrait { animation: presenter-natural-motion 3.6s ease-in-out infinite; }
+.presenter-card.is-speaking .presenter-mouth { opacity: .96; }
+.presenter-card.is-speaking.is-blinking .presenter-eye { opacity: .92; }
 @keyframes presenter-wave { to { height: 20px; } }
 @keyframes presenter-natural-motion {
-  0%, 100% { transform: scale(1.015) translate3d(0, 0, 0) rotate(0); }
-  28% { transform: scale(1.028) translate3d(-.35%, -.2%, 0) rotate(-.18deg); }
-  55% { transform: scale(1.02) translate3d(.25%, .15%, 0) rotate(.12deg); }
-  78% { transform: scale(1.03) translate3d(.1%, -.25%, 0) rotate(.16deg); }
+  0%, 100% { transform: scale(1.025) translate3d(0, 0, 0) rotate(0); }
+  24% { transform: scale(1.043) translate3d(-.7%, -.45%, 0) rotate(-.48deg); }
+  51% { transform: scale(1.032) translate3d(.55%, .35%, 0) rotate(.34deg); }
+  76% { transform: scale(1.046) translate3d(.25%, -.55%, 0) rotate(.52deg); }
 }
 @media (max-width: 720px) {
   .presenter-card { grid-template-columns: 1fr; }
@@ -9121,5 +9127,5 @@ body[data-page="home"] .tile {
 }
 @media (prefers-reduced-motion: reduce) {
   .presenter-card.is-speaking .presenter-speaking span,
-  .presenter-card.is-speaking .presenter-media img { animation: none; }
+  .presenter-card.is-speaking .presenter-portrait { animation: none; }
 }
