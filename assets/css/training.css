@@ -9214,6 +9214,12 @@ body[data-page="home"] .tile {
   animation: presenter-camera-breathe 5.8s ease-in-out infinite alternate;
 }
 
+.presenter-card-v2[data-avatar-variant="ai-motion"] .presenter-video,
+.presenter-card-v2[data-avatar-variant="ai-motion"].is-speaking .presenter-video {
+  animation: none;
+  transform: scale(1.006);
+}
+
 @keyframes presenter-camera-breathe {
   0% { transform: scale(1.012) translate3d(0, 0, 0); }
   45% { transform: scale(1.022) translate3d(-.18%, -.12%, 0); }

@@ -30,10 +30,10 @@ as its lip-sync source and have the same duration. Recommended export: H.264,
 AAC optional, 720p or 1080p, `yuv420p`, fast-start enabled. A 9:16 or 4:5 shot
 with face, torso and hands visible works best.
 
-If a chapter-specific lip-sync video is missing, the interface alternates between
-two silent presenter loops. `presenter-gesture-loop-v1.mp4` contains close gesture
-poses for the technical warehouse, greenhouse, reader and tablet chapters.
-`presenter-conversation-loop-v2.mp4` contains full-body speaking, safety and calm
-transition poses for the other chapters. The player adds subtle camera breathing,
-shows the current sentence over the video and highlights the same sentence in the
-transcript. A chapter-specific MP4 still takes priority when it is added.
+If a chapter-specific lip-sync video is missing, the interface uses
+`presenter-ai-motion-loop-v3.mp4`. It is a continuous 30 FPS AI-rendered loop with
+facial expressions, lip movement, head movement, torso transitions and three hand
+gestures. The artificial whole-frame camera animation is disabled for this clip.
+The player shows the current sentence over the video and highlights the same
+sentence in the transcript. A chapter-specific MP4 still takes priority when it is
+added.

@@ -24,6 +24,7 @@ https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 - Magazyn / sortownia nie ma readerow.
 - Reader, rzed, przerwa, wozek i restart sa opisane wedlug instrukcji.
 - Jest instrukcja dodania linku do ekranu telefonu.
+- Pomocnik korzysta z jednego plynnego klipu AI: mimika, ruch glowy, korpusu i trzy gesty rak sa zapisane jako prawdziwe klatki wideo, bez przelaczania statycznych zdjec.
 
 ## Publikacja
 

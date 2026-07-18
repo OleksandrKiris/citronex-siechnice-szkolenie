@@ -2692,12 +2692,20 @@
     const chapterVideoUrl = (chapter, index) =>
       `assets/avatar/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp4${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
     const genericAvatarFor = (chapter) => {
-      const technical = new Set(["warehouse", "greenhouse", "reader", "tablet"]);
-      const variant = technical.has(chapter.id) ? "gesture" : "conversation";
-      const file = variant === "gesture"
-        ? "presenter-gesture-loop-v1.mp4"
-        : "presenter-conversation-loop-v2.mp4";
-      const offsets = { welcome: 0, arrival: 1.8, safety: 4.2, documents: 8.3, help: 8.3, finish: .6 };
+      const variant = "ai-motion";
+      const file = "presenter-ai-motion-loop-v3.mp4";
+      const offsets = {
+        welcome: 0,
+        arrival: 1.3,
+        safety: 2.8,
+        warehouse: 4.1,
+        greenhouse: 4.8,
+        reader: 5.8,
+        tablet: 6.5,
+        documents: 4.7,
+        help: 7.1,
+        finish: 8.1
+      };
       return {
         variant,
         offset: Number(offsets[chapter.id] || 0),
