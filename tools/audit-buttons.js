@@ -83,6 +83,7 @@ function auditButtons(options = {}) {
   }
 
   for (const tile of data.tiles || []) {
+    if (tile.external || isExternal(tile.url)) continue;
     const pageId = tile.page;
     const file = pageId === "home" ? "index.html" : `${pageId}.html`;
     if (!pageId) addError("DATA.tiles: kafelek bez page.");

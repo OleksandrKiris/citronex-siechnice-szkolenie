@@ -9,6 +9,10 @@ const dataPath = path.join(root, "assets", "js", "training-data.js");
 const dataCode = fs.readFileSync(dataPath, "utf8");
 const context = { window: {} };
 vm.runInNewContext(dataCode, context, { filename: dataPath });
+const customPath = path.join(root, "assets", "js", "location-custom.js");
+if (fs.existsSync(customPath)) {
+  vm.runInNewContext(fs.readFileSync(customPath, "utf8"), context, { filename: customPath });
+}
 
 const DATA = context.window.CX_DATA;
 const langs = DATA.languages.map((lang) => lang.id);
@@ -18,9 +22,10 @@ const urls = new Set();
 
 function isTranslationObject(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return false;
-  return ["pl", "en", "ua", "ru", "az", "es", "fil", "ne"].some((lang) => (
-    Object.prototype.hasOwnProperty.call(value, lang)
-  ));
+  // A language option has an `id` field, but it is not a translation object.
+  // Requiring the two base languages prevents the audit from reporting the
+  // language selector itself as hundreds of missing translations.
+  return ["pl", "en"].every((lang) => Object.prototype.hasOwnProperty.call(value, lang));
 }
 
 function walk(value, trail = "DATA") {

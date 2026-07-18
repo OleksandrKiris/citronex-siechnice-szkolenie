@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260716-hardening1-siechnice"
+      version: "20260716-data-audit1-siechnice"
     },
 
     languages: [
@@ -169,7 +169,7 @@
           title: tx("Wybierz wykonywaną czynność", "Choose the activity you do", "Оберіть дію, яку виконуєте", "Выберите выполняемую деятельность", "Gördüyünüz fəaliyyəti seçin", "Elige la actividad que haces", "Piliin ang ginagawa mong activity", "Pilih aktivitas yang dikerjakan", "आफूले गर्ने गतिविधि छान्नुहोस्"),
           note: tx("Zaloguj się ponownie i wybierz wykonywaną czynność.", "Log in again and choose the activity you are doing.", "Увійдіть знову і виберіть дію, яку виконуєте.", "Войдите снова и выберите выполняемую деятельность.", "Yenidən daxil olun və gördüyünüz fəaliyyəti seçin.", "Inicia sesión otra vez y elige la actividad que realizas.", "Mag-login ulit at piliin ang ginagawa mong activity.", "Login lagi dan pilih aktivitas yang dikerjakan.", "फेरि लगइन गरेर आफूले गर्ने गतिविधि छान्नुहोस्।"),
           image: "assets/tablet/tablet-activity.jpg",
-          screen: tx("Czynność", "Activity", "Дія", "Деятельность", "Fəaliyyət", "Actividad", "Activity", "Aktivitas", "गतिविधि")
+          screen: tx("Czynność", "Activity", "Дія", "Деятельность", "Fəaliyyət", "Actividad", "Gawain", "Aktivitas", "गतिविधि")
         },
         {
           title: tx("Zmiana czynności", "Changing activity", "Зміна дії", "Смена деятельности", "Fəaliyyəti dəyişmək", "Cambio de actividad", "Pagpalit ng activity", "Ganti aktivitas", "गतिविधि बदल्ने"),
@@ -179,15 +179,15 @@
         },
         {
           title: tx("Początek przerwy", "Break start", "Початок перерви", "Начало перерыва", "Fasilənin başlanğıcı", "Inicio de descanso", "Simula ng pahinga", "Mulai istirahat", "ब्रेक सुरु"),
-          note: tx("Zaczynając przerwę zaloguj się i wybierz „Przerwa”.", "When starting a break, log in and choose “Break”.", "Починаючи перерву, увійдіть і виберіть «Перерва».", "Начиная перерыв, войдите и выберите «Перерыв».", "Fasiləyə başlayanda daxil olun və “Fasilə” seçin.", "Al empezar descanso, inicia sesión y elige “Descanso”.", "Kapag magsisimula ng break, mag-login at piliin ang “Break”.", "Saat mulai istirahat, login dan pilih “Istirahat”.", "ब्रेक सुरु गर्दा लगइन गरेर “ब्रेक” छान्नुहोस्।"),
+          note: tx("Zaczynając przerwę zaloguj się i wybierz „Przerwa”.", "When starting a break, log in and choose “Break”.", "Починаючи перерву, увійдіть і виберіть «Перерва».", "Начиная перерыв, войдите и выберите «Перерыв».", "Fasiləyə başlayanda daxil olun və “Fasilə” seçin.", "Al empezar descanso, inicia sesión y elige “Descanso”.", "Kapag magsisimula ng pahinga, mag-login at piliin ang “Pahinga”.", "Saat mulai istirahat, login dan pilih “Istirahat”.", "ब्रेक सुरु गर्दा लगइन गरेर “ब्रेक” छान्नुहोस्।"),
           image: "assets/tablet/tablet-break-start.jpg",
-          screen: tx("Przerwa", "Break", "Перерва", "Перерыв", "Fasilə", "Descanso", "Break", "Istirahat", "ब्रेक")
+          screen: tx("Przerwa", "Break", "Перерва", "Перерыв", "Fasilə", "Descanso", "Pahinga", "Istirahat", "ब्रेक")
         },
         {
           title: tx("Koniec przerwy", "Break end", "Кінець перерви", "Конец перерыва", "Fasilənin sonu", "Fin de descanso", "Tapos ng pahinga", "Selesai istirahat", "ब्रेक अन्त्य"),
           note: tx("Kończąc przerwę zaloguj się i wybierz wykonywaną czynność.", "When ending a break, log in and choose the activity you are doing.", "Закінчуючи перерву, увійдіть і виберіть дію, яку виконуєте.", "Заканчивая перерыв, войдите и выберите выполняемую деятельность.", "Fasiləni bitirəndə daxil olun və gördüyünüz fəaliyyəti seçin.", "Al terminar descanso, inicia sesión y elige la actividad que realizas.", "Pagkatapos ng pahinga, mag-login at piliin ang ginagawa mong gawain.", "Saat selesai istirahat, login dan pilih aktivitas yang dikerjakan.", "ब्रेक सकेपछि लगइन गरेर आफूले गर्ने गतिविधि छान्नुहोस्।"),
           image: "assets/tablet/tablet-after-break-activity.jpg",
-          screen: tx("Czynność", "Activity", "Дія", "Деятельность", "Fəaliyyət", "Actividad", "Activity", "Aktivitas", "गतिविधि")
+          screen: tx("Czynność", "Activity", "Дія", "Деятельность", "Fəaliyyət", "Actividad", "Gawain", "Aktivitas", "गतिविधि")
         },
         {
           title: tx("Koniec pracy", "Work end", "Кінець роботи", "Конец работы", "İşin sonu", "Fin de trabajo", "Tapos ng trabaho", "Selesai kerja", "काम अन्त्य"),
@@ -199,7 +199,7 @@
           title: tx("Wyloguj się", "Log out", "Вийдіть із системи", "Выйдите из системы", "Çıxış edin", "Cerrar sesión", "Mag-log out", "Logout", "Logout गर्नुहोस्"),
           note: tx("Zaloguj się ponownie i wybierz „Wyloguj się”.", "Log in again and choose “Log out”.", "Увійдіть знову і виберіть «Вийти».", "Войдите снова и выберите «Выйти».", "Yenidən daxil olun və “Çıxış” seçin.", "Inicia sesión otra vez y elige “Cerrar sesión”.", "Mag-login ulit at piliin ang “Log out”.", "Login lagi lalu pilih “Logout”.", "फेरि लगइन गरेर “Logout” छान्नुहोस्।"),
           image: "assets/tablet/tablet-logout.jpg",
-          screen: tx("Wyloguj się", "Log out", "Вийти", "Выйти", "Çıxış", "Cerrar sesión", "Log out", "Logout", "Logout")
+          screen: tx("Wyloguj się", "Log out", "Вийти", "Выйти", "Çıxış", "Cerrar sesión", "Mag-log out", "Logout", "Logout")
         }
       ],
       tips: [
@@ -214,15 +214,15 @@
         title: tx("Pełna kolejność", "Full order", "Повна послідовність", "Полная последовательность", "Tam ardıcıllıq", "Orden completo", "Buong pagkakasunod", "Urutan lengkap", "पूरा क्रम"),
         lead: tx("To jest obrazkowy start pracy z readerem. Używaj centralnego przycisku readera.", "This is the visual start order for the reader. Use the reader's middle button.", "Це наочний порядок початку роботи з рідером. Використовуйте центральну кнопку рідера.", "Это наглядный порядок начала работы с ридером. Используйте центральную кнопку ридера.", "Bu reader ilə işə başlama ardıcıllığıdır. Reader-in orta düyməsindən istifadə edin.", "Este es el orden visual de inicio con el reader. Usa el botón central del reader.", "Ito ang visual na simula ng reader. Gamitin ang gitnang button ng reader.", "Ini urutan awal kerja dengan reader. Gunakan tombol tengah reader.", "यो reader सुरु गर्ने चित्रसहितको क्रम हो। reader को बीचको बटन प्रयोग गर्नुहोस्।"),
         image: "assets/inline/reader_start.jpg",
-        imageCaption: tx("Instrukcja obrazkowa readera - 9 kroków.", "Reader visual instruction - 9 steps.", "Інструкція рідера з картинками - 9 кроків.", "Инструкция ридера с картинками - 9 шагов.", "Reader şəkilli təlimatı - 9 addım.", "Instrucción visual del reader - 9 pasos.", "Reader visual instruction - 9 steps.", "Instruksi gambar reader - 9 langkah.", "reader चित्र निर्देशन - ९ चरण।"),
+        imageCaption: tx("Instrukcja obrazkowa readera - 9 kroków.", "Reader visual instruction - 9 steps.", "Інструкція рідера з картинками - 9 кроків.", "Инструкция ридера с картинками - 9 шагов.", "Reader şəkilli təlimatı - 9 addım.", "Instrucción visual del reader - 9 pasos.", "Instruksiyong may larawan para sa reader - 9 na hakbang.", "Instruksi gambar reader - 9 langkah.", "reader चित्र निर्देशन - ९ चरण।"),
         imageSteps: [
           tx("Weź reader", "Take reader", "Візьміть рідер", "Возьмите ридер", "Reader götürün", "Toma reader", "Kunin reader", "Ambil reader", "reader लिनुहोस्"),
-          tx("Tag personalny", "Personal tag", "Персональний тег", "Персональный тег", "Şəxsi tag", "Tag personal", "Personal tag", "Tag pribadi", "व्यक्तिगत tag"),
+          tx("Tag personalny", "Personal tag", "Персональний тег", "Персональный тег", "Şəxsi tag", "Tag personal", "Personal na tag", "Tag pribadi", "व्यक्तिगत tag"),
           tx("Początek pracy", "Work start", "Початок роботи", "Начало работы", "İşin başlanğıcı", "Inicio trabajo", "Simula trabaho", "Mulai kerja", "काम सुरु"),
           tx("Czynność", "Activity", "Дія", "Деятельность", "Fəaliyyət", "Actividad", "Gawain", "Aktivitas", "गतिविधि"),
           tx("Wejdź do rzędu", "Enter row", "Зайдіть у ряд", "Зайдите в ряд", "Sıraya girin", "Entra a fila", "Pumasok sa row", "Masuk baris", "पङ्क्तिमा जानुहोस्"),
-          tx("Początek przerwy", "Break start", "Початок перерви", "Начало перерыва", "Fasilə başlanğıcı", "Inicio descanso", "Simula break", "Mulai istirahat", "ब्रेक सुरु"),
-          tx("Koniec przerwy", "Break end", "Кінець перерви", "Конец перерыва", "Fasilə sonu", "Fin descanso", "Tapos break", "Selesai istirahat", "ब्रेक अन्त्य"),
+          tx("Początek przerwy", "Break start", "Початок перерви", "Начало перерыва", "Fasilə başlanğıcı", "Inicio descanso", "Simula ng pahinga", "Mulai istirahat", "ब्रेक सुरु"),
+          tx("Koniec przerwy", "Break end", "Кінець перерви", "Конец перерыва", "Fasilə sonu", "Fin descanso", "Tapos ng pahinga", "Selesai istirahat", "ब्रेक अन्त्य"),
           tx("Koniec pracy", "Work end", "Кінець роботи", "Конец работы", "İşin sonu", "Fin trabajo", "Tapos trabaho", "Selesai kerja", "काम अन्त्य"),
           tx("Odłóż reader", "Return reader", "Покладіть рідер", "Положите ридер", "Reader-i qoyun", "Devuelve reader", "Ibalik reader", "Kembalikan reader", "reader राख्नुहोस्")
         ],
@@ -275,7 +275,7 @@
             ]
           },
           {
-            title: tx("Przerwa socjalna", "Social break", "Соціальна перерва", "Социальный перерыв", "Sosial fasilə", "Pausa social", "Social break", "Istirahat sosial", "सामाजिक ब्रेक"),
+            title: tx("Przerwa socjalna", "Social break", "Соціальна перерва", "Социальный перерыв", "Sosial fasilə", "Pausa social", "Pahinga", "Istirahat sosial", "सामाजिक ब्रेक"),
             steps: [
               tx("Idziesz na socjal: wyjdź z rzędu i odbij tag rzędu.", "Going to social break: leave the row and scan the row tag.", "Йдете на соціальну перерву: вийдіть з ряду і відбийте тег ряду.", "Идете на социальный перерыв: выйдите из ряда и отметьте тег ряда.", "Sosial fasiləyə gedirsiniz: sıradan çıxın və sıra tagını vurun.", "Vas a pausa social: sal de la fila y marca el tag de fila.", "Pupunta sa social break: lumabas sa row at i-scan ang row tag.", "Pergi istirahat sosial: keluar dari baris dan scan tag baris.", "सामाजिक ब्रेकमा जाँदा: पङ्क्तिबाट निस्केर row tag स्क्यान गर्नुहोस्।"),
               tx("Na tablicy odbij 'początek socjal przerwa'.", "On the board, scan 'social break start'.", "На дошці відбийте 'початок соціальної перерви'.", "На доске отметьте 'начало социального перерыва'.", "Lövhədə 'sosial fasilə başlanğıcı' vurun.", "En el tablero, marca 'inicio pausa social'.", "Sa board, i-scan ang 'social break start'.", "Di papan, scan 'mulai istirahat sosial'.", "बोर्डमा 'सामाजिक ब्रेक सुरु' स्क्यान गर्नुहोस्।"),
@@ -307,9 +307,9 @@
             ]
           },
           {
-            title: tx("Przerwa socjalna", "Social break", "Соціальна перерва", "Социальный перерыв", "Sosial fasilə", "Pausa social", "Social break", "Istirahat sosial", "सामाजिक ब्रेक"),
+            title: tx("Przerwa socjalna", "Social break", "Соціальна перерва", "Социальный перерыв", "Sosial fasilə", "Pausa social", "Pahinga", "Istirahat sosial", "सामाजिक ब्रेक"),
             steps: [
-              tx("Przed socjalem odbij aktualną czynność, jeżeli wymaga tego tablica.", "Before social break, scan the current activity if the board requires it.", "Перед соціальною перервою відбийте актуальну дію, якщо цього вимагає дошка.", "Перед социальным перерывом отметьте текущую деятельность, если это требуется на доске.", "Sosial fasilədən əvvəl lövhə tələb edirsə cari fəaliyyəti vurun.", "Antes de la pausa social, marca la actividad actual si el tablero lo requiere.", "Bago social break, i-scan ang kasalukuyang gawain kung kailangan sa board.", "Sebelum istirahat sosial, scan aktivitas saat ini jika papan memintanya.", "सामाजिक ब्रेकअघि बोर्डले मागेमा हालको गतिविधि स्क्यान गर्नुहोस्।"),
+              tx("Przed przerwą socjalną odbij aktualnie wykonywaną czynność.", "Before the social break, scan the activity you are currently doing.", "Перед соціальною перервою відбийте дію, яку зараз виконуєте.", "Перед социальным перерывом отметьте деятельность, которую сейчас выполняете.", "Sosial fasilədən əvvəl hazırda gördüyünüz fəaliyyəti vurun.", "Antes de la pausa social, marca la actividad que estás realizando.", "Bago ang social break, i-scan ang kasalukuyan mong gawain.", "Sebelum istirahat sosial, scan aktivitas yang sedang Anda kerjakan.", "सामाजिक ब्रेकअघि अहिले गरिरहेको गतिविधि स्क्यान गर्नुहोस्।"),
               tx("Odbij 'początek socjal przerwa'.", "Scan 'social break start'.", "Відбийте 'початок соціальної перерви'.", "Отметьте 'начало социального перерыва'.", "'Sosial fasilə başlanğıcı' vurun.", "Marca 'inicio pausa social'.", "I-scan ang 'social break start'.", "Scan 'mulai istirahat sosial'.", "'सामाजिक ब्रेक सुरु' स्क्यान गर्नुहोस्।"),
               tx("Po powrocie odbij 'koniec socjal przerwa', a potem ponownie czynność.", "After returning, scan 'social break end', then scan the activity again.", "Після повернення відбийте 'кінець соціальної перерви', потім знову дію.", "После возвращения отметьте 'конец социального перерыва', потом снова деятельность.", "Qayıdanda 'sosial fasilə sonu' vurun, sonra fəaliyyəti yenidən vurun.", "Al volver, marca 'fin pausa social' y luego la actividad otra vez.", "Pagbalik, i-scan ang 'social break end', pagkatapos gawain ulit.", "Setelah kembali, scan 'selesai istirahat sosial', lalu scan aktivitas lagi.", "फर्केपछि 'सामाजिक ब्रेक समाप्त' स्क्यान गर्नुहोस्, त्यसपछि फेरि गतिविधि।")
             ]
@@ -317,6 +317,7 @@
           {
             title: tx("Przerwa zwykła", "Regular break", "Звичайна перерва", "Обычный перерыв", "Adi fasilə", "Descanso normal", "Karaniwang break", "Istirahat biasa", "सामान्य ब्रेक"),
             steps: [
+              tx("Przed przerwą odbij aktualnie wykonywaną czynność.", "Before the break, scan the activity you are currently doing.", "Перед перервою відбийте дію, яку зараз виконуєте.", "Перед перерывом отметьте деятельность, которую сейчас выполняете.", "Fasilədən əvvəl hazırda gördüyünüz fəaliyyəti vurun.", "Antes del descanso, marca la actividad que estás realizando.", "Bago ang break, i-scan ang kasalukuyan mong gawain.", "Sebelum istirahat, scan aktivitas yang sedang Anda kerjakan.", "ब्रेकअघि अहिले गरिरहेको गतिविधि स्क्यान गर्नुहोस्।"),
               tx("Odbij 'początek przerwy'.", "Scan 'break start'.", "Відбийте 'початок перерви'.", "Отметьте 'начало перерыва'.", "'Fasilə başlanğıcı' vurun.", "Marca 'inicio de descanso'.", "I-scan ang 'break start'.", "Scan 'mulai istirahat'.", "'ब्रेक सुरु' स्क्यान गर्नुहोस्।"),
               tx("Po powrocie odbij 'koniec przerwy', a potem ponownie czynność.", "After returning, scan 'break end', then scan the activity again.", "Після повернення відбийте 'кінець перерви', потім знову дію.", "После возвращения отметьте 'конец перерыва', потом снова деятельность.", "Qayıdanda 'fasilə sonu' vurun, sonra fəaliyyəti yenidən vurun.", "Al volver, marca 'fin de descanso' y luego la actividad otra vez.", "Pagbalik, i-scan ang 'break end', pagkatapos gawain ulit.", "Setelah kembali, scan 'selesai istirahat', lalu scan aktivitas lagi.", "फर्केपछि 'ब्रेक समाप्त' स्क्यान गर्नुहोस्, त्यसपछि फेरि गतिविधि।")
             ]
@@ -333,24 +334,24 @@
       },
       {
         id: "carts",
-        title: tx("Wózki", "Carts", "Візки", "Тележки", "Arabalar", "Carros", "Carts", "Troli", "ट्रली"),
+        title: tx("Wózki", "Carts", "Візки", "Тележки", "Arabalar", "Carros", "Mga trolley", "Troli", "ट्रली"),
         lead: tx("Przy zbiorach używaj kolejności z obrazka: zawsze wychodząc z rzędu.", "During picking, use the order from the picture: always while leaving the row.", "Під час збору використовуйте порядок з картинки: завжди при виході з ряду.", "При сборе используйте порядок с картинки: всегда при выходе из ряда.", "Yığım zamanı şəkildəki ardıcıllıqdan istifadə edin: həmişə sıradan çıxanda.", "En la cosecha usa el orden de la imagen: siempre al salir de la fila.", "Sa pagpitas, sundin ang ayos sa larawan: palaging paglabas sa hanay.", "Saat panen, gunakan urutan pada gambar: selalu saat keluar dari baris.", "टिपाइमा चित्रको क्रम प्रयोग गर्नुहोस्: सधैं पङ्क्तिबाट निस्कँदा।"),
         images: [
-          { src: "assets/inline/cart_pl.jpg", caption: tx("Wózki - wersja polska.", "Carts - Polish version.", "Візки - польська версія.", "Тележки - польская версия.", "Arabalar - polyak versiyası.", "Carros - versión polaca.", "Carts - Polish version.", "Troli - versi Polandia.", "ट्रली - पोलिश संस्करण।") },
-          { src: "assets/inline/cart_ua.jpg", caption: tx("Wózki - wersja ukraińska.", "Carts - Ukrainian version.", "Візки - українська версія.", "Тележки - украинская версия.", "Arabalar - ukrayna versiyası.", "Carros - versión ucraniana.", "Carts - Ukrainian version.", "Troli - versi Ukraina.", "ट्रली - युक्रेनी संस्करण।") }
+          { src: "assets/inline/cart_pl.jpg", caption: tx("Wózki - wersja polska.", "Carts - Polish version.", "Візки - польська версія.", "Тележки - польская версия.", "Arabalar - polyak versiyası.", "Carros - versión polaca.", "Mga trolley - bersyon sa Polandia.", "Troli - versi Polandia.", "ट्रली - पोलिश संस्करण।") },
+          { src: "assets/inline/cart_ua.jpg", caption: tx("Wózki - wersja ukraińska.", "Carts - Ukrainian version.", "Візки - українська версія.", "Тележки - украинская версия.", "Arabalar - ukrayna versiyası.", "Carros - versión ucraniana.", "Mga trolley - bersyon sa Ukraine.", "Troli - versi Ukraina.", "ट्रली - युक्रेनी संस्करण।") }
         ],
         imageSteps: [
-          tx("Tag wózka", "Cart tag", "Тег візка", "Тег тележки", "Araba tagı", "Tag del carro", "Cart tag", "Tag troli", "ट्रली tag"),
-          tx("Tag rzędu", "Row tag", "Тег ряду", "Тег ряда", "Sıra tagı", "Tag de fila", "Row tag", "Tag baris", "row tag"),
+          tx("Tag wózka", "Cart tag", "Тег візка", "Тег тележки", "Araba tagı", "Tag del carro", "Tag ng trolley", "Tag troli", "ट्रली tag"),
+          tx("Tag rzędu", "Row tag", "Тег ряду", "Тег ряда", "Sıra tagı", "Tag de fila", "Tag ng hanay", "Tag baris", "row tag"),
           tx("Skończony: 1 raz", "Finished: once", "Закінчений: 1 раз", "Закончен: 1 раз", "Bitib: 1 dəfə", "Terminada: 1 vez", "Tapos: 1 beses", "Selesai: 1 kali", "सकिएको: १ पटक"),
           tx("Nieskończony: 2 razy", "Unfinished: twice", "Не закінчений: 2 рази", "Не закончен: 2 раза", "Bitməyib: 2 dəfə", "No terminada: 2 veces", "Hindi tapos: 2 beses", "Belum selesai: 2 kali", "नसकिएको: २ पटक"),
-          tx("Wyślij po skanach", "Send after scans", "Надішліть після сканів", "Отправьте после сканов", "Skanlardan sonra göndərin", "Envía tras escanear", "Ipadala pagkatapos", "Kirim setelah scan", "स्क्यानपछि पठाउनुहोस्")
+          tx("Naciśnij wskazany przycisk", "Press the indicated button", "Натисніть вказану кнопку", "Нажмите указанную кнопку", "Göstərilən düyməni basın", "Pulsa el botón indicado", "Pindutin ang ipinakitang button", "Tekan tombol yang ditunjukkan", "देखाइएको बटन थिच्नुहोस्")
         ],
         steps: [
           { tone: "warn", text: tx("Przy zbiorach skanujesz zawsze wychodząc z rzędu.", "During picking, always scan while leaving the row.", "Під час збору скануйте завжди при виході з ряду.", "При сборе всегда сканируйте при выходе из ряда.", "Yığım zamanı həmişə sıradan çıxanda skan edin.", "Durante la cosecha, escanea siempre al salir de la fila.", "Sa pagpitas, palaging mag-scan paglabas sa hanay.", "Saat panen, selalu scan saat keluar dari baris.", "टिपाइमा सधैं पङ्क्तिबाट निस्कँदा स्क्यान गर्नुहोस्।") },
           tx("Najpierw skanuj tag wózka - zawsze jeden raz.", "First scan the cart tag - always once.", "Спочатку скануйте тег візка - завжди один раз.", "Сначала сканируйте тег тележки - всегда один раз.", "Əvvəl araba tagını skan edin - həmişə bir dəfə.", "Primero marca el tag del carro - siempre una vez.", "Una, i-scan ang cart tag - laging isang beses.", "Pertama scan tag troli - selalu sekali.", "पहिले cart tag स्क्यान गर्नुहोस् - सधैं एक पटक।"),
           tx("Następnie skanuj tag rzędu: skończony jeden raz, nieskończony dwa razy.", "Then scan the row tag: finished once, unfinished twice.", "Потім скануйте тег ряду: закінчений один раз, незакінчений два рази.", "Потом сканируйте тег ряда: законченный один раз, незаконченный два раза.", "Sonra sıra tagını skan edin: bitmiş bir dəfə, bitməmiş iki dəfə.", "Después marca el tag de fila: terminada una vez, no terminada dos veces.", "Pagkatapos scan row tag: tapos isang beses, hindi tapos dalawang beses.", "Lalu scan tag baris: selesai sekali, belum selesai dua kali.", "त्यसपछि row tag स्क्यान गर्नुहोस्: सकिएको एक पटक, नसकिएको दुई पटक।"),
-          tx("Dopiero po tych skanach wyślij informację/przycisk na readerze.", "Only after these scans send the information/button on the reader.", "Тільки після цих сканів надсилайте інформацію/кнопку на рідері.", "Только после этих сканов отправляйте информацию/кнопку на ридере.", "Yalnız bu skanlardan sonra reader-də məlumatı/düyməni göndərin.", "Solo después de estos escaneos envía la información/botón en el reader.", "Pagkatapos lang ng scans na ito, ipadala ang info/button sa reader.", "Baru setelah scan ini kirim informasi/tombol di reader.", "यी स्क्यानपछि मात्र reader मा जानकारी/बटन पठाउनुहोस्।"),
+          tx("Dopiero po tych skanach naciśnij wskazany przycisk na readerze.", "Only after these scans, press the indicated button on the reader.", "Тільки після цих сканів натисніть вказану кнопку на рідері.", "Только после этих сканов нажмите указанную кнопку на ридере.", "Yalnız bu skanlardan sonra reader-də göstərilən düyməni basın.", "Solo después de estos escaneos pulsa el botón indicado del reader.", "Pagkatapos lamang ng mga scan na ito, pindutin ang ipinakitang button sa reader.", "Hanya setelah pemindaian ini, tekan tombol yang ditunjukkan pada reader.", "यी स्क्यानपछि मात्र reader मा देखाइएको बटन थिच्नुहोस्।"),
           tx("Jeżeli nie zbierasz do wózka, wróć do zwykłej procedury rzędu.", "If you are not picking to a cart, return to the normal row procedure.", "Якщо не збираєте у візок, поверніться до звичайної процедури ряду.", "Если не собираете в тележку, вернитесь к обычной процедуре ряда.", "Arabaya yığmırsınızsa, adi sıra proseduruna qayıdın.", "Si no recoges al carro, vuelve al procedimiento normal de fila.", "Kung hindi sa cart ang pagpitas, bumalik sa normal na proseso ng hanay.", "Jika tidak memetik ke troli, kembali ke prosedur baris biasa.", "यदि ट्रलीमा टिप्नुहुन्न भने सामान्य row प्रक्रिया प्रयोग गर्नुहोस्।")
         ]
       },
@@ -360,12 +361,12 @@
         lead: tx("Restart wykonuj tylko wtedy, gdy reader się zawiesi.", "Restart only when the reader freezes.", "Рестарт робіть тільки тоді, коли рідер завис.", "Рестарт делайте только когда ридер завис.", "Restartı yalnız reader donanda edin.", "Haz reinicio solo cuando el reader se bloquea.", "Mag-restart lang kapag nag-freeze ang reader.", "Restart hanya saat reader macet.", "reader अड्किएपछि मात्र restart गर्नुहोस्।"),
         images: [
           { src: "assets/inline/restart_1.jpg", caption: tx("Przyciski readera: lewy, środkowy, prawy.", "Reader buttons: left, middle, right.", "Кнопки рідера: ліва, середня, права.", "Кнопки ридера: левая, средняя, правая.", "Reader düymələri: sol, orta, sağ.", "Botones del reader: izquierdo, central, derecho.", "Reader buttons: left, middle, right.", "Tombol reader: kiri, tengah, kanan.", "reader बटन: बायाँ, बीच, दायाँ।") },
-          { src: "assets/inline/restart_2.jpg", caption: tx("Menu serwisowe: YES, SELECT, DOWN.", "Service menu: YES, SELECT, DOWN.", "Сервісне меню: YES, SELECT, DOWN.", "Сервисное меню: YES, SELECT, DOWN.", "Servis menyusu: YES, SELECT, DOWN.", "Menú de servicio: YES, SELECT, DOWN.", "Service menu: YES, SELECT, DOWN.", "Menu servis: YES, SELECT, DOWN.", "service menu: YES, SELECT, DOWN।") }
+          { src: "assets/inline/restart_2.jpg", caption: tx("Menu serwisowe: YES, SELECT, DOWN.", "Service menu: YES, SELECT, DOWN.", "Сервісне меню: YES, SELECT, DOWN.", "Сервисное меню: YES, SELECT, DOWN.", "Servis menyusu: YES, SELECT, DOWN.", "Menú de servicio: YES, SELECT, DOWN.", "Menu ng serbisyo: YES, SELECT, DOWN.", "Menu servis: YES, SELECT, DOWN.", "service menu: YES, SELECT, DOWN।") }
         ],
         imageSteps: [
-          tx("Trzymaj lewy", "Hold left", "Тримайте ліву", "Держите левую", "Solu saxlayın", "Mantén izquierdo", "Hawakan left", "Tahan kiri", "बायाँ थिचिराख्नुहोस्"),
-          tx("Prawy, środkowy, prawy", "Right, middle, right", "Права, середня, права", "Правая, средняя, правая", "Sağ, orta, sağ", "Derecho, central, derecho", "Right, middle, right", "Kanan, tengah, kanan", "दायाँ, बीच, दायाँ"),
-          tx("Puść lewy", "Release left", "Відпустіть ліву", "Отпустите левую", "Solu buraxın", "Suelta izquierdo", "Bitawan left", "Lepas kiri", "बायाँ छोड्नुहोस्"),
+          tx("Trzymaj lewy", "Hold left", "Тримайте ліву", "Держите левую", "Solu saxlayın", "Mantén izquierdo", "Hawakan ang kaliwa", "Tahan kiri", "बायाँ थिचिराख्नुहोस्"),
+          tx("Prawy, środkowy, prawy", "Right, middle, right", "Права, середня, права", "Правая, средняя, правая", "Sağ, orta, sağ", "Derecho, central, derecho", "Kanan, gitna, kanan", "Kanan, tengah, kanan", "दायाँ, बीच, दायाँ"),
+          tx("Puść lewy", "Release left", "Відпустіть ліву", "Отпустите левую", "Solu buraxın", "Suelta izquierdo", "Bitawan ang kaliwa", "Lepas kiri", "बायाँ छोड्नुहोस्"),
           tx("DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5", "DOWN x5"),
           tx("SELECT", "SELECT", "SELECT", "SELECT", "SELECT", "SELECT", "SELECT", "SELECT", "SELECT"),
           tx("YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES", "YES"),
@@ -385,8 +386,8 @@
 
     contacts: {
       coordinators: [
-        { name: "Yuliia", phone: "+48506845667", role: "Koordynator" },
-        { name: "Yana", phone: "+48797066987", role: "Koordynator" },
+        { name: "Yuliia", phone: "+48506845667", role: "Rekrutacja" },
+        { name: "Yana", phone: "+48797066987", role: "Rekrutacja" },
         { name: "Fariz", phone: "+48504165739", role: "Koordynator" },
         { name: "Pomoc brygadzisty starego magazynu", phone: "+48504724605", role: "Stary magazyn" },
         { name: "Oleksandr", phone: "+48502251384", role: "Koordynator" }
@@ -434,15 +435,19 @@
         tone: "blue",
         title: tx("Przychodnia - GOZ Siechnice", "Clinic - GOZ Siechnice", "Поліклініка - GOZ Siechnice", "Поликлиника - GOZ Siechnice", "Poliklinika - GOZ Siechnice", "Clínica - GOZ Siechnice", "Klinika - GOZ Siechnice", "Klinik - GOZ Siechnice", "क्लिनिक - GOZ Siechnice"),
         body: [
-          tx("Zapisy są od godziny 8:00.", "Registration starts at 8:00.", "Запис з 8:00.", "Запись с 8:00.", "Qeydiyyat saat 8:00-dan başlayır.", "El registro empieza a las 8:00.", "Registration ay mula 8:00.", "Pendaftaran mulai pukul 8:00.", "दर्ता बिहान ८:०० देखि हुन्छ।"),
+          tx("Adres: ul. Jana Pawła II 23, 55-011 Siechnice.", "Address: Jana Pawła II 23, 55-011 Siechnice.", "Адреса: вул. Jana Pawła II 23, 55-011 Siechnice.", "Адрес: ул. Jana Pawła II 23, 55-011 Siechnice.", "Ünvan: Jana Pawła II 23, 55-011 Siechnice.", "Dirección: Jana Pawła II 23, 55-011 Siechnice.", "Tirahan: Jana Pawła II 23, 55-011 Siechnice.", "Alamat: Jana Pawła II 23, 55-011 Siechnice.", "ठेगाना: Jana Pawła II 23, 55-011 Siechnice।"),
+          tx("Zapisy są od godziny 8:00.", "Registration starts at 8:00.", "Запис з 8:00.", "Запись с 8:00.", "Qeydiyyat saat 8:00-dan başlayır.", "El registro empieza a las 8:00.", "Nagsisimula ang pagpaparehistro ng 8:00.", "Pendaftaran mulai pukul 8:00.", "दर्ता बिहान ८:०० देखि हुन्छ।"),
           tx("Przyjdź o 8:00, nie później, bo może nie być miejsc.", "Come at 8:00, not later, because places may run out.", "Прийдіть о 8:00, не пізніше, бо місць може не бути.", "Приходите в 8:00, не позже, потому что мест может не быть.", "Saat 8:00-da gəlin, gecikməyin, yer qalmaya bilər.", "Ven a las 8:00, no más tarde, porque puede no haber plazas.", "Dumating ng 8:00, huwag mas late, baka maubos ang lugar.", "Datang pukul 8:00, jangan terlambat, kuota bisa habis.", "८:०० बजे आउनुहोस्, ढिलो भए ठाउँ नहुन सक्छ।"),
           tx("Weź PESEL, paszport i telefon.", "Take PESEL, passport and phone.", "Візьміть PESEL, паспорт і телефон.", "Возьмите PESEL, паспорт и телефон.", "PESEL, pasport və telefonu götürün.", "Lleva PESEL, pasaporte y teléfono.", "Dalhin ang PESEL, pasaporte at telepono.", "Bawa PESEL, paspor, dan telepon.", "PESEL, पासपोर्ट र फोन लैजानुहोस्।")
         ],
-        map: gozMap
+        map: gozMap,
+        phones: [
+          { label: tx("Rejestracja GOZ", "GOZ registration", "Реєстрація GOZ", "Регистрация GOZ", "GOZ qeydiyyatı", "Registro GOZ", "GOZ registration", "Pendaftaran GOZ", "GOZ दर्ता"), phone: "+48713115517" }
+        ]
       },
       {
         tone: "red",
-        title: tx("SOR - nagłe przypadki", "Emergency room", "SOR - термінові випадки", "SOR - срочные случаи", "Təcili yardım şöbəsi", "Urgencias", "Emergency room", "IGD", "आपतकालीन"),
+        title: tx("SOR - nagłe przypadki", "Emergency room", "SOR - термінові випадки", "SOR - срочные случаи", "Təcili yardım şöbəsi", "Urgencias", "Silid pang-emergency", "IGD", "आपतकालीन"),
         body: [
           tx("Jedź na SOR przy silnym bólu, urazie, gorączce, problemach z oddychaniem, omdleniu albo poważnym pogorszeniu zdrowia.", "Go to emergency for severe pain, injury, fever, breathing problems, fainting or serious worsening.", "Їдьте на SOR при сильному болю, травмі, температурі, проблемах з диханням, непритомності або різкому погіршенні.", "Езжайте на SOR при сильной боли, травме, температуре, проблемах с дыханием, обмороке или сильном ухудшении.", "Güclü ağrı, zədə, qızdırma, nəfəs problemi, huş itirmə və ya ciddi pisləşmə varsa təciliyə gedin.", "Ve a urgencias por dolor fuerte, lesión, fiebre, problemas respiratorios, desmayo o empeoramiento serio.", "Pumunta sa emergency kung matinding sakit, injury, lagnat, hirap huminga, nahimatay o malubhang lumala.", "Ke IGD jika nyeri berat, cedera, demam, sesak napas, pingsan, atau kondisi memburuk.", "धेरै दुखाइ, चोट, ज्वरो, सास समस्या, बेहोस वा स्वास्थ्य धेरै बिग्रिए आपतकालीन जानुहोस्।")
         ],
@@ -453,24 +458,26 @@
       },
       {
         tone: "yellow",
-        title: tx("Pogotowie dentystyczne", "Dental emergency", "Стоматологічна допомога", "Стоматологическая помощь", "Təcili diş yardımı", "Urgencia dental", "Dental emergency", "Darurat gigi", "दन्त आपतकालीन"),
+        title: tx("Pogotowie dentystyczne", "Dental emergency", "Стоматологічна допомога", "Стоматологическая помощь", "Təcili diş yardımı", "Urgencia dental", "Agarang tulong sa ngipin", "Darurat gigi", "दन्त आपतकालीन"),
         body: [
-          tx("Najpierw zadzwoń. NFZ działa zwykle 19:00-7:00 w dni robocze, a w weekendy i święta całodobowo.", "Call first. NFZ usually works 19:00-7:00 on workdays and 24h on weekends/holidays.", "Спочатку подзвоніть. NFZ зазвичай працює 19:00-7:00 у робочі дні, у вихідні та свята цілодобово.", "Сначала позвоните. NFZ обычно работает 19:00-7:00 в будни, в выходные и праздники круглосуточно.", "Əvvəl zəng edin. NFZ iş günləri adətən 19:00-7:00, həftəsonu və bayramlarda 24 saat işləyir.", "Primero llama. NFZ suele funcionar 19:00-7:00 en días laborales y 24h fines de semana/festivos.", "Tumawag muna. NFZ karaniwang 19:00-7:00 weekdays at 24h weekends/holidays.", "Telepon dulu. NFZ biasanya 19:00-7:00 hari kerja dan 24 jam akhir pekan/libur.", "पहिले फोन गर्नुहोस्। NFZ कामका दिन 19:00-7:00 र सप्ताहन्त/बिदा २४ घण्टा हुन्छ।"),
+          tx("Dyżury NFZ mogą się zmieniać. Najpierw sprawdź aktualny dyżur albo zadzwoń na całodobową infolinię NFZ 800 190 590.", "NFZ duty locations may change. First check the current duty clinic or call the 24-hour NFZ helpline 800 190 590.", "Чергові стоматології NFZ можуть змінюватися. Спочатку перевірте актуальний пункт або зателефонуйте на цілодобову лінію NFZ 800 190 590.", "Дежурные стоматологии NFZ могут меняться. Сначала проверьте актуальный пункт или позвоните на круглосуточную линию NFZ 800 190 590.", "NFZ növbətçi stomatoloji məntəqələri dəyişə bilər. Əvvəl cari məntəqəni yoxlayın və ya 24 saatlıq NFZ xəttinə 800 190 590 zəng edin.", "Los centros dentales de guardia NFZ pueden cambiar. Comprueba el centro actual o llama a la línea NFZ 24 h 800 190 590.", "Maaaring magbago ang NFZ dental duty clinic. Tingnan muna ang kasalukuyang duty clinic o tumawag sa 24-hour NFZ helpline 800 190 590.", "Klinik gigi jaga NFZ dapat berubah. Periksa klinik yang bertugas atau hubungi layanan NFZ 24 jam 800 190 590.", "NFZ को ड्युटी दन्त क्लिनिक बदलिन सक्छ। पहिले हालको क्लिनिक जाँच गर्नुहोस् वा २४ घण्टे NFZ नम्बर 800 190 590 मा फोन गर्नुहोस्।"),
+          tx("Q-Clinic jest prywatna i przyjmuje od poniedziałku do piątku 8:00-20:00. Dental-Art prowadzi prywatny ostry dyżur; po 21:00 wymaga potwierdzenia telefonicznego.", "Q-Clinic is private and open Monday to Friday 8:00-20:00. Dental-Art provides a private urgent service; after 21:00 you must confirm by phone.", "Q-Clinic є приватною і працює з понеділка до п'ятниці 8:00-20:00. Dental-Art має приватний гострий черговий прийом; після 21:00 потрібне підтвердження телефоном.", "Q-Clinic частная и работает с понедельника по пятницу 8:00-20:00. Dental-Art ведет частный острый дежурный прием; после 21:00 нужно подтверждение по телефону.", "Q-Clinic özəldir və bazar ertəsi-cümə 8:00-20:00 işləyir. Dental-Art özəl təcili qəbul aparır; 21:00-dan sonra telefonla təsdiq lazımdır.", "Q-Clinic es privada y abre de lunes a viernes 8:00-20:00. Dental-Art ofrece urgencias privadas; después de las 21:00 hay que confirmar por teléfono.", "Pribado ang Q-Clinic at bukas Lunes-Biyernes 8:00-20:00. May pribadong urgent duty ang Dental-Art; pagkatapos ng 21:00 kailangan ang kumpirmasyon sa telepono.", "Q-Clinic adalah klinik swasta dan buka Senin-Jumat 8:00-20:00. Dental-Art menyediakan layanan darurat swasta; setelah 21:00 wajib konfirmasi lewat telepon.", "Q-Clinic निजी हो र सोमबार-शुक्रबार 8:00-20:00 खुल्छ। Dental-Art मा निजी आकस्मिक सेवा छ; 21:00 पछि फोनबाट पुष्टि गर्नुपर्छ।"),
           tx("Przy dużej opuchliźnie twarzy, gorączce, problemie z oddychaniem albo połykaniem jedź na SOR albo dzwoń 112.", "With large face swelling, fever, breathing or swallowing problems, go to emergency or call 112.", "При великому набряку обличчя, температурі, проблемі з диханням або ковтанням їдьте на SOR або дзвоніть 112.", "При сильном отеке лица, температуре, проблеме с дыханием или глотанием езжайте на SOR или звоните 112.", "Üzdə böyük şiş, qızdırma, nəfəs və ya udma problemi varsa təciliyə gedin və ya 112-yə zəng edin.", "Con mucha hinchazón de cara, fiebre, problemas para respirar o tragar, ve a urgencias o llama 112.", "Kung malaking pamamaga ng mukha, lagnat, hirap huminga o lumunok, pumunta sa emergency o tumawag 112.", "Jika wajah bengkak besar, demam, sulit bernapas/menelan, ke IGD atau hubungi 112.", "अनुहार धेरै सुन्निए, ज्वरो, सास/निल्न समस्या भए आपतकालीन जानुहोस् वा 112 फोन गर्नुहोस्।")
         ],
         phones: [
-          { label: "ArtMedis, ul. Sienkiewicza 47, Wrocław", phone: "+48665339982" },
-          { label: "Centrum Medyczne Estomedica, ul. Słowiańska 27B, Wrocław", phone: "+48713721310" },
-          { label: "Q-Clinic, ul. Pretficza 21/1, Wrocław", phone: "+48717915555" },
-          { label: "Dental-Art, ul. Komandorska 53A/3b, Wrocław", phone: "+48713672262" }
+          { label: tx("NFZ - aktualny dyżur", "NFZ - current duty clinic", "NFZ - актуальний черговий пункт", "NFZ - актуальный дежурный пункт", "NFZ - cari növbətçi məntəqə", "NFZ - centro de guardia actual", "NFZ - kasalukuyang duty clinic", "NFZ - klinik jaga saat ini", "NFZ - हालको ड्युटी क्लिनिक"), phone: "800190590" },
+          { label: tx("ArtMedis - potwierdź aktualny dyżur, ul. Sienkiewicza 47", "ArtMedis - confirm current duty, Sienkiewicza 47", "ArtMedis - підтвердьте актуальний черговий прийом, Sienkiewicza 47", "ArtMedis - подтвердите актуальный дежурный прием, Sienkiewicza 47", "ArtMedis - cari növbəni təsdiqləyin, Sienkiewicza 47", "ArtMedis - confirma la guardia actual, Sienkiewicza 47", "ArtMedis - kumpirmahin ang kasalukuyang duty, Sienkiewicza 47", "ArtMedis - konfirmasi jadwal jaga, Sienkiewicza 47", "ArtMedis - हालको ड्युटी पुष्टि गर्नुहोस्, Sienkiewicza 47"), phone: "+48665339982" },
+          { label: tx("Estomedica NFZ - potwierdź dyżur, ul. Słowiańska 27B", "Estomedica NFZ - confirm duty, Słowiańska 27B", "Estomedica NFZ - підтвердьте чергування, Słowiańska 27B", "Estomedica NFZ - подтвердите дежурство, Słowiańska 27B", "Estomedica NFZ - növbəni təsdiqləyin, Słowiańska 27B", "Estomedica NFZ - confirma la guardia, Słowiańska 27B", "Estomedica NFZ - kumpirmahin ang duty, Słowiańska 27B", "Estomedica NFZ - konfirmasi jadwal jaga, Słowiańska 27B", "Estomedica NFZ - ड्युटी पुष्टि गर्नुहोस्, Słowiańska 27B"), phone: "+48713721310" },
+          { label: tx("Prywatnie - Q-Clinic, ul. Pretficza 21/U1", "Private - Q-Clinic, Pretficza 21/U1", "Приватно - Q-Clinic, Pretficza 21/U1", "Платно - Q-Clinic, Pretficza 21/U1", "Özəl - Q-Clinic, Pretficza 21/U1", "Privado - Q-Clinic, Pretficza 21/U1", "Pribado - Q-Clinic, Pretficza 21/U1", "Swasta - Q-Clinic, Pretficza 21/U1", "निजी - Q-Clinic, Pretficza 21/U1"), phone: "+48717915555" },
+          { label: tx("Prywatny ostry dyżur - Dental-Art, ul. Komandorska 53A/3b", "Private urgent service - Dental-Art, Komandorska 53A/3b", "Приватний гострий черговий прийом - Dental-Art, Komandorska 53A/3b", "Платный острый дежурный прием - Dental-Art, Komandorska 53A/3b", "Özəl təcili qəbul - Dental-Art, Komandorska 53A/3b", "Urgencias privadas - Dental-Art, Komandorska 53A/3b", "Pribadong agarang serbisyo - Dental-Art, Komandorska 53A/3b", "Layanan darurat swasta - Dental-Art, Komandorska 53A/3b", "निजी आकस्मिक सेवा - Dental-Art, Komandorska 53A/3b"), phone: "+48713672262" }
         ]
       }
     ],
 
     groups: [
       { title: "Viber - Citronex", url: "https://invite.viber.com/?g2=AQBkAFR0EI%2F5S1YUZP23%2Fc6MRVsnc6wfhgi%2FQig%2B1XKt3Z7mb2YPUdlazS0qoc4L", tone: "blue" },
-      { title: "Telegram - robota Citronex", url: "https://telegram.me/robota_citronex", tone: "blue" },
-      { title: "Telegram AZ - Polonia Work Citronex", url: "https://telegram.me/poloniawork_citronex", tone: "blue" }
+      { title: "Telegram - robota Citronex", url: "https://t.me/robota_citronex", tone: "blue" },
+      { title: "Telegram AZ - Polonia Work Citronex", url: "https://t.me/poloniawork_citronex", tone: "blue" }
     ],
 
     city: [
@@ -526,19 +533,9 @@
         ]
       },
       {
-        tone: "yellow",
-        icon: "bank",
-        tag: tx("Bankomat", "ATM", "Банкомат", "Банкомат", "Bankomat", "Cajero", "ATM", "ATM", "ATM"),
-        title: tx("Banki i bankomaty w pobliżu", "Nearby banks and ATMs", "Банки і банкомати поруч", "Банки и банкоматы рядом", "Yaxındakı banklar və bankomatlar", "Bancos y cajeros cerca", "Malapit na bangko at ATM", "Bank dan ATM terdekat", "नजिकका बैंक र ATM"),
-        note: tx("Użyj, gdy potrzebujesz najbliższego bankomatu albo innego banku.", "Use this when you need the nearest ATM or another bank.", "Використовуйте, коли потрібен найближчий банкомат або інший банк.", "Используйте, когда нужен ближайший банкомат или другой банк.", "Ən yaxın bankomat və ya başqa bank lazım olduqda istifadə edin.", "Úsalo si necesitas el cajero más cercano u otro banco.", "Gamitin kung kailangan ang pinakamalapit na ATM o ibang bangko.", "Gunakan jika perlu ATM terdekat atau bank lain.", "नजिकको ATM वा अर्को बैंक चाहिँदा प्रयोग गर्नुहोस्।"),
-        links: [
-          { url: "https://www.google.com/maps/search/?api=1&query=bank+bankomat+Siechnice", label: tx("Pokaż banki i bankomaty", "Show banks and ATMs", "Показати банки і банкомати", "Показать банки и банкоматы", "Bankları və bankomatları göstər", "Mostrar bancos y cajeros", "Ipakita ang bangko at ATM", "Tampilkan bank dan ATM", "बैंक र ATM देखाउनुहोस्"), tone: "yellow" }
-        ]
-      },
-      {
         tone: "blue",
         icon: "document",
-        tag: tx("Aplikacje urzędowe", "Official apps", "Державні додатки", "Гос. приложения", "Rəsmi tətbiqlər", "Apps oficiales", "Official apps", "Aplikasi resmi", "सरकारी एपहरू"),
+        tag: tx("Aplikacje urzędowe", "Official apps", "Державні додатки", "Гос. приложения", "Rəsmi tətbiqlər", "Apps oficiales", "Mga opisyal na app", "Aplikasi resmi", "सरकारी एपहरू"),
         title: tx("PESEL / Profil Zaufany / mObywatel", "PESEL / Trusted Profile / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Perfil de confianza / mObywatel", "PESEL / Trusted Profile / mObywatel", "PESEL / Profil Zaufany / mObywatel", "PESEL / Profil Zaufany / mObywatel"),
         note: tx("Do spraw urzędowych możesz potrzebować PESEL, Profil Zaufany i aplikację mObywatel.", "For official matters you may need PESEL, Trusted Profile and the mObywatel app.", "Для урядових справ можуть бути потрібні PESEL, Profil Zaufany і додаток mObywatel.", "Для официальных дел могут понадобиться PESEL, Profil Zaufany и приложение mObywatel.", "Rəsmi işlər üçün PESEL, Profil Zaufany və mObywatel tətbiqi lazım ola bilər.", "Para trámites oficiales puedes necesitar PESEL, Perfil de confianza y la app mObywatel.", "Para sa opisyal na asunto, maaaring kailanganin ang PESEL, Profil Zaufany at mObywatel app.", "Untuk urusan resmi mungkin perlu PESEL, Profil Zaufany dan aplikasi mObywatel.", "सरकारी कामका लागि PESEL, Profil Zaufany र mObywatel एप चाहिन सक्छ।"),
         links: [
@@ -591,7 +588,7 @@
       {
         tone: "yellow",
         icon: "parcel",
-        tag: tx("Paczki", "Parcels", "Посилки", "Посылки", "Bağlamalar", "Paquetes", "Parcels", "Paket", "पार्सल"),
+        tag: tx("Paczki", "Parcels", "Посилки", "Посылки", "Bağlamalar", "Paquetes", "Mga pakete", "Paket", "पार्सल"),
         title: tx("Zamówienia i paczki", "Orders and parcels", "Замовлення і посилки", "Заказы и посылки", "Sifarişlər və bağlamalar", "Pedidos y paquetes", "Orders at parcels", "Pesanan dan paket", "अर्डर र पार्सल"),
         note: tx("AliExpress, Allegro i inne paczki zamawiaj tylko do paczkomatu. Nie zamawiaj na adres firmy.", "Order AliExpress, Allegro and other parcels only to a parcel locker. Do not order to the company address.", "AliExpress, Allegro та інші посилки замовляйте тільки до Paczkomat. Не замовляйте на адресу фірми.", "AliExpress, Allegro и другие посылки заказывайте только в Paczkomat. Не заказывайте на адрес фирмы.", "AliExpress, Allegro və başqa bağlamaları yalnız Paczkomat-a sifariş edin. Firma ünvanına sifariş etməyin.", "Pide AliExpress, Allegro y otros paquetes solo a Paczkomat. No pidas a la dirección de la empresa.", "Ipadala ang AliExpress, Allegro at ibang parcel sa Paczkomat lang. Huwag sa address ng kumpanya.", "Pesan AliExpress, Allegro dan paket lain hanya ke Paczkomat. Jangan ke alamat perusahaan.", "AliExpress, Allegro र अरू पार्सल Paczkomat मा मात्र मगाउनुहोस्। कम्पनी ठेगानामा नमगाउनुहोस्।"),
         list: [
@@ -625,7 +622,7 @@
       { ok: true, text: tx("Przy zbiorach najpierw skanujesz wózek, potem rząd.", "During picking, first scan the cart, then the row.", "Під час збору спочатку скануєте візок, потім ряд.", "При сборе сначала сканируете тележку, потом ряд.", "Yığım zamanı əvvəl arabani, sonra sıranı skan edirsiniz.", "En cosecha primero marcas el carro, luego la fila.", "Sa pagpitas, una ang cart, pagkatapos ang hanay.", "Saat panen, scan troli dulu, lalu baris.", "टिपाइमा पहिले ट्रली, त्यसपछि पङ्क्ति स्क्यान गर्नुहोस्।") },
       { ok: false, text: tx("Przy zbiorach najpierw wysyłasz informację, a potem skanujesz wózek.", "During picking, first you send information, then scan the cart.", "Під час збору спочатку надсилаєте інформацію, потім скануєте візок.", "При сборе сначала отправляете информацию, потом сканируете тележку.", "Yığım zamanı əvvəl məlumat göndərirsiniz, sonra arabani skan edirsiniz.", "En cosecha primero envías información y luego marcas el carro.", "Sa pagpitas, una ipadala ang impormasyon, pagkatapos i-scan ang cart.", "Saat panen, kirim info dulu, lalu scan troli.", "टिपाइमा पहिले जानकारी पठाएर त्यसपछि ट्रली स्क्यान गर्नुहुन्छ।") },
       { ok: true, text: tx("Po restarcie readera kontynuujesz tę samą logikę odbijania.", "After reader restart, continue the same scanning logic.", "Після рестарту рідера продовжуєте ту саму логіку відбиття.", "После рестарта ридера продолжаете ту же логику отметок.", "Reader restartdan sonra eyni vurma məntiqi ilə davam edirsiniz.", "Después del reinicio del reader sigues la misma lógica.", "Pagkatapos ng reader restart, parehong scan logic pa rin.", "Setelah restart reader, lanjutkan logika scan yang sama.", "reader restart पछि उही स्क्यान नियम जारी राख्नुहोस्।") },
-      { ok: true, text: tx("Na SOR jedzie się w nagłych przypadkach.", "Emergency room is for urgent cases.", "На SOR їдуть у термінових випадках.", "На SOR едут в срочных случаях.", "Təcili yardıma təcili hallarda gedilir.", "Urgencias es para casos urgentes.", "Emergency room para sa urgent cases.", "IGD untuk keadaan darurat.", "आपतकालीन urgent अवस्थामा हो।") },
+      { ok: true, text: tx("Na SOR jedzie się w nagłych przypadkach.", "Emergency room is for urgent cases.", "На SOR їдуть у термінових випадках.", "На SOR едут в срочных случаях.", "Təcili yardıma təcili hallarda gedilir.", "Urgencias es para casos urgentes.", "Ang silid pang-emergency ay para sa mga agarang kaso.", "IGD untuk keadaan darurat.", "आपतकालीन urgent अवस्थामा हो।") },
       { ok: true, text: tx("Do GOZ Siechnice najlepiej przyjść o 8:00.", "It is best to come to GOZ Siechnice at 8:00.", "До GOZ Siechnice краще прийти о 8:00.", "В GOZ Siechnice лучше прийти в 8:00.", "GOZ Siechnice-yə saat 8:00-da gəlmək yaxşıdır.", "Es mejor ir a GOZ Siechnice a las 8:00.", "Mas mabuting pumunta sa GOZ Siechnice ng 8:00.", "Sebaiknya datang ke GOZ Siechnice pukul 8:00.", "GOZ Siechnice मा ८:०० बजे आउनु राम्रो।") },
       { ok: true, text: tx("Do lekarza zabierasz PESEL, paszport i telefon.", "For the doctor take PESEL, passport and phone.", "До лікаря берете PESEL, паспорт і телефон.", "К врачу берете PESEL, паспорт и телефон.", "Həkimə PESEL, pasport və telefon götürün.", "Al médico lleva PESEL, pasaporte y teléfono.", "Sa doktor dalhin PESEL, pasaporte at telepono.", "Ke dokter bawa PESEL, paspor, telepon.", "डाक्टरकहाँ PESEL, पासपोर्ट र फोन लैजानुहोस्।") },
       { ok: false, text: tx("W strefie pracy można jeść i pić.", "You may eat and drink in the work zone.", "У робочій зоні можна їсти і пити.", "В рабочей зоне можно есть и пить.", "İş zonasında yemək və içmək olar.", "Se puede comer y beber en la zona de trabajo.", "Puwedeng kumain at uminom sa work zone.", "Boleh makan dan minum di area kerja.", "काम क्षेत्रमा खान र पिउन पाइन्छ।") },
@@ -1359,7 +1356,7 @@ window.CX_DATA.bans = [
   {
     group: "phone",
     icon: "phone",
-    title: tx("Słuchawki", "Headphones", "Навушники", "Наушники", "Qulaqlıq", "Auriculares", "Headphones", "Headphone", "हेडफोन"),
+    title: tx("Słuchawki", "Headphones", "Навушники", "Наушники", "Qulaqlıq", "Auriculares", "Mga headphone", "Headphone", "हेडफोन"),
     detail: tx("Nie używaj słuchawek w pracy, jeśli przeszkadzają w bezpieczeństwie lub komunikacji.", "Do not use headphones at work if they disturb safety or communication.", "Не використовуйте навушники, якщо вони заважають безпеці або комунікації.", "Не используйте наушники, если они мешают безопасности или общению.", "Təhlükəsizlik və ünsiyyətə mane olursa, işdə qulaqlıq istifadə etməyin.", "No uses auriculares si molestan la seguridad o comunicación.", "Huwag gumamit ng headphones kung nakakaistorbo sa safety o komunikasyon.", "Jangan pakai headphone jika mengganggu keselamatan atau komunikasi.", "सुरक्षा वा कुराकानीमा बाधा भए काममा हेडफोन प्रयोग नगर्नुहोस्।")
   },
   {
@@ -1399,4 +1396,109 @@ window.CX_DATA.bans = [
     detail: tx("Nie loguj się i nie zapisuj pracy na dane innej osoby.", "Do not log in or register work on another person's data.", "Не входьте і не записуйте роботу на дані іншої людини.", "Не входите и не записывайте работу на данные другого человека.", "Başqasının məlumatı ilə daxil olmayın və iş qeyd etməyin.", "No inicies sesión ni registres trabajo con datos de otra persona.", "Huwag mag-login o mag-record ng trabaho gamit ang data ng iba.", "Jangan login atau mencatat kerja dengan data orang lain.", "अरूको डाटामा लगइन वा काम रेकर्ड नगर्नुहोस्।")
   }
 ];
+  const fixTranslation = (target, lang, value) => {
+    if (target && typeof target === "object" && Object.prototype.hasOwnProperty.call(target, lang)) {
+      target[lang] = value;
+    }
+  };
+  const D = window.CX_DATA;
+  D.tiles.push({
+    page: "szklarnia3d",
+    tone: "green",
+    icon: "greenhouse",
+    title: tx(
+      "Szklarnia 3D", "Greenhouse 3D", "Теплиця 3D", "Теплица 3D",
+      "İstixana 3D", "Invernadero 3D", "Bahay-taniman 3D",
+      "Rumah kaca 3D", "ग्रीनहाउस 3D"
+    ),
+    text: tx(
+      "Osobny widok: pomidory, pracownicy i wózki.",
+      "Separate view: tomatoes, workers and carts.",
+      "Окремий вигляд: помідори, працівники та візки.",
+      "Отдельный вид: помидоры, работники и тележки.",
+      "Ayrı görünüş: pomidorlar, işçilər və arabalar.",
+      "Vista independiente: tomates, trabajadores y carros.",
+      "Hiwalay na view: kamatis, manggagawa at kariton.",
+      "Tampilan terpisah: tomat, pekerja dan troli.",
+      "अलग दृश्य: गोलभेडा, कामदार र गाडी।"
+    ),
+    external: true,
+    url: "https://oleksandrkiris.github.io/citronex-szklarnia-3d/"
+  });
+  fixTranslation(D.tiles[12].title, "az", "Yoxlama");
+  fixTranslation(D.tiles[12].title, "es", "Prueba");
+  fixTranslation(D.tiles[12].title, "fil", "Pagsusulit");
+  fixTranslation(D.readerTabs[3].imageSteps[1], "ne", "पङ्क्तिको ट्याग");
+  fixTranslation(D.readerTabs[4].title, "az", "Yenidən başlatma");
+  fixTranslation(D.readerTabs[4].title, "fil", "I-restart");
+  fixTranslation(D.readerTabs[4].title, "id", "Mulai ulang");
+  fixTranslation(D.readerTabs[4].title, "ne", "पुनः सुरु");
+  fixTranslation(D.readerTabs[4].images[0].caption, "fil", "Mga button ng reader: kaliwa, gitna, kanan.");
+  fixTranslation(D.medical?.[0]?.phones?.[0]?.label, "fil", "Pagpaparehistro sa GOZ");
+  fixTranslation(D.bans?.[12]?.title, "fil", "Mga headphone");
+  fixTranslation(D.speechGroups[4].title, "ua", "Reader, планшет, тег");
+  fixTranslation(D.speechGroups[4].title, "ru", "Reader, планшет, тег");
+  fixTranslation(D.speechGroups[4].title, "az", "Reader, planşet, tag");
+  fixTranslation(D.speechGroups[4].title, "es", "Reader, tableta, etiqueta");
+  fixTranslation(D.speechGroups[4].title, "fil", "Reader, tablet at tag");
+  fixTranslation(D.speechGroups[4].title, "id", "Reader, tablet, dan tag");
+  fixTranslation(D.speechGroups[4].title, "ne", "Reader, ट्याब्लेट, ट्याग");
+  fixTranslation(D.glossaryGroups[0].title, "fil", "Bahay-taniman");
+  fixTranslation(D.glossary[5].local, "fil", "pinuno ng pangkat");
+  fixTranslation(D.glossary[6].local, "fil", "silid-pahingahan / silid panlipunan");
+  fixTranslation(D.glossary[24].local, "fil", "charger / lugar ng pagcha-charge");
+  fixTranslation(D.glossary[25].local, "fil", "PIN / personal na code");
+  fixTranslation(D.glossary[40].local, "fil", "PESEL / Polish na personal na numero");
+  fixTranslation(D.glossary[42].local, "fil", "card ng paninirahan / dokumento ng pananatili");
+  fixTranslation(D.glossary[45].local, "fil", "klinika / doktor ng pamilya");
+  fixTranslation(D.glossary[50].local, "fil", "pass / kard sa pagpasok");
+  fixTranslation(D.glossary[51].local, "fil", "ATM / makinang pang-cash");
+  fixTranslation(D.glossary[53].local, "fil", "ER / kagawaran ng emerhensiya");
+  fixTranslation(D.banGroups[5].title, "fil", "Data, PIN, tag at reader");
+  fixTranslation(D.banGroups[5].title, "id", "Data, PIN, tag, dan reader");
+  const localizedReplacements = {
+    fil: [
+      [/\bfirst day\b/gi, "unang araw"], [/\bwork maps\b/gi, "mga mapa ng trabaho"], [/\baddress registration\b/gi, "pagpaparehistro ng tirahan"],
+      [/\bnear\b/gi, "malapit sa"], [/\bworking\b/gi, "nagtatrabaho"], [/\boffices?\b/gi, "mga opisina"], [/\bshared\b/gi, "magkasanib"],
+      [/\bstep by step\b/gi, "sunod-sunod"], [/\bstop\b/gi, "hinto"], [/\bresident matters\b/gi, "mga usapin ng residente"],
+      [/\bdocuments?\b/gi, "mga dokumento"], [/\btaxes?\b/gi, "mga buwis"], [/\bphone\b/gi, "telepono"],
+      [/\bjob offers\b/gi, "mga alok na trabaho"], [/\bstaff entrance\b/gi, "pasukan ng staff"],
+      [/\bmeeting point\b/gi, "lugar ng pagkikita"], [/\bpost office\b/gi, "tanggapan ng koreo"],
+      [/\bteam leader\b/gi, "pinuno ng pangkat"], [/\barea leader\b/gi, "lider ng lugar"],
+      [/\bgreenhouses?\b/gi, "bahay-taniman"], [/\bwarehouses?\b/gi, "bodega"],
+      [/\bworkplace\b/gi, "lugar ng trabaho"], [/\bwork\b/gi, "trabaho"], [/\brows\b/gi, "mga hanay"], [/\brow\b/gi, "hanay"],
+      [/\bbreak\b/gi, "pahinga"], [/\bactivity\b/gi, "gawain"], [/\bregistration\b/gi, "pagpaparehistro"],
+      [/\baddress\b/gi, "tirahan"], [/\boffice\b/gi, "opisina"], [/\bshop\b/gi, "tindahan"],
+      [/\btransport\b/gi, "transportasyon"], [/\bheadphones\b/gi, "mga headphone"], [/\bscreen\b/gi, "ekran"],
+      [/\binstruction\b/gi, "instruksiyon"], [/\bbutton\b/gi, "pindutan"], [/\bpediatric\b/gi, "pambata"],
+      [/\bsystem\b/gi, "sistema"], [/\bcoordinators?\b/gi, "tagapag-ugnay"], [/\brecruitment\b/gi, "rekrutment"],
+      [/\bemergency\b/gi, "emerhensiya"], [/\bcontact\b/gi, "ugnayan"]
+    ],
+    id: [
+      [/\bfirst day\b/gi, "hari pertama"], [/\bwork maps\b/gi, "peta kerja"], [/\baddress registration\b/gi, "pendaftaran alamat"],
+      [/\bnear\b/gi, "dekat"], [/\bworking\b/gi, "bekerja"], [/\boffices?\b/gi, "kantor"], [/\bshared\b/gi, "bersama"],
+      [/\bstep by step\b/gi, "langkah demi langkah"], [/\bstop\b/gi, "halte"], [/\bresident matters\b/gi, "urusan penduduk"],
+      [/\bdocuments?\b/gi, "dokumen"], [/\btaxes?\b/gi, "pajak"], [/\bphone\b/gi, "telepon"],
+      [/\bmeeting point\b/gi, "titik pertemuan"], [/\bstaff entrance\b/gi, "pintu masuk staf"],
+      [/\bpost office\b/gi, "kantor pos"], [/\bgreenhouses?\b/gi, "rumah kaca"], [/\bwarehouses?\b/gi, "gudang"],
+      [/\bworkplace\b/gi, "tempat kerja"], [/\bwork\b/gi, "kerja"], [/\brows?\b/gi, "baris"],
+      [/\bbreak\b/gi, "istirahat"], [/\bactivity\b/gi, "aktivitas"], [/\bregistration\b/gi, "pendaftaran"],
+      [/\baddress\b/gi, "alamat"], [/\boffice\b/gi, "kantor"], [/\bshop\b/gi, "toko"],
+      [/\btransport\b/gi, "transportasi"], [/\bheadphones\b/gi, "headphone"], [/\bscreen\b/gi, "layar"],
+      [/\binstruction\b/gi, "instruksi"], [/\bbutton\b/gi, "tombol"], [/\bpediatric\b/gi, "anak"],
+      [/\bsystem\b/gi, "sistem"], [/\bcoordinators?\b/gi, "koordinator"], [/\brecruitment\b/gi, "rekrutmen"],
+      [/\bemergency\b/gi, "darurat"], [/\bcontact\b/gi, "kontak"]
+    ]
+  };
+  const normalizeTranslations = (value) => {
+    if (!value || typeof value !== "object") return;
+    if (Object.prototype.hasOwnProperty.call(value, "pl") && Object.prototype.hasOwnProperty.call(value, "en")) {
+      for (const [lang, replacements] of Object.entries(localizedReplacements)) {
+        if (typeof value[lang] !== "string") continue;
+        replacements.forEach(([pattern, replacement]) => { value[lang] = value[lang].replace(pattern, (match) => /^[A-ZĄĆĘŁŃÓŚŹŻ]/.test(match) ? replacement[0].toUpperCase() + replacement.slice(1) : replacement); });
+      }
+    }
+    Object.values(value).forEach(normalizeTranslations);
+  };
+  normalizeTranslations(D);
 })();

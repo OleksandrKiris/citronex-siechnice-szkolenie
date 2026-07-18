@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260717-hydra-brand-compact";
+const CACHE_NAME = CACHE_PREFIX + "20260718-greenhouse-separate1";
 
 const CORE_ASSETS = [
   "./",
@@ -18,9 +18,9 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260717-hydra-brand-compact",
-  "./assets/js/training-data.js?v=20260717-no-auto-overlay-siechnice",
-  "./assets/js/training-app.js?v=20260717-hydra-return",
+  "./assets/css/training.css?v=20260718-greenhouse-separate1",
+  "./assets/js/training-data.js?v=20260718-greenhouse-separate1",
+  "./assets/js/training-app.js?v=20260718-greenhouse-separate1",
   "./assets/logo-citronex.svg"
 ];
 
