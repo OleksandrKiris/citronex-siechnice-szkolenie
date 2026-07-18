@@ -9137,7 +9137,11 @@ body[data-page="home"] .tile {
 }
 
 .presenter-card-v2 .presenter-stage {
+  align-self: start;
+  width: 100%;
   min-height: 390px;
+  aspect-ratio: 4 / 3;
+  max-height: 480px;
   background:
     radial-gradient(circle at 50% 18%, rgba(255,255,255,.14), transparent 38%),
     linear-gradient(150deg, #245b41, #0f3425);
@@ -9187,8 +9191,298 @@ body[data-page="home"] .tile {
 }
 
 .presenter-card-v2 .presenter-portrait[hidden],
-.presenter-card-v2 .presenter-video[hidden] {
+.presenter-card-v2 .presenter-video[hidden],
+.presenter-card-v2 .presenter-cartoon[hidden] {
   display: none !important;
+}
+
+.presenter-cartoon {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 17%, rgba(255, 255, 255, .92), transparent 29%),
+    linear-gradient(155deg, #bde9c9 0%, #63b982 52%, #1e704d 100%);
+  isolation: isolate;
+}
+
+.cartoon-greenhouse,
+.cartoon-greenhouse::before,
+.cartoon-greenhouse::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.cartoon-greenhouse {
+  opacity: .92;
+  background:
+    linear-gradient(90deg, transparent 49.3%, rgba(255, 255, 255, .72) 49.6% 50.4%, transparent 50.7%),
+    repeating-linear-gradient(102deg, transparent 0 48px, rgba(23, 97, 59, .22) 49px 52px),
+    repeating-linear-gradient(78deg, transparent 0 48px, rgba(23, 97, 59, .2) 49px 52px);
+}
+
+.cartoon-greenhouse::before {
+  inset: 0 0 45%;
+  clip-path: polygon(0 0, 100% 0, 83% 100%, 17% 100%);
+  background:
+    repeating-linear-gradient(90deg, transparent 0 54px, rgba(255, 255, 255, .46) 55px 58px),
+    linear-gradient(180deg, rgba(255, 255, 255, .38), transparent);
+}
+
+.cartoon-greenhouse::after {
+  inset: 54% 22% -10%;
+  clip-path: polygon(36% 0, 64% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgba(245, 249, 226, .9), rgba(145, 185, 119, .92));
+  box-shadow: 0 0 42px rgba(248, 255, 224, .45);
+}
+
+.cartoon-character {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 496 / 390;
+  transform: translateX(-50%);
+  transform-origin: 50% 86%;
+}
+
+.cartoon-torso,
+.cartoon-arm,
+.cartoon-head,
+.cartoon-head img {
+  position: absolute;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.presenter-media img.cartoon-torso {
+  left: 50%;
+  bottom: -23px;
+  z-index: 2;
+  width: 64%;
+  max-width: 240px;
+  height: auto;
+  transform: translateX(-50%);
+  transform-origin: 50% 86%;
+  animation: cartoon-torso-idle 4.8s ease-in-out infinite;
+}
+
+.presenter-media img.cartoon-arm {
+  bottom: 30%;
+  z-index: 1;
+  width: 54%;
+  max-width: 215px;
+  height: auto;
+  filter: drop-shadow(0 7px 7px rgba(17, 59, 39, .16));
+}
+
+.cartoon-arm-left {
+  left: -3%;
+  transform-origin: 93% 22%;
+  animation: cartoon-left-idle 4.2s ease-in-out infinite;
+}
+
+.cartoon-arm-right {
+  right: -4%;
+  transform-origin: 7% 21%;
+  animation: cartoon-right-idle 4.6s ease-in-out infinite;
+}
+
+.cartoon-head {
+  left: 50%;
+  bottom: 46%;
+  z-index: 3;
+  width: 34%;
+  max-width: 138px;
+  aspect-ratio: 405 / 542;
+  transform: translateX(-50%);
+  transform-origin: 50% 82%;
+  animation: cartoon-head-idle 4.4s ease-in-out infinite;
+  filter: drop-shadow(0 8px 9px rgba(15, 66, 42, .18));
+}
+
+.cartoon-head img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cartoon-mouth {
+  position: absolute;
+  left: 50%;
+  top: 62.7%;
+  z-index: 2;
+  width: 15%;
+  height: 2.7%;
+  border: 2px solid rgba(74, 33, 29, .84);
+  border-radius: 0 0 999px 999px;
+  background: #d7806d;
+  box-shadow: 0 1px 0 rgba(255, 210, 181, .72) inset;
+  transform: translateX(-50%) scaleY(.36);
+  transform-origin: 50% 0;
+}
+
+.cartoon-eye {
+  position: absolute;
+  top: 40.2%;
+  z-index: 3;
+  width: 10.5%;
+  height: 3.1%;
+  border-radius: 999px;
+  background: #c57f58;
+  opacity: 0;
+  transform: scaleY(.15);
+  animation: cartoon-blink 5.4s linear infinite;
+}
+
+.cartoon-eye-left { left: 33.4%; }
+.cartoon-eye-right { right: 33.1%; }
+
+.cartoon-prop-card {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  width: 96px;
+  padding: 9px 7px 8px;
+  border: 2px solid rgba(255, 255, 255, .82);
+  border-radius: 18px;
+  background: rgba(247, 255, 248, .91);
+  box-shadow: 0 10px 24px rgba(11, 61, 38, .2);
+  color: #145c3d;
+  text-align: center;
+  animation: cartoon-prop-float 3.2s ease-in-out infinite;
+}
+
+.cartoon-prop-card::after {
+  position: absolute;
+  right: 19px;
+  bottom: -10px;
+  width: 18px;
+  height: 18px;
+  content: "";
+  border-right: 2px solid rgba(255, 255, 255, .82);
+  border-bottom: 2px solid rgba(255, 255, 255, .82);
+  background: rgba(247, 255, 248, .91);
+  transform: rotate(45deg);
+}
+
+.cartoon-prop-icon {
+  font-size: 34px;
+  line-height: 1;
+  filter: drop-shadow(0 3px 3px rgba(24, 73, 48, .16));
+}
+
+.cartoon-prop-card strong {
+  position: relative;
+  z-index: 1;
+  max-width: 82px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.14;
+  text-overflow: ellipsis;
+  text-wrap: balance;
+}
+
+.presenter-card-v2.is-speaking .cartoon-head {
+  animation: cartoon-head-talk 1.25s ease-in-out infinite;
+}
+
+.presenter-card-v2.is-speaking .cartoon-torso {
+  animation: cartoon-torso-talk 2.2s ease-in-out infinite;
+}
+
+.presenter-card-v2.is-speaking .cartoon-arm-left {
+  animation: cartoon-left-talk 2.8s ease-in-out infinite;
+}
+
+.presenter-card-v2.is-speaking .cartoon-arm-right {
+  animation: cartoon-right-talk 2.5s ease-in-out infinite;
+}
+
+.presenter-card-v2.is-speaking .cartoon-mouth {
+  animation: cartoon-mouth-talk .42s ease-in-out infinite alternate;
+}
+
+.presenter-cartoon[data-prop="safety"] .cartoon-prop-card {
+  background: rgba(255, 248, 208, .94);
+  color: #6e4c00;
+}
+
+.presenter-cartoon[data-prop="greenhouse"] .cartoon-prop-card,
+.presenter-cartoon[data-prop="finish"] .cartoon-prop-card {
+  background: rgba(237, 255, 239, .95);
+}
+
+@keyframes cartoon-head-idle {
+  0%, 100% { transform: translateX(-50%) rotate(-1deg) translateY(0); }
+  48% { transform: translateX(-50%) rotate(1.2deg) translateY(-2px); }
+  74% { transform: translateX(-50%) rotate(.2deg) translateY(1px); }
+}
+
+@keyframes cartoon-head-talk {
+  0%, 100% { transform: translateX(-50%) rotate(-1.4deg) translateY(0); }
+  36% { transform: translateX(-50%) rotate(1.8deg) translateY(-3px); }
+  68% { transform: translateX(-50%) rotate(.4deg) translateY(1px); }
+}
+
+@keyframes cartoon-torso-idle {
+  0%, 100% { transform: translateX(-50%) rotate(-.35deg) scaleY(1); }
+  50% { transform: translateX(-50%) rotate(.35deg) scaleY(1.008); }
+}
+
+@keyframes cartoon-torso-talk {
+  0%, 100% { transform: translateX(-50%) rotate(-.7deg) scaleY(1); }
+  50% { transform: translateX(-50%) rotate(.8deg) scaleY(1.012); }
+}
+
+@keyframes cartoon-left-idle {
+  0%, 100% { transform: rotate(3deg) translate(0, 0); }
+  50% { transform: rotate(-2deg) translate(2px, -3px); }
+}
+
+@keyframes cartoon-right-idle {
+  0%, 100% { transform: rotate(-3deg) translate(0, 0); }
+  50% { transform: rotate(2deg) translate(-2px, -3px); }
+}
+
+@keyframes cartoon-left-talk {
+  0%, 100% { transform: rotate(4deg) translate(0, 0); }
+  28% { transform: rotate(-11deg) translate(4px, -6px); }
+  62% { transform: rotate(7deg) translate(-1px, 2px); }
+}
+
+@keyframes cartoon-right-talk {
+  0%, 100% { transform: rotate(-5deg) translate(0, 0); }
+  35% { transform: rotate(12deg) translate(-4px, -6px); }
+  72% { transform: rotate(-9deg) translate(2px, 1px); }
+}
+
+@keyframes cartoon-mouth-talk {
+  0% { height: 2.4%; border-radius: 0 0 999px 999px; transform: translateX(-50%) scaleY(.45) scaleX(.92); }
+  45% { height: 5.2%; border-radius: 42% 42% 52% 52%; transform: translateX(-50%) scaleY(1) scaleX(.78); }
+  100% { height: 7%; border-radius: 48%; transform: translateX(-50%) scaleY(.9) scaleX(.62); }
+}
+
+@keyframes cartoon-blink {
+  0%, 43%, 46%, 73%, 76%, 100% { opacity: 0; transform: scaleY(.15); }
+  44.2%, 45%, 74.2%, 75% { opacity: .92; transform: scaleY(1); }
+}
+
+@keyframes cartoon-prop-float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
 }
 
 .presenter-card-v2 .presenter-portrait img,
@@ -9212,12 +9506,6 @@ body[data-page="home"] .tile {
 
 .presenter-card-v2.is-speaking .presenter-video {
   animation: presenter-camera-breathe 5.8s ease-in-out infinite alternate;
-}
-
-.presenter-card-v2[data-avatar-variant="ai-motion"] .presenter-video,
-.presenter-card-v2[data-avatar-variant="ai-motion"].is-speaking .presenter-video {
-  animation: none;
-  transform: scale(1.006);
 }
 
 @keyframes presenter-camera-breathe {
@@ -9528,6 +9816,7 @@ body[data-page="home"] .tile {
 
   .presenter-card-v2 .presenter-stage {
     min-height: 320px;
+    max-height: none;
     aspect-ratio: 4 / 3;
   }
 
@@ -9543,10 +9832,48 @@ body[data-page="home"] .tile {
     border-radius: 17px;
   }
 
-  .presenter-card-v2 .presenter-stage {
-    min-height: 250px;
-    aspect-ratio: 16 / 10;
+  .cartoon-character {
+    bottom: -14px;
   }
+
+  .presenter-card-v2 .presenter-stage {
+    width: 100%;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 7 / 5;
+  }
+
+  .presenter-media img.cartoon-torso {
+    bottom: -18px;
+    width: 48%;
+    max-width: none;
+  }
+
+  .cartoon-head {
+    bottom: 43%;
+    width: 30%;
+    max-width: none;
+  }
+
+  .presenter-media img.cartoon-arm {
+    bottom: 28%;
+    width: 44%;
+    max-width: none;
+  }
+
+  .cartoon-arm-left { left: -2%; }
+  .cartoon-arm-right { right: -3%; }
+
+  .cartoon-prop-card {
+    top: 9px;
+    right: 9px;
+    width: 76px;
+    padding: 7px 5px 6px;
+    border-radius: 14px;
+  }
+
+  .cartoon-prop-icon { font-size: 27px; }
+  .cartoon-prop-card strong { max-width: 68px; font-size: 9px; }
 
   .presenter-card-v2 .presenter-content {
     padding: 18px 14px;
@@ -9603,7 +9930,13 @@ body[data-page="home"] .tile {
 
 @media (prefers-reduced-motion: reduce) {
   .presenter-card-v2.is-autoplay-blocked .presenter-play,
-  .presenter-card-v2.is-speaking .presenter-video {
+  .presenter-card-v2.is-speaking .presenter-video,
+  .cartoon-head,
+  .cartoon-torso,
+  .cartoon-arm,
+  .cartoon-eye,
+  .cartoon-prop-card,
+  .presenter-card-v2.is-speaking .cartoon-mouth {
     animation: none;
   }
 }

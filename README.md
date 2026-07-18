@@ -24,7 +24,7 @@ https://oleksandrkiris.github.io/citronex-siechnice-szkolenie/
 - Magazyn / sortownia nie ma readerow.
 - Reader, rzed, przerwa, wozek i restart sa opisane wedlug instrukcji.
 - Jest instrukcja dodania linku do ekranu telefonu.
-- Pomocnik korzysta z jednego plynnego klipu AI: mimika, ruch glowy, korpusu i trzy gesty rak sa zapisane jako prawdziwe klatki wideo, bez przelaczania statycznych zdjec.
+- Pomocnik korzysta z lekkiej, animowanej postaci rysunkowej podobnej do Aleksandra. Glowa, oczy, usta, korpus i obie rece poruszaja sie niezaleznie, a kazdy rozdzial pokazuje wlasny przedmiot lub symbol.
 
 ## Publikacja
 

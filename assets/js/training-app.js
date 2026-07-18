@@ -688,10 +688,25 @@
     return `
       <section class="presenter-card presenter-card-v2" data-presenter-card aria-labelledby="presenterTitle">
         <div class="presenter-media presenter-stage" data-presenter-stage tabindex="0" role="button">
-          <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
-          <div class="presenter-portrait" data-presenter-portrait>
-            <img src="assets/brand/digital-presenter.png" alt="${esc(title)}" width="1536" height="1024">
+          <div class="presenter-cartoon" data-presenter-cartoon data-prop="welcome" aria-hidden="true">
+            <div class="cartoon-greenhouse"></div>
+            <div class="cartoon-prop-card" data-cartoon-prop-card>
+              <span class="cartoon-prop-icon" data-cartoon-prop-icon>👋</span>
+              <strong data-cartoon-prop-label></strong>
+            </div>
+            <div class="cartoon-character">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260718-cartoon2" alt="" width="1639" height="960">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v2.png?v=20260718-cartoon2" alt="" width="1773" height="887">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260718-cartoon2" alt="" width="552" height="634">
+              <div class="cartoon-head">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260718-cartoon2" alt="" width="405" height="542">
+                <span class="cartoon-eye cartoon-eye-left"></span>
+                <span class="cartoon-eye cartoon-eye-right"></span>
+                <span class="cartoon-mouth"></span>
+              </div>
+            </div>
           </div>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
           <div class="presenter-overall-progress" aria-hidden="true"><span data-presenter-overall-progress></span></div>
@@ -2634,7 +2649,9 @@
     const recording = card.querySelector("[data-presenter-audio]");
     const stage = card.querySelector("[data-presenter-stage]");
     const video = card.querySelector("[data-presenter-video]");
-    const portrait = card.querySelector("[data-presenter-portrait]");
+    const cartoon = card.querySelector("[data-presenter-cartoon]");
+    const cartoonPropIcon = card.querySelector("[data-cartoon-prop-icon]");
+    const cartoonPropLabel = card.querySelector("[data-cartoon-prop-label]");
     const stageCaption = card.querySelector("[data-presenter-caption]");
     const script = card.querySelector("[data-presenter-script]");
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
@@ -2680,7 +2697,6 @@
     let chapterSentences = [];
     let sentenceBreakpoints = [];
     let activeSentenceIndex = -1;
-    const avatarAvailability = new Map();
 
     const formatTime = (seconds) => {
       const safe = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
@@ -2689,28 +2705,17 @@
 
     const chapterAudioUrl = (chapter, index) => chapter.legacyAudio ||
       `assets/audio/guide/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp3${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
-    const chapterVideoUrl = (chapter, index) =>
-      `assets/avatar/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp4${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
-    const genericAvatarFor = (chapter) => {
-      const variant = "ai-motion";
-      const file = "presenter-ai-motion-loop-v3.mp4";
-      const offsets = {
-        welcome: 0,
-        arrival: 1.3,
-        safety: 2.8,
-        warehouse: 4.1,
-        greenhouse: 4.8,
-        reader: 5.8,
-        tablet: 6.5,
-        documents: 4.7,
-        help: 7.1,
-        finish: 8.1
-      };
-      return {
-        variant,
-        offset: Number(offsets[chapter.id] || 0),
-        url: `assets/avatar/${file}${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`
-      };
+    const cartoonProps = {
+      welcome: "👋",
+      arrival: "🗺️",
+      warehouse: "📦",
+      greenhouse: "🍅",
+      reader: "📟",
+      tablet: "📱",
+      safety: "⚠️",
+      documents: "📄",
+      help: "☎️",
+      finish: "✅"
     };
 
     const splitNarration = (value) => {
@@ -2829,52 +2834,25 @@
         video.hidden = true;
         video.removeAttribute("src");
       }
-      if (portrait) portrait.hidden = false;
-      card.dataset.avatarMode = "photo";
-      delete card.dataset.avatarVariant;
-    };
-
-    const videoIsAvailable = async (url) => {
-      let available = avatarAvailability.get(url);
-      if (available == null) {
-        try {
-          const response = await fetch(url, { method: "HEAD", cache: "no-cache" });
-          available = response.ok;
-        } catch (error) {
-          available = false;
-        }
-        avatarAvailability.set(url, available);
-      }
-      return available;
+      if (cartoon) cartoon.hidden = false;
+      card.dataset.avatarMode = "cartoon";
+      card.dataset.avatarVariant = "cartoon";
     };
 
     const prepareVideo = async (chapter, index, token) => {
-      if (!video || !portrait) return;
-      const chapterUrl = chapterVideoUrl(chapter, index);
-      const hasChapterVideo = await videoIsAvailable(chapterUrl);
-      if (token !== loadToken) return;
-      const fallbackAvatar = genericAvatarFor(chapter);
-      const url = hasChapterVideo ? chapterUrl : fallbackAvatar.url;
-      const available = hasChapterVideo || await videoIsAvailable(url);
-      if (token !== loadToken || !available) return;
-      video.src = url;
-      video.loop = !hasChapterVideo;
-      video.playbackRate = recording.playbackRate || 1;
-      if (hasChapterVideo) {
-        try { video.currentTime = recording.currentTime || 0; } catch (error) { /* Metadata may still be loading. */ }
-      } else {
-        const applyOffset = () => {
-          if (token !== loadToken || !Number.isFinite(video.duration) || video.duration <= 0) return;
-          video.currentTime = Math.min(Math.max(0, fallbackAvatar.offset), Math.max(0, video.duration - .25));
-        };
-        if (video.readyState >= 1) applyOffset();
-        else video.addEventListener("loadedmetadata", applyOffset, { once: true });
+      if (token !== loadToken || !cartoon) return;
+      const prop = Object.prototype.hasOwnProperty.call(cartoonProps, chapter.id) ? chapter.id : "welcome";
+      cartoon.dataset.prop = prop;
+      cartoon.hidden = false;
+      if (cartoonPropIcon) cartoonPropIcon.textContent = cartoonProps[prop];
+      if (cartoonPropLabel) cartoonPropLabel.textContent = chapter.title;
+      if (video) {
+        video.pause();
+        video.hidden = true;
+        video.removeAttribute("src");
       }
-      video.hidden = false;
-      portrait.hidden = true;
-      card.dataset.avatarMode = hasChapterVideo ? "video" : "gesture";
-      card.dataset.avatarVariant = hasChapterVideo ? "chapter" : fallbackAvatar.variant;
-      if (!hasChapterVideo || !recording.paused) video.play().catch(() => {});
+      card.dataset.avatarMode = "cartoon";
+      card.dataset.avatarVariant = "cartoon";
     };
 
     const requestPlayback = () => {
