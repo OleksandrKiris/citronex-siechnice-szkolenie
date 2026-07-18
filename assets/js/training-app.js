@@ -580,7 +580,45 @@
         <span class="more-links">${moreLinks}</span>
       </details>
     ` : "";
-    app.innerHTML = `<main class="page">${pageHero("home")}<section class="tiles">${primaryTiles.map(renderTile).join("")}${moreTile}</section></main>`;
+    app.innerHTML = `<main class="page">${pageHero("home")}${renderDigitalPresenter()}<section class="tiles">${primaryTiles.map(renderTile).join("")}${moreTile}</section></main>`;
+  }
+
+  function renderDigitalPresenter() {
+    const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
+    const sentences = guideText(lang, getLocationName());
+    const title = text(tx("Aleksandr — cyfrowy przewodnik", "Aleksandr — digital guide", "Олександр — цифровий провідник", "Александр — цифровой помощник", "Aleksandr — rəqəmsal bələdçi", "Aleksandr — guía digital", "Aleksandr — digital na gabay", "Aleksandr — pemandu digital", "अलेक्जेन्डर — डिजिटल मार्गदर्शक"));
+    const badge = text(tx("Przed rozpoczęciem", "Before you start", "Перед початком", "Перед началом", "Başlamazdan əvvəl", "Antes de empezar", "Bago magsimula", "Sebelum mulai", "सुरु गर्नु अघि"));
+    const stop = text(tx("Zatrzymaj", "Stop", "Зупинити", "Остановить", "Dayandır", "Detener", "Ihinto", "Hentikan", "रोक्नुहोस्"));
+    const map = text(tx("Najpierw: droga i mapa", "First: route and map", "Спочатку: дорога і карта", "Сначала: дорога и карта", "Əvvəlcə: yol və xəritə", "Primero: ruta y mapa", "Una: daan at mapa", "Pertama: rute dan peta", "पहिले: बाटो र नक्सा"));
+    const note = text(tx(
+      "To przygotowanie nie zastępuje instruktażu stanowiskowego. Na miejscu słuchaj kierownika i zasad BHP.",
+      "This preparation does not replace workplace instruction. On site, follow the supervisor and safety rules.",
+      "Ця підготовка не замінює інструктажу на робочому місці. На місці виконуйте вказівки керівника та правила безпеки.",
+      "Эта подготовка не заменяет инструктаж на рабочем месте. На месте выполняйте указания руководителя и правила безопасности.",
+      "Bu hazırlıq iş yerində təlimatı əvəz etmir. İş yerində rəhbərin göstərişlərinə və təhlükəsizlik qaydalarına əməl edin.",
+      "Esta preparación no sustituye la instrucción en el puesto. En el lugar, sigue al supervisor y las normas de seguridad.",
+      "Hindi nito pinapalitan ang aktuwal na orientation sa trabaho. Sundin ang supervisor at mga tuntunin sa kaligtasan.",
+      "Persiapan ini tidak menggantikan pengarahan di tempat kerja. Ikuti supervisor dan aturan keselamatan.",
+      "यो तयारीले कार्यस्थलको प्रत्यक्ष निर्देशनलाई प्रतिस्थापन गर्दैन। सुपरभाइजर र सुरक्षा नियम पालना गर्नुहोस्।"
+    ));
+    return `
+      <section class="presenter-card" data-presenter-card aria-labelledby="presenterTitle">
+        <div class="presenter-media">
+          <img src="assets/brand/digital-presenter.png" alt="${esc(title)}" width="1536" height="1024">
+          <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
+        </div>
+        <div class="presenter-content">
+          <p class="presenter-badge">${esc(badge)}</p>
+          <h2 id="presenterTitle">${esc(title)}</h2>
+          <p class="presenter-script" data-presenter-script aria-live="polite">${esc(sentences.join(" "))}</p>
+          <p class="presenter-note">${esc(note)}</p>
+          <div class="presenter-actions">
+            <button type="button" class="btn" data-presenter-play>${esc(labels.start)}</button>
+            <button type="button" class="btn secondary" data-presenter-stop hidden>${esc(stop)}</button>
+            <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
+          </div>
+        </div>
+      </section>`;
   }
 
   function renderVersionFooter() {
@@ -2316,6 +2354,7 @@
     setupPageLoading();
     setupFrontendStandard();
     setupContrastGuard();
+    setupDigitalPresenter();
     // Location pages open directly. No automatic splash or dragon welcome.
   }
 
@@ -2473,6 +2512,55 @@
         if (synth) synth.cancel();
       }
     };
+  }
+
+  function setupDigitalPresenter() {
+    const card = document.querySelector("[data-presenter-card]");
+    if (!card) return;
+    const play = card.querySelector("[data-presenter-play]");
+    const stop = card.querySelector("[data-presenter-stop]");
+    const script = card.querySelector("[data-presenter-script]");
+    const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
+    const sentences = guideText(lang, getLocationName());
+    const recording = new Audio(`assets/audio/intro-${lang}.mp3?v=20260718-siechnice-helper1`);
+    recording.preload = "metadata";
+
+    const finish = () => {
+      card.classList.remove("is-speaking");
+      play.disabled = false;
+      play.textContent = labels.repeat;
+      stop.hidden = true;
+      script.textContent = sentences.join(" ");
+    };
+
+    play.addEventListener("click", () => {
+      recording.pause();
+      recording.currentTime = 0;
+      play.disabled = true;
+      play.textContent = labels.speaking;
+      stop.hidden = false;
+      card.classList.add("is-speaking");
+      recording.play().catch(() => {
+        script.textContent = labels.unavailable;
+        card.classList.remove("is-speaking");
+        play.disabled = false;
+        stop.hidden = true;
+      });
+    });
+
+    stop.addEventListener("click", () => {
+      recording.pause();
+      recording.currentTime = 0;
+      finish();
+    });
+    recording.addEventListener("ended", finish);
+    recording.addEventListener("error", () => {
+      script.textContent = labels.unavailable;
+      card.classList.remove("is-speaking");
+      play.disabled = false;
+      stop.hidden = true;
+    });
+    window.addEventListener("pagehide", () => recording.pause(), { once: true });
   }
   function showLocationWelcome() {
     // The standalone dragon guide is the only welcome screen.

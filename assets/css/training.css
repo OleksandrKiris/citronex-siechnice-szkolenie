@@ -9075,3 +9075,38 @@ body[data-page="home"] .tile {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 }
+
+/* Digital presenter on the Siechnice start page. */
+.presenter-card {
+  display: grid;
+  grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr);
+  margin: 16px 0 20px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--line));
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 14px 34px rgba(18, 48, 35, .12);
+}
+.presenter-media { position: relative; min-height: 280px; overflow: hidden; background: #1f4b36; }
+.presenter-media img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 38%; }
+.presenter-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, rgba(7,34,24,.38)); pointer-events: none; }
+.presenter-content { display: flex; flex-direction: column; justify-content: center; padding: clamp(20px, 4vw, 38px); }
+.presenter-content h2 { margin: 4px 0 12px; font-size: clamp(23px, 3vw, 34px); line-height: 1.08; }
+.presenter-badge { width: fit-content; margin: 0; padding: 5px 10px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 13%, var(--surface)); color: var(--accent); font-size: 12px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+.presenter-script { min-height: 4.8em; margin: 0; font-size: clamp(16px, 2vw, 18px); line-height: 1.55; }
+.presenter-note { margin: 14px 0 0; padding-left: 12px; border-left: 3px solid #e6a700; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.presenter-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+.presenter-speaking { position: absolute; right: 14px; bottom: 14px; z-index: 2; display: flex; align-items: center; gap: 4px; height: 34px; padding: 7px 10px; border-radius: 999px; background: rgba(255,255,255,.92); opacity: 0; transform: translateY(8px); transition: opacity 180ms ease, transform 180ms ease; }
+.presenter-speaking span { width: 4px; height: 8px; border-radius: 4px; background: var(--accent); }
+.presenter-card.is-speaking .presenter-speaking { opacity: 1; transform: translateY(0); }
+.presenter-card.is-speaking .presenter-speaking span { animation: presenter-wave 720ms ease-in-out infinite alternate; }
+.presenter-card.is-speaking .presenter-speaking span:nth-child(2) { animation-delay: 160ms; }
+.presenter-card.is-speaking .presenter-speaking span:nth-child(3) { animation-delay: 320ms; }
+@keyframes presenter-wave { to { height: 20px; } }
+@media (max-width: 720px) {
+  .presenter-card { grid-template-columns: 1fr; }
+  .presenter-media { min-height: 230px; aspect-ratio: 16 / 10; }
+  .presenter-content { padding: 19px 16px 20px; }
+  .presenter-actions .btn { flex: 1 1 145px; }
+}
+@media (prefers-reduced-motion: reduce) { .presenter-card.is-speaking .presenter-speaking span { animation: none; } }

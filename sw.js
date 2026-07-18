@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260718-greenhouse-separate1";
+const CACHE_NAME = CACHE_PREFIX + "20260718-siechnice-helper1";
 
 const CORE_ASSETS = [
   "./",
@@ -18,10 +18,20 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260718-greenhouse-separate1",
-  "./assets/js/training-data.js?v=20260718-greenhouse-separate1",
-  "./assets/js/training-app.js?v=20260718-greenhouse-separate1",
-  "./assets/logo-citronex.svg"
+  "./assets/css/training.css?v=20260718-siechnice-helper1",
+  "./assets/js/training-data.js?v=20260718-siechnice-helper1",
+  "./assets/js/training-app.js?v=20260718-siechnice-helper1",
+  "./assets/logo-citronex.svg",
+  "./assets/brand/digital-presenter.png",
+  "./assets/audio/intro-pl.mp3?v=20260718-siechnice-helper1",
+  "./assets/audio/intro-en.mp3?v=20260718-siechnice-helper1",
+  "./assets/audio/intro-ua.mp3?v=20260718-siechnice-helper1",
+  "./assets/audio/intro-ru.mp3?v=20260718-siechnice-helper1",
+  "./assets/audio/intro-az.mp3?v=20260718-siechnice-helper1",
+  "./assets/audio/intro-es.mp3?v=20260718-siechnice-helper1",
+  "./assets/audio/intro-fil.mp3?v=20260718-siechnice-helper1",
+  "./assets/audio/intro-id.mp3?v=20260718-siechnice-helper1",
+  "./assets/audio/intro-ne.mp3?v=20260718-siechnice-helper1"
 ];
 
 self.addEventListener("install", (event) => {
