@@ -9102,11 +9102,24 @@ body[data-page="home"] .tile {
 .presenter-card.is-speaking .presenter-speaking span { animation: presenter-wave 720ms ease-in-out infinite alternate; }
 .presenter-card.is-speaking .presenter-speaking span:nth-child(2) { animation-delay: 160ms; }
 .presenter-card.is-speaking .presenter-speaking span:nth-child(3) { animation-delay: 320ms; }
+.presenter-card.is-speaking .presenter-media img {
+  transform-origin: 50% 38%;
+  animation: presenter-natural-motion 5.2s ease-in-out infinite;
+}
 @keyframes presenter-wave { to { height: 20px; } }
+@keyframes presenter-natural-motion {
+  0%, 100% { transform: scale(1.015) translate3d(0, 0, 0) rotate(0); }
+  28% { transform: scale(1.028) translate3d(-.35%, -.2%, 0) rotate(-.18deg); }
+  55% { transform: scale(1.02) translate3d(.25%, .15%, 0) rotate(.12deg); }
+  78% { transform: scale(1.03) translate3d(.1%, -.25%, 0) rotate(.16deg); }
+}
 @media (max-width: 720px) {
   .presenter-card { grid-template-columns: 1fr; }
   .presenter-media { min-height: 230px; aspect-ratio: 16 / 10; }
   .presenter-content { padding: 19px 16px 20px; }
   .presenter-actions .btn { flex: 1 1 145px; }
 }
-@media (prefers-reduced-motion: reduce) { .presenter-card.is-speaking .presenter-speaking span { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .presenter-card.is-speaking .presenter-speaking span,
+  .presenter-card.is-speaking .presenter-media img { animation: none; }
+}

@@ -616,12 +616,12 @@
           <div class="presenter-actions">
             <button type="button" class="btn" data-presenter-play>${esc(labels.start)}</button>
             <button type="button" class="btn secondary" data-presenter-stop hidden>${esc(stop)}</button>
-            <a class="btn secondary" href="assets/audio/compatible/intro-${esc(lang)}.wav?v=20260718-siechnice-helper5" target="_blank" rel="noopener">${esc(openAudio)}</a>
+            <a class="btn secondary" href="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper6" target="_blank" rel="noopener">${esc(openAudio)}</a>
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
           <audio data-presenter-audio preload="metadata">
-            <source src="assets/audio/compatible/intro-${esc(lang)}.wav?v=20260718-siechnice-helper5" type="audio/wav">
-            <source src="assets/audio/compatible/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper5" type="audio/mpeg">
+            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper6" type="audio/wav">
+            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper6" type="audio/mpeg">
           </audio>
         </div>
       </section>`;
