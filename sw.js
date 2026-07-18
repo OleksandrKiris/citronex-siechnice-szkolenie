@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260718-siechnice-helper4";
+const CACHE_NAME = CACHE_PREFIX + "20260718-siechnice-helper5";
 
 const CORE_ASSETS = [
   "./",
@@ -18,9 +18,9 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260718-siechnice-helper4",
-  "./assets/js/training-data.js?v=20260718-siechnice-helper4",
-  "./assets/js/training-app.js?v=20260718-siechnice-helper4",
+  "./assets/css/training.css?v=20260718-siechnice-helper5",
+  "./assets/js/training-data.js?v=20260718-siechnice-helper5",
+  "./assets/js/training-app.js?v=20260718-siechnice-helper5",
   "./assets/logo-citronex.svg",
   "./assets/brand/digital-presenter.png",
   "./assets/audio/compatible/intro-pl.mp3?v=20260718-siechnice-helper3",

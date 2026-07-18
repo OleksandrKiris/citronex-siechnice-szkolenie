@@ -589,6 +589,7 @@
     const title = text(tx("Aleksandr — cyfrowy przewodnik", "Aleksandr — digital guide", "Олександр — цифровий провідник", "Александр — цифровой помощник", "Aleksandr — rəqəmsal bələdçi", "Aleksandr — guía digital", "Aleksandr — digital na gabay", "Aleksandr — pemandu digital", "अलेक्जेन्डर — डिजिटल मार्गदर्शक"));
     const badge = text(tx("Przed rozpoczęciem", "Before you start", "Перед початком", "Перед началом", "Başlamazdan əvvəl", "Antes de empezar", "Bago magsimula", "Sebelum mulai", "सुरु गर्नु अघि"));
     const stop = text(tx("Zatrzymaj", "Stop", "Зупинити", "Остановить", "Dayandır", "Detener", "Ihinto", "Hentikan", "रोक्नुहोस्"));
+    const openAudio = text(tx("Otwórz nagranie", "Open recording", "Відкрити запис", "Открыть запись", "Səs yazısını aç", "Abrir grabación", "Buksan ang recording", "Buka rekaman", "रेकर्डिङ खोल्नुहोस्"));
     const map = text(tx("Najpierw: droga i mapa", "First: route and map", "Спочатку: дорога і карта", "Сначала: дорога и карта", "Əvvəlcə: yol və xəritə", "Primero: ruta y mapa", "Una: daan at mapa", "Pertama: rute dan peta", "पहिले: बाटो र नक्सा"));
     const note = text(tx(
       "To przygotowanie nie zastępuje instruktażu stanowiskowego. Na miejscu słuchaj kierownika i zasad BHP.",
@@ -615,11 +616,12 @@
           <div class="presenter-actions">
             <button type="button" class="btn" data-presenter-play>${esc(labels.start)}</button>
             <button type="button" class="btn secondary" data-presenter-stop hidden>${esc(stop)}</button>
+            <a class="btn secondary" href="assets/audio/compatible/intro-${esc(lang)}.wav?v=20260718-siechnice-helper5" target="_blank" rel="noopener">${esc(openAudio)}</a>
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
           <audio data-presenter-audio preload="metadata">
-            <source src="assets/audio/compatible/intro-${esc(lang)}.wav?v=20260718-siechnice-helper4" type="audio/wav">
-            <source src="assets/audio/compatible/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper4" type="audio/mpeg">
+            <source src="assets/audio/compatible/intro-${esc(lang)}.wav?v=20260718-siechnice-helper5" type="audio/wav">
+            <source src="assets/audio/compatible/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper5" type="audio/mpeg">
           </audio>
         </div>
       </section>`;
