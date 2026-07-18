@@ -617,6 +617,9 @@
             <button type="button" class="btn secondary" data-presenter-stop hidden>${esc(stop)}</button>
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
+          <audio data-presenter-audio preload="metadata">
+            <source src="assets/audio/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper2" type="audio/mpeg">
+          </audio>
         </div>
       </section>`;
   }
@@ -2520,10 +2523,10 @@
     const play = card.querySelector("[data-presenter-play]");
     const stop = card.querySelector("[data-presenter-stop]");
     const script = card.querySelector("[data-presenter-script]");
+    const recording = card.querySelector("[data-presenter-audio]");
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
     const sentences = guideText(lang, getLocationName());
-    const recording = new Audio(`assets/audio/intro-${lang}.mp3?v=20260718-siechnice-helper1`);
-    recording.preload = "metadata";
+    if (!recording) return;
 
     const finish = () => {
       card.classList.remove("is-speaking");

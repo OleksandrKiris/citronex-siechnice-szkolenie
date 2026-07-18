@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260718-siechnice-helper1";
+const CACHE_NAME = CACHE_PREFIX + "20260718-siechnice-helper2";
 
 const CORE_ASSETS = [
   "./",
@@ -18,20 +18,20 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260718-siechnice-helper1",
-  "./assets/js/training-data.js?v=20260718-siechnice-helper1",
-  "./assets/js/training-app.js?v=20260718-siechnice-helper1",
+  "./assets/css/training.css?v=20260718-siechnice-helper2",
+  "./assets/js/training-data.js?v=20260718-siechnice-helper2",
+  "./assets/js/training-app.js?v=20260718-siechnice-helper2",
   "./assets/logo-citronex.svg",
   "./assets/brand/digital-presenter.png",
-  "./assets/audio/intro-pl.mp3?v=20260718-siechnice-helper1",
-  "./assets/audio/intro-en.mp3?v=20260718-siechnice-helper1",
-  "./assets/audio/intro-ua.mp3?v=20260718-siechnice-helper1",
-  "./assets/audio/intro-ru.mp3?v=20260718-siechnice-helper1",
-  "./assets/audio/intro-az.mp3?v=20260718-siechnice-helper1",
-  "./assets/audio/intro-es.mp3?v=20260718-siechnice-helper1",
-  "./assets/audio/intro-fil.mp3?v=20260718-siechnice-helper1",
-  "./assets/audio/intro-id.mp3?v=20260718-siechnice-helper1",
-  "./assets/audio/intro-ne.mp3?v=20260718-siechnice-helper1"
+  "./assets/audio/intro-pl.mp3?v=20260718-siechnice-helper2",
+  "./assets/audio/intro-en.mp3?v=20260718-siechnice-helper2",
+  "./assets/audio/intro-ua.mp3?v=20260718-siechnice-helper2",
+  "./assets/audio/intro-ru.mp3?v=20260718-siechnice-helper2",
+  "./assets/audio/intro-az.mp3?v=20260718-siechnice-helper2",
+  "./assets/audio/intro-es.mp3?v=20260718-siechnice-helper2",
+  "./assets/audio/intro-fil.mp3?v=20260718-siechnice-helper2",
+  "./assets/audio/intro-id.mp3?v=20260718-siechnice-helper2",
+  "./assets/audio/intro-ne.mp3?v=20260718-siechnice-helper2"
 ];
 
 self.addEventListener("install", (event) => {
@@ -115,6 +115,13 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+
+  // Media elements use byte-range requests. Let the server return a real
+  // 206 response instead of serving a cached 200 response for the whole MP3.
+  if (request.headers.has("range")) {
+    event.respondWith(fetch(request));
+    return;
+  }
 
   const accept = request.headers.get("accept") || "";
   if (request.mode === "navigate" || accept.includes("text/html")) {
