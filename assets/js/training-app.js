@@ -686,7 +686,7 @@
     ));
     return `
       <section class="presenter-card presenter-card-v2" data-presenter-card aria-labelledby="presenterTitle">
-        <div class="presenter-media presenter-stage">
+        <div class="presenter-media presenter-stage" data-presenter-stage tabindex="0" role="button">
           <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
           <div class="presenter-portrait" data-presenter-portrait>
             <img src="assets/brand/digital-presenter.png" alt="${esc(title)}" width="1536" height="1024">
@@ -2622,6 +2622,7 @@
 
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
     const recording = card.querySelector("[data-presenter-audio]");
+    const stage = card.querySelector("[data-presenter-stage]");
     const video = card.querySelector("[data-presenter-video]");
     const portrait = card.querySelector("[data-presenter-portrait]");
     const script = card.querySelector("[data-presenter-script]");
@@ -2647,6 +2648,10 @@
       "Коснитесь, чтобы включить голос", "Səsi açmaq üçün toxunun", "Toca para activar la voz",
       "Pindutin para marinig ang boses", "Sentuh untuk mengaktifkan suara", "आवाज सुरु गर्न छुनुहोस्"
     ));
+    if (stage) {
+      stage.dataset.voicePrompt = touchToStart;
+      stage.setAttribute("aria-label", touchToStart);
+    }
     const fullGuideUrl = `assets/content/presenter-guide.json${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
     const fallbackSentences = guideText(lang, getLocationName());
     const fallbackChapter = {
@@ -2671,6 +2676,8 @@
       `assets/audio/guide/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp3${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
     const chapterVideoUrl = (chapter, index) =>
       `assets/avatar/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp4${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
+    const genericGestureVideoUrl =
+      `assets/avatar/presenter-gesture-loop-v1.mp4${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
 
     const setPlaying = (playing) => {
       card.classList.toggle("is-speaking", playing);
@@ -2689,7 +2696,7 @@
       durationLabel.textContent = formatTime(duration);
       const totalFraction = chapters.length ? (chapterIndex + fraction) / chapters.length : 0;
       overallProgress.style.width = `${Math.min(100, Math.max(0, totalFraction * 100)).toFixed(2)}%`;
-      if (video && !video.hidden && Number.isFinite(video.currentTime) && Math.abs(video.currentTime - current) > .35) {
+      if (video && card.dataset.avatarMode === "video" && !video.hidden && Number.isFinite(video.currentTime) && Math.abs(video.currentTime - current) > .35) {
         try { video.currentTime = current; } catch (error) { /* Metadata may still be loading. */ }
       }
     };
@@ -2708,6 +2715,7 @@
     const showStaticPortrait = () => {
       if (video) {
         video.pause();
+        video.loop = false;
         video.hidden = true;
         video.removeAttribute("src");
       }
@@ -2715,9 +2723,7 @@
       card.dataset.avatarMode = "photo";
     };
 
-    const prepareVideo = async (chapter, index, token) => {
-      if (!video || !portrait) return;
-      const url = chapterVideoUrl(chapter, index);
+    const videoIsAvailable = async (url) => {
       let available = avatarAvailability.get(url);
       if (available == null) {
         try {
@@ -2728,13 +2734,26 @@
         }
         avatarAvailability.set(url, available);
       }
+      return available;
+    };
+
+    const prepareVideo = async (chapter, index, token) => {
+      if (!video || !portrait) return;
+      const chapterUrl = chapterVideoUrl(chapter, index);
+      const hasChapterVideo = await videoIsAvailable(chapterUrl);
+      if (token !== loadToken) return;
+      const url = hasChapterVideo ? chapterUrl : genericGestureVideoUrl;
+      const available = hasChapterVideo || await videoIsAvailable(url);
       if (token !== loadToken || !available) return;
       video.src = url;
-      try { video.currentTime = recording.currentTime || 0; } catch (error) { /* Metadata may still be loading. */ }
+      video.loop = !hasChapterVideo;
+      if (hasChapterVideo) {
+        try { video.currentTime = recording.currentTime || 0; } catch (error) { /* Metadata may still be loading. */ }
+      }
       video.hidden = false;
       portrait.hidden = true;
-      card.dataset.avatarMode = "video";
-      if (!recording.paused) video.play().catch(() => {});
+      card.dataset.avatarMode = hasChapterVideo ? "video" : "gesture";
+      if (!hasChapterVideo || !recording.paused) video.play().catch(() => {});
     };
 
     const requestPlayback = () => {
@@ -2742,7 +2761,7 @@
         waitingForGesture = false;
         setPlaying(true);
         if (video && !video.hidden) {
-          video.currentTime = recording.currentTime || 0;
+          if (card.dataset.avatarMode === "video") video.currentTime = recording.currentTime || 0;
           video.play().catch(() => {});
         }
       }).catch((error) => {
@@ -2789,6 +2808,17 @@
       if (autoplay) requestPlayback();
       else setPlaying(false);
     };
+
+    if (stage) {
+      stage.addEventListener("pointerdown", () => {
+        if (card.classList.contains("is-autoplay-blocked")) requestPlayback();
+      });
+      stage.addEventListener("keydown", (event) => {
+        if (!card.classList.contains("is-autoplay-blocked") || !["Enter", " "].includes(event.key)) return;
+        event.preventDefault();
+        requestPlayback();
+      });
+    }
 
     const renderGuide = () => {
       chaptersNav.innerHTML = chapters.map((chapter, index) => `
@@ -2852,6 +2882,7 @@
     recording.addEventListener("ended", () => {
       if (chapterIndex < chapters.length - 1) activateChapter(chapterIndex + 1, true);
       else {
+        if (video) video.pause();
         setPlaying(false);
         playLabel.textContent = labels.repeat;
         seek.value = "1000";
@@ -2859,6 +2890,7 @@
       }
     });
     recording.addEventListener("error", () => {
+      if (video) video.pause();
       setPlaying(false);
       playLabel.textContent = labels.unavailable;
     });

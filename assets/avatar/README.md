@@ -30,5 +30,8 @@ as its lip-sync source and have the same duration. Recommended export: H.264,
 AAC optional, 720p or 1080p, `yuv420p`, fast-start enabled. A 9:16 or 4:5 shot
 with face, torso and hands visible works best.
 
-Until these files are added, the interface deliberately shows a still portrait
-instead of simulating human movement by moving the entire photograph.
+If a chapter-specific lip-sync video is missing, the interface uses
+`presenter-gesture-loop-v1.mp4`. This is a silent, natural-looking loop assembled
+from several real presenter poses: open-palm explanation, two-handed explanation,
+an important-point gesture and a thumbs-up. It starts and stops together with the
+spoken chapter. A chapter-specific MP4 still takes priority when it is added.

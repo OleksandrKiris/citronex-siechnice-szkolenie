@@ -29,17 +29,29 @@ VOICE_JOBS = {
     "ne": "ne-NP-SagarNeural",
 }
 
+VOICE_PROFILES = {
+    "pl": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
+    "en": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
+    "ua": {"rate": "-4%", "pitch": "-3Hz", "volume": "+1%"},
+    "ru": {"rate": "-5%", "pitch": "-4Hz", "volume": "+1%"},
+    "az": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
+    "es": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
+    "fil": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
+    "id": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
+    "ne": {"rate": "-4%", "pitch": "-3Hz", "volume": "+1%"},
+}
 
-async def save_with_retry(script: str, voice: str, target: Path) -> None:
+
+async def save_with_retry(script: str, voice: str, profile: dict[str, str], target: Path) -> None:
     error: Exception | None = None
     for attempt in range(1, 4):
         try:
             communicate = edge_tts.Communicate(
                 script,
                 voice,
-                rate="-3%",
-                volume="+0%",
-                pitch="-2Hz",
+                rate=profile["rate"],
+                volume=profile["volume"],
+                pitch=profile["pitch"],
             )
             await communicate.save(str(target))
             return
@@ -59,7 +71,7 @@ async def generate(guide_path: Path, output_dir: Path, force: bool, concurrency:
 
     output_dir.mkdir(parents=True, exist_ok=True)
     semaphore = asyncio.Semaphore(max(1, concurrency))
-    jobs: list[tuple[str, str, str, Path]] = []
+    jobs: list[tuple[str, str, dict[str, str], str, Path]] = []
     for language, voice in VOICE_JOBS.items():
         language_dir = output_dir / language
         language_dir.mkdir(parents=True, exist_ok=True)
@@ -70,13 +82,17 @@ async def generate(guide_path: Path, output_dir: Path, force: bool, concurrency:
             if mp3_path.exists() and not force:
                 print(f"kept {language}/{mp3_path.name}", flush=True)
                 continue
-            jobs.append((language, voice, section["text"], mp3_path))
+            jobs.append((language, voice, VOICE_PROFILES[language], section["text"], mp3_path))
 
-    async def render(job: tuple[str, str, str, Path]) -> None:
-        language, voice, script, mp3_path = job
+    async def render(job: tuple[str, str, dict[str, str], str, Path]) -> None:
+        language, voice, profile, script, mp3_path = job
         async with semaphore:
-            await save_with_retry(script, voice, mp3_path)
-        print(f"generated {language}/{mp3_path.name}: {voice}", flush=True)
+            await save_with_retry(script, voice, profile, mp3_path)
+        print(
+            f"generated {language}/{mp3_path.name}: {voice}, "
+            f"rate {profile['rate']}, pitch {profile['pitch']}",
+            flush=True,
+        )
 
     await asyncio.gather(*(render(job) for job in jobs))
 

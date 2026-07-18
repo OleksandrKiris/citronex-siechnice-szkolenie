@@ -12,16 +12,28 @@ const DATA = global.CX_DATA;
 const languages = DATA.languages.map((item) => item.id);
 const outputPath = path.join(repoRoot, "assets", "content", "presenter-guide.json");
 
-const greetings = {
-  pl: "Dzień dobry. Nazywam się Aleksandr i jestem Twoim cyfrowym przewodnikiem po przygotowaniu do pracy w Citronex Siechnice.",
-  en: "Hello. My name is Aleksandr, and I am your digital guide for preparing to work at Citronex Siechnice.",
-  ua: "Добрий день. Мене звати Олександр, і я ваш цифровий помічник з підготовки до роботи в Citronex Siechnice.",
-  ru: "Здравствуйте. Меня зовут Александр. Я ваш цифровой помощник по подготовке к работе в Citronex Siechnice.",
-  az: "Salam. Mənim adım Aleksandrdır. Mən Citronex Siechnice-də işə hazırlıq üzrə rəqəmsal bələdçinizəm.",
-  es: "Hola. Me llamo Aleksandr y soy tu guía digital para prepararte para el trabajo en Citronex Siechnice.",
-  fil: "Magandang araw. Ako si Aleksandr, ang digital mong gabay sa paghahanda para sa trabaho sa Citronex Siechnice.",
-  id: "Halo. Nama saya Aleksandr. Saya adalah pemandu digital Anda untuk persiapan kerja di Citronex Siechnice.",
-  ne: "नमस्कार। मेरो नाम अलेक्जेन्डर हो। म Citronex Siechnice मा कामको तयारीका लागि तपाईंको डिजिटल मार्गदर्शक हुँ।"
+const introductions = {
+  pl: "Dzień dobry. Nazywam się Aleksandr i pomogę Ci spokojnie przygotować się do pracy w Citronex Siechnice. Obejrzyj ten instruktaż przed przyjazdem albo włącz go podczas oczekiwania na dokumenty. Przejdziemy po kolei przez dojazd, różnice między magazynem i szklarnią, reader, tablet, zasady bezpieczeństwa oraz miejsca, w których możesz uzyskać pomoc. Nie spiesz się. W każdej chwili możesz zatrzymać nagranie, powtórzyć rozdział lub otworzyć pełny tekst.",
+  en: "Hello. My name is Aleksandr, and I will help you prepare calmly for work at Citronex Siechnice. Watch this briefing before you arrive, or play it while you wait for your documents. We will go step by step through arrival, the differences between the warehouse and greenhouse, the reader, the tablet, safety rules, and where to ask for help. There is no need to rush. You can pause the recording, repeat a chapter, or open the full text at any time.",
+  ua: "Добрий день. Мене звати Олександр, і я допоможу вам спокійно підготуватися до роботи в Citronex Siechnice. Перегляньте цей інструктаж до приїзду або увімкніть його, поки очікуєте на документи. Ми послідовно розберемо приїзд, різницю між складом і теплицею, рідер, планшет, правила безпеки та до кого звертатися по допомогу. Не поспішайте. Ви можете будь-коли зупинити запис, повторити розділ або відкрити повний текст.",
+  ru: "Здравствуйте. Меня зовут Александр, и я помогу вам спокойно подготовиться к работе в Citronex Siechnice. Посмотрите этот инструктаж до приезда или включите его, пока ожидаете документы. Мы пройдём всё по порядку: куда приехать, чем отличаются склад и теплица, как пользоваться ридером и планшетом, какие правила безопасности обязательны и к кому обращаться за помощью. Не спешите. Вы можете в любой момент поставить запись на паузу, повторить главу или открыть полный текст.",
+  az: "Salam. Mənim adım Aleksandrdır və Citronex Siechnice-də işə sakit şəkildə hazırlaşmağınıza kömək edəcəyəm. Bu təlimata gəlməzdən əvvəl baxın və ya sənədləri gözləyərkən qoşun. Biz gəlişi, anbarla istixananın fərqini, readeri, planşeti, təhlükəsizlik qaydalarını və kömək üçün kimə müraciət etməyi addım-addım izah edəcəyik. Tələsməyin. Yazını istənilən vaxt dayandıra, bölməni təkrar edə və ya tam mətni aça bilərsiniz.",
+  es: "Hola. Me llamo Aleksandr y te ayudaré a prepararte con calma para trabajar en Citronex Siechnice. Mira esta formación antes de llegar o reprodúcela mientras esperas tus documentos. Explicaremos paso a paso la llegada, la diferencia entre el almacén y el invernadero, el lector, la tableta, las normas de seguridad y a quién pedir ayuda. No tengas prisa. Puedes pausar la grabación, repetir un capítulo o abrir el texto completo en cualquier momento.",
+  fil: "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang briefing na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Dadaan tayo nang sunod-sunod sa pagdating, pagkakaiba ng bodega at greenhouse, reader, tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang recording, ulitin ang chapter, o buksan ang buong text anumang oras.",
+  id: "Halo. Nama saya Aleksandr, dan saya akan membantu Anda mempersiapkan diri dengan tenang untuk bekerja di Citronex Siechnice. Tonton pengarahan ini sebelum tiba, atau putar sambil menunggu dokumen. Kita akan membahas secara berurutan tentang kedatangan, perbedaan gudang dan rumah kaca, reader, tablet, aturan keselamatan, serta siapa yang harus dihubungi untuk meminta bantuan. Tidak perlu terburu-buru. Anda dapat menjeda rekaman, mengulang bab, atau membuka teks lengkap kapan saja.",
+  ne: "नमस्कार। मेरो नाम अलेक्जेन्डर हो, र म तपाईंलाई Citronex Siechnice मा कामका लागि शान्त रूपमा तयार हुन मद्दत गर्नेछु। यो निर्देशन आइपुग्नुअघि हेर्नुहोस्, वा कागजात पर्खँदा चलाउनुहोस्। हामी आगमन, गोदाम र हरितगृहबीचको फरक, रिडर, ट्याब्लेट, सुरक्षा नियम र मद्दतका लागि कसलाई सम्पर्क गर्ने भन्ने कुरा क्रमसँग बुझ्नेछौँ। हतार नगर्नुहोस्। तपाईंले कुनै पनि बेला रेकर्डिङ रोक्न, अध्याय दोहोर्‍याउन वा पूरा पाठ खोल्न सक्नुहुन्छ।"
+};
+
+const topicLeadTemplates = {
+  pl: (title) => `Teraz przejdziemy do tematu: ${title}.`,
+  en: (title) => `Now let us go through: ${title}.`,
+  ua: (title) => `Тепер розберімо тему: ${title}.`,
+  ru: (title) => `Теперь разберём тему: ${title}.`,
+  az: (title) => `İndi bu mövzuya keçək: ${title}.`,
+  es: (title) => `Ahora veremos el tema: ${title}.`,
+  fil: (title) => `Ngayon, talakayin natin ang: ${title}.`,
+  id: (title) => `Sekarang kita bahas: ${title}.`,
+  ne: (title) => `अब यो विषय बुझौँ: ${title}।`
 };
 
 const introTitles = {
@@ -62,15 +74,19 @@ function valueFor(value, lang) {
 function sentence(value, lang) {
   const text = valueFor(value, lang).replace(/\s+/g, " ").trim();
   if (!text) return "";
-  return /[.!?…。！？]$/.test(text) ? text : `${text}.`;
+  return /[.!?…。！？।]$/.test(text) ? text : `${text}.`;
 }
 
 function join(parts, lang) {
-  return parts.flat(Infinity).map((part) => sentence(part, lang)).filter(Boolean).join(" ");
+  return parts.flat(Infinity).map((part) => sentence(part, lang)).filter(Boolean).join("\n\n");
 }
 
 function titleOf(value, lang) {
   return valueFor(value, lang).trim();
+}
+
+function topicLead(value, lang) {
+  return topicLeadTemplates[lang](titleOf(value, lang));
 }
 
 function buildGuide(lang) {
@@ -91,52 +107,52 @@ function buildGuide(lang) {
     {
       id: "welcome",
       title: introTitles[lang],
-      text: join([greetings[lang], DATA.pages.home.lead, firstDay.lead], lang)
+      text: join([introductions[lang]], lang)
     },
     {
       id: "arrival",
       title: titleOf(firstDay.title, lang),
-      text: join([DATA.pages.mapa.lead, firstDay.steps.map((item) => [item.title, item.note])], lang)
+      text: join([topicLead(firstDay.title, lang), firstDay.lead, DATA.pages.mapa.lead, firstDay.steps.map((item) => [item.title, item.note])], lang)
     },
     {
       id: "warehouse",
       title: titleOf(DATA.pages.magazyn.title, lang),
-      text: join([DATA.pages.magazyn.lead, warehouse, DATA.pages.tablet.lead], lang)
+      text: join([topicLead(DATA.pages.magazyn.title, lang), DATA.pages.magazyn.lead, warehouse, DATA.pages.tablet.lead], lang)
     },
     {
       id: "greenhouse",
       title: titleOf(DATA.pages.szklarnia.title, lang),
-      text: join([DATA.pages.szklarnia.lead, DATA.pages.reader.lead, startReader.steps.slice(0, 5), startReader.tips], lang)
+      text: join([topicLead(DATA.pages.szklarnia.title, lang), DATA.pages.szklarnia.lead, DATA.pages.reader.lead, startReader.steps.slice(0, 5), startReader.tips], lang)
     },
     {
       id: "reader",
       title: titleOf(rowsReader.title, lang),
-      text: join([rowsReader.lead, rowExit.steps, rowBreak.steps, rowEnd.steps, cartsReader.lead, cartsReader.steps, restartReader.lead], lang)
+      text: join([topicLead(rowsReader.title, lang), rowsReader.lead, rowExit.steps, rowBreak.steps, rowEnd.steps, cartsReader.lead, cartsReader.steps, restartReader.lead], lang)
     },
     {
       id: "tablet",
       title: titleOf(tablet.title, lang),
-      text: join([tablet.lead, tablet.important, tablet.steps.map((item) => [item.title, item.note]), tablet.tips], lang)
+      text: join([topicLead(tablet.title, lang), tablet.lead, tablet.important, tablet.steps.map((item) => [item.title, item.note]), tablet.tips], lang)
     },
     {
       id: "safety",
       title: titleOf(DATA.pages.zakazy.title, lang),
-      text: join([DATA.pages.zakazy.lead, DATA.banQuickRules.map((item) => [item.title, item.text]), DATA.bans.map((item) => item.detail)], lang)
+      text: join([topicLead(DATA.pages.zakazy.title, lang), DATA.pages.zakazy.lead, DATA.banQuickRules.map((item) => [item.title, item.text]), DATA.bans.map((item) => item.detail)], lang)
     },
     {
       id: "documents",
       title: titleOf(DATA.pages.miasto.title, lang),
-      text: join([DATA.pages.miasto.lead, DATA.cityRules.map((item) => [item.title, item.note, item.list || []])], lang)
+      text: join([topicLead(DATA.pages.miasto.title, lang), DATA.pages.miasto.lead, DATA.cityRules.map((item) => [item.title, item.note, item.list || []])], lang)
     },
     {
       id: "help",
       title: `${titleOf(DATA.pages.kontakty.title, lang)} / ${titleOf(DATA.pages.lekarz.title, lang)}`,
-      text: join([DATA.pages.kontakty.lead, DATA.pages.lekarz.lead, emergency.body], lang)
+      text: join([topicLead(DATA.pages.kontakty.title, lang), DATA.pages.kontakty.lead, DATA.pages.lekarz.lead, emergency.body], lang)
     },
     {
       id: "finish",
       title: completionTitles[lang],
-      text: join([DATA.pages.test.lead, endings[lang]], lang)
+      text: join([topicLead(completionTitles[lang], lang), DATA.pages.test.lead, endings[lang]], lang)
     }
   ];
 
@@ -153,7 +169,7 @@ function buildGuide(lang) {
 }
 
 const output = {
-  version: "20260718-siechnice-guide1",
+  version: "20260718-siechnice-guide2",
   chapterCount: 10,
   languages: Object.fromEntries(languages.map((lang) => [lang, buildGuide(lang)]))
 };

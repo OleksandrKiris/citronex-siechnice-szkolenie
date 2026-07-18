@@ -9143,6 +9143,43 @@ body[data-page="home"] .tile {
     linear-gradient(150deg, #245b41, #0f3425);
 }
 
+.presenter-card-v2 .presenter-stage::before {
+  content: attr(data-voice-prompt);
+  position: absolute;
+  left: 50%;
+  bottom: 54px;
+  z-index: 4;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 11px 16px;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 999px;
+  background: rgba(8, 43, 29, .9);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.25;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 10px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.presenter-card-v2.is-autoplay-blocked .presenter-stage {
+  cursor: pointer;
+}
+
+.presenter-card-v2.is-autoplay-blocked .presenter-stage::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.presenter-card-v2.is-autoplay-blocked .presenter-stage:focus-visible {
+  outline: 4px solid color-mix(in srgb, var(--accent) 55%, white);
+  outline-offset: -4px;
+}
+
 .presenter-card-v2 .presenter-portrait {
   inset: 0;
   transform: none !important;
