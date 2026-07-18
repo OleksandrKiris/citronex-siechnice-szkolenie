@@ -191,9 +191,12 @@
     "Після приходу виберіть потрібний розділ."
   ],
   "ru": [
-    "Добро пожаловать. Это система обучения для {location}.",
-    "Не знаете, куда идти? Откройте карту и выберите место работы.",
-    "После прихода выберите нужный раздел."
+    "Здравствуйте! Меня зовут Александр. Я ваш цифровой помощник по обучению в Сехнице.",
+    "Сначала откройте карту и проверьте, куда вам нужно приехать.",
+    "Если вы работаете в теплице — изучите разделы «Теплица», «Ридер» и «Планшет».",
+    "Если вы работаете на складе — откройте раздел «Склад».",
+    "Не спешите. Просмотрите инструкцию полностью, а после приезда обязательно пройдите очный инструктаж у руководителя.",
+    "Желаю вам спокойной и безопасной работы!"
   ],
   "az": [
     "Salam. Bu, {location} üçün təlim sistemidir.",
@@ -617,8 +620,8 @@
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
           <audio data-presenter-audio preload="auto" autoplay>
-            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper7" type="audio/wav">
-            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper7" type="audio/mpeg">
+            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper8" type="audio/wav">
+            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper8" type="audio/mpeg">
           </audio>
         </div>
       </section>`;
