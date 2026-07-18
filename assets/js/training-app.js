@@ -589,7 +589,6 @@
     const title = text(tx("Aleksandr — cyfrowy przewodnik", "Aleksandr — digital guide", "Олександр — цифровий провідник", "Александр — цифровой помощник", "Aleksandr — rəqəmsal bələdçi", "Aleksandr — guía digital", "Aleksandr — digital na gabay", "Aleksandr — pemandu digital", "अलेक्जेन्डर — डिजिटल मार्गदर्शक"));
     const badge = text(tx("Przed rozpoczęciem", "Before you start", "Перед початком", "Перед началом", "Başlamazdan əvvəl", "Antes de empezar", "Bago magsimula", "Sebelum mulai", "सुरु गर्नु अघि"));
     const stop = text(tx("Zatrzymaj", "Stop", "Зупинити", "Остановить", "Dayandır", "Detener", "Ihinto", "Hentikan", "रोक्नुहोस्"));
-    const openAudio = text(tx("Otwórz nagranie", "Open recording", "Відкрити запис", "Открыть запись", "Səs yazısını aç", "Abrir grabación", "Buksan ang recording", "Buka rekaman", "रेकर्डिङ खोल्नुहोस्"));
     const map = text(tx("Najpierw: droga i mapa", "First: route and map", "Спочатку: дорога і карта", "Сначала: дорога и карта", "Əvvəlcə: yol və xəritə", "Primero: ruta y mapa", "Una: daan at mapa", "Pertama: rute dan peta", "पहिले: बाटो र नक्सा"));
     const note = text(tx(
       "To przygotowanie nie zastępuje instruktażu stanowiskowego. Na miejscu słuchaj kierownika i zasad BHP.",
@@ -614,14 +613,12 @@
           <p class="presenter-script" data-presenter-script aria-live="polite">${esc(sentences.join(" "))}</p>
           <p class="presenter-note">${esc(note)}</p>
           <div class="presenter-actions">
-            <button type="button" class="btn" data-presenter-play>${esc(labels.start)}</button>
             <button type="button" class="btn secondary" data-presenter-stop hidden>${esc(stop)}</button>
-            <a class="btn secondary" href="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper6" target="_blank" rel="noopener">${esc(openAudio)}</a>
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
-          <audio data-presenter-audio preload="metadata">
-            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper6" type="audio/wav">
-            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper6" type="audio/mpeg">
+          <audio data-presenter-audio preload="auto" autoplay>
+            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper7" type="audio/wav">
+            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper7" type="audio/mpeg">
           </audio>
         </div>
       </section>`;
@@ -2523,36 +2520,61 @@
   function setupDigitalPresenter() {
     const card = document.querySelector("[data-presenter-card]");
     if (!card) return;
-    const play = card.querySelector("[data-presenter-play]");
     const stop = card.querySelector("[data-presenter-stop]");
     const script = card.querySelector("[data-presenter-script]");
     const recording = card.querySelector("[data-presenter-audio]");
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
     const sentences = guideText(lang, getLocationName());
     if (!recording) return;
+    const touchToStart = text(tx(
+      "Dotknij strony, aby włączyć głos.",
+      "Touch the page to enable voice.",
+      "Торкніться сторінки, щоб увімкнути голос.",
+      "Коснитесь страницы, чтобы включить голос.",
+      "Səsi açmaq üçün səhifəyə toxunun.",
+      "Toca la página para activar la voz.",
+      "Pindutin ang pahina para marinig ang boses.",
+      "Sentuh halaman untuk mengaktifkan suara.",
+      "आवाज सुरु गर्न पृष्ठ छुनुहोस्।"
+    ));
+    let speaking = false;
+    let waitingForGesture = false;
 
     const finish = () => {
+      speaking = false;
       card.classList.remove("is-speaking");
-      play.disabled = false;
-      play.textContent = labels.repeat;
       stop.hidden = true;
       script.textContent = sentences.join(" ");
     };
 
-    play.addEventListener("click", () => {
-      recording.pause();
-      recording.currentTime = 0;
-      play.disabled = true;
-      play.textContent = labels.speaking;
+    const startSpeaking = () => {
+      if (speaking) return;
+      speaking = true;
       stop.hidden = false;
       card.classList.add("is-speaking");
-      recording.play().catch(() => {
-        script.textContent = labels.unavailable;
+      script.textContent = sentences.join(" ");
+      recording.play().catch((error) => {
+        speaking = false;
         card.classList.remove("is-speaking");
-        play.disabled = false;
         stop.hidden = true;
+        if (error && error.name === "NotAllowedError") {
+          script.textContent = touchToStart;
+          if (!waitingForGesture) {
+            waitingForGesture = true;
+            const unlock = () => {
+              waitingForGesture = false;
+              document.removeEventListener("pointerdown", unlock, true);
+              document.removeEventListener("keydown", unlock, true);
+              startSpeaking();
+            };
+            document.addEventListener("pointerdown", unlock, { once: true, capture: true, passive: true });
+            document.addEventListener("keydown", unlock, { once: true, capture: true });
+          }
+        } else {
+          script.textContent = labels.unavailable;
+        }
       });
-    });
+    };
 
     stop.addEventListener("click", () => {
       recording.pause();
@@ -2562,10 +2584,11 @@
     recording.addEventListener("ended", finish);
     recording.addEventListener("error", () => {
       script.textContent = labels.unavailable;
+      speaking = false;
       card.classList.remove("is-speaking");
-      play.disabled = false;
       stop.hidden = true;
     });
+    window.setTimeout(startSpeaking, 350);
     window.addEventListener("pagehide", () => recording.pause(), { once: true });
   }
   function showLocationWelcome() {
