@@ -691,15 +691,19 @@
           <div class="presenter-cartoon" data-presenter-cartoon data-prop="welcome" aria-hidden="true">
             <div class="cartoon-greenhouse"></div>
             <div class="cartoon-prop-card" data-cartoon-prop-card>
-              <span class="cartoon-prop-icon" data-cartoon-prop-icon>👋</span>
+              <div class="cartoon-prop-visual">
+                <img class="cartoon-prop-image" data-cartoon-prop-image alt="" hidden>
+                <span class="cartoon-prop-icon" data-cartoon-prop-icon>👋</span>
+              </div>
               <strong data-cartoon-prop-label></strong>
+              <small data-cartoon-prop-counter aria-hidden="true"></small>
             </div>
             <div class="cartoon-character">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260718-cartoon3" alt="" width="1639" height="960">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260718-cartoon3" alt="" width="973" height="701">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260718-cartoon3" alt="" width="552" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-showcase1" alt="" width="1639" height="960">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-showcase1" alt="" width="973" height="701">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-showcase1" alt="" width="552" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260718-cartoon3" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-showcase1" alt="" width="405" height="542">
                 <span class="cartoon-eye cartoon-eye-left"></span>
                 <span class="cartoon-eye cartoon-eye-right"></span>
                 <span class="cartoon-mouth"></span>
@@ -2650,8 +2654,11 @@
     const stage = card.querySelector("[data-presenter-stage]");
     const video = card.querySelector("[data-presenter-video]");
     const cartoon = card.querySelector("[data-presenter-cartoon]");
+    const cartoonPropCard = card.querySelector("[data-cartoon-prop-card]");
+    const cartoonPropImage = card.querySelector("[data-cartoon-prop-image]");
     const cartoonPropIcon = card.querySelector("[data-cartoon-prop-icon]");
     const cartoonPropLabel = card.querySelector("[data-cartoon-prop-label]");
+    const cartoonPropCounter = card.querySelector("[data-cartoon-prop-counter]");
     const stageCaption = card.querySelector("[data-presenter-caption]");
     const script = card.querySelector("[data-presenter-script]");
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
@@ -2705,18 +2712,140 @@
 
     const chapterAudioUrl = (chapter, index) => chapter.legacyAudio ||
       `assets/audio/guide/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp3${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
-    const cartoonProps = {
-      welcome: "👋",
-      arrival: "🗺️",
-      warehouse: "📦",
-      greenhouse: "🍅",
-      reader: "📟",
-      tablet: "📱",
-      safety: "⚠️",
-      documents: "📄",
-      help: "☎️",
-      finish: "✅"
+    const visualAsset = (path) => `${path}${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
+    const cartoonCueSequences = {
+      welcome: [
+        { icon: "👋", gesture: "open" },
+        { icon: "🗺️", gesture: "show-right" },
+        { image: "assets/warehouse/magazyn-wejscie-1.jpg", icon: "📦", gesture: "show-right" },
+        { image: "assets/greenhouse-orientation/orientacja-ogolna.svg", icon: "🍅", gesture: "show-left" },
+        { image: "assets/inline/reader_start.jpg", icon: "📟", gesture: "show-right" },
+        { image: "assets/tablet/tablet-login-pin.jpg", icon: "📱", gesture: "show-right" },
+        { icon: "⚠️", gesture: "warning" },
+        { icon: "☎️", gesture: "show-right" }
+      ],
+      arrival: [
+        { icon: "📍", gesture: "show-right" },
+        { icon: "🗺️", gesture: "show-right" },
+        { image: "assets/warehouse/magazyn-wejscie-1.jpg", icon: "🚪", gesture: "show-right" },
+        { icon: "⏳", gesture: "nod" }
+      ],
+      warehouse: [
+        { image: "assets/warehouse/magazyn-wejscie-1.jpg", icon: "🏭", gesture: "show-right" },
+        { image: "assets/warehouse/magazyn-wejscie-2.jpg", icon: "🚪", gesture: "show-left" },
+        { icon: "🚫📟", gesture: "warning" },
+        { image: "assets/tablet/tablet-start-work.jpg", icon: "📱", gesture: "show-right" }
+      ],
+      greenhouse: [
+        { image: "assets/greenhouse-orientation/orientacja-ogolna.svg", icon: "🌿", gesture: "show-right" },
+        { image: "assets/greenhouse-orientation/nawa.svg", icon: "↔️", gesture: "show-left" },
+        { image: "assets/inline/reader_start.jpg", icon: "📟", gesture: "show-right" },
+        { icon: "🏷️", gesture: "show-right" },
+        { image: "assets/greenhouse-orientation/przejscie.svg", icon: "🚶", gesture: "show-left" }
+      ],
+      reader: [
+        { image: "assets/inline/reader_start.jpg", icon: "📟", gesture: "show-right" },
+        { icon: "1️⃣", gesture: "nod" },
+        { icon: "2️⃣", gesture: "nod" },
+        { image: "assets/inline/cart_pl.jpg", icon: "🍅", gesture: "show-right" },
+        { image: "assets/inline/stage34_1.jpg", icon: "🏷️", gesture: "show-left" },
+        { image: "assets/inline/restart_1.jpg", icon: "🔄", gesture: "show-right" }
+      ],
+      tablet: [
+        { image: "assets/tablet/tablet-login-pin.jpg", icon: "🔐", gesture: "show-right" },
+        { image: "assets/tablet/tablet-start-work.jpg", icon: "▶️", gesture: "show-right" },
+        { image: "assets/tablet/tablet-activity.jpg", icon: "🧤", gesture: "show-left" },
+        { image: "assets/tablet/tablet-change-activity.jpg", icon: "🔁", gesture: "show-right" },
+        { image: "assets/tablet/tablet-break-start.jpg", icon: "☕", gesture: "show-left" },
+        { image: "assets/tablet/tablet-work-end.jpg", icon: "🏁", gesture: "show-right" },
+        { image: "assets/tablet/tablet-logout.jpg", icon: "🚪", gesture: "nod" }
+      ],
+      safety: [
+        { icon: "⚠️", gesture: "warning" },
+        { icon: "🚫🍔", gesture: "warning" },
+        { icon: "🚫📱", gesture: "warning" },
+        { icon: "🚭", gesture: "warning" },
+        { icon: "🧼👐", gesture: "show-right" },
+        { icon: "🚫🎧", gesture: "warning" },
+        { icon: "⛔", gesture: "nod" }
+      ],
+      documents: [
+        { icon: "🛂", gesture: "show-right" },
+        { icon: "📄", gesture: "show-right" },
+        { icon: "🏛️", gesture: "show-left" },
+        { icon: "🏦", gesture: "show-right" },
+        { icon: "📦➡️📮", gesture: "show-left" }
+      ],
+      help: [
+        { icon: "☎️", gesture: "show-right" },
+        { icon: "💬", gesture: "show-left" },
+        { icon: "🏥", gesture: "show-right" },
+        { icon: "🦷", gesture: "show-left" },
+        { icon: "🆘 112", gesture: "warning" }
+      ],
+      finish: [
+        { icon: "📝", gesture: "show-right" },
+        { icon: "✅", gesture: "nod" },
+        { icon: "🦺", gesture: "show-left" },
+        { icon: "❓➡️👷", gesture: "open" }
+      ]
     };
+    let activeCueKey = "";
+
+    const applyCartoonCue = (sentenceIndex = 0, force = false) => {
+      if (!cartoon || !chapters[chapterIndex]) return;
+      const chapter = chapters[chapterIndex];
+      const sequence = cartoonCueSequences[chapter.id] || cartoonCueSequences.welcome;
+      const sentenceTotal = Math.max(1, chapterSentences.length);
+      const fraction = sentenceTotal <= 1 ? 0 : sentenceIndex / (sentenceTotal - 1);
+      const cueIndex = Math.min(sequence.length - 1, Math.floor(fraction * sequence.length));
+      const cue = sequence[cueIndex] || sequence[0];
+      const cueKey = `${chapter.id}:${cueIndex}`;
+      if (!force && cueKey === activeCueKey) return;
+      activeCueKey = cueKey;
+
+      cartoon.dataset.prop = chapter.id;
+      cartoon.dataset.cue = String(cueIndex);
+      card.dataset.gesture = cue.gesture || "show-right";
+      if (cartoonPropLabel) cartoonPropLabel.textContent = chapter.title;
+      if (cartoonPropCounter) cartoonPropCounter.textContent = `${cueIndex + 1}/${sequence.length}`;
+      if (cartoonPropImage) {
+        cartoonPropImage.dataset.fallbackIcon = cue.icon || "\u2022";
+        if (cue.image) {
+          cartoonPropImage.src = visualAsset(cue.image);
+          cartoonPropImage.alt = chapter.title;
+          cartoonPropImage.hidden = false;
+          if (cartoonPropIcon) cartoonPropIcon.hidden = true;
+        } else {
+          cartoonPropImage.hidden = true;
+          cartoonPropImage.removeAttribute("src");
+          cartoonPropImage.alt = "";
+          if (cartoonPropIcon) {
+            cartoonPropIcon.hidden = false;
+            cartoonPropIcon.textContent = cue.icon || "\u2022";
+          }
+        }
+      } else if (cartoonPropIcon) {
+        cartoonPropIcon.hidden = false;
+        cartoonPropIcon.textContent = cue.icon || "\u2022";
+      }
+      if (cartoonPropCard) {
+        cartoonPropCard.classList.remove("is-changing");
+        void cartoonPropCard.offsetWidth;
+        cartoonPropCard.classList.add("is-changing");
+      }
+    };
+
+    if (cartoonPropImage) {
+      cartoonPropImage.addEventListener("error", () => {
+        cartoonPropImage.hidden = true;
+        cartoonPropImage.removeAttribute("src");
+        if (cartoonPropIcon) {
+          cartoonPropIcon.hidden = false;
+          cartoonPropIcon.textContent = cartoonPropImage.dataset.fallbackIcon || "\u2022";
+        }
+      });
+    }
 
     const splitNarration = (value) => {
       const normalized = String(value || "").replace(/\s+/g, " ").trim();
@@ -2761,6 +2890,7 @@
       if (safeIndex === activeSentenceIndex) return;
       activeSentenceIndex = safeIndex;
       if (stageCaption) stageCaption.textContent = chapterSentences[safeIndex];
+      applyCartoonCue(safeIndex);
       script.querySelectorAll("[data-presenter-sentence]").forEach((element) => {
         element.classList.toggle("is-current", Number(element.dataset.presenterSentence) === safeIndex);
       });
@@ -2780,6 +2910,7 @@
         running += weight;
         return running / totalWeight;
       });
+      activeCueKey = "";
       activeSentenceIndex = -1;
       script.innerHTML = chapterSentences.map((sentence, index) =>
         `<span data-presenter-sentence="${index}">${esc(sentence)}</span>`
@@ -2841,11 +2972,8 @@
 
     const prepareVideo = async (chapter, index, token) => {
       if (token !== loadToken || !cartoon) return;
-      const prop = Object.prototype.hasOwnProperty.call(cartoonProps, chapter.id) ? chapter.id : "welcome";
-      cartoon.dataset.prop = prop;
       cartoon.hidden = false;
-      if (cartoonPropIcon) cartoonPropIcon.textContent = cartoonProps[prop];
-      if (cartoonPropLabel) cartoonPropLabel.textContent = chapter.title;
+      applyCartoonCue(activeSentenceIndex >= 0 ? activeSentenceIndex : 0, true);
       if (video) {
         video.pause();
         video.hidden = true;
