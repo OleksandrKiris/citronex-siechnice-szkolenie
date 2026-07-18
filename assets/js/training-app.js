@@ -626,9 +626,9 @@
             <button type="button" class="btn secondary" data-presenter-stop hidden>${esc(stop)}</button>
             <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
           </div>
-          <audio data-presenter-audio preload="auto" autoplay>
-            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper9" type="audio/wav">
-            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper9" type="audio/mpeg">
+          <audio data-presenter-audio preload="auto" autoplay playsinline>
+            <source src="assets/audio/male/intro-${esc(lang)}.wav?v=20260718-siechnice-helper10" type="audio/wav">
+            <source src="assets/audio/male/intro-${esc(lang)}.mp3?v=20260718-siechnice-helper10" type="audio/mpeg">
           </audio>
         </div>
       </section>`;
@@ -2741,7 +2741,7 @@
       startMotion();
       return;
     }
-    window.setTimeout(startSpeaking, 350);
+    startSpeaking();
     window.addEventListener("pagehide", () => recording.pause(), { once: true });
   }
   function showLocationWelcome() {

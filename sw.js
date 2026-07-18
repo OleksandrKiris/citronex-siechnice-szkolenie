@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260718-siechnice-helper9";
+const CACHE_NAME = CACHE_PREFIX + "20260718-siechnice-helper10";
 
 const CORE_ASSETS = [
   "./",
@@ -18,20 +18,20 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260718-siechnice-helper9",
-  "./assets/js/training-data.js?v=20260718-siechnice-helper9",
-  "./assets/js/training-app.js?v=20260718-siechnice-helper9",
+  "./assets/css/training.css?v=20260718-siechnice-helper10",
+  "./assets/js/training-data.js?v=20260718-siechnice-helper10",
+  "./assets/js/training-app.js?v=20260718-siechnice-helper10",
   "./assets/logo-citronex.svg",
   "./assets/brand/digital-presenter.png",
-  "./assets/audio/male/intro-pl.mp3?v=20260718-siechnice-helper9",
-  "./assets/audio/male/intro-en.mp3?v=20260718-siechnice-helper9",
-  "./assets/audio/male/intro-ua.mp3?v=20260718-siechnice-helper9",
-  "./assets/audio/male/intro-ru.mp3?v=20260718-siechnice-helper9",
-  "./assets/audio/male/intro-az.mp3?v=20260718-siechnice-helper9",
-  "./assets/audio/male/intro-es.mp3?v=20260718-siechnice-helper9",
-  "./assets/audio/male/intro-fil.mp3?v=20260718-siechnice-helper9",
-  "./assets/audio/male/intro-id.mp3?v=20260718-siechnice-helper9",
-  "./assets/audio/male/intro-ne.mp3?v=20260718-siechnice-helper9"
+  "./assets/audio/male/intro-pl.mp3?v=20260718-siechnice-helper10",
+  "./assets/audio/male/intro-en.mp3?v=20260718-siechnice-helper10",
+  "./assets/audio/male/intro-ua.mp3?v=20260718-siechnice-helper10",
+  "./assets/audio/male/intro-ru.mp3?v=20260718-siechnice-helper10",
+  "./assets/audio/male/intro-az.mp3?v=20260718-siechnice-helper10",
+  "./assets/audio/male/intro-es.mp3?v=20260718-siechnice-helper10",
+  "./assets/audio/male/intro-fil.mp3?v=20260718-siechnice-helper10",
+  "./assets/audio/male/intro-id.mp3?v=20260718-siechnice-helper10",
+  "./assets/audio/male/intro-ne.mp3?v=20260718-siechnice-helper10"
 ];
 
 self.addEventListener("install", (event) => {
