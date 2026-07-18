@@ -583,7 +583,84 @@
         <span class="more-links">${moreLinks}</span>
       </details>
     ` : "";
-    app.innerHTML = `<main class="page">${pageHero("home")}${renderDigitalPresenter()}<section class="tiles">${primaryTiles.map(renderTile).join("")}${moreTile}</section></main>`;
+    app.innerHTML = `<main class="page">${pageHero("home")}${renderAssistantEntryTile()}<section class="tiles">${primaryTiles.map(renderTile).join("")}${moreTile}</section></main>`;
+  }
+
+  function renderAssistantEntryTile() {
+    const tap = text(tx(
+      "Naciśnij tutaj", "Tap here", "Натисніть тут", "Нажмите здесь", "Buraya toxunun",
+      "Pulsa aquí", "Pindutin dito", "Tekan di sini", "यहाँ थिच्नुहोस्"
+    ));
+    const title = text(tx(
+      "Otwórz pomocnika Aleksandra", "Open Aleksandr's assistant", "Відкрити помічника Олександра",
+      "Открыть помощника Александра", "Aleksandrın köməkçisini açın", "Abrir el asistente de Aleksandr",
+      "Buksan ang assistant ni Aleksandr", "Buka asisten Aleksandr", "अलेक्जेन्डरको सहायक खोल्नुहोस्"
+    ));
+    const lead = text(tx(
+      "Posłuchaj pełnego instruktażu przed przyjazdem lub podczas oczekiwania na dokumenty.",
+      "Listen to the full briefing before arrival or while waiting for documents.",
+      "Прослухайте повний інструктаж до приїзду або під час очікування документів.",
+      "Послушайте полный инструктаж до приезда или во время ожидания документов.",
+      "Gəlməzdən əvvəl və ya sənədləri gözləyərkən tam təlimatı dinləyin.",
+      "Escucha la formación completa antes de llegar o mientras esperas los documentos.",
+      "Pakinggan ang buong orientation bago dumating o habang naghihintay ng mga dokumento.",
+      "Dengarkan pengarahan lengkap sebelum tiba atau sambil menunggu dokumen.",
+      "आउनुअघि वा कागजात कुर्दै गर्दा पूर्ण निर्देशन सुन्नुहोस्।"
+    ));
+    const chapters = text(tx(
+      "10 rozdziałów · głos męski · Twój język", "10 chapters · male voice · your language",
+      "10 розділів · чоловічий голос · ваша мова", "10 глав · мужской голос · ваш язык",
+      "10 bölmə · kişi səsi · sizin diliniz", "10 capítulos · voz masculina · tu idioma",
+      "10 kabanata · boses ng lalaki · iyong wika", "10 bab · suara pria · bahasa Anda",
+      "१० अध्याय · पुरुष आवाज · तपाईंको भाषा"
+    ));
+    return `
+      <a class="assistant-entry-tile" href="${esc(href("pomocnik"))}" aria-label="${esc(`${tap}. ${title}`)}">
+        <span class="assistant-entry-play" aria-hidden="true">▶</span>
+        <span class="assistant-entry-copy">
+          <span class="assistant-entry-tap">${esc(tap)}</span>
+          <strong>${esc(title)}</strong>
+          <span class="assistant-entry-lead">${esc(lead)}</span>
+          <span class="assistant-entry-meta">${esc(chapters)}</span>
+        </span>
+        <span class="assistant-entry-arrow" aria-hidden="true">›</span>
+      </a>`;
+  }
+
+  function renderAssistantPage() {
+    const eyebrow = text(tx(
+      "Osobista strona instruktażu", "Personal briefing page", "Особиста сторінка інструктажу",
+      "Персональная страница инструктажа", "Şəxsi təlimat səhifəsi", "Página personal de formación",
+      "Personal na orientation page", "Halaman pengarahan pribadi", "व्यक्तिगत निर्देशन पृष्ठ"
+    ));
+    const title = text(tx(
+      "Posłuchaj Aleksandra krok po kroku", "Listen to Aleksandr step by step",
+      "Слухайте Олександра крок за кроком", "Послушайте Александра шаг за шагом",
+      "Aleksandrı addım-addım dinləyin", "Escucha a Aleksandr paso a paso",
+      "Pakinggan si Aleksandr nang sunod-sunod", "Dengarkan Aleksandr langkah demi langkah",
+      "अलेक्जेन्डरलाई चरणबद्ध सुन्नुहोस्"
+    ));
+    const lead = text(tx(
+      "Włącz głos, przejdź przez wszystkie rozdziały i zatrzymaj nagranie w dowolnej chwili.",
+      "Turn on the voice, go through every chapter and stop the recording at any time.",
+      "Увімкніть голос, пройдіть усі розділи та зупиняйте запис у будь-який момент.",
+      "Включите голос, пройдите все главы и останавливайте запись в любой момент.",
+      "Səsi açın, bütün bölmələrə baxın və istənilən vaxt qeydi dayandırın.",
+      "Activa la voz, recorre todos los capítulos y detén la grabación cuando quieras.",
+      "I-on ang boses, tapusin ang lahat ng kabanata at ihinto ang recording anumang oras.",
+      "Nyalakan suara, ikuti semua bab, dan hentikan rekaman kapan saja.",
+      "आवाज खोल्नुहोस्, सबै अध्याय पूरा गर्नुहोस् र कुनै पनि बेला रेकर्डिङ रोक्नुहोस्।"
+    ));
+    document.title = `${title} - ${hydraBrand}`;
+    app.innerHTML = `
+      <main class="page assistant-page">
+        <section class="assistant-page-intro">
+          <p class="eyebrow">${esc(eyebrow)}</p>
+          <h1>${esc(title)}</h1>
+          <p>${esc(lead)}</p>
+        </section>
+        ${renderDigitalPresenter()}
+      </main>`;
   }
 
   function renderDigitalPresenter() {
@@ -2355,6 +2432,7 @@
     focusActiveTopNav();
     const renderers = {
       home: renderHomeCompact,
+      pomocnik: renderAssistantPage,
       mapa: renderMap,
       magazyn: renderWarehouse,
       tablet: renderTablet,

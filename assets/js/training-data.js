@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260718-presenter-guide1-siechnice"
+      version: "20260718-standalone-assistant1-siechnice"
     },
 
     languages: [
@@ -43,6 +43,10 @@
       home: {
         title: tx("Co chcesz zrobić?", "What do you need?", "Що вам потрібно?", "Что вам нужно?", "Nə lazımdır?", "¿Qué necesitas?", "Ano ang kailangan mo?", "Apa yang Anda butuhkan?", "तपाईंलाई के चाहिन्छ?"),
         lead: tx("Wybierz jeden kafelek. Na telefonie zobaczysz tylko ten moduł, bez mieszania informacji.", "Choose one tile. On the phone you will see only that module, without mixed information.", "Оберіть один блок. На телефоні ви побачите тільки цей модуль без зайвої інформації.", "Выберите один блок. На телефоне будет только этот модуль без лишней информации.", "Bir bölmə seçin. Telefonda yalnız həmin modul görünəcək.", "Elige una tarjeta. En el teléfono verás solo ese módulo.", "Pumili ng isang tile. Sa telepono, iyon lang ang makikita mo.", "Pilih satu kartu. Di ponsel hanya modul itu yang tampil.", "एउटा टाइल छान्नुहोस्। फोनमा त्यही मोड्युल मात्र देखिन्छ।")
+      },
+      pomocnik: {
+        title: tx("Cyfrowy pomocnik Aleksandra", "Aleksandr's digital assistant", "Цифровий помічник Олександра", "Цифровой помощник Александра", "Aleksandrın rəqəmsal köməkçisi", "Asistente digital de Aleksandr", "Digital assistant ni Aleksandr", "Asisten digital Aleksandr", "अलेक्जेन्डरको डिजिटल सहायक"),
+        lead: tx("Pełny instruktaż w 10 rozdziałach.", "Full briefing in 10 chapters.", "Повний інструктаж у 10 розділах.", "Полный инструктаж в 10 главах.", "10 bölmədən ibarət tam təlimat.", "Formación completa en 10 capítulos.", "Buong orientation sa 10 kabanata.", "Pengarahan lengkap dalam 10 bab.", "१० अध्यायमा पूर्ण निर्देशन।")
       },
       mapa: {
         title: tx("Dojazd i mapy", "Route and maps", "Дорога і карти", "Дорога и карты", "Yol və xəritələr", "Ruta y mapas", "Ruta at mapa", "Rute dan peta", "बाटो र नक्सा"),
