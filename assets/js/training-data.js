@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260718-avatar3-siechnice"
+      version: "20260718-avatar5-siechnice"
     },
 
     languages: [

@@ -666,6 +666,7 @@
   function renderDigitalPresenter() {
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
     const sentences = guideText(lang, getLocationName());
+    const speedLabel = text(tx("Tempo", "Speed", "Темп", "Темп", "Sürət", "Velocidad", "Bilis", "Kecepatan", "गति"));
     const title = text(tx("Aleksandr — cyfrowy przewodnik", "Aleksandr — digital guide", "Олександр — цифровий провідник", "Александр — цифровой помощник", "Aleksandr — rəqəmsal bələdçi", "Aleksandr — guía digital", "Aleksandr — digital na gabay", "Aleksandr — pemandu digital", "अलेक्जेन्डर — डिजिटल मार्गदर्शक"));
     const badge = text(tx("Przed rozpoczęciem", "Before you start", "Перед початком", "Перед началом", "Başlamazdan əvvəl", "Antes de empezar", "Bago magsimula", "Sebelum mulai", "सुरु गर्नु अघि"));
     const stop = text(tx("Zatrzymaj", "Stop", "Зупинити", "Остановить", "Dayandır", "Detener", "Ihinto", "Hentikan", "रोक्नुहोस्"));
@@ -691,6 +692,7 @@
           <div class="presenter-portrait" data-presenter-portrait>
             <img src="assets/brand/digital-presenter.png" alt="${esc(title)}" width="1536" height="1024">
           </div>
+          <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
           <div class="presenter-overall-progress" aria-hidden="true"><span data-presenter-overall-progress></span></div>
         </div>
@@ -703,6 +705,14 @@
           <div class="presenter-timeline">
             <input type="range" min="0" max="1000" value="0" step="1" data-presenter-seek aria-label="${esc(labels.speaking)}">
             <div class="presenter-times"><span data-presenter-time>0:00</span><span data-presenter-duration>0:00</span></div>
+            <label class="presenter-speed">
+              <span>${esc(speedLabel)}</span>
+              <select data-presenter-rate aria-label="${esc(speedLabel)}">
+                <option value="0.85">0.85×</option>
+                <option value="1" selected>1×</option>
+                <option value="1.1">1.1×</option>
+              </select>
+            </label>
           </div>
           <p class="presenter-note">${esc(note)}</p>
           <div class="presenter-actions presenter-controls">
@@ -2625,6 +2635,7 @@
     const stage = card.querySelector("[data-presenter-stage]");
     const video = card.querySelector("[data-presenter-video]");
     const portrait = card.querySelector("[data-presenter-portrait]");
+    const stageCaption = card.querySelector("[data-presenter-caption]");
     const script = card.querySelector("[data-presenter-script]");
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
     const chaptersNav = card.querySelector("[data-presenter-chapters]");
@@ -2634,6 +2645,7 @@
     const timeLabel = card.querySelector("[data-presenter-time]");
     const durationLabel = card.querySelector("[data-presenter-duration]");
     const seek = card.querySelector("[data-presenter-seek]");
+    const rateControl = card.querySelector("[data-presenter-rate]");
     const overallProgress = card.querySelector("[data-presenter-overall-progress]");
     const playButton = card.querySelector("[data-presenter-play]");
     const playIcon = card.querySelector("[data-presenter-play-icon]");
@@ -2665,6 +2677,9 @@
     let chapterIndex = 0;
     let waitingForGesture = false;
     let loadToken = 0;
+    let chapterSentences = [];
+    let sentenceBreakpoints = [];
+    let activeSentenceIndex = -1;
     const avatarAvailability = new Map();
 
     const formatTime = (seconds) => {
@@ -2676,8 +2691,89 @@
       `assets/audio/guide/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp3${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
     const chapterVideoUrl = (chapter, index) =>
       `assets/avatar/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp4${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
-    const genericGestureVideoUrl =
-      `assets/avatar/presenter-gesture-loop-v1.mp4${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
+    const genericAvatarFor = (chapter) => {
+      const technical = new Set(["warehouse", "greenhouse", "reader", "tablet"]);
+      const variant = technical.has(chapter.id) ? "gesture" : "conversation";
+      const file = variant === "gesture"
+        ? "presenter-gesture-loop-v1.mp4"
+        : "presenter-conversation-loop-v2.mp4";
+      const offsets = { welcome: 0, arrival: 1.8, safety: 4.2, documents: 8.3, help: 8.3, finish: .6 };
+      return {
+        variant,
+        offset: Number(offsets[chapter.id] || 0),
+        url: `assets/avatar/${file}${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`
+      };
+    };
+
+    const splitNarration = (value) => {
+      const normalized = String(value || "").replace(/\s+/g, " ").trim();
+      if (!normalized) return [];
+      const sentences = normalized.match(/[^.!?…！？।]+(?:[.!?…！？।]+|$)/g)?.map((item) => item.trim()).filter(Boolean) || [normalized];
+      return sentences.flatMap((sentence) => {
+        if (sentence.length <= 150) return [sentence];
+        const clauses = sentence.match(/[^,:;，；]+(?:[,:;，；]+|$)/g)?.map((item) => item.trim()).filter(Boolean) || [sentence];
+        const pieces = clauses.flatMap((clause) => {
+          if (clause.length <= 150) return [clause];
+          const parts = [];
+          let part = "";
+          clause.split(/\s+/).forEach((word) => {
+            const combined = part ? `${part} ${word}` : word;
+            if (combined.length <= 150 || !part) part = combined;
+            else {
+              parts.push(part);
+              part = word;
+            }
+          });
+          if (part) parts.push(part);
+          return parts;
+        });
+        const chunks = [];
+        let current = "";
+        pieces.forEach((piece) => {
+          const combined = current ? `${current} ${piece}` : piece;
+          if (combined.length <= 150 || !current) current = combined;
+          else {
+            chunks.push(current);
+            current = piece;
+          }
+        });
+        if (current) chunks.push(current);
+        return chunks;
+      });
+    };
+
+    const showSentence = (index, scroll = true) => {
+      if (!chapterSentences.length) return;
+      const safeIndex = Math.max(0, Math.min(chapterSentences.length - 1, Number(index) || 0));
+      if (safeIndex === activeSentenceIndex) return;
+      activeSentenceIndex = safeIndex;
+      if (stageCaption) stageCaption.textContent = chapterSentences[safeIndex];
+      script.querySelectorAll("[data-presenter-sentence]").forEach((element) => {
+        element.classList.toggle("is-current", Number(element.dataset.presenterSentence) === safeIndex);
+      });
+      const current = script.querySelector(`[data-presenter-sentence="${safeIndex}"]`);
+      if (scroll && current) {
+        const target = Math.max(0, current.offsetTop - Math.round(script.clientHeight * .34));
+        script.scrollTo({ top: target, behavior: "smooth" });
+      }
+    };
+
+    const prepareChapterText = (chapter) => {
+      chapterSentences = splitNarration(chapter.text);
+      const weights = chapterSentences.map((sentence) => Math.max(18, sentence.length + (/[!?！？]$/.test(sentence) ? 16 : 8)));
+      const totalWeight = Math.max(1, weights.reduce((sum, weight) => sum + weight, 0));
+      let running = 0;
+      sentenceBreakpoints = weights.map((weight) => {
+        running += weight;
+        return running / totalWeight;
+      });
+      activeSentenceIndex = -1;
+      script.innerHTML = chapterSentences.map((sentence, index) =>
+        `<span data-presenter-sentence="${index}">${esc(sentence)}</span>`
+      ).join(" ");
+      script.scrollTop = 0;
+      showSentence(0, false);
+    };
 
     const setPlaying = (playing) => {
       card.classList.toggle("is-speaking", playing);
@@ -2685,6 +2781,10 @@
       playIcon.textContent = playing ? "Ⅱ" : "▶";
       playLabel.textContent = playing ? labels.pause : labels.resume;
       playButton.setAttribute("aria-pressed", playing ? "true" : "false");
+      if (stage) {
+        stage.setAttribute("aria-pressed", playing ? "true" : "false");
+        stage.setAttribute("aria-label", playing ? labels.pause : labels.resume);
+      }
     };
 
     const updateProgress = () => {
@@ -2696,6 +2796,8 @@
       durationLabel.textContent = formatTime(duration);
       const totalFraction = chapters.length ? (chapterIndex + fraction) / chapters.length : 0;
       overallProgress.style.width = `${Math.min(100, Math.max(0, totalFraction * 100)).toFixed(2)}%`;
+      const nextSentence = sentenceBreakpoints.findIndex((breakpoint) => fraction < breakpoint);
+      showSentence(nextSentence < 0 ? chapterSentences.length - 1 : nextSentence);
       if (video && card.dataset.avatarMode === "video" && !video.hidden && Number.isFinite(video.currentTime) && Math.abs(video.currentTime - current) > .35) {
         try { video.currentTime = current; } catch (error) { /* Metadata may still be loading. */ }
       }
@@ -2721,6 +2823,7 @@
       }
       if (portrait) portrait.hidden = false;
       card.dataset.avatarMode = "photo";
+      delete card.dataset.avatarVariant;
     };
 
     const videoIsAvailable = async (url) => {
@@ -2742,17 +2845,27 @@
       const chapterUrl = chapterVideoUrl(chapter, index);
       const hasChapterVideo = await videoIsAvailable(chapterUrl);
       if (token !== loadToken) return;
-      const url = hasChapterVideo ? chapterUrl : genericGestureVideoUrl;
+      const fallbackAvatar = genericAvatarFor(chapter);
+      const url = hasChapterVideo ? chapterUrl : fallbackAvatar.url;
       const available = hasChapterVideo || await videoIsAvailable(url);
       if (token !== loadToken || !available) return;
       video.src = url;
       video.loop = !hasChapterVideo;
+      video.playbackRate = recording.playbackRate || 1;
       if (hasChapterVideo) {
         try { video.currentTime = recording.currentTime || 0; } catch (error) { /* Metadata may still be loading. */ }
+      } else {
+        const applyOffset = () => {
+          if (token !== loadToken || !Number.isFinite(video.duration) || video.duration <= 0) return;
+          video.currentTime = Math.min(Math.max(0, fallbackAvatar.offset), Math.max(0, video.duration - .25));
+        };
+        if (video.readyState >= 1) applyOffset();
+        else video.addEventListener("loadedmetadata", applyOffset, { once: true });
       }
       video.hidden = false;
       portrait.hidden = true;
       card.dataset.avatarMode = hasChapterVideo ? "video" : "gesture";
+      card.dataset.avatarVariant = hasChapterVideo ? "chapter" : fallbackAvatar.variant;
       if (!hasChapterVideo || !recording.paused) video.play().catch(() => {});
     };
 
@@ -2769,13 +2882,14 @@
         if (error && error.name === "NotAllowedError") {
           card.classList.add("is-autoplay-blocked");
           playLabel.textContent = touchToStart;
+          if (stage) stage.setAttribute("aria-label", touchToStart);
           if (!waitingForGesture) {
             waitingForGesture = true;
             const unlock = (event) => {
               waitingForGesture = false;
               document.removeEventListener("pointerdown", unlock, true);
               document.removeEventListener("keydown", unlock, true);
-              if (event.target && event.target.closest && event.target.closest("button, a, input, select, summary")) return;
+              if (event.target && event.target.closest && event.target.closest("button, a, input, select, summary, [data-presenter-stage]")) return;
               requestPlayback();
             };
             document.addEventListener("pointerdown", unlock, { once: true, capture: true, passive: true });
@@ -2796,7 +2910,7 @@
       recording.src = chapterAudioUrl(chapter, chapterIndex);
       recording.currentTime = 0;
       chapterTitle.textContent = chapter.title;
-      script.textContent = chapter.text;
+      prepareChapterText(chapter);
       currentLabel.textContent = String(chapterIndex + 1);
       totalLabel.textContent = String(chapters.length);
       timeLabel.textContent = "0:00";
@@ -2811,12 +2925,22 @@
 
     if (stage) {
       stage.addEventListener("pointerdown", () => {
-        if (card.classList.contains("is-autoplay-blocked")) requestPlayback();
+        if (recording.paused) requestPlayback();
+        else {
+          recording.pause();
+          if (video) video.pause();
+          setPlaying(false);
+        }
       });
       stage.addEventListener("keydown", (event) => {
-        if (!card.classList.contains("is-autoplay-blocked") || !["Enter", " "].includes(event.key)) return;
+        if (!["Enter", " "].includes(event.key)) return;
         event.preventDefault();
-        requestPlayback();
+        if (recording.paused) requestPlayback();
+        else {
+          recording.pause();
+          if (video) video.pause();
+          setPlaying(false);
+        }
       });
     }
 
@@ -2872,6 +2996,13 @@
       recording.currentTime = (Number(seek.value) / 1000) * recording.duration;
       updateProgress();
     });
+    if (rateControl) {
+      rateControl.addEventListener("change", () => {
+        const rate = Math.max(.75, Math.min(1.25, Number(rateControl.value) || 1));
+        recording.playbackRate = rate;
+        if (video) video.playbackRate = rate;
+      });
+    }
     recording.addEventListener("loadedmetadata", updateProgress);
     recording.addEventListener("durationchange", updateProgress);
     recording.addEventListener("timeupdate", updateProgress);
