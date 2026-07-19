@@ -663,8 +663,39 @@
       </main>`;
   }
 
+  function presenterExperienceCopy() {
+    return {
+      chooseTitle: text(tx("Wybierz swój instruktaż", "Choose your briefing", "Оберіть свій інструктаж", "Выберите свой инструктаж", "Təlimatınızı seçin", "Elige tu formación", "Piliin ang iyong orientation", "Pilih pengarahan Anda", "आफ्नो निर्देशन छान्नुहोस्")),
+      chooseLead: text(tx("Po wyborze głos uruchomi się automatycznie. Trasę można zmienić.", "After selection, the voice starts automatically. You can change the path.", "Після вибору голос увімкнеться автоматично. Маршрут можна змінити.", "После выбора голос включится автоматически. Маршрут можно изменить.", "Seçimdən sonra səs avtomatik başlayacaq. Marşrutu dəyişmək olar.", "Después de elegir, la voz empezará automáticamente. Puedes cambiar la ruta.", "Pagkapili, awtomatikong magsisimula ang boses. Maaari mong baguhin ang ruta.", "Setelah memilih, suara akan mulai otomatis. Jalur dapat diubah.", "छानेपछि आवाज स्वतः सुरु हुन्छ। मार्ग बदल्न सकिन्छ।")),
+      changePath: text(tx("Zmień trasę", "Change path", "Змінити маршрут", "Сменить маршрут", "Marşrutu dəyiş", "Cambiar ruta", "Baguhin ang ruta", "Ganti jalur", "मार्ग बदल्नुहोस्")),
+      presentation: text(tx("Tryb prezentacji", "Presentation mode", "Режим презентації", "Режим презентации", "Təqdimat rejimi", "Modo presentación", "Presentation mode", "Mode presentasi", "प्रस्तुति मोड")),
+      exitPresentation: text(tx("Wyjdź z prezentacji", "Exit presentation", "Вийти з презентації", "Выйти из презентации", "Təqdimatdan çıx", "Salir de presentación", "Lumabas sa presentation", "Keluar dari presentasi", "प्रस्तुतिबाट निस्कनुहोस्")),
+      completed: text(tx("Ukończono", "Completed", "Завершено", "Пройдено", "Tamamlandı", "Completado", "Natapos", "Selesai", "पूरा भयो")),
+      quizTitle: text(tx("Sprawdź, czy rozumiesz", "Check your understanding", "Перевірте, чи зрозуміли", "Проверьте, всё ли понятно", "Başa düşdüyünüzü yoxlayın", "Comprueba lo aprendido", "Tingnan kung naintindihan", "Periksa pemahaman Anda", "बुझेको जाँच गर्नुहोस्")),
+      correct: text(tx("Dobrze. Możesz przejść dalej.", "Correct. You can continue.", "Правильно. Можна продовжувати.", "Правильно. Можно продолжать.", "Düzdür. Davam edə bilərsiniz.", "Correcto. Puedes continuar.", "Tama. Maaari kang magpatuloy.", "Benar. Anda dapat melanjutkan.", "सही। अब अगाडि जान सक्नुहुन्छ।")),
+      wrong: text(tx("Nieprawidłowo. Posłuchaj zasady jeszcze raz.", "Not correct. Listen to the rule again.", "Неправильно. Прослухайте правило ще раз.", "Неправильно. Послушайте правило ещё раз.", "Səhvdir. Qaydanı yenidən dinləyin.", "Incorrecto. Escucha la regla otra vez.", "Mali. Pakinggan muli ang patakaran.", "Belum benar. Dengarkan aturannya lagi.", "गलत। नियम फेरि सुन्नुहोस्।")),
+      repeat: text(tx("Powtórz rozdział", "Repeat chapter", "Повторити розділ", "Повторить главу", "Bölməni təkrar et", "Repetir capítulo", "Ulitin ang kabanata", "Ulangi bab", "अध्याय दोहोर्याउनुहोस्")),
+      continue: text(tx("Następny rozdział", "Next chapter", "Наступний розділ", "Следующая глава", "Növbəti bölmə", "Siguiente capítulo", "Susunod na kabanata", "Bab berikutnya", "अर्को अध्याय")),
+      yes: text(tx("Tak", "Yes", "Так", "Да", "Bəli", "Sí", "Oo", "Ya", "हो")),
+      no: text(tx("Nie", "No", "Ні", "Нет", "Xeyr", "No", "Hindi", "Tidak", "होइन")),
+      forbidden: text(tx("ZABRONIONE", "PROHIBITED", "ЗАБОРОНЕНО", "ЗАПРЕЩЕНО", "QADAĞANDIR", "PROHIBIDO", "BAWAL", "DILARANG", "निषेध")),
+      correctBadge: text(tx("PRAWIDŁOWO", "CORRECT", "ПРАВИЛЬНО", "ПРАВИЛЬНО", "DÜZGÜNDÜR", "CORRECTO", "TAMA", "BENAR", "सही")),
+      important: text(tx("WAŻNE", "IMPORTANT", "ВАЖЛИВО", "ВАЖНО", "VACİB", "IMPORTANTE", "MAHALAGA", "PENTING", "महत्त्वपूर्ण")),
+      wrongShort: text(tx("Nie wolno", "Do not", "Не можна", "Нельзя", "Olmaz", "No se permite", "Bawal", "Dilarang", "गर्न पाइँदैन")),
+      rightShort: text(tx("Tak należy", "Do this", "Так правильно", "Так правильно", "Belə edin", "Hazlo así", "Gawin ito", "Lakukan ini", "यसरी गर्नुहोस्")),
+      tracks: {
+        warehouse: { icon: "📦", title: text(tx("Praca w magazynie", "Warehouse work", "Робота на складі", "Работа на складе", "Anbar işi", "Trabajo en almacén", "Trabaho sa bodega", "Kerja di gudang", "गोदामको काम")), lead: text(tx("Wejście, tablet, zakazy i pomoc", "Entrance, tablet, rules and help", "Вхід, планшет, заборони і допомога", "Вход, планшет, запреты и помощь", "Giriş, tablet, qaydalar və kömək", "Entrada, tablet, reglas y ayuda", "Pasukan, tablet, mga bawal at tulong", "Pintu masuk, tablet, larangan dan bantuan", "प्रवेश, ट्याब्लेट, निषेध र सहायता")) },
+        greenhouse: { icon: "🌿", title: text(tx("Praca w szklarni", "Greenhouse work", "Робота в теплиці", "Работа в теплице", "İstixana işi", "Trabajo en invernadero", "Trabaho sa bahay-taniman", "Kerja di rumah kaca", "ग्रीनहाउसको काम")), lead: text(tx("Orientacja, reader, tablet i bezpieczeństwo", "Orientation, reader, tablet and safety", "Орієнтація, рідер, планшет і безпека", "Ориентация, ридер, планшет и безопасность", "İstiqamət, reader, tablet və təhlükəsizlik", "Orientación, reader, tablet y seguridad", "Orientation, reader, tablet at kaligtasan", "Orientasi, reader, tablet dan keselamatan", "दिशा, reader, tablet र सुरक्षा")) },
+        before: { icon: "🗺️", title: text(tx("Przed przyjazdem", "Before arrival", "До приїзду", "До приезда", "Gəlməzdən əvvəl", "Antes de llegar", "Bago dumating", "Sebelum datang", "आउनुअघि")), lead: text(tx("Droga, pierwszy dzień, dokumenty i kontakt", "Route, first day, documents and contact", "Дорога, перший день, документи і контакт", "Дорога, первый день, документы и связь", "Yol, ilk gün, sənədlər və əlaqə", "Ruta, primer día, documentos y contacto", "Daan, unang araw, dokumento at contact", "Rute, hari pertama, dokumen dan kontak", "बाटो, पहिलो दिन, कागजात र सम्पर्क")) },
+        waiting: { icon: "⏳", title: text(tx("Czekam na dokumenty", "Waiting for documents", "Чекаю на документи", "Жду документы", "Sənədləri gözləyirəm", "Espero documentos", "Naghihintay ng dokumento", "Menunggu dokumen", "कागजात कुर्दैछु")), lead: text(tx("Urzędy, bank, lekarz i ważne kontakty", "Offices, bank, doctor and key contacts", "Установи, банк, лікар і важливі контакти", "Учреждения, банк, врач и важные контакты", "Qurumlar, bank, həkim və vacib əlaqələr", "Oficinas, banco, médico y contactos", "Mga opisina, bangko, doktor at contact", "Kantor, bank, dokter dan kontak penting", "कार्यालय, बैंक, डाक्टर र महत्त्वपूर्ण सम्पर्क")) },
+        all: { icon: "✅", title: text(tx("Pełny instruktaż", "Full briefing", "Повний інструктаж", "Полный инструктаж", "Tam təlimat", "Formación completa", "Buong orientation", "Pengarahan lengkap", "पूर्ण निर्देशन")), lead: text(tx("Wszystkie rozdziały po kolei", "Every chapter in order", "Усі розділи по черзі", "Все главы по порядку", "Bütün bölmələr ardıcıllıqla", "Todos los capítulos en orden", "Lahat ng kabanata nang sunod-sunod", "Semua bab secara berurutan", "सबै अध्याय क्रमशः")) }
+      }
+    };
+  }
+
   function renderDigitalPresenter() {
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
+    const experience = presenterExperienceCopy();
     const sentences = guideText(lang, getLocationName());
     const speedLabel = text(tx("Tempo", "Speed", "Темп", "Темп", "Sürət", "Velocidad", "Bilis", "Kecepatan", "गति"));
     const title = text(tx("Aleksandr — cyfrowy przewodnik", "Aleksandr — digital guide", "Олександр — цифровий провідник", "Александр — цифровой помощник", "Aleksandr — rəqəmsal bələdçi", "Aleksandr — guía digital", "Aleksandr — digital na gabay", "Aleksandr — pemandu digital", "अलेक्जेन्डर — डिजिटल मार्गदर्शक"));
@@ -687,7 +718,7 @@
     ));
     return `
       <section class="presenter-card presenter-card-v2" data-presenter-card aria-labelledby="presenterTitle">
-        <div class="presenter-media presenter-stage" data-presenter-stage tabindex="0" role="button">
+        <div class="presenter-media presenter-stage" data-presenter-stage>
           <div class="presenter-cartoon" data-presenter-cartoon data-prop="welcome" aria-hidden="true">
             <div class="cartoon-greenhouse"></div>
             <div class="cartoon-prop-card" data-cartoon-prop-card>
@@ -696,13 +727,46 @@
                 <span class="guide-focus-ring" data-guide-focus-ring hidden></span>
                 <span class="cartoon-rule-badge" data-cartoon-rule-badge hidden></span>
                 <span class="cartoon-prop-icon" data-cartoon-prop-icon>👋</span>
+                <span class="guide-comparison" data-guide-comparison hidden><b data-guide-comparison-wrong></b><b data-guide-comparison-right></b></span>
               </div>
               <strong data-cartoon-prop-label></strong>
               <small data-cartoon-prop-counter aria-hidden="true"></small>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master6" alt="" width="512" height="512">
+              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-head" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-torso" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-arm-left" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-arm-right" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
+              <span class="guide-eyes" aria-hidden="true"><i></i><i></i></span>
               <span class="guide-mouth" aria-hidden="true"></span>
+            </div>
+          </div>
+          <button type="button" class="presenter-stage-hit" data-presenter-stage-hit aria-label="${esc(labels.start)}"></button>
+          <div class="presenter-stage-tools">
+            <button type="button" class="presenter-tool" data-presenter-track-button aria-label="${esc(experience.changePath)}"><span data-presenter-track-icon>🧭</span><small data-presenter-track-progress>0/0</small></button>
+            <button type="button" class="presenter-tool" data-presenter-fullscreen aria-label="${esc(experience.presentation)}">⛶</button>
+          </div>
+          <div class="presenter-path-overlay" data-presenter-path-overlay>
+            <div class="presenter-path-dialog" role="dialog" aria-modal="true" aria-labelledby="presenterPathTitle">
+              <h3 id="presenterPathTitle">${esc(experience.chooseTitle)}</h3>
+              <p>${esc(experience.chooseLead)}</p>
+              <div class="presenter-path-grid" data-presenter-path-grid></div>
+            </div>
+          </div>
+          <div class="presenter-quiz-overlay" data-presenter-quiz hidden>
+            <div class="presenter-quiz-card" role="dialog" aria-modal="true" aria-labelledby="presenterQuizTitle">
+              <p class="presenter-quiz-kicker">${esc(experience.quizTitle)}</p>
+              <h3 id="presenterQuizTitle" data-presenter-quiz-question></h3>
+              <div class="presenter-quiz-answers">
+                <button type="button" data-presenter-quiz-answer="1">${esc(experience.yes)}</button>
+                <button type="button" data-presenter-quiz-answer="0">${esc(experience.no)}</button>
+              </div>
+              <p class="presenter-quiz-feedback" data-presenter-quiz-feedback aria-live="polite"></p>
+              <div class="presenter-quiz-next" data-presenter-quiz-next hidden>
+                <button type="button" class="btn secondary" data-presenter-quiz-repeat>${esc(experience.repeat)}</button>
+                <button type="button" class="btn" data-presenter-quiz-continue>${esc(experience.continue)}</button>
+              </div>
             </div>
           </div>
           <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
@@ -2649,8 +2713,10 @@
     if (!card) return;
 
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
+    const experience = presenterExperienceCopy();
     const recording = card.querySelector("[data-presenter-audio]");
     const stage = card.querySelector("[data-presenter-stage]");
+    const stageHit = card.querySelector("[data-presenter-stage-hit]");
     const video = card.querySelector("[data-presenter-video]");
     const cartoon = card.querySelector("[data-presenter-cartoon]");
     const cartoonPropCard = card.querySelector("[data-cartoon-prop-card]");
@@ -2660,8 +2726,12 @@
     const cartoonPropCounter = card.querySelector("[data-cartoon-prop-counter]");
     const cartoonRuleBadge = card.querySelector("[data-cartoon-rule-badge]");
     const cartoonPose = card.querySelector("[data-cartoon-pose]");
+    const cartoonLayers = Array.from(card.querySelectorAll("[data-cartoon-layer]"));
     const guideCharacter = card.querySelector("[data-guide-character]");
     const guideFocusRing = card.querySelector("[data-guide-focus-ring]");
+    const guideComparison = card.querySelector("[data-guide-comparison]");
+    const guideComparisonWrong = card.querySelector("[data-guide-comparison-wrong]");
+    const guideComparisonRight = card.querySelector("[data-guide-comparison-right]");
     const stageCaption = card.querySelector("[data-presenter-caption]");
     const script = card.querySelector("[data-presenter-script]");
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
@@ -2681,6 +2751,18 @@
     const previousButton = card.querySelector("[data-presenter-previous]");
     const nextButton = card.querySelector("[data-presenter-next]");
     const stopButton = card.querySelector("[data-presenter-stop]");
+    const trackOverlay = card.querySelector("[data-presenter-path-overlay]");
+    const trackGrid = card.querySelector("[data-presenter-path-grid]");
+    const trackButton = card.querySelector("[data-presenter-track-button]");
+    const trackIcon = card.querySelector("[data-presenter-track-icon]");
+    const trackProgress = card.querySelector("[data-presenter-track-progress]");
+    const fullscreenButton = card.querySelector("[data-presenter-fullscreen]");
+    const quizOverlay = card.querySelector("[data-presenter-quiz]");
+    const quizQuestion = card.querySelector("[data-presenter-quiz-question]");
+    const quizFeedback = card.querySelector("[data-presenter-quiz-feedback]");
+    const quizNext = card.querySelector("[data-presenter-quiz-next]");
+    const quizRepeat = card.querySelector("[data-presenter-quiz-repeat]");
+    const quizContinue = card.querySelector("[data-presenter-quiz-continue]");
     if (!recording || !playButton) return;
 
     const touchToStart = text(tx(
@@ -2698,9 +2780,44 @@
       id: "welcome",
       title: text(tx("Przed rozpoczęciem", "Before you start", "Перед початком", "Перед началом", "Başlamazdan əvvəl", "Antes de empezar", "Bago magsimula", "Sebelum mulai", "सुरु गर्नु अघि")),
       text: fallbackSentences.join(" "),
-      legacyAudio: `assets/audio/male/intro-${lang}.mp3`
+      legacyAudio: `assets/audio/male/intro-${lang}.mp3`,
+      sourceIndex: 0
     };
 
+    const trackOrders = {
+      warehouse: ["welcome", "arrival", "warehouse", "tablet", "safety", "help", "finish"],
+      greenhouse: ["welcome", "arrival", "greenhouse", "reader", "tablet", "safety", "help", "finish"],
+      before: ["welcome", "arrival", "documents", "help", "finish"],
+      waiting: ["welcome", "documents", "help", "finish"],
+      all: ["welcome", "arrival", "warehouse", "greenhouse", "reader", "tablet", "safety", "documents", "help", "finish"]
+    };
+    const chapterQuizIndex = {
+      welcome: 1,
+      arrival: 2,
+      warehouse: 0,
+      greenhouse: 19,
+      reader: 4,
+      tablet: 25,
+      safety: 16,
+      documents: 15,
+      help: 27
+    };
+    const progressKey = "cx-presenter-progress-v2";
+    const savedProgress = (() => {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(progressKey) || "{}");
+        return {
+          track: trackOrders[parsed.track] ? parsed.track : "",
+          completed: Array.isArray(parsed.completed) ? parsed.completed.filter((id) => typeof id === "string") : []
+        };
+      } catch (error) {
+        return { track: "", completed: [] };
+      }
+    })();
+    const requestedTrack = new URLSearchParams(location.search).get("track") || "";
+    let selectedTrack = trackOrders[requestedTrack] ? requestedTrack : savedProgress.track;
+    let completedChapters = new Set(savedProgress.completed);
+    let allChapters = [fallbackChapter];
     let chapters = [fallbackChapter];
     let chapterIndex = 0;
     let waitingForGesture = false;
@@ -2708,6 +2825,12 @@
     let chapterSentences = [];
     let sentenceBreakpoints = [];
     let activeSentenceIndex = -1;
+    let quizResolved = false;
+    let currentQuizItem = null;
+    let audioContext = null;
+    let audioAnalyser = null;
+    let audioWave = null;
+    let audioMotionFrame = 0;
 
     const formatTime = (seconds) => {
       const safe = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
@@ -2715,7 +2838,7 @@
     };
 
     const chapterAudioUrl = (chapter, index) => chapter.legacyAudio ||
-      `assets/audio/guide/${lang}/${String(index + 1).padStart(2, "0")}-${chapter.id}.mp3${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
+      `assets/audio/guide/${lang}/${String((Number.isInteger(chapter.sourceIndex) ? chapter.sourceIndex : index) + 1).padStart(2, "0")}-${chapter.id}.mp3${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
     const visualAsset = (path) => `${path}${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
     const cartoonCueSequences = {
       welcome: [
@@ -2942,11 +3065,32 @@
       reader: "assets/avatar/cartoon/pose-reader-v5.png",
       tablet: "assets/avatar/cartoon/pose-tablet-v5.png"
     };
-    const enhancedCartoonCue = (chapterId, cueIndex, cue) => ({
-      ...cue,
-      ...(cartoonCueEnhancements[chapterId]?.[cueIndex] || {}),
-      ...(chapterId === "safety" ? ((safetyCueCopy[lang] || safetyCueCopy.pl)[cueIndex] || {}) : {})
-    });
+    const cueVerdicts = {
+      welcome: ["info", "correct", "correct", "correct", "correct", "correct", "wrong", "info"],
+      arrival: ["info", "correct", "correct", "info"],
+      warehouse: ["correct", "correct", "wrong", "correct"],
+      greenhouse: ["correct", "correct", "correct", "correct", "correct"],
+      reader: ["correct", "correct", "correct", "correct", "correct", "correct"],
+      tablet: ["correct", "correct", "correct", "correct", "correct", "correct", "correct"],
+      safety: ["info", "wrong", "wrong", "wrong", "correct", "wrong", "wrong"],
+      documents: ["info", "correct", "correct", "correct", "wrong"],
+      help: ["info", "info", "correct", "correct", "correct"],
+      finish: ["correct", "correct", "correct", "info"]
+    };
+    const cueComparisons = {
+      warehouse: [false, false, true, false],
+      safety: [false, true, true, true, false, true, true]
+    };
+    const enhancedCartoonCue = (chapterId, cueIndex, cue) => {
+      const verdict = cueVerdicts[chapterId]?.[cueIndex] || "info";
+      return {
+        ...cue,
+        verdict,
+        comparison: Boolean(cueComparisons[chapterId]?.[cueIndex]),
+        ...(cartoonCueEnhancements[chapterId]?.[cueIndex] || {}),
+        ...(chapterId === "safety" ? ((safetyCueCopy[lang] || safetyCueCopy.pl)[cueIndex] || {}) : {})
+      };
+    };
     const presenterPreloads = [];
     const preloadPresenterVisuals = () => {
       const paths = new Set(Object.values(cartoonPoseFiles));
@@ -2983,16 +3127,20 @@
       cartoon.dataset.prop = chapter.id;
       cartoon.dataset.cue = String(cueIndex);
       cartoon.dataset.side = cue.side || "right";
-      cartoon.dataset.tone = cue.tone || "neutral";
+      cartoon.dataset.tone = cue.tone || (cue.verdict === "wrong" ? "danger" : cue.verdict === "correct" ? "required" : "neutral");
       card.dataset.gesture = cue.gesture || "show-right";
       const poseName = cartoonPoseFiles[cue.pose] ? cue.pose : "neutral";
-      if (guideCharacter) guideCharacter.dataset.pose = poseName;
+      if (guideCharacter) {
+        guideCharacter.dataset.pose = poseName;
+        guideCharacter.dataset.rig = poseName === "neutral" ? "limbs" : "head";
+      }
       if (cartoonPose) {
         const poseSrc = visualAsset(cartoonPoseFiles[poseName]);
         if (cartoonPose.getAttribute("src") !== poseSrc) {
           cartoonPose.classList.remove("is-changing");
           void cartoonPose.offsetWidth;
           cartoonPose.src = poseSrc;
+          cartoonLayers.forEach((layer) => { layer.src = poseSrc; });
           cartoonPose.classList.add("is-changing");
           window.setTimeout(() => cartoonPose.classList.remove("is-changing"), 420);
         }
@@ -3000,8 +3148,14 @@
       if (cartoonPropLabel) cartoonPropLabel.textContent = cue.label || chapter.title;
       if (cartoonPropCounter) cartoonPropCounter.textContent = `${cueIndex + 1}/${sequence.length}`;
       if (cartoonRuleBadge) {
-        cartoonRuleBadge.hidden = !cue.badge;
-        cartoonRuleBadge.textContent = cue.badge || "";
+        const verdictBadge = cue.verdict === "wrong" ? experience.forbidden : cue.verdict === "correct" ? experience.correctBadge : experience.important;
+        cartoonRuleBadge.hidden = false;
+        cartoonRuleBadge.textContent = cue.badge || verdictBadge;
+      }
+      if (guideComparison) {
+        guideComparison.hidden = !cue.comparison;
+        if (guideComparisonWrong) guideComparisonWrong.textContent = `✕ ${experience.wrongShort}`;
+        if (guideComparisonRight) guideComparisonRight.textContent = `✓ ${experience.rightShort}`;
       }
       if (cartoonPropImage) {
         cartoonPropImage.dataset.fallbackIcon = cue.icon || "\u2022";
@@ -3141,12 +3295,53 @@
     const setPlaying = (playing) => {
       card.classList.toggle("is-speaking", playing);
       card.classList.remove("is-autoplay-blocked");
+      if (!playing) card.style.setProperty("--voice-level", "0");
       playIcon.textContent = playing ? "Ⅱ" : "▶";
       playLabel.textContent = playing ? labels.pause : labels.resume;
       playButton.setAttribute("aria-pressed", playing ? "true" : "false");
       if (stage) {
         stage.setAttribute("aria-pressed", playing ? "true" : "false");
         stage.setAttribute("aria-label", playing ? labels.pause : labels.resume);
+      }
+      if (stageHit) stageHit.setAttribute("aria-label", playing ? labels.pause : labels.resume);
+    };
+
+    const animateAudioMotion = () => {
+      window.cancelAnimationFrame(audioMotionFrame);
+      if (!audioAnalyser || !audioWave || recording.paused) {
+        card.style.setProperty("--voice-level", "0");
+        return;
+      }
+      audioAnalyser.getByteTimeDomainData(audioWave);
+      let energy = 0;
+      for (let index = 0; index < audioWave.length; index += 1) {
+        const sample = (audioWave[index] - 128) / 128;
+        energy += sample * sample;
+      }
+      const rms = Math.sqrt(energy / audioWave.length);
+      const level = Math.max(.08, Math.min(1, rms * 8.5));
+      card.style.setProperty("--voice-level", level.toFixed(3));
+      audioMotionFrame = window.requestAnimationFrame(animateAudioMotion);
+    };
+
+    const ensureAudioMotion = () => {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      try {
+        if (!audioContext) {
+          audioContext = new AudioContextClass();
+          const source = audioContext.createMediaElementSource(recording);
+          audioAnalyser = audioContext.createAnalyser();
+          audioAnalyser.fftSize = 256;
+          audioAnalyser.smoothingTimeConstant = .72;
+          audioWave = new Uint8Array(audioAnalyser.fftSize);
+          source.connect(audioAnalyser);
+          audioAnalyser.connect(audioContext.destination);
+        }
+        if (audioContext.state === "suspended") audioContext.resume().catch(() => {});
+      } catch (error) {
+        audioAnalyser = null;
+        audioWave = null;
       }
     };
 
@@ -3204,9 +3399,11 @@
     };
 
     const requestPlayback = () => {
+      ensureAudioMotion();
       recording.play().then(() => {
         waitingForGesture = false;
         setPlaying(true);
+        animateAudioMotion();
         if (video && !video.hidden) {
           if (card.dataset.avatarMode === "video") video.currentTime = recording.currentTime || 0;
           video.play().catch(() => {});
@@ -3235,10 +3432,65 @@
       });
     };
 
+    const saveProgress = () => {
+      try {
+        localStorage.setItem(progressKey, JSON.stringify({
+          track: selectedTrack,
+          completed: Array.from(completedChapters)
+        }));
+      } catch (error) { /* Private browsing may disable storage. */ }
+    };
+
+    const completedForTrack = (trackKey) => {
+      const order = trackOrders[trackKey] || [];
+      return order.filter((id) => completedChapters.has(id)).length;
+    };
+
+    const updateTrackStatus = () => {
+      const track = experience.tracks[selectedTrack] || experience.tracks.all;
+      const done = chapters.filter((chapter) => completedChapters.has(chapter.id)).length;
+      if (trackIcon) trackIcon.textContent = track.icon;
+      if (trackProgress) trackProgress.textContent = `${done}/${chapters.length}`;
+      if (trackButton) trackButton.setAttribute("aria-label", `${experience.changePath}: ${track.title}, ${done}/${chapters.length}`);
+      chaptersNav.querySelectorAll("[data-chapter-id]").forEach((button) => {
+        const completed = completedChapters.has(button.dataset.chapterId);
+        button.classList.toggle("is-complete", completed);
+        const status = button.querySelector("[data-chapter-status]");
+        if (status) status.textContent = completed ? "✓" : "";
+      });
+    };
+
+    const markChapterCompleted = () => {
+      const chapter = chapters[chapterIndex];
+      if (!chapter) return;
+      completedChapters.add(chapter.id);
+      saveProgress();
+      updateTrackStatus();
+      renderTrackGrid();
+    };
+
+    const hideQuiz = () => {
+      currentQuizItem = null;
+      quizResolved = false;
+      if (!quizOverlay) return;
+      quizOverlay.hidden = true;
+      quizOverlay.classList.remove("is-correct", "is-wrong", "is-complete");
+      quizOverlay.querySelectorAll("[data-presenter-quiz-answer]").forEach((button) => {
+        button.disabled = false;
+        button.hidden = false;
+        button.classList.remove("is-selected");
+      });
+      if (quizFeedback) quizFeedback.textContent = "";
+      if (quizNext) quizNext.hidden = true;
+      if (quizRepeat) quizRepeat.hidden = false;
+      if (quizContinue) quizContinue.hidden = false;
+    };
+
     const activateChapter = (index, autoplay = true) => {
       chapterIndex = Math.max(0, Math.min(chapters.length - 1, Number(index) || 0));
       const chapter = chapters[chapterIndex];
       const token = ++loadToken;
+      hideQuiz();
       recording.pause();
       showStaticPortrait();
       recording.src = chapterAudioUrl(chapter, chapterIndex);
@@ -3257,18 +3509,8 @@
       else setPlaying(false);
     };
 
-    if (stage) {
-      stage.addEventListener("pointerdown", () => {
-        if (recording.paused) requestPlayback();
-        else {
-          recording.pause();
-          if (video) video.pause();
-          setPlaying(false);
-        }
-      });
-      stage.addEventListener("keydown", (event) => {
-        if (!["Enter", " "].includes(event.key)) return;
-        event.preventDefault();
+    if (stageHit) {
+      stageHit.addEventListener("click", () => {
         if (recording.paused) requestPlayback();
         else {
           recording.pause();
@@ -3280,16 +3522,16 @@
 
     const renderGuide = () => {
       chaptersNav.innerHTML = chapters.map((chapter, index) => `
-        <button type="button" class="presenter-chapter-button" data-presenter-chapter="${index}">
+        <button type="button" class="presenter-chapter-button${completedChapters.has(chapter.id) ? " is-complete" : ""}" data-presenter-chapter="${index}" data-chapter-id="${esc(chapter.id)}">
           <span class="presenter-chapter-number">${String(index + 1).padStart(2, "0")}</span>
-          <span>${esc(chapter.title)}</span>
+          <span>${esc(chapter.title)}</span><b class="presenter-chapter-status" data-chapter-status>${completedChapters.has(chapter.id) ? "✓" : ""}</b>
         </button>`).join("");
       if (chapterSelect) {
         chapterSelect.innerHTML = chapters.map((chapter, index) =>
           `<option value="${index}">${String(index + 1).padStart(2, "0")} - ${esc(chapter.title)}</option>`
         ).join("");
         chapterSelect.value = String(chapterIndex);
-        chapterSelect.addEventListener("change", () => activateChapter(Number(chapterSelect.value), true));
+        chapterSelect.onchange = () => activateChapter(Number(chapterSelect.value), true);
       }
       transcript.innerHTML = chapters.map((chapter, index) => `
         <article class="presenter-transcript-chapter">
@@ -3297,12 +3539,155 @@
           <p>${esc(chapter.text)}</p>
         </article>`).join("");
       totalLabel.textContent = String(chapters.length);
-      chaptersNav.addEventListener("click", (event) => {
+      chaptersNav.onclick = (event) => {
         const button = event.target.closest("[data-presenter-chapter]");
         if (!button) return;
         activateChapter(Number(button.dataset.presenterChapter), true);
+      };
+      updateTrackStatus();
+    };
+
+    function renderTrackGrid() {
+      if (!trackGrid) return;
+      const keys = ["warehouse", "greenhouse", "before", "waiting", "all"];
+      trackGrid.innerHTML = keys.map((key) => {
+        const item = experience.tracks[key];
+        const done = completedForTrack(key);
+        const total = trackOrders[key].length;
+        return `<button type="button" class="presenter-path-option${key === selectedTrack ? " is-selected" : ""}" data-presenter-track="${key}">
+          <span class="presenter-path-icon" aria-hidden="true">${item.icon}</span>
+          <span><strong>${esc(item.title)}</strong><small>${esc(item.lead)}</small></span>
+          <b>${done}/${total}</b>
+        </button>`;
+      }).join("");
+    }
+
+    const applyTrack = (trackKey, autoplay = true) => {
+      selectedTrack = trackOrders[trackKey] ? trackKey : "all";
+      const ordered = trackOrders[selectedTrack]
+        .map((id) => allChapters.find((chapter) => chapter.id === id))
+        .filter(Boolean);
+      chapters = ordered.length ? ordered : allChapters.slice();
+      const nextIncomplete = chapters.findIndex((chapter) => !completedChapters.has(chapter.id));
+      chapterIndex = nextIncomplete >= 0 ? nextIncomplete : 0;
+      saveProgress();
+      renderTrackGrid();
+      renderGuide();
+      if (trackOverlay) trackOverlay.hidden = true;
+      try {
+        const params = new URLSearchParams(location.search);
+        params.set("track", selectedTrack);
+        history.replaceState(null, "", `${location.pathname}?${params.toString()}${location.hash}`);
+      } catch (error) { /* History may be restricted in embedded browsers. */ }
+      activateChapter(chapterIndex, autoplay);
+    };
+
+    const showChapterQuiz = () => {
+      const chapter = chapters[chapterIndex];
+      if (!chapter || !quizOverlay) {
+        markChapterCompleted();
+        return;
+      }
+      recording.pause();
+      if (video) video.pause();
+      setPlaying(false);
+      const quizIndex = chapterQuizIndex[chapter.id];
+      const quizItem = Number.isInteger(quizIndex) && Array.isArray(DATA.test) ? DATA.test[quizIndex] : null;
+      currentQuizItem = quizItem || null;
+      quizResolved = false;
+      quizOverlay.hidden = false;
+      quizOverlay.classList.remove("is-correct", "is-wrong", "is-complete");
+      if (!quizItem) {
+        markChapterCompleted();
+        quizResolved = true;
+        quizOverlay.classList.add("is-complete");
+        quizQuestion.textContent = experience.completed;
+        quizFeedback.textContent = `${experience.completed}: ${chapters.filter((item) => completedChapters.has(item.id)).length}/${chapters.length}`;
+        quizOverlay.querySelectorAll("[data-presenter-quiz-answer]").forEach((button) => { button.hidden = true; });
+        quizNext.hidden = false;
+        quizRepeat.hidden = false;
+        quizContinue.hidden = chapterIndex >= chapters.length - 1;
+        return;
+      }
+      quizQuestion.textContent = text(quizItem.text);
+      quizFeedback.textContent = "";
+      quizNext.hidden = true;
+      quizOverlay.querySelectorAll("[data-presenter-quiz-answer]").forEach((button) => {
+        button.disabled = false;
+        button.hidden = false;
+        button.classList.remove("is-selected");
       });
     };
+
+    if (trackGrid) {
+      trackGrid.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-presenter-track]");
+        if (!button) return;
+        applyTrack(button.dataset.presenterTrack, true);
+      });
+    }
+    if (trackButton) {
+      trackButton.addEventListener("click", () => {
+        recording.pause();
+        if (video) video.pause();
+        setPlaying(false);
+        renderTrackGrid();
+        if (trackOverlay) trackOverlay.hidden = false;
+      });
+    }
+    if (quizOverlay) {
+      quizOverlay.addEventListener("click", (event) => {
+        const answer = event.target.closest("[data-presenter-quiz-answer]");
+        if (!answer || !currentQuizItem || quizResolved) return;
+        const isCorrect = (answer.dataset.presenterQuizAnswer === "1") === Boolean(currentQuizItem.ok);
+        quizOverlay.querySelectorAll("[data-presenter-quiz-answer]").forEach((button) => { button.disabled = true; });
+        answer.classList.add("is-selected");
+        quizOverlay.classList.toggle("is-correct", isCorrect);
+        quizOverlay.classList.toggle("is-wrong", !isCorrect);
+        quizFeedback.textContent = isCorrect
+          ? experience.correct
+          : `${experience.wrong} ${currentQuizItem.ok ? experience.yes : experience.no}.`;
+        quizNext.hidden = false;
+        quizContinue.hidden = !isCorrect;
+        quizRepeat.hidden = isCorrect;
+        if (isCorrect) {
+          quizResolved = true;
+          markChapterCompleted();
+        }
+      });
+    }
+    if (quizRepeat) quizRepeat.addEventListener("click", () => activateChapter(chapterIndex, true));
+    if (quizContinue) quizContinue.addEventListener("click", () => {
+      if (chapterIndex < chapters.length - 1) activateChapter(chapterIndex + 1, true);
+      else hideQuiz();
+    });
+
+    const syncPresentation = (active) => {
+      card.classList.toggle("is-presentation", active);
+      document.body.classList.toggle("presenter-presentation-open", active);
+      if (fullscreenButton) {
+        fullscreenButton.textContent = active ? "×" : "⛶";
+        fullscreenButton.setAttribute("aria-label", active ? experience.exitPresentation : experience.presentation);
+      }
+    };
+    if (fullscreenButton) {
+      fullscreenButton.addEventListener("click", () => {
+        const active = card.classList.contains("is-presentation");
+        if (active) {
+          if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+          syncPresentation(false);
+        } else {
+          syncPresentation(true);
+          if (card.requestFullscreen) card.requestFullscreen().catch(() => {});
+        }
+      });
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement && card.classList.contains("is-presentation")) syncPresentation(false);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && card.classList.contains("is-presentation") && !document.fullscreenElement) syncPresentation(false);
+      });
+    }
 
     playButton.addEventListener("click", () => {
       if (recording.paused) {
@@ -3347,19 +3732,22 @@
     recording.addEventListener("loadedmetadata", updateProgress);
     recording.addEventListener("durationchange", updateProgress);
     recording.addEventListener("timeupdate", updateProgress);
-    recording.addEventListener("play", () => setPlaying(true));
+    recording.addEventListener("play", () => {
+      ensureAudioMotion();
+      setPlaying(true);
+      animateAudioMotion();
+    });
     recording.addEventListener("pause", () => {
+      window.cancelAnimationFrame(audioMotionFrame);
+      card.style.setProperty("--voice-level", "0");
       if (!recording.ended) setPlaying(false);
     });
     recording.addEventListener("ended", () => {
-      if (chapterIndex < chapters.length - 1) activateChapter(chapterIndex + 1, true);
-      else {
-        if (video) video.pause();
-        setPlaying(false);
-        playLabel.textContent = labels.repeat;
-        seek.value = "1000";
-        overallProgress.style.width = "100%";
-      }
+      if (video) video.pause();
+      setPlaying(false);
+      playLabel.textContent = labels.repeat;
+      seek.value = "1000";
+      showChapterQuiz();
     });
     recording.addEventListener("error", () => {
       if (video) video.pause();
@@ -3373,16 +3761,27 @@
       const guide = await response.json();
       const localized = guide.languages && guide.languages[lang];
       if (!localized || !Array.isArray(localized.sections) || !localized.sections.length) throw new Error("presenter-language");
-      chapters = localized.sections;
+      allChapters = localized.sections.map((chapter, sourceIndex) => ({ ...chapter, sourceIndex }));
     } catch (error) {
-      chapters = [fallbackChapter];
+      allChapters = [fallbackChapter];
     }
 
+    selectedTrack = trackOrders[selectedTrack] ? selectedTrack : "all";
+    chapters = trackOrders[selectedTrack]
+      .map((id) => allChapters.find((chapter) => chapter.id === id))
+      .filter(Boolean);
+    if (!chapters.length) chapters = allChapters.slice();
+    const resumeIndex = chapters.findIndex((chapter) => !completedChapters.has(chapter.id));
+    chapterIndex = resumeIndex >= 0 ? resumeIndex : 0;
+    renderTrackGrid();
     renderGuide();
-    activateChapter(0, true);
+    activateChapter(chapterIndex, false);
+    if (trackOverlay) trackOverlay.hidden = false;
     window.addEventListener("pagehide", () => {
+      window.cancelAnimationFrame(audioMotionFrame);
       recording.pause();
       if (video) video.pause();
+      if (audioContext && audioContext.state !== "closed") audioContext.close().catch(() => {});
     }, { once: true });
   }
   function showLocationWelcome() {

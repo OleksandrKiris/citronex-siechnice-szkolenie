@@ -51,6 +51,7 @@ Po wiekszej zmianie uruchom:
 
 ```bash
 node tools/audit-project.js
+node tools/audit-presenter.js
 ```
 
 Skrypt sprawdza brakujace tlumaczenia, brakujace zdjecia i czy strony HTML uzywaja produkcyjnych plikow JS.
