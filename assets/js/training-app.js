@@ -693,21 +693,15 @@
             <div class="cartoon-prop-card" data-cartoon-prop-card>
               <div class="cartoon-prop-visual">
                 <img class="cartoon-prop-image" data-cartoon-prop-image alt="" hidden>
+                <span class="guide-focus-ring" data-guide-focus-ring hidden></span>
                 <span class="cartoon-prop-icon" data-cartoon-prop-icon>👋</span>
               </div>
               <strong data-cartoon-prop-label></strong>
               <small data-cartoon-prop-counter aria-hidden="true"></small>
             </div>
-            <div class="cartoon-character">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-showcase3" alt="" width="1639" height="960">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-showcase3" alt="" width="973" height="701">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-showcase3" alt="" width="552" height="634">
-              <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-showcase3" alt="" width="405" height="542">
-                <span class="cartoon-eye cartoon-eye-left"></span>
-                <span class="cartoon-eye cartoon-eye-right"></span>
-                <span class="cartoon-mouth"></span>
-              </div>
+            <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
+              <img class="guide-pose" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master4" alt="" width="512" height="512">
+              <span class="guide-mouth" aria-hidden="true"></span>
             </div>
           </div>
           <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
@@ -2663,6 +2657,9 @@
     const cartoonPropIcon = card.querySelector("[data-cartoon-prop-icon]");
     const cartoonPropLabel = card.querySelector("[data-cartoon-prop-label]");
     const cartoonPropCounter = card.querySelector("[data-cartoon-prop-counter]");
+    const cartoonPose = card.querySelector("[data-cartoon-pose]");
+    const guideCharacter = card.querySelector("[data-guide-character]");
+    const guideFocusRing = card.querySelector("[data-guide-focus-ring]");
     const stageCaption = card.querySelector("[data-presenter-caption]");
     const script = card.querySelector("[data-presenter-script]");
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
@@ -2795,6 +2792,75 @@
         { icon: "❓➡️👷", gesture: "open" }
       ]
     };
+    const cartoonCueEnhancements = {
+      welcome: [
+        { pose: "neutral", side: "right" },
+        { image: "assets/guide/arrival-route-v1.svg", pose: "right", side: "right" },
+        { pose: "right", side: "right", focus: [64, 58, 24, 28] },
+        { pose: "left", side: "left" },
+        { pose: "reader", side: "right" },
+        { pose: "tablet", side: "right" },
+        { pose: "warning", side: "right" },
+        { pose: "right", side: "right" }
+      ],
+      arrival: [
+        { image: "assets/guide/arrival-route-v1.svg", pose: "right", side: "right" },
+        { image: "assets/guide/arrival-route-v1.svg", pose: "right", side: "right" },
+        { pose: "right", side: "right", focus: [64, 58, 24, 28] },
+        { pose: "neutral", side: "right" }
+      ],
+      warehouse: [
+        { pose: "right", side: "right", focus: [64, 58, 24, 28] },
+        { pose: "left", side: "left", focus: [52, 58, 28, 31] },
+        { pose: "warning", side: "right" },
+        { pose: "tablet", side: "right" }
+      ],
+      greenhouse: [
+        { pose: "right", side: "right" },
+        { pose: "left", side: "left" },
+        { pose: "reader", side: "right" },
+        { pose: "reader", side: "right" },
+        { pose: "left", side: "left" }
+      ],
+      reader: [
+        { image: "assets/inline/reader_start.jpg", pose: "reader", side: "right" },
+        { image: "assets/inline/stage12_1.jpg", pose: "reader", side: "right" },
+        { image: "assets/inline/stage12_2.jpg", pose: "reader", side: "right" },
+        { image: "assets/inline/cart_pl.jpg", pose: "reader", side: "right" },
+        { image: "assets/inline/stage34_1.jpg", pose: "reader", side: "right" },
+        { image: "assets/inline/restart_1.jpg", pose: "reader", side: "right" }
+      ],
+      tablet: [
+        { pose: "tablet", side: "right", focus: [77, 50, 30, 72] },
+        { pose: "tablet", side: "right" },
+        { pose: "tablet", side: "right" },
+        { pose: "tablet", side: "right" },
+        { pose: "tablet", side: "right" },
+        { pose: "tablet", side: "right" },
+        { pose: "tablet", side: "right" }
+      ],
+      safety: Array.from({ length: 7 }, () => ({ pose: "warning", side: "right" })),
+      documents: Array.from({ length: 5 }, (_, index) => ({ pose: index % 2 ? "left" : "right", side: index % 2 ? "left" : "right" })),
+      help: Array.from({ length: 5 }, (_, index) => ({ pose: index === 4 ? "warning" : "right", side: "right" })),
+      finish: [
+        { pose: "right", side: "right" },
+        { pose: "neutral", side: "right" },
+        { pose: "left", side: "left" },
+        { pose: "neutral", side: "right" }
+      ]
+    };
+    const cartoonPoseFiles = {
+      neutral: "assets/avatar/cartoon/pose-neutral-v4.png",
+      right: "assets/avatar/cartoon/pose-right-v4.png",
+      left: "assets/avatar/cartoon/pose-left-v4.png",
+      warning: "assets/avatar/cartoon/pose-warning-v4.png",
+      reader: "assets/avatar/cartoon/pose-reader-v4.png",
+      tablet: "assets/avatar/cartoon/pose-tablet-v4.png"
+    };
+    const enhancedCartoonCue = (chapterId, cueIndex, cue) => ({
+      ...cue,
+      ...(cartoonCueEnhancements[chapterId]?.[cueIndex] || {})
+    });
     let activeCueKey = "";
     let cueAnimationTimer = 0;
 
@@ -2805,14 +2871,27 @@
       const sentenceTotal = Math.max(1, chapterSentences.length);
       const fraction = sentenceTotal <= 1 ? 0 : sentenceIndex / (sentenceTotal - 1);
       const cueIndex = Math.min(sequence.length - 1, Math.floor(fraction * sequence.length));
-      const cue = sequence[cueIndex] || sequence[0];
+      const cue = enhancedCartoonCue(chapter.id, cueIndex, sequence[cueIndex] || sequence[0]);
       const cueKey = `${chapter.id}:${cueIndex}`;
       if (!force && cueKey === activeCueKey) return;
       activeCueKey = cueKey;
 
       cartoon.dataset.prop = chapter.id;
       cartoon.dataset.cue = String(cueIndex);
+      cartoon.dataset.side = cue.side || "right";
       card.dataset.gesture = cue.gesture || "show-right";
+      const poseName = cartoonPoseFiles[cue.pose] ? cue.pose : "neutral";
+      if (guideCharacter) guideCharacter.dataset.pose = poseName;
+      if (cartoonPose) {
+        const poseSrc = visualAsset(cartoonPoseFiles[poseName]);
+        if (cartoonPose.getAttribute("src") !== poseSrc) {
+          cartoonPose.classList.remove("is-changing");
+          void cartoonPose.offsetWidth;
+          cartoonPose.src = poseSrc;
+          cartoonPose.classList.add("is-changing");
+          window.setTimeout(() => cartoonPose.classList.remove("is-changing"), 420);
+        }
+      }
       if (cartoonPropLabel) cartoonPropLabel.textContent = chapter.title;
       if (cartoonPropCounter) cartoonPropCounter.textContent = `${cueIndex + 1}/${sequence.length}`;
       if (cartoonPropImage) {
@@ -2834,6 +2913,16 @@
       } else if (cartoonPropIcon) {
         cartoonPropIcon.hidden = false;
         cartoonPropIcon.textContent = cue.icon || "\u2022";
+      }
+      if (guideFocusRing) {
+        const focus = Array.isArray(cue.focus) ? cue.focus : null;
+        guideFocusRing.hidden = !focus || !cue.image;
+        if (focus) {
+          guideFocusRing.style.setProperty("--focus-x", `${focus[0]}%`);
+          guideFocusRing.style.setProperty("--focus-y", `${focus[1]}%`);
+          guideFocusRing.style.setProperty("--focus-w", `${focus[2]}%`);
+          guideFocusRing.style.setProperty("--focus-h", `${focus[3]}%`);
+        }
       }
       if (cartoonPropCard) {
         window.clearTimeout(cueAnimationTimer);

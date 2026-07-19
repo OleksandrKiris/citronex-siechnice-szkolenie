@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Route to the Citronex meeting point</title>
+  <desc id="desc">A simple three-step route: travel to Citronex, enter through the marked door, then wait for documents.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f7fff9"/>
+      <stop offset="1" stop-color="#dff4e6"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0d5736" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="800" height="520" rx="38" fill="url(#bg)"/>
+  <path d="M62 118c104 18 125 99 214 107 111 10 126-91 238-60 77 22 91 91 210 95" fill="none" stroke="#c8dfd1" stroke-width="74" stroke-linecap="round"/>
+  <path d="M62 118c104 18 125 99 214 107 111 10 126-91 238-60 77 22 91 91 210 95" fill="none" stroke="#13834c" stroke-width="14" stroke-linecap="round" stroke-dasharray="22 18"/>
+  <g filter="url(#shadow)">
+    <circle cx="92" cy="118" r="55" fill="#fff" stroke="#13834c" stroke-width="8"/>
+    <path d="M64 126h57l-8-23H79z" fill="#13834c"/>
+    <circle cx="78" cy="132" r="8" fill="#0a4f30"/><circle cx="108" cy="132" r="8" fill="#0a4f30"/>
+    <circle cx="92" cy="55" r="24" fill="#ffcf33"/><text x="92" y="65" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="900" fill="#153e2c">1</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="321" y="121" width="178" height="139" rx="18" fill="#fff" stroke="#13834c" stroke-width="8"/>
+    <path d="M342 154h136v84H342z" fill="#a84637"/>
+    <path d="M358 136h104l26 28H332z" fill="#7d3129"/>
+    <rect x="392" y="181" width="39" height="57" rx="4" fill="#19382d"/>
+    <circle cx="410" cy="99" r="24" fill="#ffcf33"/><text x="410" y="109" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="900" fill="#153e2c">2</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="604" y="209" width="136" height="102" rx="18" fill="#fff" stroke="#13834c" stroke-width="8"/>
+    <path d="M630 238h84v51h-84z" fill="#e9f4ed" stroke="#13834c" stroke-width="5"/>
+    <path d="M641 251h62M641 265h45M641 279h54" stroke="#13834c" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="672" cy="174" r="24" fill="#ffcf33"/><text x="672" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="900" fill="#153e2c">3</text>
+  </g>
+  <g transform="translate(85 390)">
+    <rect width="630" height="80" rx="22" fill="#0a4f30"/>
+    <g fill="#fff" font-family="Arial,sans-serif" font-size="34" font-weight="900" text-anchor="middle">
+      <text x="105" y="53">1</text>
+      <text x="315" y="53">2</text>
+      <text x="525" y="53">3</text>
+    </g>
+    <path d="M180 40h45m-14-14 14 14-14 14M390 40h45m-14-14 14 14-14 14" fill="none" stroke="#ffcf33" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
