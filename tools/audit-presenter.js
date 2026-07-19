@@ -11,8 +11,8 @@ const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"
 const errors = [];
 const warnings = [];
 const rigAssets = ["head-v1.png", "torso-v1.png", "arm-left-v2.png", "arm-right-v3.png"];
-const humanVideoAsset = "presenter-talking-head-v1.mp4";
-const humanPosterAsset = "presenter-talking-head-poster-v1.jpg";
+const cartoonClosedAsset = "presenter-cartoon-professional-closed-v1.png";
+const cartoonOpenAsset = "presenter-cartoon-professional-open-v1.png";
 const expectedQuizById = {
   welcome: 1, "arrival-wait": 2, "warehouse-no-reader": 0,
   "greenhouse-sides": 19, "greenhouse-nave": 20, "greenhouse-section": 22,
@@ -66,26 +66,35 @@ rigAssets.forEach((asset) => {
   const occurrences = (appSource.match(new RegExp(asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length;
   if (occurrences !== 2) errors.push(`rig asset must be referenced once in markup and once in preload data (${asset}: ${occurrences})`);
 });
-const humanVideoPath = path.join(root, "assets", "avatar", humanVideoAsset);
-if (!fs.existsSync(humanVideoPath)) errors.push(`talking-head video is missing (${humanVideoAsset})`);
-else if (fs.statSync(humanVideoPath).size < 300000 || fs.statSync(humanVideoPath).size > 1500000) {
-  errors.push(`talking-head video size is outside the mobile budget (${fs.statSync(humanVideoPath).size})`);
-}
-const humanPosterPath = path.join(root, "assets", "avatar", humanPosterAsset);
-if (!fs.existsSync(humanPosterPath)) errors.push(`human presenter poster is missing (${humanPosterAsset})`);
-else if (fs.statSync(humanPosterPath).size < 10000 || fs.statSync(humanPosterPath).size > 200000) {
-  errors.push(`human presenter poster size is outside the mobile budget (${fs.statSync(humanPosterPath).size})`);
-}
+[cartoonClosedAsset, cartoonOpenAsset].forEach((asset) => {
+  const assetPath = path.join(root, "assets", "avatar", asset);
+  if (!fs.existsSync(assetPath)) errors.push(`professional cartoon frame is missing (${asset})`);
+  else if (fs.statSync(assetPath).size < 100000 || fs.statSync(assetPath).size > 600000) {
+    errors.push(`professional cartoon frame size is outside the mobile budget (${asset}: ${fs.statSync(assetPath).size})`);
+  } else {
+    const png = fs.readFileSync(assetPath);
+    const width = png.readUInt32BE(16);
+    const height = png.readUInt32BE(20);
+    const colorType = png[25];
+    if (width !== 512 || height !== 512) errors.push(`professional cartoon frame must be 512x512 (${asset}: ${width}x${height})`);
+    if (colorType !== 4 && colorType !== 6) errors.push(`professional cartoon frame must have transparency (${asset}: PNG color type ${colorType})`);
+  }
+});
 if (/guide-pose-whole|data-cartoon-pose/.test(appSource)) errors.push("legacy whole-pose avatar is still rendered");
 if (!appSource.includes("contextLink.hidden = !target")) errors.push("irrelevant context action is not hidden per chapter");
 if (!appSource.includes("card.dataset.motionBeat")) errors.push("independent motion beat is not synchronized with audio");
 if (!appSource.includes("rms < .014")) errors.push("voice-energy mouth gate is missing");
-if (!appSource.includes("useHumanVideo") || !appSource.includes(humanVideoAsset)) errors.push("talking-head video is not wired into the presenter");
-if (!appSource.includes('videoPerformance = "talking-head"') || !appSource.includes("presenter-head-fallback")) errors.push("talking-head mode or its static fallback is missing");
+if (!appSource.includes('avatarQuery === "human"')) errors.push("professional cartoon must be the default avatar");
+if (!appSource.includes(cartoonClosedAsset) || !appSource.includes(cartoonOpenAsset) || !appSource.includes("presenter-professional-head")) {
+  errors.push("professional cartoon speaking frames are not wired into the presenter");
+}
 if (!appSource.includes('tabindex="-1" aria-hidden="true"')) errors.push("duplicate accessible stage control is not suppressed");
 if (!appSource.includes("card.dataset.hasVisual")) errors.push("adaptive visual focus state is missing");
+if (!["actionLabel", "urgentLabel", "listenLabel", "stageCaption.dataset.label"].every((token) => appSource.includes(token))) {
+  errors.push("plain-language action labels are not wired into every chapter");
+}
 const adaptiveCssSource = fs.existsSync(cleanCssPath) ? fs.readFileSync(cleanCssPath, "utf8") : "";
-if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(humanPosterAsset) || !adaptiveCssSource.includes("Master 32")) {
+if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(cartoonClosedAsset) || !adaptiveCssSource.includes("Master 33") || !adaptiveCssSource.includes("professional-mouth-talk") || !adaptiveCssSource.includes("attr(data-label)")) {
   errors.push("adaptive visual focus styling is missing");
 }
 if (!appSource.includes('updateViaCache: "none"') || !appSource.includes('"controllerchange"')) errors.push("automatic Service Worker update is missing");
@@ -156,8 +165,7 @@ console.log(`Languages: ${expectedLanguages.length}`);
 console.log(`Granular chapters per language: ${expectedSections.length}`);
 console.log(`Expected audio files: ${expectedLanguages.length * expectedSections.length}`);
 console.log(`Independent rig layers: ${rigAssets.length}`);
-console.log(`Talking-head video: ${humanVideoAsset}`);
-console.log(`Talking-head poster: ${humanPosterAsset}`);
+console.log(`Professional cartoon frames: ${cartoonClosedAsset}, ${cartoonOpenAsset}`);
 console.log("Adaptive visual focus: presenter / instruction priority");
 console.log("Service Worker freshness: automatic reload + network-first HTML");
 console.log(`Warnings: ${warnings.length}`);

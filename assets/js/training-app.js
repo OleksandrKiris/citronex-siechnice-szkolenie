@@ -665,6 +665,9 @@
 
   function presenterExperienceCopy() {
     return {
+      actionLabel: text(tx("ZRÓB TO", "DO THIS", "ЗРОБІТЬ ТАК", "СДЕЛАЙТЕ ТАК", "BELƏ EDİN", "HAZ ESTO", "GAWIN ITO", "LAKUKAN INI", "यसरी गर्नुहोस्")),
+      urgentLabel: text(tx("PILNE", "URGENT", "ТЕРМІНОВО", "СРОЧНО", "TƏCİLİ", "URGENTE", "AGARAN", "DARURAT", "तत्काल")),
+      listenLabel: text(tx("POSŁUCHAJ", "LISTEN", "ПОСЛУХАЙТЕ", "СЛУШАЙТЕ", "DİNLƏYİN", "ESCUCHA", "PAKINGGAN", "DENGARKAN", "सुन्नुहोस्")),
       chooseTitle: text(tx("Wybierz swój instruktaż", "Choose your briefing", "Оберіть свій інструктаж", "Выберите свой инструктаж", "Təlimatınızı seçin", "Elige tu formación", "Piliin ang iyong pagsasanay", "Pilih pengarahan Anda", "आफ्नो निर्देशन छान्नुहोस्")),
       chooseLead: text(tx("Po wyborze głos uruchomi się automatycznie. Trasę można zmienić.", "After selection, the voice starts automatically. You can change the path.", "Після вибору голос увімкнеться автоматично. Маршрут можна змінити.", "После выбора голос включится автоматически. Маршрут можно изменить.", "Seçimdən sonra səs avtomatik başlayacaq. Marşrutu dəyişmək olar.", "Después de elegir, la voz empezará automáticamente. Puedes cambiar la ruta.", "Pagkapili, awtomatikong magsisimula ang boses. Maaari mong baguhin ang ruta.", "Setelah memilih, suara akan mulai otomatis. Jalur dapat diubah.", "छानेपछि आवाज स्वतः सुरु हुन्छ। मार्ग बदल्न सकिन्छ।")),
       changePath: text(tx("Zmień trasę", "Change path", "Змінити маршрут", "Сменить маршрут", "Marşrutu dəyiş", "Cambiar ruta", "Baguhin ang ruta", "Ganti jalur", "मार्ग बदल्नुहोस्")),
@@ -749,11 +752,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master32" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master32" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master32" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master33" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master33" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master33" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master32" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master33" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -813,8 +816,11 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="auto" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master32" hidden></video>
-          <img class="presenter-head-fallback" src="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master32" alt="Aleksandr" width="360" height="360">
+          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master33" hidden></video>
+          <div class="presenter-professional-head" data-professional-head aria-hidden="true">
+            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master33" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-open" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260719-siechnice-master33" alt="" width="512" height="512">
+          </div>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -2885,8 +2891,9 @@
     const avatarQuery = new URLSearchParams(location.search).get("avatar");
     const humanVideoPath = "assets/avatar/presenter-talking-head-v1.mp4";
     const supportsHumanVideo = Boolean(video && video.canPlayType && video.canPlayType('video/mp4; codecs="avc1.42E01E"'));
-    const useHumanVideo = avatarQuery !== "cartoon" && engineMode !== "lite" && !reducedMotion && supportsHumanVideo;
-    card.dataset.avatarPreference = useHumanVideo ? "human" : "cartoon";
+    const useHumanVideo = avatarQuery === "human" && engineMode !== "lite" && !reducedMotion && supportsHumanVideo;
+    card.dataset.avatarPreference = useHumanVideo ? "human" : "professional-cartoon";
+    card.dataset.avatarStyle = "professional-cartoon";
 
     const touchToStart = text(tx(
       "Dotknij, aby włączyć głos", "Touch to enable voice", "Торкніться, щоб увімкнути голос",
@@ -3512,7 +3519,20 @@
       const safeIndex = Math.max(0, Math.min(chapterSentences.length - 1, Number(index) || 0));
       if (safeIndex === activeSentenceIndex) return;
       activeSentenceIndex = safeIndex;
-      if (stageCaption) stageCaption.textContent = chapterSentences[safeIndex];
+      if (stageCaption) {
+        const chapter = chapters[chapterIndex] || {};
+        const clarityLabel = chapter.group === "safety" && chapter.tone === "danger"
+          ? experience.forbidden
+          : chapter.group === "help" && chapter.tone === "danger"
+            ? experience.urgentLabel
+            : chapter.tone === "caution"
+              ? experience.important
+              : chapter.tone === "required"
+                ? experience.actionLabel
+                : experience.listenLabel;
+        stageCaption.dataset.label = clarityLabel;
+        stageCaption.textContent = chapterSentences[safeIndex];
+      }
       applyCartoonCue(safeIndex);
       script.querySelectorAll("[data-presenter-sentence]").forEach((element) => {
         element.classList.toggle("is-current", Number(element.dataset.presenterSentence) === safeIndex);
@@ -3684,7 +3704,7 @@
       }
       if (cartoon) cartoon.hidden = false;
       card.dataset.avatarMode = "cartoon";
-      card.dataset.avatarVariant = "cartoon";
+      card.dataset.avatarVariant = "professional-cartoon";
     };
 
     const prepareVideo = async (chapter, index, token) => {
