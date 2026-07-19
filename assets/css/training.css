@@ -10743,6 +10743,116 @@ body[data-page="pomocnik"] .home-return-cta {
   animation: guide-icon-pulse 2.2s ease-in-out infinite;
 }
 
+.cartoon-rule-badge {
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  z-index: 4;
+  max-width: calc(100% - 66px);
+  padding: 6px 10px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, .9);
+  border-radius: 999px;
+  background: #9f1f24;
+  color: #fff;
+  font-size: clamp(9px, 1.15vw, 12px);
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: .06em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 7px 16px rgba(85, 12, 18, .2);
+}
+
+.cartoon-rule-badge[hidden] {
+  display: none !important;
+}
+
+.presenter-cartoon[data-prop="safety"] .cartoon-prop-card {
+  width: min(64%, 405px);
+  border-color: rgba(255, 255, 255, .98);
+  background: #fffaf6;
+  box-shadow: 0 18px 42px rgba(93, 19, 25, .25), 0 0 0 2px rgba(169, 35, 42, .18);
+}
+
+.presenter-cartoon[data-prop="safety"] .cartoon-character.guide-character {
+  left: -4%;
+  width: min(51%, 315px);
+}
+
+.presenter-cartoon[data-prop="safety"] .cartoon-prop-visual {
+  border-color: rgba(169, 35, 42, .34);
+  background:
+    radial-gradient(circle at 50% 54%, rgba(255, 255, 255, .98) 0 27%, transparent 28%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, .72) 0 16px, rgba(255, 236, 231, .72) 16px 32px),
+    #ffebe7;
+}
+
+.presenter-cartoon[data-prop="safety"] .cartoon-prop-card strong {
+  min-height: 45px;
+  padding: 2px 8px;
+  color: #7d171e;
+  font-size: clamp(13px, 1.9vw, 18px);
+  font-weight: 950;
+  line-height: 1.08;
+  text-align: center;
+  text-wrap: balance;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.presenter-cartoon[data-tone="caution"] .cartoon-prop-card {
+  background: #fffaf0;
+  box-shadow: 0 18px 42px rgba(106, 68, 8, .22), 0 0 0 2px rgba(213, 145, 21, .22);
+}
+
+.presenter-cartoon[data-tone="caution"] .cartoon-prop-visual {
+  border-color: rgba(213, 145, 21, .42);
+  background:
+    radial-gradient(circle at 50% 54%, rgba(255, 255, 255, .98) 0 27%, transparent 28%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, .72) 0 16px, rgba(255, 241, 192, .72) 16px 32px),
+    #fff3c4;
+}
+
+.presenter-cartoon[data-tone="caution"] .cartoon-rule-badge {
+  background: #9c6200;
+}
+
+.presenter-cartoon[data-tone="caution"] .cartoon-prop-card strong {
+  color: #704700;
+}
+
+.presenter-cartoon[data-tone="required"] .cartoon-prop-card {
+  background: #f5fff8;
+  box-shadow: 0 18px 42px rgba(6, 86, 54, .22), 0 0 0 2px rgba(23, 139, 86, .2);
+}
+
+.presenter-cartoon[data-tone="required"] .cartoon-prop-visual {
+  border-color: rgba(23, 139, 86, .4);
+  background:
+    radial-gradient(circle at 50% 54%, rgba(255, 255, 255, .98) 0 27%, transparent 28%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, .72) 0 16px, rgba(215, 248, 226, .72) 16px 32px),
+    #ddf8e7;
+}
+
+.presenter-cartoon[data-tone="required"] .cartoon-rule-badge {
+  background: #087047;
+}
+
+.presenter-cartoon[data-tone="required"] .cartoon-prop-card strong {
+  color: #075d3c;
+}
+
+.presenter-cartoon[data-tone="stop"] .cartoon-prop-card {
+  background: #fff5f5;
+  box-shadow: 0 18px 42px rgba(88, 6, 16, .3), 0 0 0 3px rgba(151, 18, 30, .25);
+}
+
+.presenter-cartoon[data-tone="stop"] .cartoon-rule-badge {
+  background: #730d17;
+}
+
 .guide-focus-ring {
   position: absolute;
   left: var(--focus-x, 50%);
@@ -10899,6 +11009,32 @@ body[data-page="pomocnik"] .home-return-cta {
   body[data-page="pomocnik"] .presenter-cartoon .cartoon-prop-card strong {
     min-height: 23px;
     font-size: 11px;
+  }
+
+  body[data-page="pomocnik"] .presenter-cartoon[data-prop="safety"] .cartoon-prop-card strong {
+    min-height: 38px;
+    padding-inline: 3px;
+    font-size: clamp(11px, 3.15vw, 14px);
+    line-height: 1.06;
+  }
+
+  body[data-page="pomocnik"] .presenter-cartoon[data-prop="safety"] .cartoon-prop-card {
+    width: 66%;
+  }
+
+  body[data-page="pomocnik"] .presenter-cartoon[data-prop="safety"] .cartoon-character.guide-character {
+    left: -6%;
+    bottom: -2%;
+    width: 52%;
+  }
+
+  body[data-page="pomocnik"] .cartoon-rule-badge {
+    top: 7px;
+    left: 7px;
+    max-width: calc(100% - 52px);
+    padding: 5px 7px;
+    border-width: 1px;
+    font-size: 8px;
   }
 
   body[data-page="pomocnik"] .presenter-cartoon .cartoon-prop-card small {

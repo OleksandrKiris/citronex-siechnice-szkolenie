@@ -694,13 +694,14 @@
               <div class="cartoon-prop-visual">
                 <img class="cartoon-prop-image" data-cartoon-prop-image alt="" hidden>
                 <span class="guide-focus-ring" data-guide-focus-ring hidden></span>
+                <span class="cartoon-rule-badge" data-cartoon-rule-badge hidden></span>
                 <span class="cartoon-prop-icon" data-cartoon-prop-icon>👋</span>
               </div>
               <strong data-cartoon-prop-label></strong>
               <small data-cartoon-prop-counter aria-hidden="true"></small>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master5" alt="" width="512" height="512">
+              <img class="guide-pose" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master6" alt="" width="512" height="512">
               <span class="guide-mouth" aria-hidden="true"></span>
             </div>
           </div>
@@ -2657,6 +2658,7 @@
     const cartoonPropIcon = card.querySelector("[data-cartoon-prop-icon]");
     const cartoonPropLabel = card.querySelector("[data-cartoon-prop-label]");
     const cartoonPropCounter = card.querySelector("[data-cartoon-prop-counter]");
+    const cartoonRuleBadge = card.querySelector("[data-cartoon-rule-badge]");
     const cartoonPose = card.querySelector("[data-cartoon-pose]");
     const guideCharacter = card.querySelector("[data-guide-character]");
     const guideFocusRing = card.querySelector("[data-guide-focus-ring]");
@@ -2849,17 +2851,101 @@
         { pose: "neutral", side: "right" }
       ]
     };
+    const safetyCueCopy = {
+      pl: [
+        { badge: "WAŻNE", label: "Zasady obowiązują w szklarni i magazynie", tone: "caution" },
+        { badge: "ZAKAZ", label: "Jedzenie, napoje i rzeczy prywatne poza strefą pracy", tone: "danger" },
+        { badge: "ZAKAZ", label: "Nie używaj cudzego PIN-u, taga ani readera", tone: "danger" },
+        { badge: "ZAKAZ", label: "Nie wchodź do innej strefy bez polecenia", tone: "danger" },
+        { badge: "OBOWIĄZEK", label: "Dbaj o czyste ręce i rękawiczki", tone: "required" },
+        { badge: "ZAKAZ", label: "Bez telefonu, zdjęć i słuchawek w pracy", tone: "danger" },
+        { badge: "STOP", label: "Używaj tylko wydanego sprzętu i własnych danych", tone: "stop" }
+      ],
+      en: [
+        { badge: "IMPORTANT", label: "The rules apply in the greenhouse and warehouse", tone: "caution" },
+        { badge: "PROHIBITED", label: "Keep food, drinks and private items outside the work zone", tone: "danger" },
+        { badge: "PROHIBITED", label: "Never use another person's PIN, tag or reader", tone: "danger" },
+        { badge: "PROHIBITED", label: "Do not enter another zone without instruction", tone: "danger" },
+        { badge: "REQUIRED", label: "Keep your hands and gloves clean", tone: "required" },
+        { badge: "PROHIBITED", label: "No phone, photos or headphones at work", tone: "danger" },
+        { badge: "STOP", label: "Use only issued equipment and your own data", tone: "stop" }
+      ],
+      ua: [
+        { badge: "ВАЖЛИВО", label: "Правила діють у теплиці й на складі", tone: "caution" },
+        { badge: "ЗАБОРОНЕНО", label: "Їжа, напої та особисті речі — поза робочою зоною", tone: "danger" },
+        { badge: "ЗАБОРОНЕНО", label: "Не використовуйте чужий PIN, тег або рідер", tone: "danger" },
+        { badge: "ЗАБОРОНЕНО", label: "Не входьте в іншу зону без вказівки", tone: "danger" },
+        { badge: "ОБОВ’ЯЗКОВО", label: "Тримайте руки й рукавички чистими", tone: "required" },
+        { badge: "ЗАБОРОНЕНО", label: "Без телефону, фото й навушників на роботі", tone: "danger" },
+        { badge: "СТОП", label: "Використовуйте лише видане обладнання і власні дані", tone: "stop" }
+      ],
+      ru: [
+        { badge: "ВАЖНО", label: "Правила действуют в теплице и на складе", tone: "caution" },
+        { badge: "ЗАПРЕЩЕНО", label: "Еда, напитки и личные вещи — вне рабочей зоны", tone: "danger" },
+        { badge: "ЗАПРЕЩЕНО", label: "Не используйте чужой PIN, тег или ридер", tone: "danger" },
+        { badge: "ЗАПРЕЩЕНО", label: "Не входите в другую зону без указания", tone: "danger" },
+        { badge: "ОБЯЗАТЕЛЬНО", label: "Держите руки и перчатки чистыми", tone: "required" },
+        { badge: "ЗАПРЕЩЕНО", label: "Без телефона, фото и наушников на работе", tone: "danger" },
+        { badge: "СТОП", label: "Используйте только выданное оборудование и свои данные", tone: "stop" }
+      ],
+      az: [
+        { badge: "VACİB", label: "Qaydalar istixanada və anbarda qüvvədədir", tone: "caution" },
+        { badge: "QADAĞANDIR", label: "Yemək, içki və şəxsi əşyalar iş zonasından kənarda qalmalıdır", tone: "danger" },
+        { badge: "QADAĞANDIR", label: "Başqasının PIN-i, tagı və reader-indən istifadə etməyin", tone: "danger" },
+        { badge: "QADAĞANDIR", label: "Tapşırıq olmadan başqa zonaya girməyin", tone: "danger" },
+        { badge: "MÜTLƏQDİR", label: "Əlləri və əlcəkləri təmiz saxlayın", tone: "required" },
+        { badge: "QADAĞANDIR", label: "İşdə telefon, foto və qulaqlıqdan istifadə etməyin", tone: "danger" },
+        { badge: "DAYAN", label: "Yalnız verilmiş avadanlıqdan və öz məlumatlarınızdan istifadə edin", tone: "stop" }
+      ],
+      es: [
+        { badge: "IMPORTANTE", label: "Las reglas se aplican en el invernadero y el almacén", tone: "caution" },
+        { badge: "PROHIBIDO", label: "Comida, bebidas y objetos personales fuera de la zona de trabajo", tone: "danger" },
+        { badge: "PROHIBIDO", label: "No uses el PIN, tag ni reader de otra persona", tone: "danger" },
+        { badge: "PROHIBIDO", label: "No entres en otra zona sin indicación", tone: "danger" },
+        { badge: "OBLIGATORIO", label: "Mantén limpias las manos y los guantes", tone: "required" },
+        { badge: "PROHIBIDO", label: "Sin teléfono, fotos ni auriculares en el trabajo", tone: "danger" },
+        { badge: "ALTO", label: "Usa solo el equipo entregado y tus propios datos", tone: "stop" }
+      ],
+      fil: [
+        { badge: "MAHALAGA", label: "Ang mga patakaran ay para sa bahay-taniman at bodega", tone: "caution" },
+        { badge: "BAWAL", label: "Pagkain, inumin at personal na gamit ay sa labas ng work zone", tone: "danger" },
+        { badge: "BAWAL", label: "Huwag gamitin ang PIN, tag o reader ng ibang tao", tone: "danger" },
+        { badge: "BAWAL", label: "Huwag pumasok sa ibang zone kung walang utos", tone: "danger" },
+        { badge: "KAILANGAN", label: "Panatilihing malinis ang kamay at guwantes", tone: "required" },
+        { badge: "BAWAL", label: "Walang telepono, larawan o headphone sa trabaho", tone: "danger" },
+        { badge: "HINTO", label: "Gamitin lang ang ibinigay na kagamitan at sarili mong data", tone: "stop" }
+      ],
+      id: [
+        { badge: "PENTING", label: "Aturan berlaku di rumah kaca dan gudang", tone: "caution" },
+        { badge: "DILARANG", label: "Makanan, minuman dan barang pribadi di luar area kerja", tone: "danger" },
+        { badge: "DILARANG", label: "Jangan gunakan PIN, tag atau reader milik orang lain", tone: "danger" },
+        { badge: "DILARANG", label: "Jangan masuk ke zona lain tanpa instruksi", tone: "danger" },
+        { badge: "WAJIB", label: "Jaga tangan dan sarung tangan tetap bersih", tone: "required" },
+        { badge: "DILARANG", label: "Tanpa telepon, foto atau headphone saat bekerja", tone: "danger" },
+        { badge: "STOP", label: "Gunakan hanya peralatan yang diberikan dan data Anda sendiri", tone: "stop" }
+      ],
+      ne: [
+        { badge: "महत्त्वपूर्ण", label: "नियम ग्रीनहाउस र गोदाम दुवैमा लागू हुन्छन्", tone: "caution" },
+        { badge: "निषेध", label: "खाना, पेय र निजी सामान काम क्षेत्र बाहिर राख्नुहोस्", tone: "danger" },
+        { badge: "निषेध", label: "अरूको PIN, tag वा reader प्रयोग नगर्नुहोस्", tone: "danger" },
+        { badge: "निषेध", label: "निर्देशन बिना अर्को क्षेत्रमा नजानुहोस्", tone: "danger" },
+        { badge: "अनिवार्य", label: "हात र पञ्जा सफा राख्नुहोस्", tone: "required" },
+        { badge: "निषेध", label: "काममा फोन, फोटो वा हेडफोन प्रयोग नगर्नुहोस्", tone: "danger" },
+        { badge: "रोक्नुहोस्", label: "दिइएको उपकरण र आफ्नै डाटा मात्र प्रयोग गर्नुहोस्", tone: "stop" }
+      ]
+    };
     const cartoonPoseFiles = {
       neutral: "assets/avatar/cartoon/pose-neutral-v4.png",
-      right: "assets/avatar/cartoon/pose-right-v4.png",
+      right: "assets/avatar/cartoon/pose-right-v5.png",
       left: "assets/avatar/cartoon/pose-left-v4.png",
-      warning: "assets/avatar/cartoon/pose-warning-v4.png",
-      reader: "assets/avatar/cartoon/pose-reader-v4.png",
-      tablet: "assets/avatar/cartoon/pose-tablet-v4.png"
+      warning: "assets/avatar/cartoon/pose-warning-v5.png",
+      reader: "assets/avatar/cartoon/pose-reader-v5.png",
+      tablet: "assets/avatar/cartoon/pose-tablet-v5.png"
     };
     const enhancedCartoonCue = (chapterId, cueIndex, cue) => ({
       ...cue,
-      ...(cartoonCueEnhancements[chapterId]?.[cueIndex] || {})
+      ...(cartoonCueEnhancements[chapterId]?.[cueIndex] || {}),
+      ...(chapterId === "safety" ? ((safetyCueCopy[lang] || safetyCueCopy.pl)[cueIndex] || {}) : {})
     });
     const presenterPreloads = [];
     const preloadPresenterVisuals = () => {
@@ -2897,6 +2983,7 @@
       cartoon.dataset.prop = chapter.id;
       cartoon.dataset.cue = String(cueIndex);
       cartoon.dataset.side = cue.side || "right";
+      cartoon.dataset.tone = cue.tone || "neutral";
       card.dataset.gesture = cue.gesture || "show-right";
       const poseName = cartoonPoseFiles[cue.pose] ? cue.pose : "neutral";
       if (guideCharacter) guideCharacter.dataset.pose = poseName;
@@ -2910,8 +2997,12 @@
           window.setTimeout(() => cartoonPose.classList.remove("is-changing"), 420);
         }
       }
-      if (cartoonPropLabel) cartoonPropLabel.textContent = chapter.title;
+      if (cartoonPropLabel) cartoonPropLabel.textContent = cue.label || chapter.title;
       if (cartoonPropCounter) cartoonPropCounter.textContent = `${cueIndex + 1}/${sequence.length}`;
+      if (cartoonRuleBadge) {
+        cartoonRuleBadge.hidden = !cue.badge;
+        cartoonRuleBadge.textContent = cue.badge || "";
+      }
       if (cartoonPropImage) {
         cartoonPropImage.dataset.fallbackIcon = cue.icon || "\u2022";
         if (cue.image) {
