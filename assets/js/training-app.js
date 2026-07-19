@@ -739,7 +739,7 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master16" alt="" width="512" height="512">
+              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master17" alt="" width="512" height="512">
               <span class="guide-eyes" aria-hidden="true"><i></i><i></i></span>
               <span class="guide-mouth" aria-hidden="true"></span>
             </div>
@@ -773,7 +773,7 @@
           </div>
           <div class="presenter-photo-overlay" data-presenter-photo-overlay hidden>
             <button type="button" class="presenter-photo-close" data-presenter-photo-close aria-label="${esc(experience.closePhoto)}">×</button>
-            <img data-presenter-photo-image alt="">
+            <img data-presenter-photo-image alt="" loading="eager">
             <div class="presenter-photo-caption"><strong data-presenter-photo-title></strong><a data-presenter-photo-source target="_blank" rel="noopener noreferrer" hidden></a></div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
