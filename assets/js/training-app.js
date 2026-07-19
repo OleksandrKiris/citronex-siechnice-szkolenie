@@ -749,11 +749,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master30" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master30" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master30" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master31" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master31" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master31" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master30" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master31" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -813,7 +813,7 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="auto" poster="assets/avatar/presenter-human-poster-v1.jpg?v=20260719-siechnice-master30" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="auto" poster="assets/avatar/presenter-human-poster-v1.jpg?v=20260719-siechnice-master31" hidden></video>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -2882,7 +2882,17 @@
       : constrainedDevice ? "lite" : phoneLayout ? "mobile" : "full";
     card.dataset.engine = engineMode;
     const avatarQuery = new URLSearchParams(location.search).get("avatar");
-    const humanVideoPath = "assets/avatar/presenter-human-gesture-v1.mp4";
+    const humanVideoPaths = Object.freeze({
+      explain: "assets/avatar/presenter-human-gesture-v1.mp4",
+      open: "assets/avatar/presenter-human-open-v2.mp4"
+    });
+    const selectHumanVideoPath = (chapter, index) => {
+      const group = chapter?.group || "welcome";
+      const visualPerformance = Boolean(chapter?.image) && index % 3 !== 0;
+      const openPerformance = visualPerformance ||
+        (["welcome", "arrival", "warehouse", "greenhouse", "reader", "tablet"].includes(group) && index % 4 === 1);
+      return openPerformance ? humanVideoPaths.open : humanVideoPaths.explain;
+    };
     const supportsHumanVideo = Boolean(video && video.canPlayType && video.canPlayType('video/mp4; codecs="avc1.42E01E"'));
     const useHumanVideo = avatarQuery !== "cartoon" && engineMode !== "lite" && !reducedMotion && supportsHumanVideo;
     card.dataset.avatarPreference = useHumanVideo ? "human" : "cartoon";
@@ -3694,12 +3704,14 @@
         showStaticPortrait();
         return;
       }
-      const source = visualAsset(humanVideoPath);
+      const selectedVideoPath = selectHumanVideoPath(chapter, index);
+      const source = visualAsset(selectedVideoPath);
       if (video.getAttribute("src") !== source) {
         video.src = source;
         video.load();
       }
-      activeVideoOffset = (index * 1.73) % 8.4;
+      card.dataset.videoPerformance = selectedVideoPath === humanVideoPaths.open ? "open" : "explain";
+      activeVideoOffset = index * 1.73;
       video.muted = true;
       video.loop = true;
       video.playsInline = true;

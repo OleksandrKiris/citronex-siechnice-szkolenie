@@ -11,7 +11,8 @@ const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"
 const errors = [];
 const warnings = [];
 const rigAssets = ["head-v1.png", "torso-v1.png", "arm-left-v2.png", "arm-right-v3.png"];
-const humanVideoAsset = "presenter-human-gesture-v1.mp4";
+const humanVideoAssets = ["presenter-human-gesture-v1.mp4", "presenter-human-open-v2.mp4"];
+const humanVideoAsset = humanVideoAssets[0];
 const humanPosterAsset = "presenter-human-poster-v1.jpg";
 const expectedQuizById = {
   welcome: 1, "arrival-wait": 2, "warehouse-no-reader": 0,
@@ -66,11 +67,13 @@ rigAssets.forEach((asset) => {
   const occurrences = (appSource.match(new RegExp(asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length;
   if (occurrences !== 2) errors.push(`rig asset must be referenced once in markup and once in preload data (${asset}: ${occurrences})`);
 });
-const humanVideoPath = path.join(root, "assets", "avatar", humanVideoAsset);
-if (!fs.existsSync(humanVideoPath)) errors.push(`human presenter video is missing (${humanVideoAsset})`);
-else if (fs.statSync(humanVideoPath).size < 500000 || fs.statSync(humanVideoPath).size > 3000000) {
-  errors.push(`human presenter video size is outside the mobile budget (${fs.statSync(humanVideoPath).size})`);
-}
+humanVideoAssets.forEach((asset) => {
+  const humanVideoPath = path.join(root, "assets", "avatar", asset);
+  if (!fs.existsSync(humanVideoPath)) errors.push(`human presenter video is missing (${asset})`);
+  else if (fs.statSync(humanVideoPath).size < 500000 || fs.statSync(humanVideoPath).size > 3000000) {
+    errors.push(`human presenter video size is outside the mobile budget (${asset}: ${fs.statSync(humanVideoPath).size})`);
+  }
+});
 const humanPosterPath = path.join(root, "assets", "avatar", humanPosterAsset);
 if (!fs.existsSync(humanPosterPath)) errors.push(`human presenter poster is missing (${humanPosterAsset})`);
 else if (fs.statSync(humanPosterPath).size < 10000 || fs.statSync(humanPosterPath).size > 200000) {
@@ -80,7 +83,8 @@ if (/guide-pose-whole|data-cartoon-pose/.test(appSource)) errors.push("legacy wh
 if (!appSource.includes("contextLink.hidden = !target")) errors.push("irrelevant context action is not hidden per chapter");
 if (!appSource.includes("card.dataset.motionBeat")) errors.push("independent motion beat is not synchronized with audio");
 if (!appSource.includes("rms < .014")) errors.push("voice-energy mouth gate is missing");
-if (!appSource.includes("useHumanVideo") || !appSource.includes(humanVideoAsset)) errors.push("human video mode is not wired into the presenter");
+if (!appSource.includes("useHumanVideo") || humanVideoAssets.some((asset) => !appSource.includes(asset))) errors.push("human video performances are not wired into the presenter");
+if (!appSource.includes("selectHumanVideoPath") || !appSource.includes("videoPerformance")) errors.push("chapter-aware human video selection is missing");
 if (!appSource.includes("card.dataset.hasVisual")) errors.push("adaptive visual focus state is missing");
 const adaptiveCssSource = fs.existsSync(cleanCssPath) ? fs.readFileSync(cleanCssPath, "utf8") : "";
 if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes("presenter-human-poster-v1.jpg")) {
@@ -154,7 +158,7 @@ console.log(`Languages: ${expectedLanguages.length}`);
 console.log(`Granular chapters per language: ${expectedSections.length}`);
 console.log(`Expected audio files: ${expectedLanguages.length * expectedSections.length}`);
 console.log(`Independent rig layers: ${rigAssets.length}`);
-console.log(`Human video mode: ${humanVideoAsset}`);
+console.log(`Human video modes: ${humanVideoAssets.join(", ")}`);
 console.log(`Human video poster: ${humanPosterAsset}`);
 console.log("Adaptive visual focus: presenter / instruction priority");
 console.log("Service Worker freshness: automatic reload + network-first HTML");
