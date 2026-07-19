@@ -699,11 +699,11 @@
               <small data-cartoon-prop-counter aria-hidden="true"></small>
             </div>
             <div class="cartoon-character">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-showcase1" alt="" width="1639" height="960">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-showcase1" alt="" width="973" height="701">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-showcase1" alt="" width="552" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-showcase2" alt="" width="1639" height="960">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-showcase2" alt="" width="973" height="701">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-showcase2" alt="" width="552" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-showcase1" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-showcase2" alt="" width="405" height="542">
                 <span class="cartoon-eye cartoon-eye-left"></span>
                 <span class="cartoon-eye cartoon-eye-right"></span>
                 <span class="cartoon-mouth"></span>
@@ -719,6 +719,10 @@
           <p class="presenter-badge">${esc(badge)}</p>
           <h2 id="presenterTitle">${esc(title)}</h2>
           <p class="presenter-chapter-counter"><span data-presenter-step>${esc(labels.step)}</span> <strong data-presenter-current>1</strong> / <span data-presenter-total>1</span></p>
+          <label class="presenter-mobile-chapter">
+            <span>${esc(labels.step)}</span>
+            <select data-presenter-chapter-select aria-label="${esc(fullText)}"></select>
+          </label>
           <h3 class="presenter-chapter-title" data-presenter-chapter-title>${esc(badge)}</h3>
           <p class="presenter-script" data-presenter-script aria-live="polite">${esc(sentences.join(" "))}</p>
           <div class="presenter-timeline">
@@ -2663,6 +2667,7 @@
     const script = card.querySelector("[data-presenter-script]");
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
     const chaptersNav = card.querySelector("[data-presenter-chapters]");
+    const chapterSelect = card.querySelector("[data-presenter-chapter-select]");
     const transcript = card.querySelector("[data-presenter-transcript]");
     const currentLabel = card.querySelector("[data-presenter-current]");
     const totalLabel = card.querySelector("[data-presenter-total]");
@@ -2956,6 +2961,7 @@
       });
       previousButton.disabled = chapterIndex === 0;
       nextButton.disabled = chapterIndex >= chapters.length - 1;
+      if (chapterSelect) chapterSelect.value = String(chapterIndex);
     };
 
     const showStaticPortrait = () => {
@@ -3064,6 +3070,13 @@
           <span class="presenter-chapter-number">${String(index + 1).padStart(2, "0")}</span>
           <span>${esc(chapter.title)}</span>
         </button>`).join("");
+      if (chapterSelect) {
+        chapterSelect.innerHTML = chapters.map((chapter, index) =>
+          `<option value="${index}">${String(index + 1).padStart(2, "0")} - ${esc(chapter.title)}</option>`
+        ).join("");
+        chapterSelect.value = String(chapterIndex);
+        chapterSelect.addEventListener("change", () => activateChapter(Number(chapterSelect.value), true));
+      }
       transcript.innerHTML = chapters.map((chapter, index) => `
         <article class="presenter-transcript-chapter">
           <h4>${index + 1}. ${esc(chapter.title)}</h4>

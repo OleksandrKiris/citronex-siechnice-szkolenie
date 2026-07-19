@@ -9733,6 +9733,10 @@ body[data-page="home"] .tile {
   text-transform: uppercase;
 }
 
+.presenter-mobile-chapter {
+  display: none;
+}
+
 .presenter-chapter-title {
   margin: 10px 0 8px;
   font-size: clamp(18px, 2vw, 23px);
@@ -10283,6 +10287,326 @@ body[data-page="pomocnik"] .home-return-cta {
 
   .assistant-page-intro h1 {
     font-size: 29px;
+  }
+}
+
+/* Phone player: the complete assistant stays inside one viewport. */
+@media (max-width: 620px) {
+  html {
+    height: 100%;
+  }
+
+  body[data-page="pomocnik"] {
+    height: 100svh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body[data-page="pomocnik"] .app-header {
+    position: relative;
+    height: 58px;
+    min-height: 58px;
+    overflow: hidden;
+  }
+
+  body[data-page="pomocnik"] .header-inner {
+    height: 58px;
+    grid-template-columns: 40px minmax(0, 1fr) minmax(92px, 31vw);
+    gap: 7px;
+    padding: 5px 8px;
+  }
+
+  body[data-page="pomocnik"] .back-link,
+  body[data-page="pomocnik"] .lang-select {
+    min-height: 40px;
+    height: 40px;
+  }
+
+  body[data-page="pomocnik"] .back-link {
+    min-width: 40px;
+  }
+
+  body[data-page="pomocnik"] .brand {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  body[data-page="pomocnik"] .brand img {
+    width: 32px;
+    height: 32px;
+  }
+
+  body[data-page="pomocnik"] .brand-title {
+    font-size: 10px;
+    line-height: 1.08;
+  }
+
+  body[data-page="pomocnik"] .brand-subtitle,
+  body[data-page="pomocnik"] .home-return-cta,
+  body[data-page="pomocnik"] .assistant-page-intro,
+  body[data-page="pomocnik"] .app-version-footer,
+  body[data-page="pomocnik"] .app-to-top,
+  body[data-page="pomocnik"] .app-scroll-progress {
+    display: none !important;
+  }
+
+  body[data-page="pomocnik"] .lang-select {
+    width: 100%;
+    max-width: none;
+    padding: 0 27px 0 8px;
+    font-size: 12px;
+  }
+
+  body[data-page="pomocnik"] #app {
+    height: calc(100svh - 58px);
+    height: calc(100dvh - 58px);
+    min-height: 0;
+  }
+
+  body[data-page="pomocnik"] .assistant-page {
+    height: 100%;
+    min-height: 0;
+    padding: 5px;
+    overflow: hidden;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 {
+    position: relative;
+    height: 100%;
+    min-height: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(190px, 60%) minmax(0, 1fr);
+    margin: 0;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-stage {
+    grid-row: 1;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  body[data-page="pomocnik"] .cartoon-character {
+    bottom: -18px;
+    width: min(128%, 500px);
+    max-width: none;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-content {
+    grid-row: 2;
+    min-height: 0;
+    justify-content: flex-start;
+    padding: 8px 10px 9px;
+    overflow: hidden;
+  }
+
+  body[data-page="pomocnik"] .presenter-badge,
+  body[data-page="pomocnik"] .presenter-content h2,
+  body[data-page="pomocnik"] .presenter-chapter-counter,
+  body[data-page="pomocnik"] .presenter-chapter-title,
+  body[data-page="pomocnik"] .presenter-note,
+  body[data-page="pomocnik"] .presenter-chapters,
+  body[data-page="pomocnik"] .presenter-transcript {
+    display: none !important;
+  }
+
+  body[data-page="pomocnik"] .presenter-mobile-chapter {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: .045em;
+    text-transform: uppercase;
+  }
+
+  body[data-page="pomocnik"] .presenter-mobile-chapter select {
+    width: 100%;
+    min-width: 0;
+    min-height: 36px;
+    padding: 5px 28px 5px 9px;
+    border: 1px solid var(--green-line);
+    border-radius: 10px;
+    background: var(--green-soft);
+    color: var(--text);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  body[data-page="pomocnik"] .presenter-script {
+    min-height: 56px;
+    max-height: 86px;
+    display: flex;
+    align-items: center;
+    margin: 5px 0 0;
+    padding: 7px 9px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    font-size: clamp(12px, 3.6vw, 14px);
+    line-height: 1.32;
+  }
+
+  body[data-page="pomocnik"] .presenter-script [data-presenter-sentence]:not(.is-current) {
+    display: none;
+  }
+
+  body[data-page="pomocnik"] .presenter-script [data-presenter-sentence].is-current {
+    display: -webkit-box;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  body[data-page="pomocnik"] .presenter-timeline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 23px 12px;
+    gap: 0 7px;
+    margin-top: 4px;
+  }
+
+  body[data-page="pomocnik"] .presenter-timeline input[type="range"] {
+    grid-column: 1;
+    grid-row: 1;
+    height: 23px;
+  }
+
+  body[data-page="pomocnik"] .presenter-times {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: -3px;
+    font-size: 9px;
+  }
+
+  body[data-page="pomocnik"] .presenter-speed {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    margin: 0;
+  }
+
+  body[data-page="pomocnik"] .presenter-speed > span {
+    display: none;
+  }
+
+  body[data-page="pomocnik"] .presenter-speed select {
+    min-height: 31px;
+    padding: 3px 24px 3px 8px;
+    font-size: 11px;
+  }
+
+  body[data-page="pomocnik"] .presenter-actions {
+    gap: 5px;
+    margin-top: 5px;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls {
+    grid-template-columns: 43px minmax(0, 1fr) 43px;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .btn {
+    min-height: 38px;
+    padding: 5px 7px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.15;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .presenter-control-small {
+    grid-row: 1;
+    font-size: 17px;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .presenter-control-small span {
+    display: none;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .presenter-play {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .presenter-stop {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 0;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .presenter-stop::after {
+    content: "\25A0";
+    font-size: 15px;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls a {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  body[data-page="pomocnik"] .presenter-caption {
+    bottom: 15px;
+    max-height: 4.6em;
+    overflow: hidden;
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  body[data-page="pomocnik"] .presenter-speaking {
+    right: 8px;
+    bottom: 8px;
+    height: 28px;
+    padding: 5px 7px;
+  }
+}
+
+@media (max-width: 620px) and (max-height: 700px) {
+  body[data-page="pomocnik"] .presenter-card-v2 {
+    grid-template-rows: minmax(174px, 48%) minmax(0, 1fr);
+  }
+
+  body[data-page="pomocnik"] .cartoon-character {
+    bottom: -14px;
+    width: 100%;
+  }
+
+  body[data-page="pomocnik"] .presenter-script {
+    min-height: 46px;
+    max-height: 62px;
+  }
+
+  body[data-page="pomocnik"] .presenter-script [data-presenter-sentence].is-current {
+    -webkit-line-clamp: 3;
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .btn {
+    min-height: 34px;
+  }
+}
+
+@media (max-width: 620px) and (min-height: 701px) and (max-height: 760px) {
+  body[data-page="pomocnik"] .presenter-card-v2 {
+    grid-template-rows: minmax(190px, 50%) minmax(0, 1fr);
+  }
+
+  body[data-page="pomocnik"] .cartoon-character {
+    width: 108%;
   }
 }
 
