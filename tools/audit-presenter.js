@@ -73,6 +73,7 @@ for (const language of expectedLanguages) {
   if (!sameArray(ids, expectedSections)) errors.push(`${language}: section order differs (${ids.join(", ")})`);
 
   const totalCharacters = localized.sections.reduce((sum, section) => sum + String(section.text || "").length, 0);
+  if (localized.totalCharacters !== totalCharacters) errors.push(`${language}: totalCharacters differs (${localized.totalCharacters} vs ${totalCharacters})`);
   if (totalCharacters > 10000) errors.push(`${language}: ${totalCharacters} characters exceeds the 10,000 limit`);
   if (totalCharacters < 5000) warnings.push(`${language}: briefing is unusually short (${totalCharacters} characters)`);
 

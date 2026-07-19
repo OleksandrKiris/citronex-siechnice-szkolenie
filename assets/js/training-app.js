@@ -749,11 +749,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master24" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master24" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master24" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master25" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master25" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master25" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master24" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master25" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>

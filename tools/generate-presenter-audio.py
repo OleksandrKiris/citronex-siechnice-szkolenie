@@ -50,6 +50,27 @@ def speech_script(script: str, language: str) -> str:
     if language == "pl":
         # Polish TTS articulates the natural Polish form more clearly.
         prepared = re.sub(r"\bAleksandr\b", "Aleksander", prepared)
+    elif language == "en":
+        prepared = re.sub(r"\bAleksandr\b", "Alexander", prepared)
+    elif language == "az":
+        prepared = re.sub(r"reader", "rider", prepared, flags=re.IGNORECASE)
+    elif language == "es":
+        prepared = re.sub(r"\bAleksandr\b", "Aleksánder", prepared)
+        prepared = re.sub(r"\breader\b", "ríder", prepared, flags=re.IGNORECASE)
+    elif language == "fil":
+        prepared = re.sub(r"\bAleksandr\b", "Alexander", prepared)
+    elif language == "id":
+        prepared = re.sub(r"\bAleksandr\b", "Aleksander", prepared)
+    elif language == "ne":
+        replacements = {
+            "reader": "रिडर",
+            "tag": "ट्याग",
+            "restart": "रिस्टार्ट",
+            "menu": "मेनु",
+            "PIN": "पिन",
+        }
+        for source, replacement in replacements.items():
+            prepared = re.sub(rf"\b{source}\b", replacement, prepared, flags=re.IGNORECASE)
     return prepared
 
 
