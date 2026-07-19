@@ -58,10 +58,11 @@ function auditButtons(options = {}) {
   for (const file of htmlFiles) {
     const fullPath = path.join(root, file);
     const html = fs.readFileSync(fullPath, "utf8");
+    const standaloneTool = /<body[^>]*data-standalone-tool=/i.test(html);
     const pageMatch = html.match(/<body[^>]*data-page="([^"]+)"/i);
     const pageId = pageMatch ? pageMatch[1] : "";
     if (!pageId) addError(`${file}: brak data-page na body.`);
-    if (pageId && pageId !== "home" && !data.pages[pageId]) addError(`${file}: data-page=${pageId} nie istnieje w DATA.pages.`);
+    if (!standaloneTool && pageId && pageId !== "home" && !data.pages[pageId]) addError(`${file}: data-page=${pageId} nie istnieje w DATA.pages.`);
 
     const attrs = html.matchAll(/\b(?:href|src)="([^"]*)"/gi);
     for (const match of attrs) {

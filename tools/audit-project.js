@@ -65,6 +65,7 @@ const missingAssets = [...assets]
 const htmlFiles = fs.readdirSync(root).filter((file) => file.endsWith(".html"));
 const wrongHtml = htmlFiles.filter((file) => {
   const html = fs.readFileSync(path.join(root, file), "utf8");
+  if (html.includes("data-standalone-tool=")) return false;
   return !html.includes("assets/js/training-data.js") || !html.includes("assets/js/training-app.js");
 });
 const mapAudit = auditMapLinks({ root, data: DATA });

@@ -9076,6 +9076,283 @@ body[data-page="home"] .tile {
   }
 }
 
+/* master19: sentence-driven motion and an accessible "I don't understand" flow. */
+.presenter-help-tool {
+  max-width: 138px;
+  font-size: 17px;
+}
+
+.presenter-help-tool small {
+  max-width: 92px;
+  overflow: hidden;
+  line-height: 1.05;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.presenter-scene-status {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  z-index: 17;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 9px;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 999px;
+  background: rgba(5, 46, 30, .84);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .18);
+  pointer-events: none;
+}
+
+.presenter-understand-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 31;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: linear-gradient(145deg, rgba(4, 38, 25, .96), rgba(12, 83, 52, .96));
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.presenter-understand-overlay[hidden],
+.presenter-understand-full[hidden] {
+  display: none !important;
+}
+
+.presenter-understand-card {
+  position: relative;
+  width: min(100%, 620px);
+  max-height: 100%;
+  padding: 18px;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .11);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, .3);
+}
+
+.presenter-understand-close {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 50%;
+  background: rgba(4, 38, 25, .72);
+  color: #fff;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.presenter-understand-kicker {
+  width: fit-content;
+  margin: 0 45px 7px 0;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #ffd34f;
+  color: #193824;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.presenter-understand-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(20px, 3vw, 30px);
+  line-height: 1.04;
+}
+
+.presenter-understand-lead {
+  margin: 7px 0 10px;
+  color: rgba(255, 255, 255, .78);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.presenter-understand-card blockquote {
+  margin: 0 0 11px;
+  padding: 11px 13px;
+  border: 1px solid rgba(255, 211, 79, .55);
+  border-left: 5px solid #ffd34f;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, .2);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.presenter-understand-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.presenter-understand-actions button {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.15;
+  cursor: pointer;
+}
+
+.presenter-understand-actions button:first-child {
+  background: #ffd34f;
+  color: #193824;
+}
+
+.presenter-understand-actions button:disabled {
+  opacity: .42;
+  cursor: not-allowed;
+}
+
+.presenter-understand-full {
+  max-height: 130px;
+  margin: 9px 0 0;
+  padding: 10px 12px;
+  overflow: auto;
+  border-radius: 11px;
+  background: #fff;
+  color: #20352a;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.presenter-understand-warning {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 199, 74, .16);
+  color: #fff4c5;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.presenter-understand-return {
+  width: 100%;
+  min-height: 42px;
+  margin: 9px 0 0;
+  background: #fff !important;
+  color: #155d3c !important;
+}
+
+.presenter-card-v2.is-speaking .guide-pose-whole {
+  animation: guide-pose-breathe 2.65s ease-in-out infinite;
+}
+
+.presenter-card-v2[data-scene-phase="1"].is-speaking .guide-character[data-rig="whole"] { animation-delay: -.65s; }
+.presenter-card-v2[data-scene-phase="2"].is-speaking .guide-character[data-rig="whole"] { animation-duration: 2.05s; }
+.presenter-card-v2[data-scene-phase="3"].is-speaking .guide-character[data-rig="whole"] { animation-delay: -1.15s; }
+
+@keyframes guide-pose-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  48% { transform: translateY(-.35%) scale(1.004, 1.008); }
+}
+
+@media (max-width: 620px) {
+  body[data-page="pomocnik"] .presenter-stage-tools {
+    top: 6px;
+    left: 6px;
+    gap: 4px;
+  }
+
+  body[data-page="pomocnik"] .presenter-tool {
+    min-width: 37px;
+    height: 37px;
+    padding: 4px 6px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  body[data-page="pomocnik"] .presenter-help-tool small {
+    max-width: 68px;
+    font-size: 8px;
+  }
+
+  body[data-page="pomocnik"] .presenter-scene-status {
+    top: 7px;
+    right: 7px;
+    min-height: 24px;
+    padding: 3px 7px;
+    font-size: 8px;
+  }
+
+  body[data-page="pomocnik"] .presenter-understand-overlay {
+    position: fixed;
+    inset: var(--phone-header-height) 0 0;
+    z-index: 1450;
+    padding: 7px max(7px, env(safe-area-inset-right)) max(7px, env(safe-area-inset-bottom)) max(7px, env(safe-area-inset-left));
+  }
+
+  body[data-page="pomocnik"] .presenter-understand-card {
+    width: 100%;
+    padding: 13px;
+    border-radius: 15px;
+  }
+
+  body[data-page="pomocnik"] .presenter-understand-card h3 { font-size: 20px; }
+  body[data-page="pomocnik"] .presenter-understand-lead { margin: 4px 0 7px; font-size: 10px; }
+  body[data-page="pomocnik"] .presenter-understand-card blockquote { margin-bottom: 7px; padding: 8px 9px; font-size: 11px; }
+  body[data-page="pomocnik"] .presenter-understand-actions { gap: 4px; }
+  body[data-page="pomocnik"] .presenter-understand-actions button { min-height: 43px; padding: 5px; font-size: 9px; }
+  body[data-page="pomocnik"] .presenter-understand-warning { margin-top: 6px; padding: 6px 8px; font-size: 9px; }
+  body[data-page="pomocnik"] .presenter-understand-return { min-height: 36px; margin-top: 6px; font-size: 10px; }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  body[data-page="pomocnik"] .presenter-understand-overlay { inset: 0; padding: 5px; }
+  body[data-page="pomocnik"] .presenter-understand-card {
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    column-gap: 10px;
+    align-items: start;
+    padding: 10px;
+    overflow: hidden;
+  }
+  body[data-page="pomocnik"] .presenter-understand-kicker,
+  body[data-page="pomocnik"] .presenter-understand-card h3,
+  body[data-page="pomocnik"] .presenter-understand-lead,
+  body[data-page="pomocnik"] .presenter-understand-card blockquote { grid-column: 1; }
+  body[data-page="pomocnik"] .presenter-understand-actions,
+  body[data-page="pomocnik"] .presenter-understand-full,
+  body[data-page="pomocnik"] .presenter-understand-warning,
+  body[data-page="pomocnik"] .presenter-understand-return { grid-column: 2; }
+  body[data-page="pomocnik"] .presenter-understand-kicker { margin-bottom: 4px; }
+  body[data-page="pomocnik"] .presenter-understand-card h3 { font-size: 22px; line-height: 1.02; }
+  body[data-page="pomocnik"] .presenter-understand-lead { margin: 5px 0; font-size: 10px; }
+  body[data-page="pomocnik"] .presenter-understand-card blockquote { max-height: 88px; margin: 4px 0 0; padding: 7px 9px; overflow: auto; font-size: 11px; }
+  body[data-page="pomocnik"] .presenter-understand-actions { grid-template-columns: 1fr; grid-row: 1 / span 3; margin-top: 22px; }
+  body[data-page="pomocnik"] .presenter-understand-actions button { min-height: 41px; padding: 5px; font-size: 9px; }
+  body[data-page="pomocnik"] .presenter-understand-warning { grid-row: 4; align-self: end; margin-top: 4px; padding: 5px 7px; font-size: 8px; }
+  body[data-page="pomocnik"] .presenter-understand-return { grid-row: 5; min-height: 32px; margin-top: 4px; font-size: 9px; }
+  body[data-page="pomocnik"] .presenter-understand-full { grid-column: 1; grid-row: 3 / 5; z-index: 2; max-height: 150px; margin: 3px 0 0; font-size: 10px; }
+}
+
 /* Digital presenter on the Siechnice start page. */
 .presenter-card {
   display: grid;

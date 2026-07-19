@@ -687,6 +687,16 @@
       source: text(tx("Źródło zdjęcia", "Photo source", "Джерело фото", "Источник фото", "Şəkil mənbəyi", "Fuente de la foto", "Pinagmulan ng larawan", "Sumber foto", "फोटो स्रोत")),
       wrongShort: text(tx("Nie wolno", "Do not", "Не можна", "Нельзя", "Olmaz", "No se permite", "Bawal", "Dilarang", "गर्न पाइँदैन")),
       rightShort: text(tx("Tak należy", "Do this", "Так правильно", "Так правильно", "Belə edin", "Hazlo así", "Gawin ito", "Lakukan ini", "यसरी गर्नुहोस्")),
+      dontUnderstand: text(tx("Nie rozumiem", "I don't understand", "Не розумію", "Не понял", "Başa düşmədim", "No entiendo", "Hindi ko naintindihan", "Saya belum paham", "मैले बुझिनँ")),
+      helpTitle: text(tx("Zobaczmy to jeszcze raz", "Let us go through it again", "Розберімо це ще раз", "Давайте разберём это ещё раз", "Gəlin bunu yenidən nəzərdən keçirək", "Veámoslo otra vez", "Ulitin natin ito", "Mari kita ulangi", "यसलाई फेरि हेरौँ")),
+      helpLead: text(tx("Nagranie zostało zatrzymane. Wybierz sposób wyjaśnienia.", "The recording is paused. Choose how you want this explained.", "Запис зупинено. Виберіть спосіб пояснення.", "Запись остановлена. Выберите способ объяснения.", "Səs dayandırıldı. İzah üsulunu seçin.", "La grabación está pausada. Elige cómo explicarlo.", "Naka-pause ang recording. Piliin kung paano ito ipapaliwanag.", "Rekaman dijeda. Pilih cara penjelasannya.", "रेकर्ड रोकिएको छ। कसरी बुझ्ने हो छान्नुहोस्।")),
+      slowRepeat: text(tx("Powtórz wolniej", "Repeat more slowly", "Повторити повільніше", "Повторить медленнее", "Daha yavaş təkrarla", "Repetir más despacio", "Ulitin nang mas mabagal", "Ulangi lebih lambat", "बिस्तारै फेरि सुन्नुहोस्")),
+      showVisual: text(tx("Pokaż na zdjęciu", "Show it in the picture", "Показати на фото", "Показать на фотографии", "Şəkildə göstər", "Mostrar en la imagen", "Ipakita sa larawan", "Tunjukkan pada gambar", "तस्बिरमा देखाउनुहोस्")),
+      readText: text(tx("Pokaż cały tekst", "Show the full text", "Показати весь текст", "Показать весь текст", "Tam mətni göstər", "Mostrar todo el texto", "Ipakita ang buong teksto", "Tampilkan teks lengkap", "पूरा पाठ देखाउनुहोस्")),
+      hideText: text(tx("Ukryj cały tekst", "Hide the full text", "Сховати весь текст", "Скрыть весь текст", "Tam mətni gizlət", "Ocultar el texto", "Itago ang buong teksto", "Sembunyikan teks", "पूरा पाठ लुकाउनुहोस्")),
+      helpClose: text(tx("Wróć do instruktażu", "Return to the briefing", "Повернутися до інструктажу", "Вернуться к инструктажу", "Təlimata qayıt", "Volver a la formación", "Bumalik sa orientation", "Kembali ke pengarahan", "निर्देशनमा फर्कनुहोस्")),
+      askSupervisor: text(tx("Jeśli nadal nie rozumiesz, nie zaczynaj czynności. Poproś brygadzistę lub koordynatora o pokazanie jej na miejscu.", "If it is still unclear, do not start the task. Ask the team leader or coordinator to demonstrate it on site.", "Якщо все ще незрозуміло, не починайте дію. Попросіть бригадира або координатора показати її на місці.", "Если всё ещё непонятно, не начинайте действие. Попросите бригадира или координатора показать его на месте.", "Hələ də aydın deyilsə, işi başlamayın. Briqadirdən və ya koordinatordan yerində göstərməsini istəyin.", "Si todavía no está claro, no empieces la tarea. Pide al encargado o coordinador que la muestre en el lugar.", "Kung hindi pa rin malinaw, huwag simulan ang gawain. Hilingin sa team leader o coordinator na ipakita ito sa lugar.", "Jika masih belum jelas, jangan mulai tugas. Minta ketua tim atau koordinator menunjukkan langsung.", "अझै नबुझेमा काम सुरु नगर्नुहोस्। टोली प्रमुख वा संयोजकलाई त्यहीँ देखाउन भन्नुहोस्।")),
+      scene: text(tx("Scena", "Scene", "Сцена", "Сцена", "Səhnə", "Escena", "Eksena", "Adegan", "दृश्य")),
       tracks: {
         warehouse: { icon: "📦", title: text(tx("Praca w magazynie", "Warehouse work", "Робота на складі", "Работа на складе", "Anbar işi", "Trabajo en almacén", "Trabaho sa bodega", "Kerja di gudang", "गोदामको काम")), lead: text(tx("Wejście, tablet, zakazy i pomoc", "Entrance, tablet, rules and help", "Вхід, планшет, заборони і допомога", "Вход, планшет, запреты и помощь", "Giriş, tablet, qaydalar və kömək", "Entrada, tablet, reglas y ayuda", "Pasukan, tablet, mga bawal at tulong", "Pintu masuk, tablet, larangan dan bantuan", "प्रवेश, ट्याब्लेट, निषेध र सहायता")) },
         greenhouse: { icon: "🌿", title: text(tx("Praca w szklarni", "Greenhouse work", "Робота в теплиці", "Работа в теплице", "İstixana işi", "Trabajo en invernadero", "Trabaho sa bahay-taniman", "Kerja di rumah kaca", "ग्रीनहाउसको काम")), lead: text(tx("Orientacja, reader, tablet i bezpieczeństwo", "Orientation, reader, tablet and safety", "Орієнтація, рідер, планшет і безпека", "Ориентация, ридер, планшет и безопасность", "İstiqamət, reader, tablet və təhlükəsizlik", "Orientación, reader, tablet y seguridad", "Orientation, reader, tablet at kaligtasan", "Orientasi, reader, tablet dan keselamatan", "दिशा, reader, tablet र सुरक्षा")) },
@@ -739,7 +749,7 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master17" alt="" width="512" height="512">
+              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master19" alt="" width="512" height="512">
               <span class="guide-eyes" aria-hidden="true"><i></i><i></i></span>
               <span class="guide-mouth" aria-hidden="true"></span>
             </div>
@@ -747,6 +757,7 @@
           <button type="button" class="presenter-stage-hit" data-presenter-stage-hit aria-label="${esc(labels.start)}"></button>
           <div class="presenter-stage-tools">
             <button type="button" class="presenter-tool" data-presenter-track-button aria-label="${esc(experience.changePath)}"><span data-presenter-track-icon>🧭</span><small data-presenter-track-progress>0/0</small></button>
+            <button type="button" class="presenter-tool presenter-help-tool" data-presenter-help-button aria-label="${esc(experience.dontUnderstand)}"><span aria-hidden="true">?</span><small>${esc(experience.dontUnderstand)}</small></button>
             <button type="button" class="presenter-tool" data-presenter-fullscreen aria-label="${esc(experience.presentation)}">⛶</button>
           </div>
           <div class="presenter-path-overlay" data-presenter-path-overlay>
@@ -776,9 +787,27 @@
             <img data-presenter-photo-image alt="" loading="eager">
             <div class="presenter-photo-caption"><strong data-presenter-photo-title></strong><a data-presenter-photo-source target="_blank" rel="noopener noreferrer" hidden></a></div>
           </div>
+          <div class="presenter-understand-overlay" data-presenter-help-overlay hidden>
+            <div class="presenter-understand-card" role="dialog" aria-modal="true" aria-labelledby="presenterHelpTitle">
+              <button type="button" class="presenter-understand-close" data-presenter-help-close aria-label="${esc(experience.helpClose)}">×</button>
+              <p class="presenter-understand-kicker">${esc(experience.dontUnderstand)}</p>
+              <h3 id="presenterHelpTitle">${esc(experience.helpTitle)}</h3>
+              <p class="presenter-understand-lead">${esc(experience.helpLead)}</p>
+              <blockquote data-presenter-help-sentence></blockquote>
+              <div class="presenter-understand-actions">
+                <button type="button" data-presenter-help-slow>🐢 <span>${esc(experience.slowRepeat)}</span></button>
+                <button type="button" data-presenter-help-visual>🔎 <span>${esc(experience.showVisual)}</span></button>
+                <button type="button" data-presenter-help-text>☰ <span>${esc(experience.readText)}</span></button>
+              </div>
+              <p class="presenter-understand-full" data-presenter-help-full hidden></p>
+              <small class="presenter-understand-warning">${esc(experience.askSupervisor)}</small>
+              <button type="button" class="btn presenter-understand-return" data-presenter-help-return>${esc(experience.helpClose)}</button>
+            </div>
+          </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
           <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
+          <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
           <div class="presenter-overall-progress" aria-hidden="true"><span data-presenter-overall-progress></span></div>
         </div>
@@ -799,6 +828,7 @@
             <label class="presenter-speed">
               <span>${esc(speedLabel)}</span>
               <select data-presenter-rate aria-label="${esc(speedLabel)}">
+                <option value="0.8">0.8×</option>
                 <option value="0.85">0.85×</option>
                 <option value="1" selected>1×</option>
                 <option value="1.1">1.1×</option>
@@ -2762,6 +2792,8 @@
     const guideComparisonWrong = card.querySelector("[data-guide-comparison-wrong]");
     const guideComparisonRight = card.querySelector("[data-guide-comparison-right]");
     const stageCaption = card.querySelector("[data-presenter-caption]");
+    const sceneCurrent = card.querySelector("[data-presenter-scene-current]");
+    const sceneTotal = card.querySelector("[data-presenter-scene-total]");
     const script = card.querySelector("[data-presenter-script]");
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
     const chaptersNav = card.querySelector("[data-presenter-chapters]");
@@ -2792,6 +2824,15 @@
     const trackIcon = card.querySelector("[data-presenter-track-icon]");
     const trackProgress = card.querySelector("[data-presenter-track-progress]");
     const fullscreenButton = card.querySelector("[data-presenter-fullscreen]");
+    const helpButton = card.querySelector("[data-presenter-help-button]");
+    const helpOverlay = card.querySelector("[data-presenter-help-overlay]");
+    const helpClose = card.querySelector("[data-presenter-help-close]");
+    const helpReturn = card.querySelector("[data-presenter-help-return]");
+    const helpSlow = card.querySelector("[data-presenter-help-slow]");
+    const helpVisual = card.querySelector("[data-presenter-help-visual]");
+    const helpText = card.querySelector("[data-presenter-help-text]");
+    const helpSentence = card.querySelector("[data-presenter-help-sentence]");
+    const helpFull = card.querySelector("[data-presenter-help-full]");
     const quizOverlay = card.querySelector("[data-presenter-quiz]");
     const quizQuestion = card.querySelector("[data-presenter-quiz-question]");
     const quizFeedback = card.querySelector("[data-presenter-quiz-feedback]");
@@ -2852,12 +2893,17 @@
         const parsed = JSON.parse(localStorage.getItem(progressKey) || "{}");
         return {
           track: trackOrders[parsed.track] ? parsed.track : "",
-          completed: Array.isArray(parsed.completed) ? parsed.completed.filter((id) => typeof id === "string") : []
+          completed: Array.isArray(parsed.completed) ? parsed.completed.filter((id) => typeof id === "string") : [],
+          chapter: typeof parsed.chapter === "string" ? parsed.chapter : "",
+          position: Number.isFinite(Number(parsed.position)) ? Math.max(0, Number(parsed.position)) : 0,
+          rate: [0.8, 0.85, 1, 1.1].includes(Number(parsed.rate)) ? Number(parsed.rate) : 1
         };
       } catch (error) {
-        return { track: "", completed: [] };
+        return { track: "", completed: [], chapter: "", position: 0, rate: 1 };
       }
     })();
+    if (rateControl) rateControl.value = String(savedProgress.rate);
+    recording.playbackRate = savedProgress.rate;
     const requestedTrack = new URLSearchParams(location.search).get("track") || "";
     let selectedTrack = Object.hasOwn(trackOrders, requestedTrack) ? requestedTrack : savedProgress.track;
     let completedChapters = new Set(savedProgress.completed);
@@ -2879,6 +2925,8 @@
     let activeFocus = null;
     let autoAdvanceTimer = 0;
     let focusResizeObserver = null;
+    let pendingResumeSeconds = 0;
+    let lastProgressSave = 0;
 
     const formatTime = (seconds) => {
       const safe = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
@@ -3205,10 +3253,37 @@
         verdict: chapter.tone === "danger" ? "wrong" : chapter.tone === "required" ? "correct" : "info"
       };
       const cueGroup = chapter.group === "start" ? "welcome" : chapter.group;
-      const sequence = chapterHasVisual ? [metadataCue] : (cartoonCueSequences[cueGroup] || cartoonCueSequences.welcome);
       const sentenceTotal = Math.max(1, chapterSentences.length);
+      const poseCycles = {
+        welcome: ["neutral", "right", "left", "neutral"],
+        arrival: ["right", "left", "neutral", "right"],
+        warehouse: ["right", "neutral", "left", "right"],
+        greenhouse: ["right", "left", "neutral", "right"],
+        reader: ["reader", "left", "reader", "right"],
+        tablet: ["tablet", "right", "tablet", "left"],
+        safety: ["warning", "right", "warning", "left"],
+        documents: ["right", "left", "neutral", "right"],
+        help: ["right", "neutral", "left", "right"],
+        finish: ["neutral", "right", "left", "neutral"]
+      };
+      const gestureCycle = ["show-right", "nod", "show-left", "open"];
+      const chapterPoseCycle = poseCycles[cueGroup] || poseCycles.welcome;
+      const visualSequence = Array.from({ length: sentenceTotal }, (_, index) => {
+        const danger = chapter.tone === "danger";
+        const pose = index === 0 ? metadataCue.pose : danger ? "warning" : chapterPoseCycle[index % chapterPoseCycle.length];
+        const gesture = danger ? "warning" : pose === "warning" ? "warning" : gestureCycle[index % gestureCycle.length];
+        return {
+          ...metadataCue,
+          pose,
+          gesture,
+          side: pose === "left" || gesture === "show-left" ? "left" : "right"
+        };
+      });
+      const sequence = chapterHasVisual ? visualSequence : (cartoonCueSequences[cueGroup] || cartoonCueSequences.welcome);
       const fraction = sentenceTotal <= 1 ? 0 : sentenceIndex / (sentenceTotal - 1);
-      const cueIndex = Math.min(sequence.length - 1, Math.floor(fraction * sequence.length));
+      const cueIndex = chapterHasVisual
+        ? Math.max(0, Math.min(sequence.length - 1, sentenceIndex))
+        : Math.min(sequence.length - 1, Math.floor(fraction * sequence.length));
       const cue = chapterHasVisual
         ? (sequence[cueIndex] || sequence[0])
         : enhancedCartoonCue(cueGroup, cueIndex, sequence[cueIndex] || sequence[0]);
@@ -3216,6 +3291,9 @@
       if (!force && cueKey === activeCueKey) return;
       activeCueKey = cueKey;
 
+      card.dataset.scenePhase = String(sentenceIndex % 4);
+      if (sceneCurrent) sceneCurrent.textContent = String(Math.min(sentenceTotal, sentenceIndex + 1));
+      if (sceneTotal) sceneTotal.textContent = String(sentenceTotal);
       cartoon.dataset.prop = cueGroup;
       cartoon.dataset.cue = String(cueIndex);
       cartoon.dataset.side = cue.side || "right";
@@ -3593,11 +3671,78 @@
       });
     };
 
+    const closeHelpOverlay = () => {
+      if (!helpOverlay) return;
+      helpOverlay.hidden = true;
+      card.classList.remove("is-help-open");
+      if (helpFull) helpFull.hidden = true;
+      if (helpText) helpText.querySelector("span").textContent = experience.readText;
+    };
+
+    const openHelpOverlay = () => {
+      const chapter = chapters[chapterIndex];
+      if (!helpOverlay || !chapter) return;
+      recording.pause();
+      if (video) video.pause();
+      setPlaying(false);
+      const sentence = chapterSentences[Math.max(0, activeSentenceIndex)] || chapter.text || chapter.title;
+      if (helpSentence) helpSentence.textContent = sentence;
+      if (helpFull) {
+        helpFull.textContent = chapter.text || sentence;
+        helpFull.hidden = true;
+      }
+      if (helpText) helpText.querySelector("span").textContent = experience.readText;
+      if (helpVisual) helpVisual.disabled = !chapter.image;
+      helpOverlay.hidden = false;
+      card.classList.add("is-help-open");
+      window.setTimeout(() => helpSlow?.focus({ preventScroll: true }), 0);
+    };
+
+    if (helpButton) helpButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      openHelpOverlay();
+    });
+    [helpClose, helpReturn].forEach((button) => {
+      if (button) button.addEventListener("click", closeHelpOverlay);
+    });
+    if (helpOverlay) helpOverlay.addEventListener("click", (event) => {
+      if (event.target === helpOverlay) closeHelpOverlay();
+    });
+    if (helpText) helpText.addEventListener("click", () => {
+      if (!helpFull) return;
+      helpFull.hidden = !helpFull.hidden;
+      const label = helpText.querySelector("span");
+      if (label) label.textContent = helpFull.hidden ? experience.readText : experience.hideText;
+    });
+    if (helpVisual) helpVisual.addEventListener("click", () => {
+      const chapter = chapters[chapterIndex];
+      if (!chapter?.image || !photoOverlay || !photoImage) return;
+      closeHelpOverlay();
+      photoImage.src = visualAsset(chapter.image);
+      photoImage.alt = chapter.title;
+      if (photoTitle) photoTitle.textContent = chapter.title;
+      photoOverlay.hidden = false;
+    });
+    if (helpSlow) helpSlow.addEventListener("click", () => {
+      const safeSentence = Math.max(0, activeSentenceIndex);
+      const startFraction = safeSentence > 0 ? sentenceBreakpoints[safeSentence - 1] : 0;
+      if (Number.isFinite(recording.duration) && recording.duration > 0) {
+        recording.currentTime = Math.max(0, startFraction * recording.duration - .12);
+      }
+      recording.playbackRate = .8;
+      if (rateControl) rateControl.value = "0.8";
+      closeHelpOverlay();
+      requestPlayback();
+    });
+
     const saveProgress = () => {
       try {
         localStorage.setItem(progressKey, JSON.stringify({
           track: selectedTrack,
-          completed: Array.from(completedChapters)
+          completed: Array.from(completedChapters),
+          chapter: chapters[chapterIndex]?.id || "",
+          position: Number.isFinite(recording.currentTime) ? Math.round(recording.currentTime * 10) / 10 : 0,
+          rate: Number(recording.playbackRate) || 1
         }));
       } catch (error) { /* Private browsing may disable storage. */ }
     };
@@ -3693,6 +3838,7 @@
       const chapter = chapters[chapterIndex];
       const token = ++loadToken;
       hideQuiz();
+      closeHelpOverlay();
       recording.pause();
       showStaticPortrait();
       recording.src = chapterAudioUrl(chapter, chapterIndex);
@@ -3791,8 +3937,10 @@
         .map((id) => allChapters.find((chapter) => chapter.id === id))
         .filter(Boolean);
       chapters = ordered.length ? ordered : allChapters.slice();
+      const savedChapterIndex = chapters.findIndex((chapter) => chapter.id === savedProgress.chapter && !completedChapters.has(chapter.id));
       const nextIncomplete = chapters.findIndex((chapter) => !completedChapters.has(chapter.id));
-      chapterIndex = nextIncomplete >= 0 ? nextIncomplete : 0;
+      chapterIndex = savedChapterIndex >= 0 ? savedChapterIndex : nextIncomplete >= 0 ? nextIncomplete : 0;
+      pendingResumeSeconds = savedChapterIndex >= 0 ? savedProgress.position : 0;
       saveProgress();
       renderTrackGrid();
       renderGuide();
@@ -3919,6 +4067,7 @@
       });
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && card.classList.contains("is-presentation") && !document.fullscreenElement) syncPresentation(false);
+        if (event.key === "Escape" && helpOverlay && !helpOverlay.hidden) closeHelpOverlay();
       });
     }
 
@@ -3963,11 +4112,25 @@
         const rate = Math.max(.75, Math.min(1.25, Number(rateControl.value) || 1));
         recording.playbackRate = rate;
         if (video) video.playbackRate = rate;
+        saveProgress();
       });
     }
-    recording.addEventListener("loadedmetadata", updateProgress);
+    recording.addEventListener("loadedmetadata", () => {
+      if (pendingResumeSeconds > 0 && Number.isFinite(recording.duration)) {
+        recording.currentTime = Math.min(Math.max(0, recording.duration - .5), pendingResumeSeconds);
+        pendingResumeSeconds = 0;
+      }
+      updateProgress();
+    });
     recording.addEventListener("durationchange", updateProgress);
-    recording.addEventListener("timeupdate", updateProgress);
+    recording.addEventListener("timeupdate", () => {
+      updateProgress();
+      const now = Date.now();
+      if (now - lastProgressSave > 4000) {
+        lastProgressSave = now;
+        saveProgress();
+      }
+    });
     recording.addEventListener("play", () => {
       ensureAudioMotion();
       setPlaying(true);
@@ -3977,6 +4140,7 @@
       window.cancelAnimationFrame(audioMotionFrame);
       card.style.setProperty("--voice-level", "0");
       if (!recording.ended) setPlaying(false);
+      saveProgress();
     });
     recording.addEventListener("ended", () => {
       if (video) video.pause();
@@ -4000,9 +4164,16 @@
     });
 
     try {
-      const response = await fetch(fullGuideUrl, { cache: "no-cache" });
-      if (!response.ok) throw new Error("presenter-guide");
-      const guide = await response.json();
+      const useEditorDraft = new URLSearchParams(location.search).get("draft") === "1";
+      let guide = null;
+      if (useEditorDraft) {
+        try { guide = JSON.parse(localStorage.getItem("cx-editor-guide-draft-v1") || "null"); } catch (error) { guide = null; }
+      }
+      if (!guide) {
+        const response = await fetch(fullGuideUrl, { cache: "no-cache" });
+        if (!response.ok) throw new Error("presenter-guide");
+        guide = await response.json();
+      }
       const localized = guide.languages && guide.languages[lang];
       if (!localized || !Array.isArray(localized.sections) || !localized.sections.length) throw new Error("presenter-language");
       allChapters = localized.sections.map((chapter, sourceIndex) => ({ ...chapter, sourceIndex }));
@@ -4021,13 +4192,16 @@
       .map((id) => allChapters.find((chapter) => chapter.id === id))
       .filter(Boolean);
     if (!chapters.length) chapters = allChapters.slice();
+    const savedChapterIndex = chapters.findIndex((chapter) => chapter.id === savedProgress.chapter && !completedChapters.has(chapter.id));
     const resumeIndex = chapters.findIndex((chapter) => !completedChapters.has(chapter.id));
-    chapterIndex = resumeIndex >= 0 ? resumeIndex : 0;
+    chapterIndex = savedChapterIndex >= 0 ? savedChapterIndex : resumeIndex >= 0 ? resumeIndex : 0;
+    pendingResumeSeconds = savedChapterIndex >= 0 ? savedProgress.position : 0;
     renderTrackGrid();
     renderGuide();
     activateChapter(chapterIndex, false);
     if (trackOverlay) trackOverlay.hidden = false;
     window.addEventListener("pagehide", () => {
+      saveProgress();
       window.cancelAnimationFrame(audioMotionFrame);
       if (focusResizeObserver) focusResizeObserver.disconnect();
       recording.pause();
