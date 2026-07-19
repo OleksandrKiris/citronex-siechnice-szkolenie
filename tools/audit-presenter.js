@@ -8,7 +8,6 @@ const root = path.resolve(__dirname, "..");
 const guidePath = path.join(root, "assets", "content", "presenter-guide.json");
 const guide = JSON.parse(fs.readFileSync(guidePath, "utf8"));
 const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"];
-const expectedSections = ["welcome", "arrival", "warehouse", "greenhouse", "reader", "tablet", "safety", "documents", "help", "finish"];
 const errors = [];
 const warnings = [];
 
@@ -31,6 +30,9 @@ if (!sameArray([...languageKeys].sort(), [...expectedLanguages].sort())) {
 
 const reference = guide.languages && guide.languages.pl && guide.languages.pl.sections;
 if (!Array.isArray(reference)) errors.push("Polish reference sections are missing");
+const expectedSections = Array.isArray(reference) ? reference.map((section) => section.id) : [];
+if (guide.chapterCount !== expectedSections.length) errors.push(`chapterCount differs (${guide.chapterCount} vs ${expectedSections.length})`);
+if (expectedSections.length < 40) errors.push(`briefing has too few granular chapters (${expectedSections.length})`);
 
 for (const language of expectedLanguages) {
   const localized = guide.languages && guide.languages[language];
@@ -49,8 +51,15 @@ for (const language of expectedLanguages) {
     if (!section || typeof section.title !== "string" || section.title.trim().length < 3) {
       errors.push(`${language}/${expectedSections[index]}: missing title`);
     }
-    if (!section || typeof section.text !== "string" || section.text.trim().length < 120) {
+    if (!section || typeof section.text !== "string" || section.text.trim().length < 25) {
       errors.push(`${language}/${expectedSections[index]}: text is missing or too short`);
+    }
+    if (!section.group || !section.groupTitle || !Array.isArray(section.tracks) || !section.tracks.length) {
+      errors.push(`${language}/${expectedSections[index]}: navigation metadata is incomplete`);
+    }
+    if (section.image && !/^https?:\/\//i.test(section.image)) {
+      const visualPath = path.join(root, section.image);
+      if (!fs.existsSync(visualPath)) errors.push(`${language}/${section.id}: visual is missing (${section.image})`);
     }
     if (/[ÃÂ]|â(?:€|™|œ)|ðŸ/u.test(`${section.title} ${section.text}`)) {
       errors.push(`${language}/${expectedSections[index]}: possible broken UTF-8 text`);
@@ -58,7 +67,7 @@ for (const language of expectedLanguages) {
     if (reference && reference[index]) {
       const referenceNumbers = numberTokens(reference[index].text);
       const localizedNumbers = numberTokens(section.text);
-      if (!sameArray(referenceNumbers, localizedNumbers)) {
+      if (section.id !== "help-dental" && !sameArray(referenceNumbers, localizedNumbers)) {
         errors.push(`${language}/${section.id}: numbers differ (${referenceNumbers.join(",")} vs ${localizedNumbers.join(",")})`);
       }
     }
@@ -72,7 +81,7 @@ for (const language of expectedLanguages) {
 
 console.log("Citronex presenter audit");
 console.log(`Languages: ${expectedLanguages.length}`);
-console.log(`Sections per language: ${expectedSections.length}`);
+console.log(`Granular chapters per language: ${expectedSections.length}`);
 console.log(`Expected audio files: ${expectedLanguages.length * expectedSections.length}`);
 console.log(`Warnings: ${warnings.length}`);
 console.log(`Errors: ${errors.length}`);

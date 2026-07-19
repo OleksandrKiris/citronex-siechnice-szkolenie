@@ -97,64 +97,159 @@ function buildGuide(lang) {
   const rowsReader = DATA.readerTabs.find((item) => item.id === "rows");
   const cartsReader = DATA.readerTabs.find((item) => item.id === "carts");
   const restartReader = DATA.readerTabs.find((item) => item.id === "restart");
-  const emergency = DATA.medical.find((item) => item.tone === "red");
-
+  const rowStart = rowsReader.sections[0];
   const rowExit = rowsReader.sections.find((item) => titleOf(item.title, "pl") === "Wyjście z rzędu");
   const rowBreak = rowsReader.sections.find((item) => titleOf(item.title, "pl") === "Przerwa zwykła");
   const rowEnd = rowsReader.sections.find((item) => titleOf(item.title, "pl") === "Zmiana czynności i koniec pracy");
+  const clinic = DATA.medical.find((item) => item.tone === "blue");
+  const emergency = DATA.medical.find((item) => item.tone === "red");
+  const dental = DATA.medical.find((item) => item.tone === "yellow");
 
-  const sections = [
-    {
-      id: "welcome",
-      title: introTitles[lang],
-      text: join([introductions[lang]], lang)
-    },
-    {
-      id: "arrival",
-      title: titleOf(firstDay.title, lang),
-      text: join([topicLead(firstDay.title, lang), firstDay.lead, DATA.pages.mapa.lead, firstDay.steps.map((item) => [item.title, item.note])], lang)
-    },
-    {
-      id: "warehouse",
-      title: titleOf(DATA.pages.magazyn.title, lang),
-      text: join([topicLead(DATA.pages.magazyn.title, lang), DATA.pages.magazyn.lead, warehouse, DATA.pages.tablet.lead], lang)
-    },
-    {
-      id: "greenhouse",
-      title: titleOf(DATA.pages.szklarnia.title, lang),
-      text: join([topicLead(DATA.pages.szklarnia.title, lang), DATA.pages.szklarnia.lead, DATA.pages.reader.lead, startReader.steps.slice(0, 5), startReader.tips], lang)
-    },
-    {
-      id: "reader",
-      title: titleOf(rowsReader.title, lang),
-      text: join([topicLead(rowsReader.title, lang), rowsReader.lead, rowExit.steps, rowBreak.steps, rowEnd.steps, cartsReader.lead, cartsReader.steps, restartReader.lead], lang)
-    },
-    {
-      id: "tablet",
-      title: titleOf(tablet.title, lang),
-      text: join([topicLead(tablet.title, lang), tablet.lead, tablet.important, tablet.steps.map((item) => [item.title, item.note]), tablet.tips], lang)
-    },
-    {
-      id: "safety",
-      title: titleOf(DATA.pages.zakazy.title, lang),
-      text: join([topicLead(DATA.pages.zakazy.title, lang), DATA.pages.zakazy.lead, DATA.banQuickRules.map((item) => [item.title, item.text]), DATA.bans.map((item) => item.detail)], lang)
-    },
-    {
-      id: "documents",
-      title: titleOf(DATA.pages.miasto.title, lang),
-      text: join([topicLead(DATA.pages.miasto.title, lang), DATA.pages.miasto.lead, DATA.cityRules.map((item) => [item.title, item.note, item.list || []])], lang)
-    },
-    {
-      id: "help",
-      title: `${titleOf(DATA.pages.kontakty.title, lang)} / ${titleOf(DATA.pages.lekarz.title, lang)}`,
-      text: join([topicLead(DATA.pages.kontakty.title, lang), DATA.pages.kontakty.lead, DATA.pages.lekarz.lead, emergency.body], lang)
-    },
-    {
-      id: "finish",
-      title: completionTitles[lang],
-      text: join([topicLead(completionTitles[lang], lang), DATA.pages.test.lead, endings[lang]], lang)
-    }
-  ];
+  const groupTitles = {
+    start: introTitles[lang],
+    arrival: titleOf(firstDay.title, lang),
+    warehouse: titleOf(DATA.pages.magazyn.title, lang),
+    greenhouse: titleOf(DATA.pages.szklarnia.title, lang),
+    reader: titleOf(DATA.pages.reader.title, lang),
+    tablet: titleOf(tablet.title, lang),
+    safety: titleOf(DATA.pages.zakazy.title, lang),
+    documents: titleOf(DATA.pages.miasto.title, lang),
+    help: `${titleOf(DATA.pages.kontakty.title, lang)} / ${titleOf(DATA.pages.lekarz.title, lang)}`,
+    finish: completionTitles[lang]
+  };
+  const tracksByGroup = {
+    start: ["warehouse", "greenhouse", "before", "waiting", "all"],
+    arrival: ["warehouse", "greenhouse", "before", "all"],
+    warehouse: ["warehouse", "all"],
+    greenhouse: ["greenhouse", "all"],
+    reader: ["greenhouse", "all"],
+    tablet: ["warehouse", "greenhouse", "all"],
+    safety: ["warehouse", "greenhouse", "all"],
+    documents: ["before", "waiting", "all"],
+    help: ["warehouse", "greenhouse", "before", "waiting", "all"],
+    finish: ["warehouse", "greenhouse", "before", "waiting", "all"]
+  };
+  const sections = [];
+  const shortTitle = (value) => {
+    const clean = valueFor(value, lang).replace(/\s+/g, " ").trim().replace(/[.!?…。！？।]+$/, "");
+    const first = clean.split(/[.!?…。！？।]/)[0].trim();
+    return first.length > 76 ? `${first.slice(0, 73).trim()}…` : first;
+  };
+  const add = ({ id, group, title, parts, image = "", icon = "", pose = "right", tone = "neutral", focus = null, quizIndex = null, sourceLabel = "", sourceUrl = "" }) => {
+    const resolvedTitle = typeof title === "string" ? title : titleOf(title, lang);
+    const text = join(parts, lang);
+    sections.push({
+      id,
+      group,
+      groupTitle: groupTitles[group],
+      tracks: tracksByGroup[group],
+      title: resolvedTitle || shortTitle(parts.flat(Infinity).find(Boolean)),
+      text,
+      image: valueFor(image, lang),
+      icon,
+      pose,
+      tone,
+      ...(focus ? { focus } : {}),
+      ...(Number.isInteger(quizIndex) ? { quizIndex } : {}),
+      ...(sourceLabel && sourceUrl ? { sourceLabel, sourceUrl } : {})
+    });
+  };
+
+  add({ id: "welcome", group: "start", title: introTitles[lang], parts: [introductions[lang]], image: "assets/inline/stage34_1.jpg", icon: "👋", pose: "neutral", tone: "neutral", quizIndex: 1 });
+
+  firstDay.steps.forEach((step, index) => add({
+    id: ["arrival-place", "arrival-map", "arrival-walk", "arrival-wait"][index],
+    group: "arrival",
+    title: step.title,
+    parts: [step.title, step.note],
+    image: index < 2 ? "assets/guide/arrival-route-v1.svg" : `assets/inline/stage12_${index - 1}.jpg`,
+    icon: ["📍", "🗺️", "🚶", "⏳"][index],
+    pose: index === 3 ? "neutral" : "right",
+    tone: index === 3 ? "caution" : "required",
+    quizIndex: index === 3 ? 2 : null
+  }));
+
+  warehouse.forEach((rule, index) => add({
+    id: ["warehouse-no-reader", "warehouse-entrance", "warehouse-contact"][index],
+    group: "warehouse",
+    title: shortTitle(rule),
+    parts: [rule, index === 0 ? startReader.tips[1] : []],
+    image: `assets/warehouse/magazyn-wejscie-${index === 2 ? 2 : 1}.jpg`,
+    icon: index === 0 ? "🚫📟" : index === 1 ? "🚪" : "☎️",
+    pose: index === 0 ? "warning" : "right",
+    tone: index === 0 ? "danger" : "required",
+    quizIndex: index === 0 ? 0 : null
+  }));
+
+  add({ id: "greenhouse-overview", group: "greenhouse", title: DATA.pages.szklarnia.title, parts: [DATA.pages.szklarnia.lead], image: "assets/greenhouse-orientation/orientacja-ogolna.svg", icon: "🌿", pose: "right", tone: "required", quizIndex: 19 });
+  add({ id: "greenhouse-sides", group: "greenhouse", title: shortTitle(DATA.test[19].text), parts: [DATA.test[19].text, DATA.test[21].text], image: "assets/greenhouse-orientation/lewa-prawa-strona.svg", icon: "↔️", pose: "left", tone: "required", quizIndex: 19 });
+  add({ id: "greenhouse-nave", group: "greenhouse", title: shortTitle(DATA.test[20].text), parts: [DATA.test[20].text, DATA.test[24].text], image: "assets/greenhouse-orientation/nawa.svg", icon: "🌿", pose: "right", tone: "required", quizIndex: 20 });
+  add({ id: "greenhouse-section", group: "greenhouse", title: shortTitle(DATA.test[22].text), parts: [DATA.test[22].text], image: "assets/greenhouse-orientation/przeslo.svg", icon: "🔢", pose: "left", tone: "required", quizIndex: 22 });
+
+  add({ id: "reader-overview", group: "reader", title: startReader.title, parts: [startReader.lead, startReader.tips], image: startReader.image, icon: "📟", pose: "reader", tone: "caution", quizIndex: 4 });
+  const readerStartIds = ["reader-take", "reader-personal-tag", "reader-work-start", "reader-activity", "reader-assigned-row", "reader-break-start", "reader-break-end", "reader-work-end", "reader-charge"];
+  const readerFocus = [[25, 14, 42, 18], [76, 14, 36, 18], [50, 32, 90, 17], [25, 47, 40, 17], [76, 47, 36, 17], [25, 63, 40, 17], [76, 63, 36, 17], [25, 80, 40, 17], [76, 80, 36, 17]];
+  startReader.steps.forEach((step, index) => add({
+    id: readerStartIds[index],
+    group: "reader",
+    title: shortTitle(step),
+    parts: [step],
+    image: startReader.image,
+    icon: "📟",
+    pose: "reader",
+    tone: index === 4 || index === 7 ? "caution" : "required",
+    focus: readerFocus[index]
+  }));
+
+  add({ id: "reader-row-entry", group: "reader", title: rowStart.title, parts: [rowsReader.lead, rowStart.steps[3]], image: "assets/greenhouse-orientation/przejscie.svg", icon: "➡️", pose: "left", tone: "caution" });
+  add({ id: "reader-row-exit", group: "reader", title: rowExit.title, parts: [rowExit.steps], image: "assets/greenhouse-orientation/lewa-prawa-strona.svg", icon: "⬅️", pose: "reader", tone: "required" });
+  add({ id: "reader-cart", group: "reader", title: cartsReader.title, parts: [cartsReader.lead, cartsReader.steps.slice(0, 3)], image: cartsReader.images[0], icon: "🛒", pose: "reader", tone: "required" });
+  add({ id: "reader-cart-send", group: "reader", title: shortTitle(cartsReader.steps[3]), parts: [cartsReader.steps.slice(3)], image: cartsReader.images[0], icon: "✓", pose: "reader", tone: "required" });
+  add({ id: "reader-break", group: "reader", title: rowBreak.title, parts: [rowBreak.steps], image: startReader.image, icon: "☕", pose: "reader", tone: "caution", focus: readerFocus[5] });
+  add({ id: "reader-change-end", group: "reader", title: rowEnd.title, parts: [rowEnd.steps], image: startReader.image, icon: "🏁", pose: "reader", tone: "required", focus: readerFocus[7] });
+  add({ id: "reader-restart-buttons", group: "reader", title: restartReader.title, parts: [restartReader.lead, restartReader.steps.slice(0, 3)], image: restartReader.images[0], icon: "🔄", pose: "reader", tone: "caution" });
+  add({ id: "reader-restart-menu", group: "reader", title: shortTitle(restartReader.steps[3]), parts: [restartReader.steps.slice(3)], image: restartReader.images[1], icon: "🔄", pose: "reader", tone: "caution" });
+
+  tablet.steps.forEach((step, index) => add({
+    id: ["tablet-login", "tablet-start", "tablet-activity", "tablet-change", "tablet-break-start", "tablet-break-end", "tablet-work-end", "tablet-logout"][index],
+    group: "tablet",
+    title: step.title,
+    parts: [index === 0 ? tablet.important : [], step.title, step.note, index === 7 ? tablet.tips : []],
+    image: step.image,
+    icon: "📱",
+    pose: "tablet",
+    tone: index === 7 ? "caution" : "required",
+    quizIndex: index === 0 ? 25 : null
+  }));
+
+  const safetySets = [[0, 1, 2, 3, 7], [10, 11, 12], [16, 17, 18], [13, 14, 15], [4, 5, 6, 9]];
+  const safetyIds = ["safety-food-items", "safety-phone-photo", "safety-personal-data", "safety-zones", "safety-hygiene"];
+  safetySets.forEach((indexes, index) => add({
+    id: safetyIds[index],
+    group: "safety",
+    title: DATA.bans[indexes[0]].title,
+    parts: [indexes.map((itemIndex) => [DATA.bans[itemIndex].title, DATA.bans[itemIndex].detail])],
+    icon: index === 4 ? "🧼" : "⛔",
+    pose: "warning",
+    tone: index === 4 ? "required" : "danger",
+    quizIndex: index === 1 ? 16 : null
+  }));
+
+  DATA.cityRules.forEach((rule, index) => add({
+    id: ["documents-id", "documents-pass", "documents-parcels"][index],
+    group: "documents",
+    title: rule.title,
+    parts: [rule.title, rule.note, rule.list || []],
+    icon: ["🪪", "🎫", "📦"][index],
+    pose: index === 2 ? "warning" : "right",
+    tone: index === 1 ? "danger" : "caution",
+    quizIndex: index === 1 ? 15 : null
+  }));
+
+  add({ id: "help-clinic", group: "help", title: clinic.title, parts: [clinic.title, clinic.body], icon: "🏥", pose: "right", tone: "caution", quizIndex: 27 });
+  add({ id: "help-emergency", group: "help", title: emergency.title, parts: [emergency.title, emergency.body], icon: "🆘 112", pose: "warning", tone: "danger" });
+  add({ id: "help-dental", group: "help", title: dental.title, parts: [dental.title, dental.body], icon: "🦷", pose: "right", tone: "caution" });
+  add({ id: "finish", group: "finish", title: completionTitles[lang], parts: [topicLead(completionTitles[lang], lang), DATA.pages.test.lead, endings[lang]], icon: "✅", pose: "neutral", tone: "required" });
 
   const totalCharacters = sections.reduce((sum, item) => sum + item.text.length, 0);
   if (totalCharacters >= 10000) {
@@ -162,17 +257,18 @@ function buildGuide(lang) {
   }
   sections.forEach((item) => {
     if (!item.title || !item.text) throw new Error(`${lang}: incomplete section ${item.id}`);
-    if (item.text.length >= 3000) throw new Error(`${lang}: section ${item.id} is too long (${item.text.length})`);
+    if (item.text.length >= 1800) throw new Error(`${lang}: section ${item.id} is too long (${item.text.length})`);
   });
 
   return { totalCharacters, sections };
 }
 
 const output = {
-  version: "20260718-siechnice-guide2",
-  chapterCount: 10,
+  version: "20260719-siechnice-guide3",
+  chapterCount: 0,
   languages: Object.fromEntries(languages.map((lang) => [lang, buildGuide(lang)]))
 };
+output.chapterCount = output.languages.pl.sections.length;
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, `${JSON.stringify(output, null, 2)}\n`, "utf8");

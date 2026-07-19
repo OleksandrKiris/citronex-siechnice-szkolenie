@@ -681,6 +681,9 @@
       forbidden: text(tx("ZABRONIONE", "PROHIBITED", "ЗАБОРОНЕНО", "ЗАПРЕЩЕНО", "QADAĞANDIR", "PROHIBIDO", "BAWAL", "DILARANG", "निषेध")),
       correctBadge: text(tx("PRAWIDŁOWO", "CORRECT", "ПРАВИЛЬНО", "ПРАВИЛЬНО", "DÜZGÜNDÜR", "CORRECTO", "TAMA", "BENAR", "सही")),
       important: text(tx("WAŻNE", "IMPORTANT", "ВАЖЛИВО", "ВАЖНО", "VACİB", "IMPORTANTE", "MAHALAGA", "PENTING", "महत्त्वपूर्ण")),
+      openPhoto: text(tx("Powiększ zdjęcie", "Enlarge photo", "Збільшити фото", "Увеличить фото", "Şəkli böyüt", "Ampliar foto", "Palakihin ang larawan", "Perbesar foto", "फोटो ठूलो पार्नुहोस्")),
+      closePhoto: text(tx("Zamknij zdjęcie", "Close photo", "Закрити фото", "Закрыть фото", "Şəkli bağla", "Cerrar foto", "Isara ang larawan", "Tutup foto", "फोटो बन्द गर्नुहोस्")),
+      source: text(tx("Źródło zdjęcia", "Photo source", "Джерело фото", "Источник фото", "Şəkil mənbəyi", "Fuente de la foto", "Pinagmulan ng larawan", "Sumber foto", "फोटो स्रोत")),
       wrongShort: text(tx("Nie wolno", "Do not", "Не можна", "Нельзя", "Olmaz", "No se permite", "Bawal", "Dilarang", "गर्न पाइँदैन")),
       rightShort: text(tx("Tak należy", "Do this", "Так правильно", "Так правильно", "Belə edin", "Hazlo así", "Gawin ito", "Lakukan ini", "यसरी गर्नुहोस्")),
       tracks: {
@@ -719,7 +722,7 @@
     return `
       <section class="presenter-card presenter-card-v2" data-presenter-card aria-labelledby="presenterTitle">
         <div class="presenter-media presenter-stage" data-presenter-stage>
-          <div class="presenter-cartoon" data-presenter-cartoon data-prop="welcome" aria-hidden="true">
+          <div class="presenter-cartoon" data-presenter-cartoon data-prop="welcome">
             <div class="cartoon-greenhouse"></div>
             <div class="cartoon-prop-card" data-cartoon-prop-card>
               <div class="cartoon-prop-visual">
@@ -728,16 +731,18 @@
                 <span class="cartoon-rule-badge" data-cartoon-rule-badge hidden></span>
                 <span class="cartoon-prop-icon" data-cartoon-prop-icon>👋</span>
                 <span class="guide-comparison" data-guide-comparison hidden><b data-guide-comparison-wrong></b><b data-guide-comparison-right></b></span>
+                <button type="button" class="cartoon-photo-zoom" data-presenter-photo-open aria-label="${esc(experience.openPhoto)}" hidden>⛶</button>
               </div>
               <strong data-cartoon-prop-label></strong>
               <small data-cartoon-prop-counter aria-hidden="true"></small>
+              <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-head" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-torso" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-arm-left" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-arm-right" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master9" alt="" width="512" height="512">
+              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-head" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-torso" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-arm-left" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-arm-right" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
               <span class="guide-eyes" aria-hidden="true"><i></i><i></i></span>
               <span class="guide-mouth" aria-hidden="true"></span>
             </div>
@@ -769,6 +774,11 @@
               </div>
             </div>
           </div>
+          <div class="presenter-photo-overlay" data-presenter-photo-overlay hidden>
+            <button type="button" class="presenter-photo-close" data-presenter-photo-close aria-label="${esc(experience.closePhoto)}">×</button>
+            <img data-presenter-photo-image alt="">
+            <div class="presenter-photo-caption"><strong data-presenter-photo-title></strong><a data-presenter-photo-source target="_blank" rel="noopener noreferrer" hidden></a></div>
+          </div>
           <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -777,7 +787,8 @@
         <div class="presenter-content">
           <p class="presenter-badge">${esc(badge)}</p>
           <h2 id="presenterTitle">${esc(title)}</h2>
-          <p class="presenter-chapter-counter"><span data-presenter-step>${esc(labels.step)}</span> <strong data-presenter-current>1</strong> / <span data-presenter-total>1</span></p>
+          <p class="presenter-chapter-counter"><span data-presenter-group-label>${esc(badge)}</span> · <span data-presenter-step>${esc(labels.step)}</span> <strong data-presenter-current>1</strong> / <span data-presenter-total>1</span></p>
+          <div class="presenter-step-rail" data-presenter-step-rail aria-label="${esc(fullText)}"></div>
           <label class="presenter-mobile-chapter">
             <span>${esc(labels.step)}</span>
             <select data-presenter-chapter-select aria-label="${esc(fullText)}"></select>
@@ -2724,6 +2735,13 @@
     const cartoonPropIcon = card.querySelector("[data-cartoon-prop-icon]");
     const cartoonPropLabel = card.querySelector("[data-cartoon-prop-label]");
     const cartoonPropCounter = card.querySelector("[data-cartoon-prop-counter]");
+    const cartoonPhotoSource = card.querySelector("[data-cartoon-photo-source]");
+    const photoOpen = card.querySelector("[data-presenter-photo-open]");
+    const photoOverlay = card.querySelector("[data-presenter-photo-overlay]");
+    const photoClose = card.querySelector("[data-presenter-photo-close]");
+    const photoImage = card.querySelector("[data-presenter-photo-image]");
+    const photoTitle = card.querySelector("[data-presenter-photo-title]");
+    const photoSource = card.querySelector("[data-presenter-photo-source]");
     const cartoonRuleBadge = card.querySelector("[data-cartoon-rule-badge]");
     const cartoonPose = card.querySelector("[data-cartoon-pose]");
     const cartoonLayers = Array.from(card.querySelectorAll("[data-cartoon-layer]"));
@@ -2737,6 +2755,8 @@
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
     const chaptersNav = card.querySelector("[data-presenter-chapters]");
     const chapterSelect = card.querySelector("[data-presenter-chapter-select]");
+    const stepRail = card.querySelector("[data-presenter-step-rail]");
+    const groupLabel = card.querySelector("[data-presenter-group-label]");
     const transcript = card.querySelector("[data-presenter-transcript]");
     const currentLabel = card.querySelector("[data-presenter-current]");
     const totalLabel = card.querySelector("[data-presenter-total]");
@@ -2784,13 +2804,7 @@
       sourceIndex: 0
     };
 
-    const trackOrders = {
-      warehouse: ["welcome", "arrival", "warehouse", "tablet", "safety", "help", "finish"],
-      greenhouse: ["welcome", "arrival", "greenhouse", "reader", "tablet", "safety", "help", "finish"],
-      before: ["welcome", "arrival", "documents", "help", "finish"],
-      waiting: ["welcome", "documents", "help", "finish"],
-      all: ["welcome", "arrival", "warehouse", "greenhouse", "reader", "tablet", "safety", "documents", "help", "finish"]
-    };
+    const trackOrders = { warehouse: [], greenhouse: [], before: [], waiting: [], all: [] };
     const chapterQuizIndex = {
       welcome: 1,
       arrival: 2,
@@ -2802,7 +2816,7 @@
       documents: 15,
       help: 27
     };
-    const progressKey = "cx-presenter-progress-v2";
+    const progressKey = "cx-presenter-progress-v3";
     const savedProgress = (() => {
       try {
         const parsed = JSON.parse(localStorage.getItem(progressKey) || "{}");
@@ -2815,7 +2829,7 @@
       }
     })();
     const requestedTrack = new URLSearchParams(location.search).get("track") || "";
-    let selectedTrack = trackOrders[requestedTrack] ? requestedTrack : savedProgress.track;
+    let selectedTrack = Object.hasOwn(trackOrders, requestedTrack) ? requestedTrack : savedProgress.track;
     let completedChapters = new Set(savedProgress.completed);
     let allChapters = [fallbackChapter];
     let chapters = [fallbackChapter];
@@ -2839,7 +2853,10 @@
 
     const chapterAudioUrl = (chapter, index) => chapter.legacyAudio ||
       `assets/audio/guide/${lang}/${String((Number.isInteger(chapter.sourceIndex) ? chapter.sourceIndex : index) + 1).padStart(2, "0")}-${chapter.id}.mp3${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
-    const visualAsset = (path) => `${path}${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
+    const visualAsset = (path) => {
+      if (!path || !assetVersion) return path || "";
+      return `${path}${path.includes("?") ? "&" : "?"}v=${encodeURIComponent(assetVersion)}`;
+    };
     const cartoonCueSequences = {
       welcome: [
         { icon: "👋", gesture: "open" },
@@ -3115,11 +3132,24 @@
     const applyCartoonCue = (sentenceIndex = 0, force = false) => {
       if (!cartoon || !chapters[chapterIndex]) return;
       const chapter = chapters[chapterIndex];
-      const sequence = cartoonCueSequences[chapter.id] || cartoonCueSequences.welcome;
+      const chapterHasVisual = Boolean(chapter.image || chapter.icon);
+      const metadataCue = {
+        image: chapter.image || "",
+        icon: chapter.icon || "•",
+        pose: chapter.pose || "right",
+        tone: chapter.tone || "neutral",
+        focus: chapter.focus || null,
+        side: chapter.pose === "left" ? "left" : "right",
+        label: chapter.title,
+        verdict: chapter.tone === "danger" ? "wrong" : chapter.tone === "required" ? "correct" : "info"
+      };
+      const sequence = chapterHasVisual ? [metadataCue] : (cartoonCueSequences[chapter.id] || cartoonCueSequences.welcome);
       const sentenceTotal = Math.max(1, chapterSentences.length);
       const fraction = sentenceTotal <= 1 ? 0 : sentenceIndex / (sentenceTotal - 1);
       const cueIndex = Math.min(sequence.length - 1, Math.floor(fraction * sequence.length));
-      const cue = enhancedCartoonCue(chapter.id, cueIndex, sequence[cueIndex] || sequence[0]);
+      const cue = chapterHasVisual
+        ? (sequence[cueIndex] || sequence[0])
+        : enhancedCartoonCue(chapter.id, cueIndex, sequence[cueIndex] || sequence[0]);
       const cueKey = `${chapter.id}:${cueIndex}`;
       if (!force && cueKey === activeCueKey) return;
       activeCueKey = cueKey;
@@ -3128,6 +3158,7 @@
       cartoon.dataset.cue = String(cueIndex);
       cartoon.dataset.side = cue.side || "right";
       cartoon.dataset.tone = cue.tone || (cue.verdict === "wrong" ? "danger" : cue.verdict === "correct" ? "required" : "neutral");
+      cartoon.dataset.visual = cue.image && (/^https?:\/\//i.test(cue.image) || /\.(?:jpe?g|png|webp)(?:\?|$)/i.test(cue.image)) ? "photo" : "diagram";
       card.dataset.gesture = cue.gesture || "show-right";
       const poseName = cartoonPoseFiles[cue.pose] ? cue.pose : "neutral";
       if (guideCharacter) {
@@ -3161,7 +3192,7 @@
         cartoonPropImage.dataset.fallbackIcon = cue.icon || "\u2022";
         if (cue.image) {
           const imageSrc = visualAsset(cue.image);
-          cartoonPropImage.hidden = true;
+          cartoonPropImage.hidden = false;
           if (cartoonPropImage.getAttribute("src") !== imageSrc) cartoonPropImage.src = imageSrc;
           cartoonPropImage.alt = chapter.title;
           if (cartoonPropImage.complete && cartoonPropImage.naturalWidth > 0) {
@@ -3184,6 +3215,28 @@
         cartoonPropIcon.hidden = false;
         cartoonPropIcon.textContent = cue.icon || "\u2022";
       }
+      if (photoOpen) {
+        photoOpen.hidden = !cue.image;
+        photoOpen.dataset.photoSrc = cue.image ? visualAsset(cue.image) : "";
+        photoOpen.setAttribute("aria-label", `${experience.openPhoto}: ${chapter.title}`);
+      }
+      [cartoonPhotoSource, photoSource].forEach((link) => {
+        if (!link) return;
+        const hasSource = Boolean(chapter.sourceLabel && chapter.sourceUrl);
+        link.hidden = !hasSource;
+        if (hasSource) {
+          link.href = chapter.sourceUrl;
+          link.textContent = `${experience.source}: ${chapter.sourceLabel}`;
+        } else {
+          link.removeAttribute("href");
+          link.textContent = "";
+        }
+      });
+      if (photoImage && cue.image) {
+        photoImage.src = visualAsset(cue.image);
+        photoImage.alt = chapter.title;
+      }
+      if (photoTitle) photoTitle.textContent = chapter.title;
       if (guideFocusRing) {
         const focus = Array.isArray(cue.focus) ? cue.focus : null;
         guideFocusRing.hidden = !focus || !cue.image;
@@ -3217,6 +3270,27 @@
           cartoonPropIcon.hidden = false;
           cartoonPropIcon.textContent = cartoonPropImage.dataset.fallbackIcon || "\u2022";
         }
+      });
+    }
+    const closePhotoOverlay = () => {
+      if (photoOverlay) photoOverlay.hidden = true;
+    };
+    if (photoOpen) {
+      photoOpen.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const src = photoOpen.dataset.photoSrc;
+        if (!src || !photoOverlay || !photoImage) return;
+        recording.pause();
+        if (video) video.pause();
+        setPlaying(false);
+        photoImage.src = src;
+        photoOverlay.hidden = false;
+      });
+    }
+    if (photoClose) photoClose.addEventListener("click", closePhotoOverlay);
+    if (photoOverlay) {
+      photoOverlay.addEventListener("click", (event) => {
+        if (event.target === photoOverlay) closePhotoOverlay();
       });
     }
 
@@ -3368,6 +3442,16 @@
         if (active) button.setAttribute("aria-current", "step");
         else button.removeAttribute("aria-current");
       });
+      if (stepRail) {
+        stepRail.querySelectorAll("[data-presenter-rail-step]").forEach((button) => {
+          const active = Number(button.dataset.presenterRailStep) === chapterIndex;
+          button.classList.toggle("is-active", active);
+          if (active) button.setAttribute("aria-current", "step");
+          else button.removeAttribute("aria-current");
+        });
+        const activeRail = stepRail.querySelector(".is-active");
+        if (activeRail) activeRail.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+      }
       previousButton.disabled = chapterIndex === 0;
       nextButton.disabled = chapterIndex >= chapters.length - 1;
       if (chapterSelect) chapterSelect.value = String(chapterIndex);
@@ -3458,6 +3542,11 @@
         const status = button.querySelector("[data-chapter-status]");
         if (status) status.textContent = completed ? "✓" : "";
       });
+      if (stepRail) {
+        stepRail.querySelectorAll("[data-chapter-id]").forEach((button) => {
+          button.classList.toggle("is-complete", completedChapters.has(button.dataset.chapterId));
+        });
+      }
     };
 
     const markChapterCompleted = () => {
@@ -3496,6 +3585,8 @@
       recording.src = chapterAudioUrl(chapter, chapterIndex);
       recording.currentTime = 0;
       chapterTitle.textContent = chapter.title;
+      if (groupLabel) groupLabel.textContent = chapter.groupTitle || chapter.title;
+      closePhotoOverlay();
       prepareChapterText(chapter);
       currentLabel.textContent = String(chapterIndex + 1);
       totalLabel.textContent = String(chapters.length);
@@ -3521,21 +3612,38 @@
     }
 
     const renderGuide = () => {
-      chaptersNav.innerHTML = chapters.map((chapter, index) => `
-        <button type="button" class="presenter-chapter-button${completedChapters.has(chapter.id) ? " is-complete" : ""}" data-presenter-chapter="${index}" data-chapter-id="${esc(chapter.id)}">
-          <span class="presenter-chapter-number">${String(index + 1).padStart(2, "0")}</span>
-          <span>${esc(chapter.title)}</span><b class="presenter-chapter-status" data-chapter-status>${completedChapters.has(chapter.id) ? "✓" : ""}</b>
-        </button>`).join("");
+      let previousGroup = "";
+      chaptersNav.innerHTML = chapters.map((chapter, index) => {
+        const groupTitle = chapter.groupTitle || "";
+        const groupHeading = groupTitle && groupTitle !== previousGroup
+          ? `<p class="presenter-chapter-group">${esc(groupTitle)}</p>`
+          : "";
+        previousGroup = groupTitle;
+        return `${groupHeading}
+          <button type="button" class="presenter-chapter-button${completedChapters.has(chapter.id) ? " is-complete" : ""}" data-presenter-chapter="${index}" data-chapter-id="${esc(chapter.id)}">
+            <span class="presenter-chapter-number">${String(index + 1).padStart(2, "0")}</span>
+            <span>${esc(chapter.title)}</span><b class="presenter-chapter-status" data-chapter-status>${completedChapters.has(chapter.id) ? "✓" : ""}</b>
+          </button>`;
+      }).join("");
+      if (stepRail) {
+        stepRail.innerHTML = chapters.map((chapter, index) => `
+          <button type="button" class="presenter-step-dot${completedChapters.has(chapter.id) ? " is-complete" : ""}" data-presenter-rail-step="${index}" data-chapter-id="${esc(chapter.id)}" aria-label="${index + 1}. ${esc(chapter.title)}">${index + 1}</button>`
+        ).join("");
+        stepRail.onclick = (event) => {
+          const button = event.target.closest("[data-presenter-rail-step]");
+          if (button) activateChapter(Number(button.dataset.presenterRailStep), true);
+        };
+      }
       if (chapterSelect) {
         chapterSelect.innerHTML = chapters.map((chapter, index) =>
-          `<option value="${index}">${String(index + 1).padStart(2, "0")} - ${esc(chapter.title)}</option>`
+          `<option value="${index}">${String(index + 1).padStart(2, "0")} · ${esc(chapter.groupTitle || "")} · ${esc(chapter.title)}</option>`
         ).join("");
         chapterSelect.value = String(chapterIndex);
         chapterSelect.onchange = () => activateChapter(Number(chapterSelect.value), true);
       }
       transcript.innerHTML = chapters.map((chapter, index) => `
         <article class="presenter-transcript-chapter">
-          <h4>${index + 1}. ${esc(chapter.title)}</h4>
+          <h4>${index + 1}. ${esc(chapter.groupTitle || "")} — ${esc(chapter.title)}</h4>
           <p>${esc(chapter.text)}</p>
         </article>`).join("");
       totalLabel.textContent = String(chapters.length);
@@ -3591,7 +3699,7 @@
       recording.pause();
       if (video) video.pause();
       setPlaying(false);
-      const quizIndex = chapterQuizIndex[chapter.id];
+      const quizIndex = Number.isInteger(chapter.quizIndex) ? chapter.quizIndex : chapterQuizIndex[chapter.id];
       const quizItem = Number.isInteger(quizIndex) && Array.isArray(DATA.test) ? DATA.test[quizIndex] : null;
       currentQuizItem = quizItem || null;
       quizResolved = false;
@@ -3766,7 +3874,13 @@
       allChapters = [fallbackChapter];
     }
 
-    selectedTrack = trackOrders[selectedTrack] ? selectedTrack : "all";
+    Object.keys(trackOrders).forEach((trackKey) => {
+      trackOrders[trackKey] = allChapters
+        .filter((chapter) => trackKey === "all" || (Array.isArray(chapter.tracks) && chapter.tracks.includes(trackKey)))
+        .map((chapter) => chapter.id);
+    });
+
+    selectedTrack = Object.hasOwn(trackOrders, selectedTrack) && trackOrders[selectedTrack].length ? selectedTrack : "all";
     chapters = trackOrders[selectedTrack]
       .map((id) => allChapters.find((chapter) => chapter.id === id))
       .filter(Boolean);

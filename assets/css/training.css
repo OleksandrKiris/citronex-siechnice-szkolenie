@@ -9130,6 +9130,209 @@ body[data-page="home"] .tile {
   .presenter-card.is-speaking .presenter-portrait { animation: none; }
 }
 
+/* Presenter 3.1: real equipment photos, granular steps and photo inspection. */
+.presenter-cartoon[data-visual] {
+  z-index: 6;
+  pointer-events: none;
+}
+
+.presenter-cartoon[data-visual] .cartoon-prop-card {
+  z-index: 6;
+  pointer-events: none;
+}
+
+.presenter-cartoon[data-visual="photo"] .cartoon-prop-card {
+  width: min(74%, 470px);
+  height: 76%;
+  background: #fff;
+  box-shadow: 0 20px 46px rgba(5, 43, 28, .29), 0 0 0 1px rgba(4, 94, 54, .12);
+}
+
+.cartoon-photo-zoom {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 9;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, .92);
+  border-radius: 11px;
+  background: rgba(5, 46, 30, .9);
+  color: #fff;
+  font: 900 20px/1 system-ui, sans-serif;
+  cursor: zoom-in;
+  pointer-events: auto;
+  box-shadow: 0 6px 17px rgba(0, 0, 0, .25);
+}
+
+.cartoon-photo-zoom[hidden],
+.cartoon-photo-source[hidden],
+.presenter-photo-overlay[hidden],
+.presenter-photo-source[hidden] {
+  display: none !important;
+}
+
+.cartoon-photo-source {
+  position: absolute;
+  right: 10px;
+  bottom: -27px;
+  z-index: 10;
+  max-width: 90%;
+  overflow: hidden;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.presenter-photo-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(1, 17, 11, .96);
+}
+
+.presenter-photo-overlay > img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.presenter-photo-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  padding: 0 0 3px;
+  border: 2px solid rgba(255, 255, 255, .8);
+  border-radius: 50%;
+  background: rgba(7, 48, 32, .94);
+  color: #fff;
+  font: 500 32px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.presenter-photo-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  color: #fff;
+  font-size: 13px;
+}
+
+.presenter-photo-caption strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.presenter-photo-caption a {
+  flex: 0 1 auto;
+  color: #bdf5d4;
+  font-size: 11px;
+  text-align: right;
+}
+
+.presenter-step-rail {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  padding: 3px 1px 8px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  scroll-snap-type: inline proximity;
+}
+
+.presenter-step-rail::-webkit-scrollbar { display: none; }
+
+.presenter-step-dot {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--line) 78%, #168952);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--muted);
+  font: 850 11px/1 system-ui, sans-serif;
+  cursor: pointer;
+  scroll-snap-align: center;
+}
+
+.presenter-step-dot.is-complete {
+  border-color: #15945b;
+  background: #def5e8;
+  color: #075f39;
+}
+
+.presenter-step-dot.is-active {
+  border-color: #063d28;
+  background: #0b6c43;
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 203, 47, .7);
+  transform: scale(1.08);
+}
+
+.presenter-chapter-group {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: 8px 0 4px;
+  padding: 7px 9px;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--surface) 88%, #bce9cc);
+  color: #075a37;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 620px) {
+  body[data-page="pomocnik"] .presenter-step-rail {
+    margin-inline: -2px;
+    padding-bottom: 6px;
+  }
+
+  body[data-page="pomocnik"] .presenter-step-dot {
+    flex-basis: 29px;
+    width: 29px;
+    height: 29px;
+    font-size: 10px;
+  }
+
+  body[data-page="pomocnik"] .presenter-cartoon[data-visual="photo"] .cartoon-prop-card {
+    width: 73%;
+    height: 74%;
+  }
+
+  body[data-page="pomocnik"] .presenter-photo-overlay {
+    position: fixed;
+    inset: 58px 0 0;
+    z-index: 1350;
+  }
+}
+
 /* Presenter 2.0: chapter player, full transcript and real-video-ready stage. */
 .presenter-card-v2 {
   grid-template-columns: minmax(300px, .9fr) minmax(0, 1.35fr);
