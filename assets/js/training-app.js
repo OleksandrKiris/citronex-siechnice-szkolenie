@@ -700,7 +700,7 @@
               <small data-cartoon-prop-counter aria-hidden="true"></small>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master4" alt="" width="512" height="512">
+              <img class="guide-pose" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master5" alt="" width="512" height="512">
               <span class="guide-mouth" aria-hidden="true"></span>
             </div>
           </div>
@@ -2861,6 +2861,24 @@
       ...cue,
       ...(cartoonCueEnhancements[chapterId]?.[cueIndex] || {})
     });
+    const presenterPreloads = [];
+    const preloadPresenterVisuals = () => {
+      const paths = new Set(Object.values(cartoonPoseFiles));
+      Object.entries(cartoonCueSequences).forEach(([chapterId, sequence]) => {
+        sequence.forEach((cue, cueIndex) => {
+          const enhanced = enhancedCartoonCue(chapterId, cueIndex, cue);
+          if (enhanced.image) paths.add(enhanced.image);
+        });
+      });
+      paths.forEach((path) => {
+        const preload = new Image();
+        preload.decoding = "async";
+        preload.src = visualAsset(path);
+        presenterPreloads.push(preload);
+      });
+    };
+    if ("requestIdleCallback" in window) window.requestIdleCallback(preloadPresenterVisuals, { timeout: 1200 });
+    else window.setTimeout(preloadPresenterVisuals, 350);
     let activeCueKey = "";
     let cueAnimationTimer = 0;
 
@@ -2897,10 +2915,17 @@
       if (cartoonPropImage) {
         cartoonPropImage.dataset.fallbackIcon = cue.icon || "\u2022";
         if (cue.image) {
-          cartoonPropImage.src = visualAsset(cue.image);
+          const imageSrc = visualAsset(cue.image);
+          cartoonPropImage.hidden = true;
+          if (cartoonPropImage.getAttribute("src") !== imageSrc) cartoonPropImage.src = imageSrc;
           cartoonPropImage.alt = chapter.title;
-          cartoonPropImage.hidden = false;
-          if (cartoonPropIcon) cartoonPropIcon.hidden = true;
+          if (cartoonPropImage.complete && cartoonPropImage.naturalWidth > 0) {
+            cartoonPropImage.hidden = false;
+            if (cartoonPropIcon) cartoonPropIcon.hidden = true;
+          } else if (cartoonPropIcon) {
+            cartoonPropIcon.hidden = false;
+            cartoonPropIcon.textContent = cue.icon || "\u2022";
+          }
         } else {
           cartoonPropImage.hidden = true;
           cartoonPropImage.removeAttribute("src");
@@ -2936,6 +2961,10 @@
     };
 
     if (cartoonPropImage) {
+      cartoonPropImage.addEventListener("load", () => {
+        cartoonPropImage.hidden = false;
+        if (cartoonPropIcon) cartoonPropIcon.hidden = true;
+      });
       cartoonPropImage.addEventListener("error", () => {
         cartoonPropImage.hidden = true;
         cartoonPropImage.removeAttribute("src");
