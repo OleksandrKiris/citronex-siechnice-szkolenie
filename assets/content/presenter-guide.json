@@ -1,9 +1,9 @@
 {
-  "version": "20260719-siechnice-guide6",
+  "version": "20260719-siechnice-guide7",
   "chapterCount": 50,
   "languages": {
     "pl": {
-      "totalCharacters": 8327,
+      "totalCharacters": 8356,
       "sections": [
         {
           "id": "welcome",
@@ -101,8 +101,8 @@
             "warehouse",
             "all"
           ],
-          "title": "W magazynie nie używa się readerów",
-          "text": "W magazynie nie używa się readerów.\n\nTablet ma jedną wspólną instrukcję dla magazynu i szklarni.",
+          "title": "Na magazynie nie używa się readerów",
+          "text": "Na magazynie nie używa się readerów.\n\nMagazyn nie używa readerów. Tablet ma jedną wspólną instrukcję dla magazynu i szklarni.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -931,7 +931,7 @@
       ]
     },
     "en": {
-      "totalCharacters": 8318,
+      "totalCharacters": 8349,
       "sections": [
         {
           "id": "welcome",
@@ -963,7 +963,7 @@
             "all"
           ],
           "title": "Choose the place",
-          "text": "Choose the place.\n\nChoose Etap, the warehouse or the meeting point according to the start message.",
+          "text": "Choose the place.\n\nChoose the stage, warehouse or meeting point according to the start message.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -1030,7 +1030,7 @@
             "all"
           ],
           "title": "Readers are not used in the warehouse",
-          "text": "Readers are not used in the warehouse.\n\nThe same tablet instructions apply in both the warehouse and the greenhouse.",
+          "text": "Readers are not used in the warehouse.\n\nThe warehouse does not use readers. The tablet has one shared instruction for warehouse and greenhouse.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -1060,8 +1060,8 @@
             "warehouse",
             "all"
           ],
-          "title": "If you are late or sick, contact the warehouse brigadier",
-          "text": "If you are late or sick, contact the warehouse brigadier.",
+          "title": "If you are late or sick, contact the warehouse team leader",
+          "text": "If you are late or sick, contact the warehouse team leader.",
           "image": "assets/warehouse/magazyn-wejscie-2.jpg",
           "icon": "☎️",
           "pose": "right",
@@ -1638,7 +1638,7 @@
             "all"
           ],
           "title": "Log out",
-          "text": "Log out.\n\nLog in again and choose “Log out”.\n\nIf the tablet does not work, you do not see your surname or you do not know your PIN, report it to your brigadier.\n\nDo not leave your session logged in for the next person.",
+          "text": "Log out.\n\nLog in again and choose “Log out”.\n\nIf the tablet does not work, you do not see your surname or you do not know your PIN, report it to your team leader.\n\nDo not leave your session logged in for the next person.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -1711,7 +1711,7 @@
             "all"
           ],
           "title": "Entering the wrong zone",
-          "text": "Entering the wrong zone.\n\nDo not enter a greenhouse, warehouse, passage or zone without instruction.\n\nMoving to another person's place.\n\nDo not change row, side or task without information from the brigadier.\n\nWarehouse without task.\n\nGo to the warehouse only when you have work there or an instruction.",
+          "text": "Entering the wrong zone.\n\nDo not enter a greenhouse, warehouse, passage or zone without instruction.\n\nMoving to another person's place.\n\nDo not change row, side or task without instructions from the team leader.\n\nWarehouse without task.\n\nGo to the warehouse only when you have work there or an instruction.",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -1859,7 +1859,7 @@
       ]
     },
     "ua": {
-      "totalCharacters": 8104,
+      "totalCharacters": 8124,
       "sections": [
         {
           "id": "welcome",
@@ -1958,7 +1958,7 @@
             "all"
           ],
           "title": "На складі рідер не використовується",
-          "text": "На складі рідер не використовується.\n\nДля складу і теплиці діє одна спільна інструкція з користування планшетом.",
+          "text": "На складі рідер не використовується.\n\nНа складі рідер не використовується. Планшет має одну спільну інструкцію для складу і теплиці.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -2787,7 +2787,7 @@
       ]
     },
     "ru": {
-      "totalCharacters": 8209,
+      "totalCharacters": 8217,
       "sections": [
         {
           "id": "welcome",
@@ -2886,7 +2886,7 @@
             "all"
           ],
           "title": "На складе ридер не используется",
-          "text": "На складе ридер не используется.\n\nДля склада и теплицы действует одна общая инструкция по использованию планшета.",
+          "text": "На складе ридер не используется.\n\nНа складе ридер не используется. У планшета одна общая инструкция для склада и теплицы.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -3715,7 +3715,7 @@
       ]
     },
     "az": {
-      "totalCharacters": 7870,
+      "totalCharacters": 7903,
       "sections": [
         {
           "id": "welcome",
@@ -3814,7 +3814,7 @@
             "all"
           ],
           "title": "Anbarda reader istifadə olunmur",
-          "text": "Anbarda reader istifadə olunmur.\n\nPlanşet üçün anbar və istixanada eyni ümumi təlimat tətbiq olunur.",
+          "text": "Anbarda reader istifadə olunmur.\n\nAnbarda reader istifadə olunmur. Planşet üçün anbar və istixana üzrə bir ümumi təlimat var.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -4249,7 +4249,7 @@
             "all"
           ],
           "title": "Yeni menyuda SAĞ düyməni beş dəfə basın: DOWN",
-          "text": "Yeni menyuda SAĞ düyməni beş dəfə basın: DOWN.\n\nORTA düyməni basın: SELECT.\n\nSOL düyməni basın: YES.\n\nRestartdan sonra normal davam edin. Vurma məntiqini dəyişməyin.",
+          "text": "Yeni menyuda SAĞ düyməni beş dəfə basın: DOWN.\n\nORTA düyməni basın: SELECT.\n\nSOL düyməni basın: YES.\n\nRestartdan sonra normal davam edin. Skan etmə ardıcıllığını dəyişməyin.",
           "image": "",
           "icon": "🔄",
           "pose": "reader",
@@ -4643,7 +4643,7 @@
       ]
     },
     "es": {
-      "totalCharacters": 8262,
+      "totalCharacters": 8302,
       "sections": [
         {
           "id": "welcome",
@@ -4675,7 +4675,7 @@
             "all"
           ],
           "title": "Elige el lugar",
-          "text": "Elige el lugar.\n\nElige Etap, el almacén o el punto de encuentro según el mensaje inicial.",
+          "text": "Elige el lugar.\n\nElige etapa, almacén o punto de encuentro según el mensaje inicial.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -4741,8 +4741,8 @@
             "warehouse",
             "all"
           ],
-          "title": "En el almacén no se usa el reader",
-          "text": "En el almacén no se usa el reader.\n\nLa misma instrucción de la tablet se aplica en el almacén y en el invernadero.",
+          "title": "En almacén no se usa reader",
+          "text": "En almacén no se usa reader.\n\nEn almacén no se usa reader. La tablet tiene una instrucción común para almacén e invernadero.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -5177,7 +5177,7 @@
             "all"
           ],
           "title": "En el nuevo menú, pulsa el botón DERECHO cinco veces: DOWN",
-          "text": "En el nuevo menú, pulsa el botón DERECHO cinco veces: DOWN.\n\nPulsa el botón CENTRAL: SELECT.\n\nPulsa el botón IZQUIERDO: YES.\n\nDespués del reinicio continúa normal. No cambies la lógica.",
+          "text": "En el nuevo menú, pulsa el botón DERECHO cinco veces: DOWN.\n\nPulsa el botón CENTRAL: SELECT.\n\nPulsa el botón IZQUIERDO: YES.\n\nDespués del reinicio continúa con normalidad. No cambies la secuencia de escaneo.",
           "image": "",
           "icon": "🔄",
           "pose": "reader",
@@ -5389,7 +5389,7 @@
             "all"
           ],
           "title": "Teléfono sin permiso",
-          "text": "Teléfono sin permiso.\n\nEn producción no uses teléfono sin permiso del supervisor.\n\nFotos y grabaciones.\n\nNo hagas fotos ni grabaciones en el trabajo sin permiso.\n\nAuriculares.\n\nNo uses auriculares si molestan la seguridad o comunicación.",
+          "text": "Teléfono sin permiso.\n\nEn producción no uses el teléfono sin permiso del supervisor.\n\nFotos y grabaciones.\n\nNo hagas fotos ni grabaciones en el trabajo sin permiso.\n\nAuriculares.\n\nNo uses auriculares si interfieren con la seguridad o la comunicación.",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -5571,7 +5571,7 @@
       ]
     },
     "fil": {
-      "totalCharacters": 8591,
+      "totalCharacters": 9282,
       "sections": [
         {
           "id": "welcome",
@@ -5585,7 +5585,7 @@
             "all"
           ],
           "title": "Mahahalagang impormasyon bago magsimula",
-          "text": "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang briefing na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Dadaan tayo nang sunod-sunod sa pagdating, pagkakaiba ng bodega at greenhouse, reader, tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang recording, ulitin ang chapter, o buksan ang buong text anumang oras.",
+          "text": "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang pagsasanay na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Tatalakayin natin nang sunod-sunod ang pagdating, ang pagkakaiba ng bodega at bahay-taniman, ang reader, tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang rekording, ulitin ang kabanata, o buksan ang buong teksto anumang oras.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -5603,7 +5603,7 @@
             "all"
           ],
           "title": "Piliin ang lugar",
-          "text": "Piliin ang lugar.\n\nPiliin ang Etap, bodega o lugar ng pagkikita ayon sa unang mensahe.",
+          "text": "Piliin ang lugar.\n\nPiliin ang etap, bodega o lugar ng pagkikita ayon sa unang mensahe.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -5669,8 +5669,8 @@
             "warehouse",
             "all"
           ],
-          "title": "Hindi gumagamit ng reader sa bodega",
-          "text": "Hindi gumagamit ng reader sa bodega.\n\nIisa ang tagubilin sa tablet para sa bodega at greenhouse.",
+          "title": "Walang reader sa bodega",
+          "text": "Walang reader sa bodega.\n\nWalang reader sa bodega. Iisa ang gabay sa tablet para sa bodega at bahay-taniman.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -5700,8 +5700,8 @@
             "warehouse",
             "all"
           ],
-          "title": "Kung late o may sakit, kontakin ang brigadier ng bodega",
-          "text": "Kung late o may sakit, kontakin ang brigadier ng bodega.",
+          "title": "Kung mahuhuli ka o may sakit, kontakin ang pinuno ng pangkat sa bodega",
+          "text": "Kung mahuhuli ka o may sakit, kontakin ang pinuno ng pangkat sa bodega.",
           "image": "assets/warehouse/magazyn-wejscie-2.jpg",
           "icon": "☎️",
           "pose": "right",
@@ -5779,7 +5779,7 @@
             "all"
           ],
           "title": "Buong pagkakasunod",
-          "text": "Ito ang visual na simula ng reader. Gamitin ang gitnang pindutan ng reader.\n\nHuwag iuwi ang reader at huwag gumamit ng tag ng iba.\n\nWalang reader sa bodega. Ang tablet ay may isang magkasanib instruksiyon para sa bodega at bahay-taniman.",
+          "text": "Ito ang visual na simula ng reader. Gamitin ang gitnang pindutan ng reader.\n\nHuwag iuwi ang reader at huwag gumamit ng tag ng iba.\n\nWalang reader sa bodega. Iisa ang gabay sa tablet para sa bodega at bahay-taniman.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5793,8 +5793,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Kunin ang reader sa numbered charger sa nakatalagang lugar",
-          "text": "Kunin ang reader sa numbered charger sa nakatalagang lugar.",
+          "title": "Kunin ang reader sa may numerong charger sa nakatalagang lugar",
+          "text": "Kunin ang reader sa may numerong charger sa nakatalagang lugar.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5814,8 +5814,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "I-scan ang personal tag gamit ang gitnang pindutan ayon sa start info",
-          "text": "I-scan ang personal tag gamit ang gitnang pindutan ayon sa start info.",
+          "title": "I-scan ang personal mong tag gamit ang gitnang pindutan ayon sa panimulan…",
+          "text": "I-scan ang personal mong tag gamit ang gitnang pindutan ayon sa panimulang impormasyon.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5835,8 +5835,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Sa board, i-scan ang 'start trabaho' tag",
-          "text": "Sa board, i-scan ang 'start trabaho' tag.",
+          "title": "Sa pisara, i-scan ang tag na 'Simula ng trabaho'",
+          "text": "Sa pisara, i-scan ang tag na 'Simula ng trabaho'.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5856,8 +5856,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Sa board, i-scan ang nakatalagang gawain",
-          "text": "Sa board, i-scan ang nakatalagang gawain.",
+          "title": "Sa pisara, i-scan ang nakatalagang gawain",
+          "text": "Sa pisara, i-scan ang nakatalagang gawain.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5877,8 +5877,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Kung nagtatrabaho sa hanay, pumasok sa assigned hanay",
-          "text": "Kung nagtatrabaho sa hanay, pumasok sa assigned hanay. I-scan ang hanay tag paglabas lang.",
+          "title": "Kung sa hanay ka nagtatrabaho, pumasok sa nakatalagang hanay",
+          "text": "Kung sa hanay ka nagtatrabaho, pumasok sa nakatalagang hanay. I-scan lamang ang tag ng hanay kapag lalabas.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5898,8 +5898,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Pag magsisimula ng pahinga, lumabas muna sa hanay at i-scan ang hanay tag…",
-          "text": "Pag magsisimula ng pahinga, lumabas muna sa hanay at i-scan ang hanay tag, pagkatapos 'pahinga start'.",
+          "title": "Bago magpahinga, lumabas muna sa hanay at i-scan ang tag ng hanay",
+          "text": "Bago magpahinga, lumabas muna sa hanay at i-scan ang tag ng hanay. Pagkatapos, i-scan ang 'Simula ng pahinga'.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5919,8 +5919,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Pagbalik galing pahinga, i-scan ang 'pahinga end' at magpatuloy ayon sa i…",
-          "text": "Pagbalik galing pahinga, i-scan ang 'pahinga end' at magpatuloy ayon sa iyong procedure.",
+          "title": "Pagbalik mula sa pahinga, i-scan ang 'Tapos ng pahinga' at ipagpatuloy an…",
+          "text": "Pagbalik mula sa pahinga, i-scan ang 'Tapos ng pahinga' at ipagpatuloy ang tamang proseso.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5940,8 +5940,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Sa pagtatapos ng trabaho, i-scan ang 'end trabaho'",
-          "text": "Sa pagtatapos ng trabaho, i-scan ang 'end trabaho'. Kung nasa hanay ka, i-scan muna ang hanay tag paglabas.",
+          "title": "Sa pagtatapos ng trabaho, i-scan ang 'Tapos ng trabaho'",
+          "text": "Sa pagtatapos ng trabaho, i-scan ang 'Tapos ng trabaho'. Kung nasa hanay ka, i-scan muna ang tag ng hanay paglabas.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5961,8 +5961,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Ibalik ang reader sa numbered charger sa nakatalagang lugar",
-          "text": "Ibalik ang reader sa numbered charger sa nakatalagang lugar.",
+          "title": "Ibalik ang reader sa may numerong charger sa nakatalagang lugar",
+          "text": "Ibalik ang reader sa may numerong charger sa nakatalagang lugar.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
@@ -5984,7 +5984,7 @@
             "all"
           ],
           "title": "Simula sa mga hanay",
-          "text": "Para ito sa nagtatrabaho sa mga hanay ng bahay-taniman. Pinakamahalaga: i-scan ang tag ng hanay PAGLABAS.\n\nPumasok sa assigned hanay. Huwag i-scan ang hanay tag sa pagpasok.",
+          "text": "Para ito sa nagtatrabaho sa mga hanay ng bahay-taniman. Pinakamahalaga: i-scan ang tag ng hanay PAGLABAS.\n\nPumasok sa nakatalagang hanay. Huwag i-scan ang tag ng hanay kapag pumapasok.",
           "image": "assets/greenhouse-orientation/przejscie.svg",
           "icon": "➡️",
           "pose": "left",
@@ -5999,7 +5999,7 @@
             "all"
           ],
           "title": "Paglabas sa hanay",
-          "text": "Kung tapos ang hanay - i-scan ang hanay tag isang beses.\n\nKung hindi tapos ang hanay - i-scan ang hanay tag dalawang beses.\n\nKung nagpipitas ng kamatis sa cart, gamitin ang tab na 'Carts'.",
+          "text": "Kung tapos ang hanay - i-scan ang hanay tag isang beses.\n\nKung hindi tapos ang hanay - i-scan ang hanay tag dalawang beses.\n\nKung nagpipitas ka ng kamatis sa trolley, gamitin ang tab na 'Mga trolley'.",
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
@@ -6015,7 +6015,7 @@
             "all"
           ],
           "title": "Mga trolley",
-          "text": "Sa pagpitas, sundin ang ayos sa larawan: palaging paglabas sa hanay.\n\nUna, i-scan ang cart tag - laging isang beses.\n\nPagkatapos scan hanay tag: tapos isang beses, hindi tapos dalawang beses.",
+          "text": "Sa pagpitas, sundin ang ayos sa larawan: palaging paglabas sa hanay.\n\nUna, i-scan nang isang beses ang tag ng trolley.\n\nPagkatapos, i-scan ang tag ng hanay: isang beses kung tapos na, at dalawang beses kung hindi pa tapos.",
           "image": "",
           "icon": "🛒",
           "pose": "reader",
@@ -6030,7 +6030,7 @@
             "all"
           ],
           "title": "Pagkatapos lamang ng mga scan na ito, pindutin ang ipinakitang pindutan s…",
-          "text": "Pagkatapos lamang ng mga scan na ito, pindutin ang ipinakitang pindutan sa reader.\n\nKung hindi sa cart ang pagpitas, bumalik sa normal na proseso ng hanay.",
+          "text": "Pagkatapos lamang ng mga scan na ito, pindutin ang ipinakitang pindutan sa reader.\n\nKung hindi trolley ang ginagamit sa pagpitas, bumalik sa karaniwang proseso para sa hanay.",
           "image": "",
           "icon": "✓",
           "pose": "reader",
@@ -6067,8 +6067,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Pagpalit ng gawain at end of trabaho",
-          "text": "Bawat palit ng gawain: lumabas sa hanay, scan hanay tag, pagkatapos bagong gawain sa board.\n\nTatapusin ang trabaho sa mga hanay: paglabas scan hanay tag, pagkatapos 'end trabaho'.\n\nKung tapos ka sa mga hanay at lilipat sa trabaho outside mga hanay, sundin ang 'Outside mga hanay'.",
+          "title": "Pagpalit ng gawain at pagtatapos ng trabaho",
+          "text": "Sa bawat pagpalit ng gawain: lumabas sa hanay, i-scan ang tag ng hanay, at pagkatapos ay i-scan sa pisara ang bagong gawain.\n\nKapag tatapusin ang trabaho sa mga hanay: i-scan ang tag ng hanay paglabas, at pagkatapos ay i-scan ang 'Tapos ng trabaho'.\n\nKung tapos ka na sa mga hanay at lilipat sa trabaho sa labas ng mga hanay, sundin ang prosesong 'Labas ng mga hanay'.",
           "image": "assets/inline/reader_start.jpg",
           "icon": "🏁",
           "pose": "reader",
@@ -6090,7 +6090,7 @@
             "all"
           ],
           "title": "I-restart",
-          "text": "Mag-restart lang kapag nag-freeze ang reader.\n\nHawakan ang LEFT pindutan.\n\nHabang hawak ang left, pindutin: RIGHT, MIDDLE, RIGHT.\n\nKapag lumabas ang bagong menu, bitawan ang LEFT pindutan.",
+          "text": "Mag-restart lang kapag nag-freeze ang reader.\n\nPindutin nang matagal ang KALIWANG pindutan.\n\nHabang pinipindot ang kaliwa, pindutin nang sunod-sunod: KANAN, GITNA, KANAN.\n\nKapag lumabas ang bagong menu, bitawan ang KALIWANG pindutan.",
           "image": "",
           "icon": "🔄",
           "pose": "reader",
@@ -6104,8 +6104,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Sa bagong menu, pindutin ang RIGHT pindutan limang beses: DOWN",
-          "text": "Sa bagong menu, pindutin ang RIGHT pindutan limang beses: DOWN.\n\nPindutin ang MIDDLE pindutan: SELECT.\n\nPindutin ang LEFT pindutan: YES.\n\nPagkatapos ng restart, ituloy nang normal. Huwag baguhin ang scan logic.",
+          "title": "Sa bagong menu, pindutin nang limang beses ang KANANG pindutan: DOWN",
+          "text": "Sa bagong menu, pindutin nang limang beses ang KANANG pindutan: DOWN.\n\nPindutin ang GITNANG pindutan: SELECT.\n\nPindutin ang KALIWANG pindutan: YES.\n\nPagkatapos mag-restart, magpatuloy nang normal. Huwag baguhin ang pagkakasunod-sunod ng pag-scan.",
           "image": "",
           "icon": "🔄",
           "pose": "reader",
@@ -6122,7 +6122,7 @@
             "all"
           ],
           "title": "Hanapin ang apelyido at mag-log in",
-          "text": "Gamitin lang ang sariling apelyido at sariling PIN. Bawal gumamit ng data ng ibang tao.\n\nHanapin ang apelyido at mag-log in.\n\nSa simula ng trabaho, hanapin ang pangalan at apelyido. Mag-login gamit ang sariling PIN.",
+          "text": "Gamitin lang ang sariling apelyido at sariling PIN. Bawal gumamit ng data ng ibang tao.\n\nHanapin ang apelyido at mag-log in.\n\nSa simula ng trabaho, hanapin ang iyong pangalan at apelyido. Mag-log in gamit ang sarili mong PIN.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6167,7 +6167,7 @@
             "all"
           ],
           "title": "Piliin ang ginagawa mong gawain",
-          "text": "Piliin ang ginagawa mong gawain.\n\nMag-login ulit at piliin ang ginagawa mong gawain.",
+          "text": "Piliin ang ginagawa mong gawain.\n\nMag-log in muli at piliin ang kasalukuyan mong gawain.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6189,7 +6189,7 @@
             "all"
           ],
           "title": "Pagpalit ng gawain",
-          "text": "Pagpalit ng gawain.\n\nKung magpapalit ng gawain, mag-login ulit at piliin ang bagong gawain.",
+          "text": "Pagpalit ng gawain.\n\nKapag magpapalit ng gawain, mag-log in muli at piliin ang bagong gawain.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6212,7 +6212,7 @@
             "all"
           ],
           "title": "Simula ng pahinga",
-          "text": "Simula ng pahinga.\n\nKapag magsisimula ng pahinga, mag-login at piliin ang “Pahinga”.",
+          "text": "Simula ng pahinga.\n\nBago magpahinga, mag-log in at piliin ang 'Pahinga'.",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6234,7 +6234,7 @@
             "all"
           ],
           "title": "Tapos ng pahinga",
-          "text": "Tapos ng pahinga.\n\nPagkatapos ng pahinga, mag-login at piliin ang ginagawa mong gawain.",
+          "text": "Tapos ng pahinga.\n\nPagkatapos ng pahinga, mag-log in at piliin ang kasalukuyan mong gawain.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6256,7 +6256,7 @@
             "all"
           ],
           "title": "Tapos ng trabaho",
-          "text": "Tapos ng trabaho.\n\nKapag tapos na ang trabaho, mag-login ulit at piliin ang “Tapos ng trabaho”.",
+          "text": "Tapos ng trabaho.\n\nKapag tapos na ang trabaho, mag-log in muli at piliin ang 'Tapos ng trabaho'.",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6278,7 +6278,7 @@
             "all"
           ],
           "title": "Mag-log out",
-          "text": "Mag-log out.\n\nMag-login ulit at piliin ang “Log out”.\n\nKung hindi gumagana ang tablet, wala ang apelyido mo o hindi mo alam ang PIN, sabihin sa iyong brigadier.\n\nHuwag iwanang naka-login ang session para sa susunod na tao.",
+          "text": "Mag-log out.\n\nMag-log in muli at piliin ang 'Mag-log out'.\n\nKung hindi gumagana ang tablet, hindi mo makita ang apelyido mo, o hindi mo alam ang PIN, ipaalam ito sa iyong pinuno ng pangkat.\n\nHuwag iwanang naka-log in ang iyong account para sa susunod na tao.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6299,8 +6299,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Pagkain sa trabaho zone",
-          "text": "Pagkain sa trabaho zone.\n\nHuwag kumain o magdala ng pagkain sa trabaho area.\n\nInumin sa trabaho zone.\n\nIwan ang inumin sa labas ng trabaho zone. Gamitin lang ang itinalagang lugar.\n\nGum, candy, mani.\n\nHuwag mag-chewing gum o magtago ng snacks sa puwesto.\n\nSigarilyo at vape.\n\nHuwag magdala ng sigarilyo, vape o lighter sa trabaho zone.\n\nPersonal na gamit.\n\nBag, damit at personal na gamit ay hindi dapat nasa trabaho area.",
+          "title": "Pagkain sa lugar ng trabaho",
+          "text": "Pagkain sa lugar ng trabaho.\n\nHuwag kumain o magdala ng pagkain sa lugar ng trabaho.\n\nInumin sa lugar ng trabaho.\n\nIwan ang inumin sa labas ng lugar ng trabaho. Gamitin lamang ang nakatalagang lugar.\n\nChewing gum, kendi, at mani.\n\nHuwag ngumunguya ng chewing gum o magtago ng meryenda sa puwesto.\n\nSigarilyo at vape.\n\nHuwag magdala ng sigarilyo, vape, o lighter sa lugar ng trabaho.\n\nPersonal na gamit.\n\nAng bag, damit, at iba pang personal na gamit ay hindi dapat nasa lugar ng trabaho.",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -6317,7 +6317,7 @@
             "all"
           ],
           "title": "Telepono nang walang pahintulot",
-          "text": "Telepono nang walang pahintulot.\n\nSa production, huwag gumamit ng telepono kung walang pahintulot ng supervisor.\n\nLarawan at video.\n\nHuwag kumuha ng larawan o video sa trabaho nang walang pahintulot.\n\nMga headphone.\n\nHuwag gumamit ng mga headphone kung nakakaistorbo sa safety o komunikasyon.",
+          "text": "Telepono nang walang pahintulot.\n\nSa lugar ng produksiyon, huwag gumamit ng telepono nang walang pahintulot ng superbisor.\n\nLarawan at video.\n\nHuwag kumuha ng larawan o video sa trabaho nang walang pahintulot.\n\nMga headphone.\n\nHuwag gumamit ng mga headphone kung nakahahadlang ang mga ito sa kaligtasan o komunikasyon.",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -6334,7 +6334,7 @@
             "all"
           ],
           "title": "PIN ng ibang tao",
-          "text": "PIN ng ibang tao.\n\nHuwag gumamit ng PIN ng iba. Magiging mali ang trabaho pagpaparehistro.\n\nTag o reader ng ibang tao.\n\nGamitin lang ang ibinigay o itinuro sa iyo.\n\nData ng ibang tao.\n\nHuwag mag-login o mag-record ng trabaho gamit ang data ng iba.",
+          "text": "PIN ng ibang tao.\n\nHuwag gumamit ng PIN ng ibang tao. Magiging mali ang pagtatala ng trabaho.\n\nTag o reader ng ibang tao.\n\nGamitin lang ang ibinigay o itinuro sa iyo.\n\nImpormasyon ng ibang tao.\n\nHuwag mag-log in o magtala ng trabaho gamit ang impormasyon ng ibang tao.",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -6350,8 +6350,8 @@
             "greenhouse",
             "all"
           ],
-          "title": "Pagpasok sa maling zone",
-          "text": "Pagpasok sa maling zone.\n\nHuwag pumasok sa bahay-taniman, bodega, daanan o zone kung walang utos.\n\nPaglipat sa puwesto ng iba.\n\nHuwag lumipat ng hanay, side o task kung walang sinabi ang brigadier.\n\nBodega nang walang task.\n\nPumunta lang sa bodega kung may trabaho o utos doon.",
+          "title": "Pagpasok sa maling lugar",
+          "text": "Pagpasok sa maling lugar.\n\nHuwag pumasok sa bahay-taniman, bodega, daanan, o ibang lugar kung wala kang utos o pahintulot.\n\nPaglipat sa puwesto ng iba.\n\nHuwag lumipat ng hanay, panig, o gawain nang walang tagubilin ng pinuno ng pangkat.\n\nBodega nang walang gawain.\n\nPumunta lang sa bodega kung may trabaho o utos doon.",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -6453,7 +6453,7 @@
             "all"
           ],
           "title": "Silid pang-emerhensiya",
-          "text": "Silid pang-emerhensiya.\n\nAng emerhensiya department ay para sa biglaang panganib sa buhay o kalusugan, gaya ng pagkawala ng malay, malubhang hirap huminga, matinding pagdurugo, hinalang atake sa puso o stroke, malubhang pinsala, o biglaang malubhang paglala.\n\nKung kailangan agad ang emerhensiya services, tumawag sa 112. Kung hindi agarang panganib, kontakin ang klinika o tumawag sa NFZ 800 190 590.",
+          "text": "Silid pang-emerhensiya.\n\nAng silid pang-emerhensiya ay para sa biglaang panganib sa buhay o kalusugan, gaya ng pagkawala ng malay, matinding hirap sa paghinga, malakas na pagdurugo, hinalang atake sa puso o stroke, malubhang pinsala, o biglaang matinding paglala ng kalagayan.\n\nKung kailangan agad ng serbisyong pang-emerhensiya, tumawag sa 112. Kung walang agarang panganib, makipag-ugnayan sa klinika o tumawag sa NFZ sa 800 190 590.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -6472,7 +6472,7 @@
             "all"
           ],
           "title": "Agarang tulong sa ngipin",
-          "text": "Agarang tulong sa ngipin.\n\nMaaaring magbago ang NFZ dental duty clinic. Tingnan muna ang kasalukuyang duty clinic o tumawag sa 24-hour NFZ helpline 800 190 590.\n\nMaaaring ituro ng NFZ consultant ang kasalukuyang dental care, pinakamalapit na emerhensiya department, at night o holiday care. Libre ang linya at bukas 24 oras, 7 araw sa isang linggo.\n\nKung nahihirapang huminga o lumunok dahil sa pamamaga ng mukha, o mabilis lumalala ang kondisyon, tumawag sa 112.",
+          "text": "Agarang tulong sa ngipin.\n\nMaaaring magbago ang klinikang may serbisyong dental ng NFZ. Suriin muna ang kasalukuyang lugar na bukas o tumawag sa 24-oras na helpline ng NFZ sa 800 190 590.\n\nMaaaring ituro ng tagapayo ng NFZ ang kasalukuyang serbisyong dental, ang pinakamalapit na silid pang-emerhensiya, at serbisyong bukas sa gabi o araw ng pahinga. Libre ang linya at bukas 24 oras bawat araw, 7 araw bawat linggo.\n\nKung nahihirapang huminga o lumunok dahil sa pamamaga ng mukha, o mabilis lumalala ang kondisyon, tumawag sa 112.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -6481,7 +6481,7 @@
         {
           "id": "finish",
           "group": "finish",
-          "groupTitle": "Pagsusuri at orientation sa lugar",
+          "groupTitle": "Pagsusuri ng kaalaman at pagsasanay sa lugar",
           "tracks": [
             "warehouse",
             "greenhouse",
@@ -6489,8 +6489,8 @@
             "waiting",
             "all"
           ],
-          "title": "Pagsusuri at orientation sa lugar",
-          "text": "Ngayon, talakayin natin ang: Pagsusuri at orientation sa lugar.\n\n30 maikling tanong. Pagkatapos, ipadala ang resulta sa mensahe.\n\nTingnan ang lahat ng kailangang module at sagutan ang test. Hindi nito pinapalitan ang aktuwal na orientation sa trabaho. Pagdating, sundin ang supervisor, brigadier at mga tuntunin sa kaligtasan. Kapag may hindi malinaw, huminto at magtanong. Nais ko sa iyo ang maayos at ligtas na trabaho.",
+          "title": "Pagsusuri ng kaalaman at pagsasanay sa lugar",
+          "text": "Ngayon, talakayin natin ang Pagsusuri ng kaalaman at pagsasanay sa lugar.\n\nSagutan ang 30 maiikling tanong. Pagkatapos, ipadala ang resulta sa mensahe.\n\nPanoorin ang lahat ng kinakailangang modyul at sagutan ang pagsusulit. Hindi nito pinapalitan ang aktuwal na pagsasanay sa lugar ng trabaho. Pagdating, sundin ang superbisor, pinuno ng pangkat, at mga tuntunin sa kaligtasan. Kapag may hindi malinaw, huminto at magtanong. Nawa'y maging maayos at ligtas ang iyong trabaho.",
           "image": "",
           "icon": "✅",
           "pose": "neutral",
@@ -6499,7 +6499,7 @@
       ]
     },
     "id": {
-      "totalCharacters": 7892,
+      "totalCharacters": 7921,
       "sections": [
         {
           "id": "welcome",
@@ -6531,7 +6531,7 @@
             "all"
           ],
           "title": "Pilih tempat",
-          "text": "Pilih tempat.\n\nPilih Etap, gudang, atau titik temu sesuai pesan awal.",
+          "text": "Pilih tempat.\n\nPilih tahap, gudang, atau titik temu sesuai pesan awal.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -6597,8 +6597,8 @@
             "warehouse",
             "all"
           ],
-          "title": "Reader tidak digunakan di gudang",
-          "text": "Reader tidak digunakan di gudang.\n\nInstruksi tablet yang sama berlaku untuk gudang dan rumah kaca.",
+          "title": "Di gudang tidak memakai reader",
+          "text": "Di gudang tidak memakai reader.\n\nGudang tidak memakai reader. Tablet punya satu instruksi bersama untuk gudang dan rumah kaca.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -7427,7 +7427,7 @@
       ]
     },
     "ne": {
-      "totalCharacters": 7390,
+      "totalCharacters": 7419,
       "sections": [
         {
           "id": "welcome",
@@ -7459,7 +7459,7 @@
             "all"
           ],
           "title": "ठाउँ छान्नुहोस्",
-          "text": "ठाउँ छान्नुहोस्।\n\nसुरुको सन्देशअनुसार Etap, गोदाम वा भेट्ने ठाउँ छान्नुहोस्।",
+          "text": "ठाउँ छान्नुहोस्.\n\nसुरुको सन्देश अनुसार चरण, गोदाम वा भेट्ने ठाउँ छान्नुहोस्।",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -7525,8 +7525,8 @@
             "warehouse",
             "all"
           ],
-          "title": "गोदाममा रिडर प्रयोग हुँदैन",
-          "text": "गोदाममा रिडर प्रयोग हुँदैन।\n\nट्याब्लेटको एउटै निर्देशन गोदाम र हरितगृह दुवैमा लागू हुन्छ।",
+          "title": "गोदाममा reader प्रयोग हुँदैन",
+          "text": "गोदाममा reader प्रयोग हुँदैन।\n\nगोदाममा reader प्रयोग हुँदैन। ट्याबलेटको गोदाम र ग्रीनहाउसका लागि एउटै साझा निर्देशन छ।",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",

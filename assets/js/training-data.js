@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260719-siechnice-master31",
+      version: "20260719-siechnice-master32",
       externalInformationReviewed: "2026-07-19",
       externalInformationSources: [
         "https://www.siechnice.gmina.pl/strona-78-ochrona_zdrowia.html",
@@ -158,7 +158,7 @@
     warehouseRules: [
       tx("Na magazynie nie używa się readerów.", "Readers are not used in the warehouse.", "На складі рідер не використовується.", "На складе ридер не используется.", "Anbarda reader istifadə olunmur.", "En almacén no se usa reader.", "Walang reader sa bodega.", "Di gudang tidak memakai reader.", "गोदाममा reader प्रयोग हुँदैन।"),
       tx("Najpierw sprawdź mapę i zdjęcie wejścia.", "First check the map and entrance photo.", "Спочатку перевірте карту і фото входу.", "Сначала проверьте карту и фото входа.", "Əvvəl xəritəni və giriş şəklini yoxlayın.", "Primero revisa el mapa y la foto de entrada.", "Tingnan muna ang mapa at larawan ng pasukan.", "Pertama cek peta dan foto pintu masuk.", "पहिले नक्सा र प्रवेशको फोटो हेर्नुहोस्।"),
-      tx("W razie spóźnienia lub choroby kontaktuj się z brygadzistą magazynu.", "If you are late or sick, contact the warehouse brigadier.", "Якщо запізнюєтесь або хворієте, зв'яжіться з бригадиром складу.", "Если опаздываете или болеете, свяжитесь с бригадиром склада.", "Gecikirsinizsə və ya xəstəsinizsə, anbar briqadiri ilə əlaqə saxlayın.", "Si llegas tarde o estás enfermo, contacta al jefe de almacén.", "Kung late o may sakit, kontakin ang brigadier ng bodega.", "Jika terlambat atau sakit, hubungi mandor gudang.", "ढिलो वा बिरामी भए गोदाम ब्रिगेडियरलाई सम्पर्क गर्नुहोस्।")
+      tx("W razie spóźnienia lub choroby kontaktuj się z brygadzistą magazynu.", "If you are late or sick, contact the warehouse team leader.", "Якщо запізнюєтесь або хворієте, зв'яжіться з бригадиром складу.", "Если опаздываете или болеете, свяжитесь с бригадиром склада.", "Gecikirsinizsə və ya xəstəsinizsə, anbar briqadiri ilə əlaqə saxlayın.", "Si llegas tarde o estás enfermo, contacta al jefe de almacén.", "Kung mahuhuli ka o may sakit, kontakin ang pinuno ng pangkat sa bodega.", "Jika terlambat atau sakit, hubungi mandor gudang.", "ढिलो वा बिरामी भए गोदाम ब्रिगेडियरलाई सम्पर्क गर्नुहोस्।")
     ],
 
     tabletGuide: {
@@ -217,7 +217,7 @@
         }
       ],
       tips: [
-        tx("Jeśli tablet nie działa, nie widzisz swojego nazwiska albo nie znasz PIN-u, zgłoś to swojemu brygadziście.", "If the tablet does not work, you do not see your surname or you do not know your PIN, report it to your brigadier.", "Якщо планшет не працює, не бачите свого прізвища або не знаєте PIN, повідомте свого бригадира.", "Если планшет не работает, вы не видите свою фамилию или не знаете PIN, сообщите своему бригадиру.", "Planşet işləmirsə, soyadınızı görmürsünüzsə və ya PIN bilmirsinizsə, öz briqadirinizə deyin.", "Si la tablet no funciona, no ves tu apellido o no sabes el PIN, avisa a tu encargado.", "Kung hindi gumagana ang tablet, wala ang apelyido mo o hindi mo alam ang PIN, sabihin sa iyong brigadier.", "Jika tablet tidak berfungsi, nama Anda tidak terlihat atau tidak tahu PIN, laporkan ke mandor Anda.", "ट्याबलेट चलेन, आफ्नो थर देखिएन वा PIN थाहा छैन भने आफ्नो ब्रिगेडियरलाई भन्नुहोस्।"),
+        tx("Jeśli tablet nie działa, nie widzisz swojego nazwiska albo nie znasz PIN-u, zgłoś to swojemu brygadziście.", "If the tablet does not work, you do not see your surname or you do not know your PIN, report it to your team leader.", "Якщо планшет не працює, не бачите свого прізвища або не знаєте PIN, повідомте свого бригадира.", "Если планшет не работает, вы не видите свою фамилию или не знаете PIN, сообщите своему бригадиру.", "Planşet işləmirsə, soyadınızı görmürsünüzsə və ya PIN bilmirsinizsə, öz briqadirinizə deyin.", "Si la tablet no funciona, no ves tu apellido o no sabes el PIN, avisa a tu encargado.", "Kung hindi gumagana ang tablet, hindi mo makita ang apelyido mo, o hindi mo alam ang PIN, ipaalam ito sa iyong pinuno ng pangkat.", "Jika tablet tidak berfungsi, nama Anda tidak terlihat atau tidak tahu PIN, laporkan ke mandor Anda.", "ट्याबलेट चलेन, आफ्नो थर देखिएन वा PIN थाहा छैन भने आफ्नो ब्रिगेडियरलाई भन्नुहोस्।"),
         tx("Nie zostawiaj swojej sesji zalogowanej dla kolejnej osoby.", "Do not leave your session logged in for the next person.", "Не залишайте свою сесію відкритою для наступної людини.", "Не оставляйте свою сессию открытой для следующего человека.", "Sessiyanızı növbəti şəxs üçün açıq saxlamayın.", "No dejes tu sesión abierta para otra persona.", "Huwag iwanang naka-login ang session para sa susunod na tao.", "Jangan tinggalkan sesi Anda masih login untuk orang berikutnya.", "अर्को व्यक्तिका लागि आफ्नो session खुला नछोड्नुहोस्।")
       ]
     },
@@ -387,13 +387,13 @@
           tx("Kontynuuj normalnie", "Continue normally", "Продовжуйте нормально", "Продолжайте нормально", "Normal davam edin", "Continúa normal", "Ituloy normal", "Lanjut normal", "सामान्य जारी राख्नुहोस्")
         ],
         steps: [
-          tx("Trzymaj LEWY przycisk.", "Hold the LEFT button.", "Тримайте ЛІВУ кнопку.", "Держите ЛЕВУЮ кнопку.", "SOL düyməni saxlayın.", "Mantén presionado el botón IZQUIERDO.", "Hawakan ang LEFT button.", "Tahan tombol KIRI.", "बायाँ बटन थिचिराख्नुहोस्।"),
-          tx("Trzymając lewy, wciśnij po kolei: PRAWY, ŚRODKOWY, PRAWY.", "While holding left, press in order: RIGHT, MIDDLE, RIGHT.", "Тримаючи ліву, натисніть по черзі: ПРАВА, СЕРЕДНЯ, ПРАВА.", "Держа левую, нажмите по очереди: ПРАВАЯ, СРЕДНЯЯ, ПРАВАЯ.", "Solu saxlayaraq ardıcıllıqla basın: SAĞ, ORTA, SAĞ.", "Manteniendo izquierdo, pulsa: DERECHO, CENTRAL, DERECHO.", "Habang hawak ang left, pindutin: RIGHT, MIDDLE, RIGHT.", "Sambil menahan kiri, tekan: KANAN, TENGAH, KANAN.", "बायाँ थिचिराखेर क्रमशः दायाँ, बीच, दायाँ थिच्नुहोस्।"),
-          tx("Gdy pojawi się nowe menu, puść LEWY przycisk.", "When the new menu appears, release the LEFT button.", "Коли з'явиться нове меню, відпустіть ЛІВУ кнопку.", "Когда появится новое меню, отпустите ЛЕВУЮ кнопку.", "Yeni menyu çıxanda SOL düyməni buraxın.", "Cuando aparezca el nuevo menú, suelta el botón IZQUIERDO.", "Kapag lumabas ang bagong menu, bitawan ang LEFT button.", "Saat menu baru muncul, lepas tombol KIRI.", "नयाँ menu आएपछि बायाँ बटन छोड्नुहोस्।"),
-          tx("W nowym menu naciśnij PRAWY przycisk pięć razy: DOWN.", "In the new menu, press the RIGHT button five times: DOWN.", "У новому меню натисніть ПРАВУ кнопку п'ять разів: DOWN.", "В новом меню нажмите ПРАВУЮ кнопку пять раз: DOWN.", "Yeni menyuda SAĞ düyməni beş dəfə basın: DOWN.", "En el nuevo menú, pulsa el botón DERECHO cinco veces: DOWN.", "Sa bagong menu, pindutin ang RIGHT button limang beses: DOWN.", "Di menu baru, tekan tombol KANAN lima kali: DOWN.", "नयाँ menu मा दायाँ बटन पाँच पटक थिच्नुहोस्: DOWN।"),
-          tx("Naciśnij ŚRODKOWY przycisk: SELECT.", "Press the MIDDLE button: SELECT.", "Натисніть СЕРЕДНЮ кнопку: SELECT.", "Нажмите СРЕДНЮЮ кнопку: SELECT.", "ORTA düyməni basın: SELECT.", "Pulsa el botón CENTRAL: SELECT.", "Pindutin ang MIDDLE button: SELECT.", "Tekan tombol TENGAH: SELECT.", "बीचको बटन थिच्नुहोस्: SELECT।"),
-          tx("Naciśnij LEWY przycisk: YES.", "Press the LEFT button: YES.", "Натисніть ЛІВУ кнопку: YES.", "Нажмите ЛЕВУЮ кнопку: YES.", "SOL düyməni basın: YES.", "Pulsa el botón IZQUIERDO: YES.", "Pindutin ang LEFT button: YES.", "Tekan tombol KIRI: YES.", "बायाँ बटन थिच्नुहोस्: YES।"),
-          tx("Po restarcie kontynuuj normalnie. Nie zmieniaj logiki odbijania.", "After restart, continue normally. Do not change the scanning logic.", "Після рестарту продовжуйте нормально. Не змінюйте логіку відбиття.", "После рестарта продолжайте нормально. Не меняйте логику отметок.", "Restartdan sonra normal davam edin. Vurma məntiqini dəyişməyin.", "Después del reinicio continúa normal. No cambies la lógica.", "Pagkatapos ng restart, ituloy nang normal. Huwag baguhin ang scan logic.", "Setelah restart lanjutkan normal. Jangan ubah logika scan.", "Restart पछि सामान्य रूपमा जारी राख्नुहोस्। स्क्यान नियम नबदल्नुहोस्।")
+          tx("Trzymaj LEWY przycisk.", "Hold the LEFT button.", "Тримайте ЛІВУ кнопку.", "Держите ЛЕВУЮ кнопку.", "SOL düyməni saxlayın.", "Mantén presionado el botón IZQUIERDO.", "Pindutin nang matagal ang KALIWANG pindutan.", "Tahan tombol KIRI.", "बायाँ बटन थिचिराख्नुहोस्।"),
+          tx("Trzymając lewy, wciśnij po kolei: PRAWY, ŚRODKOWY, PRAWY.", "While holding left, press in order: RIGHT, MIDDLE, RIGHT.", "Тримаючи ліву, натисніть по черзі: ПРАВА, СЕРЕДНЯ, ПРАВА.", "Держа левую, нажмите по очереди: ПРАВАЯ, СРЕДНЯЯ, ПРАВАЯ.", "Solu saxlayaraq ardıcıllıqla basın: SAĞ, ORTA, SAĞ.", "Manteniendo izquierdo, pulsa: DERECHO, CENTRAL, DERECHO.", "Habang pinipindot ang kaliwa, pindutin nang sunod-sunod: KANAN, GITNA, KANAN.", "Sambil menahan kiri, tekan: KANAN, TENGAH, KANAN.", "बायाँ थिचिराखेर क्रमशः दायाँ, बीच, दायाँ थिच्नुहोस्।"),
+          tx("Gdy pojawi się nowe menu, puść LEWY przycisk.", "When the new menu appears, release the LEFT button.", "Коли з'явиться нове меню, відпустіть ЛІВУ кнопку.", "Когда появится новое меню, отпустите ЛЕВУЮ кнопку.", "Yeni menyu çıxanda SOL düyməni buraxın.", "Cuando aparezca el nuevo menú, suelta el botón IZQUIERDO.", "Kapag lumabas ang bagong menu, bitawan ang KALIWANG pindutan.", "Saat menu baru muncul, lepas tombol KIRI.", "नयाँ menu आएपछि बायाँ बटन छोड्नुहोस्।"),
+          tx("W nowym menu naciśnij PRAWY przycisk pięć razy: DOWN.", "In the new menu, press the RIGHT button five times: DOWN.", "У новому меню натисніть ПРАВУ кнопку п'ять разів: DOWN.", "В новом меню нажмите ПРАВУЮ кнопку пять раз: DOWN.", "Yeni menyuda SAĞ düyməni beş dəfə basın: DOWN.", "En el nuevo menú, pulsa el botón DERECHO cinco veces: DOWN.", "Sa bagong menu, pindutin nang limang beses ang KANANG pindutan: DOWN.", "Di menu baru, tekan tombol KANAN lima kali: DOWN.", "नयाँ menu मा दायाँ बटन पाँच पटक थिच्नुहोस्: DOWN।"),
+          tx("Naciśnij ŚRODKOWY przycisk: SELECT.", "Press the MIDDLE button: SELECT.", "Натисніть СЕРЕДНЮ кнопку: SELECT.", "Нажмите СРЕДНЮЮ кнопку: SELECT.", "ORTA düyməni basın: SELECT.", "Pulsa el botón CENTRAL: SELECT.", "Pindutin ang GITNANG pindutan: SELECT.", "Tekan tombol TENGAH: SELECT.", "बीचको बटन थिच्नुहोस्: SELECT।"),
+          tx("Naciśnij LEWY przycisk: YES.", "Press the LEFT button: YES.", "Натисніть ЛІВУ кнопку: YES.", "Нажмите ЛЕВУЮ кнопку: YES.", "SOL düyməni basın: YES.", "Pulsa el botón IZQUIERDO: YES.", "Pindutin ang KALIWANG pindutan: YES.", "Tekan tombol KIRI: YES.", "बायाँ बटन थिच्नुहोस्: YES।"),
+          tx("Po restarcie kontynuuj normalnie. Nie zmieniaj logiki odbijania.", "After restart, continue normally. Do not change the scanning logic.", "Після рестарту продовжуйте нормально. Не змінюйте логіку відбиття.", "После рестарта продолжайте нормально. Не меняйте логику отметок.", "Restartdan sonra normal davam edin. Skan etmə ardıcıllığını dəyişməyin.", "Después del reinicio continúa con normalidad. No cambies la secuencia de escaneo.", "Pagkatapos mag-restart, magpatuloy nang normal. Huwag baguhin ang pagkakasunod-sunod ng pag-scan.", "Setelah restart lanjutkan normal. Jangan ubah logika scan.", "Restart पछि सामान्य रूपमा जारी राख्नुहोस्। स्क्यान नियम नबदल्नुहोस्।")
         ]
       }
     ],
@@ -1363,7 +1363,7 @@ window.CX_DATA.bans = [
     group: "phone",
     icon: "phone",
     title: tx("Telefon bez pozwolenia", "Phone without permission", "Телефон без дозволу", "Телефон без разрешения", "İcazəsiz telefon", "Teléfono sin permiso", "Telepono nang walang pahintulot", "Telepon tanpa izin", "अनुमति बिना फोन"),
-    detail: tx("W produkcji nie używaj telefonu bez zgody przełożonego.", "In production, do not use the phone without supervisor permission.", "На продукції не користуйтеся телефоном без дозволу керівника.", "На производстве не используйте телефон без разрешения руководителя.", "İstehsalatda rəhbər icazəsi olmadan telefon istifadə etməyin.", "En producción no uses teléfono sin permiso del supervisor.", "Sa production, huwag gumamit ng phone kung walang pahintulot ng supervisor.", "Di produksi jangan gunakan telepon tanpa izin atasan.", "उत्पादन क्षेत्रमा सुपरभाइजरको अनुमति बिना फोन प्रयोग नगर्नुहोस्।")
+    detail: tx("W produkcji nie używaj telefonu bez zgody przełożonego.", "In production, do not use the phone without supervisor permission.", "На продукції не користуйтеся телефоном без дозволу керівника.", "На производстве не используйте телефон без разрешения руководителя.", "İstehsalatda rəhbər icazəsi olmadan telefon istifadə etməyin.", "En producción no uses el teléfono sin permiso del supervisor.", "Sa lugar ng produksiyon, huwag gumamit ng telepono nang walang pahintulot ng superbisor.", "Di produksi jangan gunakan telepon tanpa izin atasan.", "उत्पादन क्षेत्रमा सुपरभाइजरको अनुमति बिना फोन प्रयोग नगर्नुहोस्।")
   },
   {
     group: "phone",
@@ -1375,7 +1375,7 @@ window.CX_DATA.bans = [
     group: "phone",
     icon: "phone",
     title: tx("Słuchawki", "Headphones", "Навушники", "Наушники", "Qulaqlıq", "Auriculares", "Mga headphone", "Headphone", "हेडफोन"),
-    detail: tx("Nie używaj słuchawek w pracy, jeśli przeszkadzają w bezpieczeństwie lub komunikacji.", "Do not use headphones at work if they disturb safety or communication.", "Не використовуйте навушники, якщо вони заважають безпеці або комунікації.", "Не используйте наушники, если они мешают безопасности или общению.", "Təhlükəsizlik və ünsiyyətə mane olursa, işdə qulaqlıq istifadə etməyin.", "No uses auriculares si molestan la seguridad o comunicación.", "Huwag gumamit ng headphones kung nakakaistorbo sa safety o komunikasyon.", "Jangan pakai headphone jika mengganggu keselamatan atau komunikasi.", "सुरक्षा वा कुराकानीमा बाधा भए काममा हेडफोन प्रयोग नगर्नुहोस्।")
+    detail: tx("Nie używaj słuchawek w pracy, jeśli przeszkadzają w bezpieczeństwie lub komunikacji.", "Do not use headphones at work if they disturb safety or communication.", "Не використовуйте навушники, якщо вони заважають безпеці або комунікації.", "Не используйте наушники, если они мешают безопасности или общению.", "Təhlükəsizlik və ünsiyyətə mane olursa, işdə qulaqlıq istifadə etməyin.", "No uses auriculares si interfieren con la seguridad o la comunicación.", "Huwag gumamit ng mga headphone kung nakahahadlang ang mga ito sa kaligtasan o komunikasyon.", "Jangan pakai headphone jika mengganggu keselamatan atau komunikasi.", "सुरक्षा वा कुराकानीमा बाधा भए काममा हेडफोन प्रयोग नगर्नुहोस्।")
   },
   {
     group: "access",
@@ -1387,12 +1387,12 @@ window.CX_DATA.bans = [
     group: "access",
     icon: "greenhouse",
     title: tx("Przechodzenie na cudze miejsce", "Moving to another person's place", "Перехід на чуже місце", "Переход на чужое место", "Başqasının yerinə keçmək", "Pasar al lugar de otra persona", "Paglipat sa puwesto ng iba", "Pindah ke tempat orang lain", "अरूको ठाउँमा जानु"),
-    detail: tx("Nie zmieniaj rzędu, strony ani zadania bez informacji od brygadzisty.", "Do not change row, side or task without information from the brigadier.", "Не змінюйте ряд, сторону або завдання без інформації від бригадира.", "Не меняйте ряд, сторону или задание без информации от бригадира.", "Briqadirdən məlumat olmadan sıra, tərəf və tapşırığı dəyişməyin.", "No cambies fila, lado o tarea sin información del encargado.", "Huwag lumipat ng row, side o task kung walang sinabi ang brigadier.", "Jangan ganti baris, sisi atau tugas tanpa informasi dari mandor.", "ब्रिगेडियरको जानकारी बिना लाइन, साइड वा काम नबदल्नुहोस्।")
+    detail: tx("Nie zmieniaj rzędu, strony ani zadania bez informacji od brygadzisty.", "Do not change row, side or task without instructions from the team leader.", "Не змінюйте ряд, сторону або завдання без інформації від бригадира.", "Не меняйте ряд, сторону или задание без информации от бригадира.", "Briqadirdən məlumat olmadan sıra, tərəf və tapşırığı dəyişməyin.", "No cambies fila, lado o tarea sin información del encargado.", "Huwag lumipat ng hanay, panig, o gawain nang walang tagubilin ng pinuno ng pangkat.", "Jangan ganti baris, sisi atau tugas tanpa informasi dari mandor.", "ब्रिगेडियरको जानकारी बिना लाइन, साइड वा काम नबदल्नुहोस्।")
   },
   {
     group: "access",
     icon: "warehouse",
-    title: tx("Magazyn bez zadania", "Warehouse without task", "Склад без завдання", "Склад без задания", "Tapşırıqsız anbar", "Almacén sin tarea", "Bodega nang walang task", "Gudang tanpa tugas", "काम बिना गोदाम"),
+    title: tx("Magazyn bez zadania", "Warehouse without task", "Склад без завдання", "Склад без задания", "Tapşırıqsız anbar", "Almacén sin tarea", "Bodega nang walang gawain", "Gudang tanpa tugas", "काम बिना गोदाम"),
     detail: tx("Na magazyn idziesz tylko wtedy, gdy masz tam pracę albo polecenie.", "Go to the warehouse only when you have work there or an instruction.", "На склад йдіть тільки тоді, коли маєте там роботу або вказівку.", "На склад идите только если у вас там работа или указание.", "Anbara yalnız orada işiniz və ya tapşırığınız olduqda gedin.", "Ve al almacén solo si tienes trabajo allí o indicación.", "Pumunta lang sa bodega kung may trabaho o utos doon.", "Pergi ke gudang hanya jika ada tugas atau instruksi.", "त्यहाँ काम वा निर्देशन हुँदा मात्र गोदाम जानुहोस्।")
   },
   {
@@ -1519,4 +1519,66 @@ window.CX_DATA.bans = [
     Object.values(value).forEach(normalizeTranslations);
   };
   normalizeTranslations(D);
+
+  // Final Filipino editorial pass. Keep workplace product names such as
+  // reader, tag, tablet and PIN, but make the surrounding instructions
+  // natural, direct and unambiguous for voice playback.
+  D.pages.pomocnik.lead.fil = "Buong pagsasanay sa 10 kabanata.";
+  D.pages.tablet.lead.fil = "Iisang sistema ng tablet ang ginagamit sa bahay-taniman at bodega. Ipinapakita rito ang pag-log in gamit ang PIN, pagsisimula ng trabaho, pagpili ng gawain, pahinga, pagtatapos ng trabaho, at pag-log out.";
+  D.pages.lekarz.lead.fil = "Piliin muna kung kailangan mo ng klinika, silid pang-emerhensiya, o dentista. Kung may agarang panganib, tumawag sa 112.";
+  D.pages.kontakty.lead.fil = "Piliin muna ang departamento. Para sa pinuno ng pangkat, telepono at WhatsApp lamang ang makikita.";
+  D.pages.miasto.lead.fil = "Mahahalagang lugar: mga opisina, dokumento ng paninirahan, transportasyon, at iba pang pangunahing serbisyo sa lungsod.";
+  D.pages.test.title.fil = "Pangkalahatang pagsusulit";
+  D.pages.test.lead.fil = "Sagutan ang 30 maiikling tanong. Pagkatapos, ipadala ang resulta sa mensahe.";
+
+  D.readerTabs[0].tips[1].fil = "Walang reader sa bodega. Iisa ang gabay sa tablet para sa bodega at bahay-taniman.";
+  const filStartSteps = [
+    "Kunin ang reader sa may numerong charger sa nakatalagang lugar.",
+    "I-scan ang personal mong tag gamit ang gitnang pindutan ayon sa panimulang impormasyon.",
+    "Sa pisara, i-scan ang tag na 'Simula ng trabaho'.",
+    "Sa pisara, i-scan ang nakatalagang gawain.",
+    "Kung sa hanay ka nagtatrabaho, pumasok sa nakatalagang hanay. I-scan lamang ang tag ng hanay kapag lalabas.",
+    "Bago magpahinga, lumabas muna sa hanay at i-scan ang tag ng hanay. Pagkatapos, i-scan ang 'Simula ng pahinga'.",
+    "Pagbalik mula sa pahinga, i-scan ang 'Tapos ng pahinga' at ipagpatuloy ang tamang proseso.",
+    "Sa pagtatapos ng trabaho, i-scan ang 'Tapos ng trabaho'. Kung nasa hanay ka, i-scan muna ang tag ng hanay paglabas.",
+    "Ibalik ang reader sa may numerong charger sa nakatalagang lugar."
+  ];
+  filStartSteps.forEach((text, index) => { D.readerTabs[0].steps[index].fil = text; });
+  D.readerTabs[1].sections[0].steps[3].fil = "Pumasok sa nakatalagang hanay. Huwag i-scan ang tag ng hanay kapag pumapasok.";
+  D.readerTabs[1].sections[1].steps[3].fil = "Kung nagpipitas ka ng kamatis sa trolley, gamitin ang tab na 'Mga trolley'.";
+  D.readerTabs[1].sections[4].title.fil = "Pagpalit ng gawain at pagtatapos ng trabaho";
+  D.readerTabs[1].sections[4].steps[0].fil = "Sa bawat pagpalit ng gawain: lumabas sa hanay, i-scan ang tag ng hanay, at pagkatapos ay i-scan sa pisara ang bagong gawain.";
+  D.readerTabs[1].sections[4].steps[1].fil = "Kapag tatapusin ang trabaho sa mga hanay: i-scan ang tag ng hanay paglabas, at pagkatapos ay i-scan ang 'Tapos ng trabaho'.";
+  D.readerTabs[1].sections[4].steps[2].fil = "Kung tapos ka na sa mga hanay at lilipat sa trabaho sa labas ng mga hanay, sundin ang prosesong 'Labas ng mga hanay'.";
+  D.readerTabs[3].steps[1].fil = "Una, i-scan nang isang beses ang tag ng trolley.";
+  D.readerTabs[3].steps[2].fil = "Pagkatapos, i-scan ang tag ng hanay: isang beses kung tapos na, at dalawang beses kung hindi pa tapos.";
+  D.readerTabs[3].steps[4].fil = "Kung hindi trolley ang ginagamit sa pagpitas, bumalik sa karaniwang proseso para sa hanay.";
+
+  D.tabletGuide.steps[0].note.fil = "Sa simula ng trabaho, hanapin ang iyong pangalan at apelyido. Mag-log in gamit ang sarili mong PIN.";
+  D.tabletGuide.steps[2].note.fil = "Mag-log in muli at piliin ang kasalukuyan mong gawain.";
+  D.tabletGuide.steps[3].note.fil = "Kapag magpapalit ng gawain, mag-log in muli at piliin ang bagong gawain.";
+  D.tabletGuide.steps[4].note.fil = "Bago magpahinga, mag-log in at piliin ang 'Pahinga'.";
+  D.tabletGuide.steps[5].note.fil = "Pagkatapos ng pahinga, mag-log in at piliin ang kasalukuyan mong gawain.";
+  D.tabletGuide.steps[6].note.fil = "Kapag tapos na ang trabaho, mag-log in muli at piliin ang 'Tapos ng trabaho'.";
+  D.tabletGuide.steps[7].note.fil = "Mag-log in muli at piliin ang 'Mag-log out'.";
+  D.tabletGuide.tips[1].fil = "Huwag iwanang naka-log in ang iyong account para sa susunod na tao.";
+
+  D.bans[0].title.fil = "Pagkain sa lugar ng trabaho";
+  D.bans[0].detail.fil = "Huwag kumain o magdala ng pagkain sa lugar ng trabaho.";
+  D.bans[1].title.fil = "Inumin sa lugar ng trabaho";
+  D.bans[1].detail.fil = "Iwan ang inumin sa labas ng lugar ng trabaho. Gamitin lamang ang nakatalagang lugar.";
+  D.bans[2].title.fil = "Chewing gum, kendi, at mani";
+  D.bans[2].detail.fil = "Huwag ngumunguya ng chewing gum o magtago ng meryenda sa puwesto.";
+  D.bans[3].detail.fil = "Huwag magdala ng sigarilyo, vape, o lighter sa lugar ng trabaho.";
+  D.bans[7].detail.fil = "Ang bag, damit, at iba pang personal na gamit ay hindi dapat nasa lugar ng trabaho.";
+  D.bans[13].title.fil = "Pagpasok sa maling lugar";
+  D.bans[13].detail.fil = "Huwag pumasok sa bahay-taniman, bodega, daanan, o ibang lugar kung wala kang utos o pahintulot.";
+  D.bans[16].detail.fil = "Huwag gumamit ng PIN ng ibang tao. Magiging mali ang pagtatala ng trabaho.";
+  D.bans[18].title.fil = "Impormasyon ng ibang tao";
+  D.bans[18].detail.fil = "Huwag mag-log in o magtala ng trabaho gamit ang impormasyon ng ibang tao.";
+
+  D.medical[1].body[0].fil = "Ang silid pang-emerhensiya ay para sa biglaang panganib sa buhay o kalusugan, gaya ng pagkawala ng malay, matinding hirap sa paghinga, malakas na pagdurugo, hinalang atake sa puso o stroke, malubhang pinsala, o biglaang matinding paglala ng kalagayan.";
+  D.medical[1].body[1].fil = "Kung kailangan agad ng serbisyong pang-emerhensiya, tumawag sa 112. Kung walang agarang panganib, makipag-ugnayan sa klinika o tumawag sa NFZ sa 800 190 590.";
+  D.medical[2].body[0].fil = "Maaaring magbago ang klinikang may serbisyong dental ng NFZ. Suriin muna ang kasalukuyang lugar na bukas o tumawag sa 24-oras na helpline ng NFZ sa 800 190 590.";
+  D.medical[2].body[1].fil = "Maaaring ituro ng tagapayo ng NFZ ang kasalukuyang serbisyong dental, ang pinakamalapit na silid pang-emerhensiya, at serbisyong bukas sa gabi o araw ng pahinga. Libre ang linya at bukas 24 oras bawat araw, 7 araw bawat linggo.";
 })();

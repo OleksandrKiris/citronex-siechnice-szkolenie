@@ -36,6 +36,9 @@ jobs:
           node tools/audit-project.js
           node tools/audit-buttons.js
           node tools/audit-map-links.js
+          node tools/audit-presenter.js
+          node tools/audit-information.js
+          node tools/audit-language-quality.js
 
       - name: Prepare public site
         run: |

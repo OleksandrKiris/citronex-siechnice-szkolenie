@@ -665,11 +665,11 @@
 
   function presenterExperienceCopy() {
     return {
-      chooseTitle: text(tx("Wybierz swój instruktaż", "Choose your briefing", "Оберіть свій інструктаж", "Выберите свой инструктаж", "Təlimatınızı seçin", "Elige tu formación", "Piliin ang iyong orientation", "Pilih pengarahan Anda", "आफ्नो निर्देशन छान्नुहोस्")),
+      chooseTitle: text(tx("Wybierz swój instruktaż", "Choose your briefing", "Оберіть свій інструктаж", "Выберите свой инструктаж", "Təlimatınızı seçin", "Elige tu formación", "Piliin ang iyong pagsasanay", "Pilih pengarahan Anda", "आफ्नो निर्देशन छान्नुहोस्")),
       chooseLead: text(tx("Po wyborze głos uruchomi się automatycznie. Trasę można zmienić.", "After selection, the voice starts automatically. You can change the path.", "Після вибору голос увімкнеться автоматично. Маршрут можна змінити.", "После выбора голос включится автоматически. Маршрут можно изменить.", "Seçimdən sonra səs avtomatik başlayacaq. Marşrutu dəyişmək olar.", "Después de elegir, la voz empezará automáticamente. Puedes cambiar la ruta.", "Pagkapili, awtomatikong magsisimula ang boses. Maaari mong baguhin ang ruta.", "Setelah memilih, suara akan mulai otomatis. Jalur dapat diubah.", "छानेपछि आवाज स्वतः सुरु हुन्छ। मार्ग बदल्न सकिन्छ।")),
       changePath: text(tx("Zmień trasę", "Change path", "Змінити маршрут", "Сменить маршрут", "Marşrutu dəyiş", "Cambiar ruta", "Baguhin ang ruta", "Ganti jalur", "मार्ग बदल्नुहोस्")),
-      presentation: text(tx("Tryb prezentacji", "Presentation mode", "Режим презентації", "Режим презентации", "Təqdimat rejimi", "Modo presentación", "Presentation mode", "Mode presentasi", "प्रस्तुति मोड")),
-      exitPresentation: text(tx("Wyjdź z prezentacji", "Exit presentation", "Вийти з презентації", "Выйти из презентации", "Təqdimatdan çıx", "Salir de presentación", "Lumabas sa presentation", "Keluar dari presentasi", "प्रस्तुतिबाट निस्कनुहोस्")),
+      presentation: text(tx("Tryb prezentacji", "Presentation mode", "Режим презентації", "Режим презентации", "Təqdimat rejimi", "Modo presentación", "Mode ng presentasyon", "Mode presentasi", "प्रस्तुति मोड")),
+      exitPresentation: text(tx("Wyjdź z prezentacji", "Exit presentation", "Вийти з презентації", "Выйти из презентации", "Təqdimatdan çıx", "Salir de presentación", "Lumabas sa presentasyon", "Keluar dari presentasi", "प्रस्तुतिबाट निस्कनुहोस्")),
       completed: text(tx("Ukończono", "Completed", "Завершено", "Пройдено", "Tamamlandı", "Completado", "Natapos", "Selesai", "पूरा भयो")),
       continuing: text(tx("Za chwilę następny krok", "Next step is starting", "Далі буде наступний крок", "Дальше — следующий шаг", "Növbəti addım başlayır", "Empieza el siguiente paso", "Susunod na ang kasunod na hakbang", "Langkah berikutnya dimulai", "अब अर्को चरण सुरु हुन्छ")),
       quizTitle: text(tx("Sprawdź, czy rozumiesz", "Check your understanding", "Перевірте, чи зрозуміли", "Проверьте, всё ли понятно", "Başa düşdüyünüzü yoxlayın", "Comprueba lo aprendido", "Tingnan kung naintindihan", "Periksa pemahaman Anda", "बुझेको जाँच गर्नुहोस्")),
@@ -689,20 +689,20 @@
       rightShort: text(tx("Tak należy", "Do this", "Так правильно", "Так правильно", "Belə edin", "Hazlo así", "Gawin ito", "Lakukan ini", "यसरी गर्नुहोस्")),
       dontUnderstand: text(tx("Nie rozumiem", "I don't understand", "Не розумію", "Не понял", "Başa düşmədim", "No entiendo", "Hindi ko naintindihan", "Saya belum paham", "मैले बुझिनँ")),
       helpTitle: text(tx("Zobaczmy to jeszcze raz", "Let us go through it again", "Розберімо це ще раз", "Давайте разберём это ещё раз", "Gəlin bunu yenidən nəzərdən keçirək", "Veámoslo otra vez", "Ulitin natin ito", "Mari kita ulangi", "यसलाई फेरि हेरौँ")),
-      helpLead: text(tx("Nagranie zostało zatrzymane. Wybierz sposób wyjaśnienia.", "The recording is paused. Choose how you want this explained.", "Запис зупинено. Виберіть спосіб пояснення.", "Запись остановлена. Выберите способ объяснения.", "Səs dayandırıldı. İzah üsulunu seçin.", "La grabación está pausada. Elige cómo explicarlo.", "Naka-pause ang recording. Piliin kung paano ito ipapaliwanag.", "Rekaman dijeda. Pilih cara penjelasannya.", "रेकर्ड रोकिएको छ। कसरी बुझ्ने हो छान्नुहोस्।")),
+      helpLead: text(tx("Nagranie zostało zatrzymane. Wybierz sposób wyjaśnienia.", "The recording is paused. Choose how you want this explained.", "Запис зупинено. Виберіть спосіб пояснення.", "Запись остановлена. Выберите способ объяснения.", "Səs dayandırıldı. İzah üsulunu seçin.", "La grabación está pausada. Elige cómo explicarlo.", "Naka-pause ang rekording. Piliin kung paano ito ipapaliwanag.", "Rekaman dijeda. Pilih cara penjelasannya.", "रेकर्ड रोकिएको छ। कसरी बुझ्ने हो छान्नुहोस्।")),
       slowRepeat: text(tx("Powtórz wolniej", "Repeat more slowly", "Повторити повільніше", "Повторить медленнее", "Daha yavaş təkrarla", "Repetir más despacio", "Ulitin nang mas mabagal", "Ulangi lebih lambat", "बिस्तारै फेरि सुन्नुहोस्")),
       showVisual: text(tx("Pokaż na zdjęciu", "Show it in the picture", "Показати на фото", "Показать на фотографии", "Şəkildə göstər", "Mostrar en la imagen", "Ipakita sa larawan", "Tunjukkan pada gambar", "तस्बिरमा देखाउनुहोस्")),
       readText: text(tx("Pokaż cały tekst", "Show the full text", "Показати весь текст", "Показать весь текст", "Tam mətni göstər", "Mostrar todo el texto", "Ipakita ang buong teksto", "Tampilkan teks lengkap", "पूरा पाठ देखाउनुहोस्")),
       hideText: text(tx("Ukryj cały tekst", "Hide the full text", "Сховати весь текст", "Скрыть весь текст", "Tam mətni gizlət", "Ocultar el texto", "Itago ang buong teksto", "Sembunyikan teks", "पूरा पाठ लुकाउनुहोस्")),
-      helpClose: text(tx("Wróć do instruktażu", "Return to the briefing", "Повернутися до інструктажу", "Вернуться к инструктажу", "Təlimata qayıt", "Volver a la formación", "Bumalik sa orientation", "Kembali ke pengarahan", "निर्देशनमा फर्कनुहोस्")),
+      helpClose: text(tx("Wróć do instruktażu", "Return to the briefing", "Повернутися до інструктажу", "Вернуться к инструктажу", "Təlimata qayıt", "Volver a la formación", "Bumalik sa pagsasanay", "Kembali ke pengarahan", "निर्देशनमा फर्कनुहोस्")),
       askSupervisor: text(tx("Jeśli nadal nie rozumiesz, nie zaczynaj czynności. Poproś brygadzistę lub koordynatora o pokazanie jej na miejscu.", "If it is still unclear, do not start the task. Ask the team leader or coordinator to demonstrate it on site.", "Якщо все ще незрозуміло, не починайте дію. Попросіть бригадира або координатора показати її на місці.", "Если всё ещё непонятно, не начинайте действие. Попросите бригадира или координатора показать его на месте.", "Hələ də aydın deyilsə, işi başlamayın. Briqadirdən və ya koordinatordan yerində göstərməsini istəyin.", "Si todavía no está claro, no empieces la tarea. Pide al encargado o coordinador que la muestre en el lugar.", "Kung hindi pa rin malinaw, huwag simulan ang gawain. Hilingin sa team leader o coordinator na ipakita ito sa lugar.", "Jika masih belum jelas, jangan mulai tugas. Minta ketua tim atau koordinator menunjukkan langsung.", "अझै नबुझेमा काम सुरु नगर्नुहोस्। टोली प्रमुख वा संयोजकलाई त्यहीँ देखाउन भन्नुहोस्।")),
       scene: text(tx("Scena", "Scene", "Сцена", "Сцена", "Səhnə", "Escena", "Eksena", "Adegan", "दृश्य")),
       tracks: {
         warehouse: { icon: "📦", title: text(tx("Praca w magazynie", "Warehouse work", "Робота на складі", "Работа на складе", "Anbar işi", "Trabajo en almacén", "Trabaho sa bodega", "Kerja di gudang", "गोदामको काम")), lead: text(tx("Wejście, tablet, zakazy i pomoc", "Entrance, tablet, rules and help", "Вхід, планшет, заборони і допомога", "Вход, планшет, запреты и помощь", "Giriş, tablet, qaydalar və kömək", "Entrada, tablet, reglas y ayuda", "Pasukan, tablet, mga bawal at tulong", "Pintu masuk, tablet, larangan dan bantuan", "प्रवेश, ट्याब्लेट, निषेध र सहायता")) },
-        greenhouse: { icon: "🌿", title: text(tx("Praca w szklarni", "Greenhouse work", "Робота в теплиці", "Работа в теплице", "İstixana işi", "Trabajo en invernadero", "Trabaho sa bahay-taniman", "Kerja di rumah kaca", "ग्रीनहाउसको काम")), lead: text(tx("Orientacja, reader, tablet i bezpieczeństwo", "Orientation, reader, tablet and safety", "Орієнтація, рідер, планшет і безпека", "Ориентация, ридер, планшет и безопасность", "İstiqamət, reader, tablet və təhlükəsizlik", "Orientación, reader, tablet y seguridad", "Orientation, reader, tablet at kaligtasan", "Orientasi, reader, tablet dan keselamatan", "दिशा, reader, tablet र सुरक्षा")) },
+        greenhouse: { icon: "🌿", title: text(tx("Praca w szklarni", "Greenhouse work", "Робота в теплиці", "Работа в теплице", "İstixana işi", "Trabajo en invernadero", "Trabaho sa bahay-taniman", "Kerja di rumah kaca", "ग्रीनहाउसको काम")), lead: text(tx("Orientacja, reader, tablet i bezpieczeństwo", "Orientation, reader, tablet and safety", "Орієнтація, рідер, планшет і безпека", "Ориентация, ридер, планшет и безопасность", "İstiqamət, reader, tablet və təhlükəsizlik", "Orientación, reader, tablet y seguridad", "Oryentasyon, reader, tablet at kaligtasan", "Orientasi, reader, tablet dan keselamatan", "दिशा, reader, tablet र सुरक्षा")) },
         before: { icon: "🗺️", title: text(tx("Przed przyjazdem", "Before arrival", "До приїзду", "До приезда", "Gəlməzdən əvvəl", "Antes de llegar", "Bago dumating", "Sebelum datang", "आउनुअघि")), lead: text(tx("Droga, pierwszy dzień, dokumenty i kontakt", "Route, first day, documents and contact", "Дорога, перший день, документи і контакт", "Дорога, первый день, документы и связь", "Yol, ilk gün, sənədlər və əlaqə", "Ruta, primer día, documentos y contacto", "Daan, unang araw, dokumento at contact", "Rute, hari pertama, dokumen dan kontak", "बाटो, पहिलो दिन, कागजात र सम्पर्क")) },
         waiting: { icon: "⏳", title: text(tx("Czekam na dokumenty", "Waiting for documents", "Чекаю на документи", "Жду документы", "Sənədləri gözləyirəm", "Espero documentos", "Naghihintay ng dokumento", "Menunggu dokumen", "कागजात कुर्दैछु")), lead: text(tx("Urzędy, bank, lekarz i ważne kontakty", "Offices, bank, doctor and key contacts", "Установи, банк, лікар і важливі контакти", "Учреждения, банк, врач и важные контакты", "Qurumlar, bank, həkim və vacib əlaqələr", "Oficinas, banco, médico y contactos", "Mga opisina, bangko, doktor at contact", "Kantor, bank, dokter dan kontak penting", "कार्यालय, बैंक, डाक्टर र महत्त्वपूर्ण सम्पर्क")) },
-        all: { icon: "✅", title: text(tx("Pełny instruktaż", "Full briefing", "Повний інструктаж", "Полный инструктаж", "Tam təlimat", "Formación completa", "Buong orientation", "Pengarahan lengkap", "पूर्ण निर्देशन")), lead: text(tx("Wszystkie rozdziały po kolei", "Every chapter in order", "Усі розділи по черзі", "Все главы по порядку", "Bütün bölmələr ardıcıllıqla", "Todos los capítulos en orden", "Lahat ng kabanata nang sunod-sunod", "Semua bab secara berurutan", "सबै अध्याय क्रमशः")) }
+        all: { icon: "✅", title: text(tx("Pełny instruktaż", "Full briefing", "Повний інструктаж", "Полный инструктаж", "Tam təlimat", "Formación completa", "Buong pagsasanay", "Pengarahan lengkap", "पूर्ण निर्देशन")), lead: text(tx("Wszystkie rozdziały po kolei", "Every chapter in order", "Усі розділи по черзі", "Все главы по порядку", "Bütün bölmələr ardıcıllıqla", "Todos los capítulos en orden", "Lahat ng kabanata nang sunod-sunod", "Semua bab secara berurutan", "सबै अध्याय क्रमशः")) }
       }
     };
   }
@@ -716,7 +716,7 @@
     const badge = text(tx("Przed rozpoczęciem", "Before you start", "Перед початком", "Перед началом", "Başlamazdan əvvəl", "Antes de empezar", "Bago magsimula", "Sebelum mulai", "सुरु गर्नु अघि"));
     const stop = text(tx("Zatrzymaj", "Stop", "Зупинити", "Остановить", "Dayandır", "Detener", "Ihinto", "Hentikan", "रोक्नुहोस्"));
     const previous = text(tx("Poprzedni", "Previous", "Попередній", "Предыдущий", "Əvvəlki", "Anterior", "Nakaraan", "Sebelumnya", "अघिल्लो"));
-    const fullText = text(tx("Pełny tekst instruktażu", "Full briefing transcript", "Повний текст інструктажу", "Полный текст инструктажа", "Təlimatın tam mətni", "Texto completo de la formación", "Buong teksto ng orientation", "Teks pengarahan lengkap", "पूर्ण निर्देशन पाठ"));
+    const fullText = text(tx("Pełny tekst instruktażu", "Full briefing transcript", "Повний текст інструктажу", "Полный текст инструктажа", "Təlimatın tam mətni", "Texto completo de la formación", "Buong teksto ng pagsasanay", "Teks pengarahan lengkap", "पूर्ण निर्देशन पाठ"));
     const loading = text(tx("Ładowanie rozdziałów...", "Loading chapters...", "Завантаження розділів...", "Загрузка глав...", "Bölmələr yüklənir...", "Cargando capítulos...", "Nilo-load ang mga kabanata...", "Memuat bab...", "अध्याय लोड हुँदैछ..."));
     const map = text(tx("Najpierw: droga i mapa", "First: route and map", "Спочатку: дорога і карта", "Сначала: дорога и карта", "Əvvəlcə: yol və xəritə", "Primero: ruta y mapa", "Una: daan at mapa", "Pertama: rute dan peta", "पहिले: बाटो र नक्सा"));
     const note = text(tx(
@@ -749,11 +749,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master31" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master31" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master31" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master32" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master32" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master32" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master31" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master32" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -762,7 +762,7 @@
               </div>
             </div>
           </div>
-          <button type="button" class="presenter-stage-hit" data-presenter-stage-hit aria-label="${esc(labels.start)}"></button>
+          <button type="button" class="presenter-stage-hit" data-presenter-stage-hit tabindex="-1" aria-hidden="true"></button>
           <div class="presenter-stage-tools">
             <button type="button" class="presenter-tool" data-presenter-track-button aria-label="${esc(experience.changePath)}"><span data-presenter-track-icon>🧭</span><small data-presenter-track-progress>0/0</small></button>
             <button type="button" class="presenter-tool presenter-help-tool" data-presenter-help-button aria-label="${esc(experience.dontUnderstand)}"><span aria-hidden="true">?</span><small>${esc(experience.dontUnderstand)}</small></button>
@@ -813,7 +813,8 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="auto" poster="assets/avatar/presenter-human-poster-v1.jpg?v=20260719-siechnice-master31" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="auto" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master32" hidden></video>
+          <img class="presenter-head-fallback" src="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master32" alt="Aleksandr" width="360" height="360">
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -2882,17 +2883,7 @@
       : constrainedDevice ? "lite" : phoneLayout ? "mobile" : "full";
     card.dataset.engine = engineMode;
     const avatarQuery = new URLSearchParams(location.search).get("avatar");
-    const humanVideoPaths = Object.freeze({
-      explain: "assets/avatar/presenter-human-gesture-v1.mp4",
-      open: "assets/avatar/presenter-human-open-v2.mp4"
-    });
-    const selectHumanVideoPath = (chapter, index) => {
-      const group = chapter?.group || "welcome";
-      const visualPerformance = Boolean(chapter?.image) && index % 3 !== 0;
-      const openPerformance = visualPerformance ||
-        (["welcome", "arrival", "warehouse", "greenhouse", "reader", "tablet"].includes(group) && index % 4 === 1);
-      return openPerformance ? humanVideoPaths.open : humanVideoPaths.explain;
-    };
+    const humanVideoPath = "assets/avatar/presenter-talking-head-v1.mp4";
     const supportsHumanVideo = Boolean(video && video.canPlayType && video.canPlayType('video/mp4; codecs="avc1.42E01E"'));
     const useHumanVideo = avatarQuery !== "cartoon" && engineMode !== "lite" && !reducedMotion && supportsHumanVideo;
     card.dataset.avatarPreference = useHumanVideo ? "human" : "cartoon";
@@ -3704,14 +3695,13 @@
         showStaticPortrait();
         return;
       }
-      const selectedVideoPath = selectHumanVideoPath(chapter, index);
-      const source = visualAsset(selectedVideoPath);
+      const source = visualAsset(humanVideoPath);
       if (video.getAttribute("src") !== source) {
         video.src = source;
         video.load();
       }
-      card.dataset.videoPerformance = selectedVideoPath === humanVideoPaths.open ? "open" : "explain";
-      activeVideoOffset = index * 1.73;
+      card.dataset.videoPerformance = "talking-head";
+      activeVideoOffset = index * .91;
       video.muted = true;
       video.loop = true;
       video.playsInline = true;

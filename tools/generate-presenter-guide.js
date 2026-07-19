@@ -19,7 +19,7 @@ const introductions = {
   ru: "Здравствуйте. Меня зовут Александр, и я помогу вам спокойно подготовиться к работе в Citronex Siechnice. Посмотрите этот инструктаж до приезда или включите его, пока ожидаете документы. Мы пройдём всё по порядку: куда приехать, чем отличаются склад и теплица, как пользоваться ридером и планшетом, какие правила безопасности обязательны и к кому обращаться за помощью. Не спешите. Вы можете в любой момент поставить запись на паузу, повторить главу или открыть полный текст.",
   az: "Salam. Mənim adım Aleksandrdır və Citronex Siechnice-də işə sakit şəkildə hazırlaşmağınıza kömək edəcəyəm. Bu təlimata gəlməzdən əvvəl baxın və ya sənədləri gözləyərkən qoşun. Biz gəlişi, anbarla istixananın fərqini, readeri, planşeti, təhlükəsizlik qaydalarını və kömək üçün kimə müraciət etməyi addım-addım izah edəcəyik. Tələsməyin. Yazını istənilən vaxt dayandıra, bölməni təkrar edə və ya tam mətni aça bilərsiniz.",
   es: "Hola. Me llamo Aleksandr y te ayudaré a prepararte con calma para trabajar en Citronex Siechnice. Mira esta formación antes de llegar o reprodúcela mientras esperas tus documentos. Explicaremos paso a paso la llegada, la diferencia entre el almacén y el invernadero, el lector, la tableta, las normas de seguridad y a quién pedir ayuda. No tengas prisa. Puedes pausar la grabación, repetir un capítulo o abrir el texto completo en cualquier momento.",
-  fil: "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang briefing na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Dadaan tayo nang sunod-sunod sa pagdating, pagkakaiba ng bodega at greenhouse, reader, tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang recording, ulitin ang chapter, o buksan ang buong text anumang oras.",
+  fil: "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang pagsasanay na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Tatalakayin natin nang sunod-sunod ang pagdating, ang pagkakaiba ng bodega at bahay-taniman, ang reader, tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang rekording, ulitin ang kabanata, o buksan ang buong teksto anumang oras.",
   id: "Halo. Nama saya Aleksandr, dan saya akan membantu Anda mempersiapkan diri dengan tenang untuk bekerja di Citronex Siechnice. Tonton pengarahan ini sebelum tiba, atau putar sambil menunggu dokumen. Kita akan membahas secara berurutan tentang kedatangan, perbedaan gudang dan rumah kaca, reader, tablet, aturan keselamatan, serta siapa yang harus dihubungi untuk meminta bantuan. Tidak perlu terburu-buru. Anda dapat menjeda rekaman, mengulang bab, atau membuka teks lengkap kapan saja.",
   ne: "नमस्कार। मेरो नाम अलेक्जेन्डर हो, र म तपाईंलाई Citronex Siechnice मा कामका लागि शान्त रूपमा तयार हुन मद्दत गर्नेछु। यो निर्देशन आइपुग्नुअघि हेर्नुहोस्, वा कागजात पर्खँदा चलाउनुहोस्। हामी आगमन, गोदाम र हरितगृहबीचको फरक, रिडर, ट्याब्लेट, सुरक्षा नियम र मद्दतका लागि कसलाई सम्पर्क गर्ने भन्ने कुरा क्रमसँग बुझ्नेछौँ। हतार नगर्नुहोस्। तपाईंले कुनै पनि बेला रेकर्डिङ रोक्न, अध्याय दोहोर्‍याउन वा पूरा पाठ खोल्न सक्नुहुन्छ।"
 };
@@ -31,7 +31,7 @@ const topicLeadTemplates = {
   ru: (title) => `Теперь разберём тему: ${title}.`,
   az: (title) => `İndi bu mövzuya keçək: ${title}.`,
   es: (title) => `Ahora veremos el tema: ${title}.`,
-  fil: (title) => `Ngayon, talakayin natin ang: ${title}.`,
+  fil: (title) => `Ngayon, talakayin natin ang ${title}.`,
   id: (title) => `Sekarang kita bahas: ${title}.`,
   ne: (title) => `अब यो विषय बुझौँ: ${title}।`
 };
@@ -51,7 +51,7 @@ const endings = {
   ru: "Просмотрите все необходимые разделы и пройдите тест. Эта подготовка не заменяет инструктаж на рабочем месте. После приезда выполняйте указания руководителя, бригадира и правила безопасности. Если что-то непонятно, остановитесь и спросите. Желаю вам спокойной и безопасной работы.",
   az: "Lazım olan bütün bölmələrə baxın və testi tamamlayın. Bu hazırlıq iş yerindəki təlimatı əvəz etmir. Gəldikdən sonra rəhbərin, briqadirin və təhlükəsizlik qaydalarının göstərişlərinə əməl edin. Nəyisə başa düşmürsünüzsə, işi dayandırın və soruşun. Sizə sakit və təhlükəsiz iş arzulayıram.",
   es: "Revisa todos los módulos necesarios y completa el test. Esta preparación no sustituye la instrucción en el puesto. Al llegar, sigue al supervisor, al encargado y las normas de seguridad. Si no entiendes algo, detente y pregunta. Te deseo un trabajo tranquilo y seguro.",
-  fil: "Tingnan ang lahat ng kailangang module at sagutan ang test. Hindi nito pinapalitan ang aktuwal na orientation sa trabaho. Pagdating, sundin ang supervisor, brigadier at mga tuntunin sa kaligtasan. Kapag may hindi malinaw, huminto at magtanong. Nais ko sa iyo ang maayos at ligtas na trabaho.",
+  fil: "Panoorin ang lahat ng kinakailangang modyul at sagutan ang pagsusulit. Hindi nito pinapalitan ang aktuwal na pagsasanay sa lugar ng trabaho. Pagdating, sundin ang superbisor, pinuno ng pangkat, at mga tuntunin sa kaligtasan. Kapag may hindi malinaw, huminto at magtanong. Nawa'y maging maayos at ligtas ang iyong trabaho.",
   id: "Pelajari semua modul yang diperlukan dan selesaikan tes. Persiapan ini tidak menggantikan pengarahan di tempat kerja. Setelah tiba, ikuti supervisor, mandor, dan aturan keselamatan. Jika ada yang tidak dimengerti, berhenti dan bertanya. Semoga Anda bekerja dengan tenang dan aman.",
   ne: "आवश्यक सबै मोड्युल हेर्नुहोस् र परीक्षा पूरा गर्नुहोस्। यो तयारीले कार्यस्थलको प्रत्यक्ष निर्देशनलाई प्रतिस्थापन गर्दैन। पुगेपछि सुपरभाइजर, टोली प्रमुख र सुरक्षा नियम पालना गर्नुहोस्। केही नबुझे काम रोक्नुहोस् र सोध्नुहोस्। तपाईंको काम शान्त र सुरक्षित होस्।"
 };
@@ -60,7 +60,7 @@ const completionTitles = {
   pl: "Sprawdzenie wiedzy i instruktaż na miejscu", en: "Knowledge check and on-site briefing",
   ua: "Перевірка знань та інструктаж на місці", ru: "Проверка знаний и инструктаж на месте",
   az: "Bilik yoxlaması və yerində təlimat", es: "Comprobación y formación en el lugar",
-  fil: "Pagsusuri at orientation sa lugar", id: "Pemeriksaan dan pengarahan di lokasi",
+  fil: "Pagsusuri ng kaalaman at pagsasanay sa lugar", id: "Pemeriksaan dan pengarahan di lokasi",
   ne: "ज्ञान जाँच र कार्यस्थल निर्देशन"
 };
 
@@ -267,7 +267,7 @@ function buildGuide(lang) {
 }
 
 const output = {
-  version: "20260719-siechnice-guide5",
+  version: "20260719-siechnice-guide7",
   chapterCount: 0,
   languages: Object.fromEntries(languages.map((lang) => [lang, buildGuide(lang)]))
 };
