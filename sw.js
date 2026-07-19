@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260719-siechnice-master28";
+const CACHE_NAME = CACHE_PREFIX + "20260719-siechnice-master29";
 
 const CORE_ASSETS = [
   "./",
@@ -20,19 +20,20 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260719-siechnice-master28",
-  "./assets/css/presenter-rig.css?v=20260719-siechnice-master28",
-  "./assets/css/presenter-clean.css?v=20260719-siechnice-master28",
-  "./assets/css/editor.css?v=20260719-siechnice-master28",
-  "./assets/js/training-data.js?v=20260719-siechnice-master28",
-  "./assets/js/training-app.js?v=20260719-siechnice-master28",
-  "./assets/js/editor.js?v=20260719-siechnice-master28",
+  "./assets/css/training.css?v=20260719-siechnice-master29",
+  "./assets/css/presenter-rig.css?v=20260719-siechnice-master29",
+  "./assets/css/presenter-clean.css?v=20260719-siechnice-master29",
+  "./assets/css/editor.css?v=20260719-siechnice-master29",
+  "./assets/js/training-data.js?v=20260719-siechnice-master29",
+  "./assets/js/training-app.js?v=20260719-siechnice-master29",
+  "./assets/js/editor.js?v=20260719-siechnice-master29",
   "./assets/logo-citronex.svg",
-  "./assets/content/presenter-guide.json?v=20260719-siechnice-master28",
-  "./assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master28",
-  "./assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master28",
-  "./assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master28",
-  "./assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master28",
+  "./assets/content/presenter-guide.json?v=20260719-siechnice-master29",
+  "./assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master29",
+  "./assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master29",
+  "./assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master29",
+  "./assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master29",
+  "./assets/avatar/presenter-human-poster-v1.jpg?v=20260719-siechnice-master29",
   "./assets/guide/arrival-route-v1.svg",
   "./assets/warehouse/magazyn-wejscie-1.jpg",
   "./assets/warehouse/magazyn-wejscie-2.jpg",
@@ -56,15 +57,15 @@ const CORE_ASSETS = [
   "./assets/tablet/tablet-after-break-activity.jpg",
   "./assets/tablet/tablet-work-end.jpg",
   "./assets/tablet/tablet-logout.jpg",
-  "./assets/audio/guide/pl/01-welcome.mp3?v=20260719-siechnice-master28",
-  "./assets/audio/guide/en/01-welcome.mp3?v=20260719-siechnice-master28",
-  "./assets/audio/guide/ua/01-welcome.mp3?v=20260719-siechnice-master28",
-  "./assets/audio/guide/ru/01-welcome.mp3?v=20260719-siechnice-master28",
-  "./assets/audio/guide/az/01-welcome.mp3?v=20260719-siechnice-master28",
-  "./assets/audio/guide/es/01-welcome.mp3?v=20260719-siechnice-master28",
-  "./assets/audio/guide/fil/01-welcome.mp3?v=20260719-siechnice-master28",
-  "./assets/audio/guide/id/01-welcome.mp3?v=20260719-siechnice-master28",
-  "./assets/audio/guide/ne/01-welcome.mp3?v=20260719-siechnice-master28",
+  "./assets/audio/guide/pl/01-welcome.mp3?v=20260719-siechnice-master29",
+  "./assets/audio/guide/en/01-welcome.mp3?v=20260719-siechnice-master29",
+  "./assets/audio/guide/ua/01-welcome.mp3?v=20260719-siechnice-master29",
+  "./assets/audio/guide/ru/01-welcome.mp3?v=20260719-siechnice-master29",
+  "./assets/audio/guide/az/01-welcome.mp3?v=20260719-siechnice-master29",
+  "./assets/audio/guide/es/01-welcome.mp3?v=20260719-siechnice-master29",
+  "./assets/audio/guide/fil/01-welcome.mp3?v=20260719-siechnice-master29",
+  "./assets/audio/guide/id/01-welcome.mp3?v=20260719-siechnice-master29",
+  "./assets/audio/guide/ne/01-welcome.mp3?v=20260719-siechnice-master29",
   "./assets/audio/male/intro-pl.mp3?v=20260718-siechnice-helper10",
   "./assets/audio/male/intro-en.mp3?v=20260718-siechnice-helper10",
   "./assets/audio/male/intro-ua.mp3?v=20260718-siechnice-helper10",
@@ -103,6 +104,10 @@ self.addEventListener("activate", (event) => {
   })());
 });
 
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") self.skipWaiting();
+});
+
 async function putInCache(request, response) {
   if (!response || !response.ok) return;
   const cache = await caches.open(CACHE_NAME);
@@ -123,10 +128,10 @@ async function matchCached(request, fallback = null) {
   return cache.match(fallback, { ignoreSearch: true }) || caches.match(fallback, { ignoreSearch: true });
 }
 
-async function networkFirst(request, fallback = null) {
+async function networkFirst(request, fallback = null, timeoutMs = 5000) {
   const cached = await matchCached(request, null);
   try {
-    const response = await Promise.race([fetch(request), networkTimeout()]);
+    const response = await Promise.race([fetch(request, { cache: "no-store" }), networkTimeout(timeoutMs)]);
     if (!response) return cached || await matchCached(request, fallback) || Response.error();
     await putInCache(request, response);
     return response;
@@ -180,7 +185,7 @@ self.addEventListener("fetch", (event) => {
 
   const accept = request.headers.get("accept") || "";
   if (request.mode === "navigate" || accept.includes("text/html")) {
-    event.respondWith(networkFirst(request, "./index.html"));
+    event.respondWith(networkFirst(request, "./index.html", 6000));
     return;
   }
 
@@ -192,7 +197,7 @@ self.addEventListener("fetch", (event) => {
   // Instruction data can change independently from the shell. Prefer the
   // current network copy so a returning worker never sees an outdated guide.
   if (url.pathname.endsWith(".json")) {
-    event.respondWith(networkFirst(request));
+    event.respondWith(networkFirst(request, null, 4000));
     return;
   }
 

@@ -749,11 +749,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master28" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master28" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master28" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master29" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master29" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master29" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master28" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master29" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -813,7 +813,7 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="auto" poster="assets/avatar/presenter-human-poster-v1.jpg?v=20260719-siechnice-master29" hidden></video>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -2622,7 +2622,26 @@
     }
 
     if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
-      navigator.serviceWorker.register("./sw.js").then((registration) => registration.update()).catch(() => {});
+      const controllerVersionKey = "cx-sw-controller-version";
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        try {
+          if (sessionStorage.getItem(controllerVersionKey) === assetVersion) return;
+          sessionStorage.setItem(controllerVersionKey, assetVersion);
+        } catch (error) { /* Storage may be unavailable in private mode. */ }
+        location.reload();
+      });
+      navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" }).then((registration) => {
+        const activateWaitingWorker = () => registration.waiting?.postMessage({ type: "SKIP_WAITING" });
+        activateWaitingWorker();
+        registration.addEventListener("updatefound", () => {
+          const installing = registration.installing;
+          if (!installing) return;
+          installing.addEventListener("statechange", () => {
+            if (installing.state === "installed" && navigator.serviceWorker.controller) activateWaitingWorker();
+          });
+        });
+        registration.update().catch(() => {});
+      }).catch(() => {});
     }
   }
 
@@ -2932,6 +2951,9 @@
     let audioContext = null;
     let audioAnalyser = null;
     let audioWave = null;
+    let audioWarmth = null;
+    let audioPresence = null;
+    let audioCompressor = null;
     let audioMotionFrame = 0;
     let lastAudioMotionSample = 0;
     let activeFocus = null;
@@ -3572,7 +3594,25 @@
           audioAnalyser.fftSize = 256;
           audioAnalyser.smoothingTimeConstant = .72;
           audioWave = new Uint8Array(audioAnalyser.fftSize);
-          source.connect(audioAnalyser);
+          audioWarmth = audioContext.createBiquadFilter();
+          audioWarmth.type = "lowshelf";
+          audioWarmth.frequency.value = 135;
+          audioWarmth.gain.value = 1.8;
+          audioPresence = audioContext.createBiquadFilter();
+          audioPresence.type = "peaking";
+          audioPresence.frequency.value = 2700;
+          audioPresence.Q.value = .85;
+          audioPresence.gain.value = 2.6;
+          audioCompressor = audioContext.createDynamicsCompressor();
+          audioCompressor.threshold.value = -22;
+          audioCompressor.knee.value = 16;
+          audioCompressor.ratio.value = 2.4;
+          audioCompressor.attack.value = .012;
+          audioCompressor.release.value = .18;
+          source.connect(audioWarmth);
+          audioWarmth.connect(audioPresence);
+          audioPresence.connect(audioCompressor);
+          audioCompressor.connect(audioAnalyser);
           audioAnalyser.connect(audioContext.destination);
         }
         if (audioContext.state === "suspended") audioContext.resume().catch(() => {});
@@ -3666,6 +3706,7 @@
       video.hidden = false;
       card.dataset.avatarMode = "video";
       card.dataset.avatarVariant = "human";
+      video.addEventListener("error", showStaticPortrait, { once: true });
       const alignVideo = () => {
         if (!Number.isFinite(video.duration) || video.duration <= 0) return;
         try { video.currentTime = ((recording.currentTime || 0) + activeVideoOffset) % video.duration; } catch (error) { /* Metadata may still be loading. */ }
@@ -4164,7 +4205,8 @@
     }
     recording.addEventListener("loadedmetadata", () => {
       if (pendingResumeSeconds > 0 && Number.isFinite(recording.duration)) {
-        recording.currentTime = Math.min(Math.max(0, recording.duration - .5), pendingResumeSeconds);
+        const safeResumeLimit = Math.max(0, recording.duration - 3);
+        recording.currentTime = pendingResumeSeconds < safeResumeLimit ? pendingResumeSeconds : 0;
         pendingResumeSeconds = 0;
       }
       updateProgress();

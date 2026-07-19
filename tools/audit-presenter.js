@@ -12,6 +12,7 @@ const errors = [];
 const warnings = [];
 const rigAssets = ["head-v1.png", "torso-v1.png", "arm-left-v2.png", "arm-right-v3.png"];
 const humanVideoAsset = "presenter-human-gesture-v1.mp4";
+const humanPosterAsset = "presenter-human-poster-v1.jpg";
 const expectedQuizById = {
   welcome: 1, "arrival-wait": 2, "warehouse-no-reader": 0,
   "greenhouse-sides": 19, "greenhouse-nave": 20, "greenhouse-section": 22,
@@ -46,6 +47,7 @@ if (guide.chapterCount !== expectedSections.length) errors.push(`chapterCount di
 if (expectedSections.length < 40) errors.push(`briefing has too few granular chapters (${expectedSections.length})`);
 
 const appSource = fs.readFileSync(path.join(root, "assets", "js", "training-app.js"), "utf8");
+const workerSource = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 const rigCssPath = path.join(root, "assets", "css", "presenter-rig.css");
 const cleanCssPath = path.join(root, "assets", "css", "presenter-clean.css");
 if (!fs.existsSync(rigCssPath)) errors.push("independent presenter rig stylesheet is missing");
@@ -69,11 +71,18 @@ if (!fs.existsSync(humanVideoPath)) errors.push(`human presenter video is missin
 else if (fs.statSync(humanVideoPath).size < 500000 || fs.statSync(humanVideoPath).size > 3000000) {
   errors.push(`human presenter video size is outside the mobile budget (${fs.statSync(humanVideoPath).size})`);
 }
+const humanPosterPath = path.join(root, "assets", "avatar", humanPosterAsset);
+if (!fs.existsSync(humanPosterPath)) errors.push(`human presenter poster is missing (${humanPosterAsset})`);
+else if (fs.statSync(humanPosterPath).size < 10000 || fs.statSync(humanPosterPath).size > 200000) {
+  errors.push(`human presenter poster size is outside the mobile budget (${fs.statSync(humanPosterPath).size})`);
+}
 if (/guide-pose-whole|data-cartoon-pose/.test(appSource)) errors.push("legacy whole-pose avatar is still rendered");
 if (!appSource.includes("contextLink.hidden = !target")) errors.push("irrelevant context action is not hidden per chapter");
 if (!appSource.includes("card.dataset.motionBeat")) errors.push("independent motion beat is not synchronized with audio");
 if (!appSource.includes("rms < .014")) errors.push("voice-energy mouth gate is missing");
 if (!appSource.includes("useHumanVideo") || !appSource.includes(humanVideoAsset)) errors.push("human video mode is not wired into the presenter");
+if (!appSource.includes('updateViaCache: "none"') || !appSource.includes('"controllerchange"')) errors.push("automatic Service Worker update is missing");
+if (!workerSource.includes('cache: "no-store"') || !workerSource.includes('type === "SKIP_WAITING"')) errors.push("fresh navigation cache policy is missing");
 
 for (const language of expectedLanguages) {
   const localized = guide.languages && guide.languages[language];
@@ -141,6 +150,8 @@ console.log(`Granular chapters per language: ${expectedSections.length}`);
 console.log(`Expected audio files: ${expectedLanguages.length * expectedSections.length}`);
 console.log(`Independent rig layers: ${rigAssets.length}`);
 console.log(`Human video mode: ${humanVideoAsset}`);
+console.log(`Human video poster: ${humanPosterAsset}`);
+console.log("Service Worker freshness: automatic reload + network-first HTML");
 console.log(`Warnings: ${warnings.length}`);
 console.log(`Errors: ${errors.length}`);
 warnings.forEach((warning) => console.log(`WARNING: ${warning}`));
