@@ -54,6 +54,9 @@ else {
   [".presenter-step-rail", ".presenter-script", ".presenter-timeline", ".presenter-stop", ".presenter-help-tool"].forEach((selector) => {
     if (!cleanCss.includes(selector)) errors.push(`mobile declutter rule is missing (${selector})`);
   });
+  ["moving photograph", "presenter-head-natural", "presenter-breath-talk", "object-fit: contain"].forEach((token) => {
+    if (!cleanCss.includes(token)) errors.push(`master26 presenter motion rule is missing (${token})`);
+  });
 }
 rigAssets.forEach((asset) => {
   if (!fs.existsSync(path.join(root, "assets", "avatar", "cartoon", asset))) errors.push(`rig asset is missing (${asset})`);
@@ -62,6 +65,8 @@ rigAssets.forEach((asset) => {
 });
 if (/guide-pose-whole|data-cartoon-pose/.test(appSource)) errors.push("legacy whole-pose avatar is still rendered");
 if (!appSource.includes("contextLink.hidden = !target")) errors.push("irrelevant context action is not hidden per chapter");
+if (!appSource.includes("card.dataset.motionBeat")) errors.push("independent motion beat is not synchronized with audio");
+if (!appSource.includes("rms < .014")) errors.push("voice-energy mouth gate is missing");
 
 for (const language of expectedLanguages) {
   const localized = guide.languages && guide.languages[language];

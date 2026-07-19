@@ -749,11 +749,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master25" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master25" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master25" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master26" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master26" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master26" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master25" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master26" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -3515,7 +3515,10 @@
     const setPlaying = (playing) => {
       card.classList.toggle("is-speaking", playing);
       card.classList.remove("is-autoplay-blocked");
-      if (!playing) card.style.setProperty("--voice-level", "0");
+      if (!playing) {
+        card.style.setProperty("--voice-level", "0");
+        card.dataset.motionBeat = "0";
+      }
       playIcon.textContent = playing ? "Ⅱ" : "▶";
       playLabel.textContent = playing ? labels.pause : labels.resume;
       playButton.setAttribute("aria-pressed", playing ? "true" : "false");
@@ -3545,7 +3548,9 @@
         energy += sample * sample;
       }
       const rms = Math.sqrt(energy / audioWave.length);
-      const level = Math.max(.08, Math.min(1, rms * 8.5));
+      /* Keep the mouth almost closed during pauses and open it from the actual
+         voice energy. The former fixed minimum made every language look dubbed. */
+      const level = rms < .014 ? .015 : Math.max(.04, Math.min(1, (rms - .01) * 10.8));
       card.style.setProperty("--voice-level", level.toFixed(3));
       audioMotionFrame = window.requestAnimationFrame(animateAudioMotion);
     };
@@ -3575,6 +3580,9 @@
       const duration = Number.isFinite(recording.duration) ? recording.duration : 0;
       const current = Number.isFinite(recording.currentTime) ? recording.currentTime : 0;
       const fraction = duration > 0 ? Math.min(1, current / duration) : 0;
+      const motionBeat = Math.floor(current / 2.4) % 4;
+      if (card.dataset.motionBeat !== String(motionBeat)) card.dataset.motionBeat = String(motionBeat);
+      card.style.setProperty("--speech-progress", fraction.toFixed(4));
       seek.value = String(Math.round(fraction * 1000));
       timeLabel.textContent = formatTime(current);
       durationLabel.textContent = formatTime(duration);

@@ -1,8 +1,21 @@
-/* master23: calm mobile presenter UI and anatomically connected 2D rig.
+/* master26: calm mobile presenter UI and anatomically connected 2D rig.
    This file intentionally loads last so old cached layout rules cannot win. */
+
+/* The wrapper must stay fixed. Only the head, torso, arms, eyes and mouth move.
+   This removes the old "moving photograph" effect. */
+.presenter-card-v2 .cartoon-character.guide-character[data-rig="parts"],
+.presenter-card-v2.is-speaking .cartoon-character.guide-character[data-rig="parts"] {
+  animation: none !important;
+  transform: none !important;
+}
+
+.presenter-card-v2 .guide-character[data-rig="parts"] {
+  --rig-mouth: calc(.18 + var(--voice-level, 0) * .88);
+}
 
 .presenter-card-v2 .guide-character[data-rig="parts"] .cartoon-torso {
   top: 18%;
+  z-index: 4;
   width: 56%;
   clip-path: polygon(
     14% 1%, 86% 1%,
@@ -15,26 +28,40 @@
 
 .presenter-card-v2 .guide-character[data-rig="parts"] .cartoon-head {
   top: 1.5%;
+  z-index: 6;
   width: 32%;
 }
 
 .presenter-card-v2 .guide-character[data-rig="parts"] .cartoon-arm {
-  top: 21%;
+  top: 24%;
+  z-index: 3;
 }
 
 .presenter-card-v2 .guide-character[data-rig="parts"] .cartoon-arm-left {
-  left: 0;
-  width: 39%;
+  left: 1.5%;
+  width: 38%;
   transform-origin: 92% 17%;
-  rotate: -8deg;
+  rotate: -11deg;
 }
 
 .presenter-card-v2 .guide-character[data-rig="parts"] .cartoon-arm-right {
-  right: 1%;
-  width: 35%;
+  right: 2%;
+  width: 34%;
   transform-origin: 8% 14%;
-  rotate: 9deg;
+  rotate: 11deg;
 }
+
+.presenter-card-v2.is-speaking .guide-character[data-rig="parts"] .cartoon-head {
+  animation: presenter-head-natural 2.05s cubic-bezier(.45, 0, .35, 1) infinite !important;
+}
+
+.presenter-card-v2.is-speaking .guide-character[data-rig="parts"] .cartoon-torso {
+  animation: presenter-breath-talk 3.1s ease-in-out infinite !important;
+}
+
+.presenter-card-v2[data-motion-beat="1"].is-speaking .guide-character[data-rig="parts"] .cartoon-head { animation-delay: -.55s !important; }
+.presenter-card-v2[data-motion-beat="2"].is-speaking .guide-character[data-rig="parts"] .cartoon-head { animation-duration: 1.7s !important; }
+.presenter-card-v2[data-motion-beat="3"].is-speaking .guide-character[data-rig="parts"] .cartoon-head { animation-delay: -1.15s !important; }
 
 .presenter-card-v2.is-speaking .guide-character[data-rig="parts"] .cartoon-arm-left {
   animation-name: presenter-left-calm !important;
@@ -55,24 +82,42 @@
 
 @keyframes presenter-left-calm {
   0%, 100% { transform: translateY(0) rotate(0); }
-  45% { transform: translateY(1.2%) rotate(-1.8deg); }
-  70% { transform: translateY(.4%) rotate(.7deg); }
+  24% { transform: translate(-.4%, -.5%) rotate(1.2deg); }
+  52% { transform: translate(-1.1%, -1.4%) rotate(3.2deg); }
+  76% { transform: translate(-.2%, -.3%) rotate(-.7deg); }
 }
 
 @keyframes presenter-right-calm {
   0%, 100% { transform: translateY(0) rotate(0); }
-  40% { transform: translateY(1%) rotate(1.6deg); }
-  72% { transform: translateY(.3%) rotate(-.6deg); }
+  22% { transform: translate(.3%, -.4%) rotate(-1deg); }
+  48% { transform: translate(1%, -1.2%) rotate(-3deg); }
+  74% { transform: translate(.2%, -.2%) rotate(.8deg); }
 }
 
 @keyframes presenter-left-point {
   0%, 100% { transform: translateY(0) rotate(0); }
-  30%, 64% { transform: translate(-1.5%, -1%) rotate(4deg); }
+  28%, 62% { transform: translate(-2.2%, -2.2%) rotate(6.5deg); }
+  45% { transform: translate(-1.5%, -1.4%) rotate(4.5deg); }
 }
 
 @keyframes presenter-right-point {
   0%, 100% { transform: translateY(0) rotate(0); }
-  30%, 64% { transform: translate(1.5%, -1%) rotate(-4deg); }
+  28%, 62% { transform: translate(2.2%, -2.2%) rotate(-6.5deg); }
+  45% { transform: translate(1.5%, -1.4%) rotate(-4.5deg); }
+}
+
+@keyframes presenter-head-natural {
+  0%, 100% { transform: translateX(-50%) translateY(0) rotate(-.7deg); }
+  18% { transform: translateX(-50%) translateY(-1px) rotate(.35deg); }
+  42% { transform: translateX(-50%) translateY(-3px) rotate(1.25deg); }
+  64% { transform: translateX(-50%) translateY(1px) rotate(-.15deg); }
+  82% { transform: translateX(-50%) translateY(-1px) rotate(-1.1deg); }
+}
+
+@keyframes presenter-breath-talk {
+  0%, 100% { transform: translateX(-50%) scaleY(1) rotate(-.25deg); }
+  46% { transform: translateX(-50%) scaleY(1.012) rotate(.35deg); }
+  72% { transform: translateX(-50%) scaleY(1.004) rotate(.08deg); }
 }
 
 .presenter-context-link[hidden] {
@@ -153,8 +198,40 @@
     display: none !important;
   }
 
+  body[data-page="pomocnik"] .presenter-path-dialog {
+    max-width: calc(100vw - 14px);
+    overflow: hidden;
+  }
+
+  body[data-page="pomocnik"] .presenter-path-dialog h3 {
+    max-width: 100%;
+    font-size: clamp(18px, 5.2vw, 20px);
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+    white-space: normal;
+  }
+
+  body[data-page="pomocnik"] .presenter-path-dialog > p {
+    max-width: 100%;
+    line-height: 1.28;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
   body[data-page="pomocnik"] .cartoon-photo-zoom,
   body[data-page="pomocnik"] .cartoon-prop-card [data-presenter-photo-open] {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    right: 6px;
+    bottom: 6px;
+    border-radius: 10px;
+    font-size: 17px;
+  }
+
+  body[data-page="pomocnik"] .cartoon-photo-zoom[hidden],
+  body[data-page="pomocnik"] .cartoon-prop-card [data-presenter-photo-open][hidden] {
     display: none !important;
   }
 
@@ -162,16 +239,17 @@
     right: 12px;
     bottom: 12px;
     left: 12px;
+    width: auto;
     max-width: none;
-    min-height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 13px;
+    min-height: 58px;
+    max-height: 84px;
+    display: -webkit-box;
+    padding: 9px 13px;
     border-radius: 13px;
     font-size: clamp(12px, 3.5vw, 15px);
     line-height: 1.22;
-    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
   }
 
   body[data-page="pomocnik"] .presenter-cartoon .cartoon-prop-card {
@@ -186,14 +264,33 @@
     left: 4%;
   }
 
-  body[data-page="pomocnik"] .presenter-cartoon .cartoon-prop-card strong,
-  body[data-page="pomocnik"] .presenter-cartoon .cartoon-prop-card small {
+  body[data-page="pomocnik"] .presenter-cartoon .cartoon-prop-card strong {
     display: none !important;
+  }
+
+  body[data-page="pomocnik"] .presenter-cartoon .cartoon-prop-card small {
+    top: 6px;
+    right: 6px;
+    display: block !important;
+    min-width: 31px;
+    padding: 3px 6px;
+    font-size: 9px;
   }
 
   body[data-page="pomocnik"] .presenter-cartoon .cartoon-prop-visual {
     height: 100%;
     border-radius: inherit;
+  }
+
+  body[data-page="pomocnik"] .presenter-cartoon[data-visual="photo"] .cartoon-prop-visual,
+  body[data-page="pomocnik"] .presenter-cartoon[data-visual="diagram"] .cartoon-prop-visual {
+    background: #fff;
+  }
+
+  body[data-page="pomocnik"] .presenter-cartoon[data-visual="photo"] .cartoon-prop-image,
+  body[data-page="pomocnik"] .presenter-cartoon[data-visual="diagram"] .cartoon-prop-image {
+    padding: 3px;
+    object-fit: contain;
   }
 
   body[data-page="pomocnik"] .presenter-card-v2 .presenter-cartoon .cartoon-character.guide-character[data-rig="parts"] {
@@ -212,17 +309,17 @@
   }
 
   body[data-page="pomocnik"] .presenter-card-v2 .guide-character[data-rig="parts"] .cartoon-arm {
-    top: 22%;
+    top: 24%;
   }
 
   body[data-page="pomocnik"] .presenter-card-v2 .guide-character[data-rig="parts"] .cartoon-arm-left {
-    left: 1%;
-    width: 38%;
+    left: 2%;
+    width: 37%;
   }
 
   body[data-page="pomocnik"] .presenter-card-v2 .guide-character[data-rig="parts"] .cartoon-arm-right {
-    right: 2%;
-    width: 34%;
+    right: 3%;
+    width: 33%;
   }
 
   body[data-page="pomocnik"] .presenter-card-v2 .presenter-content {
