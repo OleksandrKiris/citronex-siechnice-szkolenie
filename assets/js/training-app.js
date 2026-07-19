@@ -699,11 +699,11 @@
               <small data-cartoon-prop-counter aria-hidden="true"></small>
             </div>
             <div class="cartoon-character">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-showcase2" alt="" width="1639" height="960">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-showcase2" alt="" width="973" height="701">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-showcase2" alt="" width="552" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-showcase3" alt="" width="1639" height="960">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-showcase3" alt="" width="973" height="701">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-showcase3" alt="" width="552" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-showcase2" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-showcase3" alt="" width="405" height="542">
                 <span class="cartoon-eye cartoon-eye-left"></span>
                 <span class="cartoon-eye cartoon-eye-right"></span>
                 <span class="cartoon-mouth"></span>
@@ -2796,6 +2796,7 @@
       ]
     };
     let activeCueKey = "";
+    let cueAnimationTimer = 0;
 
     const applyCartoonCue = (sentenceIndex = 0, force = false) => {
       if (!cartoon || !chapters[chapterIndex]) return;
@@ -2835,9 +2836,13 @@
         cartoonPropIcon.textContent = cue.icon || "\u2022";
       }
       if (cartoonPropCard) {
+        window.clearTimeout(cueAnimationTimer);
         cartoonPropCard.classList.remove("is-changing");
         void cartoonPropCard.offsetWidth;
         cartoonPropCard.classList.add("is-changing");
+        cueAnimationTimer = window.setTimeout(() => {
+          cartoonPropCard.classList.remove("is-changing");
+        }, 440);
       }
     };
 
