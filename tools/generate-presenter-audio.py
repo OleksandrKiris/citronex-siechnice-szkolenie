@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -30,16 +31,26 @@ VOICE_JOBS = {
 }
 
 VOICE_PROFILES = {
-    "pl": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
-    "en": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
-    "ua": {"rate": "-4%", "pitch": "-3Hz", "volume": "+1%"},
-    "ru": {"rate": "-5%", "pitch": "-4Hz", "volume": "+1%"},
-    "az": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
-    "es": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
-    "fil": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
-    "id": {"rate": "-3%", "pitch": "-3Hz", "volume": "+1%"},
-    "ne": {"rate": "-4%", "pitch": "-3Hz", "volume": "+1%"},
+    "pl": {"rate": "-10%", "pitch": "-2Hz", "volume": "+8%"},
+    "en": {"rate": "-7%", "pitch": "-2Hz", "volume": "+7%"},
+    "ua": {"rate": "-9%", "pitch": "-2Hz", "volume": "+8%"},
+    "ru": {"rate": "-9%", "pitch": "-3Hz", "volume": "+8%"},
+    "az": {"rate": "-7%", "pitch": "-2Hz", "volume": "+7%"},
+    "es": {"rate": "-7%", "pitch": "-2Hz", "volume": "+7%"},
+    "fil": {"rate": "-7%", "pitch": "-2Hz", "volume": "+7%"},
+    "id": {"rate": "-7%", "pitch": "-2Hz", "volume": "+7%"},
+    "ne": {"rate": "-9%", "pitch": "-2Hz", "volume": "+8%"},
 }
+
+
+def speech_script(script: str, language: str) -> str:
+    """Turn display copy into calmer narration without changing its meaning."""
+    paragraphs = [re.sub(r"\s+", " ", part).strip() for part in re.split(r"\n\s*\n", script)]
+    prepared = " … ".join(part for part in paragraphs if part)
+    if language == "pl":
+        # Polish TTS articulates the natural Polish form more clearly.
+        prepared = re.sub(r"\bAleksandr\b", "Aleksander", prepared)
+    return prepared
 
 
 async def save_with_retry(script: str, voice: str, profile: dict[str, str], target: Path) -> None:
@@ -68,6 +79,7 @@ async def generate(
     force: bool,
     concurrency: int,
     section_ids: set[str],
+    selected_languages: set[str],
 ) -> None:
     guide = json.loads(guide_path.read_text(encoding="utf-8"))
     languages = guide.get("languages", {})
@@ -79,6 +91,8 @@ async def generate(
     semaphore = asyncio.Semaphore(max(1, concurrency))
     jobs: list[tuple[str, str, dict[str, str], str, Path]] = []
     for language, voice in VOICE_JOBS.items():
+        if selected_languages and language not in selected_languages:
+            continue
         language_dir = output_dir / language
         language_dir.mkdir(parents=True, exist_ok=True)
         sections = languages[language].get("sections", [])
@@ -90,7 +104,7 @@ async def generate(
             if mp3_path.exists() and not force:
                 print(f"kept {language}/{mp3_path.name}", flush=True)
                 continue
-            jobs.append((language, voice, VOICE_PROFILES[language], section["text"], mp3_path))
+            jobs.append((language, voice, VOICE_PROFILES[language], speech_script(section["text"], language), mp3_path))
 
     async def render(job: tuple[str, str, dict[str, str], str, Path]) -> None:
         language, voice, profile, script, mp3_path = job
@@ -112,10 +126,11 @@ def main() -> None:
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--concurrency", type=int, default=4)
     parser.add_argument("--section", action="append", default=[], help="Regenerate only this section id; may be repeated.")
+    parser.add_argument("--language", action="append", choices=sorted(VOICE_JOBS), default=[], help="Regenerate only this language; may be repeated.")
     args = parser.parse_args()
     if not args.guide.is_file():
         parser.error(f"guide not found: {args.guide}")
-    asyncio.run(generate(args.guide, args.output, args.force, args.concurrency, set(args.section)))
+    asyncio.run(generate(args.guide, args.output, args.force, args.concurrency, set(args.section), set(args.language)))
 
 
 if __name__ == "__main__":

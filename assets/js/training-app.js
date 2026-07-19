@@ -749,11 +749,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master22" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master22" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master22" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master24" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master24" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master24" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master22" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master24" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -845,9 +845,9 @@
           </div>
           <p class="presenter-note">${esc(note)}</p>
           <div class="presenter-actions presenter-controls">
-            <button type="button" class="btn secondary presenter-control-small" data-presenter-previous aria-label="${esc(previous)}">← <span>${esc(previous)}</span></button>
+            <button type="button" class="btn secondary presenter-control-small" data-presenter-previous aria-label="${esc(previous)}"><span class="presenter-control-icon" aria-hidden="true">←</span><span class="presenter-control-text">${esc(previous)}</span></button>
             <button type="button" class="btn presenter-play" data-presenter-play><span data-presenter-play-icon>▶</span> <span data-presenter-play-label>${esc(labels.start)}</span></button>
-            <button type="button" class="btn secondary presenter-control-small" data-presenter-next><span data-presenter-next-label>${esc(labels.next)}</span> →</button>
+            <button type="button" class="btn secondary presenter-control-small" data-presenter-next><span class="presenter-control-text" data-presenter-next-label>${esc(labels.next)}</span><span class="presenter-control-icon" aria-hidden="true">→</span></button>
             <button type="button" class="btn secondary presenter-stop" data-presenter-stop>■ ${esc(stop)}</button>
             <a class="btn secondary presenter-context-link" data-presenter-context-link href="${esc(href("mapa"))}">
               <span class="presenter-context-icon" data-presenter-context-icon aria-hidden="true">🗺️</span>
@@ -3801,7 +3801,7 @@
     };
 
     const chapterContextTargets = {
-      start: { page: "mapa", icon: "🗺️" },
+      start: null,
       arrival: { page: "mapa", icon: "🗺️" },
       warehouse: { page: "magazyn", icon: "📦" },
       greenhouse: { page: "szklarnia", icon: "🌿" },
@@ -3815,7 +3815,9 @@
 
     const updateContextLink = (chapter) => {
       if (!contextLink) return;
-      const target = chapterContextTargets[chapter?.group] || chapterContextTargets.start;
+      const target = chapterContextTargets[chapter?.group] || null;
+      contextLink.hidden = !target;
+      if (!target) return;
       const pageData = DATA.pages[target.page] || DATA.pages.mapa;
       const label = `${text(DATA.ui.open)}: ${text(pageData.title)}`;
       contextLink.href = href(target.page);

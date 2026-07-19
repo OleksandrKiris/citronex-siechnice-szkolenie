@@ -46,13 +46,22 @@ if (expectedSections.length < 40) errors.push(`briefing has too few granular cha
 
 const appSource = fs.readFileSync(path.join(root, "assets", "js", "training-app.js"), "utf8");
 const rigCssPath = path.join(root, "assets", "css", "presenter-rig.css");
+const cleanCssPath = path.join(root, "assets", "css", "presenter-clean.css");
 if (!fs.existsSync(rigCssPath)) errors.push("independent presenter rig stylesheet is missing");
+if (!fs.existsSync(cleanCssPath)) errors.push("clean mobile presenter stylesheet is missing");
+else {
+  const cleanCss = fs.readFileSync(cleanCssPath, "utf8");
+  [".presenter-step-rail", ".presenter-script", ".presenter-timeline", ".presenter-stop", ".presenter-help-tool"].forEach((selector) => {
+    if (!cleanCss.includes(selector)) errors.push(`mobile declutter rule is missing (${selector})`);
+  });
+}
 rigAssets.forEach((asset) => {
   if (!fs.existsSync(path.join(root, "assets", "avatar", "cartoon", asset))) errors.push(`rig asset is missing (${asset})`);
   const occurrences = (appSource.match(new RegExp(asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length;
   if (occurrences !== 2) errors.push(`rig asset must be referenced once in markup and once in preload data (${asset}: ${occurrences})`);
 });
 if (/guide-pose-whole|data-cartoon-pose/.test(appSource)) errors.push("legacy whole-pose avatar is still rendered");
+if (!appSource.includes("contextLink.hidden = !target")) errors.push("irrelevant context action is not hidden per chapter");
 
 for (const language of expectedLanguages) {
   const localized = guide.languages && guide.languages[language];
