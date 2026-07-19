@@ -1,4 +1,4 @@
-/* master33: professional cartoon presenter, visual-first course and connected fallback.
+/* master34: professional cartoon presenter, visual-first course and connected fallback.
    This file intentionally loads last so old cached layout rules cannot win. */
 
 /* The wrapper must stay fixed. Only the head, torso, arms, eyes and mouth move.
@@ -274,7 +274,7 @@
   body[data-page="pomocnik"] .presenter-path-overlay {
     background:
       linear-gradient(180deg, rgba(3, 42, 28, .72), rgba(3, 52, 34, .9)),
-      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master33") center 31% / min(72vh, 620px) auto no-repeat;
+      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master34") center 31% / min(72vh, 620px) auto no-repeat;
   }
 
   body[data-page="pomocnik"] .presenter-path-dialog h3 {
@@ -820,8 +820,8 @@
   }
 }
 
-/* Master 33: professional cartoon portrait. Two aligned frames animate only
-   the mouth area, so the face stays stable while the narration is playing. */
+/* Master 34: professional cartoon portrait. Audio-reactive visemes replace the
+   old two-frame switch; the face stays stable while only the mouth area changes. */
 .presenter-professional-head {
   --head-tilt: 0deg;
   position: absolute;
@@ -837,6 +837,32 @@
   background: radial-gradient(circle at 50% 38%, #eef7f1 0 42%, #bcd9ca 72%, #39775a 100%);
   box-shadow: 0 16px 36px rgba(0, 32, 20, .38), 0 0 0 5px rgba(255, 210, 70, .18);
   transform-origin: 50% 88%;
+}
+
+.presenter-professional-head::before,
+.presenter-professional-head::after {
+  --eye-tilt: -4deg;
+  content: "";
+  position: absolute;
+  top: 31%;
+  left: 34.5%;
+  z-index: 5;
+  width: 12%;
+  height: 5.5%;
+  border-bottom: 2px solid rgba(58, 34, 25, .82);
+  border-radius: 0 0 60% 60%;
+  background: rgba(213, 145, 109, .94);
+  opacity: 0;
+  pointer-events: none;
+  transform: rotate(var(--eye-tilt)) scaleY(.25);
+  transform-origin: 50% 100%;
+  animation: professional-eye-blink 6.4s ease-in-out infinite;
+}
+
+.presenter-professional-head::after {
+  --eye-tilt: 3deg;
+  top: 29.5%;
+  left: 56%;
 }
 
 .presenter-card-v2[data-avatar-mode="cartoon"] .presenter-professional-head {
@@ -856,14 +882,29 @@
   user-select: none;
 }
 
-.presenter-professional-head-open {
+.presenter-professional-head-viseme {
   z-index: 2;
   opacity: 0;
-  clip-path: inset(43% 22% 27% 22% round 18%);
+  clip-path: inset(48.5% 30.5% 34% 30.5% round 24%);
+  transition: opacity 45ms linear;
 }
 
-.presenter-card-v2.is-speaking .presenter-professional-head-open {
-  animation: professional-mouth-talk .52s steps(1, end) infinite;
+.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="mid"] [data-viseme-frame="mid"],
+.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="ah"] [data-viseme-frame="ah"],
+.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="oh"] [data-viseme-frame="oh"] {
+  opacity: 1;
+}
+
+.presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="mid"] {
+  animation: professional-viseme-mid .64s steps(1, end) infinite;
+}
+
+.presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="ah"] {
+  animation: professional-viseme-ah .64s steps(1, end) infinite;
+}
+
+.presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="oh"] {
+  animation: professional-viseme-oh .64s steps(1, end) infinite;
 }
 
 .presenter-card-v2[data-gesture="show-left"] .presenter-professional-head,
@@ -889,9 +930,24 @@
   70% { transform: translate3d(1px, -1px, 0) rotate(calc(var(--head-tilt) + .28deg)); }
 }
 
-@keyframes professional-mouth-talk {
-  0%, 18%, 46%, 74%, 100% { opacity: 0; }
-  19%, 45%, 47%, 73%, 75%, 88% { opacity: 1; }
+@keyframes professional-eye-blink {
+  0%, 44%, 46.5%, 82%, 84.5%, 100% { opacity: 0; transform: rotate(var(--eye-tilt)) scaleY(.2); }
+  45%, 45.8%, 83%, 83.8% { opacity: .96; transform: rotate(var(--eye-tilt)) scaleY(1); }
+}
+
+@keyframes professional-viseme-mid {
+  0%, 26%, 58%, 100% { opacity: 0; }
+  8%, 25%, 44%, 57%, 76%, 91% { opacity: 1; }
+}
+
+@keyframes professional-viseme-ah {
+  0%, 43%, 59%, 100% { opacity: 0; }
+  44%, 58% { opacity: 1; }
+}
+
+@keyframes professional-viseme-oh {
+  0%, 75%, 92%, 100% { opacity: 0; }
+  76%, 91% { opacity: 1; }
 }
 
 @media (max-width: 620px) {
@@ -913,7 +969,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .presenter-card-v2[data-avatar-mode="cartoon"] .presenter-professional-head,
-  .presenter-card-v2.is-speaking .presenter-professional-head-open {
+  .presenter-card-v2.is-speaking .presenter-professional-head-viseme,
+  .presenter-professional-head::before,
+  .presenter-professional-head::after {
     animation: none !important;
   }
+
+  .presenter-card-v2.is-speaking [data-viseme-frame="mid"] { opacity: 1; }
 }

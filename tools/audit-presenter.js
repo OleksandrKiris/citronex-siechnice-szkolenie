@@ -11,8 +11,12 @@ const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"
 const errors = [];
 const warnings = [];
 const rigAssets = ["head-v1.png", "torso-v1.png", "arm-left-v2.png", "arm-right-v3.png"];
-const cartoonClosedAsset = "presenter-cartoon-professional-closed-v1.png";
-const cartoonOpenAsset = "presenter-cartoon-professional-open-v1.png";
+const professionalCartoonFrames = [
+  "presenter-cartoon-professional-closed-v1.png",
+  "presenter-cartoon-professional-open-v1.png",
+  "presenter-cartoon-professional-ah-v2.png",
+  "presenter-cartoon-professional-oh-v2.png"
+];
 const expectedQuizById = {
   welcome: 1, "arrival-wait": 2, "warehouse-no-reader": 0,
   "greenhouse-sides": 19, "greenhouse-nave": 20, "greenhouse-section": 22,
@@ -66,7 +70,7 @@ rigAssets.forEach((asset) => {
   const occurrences = (appSource.match(new RegExp(asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length;
   if (occurrences !== 2) errors.push(`rig asset must be referenced once in markup and once in preload data (${asset}: ${occurrences})`);
 });
-[cartoonClosedAsset, cartoonOpenAsset].forEach((asset) => {
+professionalCartoonFrames.forEach((asset) => {
   const assetPath = path.join(root, "assets", "avatar", asset);
   if (!fs.existsSync(assetPath)) errors.push(`professional cartoon frame is missing (${asset})`);
   else if (fs.statSync(assetPath).size < 100000 || fs.statSync(assetPath).size > 600000) {
@@ -85,8 +89,11 @@ if (!appSource.includes("contextLink.hidden = !target")) errors.push("irrelevant
 if (!appSource.includes("card.dataset.motionBeat")) errors.push("independent motion beat is not synchronized with audio");
 if (!appSource.includes("rms < .014")) errors.push("voice-energy mouth gate is missing");
 if (!appSource.includes('avatarQuery === "human"')) errors.push("professional cartoon must be the default avatar");
-if (!appSource.includes(cartoonClosedAsset) || !appSource.includes(cartoonOpenAsset) || !appSource.includes("presenter-professional-head")) {
+if (!professionalCartoonFrames.every((asset) => appSource.includes(asset)) || !appSource.includes("presenter-professional-head")) {
   errors.push("professional cartoon speaking frames are not wired into the presenter");
+}
+if (!["audioSpectrum", "getByteFrequencyData", "card.dataset.viseme", "card.dataset.lipsync"].every((token) => appSource.includes(token))) {
+  errors.push("audio-reactive multi-viseme lip sync is missing");
 }
 if (!appSource.includes('tabindex="-1" aria-hidden="true"')) errors.push("duplicate accessible stage control is not suppressed");
 if (!appSource.includes("card.dataset.hasVisual")) errors.push("adaptive visual focus state is missing");
@@ -94,7 +101,7 @@ if (!["actionLabel", "urgentLabel", "listenLabel", "stageCaption.dataset.label"]
   errors.push("plain-language action labels are not wired into every chapter");
 }
 const adaptiveCssSource = fs.existsSync(cleanCssPath) ? fs.readFileSync(cleanCssPath, "utf8") : "";
-if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(cartoonClosedAsset) || !adaptiveCssSource.includes("Master 33") || !adaptiveCssSource.includes("professional-mouth-talk") || !adaptiveCssSource.includes("attr(data-label)")) {
+if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(professionalCartoonFrames[0]) || !adaptiveCssSource.includes("Master 34") || !adaptiveCssSource.includes("professional-viseme-ah") || !adaptiveCssSource.includes("professional-eye-blink") || !adaptiveCssSource.includes("attr(data-label)")) {
   errors.push("adaptive visual focus styling is missing");
 }
 if (!appSource.includes('updateViaCache: "none"') || !appSource.includes('"controllerchange"')) errors.push("automatic Service Worker update is missing");
@@ -165,7 +172,8 @@ console.log(`Languages: ${expectedLanguages.length}`);
 console.log(`Granular chapters per language: ${expectedSections.length}`);
 console.log(`Expected audio files: ${expectedLanguages.length * expectedSections.length}`);
 console.log(`Independent rig layers: ${rigAssets.length}`);
-console.log(`Professional cartoon frames: ${cartoonClosedAsset}, ${cartoonOpenAsset}`);
+console.log(`Professional cartoon frames: ${professionalCartoonFrames.join(", ")}`);
+console.log("Lip sync: audio-reactive multi-viseme + fallback animation");
 console.log("Adaptive visual focus: presenter / instruction priority");
 console.log("Service Worker freshness: automatic reload + network-first HTML");
 console.log(`Warnings: ${warnings.length}`);

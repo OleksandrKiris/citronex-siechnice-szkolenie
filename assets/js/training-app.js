@@ -752,11 +752,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master33" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master33" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master33" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master34" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master34" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master34" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master33" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master34" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -816,10 +816,12 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master33" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master34" hidden></video>
           <div class="presenter-professional-head" data-professional-head aria-hidden="true">
-            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master33" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-open" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260719-siechnice-master33" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master34" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260719-siechnice-master34" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260719-siechnice-master34" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260719-siechnice-master34" alt="" width="512" height="512">
           </div>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
@@ -844,8 +846,8 @@
               <span>${esc(speedLabel)}</span>
               <select data-presenter-rate aria-label="${esc(speedLabel)}">
                 <option value="0.8">0.8×</option>
-                <option value="0.85">0.85×</option>
-                <option value="1" selected>1×</option>
+                <option value="0.9" selected>0.9×</option>
+                <option value="1">1×</option>
                 <option value="1.1">1.1×</option>
               </select>
             </label>
@@ -2894,6 +2896,8 @@
     const useHumanVideo = avatarQuery === "human" && engineMode !== "lite" && !reducedMotion && supportsHumanVideo;
     card.dataset.avatarPreference = useHumanVideo ? "human" : "professional-cartoon";
     card.dataset.avatarStyle = "professional-cartoon";
+    card.dataset.viseme = "closed";
+    card.dataset.lipsync = "fallback";
 
     const touchToStart = text(tx(
       "Dotknij, aby włączyć głos", "Touch to enable voice", "Торкніться, щоб увімкнути голос",
@@ -2935,10 +2939,10 @@
           completed: Array.isArray(parsed.completed) ? parsed.completed.filter((id) => typeof id === "string") : [],
           chapter: typeof parsed.chapter === "string" ? parsed.chapter : "",
           position: Number.isFinite(Number(parsed.position)) ? Math.max(0, Number(parsed.position)) : 0,
-          rate: [0.8, 0.85, 1, 1.1].includes(Number(parsed.rate)) ? Number(parsed.rate) : 1
+          rate: [0.8, 0.9, 1, 1.1].includes(Number(parsed.rate)) ? Number(parsed.rate) : 0.9
         };
       } catch (error) {
-        return { track: "", completed: [], chapter: "", position: 0, rate: 1 };
+        return { track: "", completed: [], chapter: "", position: 0, rate: 0.9 };
       }
     })();
     if (rateControl) rateControl.value = String(savedProgress.rate);
@@ -2959,6 +2963,7 @@
     let audioContext = null;
     let audioAnalyser = null;
     let audioWave = null;
+    let audioSpectrum = null;
     let audioWarmth = null;
     let audioPresence = null;
     let audioCompressor = null;
@@ -3568,6 +3573,7 @@
       if (!playing) {
         card.style.setProperty("--voice-level", "0");
         card.dataset.motionBeat = "0";
+        card.dataset.viseme = "closed";
       }
       playIcon.textContent = playing ? "Ⅱ" : "▶";
       playLabel.textContent = playing ? labels.pause : labels.resume;
@@ -3602,6 +3608,35 @@
          voice energy. The former fixed minimum made every language look dubbed. */
       const level = rms < .014 ? .015 : Math.max(.04, Math.min(1, (rms - .01) * 10.8));
       card.style.setProperty("--voice-level", level.toFixed(3));
+      if (rms < .014) {
+        card.dataset.viseme = "closed";
+      } else {
+        let low = 0;
+        let middle = 0;
+        let high = 0;
+        if (audioSpectrum) {
+          audioAnalyser.getByteFrequencyData(audioSpectrum);
+          const upper = Math.min(64, audioSpectrum.length);
+          for (let index = 2; index < upper; index += 1) {
+            const value = audioSpectrum[index];
+            if (index < 12) low += value;
+            else if (index < 32) middle += value;
+            else high += value;
+          }
+          low /= 10;
+          middle /= 20;
+          high /= Math.max(1, upper - 32);
+        }
+        const articulationBeat = Math.floor(timestamp / (engineMode === "lite" ? 125 : engineMode === "mobile" ? 105 : 88));
+        const viseme = level > .57 && articulationBeat % 3 === 0
+          ? "ah"
+          : low > middle * 1.08 && articulationBeat % 2 === 1
+            ? "oh"
+            : high > middle * 1.12 && articulationBeat % 4 === 2
+              ? "oh"
+              : "mid";
+        card.dataset.viseme = viseme;
+      }
       audioMotionFrame = window.requestAnimationFrame(animateAudioMotion);
     };
 
@@ -3616,6 +3651,7 @@
           audioAnalyser.fftSize = 256;
           audioAnalyser.smoothingTimeConstant = .72;
           audioWave = new Uint8Array(audioAnalyser.fftSize);
+          audioSpectrum = new Uint8Array(audioAnalyser.frequencyBinCount);
           audioWarmth = audioContext.createBiquadFilter();
           audioWarmth.type = "lowshelf";
           audioWarmth.frequency.value = 135;
@@ -3636,11 +3672,14 @@
           audioPresence.connect(audioCompressor);
           audioCompressor.connect(audioAnalyser);
           audioAnalyser.connect(audioContext.destination);
+          card.dataset.lipsync = "audio";
         }
         if (audioContext.state === "suspended") audioContext.resume().catch(() => {});
       } catch (error) {
         audioAnalyser = null;
         audioWave = null;
+        audioSpectrum = null;
+        card.dataset.lipsync = "fallback";
       }
     };
 
