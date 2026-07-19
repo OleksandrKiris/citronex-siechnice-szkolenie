@@ -12,6 +12,29 @@ const DATA = global.CX_DATA;
 const languages = DATA.languages.map((item) => item.id);
 const outputPath = path.join(repoRoot, "assets", "content", "presenter-guide.json");
 
+const visualHintTemplates = {
+  pl: { entrance: "Znajdź czerwony napis „Wejście dla personelu” i porównaj drzwi z miejscem przed sobą.", route: "Porównaj drogę, budynek i wejście. Idź tylko trasą wskazaną przez koordynatora.", reader: "Spójrz na zaznaczony numer i dokładnie ten przycisk readera.", tablet: "Na ekranie znajdź element zaznaczony czerwoną ramką.", diagram: "Śledź strzałkę i nazwę miejsca na schemacie.", photo: "Porównaj widoczny punkt z miejscem przed sobą." },
+  en: { entrance: "Find the red “Staff Entrance” sign and compare the doors with the place in front of you.", route: "Compare the road, building and entrance. Use only the route confirmed by the coordinator.", reader: "Look at the highlighted number and that exact reader button.", tablet: "Find the control outlined in red on the screen.", diagram: "Follow the arrow and the place name on the diagram.", photo: "Compare the visible landmark with the place in front of you." },
+  ua: { entrance: "Знайдіть червону табличку «Вхід для персоналу» та порівняйте двері з місцем перед вами.", route: "Порівняйте дорогу, будівлю і вхід. Ідіть лише маршрутом, підтвердженим координатором.", reader: "Подивіться на виділений номер і саме цю кнопку рідера.", tablet: "Знайдіть на екрані елемент у червоній рамці.", diagram: "Слідкуйте за стрілкою та назвою місця на схемі.", photo: "Порівняйте орієнтир на фото з місцем перед вами." },
+  ru: { entrance: "Найдите красную табличку «Вход для персонала» и сравните двери с местом перед вами.", route: "Сравните дорогу, здание и вход. Идите только по маршруту, подтверждённому координатором.", reader: "Посмотрите на выделенный номер и именно эту кнопку ридера.", tablet: "Найдите на экране элемент в красной рамке.", diagram: "Следуйте по стрелке и названию места на схеме.", photo: "Сравните ориентир на фотографии с местом перед вами." },
+  az: { entrance: "Qırmızı “İşçi girişi” nişanını tapın və qapıları qarşınızdakı yerlə müqayisə edin.", route: "Yolu, binanı və girişi müqayisə edin. Yalnız koordinatorun təsdiqlədiyi marşrutla gedin.", reader: "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.", tablet: "Ekranda qırmızı çərçivə ilə göstərilən elementi tapın.", diagram: "Sxemdə oxu və yerin adını izləyin.", photo: "Şəkildəki nişanı qarşınızdakı yerlə müqayisə edin." },
+  es: { entrance: "Busca el letrero rojo de entrada del personal y compara las puertas con el lugar frente a ti.", route: "Compara la carretera, el edificio y la entrada. Usa solo la ruta confirmada por el coordinador.", reader: "Mira el número marcado y exactamente ese botón del reader.", tablet: "Busca en la pantalla el elemento rodeado en rojo.", diagram: "Sigue la flecha y el nombre del lugar en el esquema.", photo: "Compara el punto visible con el lugar frente a ti." },
+  fil: { entrance: "Hanapin ang pulang karatulang pasukan ng staff at ihambing ang mga pinto sa lugar sa harap mo.", route: "Ihambing ang daan, gusali at pasukan. Sundin lamang ang rutang kinumpirma ng coordinator.", reader: "Tingnan ang markadong numero at ang mismong button na iyon sa reader.", tablet: "Hanapin sa screen ang elementong may pulang kahon.", diagram: "Sundan ang arrow at pangalan ng lugar sa diagram.", photo: "Ihambing ang palatandaan sa larawan sa lugar sa harap mo." },
+  id: { entrance: "Temukan tanda merah pintu masuk staf dan cocokkan pintunya dengan tempat di depan Anda.", route: "Cocokkan jalan, gedung, dan pintu masuk. Ikuti hanya rute yang dikonfirmasi koordinator.", reader: "Lihat nomor yang ditandai dan tombol reader yang tepat itu.", tablet: "Temukan elemen yang diberi bingkai merah pada layar.", diagram: "Ikuti panah dan nama tempat pada diagram.", photo: "Cocokkan penanda pada foto dengan tempat di depan Anda." },
+  ne: { entrance: "रातो कर्मचारी प्रवेश चिन्ह खोज्नुहोस् र ढोकालाई अगाडिको स्थानसँग मिलाउनुहोस्।", route: "बाटो, भवन र प्रवेशद्वार तुलना गर्नुहोस्। संयोजकले पुष्टि गरेको मार्ग मात्र प्रयोग गर्नुहोस्।", reader: "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।", tablet: "स्क्रिनमा रातो घेराले देखाएको भाग खोज्नुहोस्।", diagram: "चित्रमा तीर र स्थानको नाम पछ्याउनुहोस्।", photo: "तस्बिरको चिन्हलाई अगाडिको स्थानसँग मिलाउनुहोस्।" }
+};
+
+function visualHintFor(id, image, lang) {
+  if (!image) return "";
+  const hints = visualHintTemplates[lang] || visualHintTemplates.en;
+  if (/warehouse-contact|warehouse-entrance/.test(id)) return hints.entrance;
+  if (/arrival|welcome/.test(id)) return hints.route;
+  if (/reader/.test(id) || /reader_/.test(image)) return hints.reader;
+  if (/tablet/.test(id) || /tablet/.test(image)) return hints.tablet;
+  if (/\.svg(?:$|\?)/i.test(image)) return hints.diagram;
+  return hints.photo;
+}
+
 const introductions = {
   pl: "Dzień dobry. Nazywam się Aleksandr i pomogę Ci spokojnie przygotować się do pracy w Citronex Siechnice. Obejrzyj ten instruktaż przed przyjazdem albo włącz go podczas oczekiwania na dokumenty. Przejdziemy po kolei przez dojazd, różnice między magazynem i szklarnią, reader, tablet, zasady bezpieczeństwa oraz miejsca, w których możesz uzyskać pomoc. Nie spiesz się. W każdej chwili możesz zatrzymać nagranie, powtórzyć rozdział lub otworzyć pełny tekst.",
   en: "Hello. My name is Aleksandr, and I will help you prepare calmly for work at Citronex Siechnice. Watch this briefing before you arrive, or play it while you wait for your documents. We will go step by step through arrival, the differences between the warehouse and greenhouse, the reader, the tablet, safety rules, and where to ask for help. There is no need to rush. You can pause the recording, repeat a chapter, or open the full text at any time.",
@@ -135,9 +158,22 @@ function buildGuide(lang) {
     const first = clean.split(/[.!?…。！？।]/)[0].trim();
     return first.length > 76 ? `${first.slice(0, 73).trim()}…` : first;
   };
+  const criticalIds = new Set([
+    "arrival-place", "arrival-wait", "warehouse-no-reader", "warehouse-entrance",
+    "reader-personal-tag", "reader-work-start", "reader-assigned-row", "reader-break-start",
+    "reader-break-end", "reader-work-end", "reader-charge", "reader-row-entry", "reader-row-exit",
+    "reader-cart-send", "reader-break", "reader-change-end", "tablet-login", "tablet-start",
+    "tablet-change", "tablet-break-start", "tablet-break-end", "tablet-work-end", "tablet-logout",
+    "documents-id", "documents-pass", "help-emergency"
+  ]);
+  const fallbackQuizByGroup = { arrival: 2, warehouse: 0, greenhouse: 19, reader: 4, tablet: 25, safety: 16, documents: 15, help: 27 };
   const add = ({ id, group, title, parts, image = "", icon = "", pose = "right", tone = "neutral", focus = null, quizIndex = null, sourceLabel = "", sourceUrl = "" }) => {
     const resolvedTitle = typeof title === "string" ? title : titleOf(title, lang);
     const text = join(parts, lang);
+    const resolvedImage = valueFor(image, lang);
+    const critical = tone === "danger" || criticalIds.has(id);
+    const resolvedQuizIndex = Number.isInteger(quizIndex) ? quizIndex : critical ? fallbackQuizByGroup[group] : null;
+    const category = group === "help" ? "help" : tone === "danger" ? "forbidden" : tone === "caution" ? "important" : "action";
     sections.push({
       id,
       group,
@@ -145,12 +181,17 @@ function buildGuide(lang) {
       tracks: tracksByGroup[group],
       title: resolvedTitle || shortTitle(parts.flat(Infinity).find(Boolean)),
       text,
-      image: valueFor(image, lang),
+      image: resolvedImage,
       icon,
       pose,
       tone,
+      category,
+      keyPoint: resolvedTitle || shortTitle(parts.flat(Infinity).find(Boolean)),
+      critical,
+      visualHint: visualHintFor(id, resolvedImage, lang),
+      visualOrigin: resolvedImage ? (/tablet|reader_start|restart_/i.test(resolvedImage) ? "company-screen-or-training-photo" : /\.svg(?:$|\?)/i.test(resolvedImage) ? "training-diagram" : "company-supplied-site-photo") : "none",
       ...(focus ? { focus } : {}),
-      ...(Number.isInteger(quizIndex) ? { quizIndex } : {}),
+      ...(Number.isInteger(resolvedQuizIndex) ? { quizIndex: resolvedQuizIndex } : {}),
       ...(sourceLabel && sourceUrl ? { sourceLabel, sourceUrl } : {})
     });
   };
@@ -267,7 +308,7 @@ function buildGuide(lang) {
 }
 
 const output = {
-  version: "20260719-siechnice-guide7",
+  version: "20260719-siechnice-guide8",
   chapterCount: 0,
   languages: Object.fromEntries(languages.map((lang) => [lang, buildGuide(lang)]))
 };

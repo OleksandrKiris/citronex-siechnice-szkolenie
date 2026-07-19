@@ -7,6 +7,9 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const guidePath = path.join(root, "assets", "content", "presenter-guide.json");
 const guide = JSON.parse(fs.readFileSync(guidePath, "utf8"));
+const lipSync = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "lipsync-cues.json"), "utf8"));
+const review = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "content-review.json"), "utf8"));
+const voices = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "voice-manifest.json"), "utf8"));
 const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"];
 const errors = [];
 const warnings = [];
@@ -15,7 +18,11 @@ const professionalCartoonFrames = [
   "presenter-cartoon-professional-closed-v1.png",
   "presenter-cartoon-professional-open-v1.png",
   "presenter-cartoon-professional-ah-v2.png",
-  "presenter-cartoon-professional-oh-v2.png"
+  "presenter-cartoon-professional-oh-v2.png",
+  "presenter-cartoon-professional-ee-v3.png",
+  "presenter-cartoon-professional-fv-v3.png",
+  "presenter-cartoon-professional-l-v3.png",
+  "presenter-cartoon-professional-mbp-v3.png"
 ];
 const expectedQuizById = {
   welcome: 1, "arrival-wait": 2, "warehouse-no-reader": 0,
@@ -109,6 +116,10 @@ if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSourc
 }
 if (!appSource.includes('updateViaCache: "none"') || !appSource.includes('"controllerchange"')) errors.push("automatic Service Worker update is missing");
 if (!workerSource.includes('cache: "no-store"') || !workerSource.includes('type === "SKIP_WAITING"')) errors.push("fresh navigation cache policy is missing");
+if (review.reviewedAt !== "2026-07-19" || !review.contentAuthor || !review.operationalApprovalOwner) errors.push("dated content ownership record is incomplete");
+if (!Array.isArray(review.checks) || review.checks.filter((item) => item.status === "verified-official").length < 4) errors.push("official fact review is incomplete");
+if (voices.renderedChapters !== 450 || Object.keys(voices.voices || {}).length !== 9 || Object.values(voices.voices || {}).some((item) => item.gender !== "male")) errors.push("male multilingual voice manifest is incomplete");
+if (!sameArray([...(lipSync.visemes || [])].sort(), ["closed", "mid", "ah", "oh", "ee", "fv", "l", "mbp"].sort())) errors.push("the eight-viseme timing set is incomplete");
 
 for (const language of expectedLanguages) {
   const localized = guide.languages && guide.languages[language];
@@ -138,6 +149,9 @@ for (const language of expectedLanguages) {
       const visualPath = path.join(root, section.image);
       if (!fs.existsSync(visualPath)) errors.push(`${language}/${section.id}: visual is missing (${section.image})`);
     }
+    if (section.image && (!section.visualHint || !section.visualOrigin)) errors.push(`${language}/${section.id}: real-material guidance is incomplete`);
+    if (!["action", "forbidden", "important", "help"].includes(section.category) || !section.keyPoint) errors.push(`${language}/${section.id}: clarity metadata is incomplete`);
+    if (section.critical && !Number.isInteger(section.quizIndex)) errors.push(`${language}/${section.id}: critical rule has no understanding check`);
     const focusRequired = /^(?:tablet-|reader-(?:take|personal-tag|work-start|activity|assigned-row|break-start|break-end|work-end|charge))/.test(section.id);
     if (focusRequired && (!Array.isArray(section.focus) || section.focus.length !== 4 || section.focus.some((value) => !Number.isFinite(value) || value < 0 || value > 100))) {
       errors.push(`${language}/${section.id}: visual focus is missing or invalid`);
@@ -149,9 +163,9 @@ for (const language of expectedLanguages) {
     if (expectedQuiz != null && section.quizIndex !== expectedQuiz) {
       errors.push(`${language}/${section.id}: quizIndex ${section.quizIndex} does not match expected ${expectedQuiz}`);
     }
-    if (section.quizIndex != null && expectedQuiz == null) {
-      errors.push(`${language}/${section.id}: unexpected quizIndex ${section.quizIndex}`);
-    }
+    const timed = lipSync.languages?.[language]?.[section.id];
+    if (!timed || !Number.isFinite(timed.duration) || !Array.isArray(timed.cues) || !timed.cues.length) errors.push(`${language}/${section.id}: lip-sync timing is missing`);
+    else if (timed.cues.some((cue) => !lipSync.visemes.includes(cue.v) || !Number.isFinite(cue.t))) errors.push(`${language}/${section.id}: lip-sync timing is invalid`);
     if (/[ÃÂ]|â(?:€|™|œ)|ðŸ/u.test(`${section.title} ${section.text}`)) {
       errors.push(`${language}/${expectedSections[index]}: possible broken UTF-8 text`);
     }

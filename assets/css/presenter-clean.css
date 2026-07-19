@@ -274,7 +274,7 @@
   body[data-page="pomocnik"] .presenter-path-overlay {
     background:
       linear-gradient(180deg, rgba(3, 42, 28, .72), rgba(3, 52, 34, .9)),
-      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master35") center 31% / min(72vh, 620px) auto no-repeat;
+      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master36") center 31% / min(72vh, 620px) auto no-repeat;
   }
 
   body[data-page="pomocnik"] .presenter-path-dialog h3 {
@@ -668,6 +668,70 @@
   }
 }
 
+/* Master 36: reviewed content, explicit visual guidance and compact results. */
+.content-review-card {
+  display: grid;
+  gap: 4px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(20, 122, 71, .22);
+  border-radius: 16px;
+  background: rgba(237, 250, 243, .82);
+  color: #163f2d;
+  font-size: .88rem;
+  line-height: 1.35;
+}
+
+.content-review-card strong { color: #08753f; }
+.content-review-card small { color: #597266; }
+
+.presenter-review-chip {
+  float: right;
+  margin: 0 0 4px 8px;
+  color: #537166;
+  font-size: .68rem;
+  font-weight: 700;
+}
+
+.cartoon-prop-hint {
+  display: grid;
+  gap: 2px;
+  margin: 8px 0 2px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: #fff8cf;
+  color: #3e3510;
+  font-size: clamp(.68rem, 1.8vw, .82rem);
+  line-height: 1.22;
+  text-align: left;
+}
+
+.cartoon-prop-hint[hidden] { display: none !important; }
+.cartoon-prop-hint b { color: #9a5d00; font-size: .68rem; letter-spacing: .05em; }
+
+.presenter-final-summary {
+  max-height: min(58vh, 520px);
+  overflow: auto;
+  text-align: left;
+}
+
+.presenter-final-summary h4 { margin: 0 0 10px; font-size: 1.08rem; }
+.presenter-final-summary dl { display: grid; gap: 8px; margin: 0; }
+.presenter-final-summary dl div { padding: 9px 10px; border-radius: 12px; background: #f4f8f5; }
+.presenter-final-summary dt { margin-bottom: 2px; color: #126b40; font-size: .78rem; font-weight: 800; text-transform: uppercase; }
+.presenter-final-summary dd { margin: 0; color: #20352b; font-size: .9rem; line-height: 1.3; }
+
+@media (max-width: 620px) {
+  .content-review-card { margin-top: 9px; padding: 9px 11px; font-size: .76rem; }
+  .content-review-card small { display: none; }
+  .presenter-review-chip { margin-top: 2px; font-size: .61rem; }
+  .cartoon-prop-hint { margin-top: 5px; padding: 6px 8px; }
+  .presenter-stage-tools .presenter-tool[data-presenter-fullscreen] { display: none; }
+  .presenter-final-summary { max-height: 56vh; }
+  .presenter-final-summary dl { gap: 5px; }
+  .presenter-final-summary dl div { padding: 7px 8px; }
+}
+
 /* Master 32: one stable talking head. Instruction photos and diagrams are the
    main content; the presenter no longer occupies half of the lesson. */
 .presenter-head-fallback {
@@ -891,21 +955,30 @@
 
 .presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="mid"] [data-viseme-frame="mid"],
 .presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="ah"] [data-viseme-frame="ah"],
-.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="oh"] [data-viseme-frame="oh"] {
+.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="oh"] [data-viseme-frame="oh"],
+.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="ee"] [data-viseme-frame="ee"],
+.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="fv"] [data-viseme-frame="fv"],
+.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="l"] [data-viseme-frame="l"],
+.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="mbp"] [data-viseme-frame="mbp"] {
   opacity: 1;
 }
 
 .presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="mid"] {
-  animation: professional-viseme-mid .64s steps(1, end) infinite;
+  animation: professional-viseme-mid 1.04s steps(1, end) infinite;
 }
 
 .presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="ah"] {
-  animation: professional-viseme-ah .64s steps(1, end) infinite;
+  animation: professional-viseme-ah 1.04s steps(1, end) infinite;
 }
 
 .presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="oh"] {
-  animation: professional-viseme-oh .64s steps(1, end) infinite;
+  animation: professional-viseme-oh 1.04s steps(1, end) infinite;
 }
+
+.presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="ee"] { animation: professional-viseme-ee 1.04s steps(1, end) infinite; }
+.presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="fv"] { animation: professional-viseme-fv 1.04s steps(1, end) infinite; }
+.presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="l"] { animation: professional-viseme-l 1.04s steps(1, end) infinite; }
+.presenter-card-v2.is-speaking[data-lipsync="fallback"] [data-viseme-frame="mbp"] { animation: professional-viseme-mbp 1.04s steps(1, end) infinite; }
 
 .presenter-card-v2[data-gesture="show-left"] .presenter-professional-head,
 .presenter-card-v2[data-gesture="warning"] .presenter-professional-head {
@@ -936,19 +1009,24 @@
 }
 
 @keyframes professional-viseme-mid {
-  0%, 26%, 58%, 100% { opacity: 0; }
-  8%, 25%, 44%, 57%, 76%, 91% { opacity: 1; }
+  0%, 20%, 100% { opacity: 1; }
+  21%, 99% { opacity: 0; }
 }
 
 @keyframes professional-viseme-ah {
-  0%, 43%, 59%, 100% { opacity: 0; }
-  44%, 58% { opacity: 1; }
+  0%, 20%, 36%, 100% { opacity: 0; }
+  21%, 35% { opacity: 1; }
 }
 
 @keyframes professional-viseme-oh {
-  0%, 75%, 92%, 100% { opacity: 0; }
-  76%, 91% { opacity: 1; }
+  0%, 35%, 51%, 100% { opacity: 0; }
+  36%, 50% { opacity: 1; }
 }
+
+@keyframes professional-viseme-ee { 0%, 50%, 64%, 100% { opacity: 0; } 51%, 63% { opacity: 1; } }
+@keyframes professional-viseme-fv { 0%, 63%, 75%, 100% { opacity: 0; } 64%, 74% { opacity: 1; } }
+@keyframes professional-viseme-l { 0%, 74%, 87%, 100% { opacity: 0; } 75%, 86% { opacity: 1; } }
+@keyframes professional-viseme-mbp { 0%, 86%, 97%, 100% { opacity: 0; } 87%, 96% { opacity: 1; } }
 
 @media (max-width: 620px) {
   body[data-page="pomocnik"] .presenter-professional-head {

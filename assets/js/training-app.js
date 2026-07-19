@@ -651,6 +651,19 @@
       "Nyalakan suara, ikuti semua bab, dan hentikan rekaman kapan saja.",
       "आवाज खोल्नुहोस्, सबै अध्याय पूरा गर्नुहोस् र कुनै पनि बेला रेकर्डिङ रोक्नुहोस्।"
     ));
+    const reviewLabel = text(tx("Kontrola treści", "Content review", "Перевірка змісту", "Проверка содержания", "Məzmun yoxlaması", "Revisión del contenido", "Pagsusuri ng nilalaman", "Pemeriksaan isi", "सामग्री जाँच"));
+    const reviewNotice = text(tx(
+      "Oficjalne kontakty sprawdzono. Wewnętrzną trasę, reader, tablet i zasady stanowiska potwierdza kierownik na miejscu.",
+      "Official contacts have been checked. The on-site supervisor confirms the internal route, reader, tablet and workstation rules.",
+      "Офіційні контакти перевірено. Внутрішній маршрут, рідер, планшет і правила робочого місця підтверджує керівник на місці.",
+      "Официальные контакты проверены. Внутренний маршрут, ридер, планшет и правила рабочего места подтверждает руководитель на месте.",
+      "Rəsmi əlaqələr yoxlanılıb. Daxili marşrutu, readeri, planşeti və iş yeri qaydalarını yerində rəhbər təsdiqləyir.",
+      "Se comprobaron los contactos oficiales. El supervisor confirma en el lugar la ruta interna, el reader, la tableta y las normas del puesto.",
+      "Nasuri ang mga opisyal na contact. Kinukumpirma ng superbisor sa lugar ang panloob na ruta, reader, tablet at mga tuntunin sa trabaho.",
+      "Kontak resmi telah diperiksa. Supervisor di lokasi mengonfirmasi rute internal, reader, tablet, dan aturan tempat kerja.",
+      "आधिकारिक सम्पर्क जाँच गरिएको छ। भित्री मार्ग, रिडर, ट्याब्लेट र कार्यस्थलका नियम स्थलमा सुपरभाइजरले पुष्टि गर्छन्।"
+    ));
+    const responsible = text(tx("Treść: Aleksandr Kiris · zatwierdzenie operacyjne: kierownik PPO Siechnice", "Content: Aleksandr Kiris · operational approval: PPO Siechnice supervisor", "Зміст: Aleksandr Kiris · оперативне підтвердження: керівник PPO Siechnice", "Содержание: Aleksandr Kiris · оперативное подтверждение: руководитель PPO Siechnice", "Məzmun: Aleksandr Kiris · əməliyyat təsdiqi: PPO Siechnice rəhbəri", "Contenido: Aleksandr Kiris · aprobación operativa: supervisor de PPO Siechnice", "Nilalaman: Aleksandr Kiris · operational approval: superbisor ng PPO Siechnice", "Konten: Aleksandr Kiris · persetujuan operasional: supervisor PPO Siechnice", "सामग्री: Aleksandr Kiris · सञ्चालन स्वीकृति: PPO Siechnice सुपरभाइजर"));
     document.title = `${title} - ${hydraBrand}`;
     app.innerHTML = `
       <main class="page assistant-page">
@@ -658,6 +671,11 @@
           <p class="eyebrow">${esc(eyebrow)}</p>
           <h1>${esc(title)}</h1>
           <p>${esc(lead)}</p>
+          <div class="content-review-card" role="note">
+            <strong>✓ ${esc(reviewLabel)} · 2026-07-19</strong>
+            <span>${esc(reviewNotice)}</span>
+            <small>${esc(responsible)}</small>
+          </div>
         </section>
         ${renderDigitalPresenter()}
       </main>`;
@@ -688,6 +706,17 @@
       openPhoto: text(tx("Powiększ zdjęcie", "Enlarge photo", "Збільшити фото", "Увеличить фото", "Şəkli böyüt", "Ampliar foto", "Palakihin ang larawan", "Perbesar foto", "फोटो ठूलो पार्नुहोस्")),
       closePhoto: text(tx("Zamknij zdjęcie", "Close photo", "Закрити фото", "Закрыть фото", "Şəkli bağla", "Cerrar foto", "Isara ang larawan", "Tutup foto", "फोटो बन्द गर्नुहोस्")),
       source: text(tx("Źródło zdjęcia", "Photo source", "Джерело фото", "Источник фото", "Şəkil mənbəyi", "Fuente de la foto", "Pinagmulan ng larawan", "Sumber foto", "फोटो स्रोत")),
+      visualHint: text(tx("NA CO PATRZEĆ", "WHAT TO LOOK FOR", "ЩО ЗНАЙТИ", "ЧТО НАЙТИ", "NƏYƏ BAXMAQ", "QUÉ BUSCAR", "ANO ANG HAHANAPIN", "YANG PERLU DILIHAT", "के हेर्ने")),
+      chapterSummary: text(tx("Najważniejsze", "Key point", "Головне", "Главное", "Əsas fikir", "Punto clave", "Pinakamahalaga", "Inti aturan", "मुख्य कुरा")),
+      finalTitle: text(tx("Twój wynik i plan przyjazdu", "Your result and arrival plan", "Ваш результат і план приїзду", "Ваш результат и план приезда", "Nəticəniz və gəliş planınız", "Tu resultado y plan de llegada", "Iyong resulta at plano sa pagdating", "Hasil dan rencana kedatangan", "तपाईंको नतिजा र आगमन योजना")),
+      finalPassed: text(tx("Ukończono", "Completed", "Завершено", "Пройдено", "Tamamlandı", "Completado", "Natapos", "Selesai", "पूरा")),
+      finalDestination: text(tx("Dokąd jechać", "Where to go", "Куди їхати", "Куда ехать", "Hara getmək", "Adónde ir", "Saan pupunta", "Tujuan", "कहाँ जाने")),
+      finalTake: text(tx("Co zabrać", "What to take", "Що взяти", "Что взять", "Nə götürmək", "Qué llevar", "Ano ang dadalhin", "Yang dibawa", "के लैजाने")),
+      finalBans: text(tx("Główne zakazy", "Main prohibitions", "Головні заборони", "Основные запреты", "Əsas qadağalar", "Prohibiciones principales", "Pangunahing bawal", "Larangan utama", "मुख्य निषेध")),
+      finalContacts: text(tx("Kontakty", "Contacts", "Контакти", "Контакты", "Əlaqələr", "Contactos", "Mga contact", "Kontak", "सम्पर्क")),
+      finalResult: text(tx("Wynik pytań", "Check result", "Результат перевірки", "Результат проверки", "Yoxlama nəticəsi", "Resultado de la prueba", "Resulta ng pagsusuri", "Hasil pemeriksaan", "जाँच नतिजा")),
+      takeItems: text(tx("Dokument tożsamości, przepustkę lub wiadomość o pracy oraz naładowany telefon.", "Identity document, pass or work message, and a charged phone.", "Документ, перепустку або повідомлення про роботу та заряджений телефон.", "Документ, пропуск или сообщение о работе и заряженный телефон.", "Şəxsiyyət sənədi, buraxılış və ya iş mesajı və şarjlı telefon.", "Documento de identidad, pase o mensaje de trabajo y teléfono cargado.", "ID, pass o mensahe tungkol sa trabaho, at naka-charge na telepono.", "Dokumen identitas, kartu masuk atau pesan kerja, dan ponsel terisi daya.", "परिचयपत्र, पास वा कामको सन्देश र चार्ज भएको फोन।")),
+      banItems: text(tx("Bez alkoholu i narkotyków. Bez zdjęć. Nie wchodź do stref bez zgody. Gdy nie rozumiesz — zatrzymaj się i zapytaj.", "No alcohol or drugs. No photos. Do not enter unauthorized areas. If unsure, stop and ask.", "Без алкоголю й наркотиків. Без фото. Не заходьте без дозволу. Якщо не зрозуміло — зупиніться й запитайте.", "Без алкоголя и наркотиков. Без фото. Не входите без разрешения. Если непонятно — остановитесь и спросите.", "Alkoqol və narkotik olmaz. Şəkil çəkməyin. İcazəsiz zonaya girməyin. Anlamadıqda dayanın və soruşun.", "Sin alcohol ni drogas. Sin fotos. No entres en zonas sin permiso. Si dudas, detente y pregunta.", "Walang alak o droga. Bawal ang litrato. Huwag pumasok nang walang pahintulot. Kung hindi malinaw, huminto at magtanong.", "Tanpa alkohol atau narkoba. Jangan memotret. Jangan masuk area tanpa izin. Jika ragu, berhenti dan bertanya.", "मदिरा वा लागूपदार्थ निषेध। फोटो नखिच्नुहोस्। अनुमति बिना क्षेत्रमा नजानुहोस्। नबुझे रोकिएर सोध्नुहोस्।")),
       wrongShort: text(tx("Nie wolno", "Do not", "Не можна", "Нельзя", "Olmaz", "No se permite", "Bawal", "Dilarang", "गर्न पाइँदैन")),
       rightShort: text(tx("Tak należy", "Do this", "Так правильно", "Так правильно", "Belə edin", "Hazlo así", "Gawin ito", "Lakukan ini", "यसरी गर्नुहोस्")),
       dontUnderstand: text(tx("Nie rozumiem", "I don't understand", "Не розумію", "Не понял", "Başa düşmədim", "No entiendo", "Hindi ko naintindihan", "Saya belum paham", "मैले बुझिनँ")),
@@ -748,15 +777,16 @@
                 <button type="button" class="cartoon-photo-zoom" data-presenter-photo-open aria-label="${esc(experience.openPhoto)}" hidden>⛶</button>
               </div>
               <strong data-cartoon-prop-label></strong>
+              <p class="cartoon-prop-hint" data-cartoon-visual-hint hidden><b>${esc(experience.visualHint)}</b><span></span></p>
               <small data-cartoon-prop-counter aria-hidden="true"></small>
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master35" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master35" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master35" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master36" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master36" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master36" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master35" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master36" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -787,6 +817,7 @@
                 <button type="button" data-presenter-quiz-answer="0">${esc(experience.no)}</button>
               </div>
               <p class="presenter-quiz-feedback" data-presenter-quiz-feedback aria-live="polite"></p>
+              <section class="presenter-final-summary" data-presenter-final-summary hidden></section>
               <div class="presenter-quiz-next" data-presenter-quiz-next hidden>
                 <button type="button" class="btn secondary" data-presenter-quiz-repeat>${esc(experience.repeat)}</button>
                 <button type="button" class="btn" data-presenter-quiz-continue>${esc(experience.continue)}</button>
@@ -816,12 +847,16 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small data-presenter-complete-next>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master35" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master36" hidden></video>
           <div class="presenter-professional-head" data-professional-head aria-hidden="true">
-            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master35" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260719-siechnice-master35" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260719-siechnice-master35" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260719-siechnice-master35" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master36" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260719-siechnice-master36" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260719-siechnice-master36" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260719-siechnice-master36" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="ee" src="assets/avatar/presenter-cartoon-professional-ee-v3.png?v=20260719-siechnice-master36" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="fv" src="assets/avatar/presenter-cartoon-professional-fv-v3.png?v=20260719-siechnice-master36" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="l" src="assets/avatar/presenter-cartoon-professional-l-v3.png?v=20260719-siechnice-master36" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="mbp" src="assets/avatar/presenter-cartoon-professional-mbp-v3.png?v=20260719-siechnice-master36" alt="" width="512" height="512">
           </div>
           <p class="presenter-caption" data-presenter-caption role="status" aria-live="polite" aria-atomic="true"></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
@@ -830,6 +865,7 @@
         </div>
         <div class="presenter-content">
           <p class="presenter-badge">${esc(badge)}</p>
+          <p class="presenter-review-chip" title="${esc(note)}">✓ 2026-07-19 · Aleksandr Kiris</p>
           <h2 id="presenterTitle">${esc(title)}</h2>
           <p class="presenter-chapter-counter"><span data-presenter-group-label>${esc(badge)}</span> · <span data-presenter-step>${esc(labels.step)}</span> <strong data-presenter-current>1</strong> / <span data-presenter-total>1</span></p>
           <div class="presenter-step-rail" data-presenter-step-rail aria-label="${esc(fullText)}"></div>
@@ -2812,6 +2848,7 @@
     const cartoonPropImage = card.querySelector("[data-cartoon-prop-image]");
     const cartoonPropIcon = card.querySelector("[data-cartoon-prop-icon]");
     const cartoonPropLabel = card.querySelector("[data-cartoon-prop-label]");
+    const cartoonVisualHint = card.querySelector("[data-cartoon-visual-hint]");
     const cartoonPropCounter = card.querySelector("[data-cartoon-prop-counter]");
     const cartoonPhotoSource = card.querySelector("[data-cartoon-photo-source]");
     const photoOpen = card.querySelector("[data-presenter-photo-open]");
@@ -2871,10 +2908,12 @@
     const quizOverlay = card.querySelector("[data-presenter-quiz]");
     const quizQuestion = card.querySelector("[data-presenter-quiz-question]");
     const quizFeedback = card.querySelector("[data-presenter-quiz-feedback]");
+    const finalSummary = card.querySelector("[data-presenter-final-summary]");
     const quizNext = card.querySelector("[data-presenter-quiz-next]");
     const quizRepeat = card.querySelector("[data-presenter-quiz-repeat]");
     const quizContinue = card.querySelector("[data-presenter-quiz-continue]");
     const completeToast = card.querySelector("[data-presenter-complete-toast]");
+    const completeLabel = completeToast?.querySelector("span");
     const completeNext = card.querySelector("[data-presenter-complete-next]");
     if (!recording || !playButton) return;
 
@@ -2910,6 +2949,7 @@
       stage.setAttribute("aria-label", touchToStart);
     }
     const fullGuideUrl = `assets/content/presenter-guide.json${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
+    const lipSyncUrl = `assets/content/lipsync-cues.json${assetVersion ? `?v=${encodeURIComponent(assetVersion)}` : ""}`;
     const fallbackSentences = guideText(lang, getLocationName());
     const fallbackChapter = {
       id: "welcome",
@@ -2940,10 +2980,12 @@
           completed: Array.isArray(parsed.completed) ? parsed.completed.filter((id) => typeof id === "string") : [],
           chapter: typeof parsed.chapter === "string" ? parsed.chapter : "",
           position: Number.isFinite(Number(parsed.position)) ? Math.max(0, Number(parsed.position)) : 0,
-          rate: [0.8, 0.9, 1, 1.1].includes(Number(parsed.rate)) ? Number(parsed.rate) : 0.9
+          rate: [0.8, 0.9, 1, 1.1].includes(Number(parsed.rate)) ? Number(parsed.rate) : 0.9,
+          quizAttempts: Math.max(0, Number(parsed.quizAttempts) || 0),
+          quizCorrect: Math.max(0, Number(parsed.quizCorrect) || 0)
         };
       } catch (error) {
-        return { track: "", completed: [], chapter: "", position: 0, rate: 0.9 };
+        return { track: "", completed: [], chapter: "", position: 0, rate: 0.9, quizAttempts: 0, quizCorrect: 0 };
       }
     })();
     if (rateControl) rateControl.value = String(savedProgress.rate);
@@ -2961,6 +3003,10 @@
     let activeSentenceIndex = -1;
     let quizResolved = false;
     let currentQuizItem = null;
+    let quizAttempts = savedProgress.quizAttempts;
+    let quizCorrect = savedProgress.quizCorrect;
+    let lipSyncCues = {};
+    let currentLipCueIndex = 0;
     let audioContext = null;
     let audioAnalyser = null;
     let audioWave = null;
@@ -3363,6 +3409,12 @@
       const sentenceLabel = chapterSentences[sentenceIndex] || chapter.title;
       const liveLabel = cue.label && cue.label !== chapter.title ? cue.label : sentenceLabel;
       if (cartoonPropLabel) cartoonPropLabel.textContent = liveLabel;
+      if (cartoonVisualHint) {
+        const hint = String(chapter.visualHint || "").trim();
+        cartoonVisualHint.hidden = !hint || !cue.image;
+        const hintText = cartoonVisualHint.querySelector("span");
+        if (hintText) hintText.textContent = hint;
+      }
       if (cartoonPropCounter) cartoonPropCounter.textContent = `${sentenceIndex + 1}/${sentenceTotal}`;
       if (cartoonRuleBadge) {
         const verdictBadge = cue.verdict === "wrong" ? experience.forbidden : cue.verdict === "correct" ? experience.correctBadge : experience.important;
@@ -3528,24 +3580,9 @@
       activeSentenceIndex = safeIndex;
       if (stageCaption) {
         const chapter = chapters[chapterIndex] || {};
-        const clarityLabel = chapter.group === "safety" && chapter.tone === "danger"
-          ? experience.forbidden
-          : chapter.group === "help" && chapter.tone === "danger"
-            ? experience.urgentLabel
-            : chapter.tone === "caution"
-              ? experience.important
-              : chapter.tone === "required"
-                ? experience.actionLabel
-                : experience.listenLabel;
-        const clarityIcon = chapter.group === "safety" && chapter.tone === "danger"
-          ? "⛔"
-          : chapter.group === "help" && chapter.tone === "danger"
-            ? "☎"
-            : chapter.tone === "caution"
-              ? "⚠"
-              : chapter.tone === "required"
-                ? "✓"
-                : "▶";
+        const category = chapter.category || (chapter.tone === "danger" ? "forbidden" : chapter.tone === "caution" ? "important" : "action");
+        const clarityLabel = category === "forbidden" ? experience.forbidden : category === "help" ? experience.urgentLabel : category === "important" ? experience.important : experience.actionLabel;
+        const clarityIcon = category === "forbidden" ? "⛔" : category === "help" ? "☎" : category === "important" ? "⚠" : "✓";
         stageCaption.dataset.icon = clarityIcon;
         stageCaption.dataset.label = clarityLabel;
         stageCaption.textContent = chapterSentences[safeIndex];
@@ -3623,6 +3660,14 @@
       if (rms < .014) {
         card.dataset.viseme = "closed";
       } else {
+        const timedCues = lipSyncCues[chapters[chapterIndex]?.id]?.cues;
+        if (Array.isArray(timedCues) && timedCues.length) {
+          while (currentLipCueIndex + 1 < timedCues.length && timedCues[currentLipCueIndex + 1].t <= recording.currentTime) currentLipCueIndex += 1;
+          while (currentLipCueIndex > 0 && timedCues[currentLipCueIndex].t > recording.currentTime) currentLipCueIndex -= 1;
+          card.dataset.viseme = timedCues[currentLipCueIndex]?.v || "mid";
+          audioMotionFrame = window.requestAnimationFrame(animateAudioMotion);
+          return;
+        }
         let low = 0;
         let middle = 0;
         let high = 0;
@@ -3640,7 +3685,15 @@
           high /= Math.max(1, upper - 32);
         }
         const articulationBeat = Math.floor(timestamp / (engineMode === "lite" ? 125 : engineMode === "mobile" ? 105 : 88));
-        const viseme = level > .57 && articulationBeat % 3 === 0
+        const viseme = articulationBeat % 11 === 0
+          ? "mbp"
+          : articulationBeat % 7 === 0
+            ? "ee"
+            : articulationBeat % 5 === 0
+              ? "fv"
+              : articulationBeat % 13 === 0
+                ? "l"
+                : level > .57 && articulationBeat % 3 === 0
           ? "ah"
           : low > middle * 1.08 && articulationBeat % 2 === 1
             ? "oh"
@@ -3897,7 +3950,9 @@
           completed: Array.from(completedChapters),
           chapter: chapters[chapterIndex]?.id || "",
           position: Number.isFinite(recording.currentTime) ? Math.round(recording.currentTime * 10) / 10 : 0,
-          rate: Number(recording.playbackRate) || 1
+          rate: Number(recording.playbackRate) || 1,
+          quizAttempts,
+          quizCorrect
         }));
       } catch (error) { /* Private browsing may disable storage. */ }
     };
@@ -3947,6 +4002,10 @@
         button.classList.remove("is-selected");
       });
       if (quizFeedback) quizFeedback.textContent = "";
+      if (finalSummary) {
+        finalSummary.hidden = true;
+        finalSummary.innerHTML = "";
+      }
       if (quizNext) quizNext.hidden = true;
       if (quizRepeat) quizRepeat.hidden = false;
       if (quizContinue) quizContinue.hidden = false;
@@ -3994,6 +4053,7 @@
       chapterIndex = Math.max(0, Math.min(chapters.length - 1, Number(index) || 0));
       const chapter = chapters[chapterIndex];
       const token = ++loadToken;
+      currentLipCueIndex = 0;
       hideQuiz();
       closeHelpOverlay();
       recording.pause();
@@ -4132,6 +4192,7 @@
         markChapterCompleted();
         quizOverlay.hidden = true;
         const nextChapter = chapters[chapterIndex + 1];
+        if (completeLabel) completeLabel.textContent = `${experience.chapterSummary}: ${chapter.keyPoint || chapter.title}`;
         if (completeNext) completeNext.textContent = nextChapter ? `${labels.next}: ${nextChapter.title}` : experience.continuing;
         if (completeToast) completeToast.hidden = false;
         const completedIndex = chapterIndex;
@@ -4147,7 +4208,23 @@
         quizResolved = true;
         quizOverlay.classList.add("is-complete");
         quizQuestion.textContent = experience.completed;
-        quizFeedback.textContent = `${experience.completed}: ${chapters.filter((item) => completedChapters.has(item.id)).length}/${chapters.length}`;
+        quizFeedback.textContent = "";
+        if (finalSummary) {
+          const track = experience.tracks[selectedTrack] || experience.tracks.all;
+          const done = chapters.filter((item) => completedChapters.has(item.id)).length;
+          const percent = quizAttempts ? Math.round((quizCorrect / quizAttempts) * 100) : 100;
+          finalSummary.innerHTML = `
+            <h4>${esc(experience.finalTitle)}</h4>
+            <dl>
+              <div><dt>✓ ${esc(experience.finalPassed)}</dt><dd>${done}/${chapters.length}</dd></div>
+              <div><dt>📍 ${esc(experience.finalDestination)}</dt><dd>${esc(track.title)} · ul. Opolska 30, 55-011 Siechnice</dd></div>
+              <div><dt>🪪 ${esc(experience.finalTake)}</dt><dd>${esc(experience.takeItems)}</dd></div>
+              <div><dt>⛔ ${esc(experience.finalBans)}</dt><dd>${esc(experience.banItems)}</dd></div>
+              <div><dt>☎ ${esc(experience.finalContacts)}</dt><dd>112 · NFZ 800 190 590 · PPO +48 71 311 55 70</dd></div>
+              <div><dt>✅ ${esc(experience.finalResult)}</dt><dd>${quizCorrect}/${quizAttempts || 0} · ${percent}%</dd></div>
+            </dl>`;
+          finalSummary.hidden = false;
+        }
         quizOverlay.querySelectorAll("[data-presenter-quiz-answer]").forEach((button) => { button.hidden = true; });
         quizNext.hidden = false;
         quizRepeat.hidden = false;
@@ -4185,13 +4262,16 @@
         const answer = event.target.closest("[data-presenter-quiz-answer]");
         if (!answer || !currentQuizItem || quizResolved) return;
         const isCorrect = (answer.dataset.presenterQuizAnswer === "1") === Boolean(currentQuizItem.ok);
+        quizAttempts += 1;
+        if (isCorrect) quizCorrect += 1;
+        saveProgress();
         quizOverlay.querySelectorAll("[data-presenter-quiz-answer]").forEach((button) => { button.disabled = true; });
         answer.classList.add("is-selected");
         quizOverlay.classList.toggle("is-correct", isCorrect);
         quizOverlay.classList.toggle("is-wrong", !isCorrect);
         quizFeedback.textContent = isCorrect
-          ? experience.correct
-          : `${experience.wrong} ${currentQuizItem.ok ? experience.yes : experience.no}.`;
+          ? `${experience.correct} ${experience.chapterSummary}: ${chapters[chapterIndex]?.keyPoint || chapters[chapterIndex]?.title || ""}.`
+          : `${experience.wrong} ${currentQuizItem.ok ? experience.yes : experience.no}. ${experience.chapterSummary}: ${chapters[chapterIndex]?.keyPoint || chapters[chapterIndex]?.title || ""}.`;
         quizNext.hidden = false;
         quizContinue.hidden = !isCorrect;
         quizRepeat.hidden = isCorrect;
@@ -4201,7 +4281,11 @@
         }
       });
     }
-    if (quizRepeat) quizRepeat.addEventListener("click", () => activateFreshChapter(chapterIndex, true));
+    if (quizRepeat) quizRepeat.addEventListener("click", () => {
+      recording.playbackRate = .8;
+      if (rateControl) rateControl.value = "0.8";
+      activateFreshChapter(chapterIndex, true);
+    });
     if (quizContinue) quizContinue.addEventListener("click", () => {
       if (chapterIndex < chapters.length - 1) activateFreshChapter(chapterIndex + 1, true);
       else hideQuiz();
@@ -4344,6 +4428,15 @@
       allChapters = localized.sections.map((chapter, sourceIndex) => ({ ...chapter, sourceIndex }));
     } catch (error) {
       allChapters = [fallbackChapter];
+    }
+    try {
+      const cueResponse = await fetch(lipSyncUrl, { cache: "no-cache" });
+      if (cueResponse.ok) {
+        const cueData = await cueResponse.json();
+        lipSyncCues = cueData.languages?.[lang] || {};
+      }
+    } catch (error) {
+      lipSyncCues = {};
     }
 
     Object.keys(trackOrders).forEach((trackKey) => {

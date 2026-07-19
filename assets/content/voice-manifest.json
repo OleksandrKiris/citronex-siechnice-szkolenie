@@ -1,0 +1,18 @@
+{
+  "version": "2026-07-19.1",
+  "engine": "Microsoft Edge neural speech",
+  "renderedChapters": 450,
+  "runtimeProcessing": "warmth, presence and gentle compression",
+  "reviewStatus": "automated technical audit complete; native-speaker approval pending",
+  "voices": {
+    "pl": { "voice": "pl-PL-MarekNeural", "gender": "male", "rate": "-10%", "pitch": "-2Hz", "volume": "+8%" },
+    "en": { "voice": "en-GB-RyanNeural", "gender": "male", "rate": "-7%", "pitch": "-2Hz", "volume": "+7%" },
+    "ua": { "voice": "uk-UA-OstapNeural", "gender": "male", "rate": "-9%", "pitch": "-2Hz", "volume": "+8%" },
+    "ru": { "voice": "ru-RU-DmitryNeural", "gender": "male", "rate": "-9%", "pitch": "-3Hz", "volume": "+8%" },
+    "az": { "voice": "az-AZ-BabekNeural", "gender": "male", "rate": "-7%", "pitch": "-2Hz", "volume": "+7%" },
+    "es": { "voice": "es-ES-AlvaroNeural", "gender": "male", "rate": "-7%", "pitch": "-2Hz", "volume": "+7%" },
+    "fil": { "voice": "fil-PH-AngeloNeural", "gender": "male", "rate": "-7%", "pitch": "-2Hz", "volume": "+7%" },
+    "id": { "voice": "id-ID-ArdiNeural", "gender": "male", "rate": "-7%", "pitch": "-2Hz", "volume": "+7%" },
+    "ne": { "voice": "ne-NP-SagarNeural", "gender": "male", "rate": "-9%", "pitch": "-2Hz", "volume": "+8%" }
+  }
+}

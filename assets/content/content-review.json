@@ -1,0 +1,64 @@
+{
+  "version": "2026-07-19.1",
+  "reviewedAt": "2026-07-19",
+  "contentAuthor": "Aleksandr Kiris",
+  "operationalApprovalOwner": "Wyznaczony kierownik lub koordynator PPO Siechnice",
+  "status": "preparatory-material-requires-on-site-confirmation",
+  "notice": {
+    "pl": "Materiał przygotowawczy. Wewnętrzne trasy, obsługa readera i tabletu oraz zasady stanowiskowe muszą być potwierdzone przez kierownika na miejscu.",
+    "en": "Preparation material. Internal routes, reader and tablet procedures, and workstation rules must be confirmed by the on-site supervisor.",
+    "ua": "Підготовчий матеріал. Внутрішні маршрути, роботу з рідером і планшетом та правила робочого місця має підтвердити керівник на місці.",
+    "ru": "Подготовительный материал. Внутренние маршруты, работу с ридером и планшетом и правила рабочего места должен подтвердить руководитель на месте.",
+    "az": "Hazırlıq materialıdır. Daxili marşrutlar, reader və planşet qaydaları, eləcə də iş yeri qaydaları yerində rəhbər tərəfindən təsdiqlənməlidir.",
+    "es": "Material preparatorio. Las rutas internas, el uso del reader y la tableta y las normas del puesto deben ser confirmados por el supervisor en el lugar.",
+    "fil": "Paghahandang materyal ito. Kailangang kumpirmahin ng superbisor sa lugar ang mga panloob na ruta, paggamit ng reader at tablet, at mga tuntunin sa trabaho.",
+    "id": "Materi persiapan. Rute internal, prosedur reader dan tablet, serta aturan tempat kerja harus dikonfirmasi oleh supervisor di lokasi.",
+    "ne": "यो तयारी सामग्री हो। भित्री मार्ग, रिडर र ट्याब्लेटको प्रक्रिया तथा कार्यस्थलका नियमहरू स्थलमा सुपरभाइजरले पुष्टि गर्नुपर्छ।"
+  },
+  "checks": [
+    {
+      "id": "company-location-contact",
+      "status": "verified-official",
+      "scope": "PPO Siechnice company address and public switchboard numbers",
+      "source": "Citronex official contact page",
+      "url": "https://citronex.pl/pl/kontakt",
+      "facts": ["PPO Siechnice Sp. z o.o.", "ul. Opolska 30, 55-011 Siechnice", "+48 71 311 55 70", "+48 71 311 53 86"]
+    },
+    {
+      "id": "emergency-112",
+      "status": "verified-official",
+      "scope": "Emergency number 112",
+      "source": "Polish government 112 service",
+      "url": "https://www.gov.pl/web/numer-alarmowy-112/numeralarmowy112"
+    },
+    {
+      "id": "medical-information",
+      "status": "verified-official",
+      "scope": "NFZ Patient Information Helpline 800 190 590",
+      "source": "Narodowy Fundusz Zdrowia",
+      "url": "https://www.nfz.gov.pl/kontakt/telefoniczna-informacja-pacjenta/"
+    },
+    {
+      "id": "local-healthcare",
+      "status": "verified-official",
+      "scope": "Local healthcare directory",
+      "source": "Siechnice Municipality",
+      "url": "https://www.siechnice.gmina.pl/strona-78-ochrona_zdrowia.html"
+    },
+    {
+      "id": "internal-arrival-routes",
+      "status": "company-material-pending-operational-sign-off",
+      "scope": "Internal arrival route, entrances and waiting points"
+    },
+    {
+      "id": "reader-tablet-documents",
+      "status": "company-material-pending-operational-sign-off",
+      "scope": "Reader, tablet and document procedures shown in the supplied company materials"
+    },
+    {
+      "id": "warehouse-greenhouse-rules",
+      "status": "company-material-pending-operational-sign-off",
+      "scope": "Warehouse, greenhouse and workstation rules"
+    }
+  ]
+}

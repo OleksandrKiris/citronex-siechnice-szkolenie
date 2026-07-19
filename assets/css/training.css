@@ -10982,7 +10982,7 @@ body[data-page="pomocnik"] .home-return-cta {
   letter-spacing: -.03em;
 }
 
-.assistant-page-intro > p:last-child {
+.assistant-page-intro > p:last-of-type {
   max-width: 72ch;
   margin: 0;
   color: var(--muted);
