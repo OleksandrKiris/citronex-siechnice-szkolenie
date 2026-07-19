@@ -1,4 +1,4 @@
-/* master26: calm mobile presenter UI and anatomically connected 2D rig.
+/* master30: adaptive human presenter, visual focus and connected 2D fallback.
    This file intentionally loads last so old cached layout rules cannot win. */
 
 /* The wrapper must stay fixed. Only the head, torso, arms, eyes and mouth move.
@@ -26,6 +26,7 @@
   border-right: 1px solid rgba(255, 255, 255, .28);
   background: #163d2b;
   filter: saturate(.94) contrast(1.02);
+  transition: width .34s cubic-bezier(.22, .8, .32, 1), filter .25s ease;
   animation: none !important;
   transform: none !important;
 }
@@ -46,6 +47,29 @@
   left: auto;
   width: 49%;
   height: 67%;
+  transition: width .34s cubic-bezier(.22, .8, .32, 1), height .34s ease, transform .25s ease;
+}
+
+.presenter-card-v2[data-avatar-mode="video"][data-has-visual="true"] .presenter-video {
+  width: 55%;
+  filter: saturate(.92) contrast(1.02) brightness(.92);
+}
+
+.presenter-card-v2[data-avatar-mode="video"][data-has-visual="true"] .presenter-cartoon .cartoon-prop-card,
+.presenter-card-v2[data-avatar-mode="video"][data-has-visual="true"] .presenter-cartoon[data-side="left"] .cartoon-prop-card {
+  width: 55%;
+  height: 70%;
+}
+
+.presenter-card-v2[data-avatar-mode="video"][data-has-visual="false"] .presenter-video {
+  width: 66%;
+}
+
+.presenter-card-v2[data-avatar-mode="video"][data-has-visual="false"] .presenter-cartoon .cartoon-prop-card,
+.presenter-card-v2[data-avatar-mode="video"][data-has-visual="false"] .presenter-cartoon[data-side="left"] .cartoon-prop-card {
+  top: 14%;
+  width: 36%;
+  height: 50%;
 }
 
 .presenter-card-v2[data-avatar-mode="video"] .presenter-cartoon[data-side="left"] .cartoon-prop-card::after {
@@ -241,6 +265,16 @@
   body[data-page="pomocnik"] .presenter-path-dialog {
     max-width: calc(100vw - 14px);
     overflow: hidden;
+    border-color: rgba(255, 255, 255, .34);
+    background: rgba(7, 61, 42, .82);
+    box-shadow: 0 22px 55px rgba(0, 23, 15, .38);
+    backdrop-filter: blur(14px) saturate(1.08);
+  }
+
+  body[data-page="pomocnik"] .presenter-path-overlay {
+    background:
+      linear-gradient(180deg, rgba(3, 42, 28, .72), rgba(3, 52, 34, .9)),
+      url("../avatar/presenter-human-poster-v1.jpg?v=20260719-siechnice-master30") center 32% / cover no-repeat;
   }
 
   body[data-page="pomocnik"] .presenter-path-dialog h3 {
@@ -344,6 +378,28 @@
     left: auto;
     width: 49%;
     height: 65%;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2[data-avatar-mode="video"][data-has-visual="true"] .presenter-video {
+    width: 54%;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2[data-avatar-mode="video"][data-has-visual="true"] .presenter-cartoon .cartoon-prop-card,
+  body[data-page="pomocnik"] .presenter-card-v2[data-avatar-mode="video"][data-has-visual="true"] .presenter-cartoon[data-side="left"] .cartoon-prop-card {
+    top: 7%;
+    width: 56%;
+    height: 69%;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2[data-avatar-mode="video"][data-has-visual="false"] .presenter-video {
+    width: 66%;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2[data-avatar-mode="video"][data-has-visual="false"] .presenter-cartoon .cartoon-prop-card,
+  body[data-page="pomocnik"] .presenter-card-v2[data-avatar-mode="video"][data-has-visual="false"] .presenter-cartoon[data-side="left"] .cartoon-prop-card {
+    top: 13%;
+    width: 37%;
+    height: 49%;
   }
 
   body[data-page="pomocnik"] .presenter-card-v2 .presenter-cartoon .cartoon-character.guide-character[data-rig="parts"] {

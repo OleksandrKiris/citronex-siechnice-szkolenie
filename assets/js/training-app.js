@@ -749,11 +749,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master29" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master29" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master29" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master30" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master30" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master30" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master29" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master30" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -813,7 +813,7 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="auto" poster="assets/avatar/presenter-human-poster-v1.jpg?v=20260719-siechnice-master29" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="auto" poster="assets/avatar/presenter-human-poster-v1.jpg?v=20260719-siechnice-master30" hidden></video>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -3333,6 +3333,7 @@
       cartoon.dataset.side = cue.side || "right";
       cartoon.dataset.tone = cue.tone || (cue.verdict === "wrong" ? "danger" : cue.verdict === "correct" ? "required" : "neutral");
       cartoon.dataset.visual = cue.image && (/^https?:\/\//i.test(cue.image) || /\.(?:jpe?g|png|webp)(?:\?|$)/i.test(cue.image)) ? "photo" : "diagram";
+      card.dataset.hasVisual = cue.image ? "true" : "false";
       card.dataset.gesture = cue.gesture || "show-right";
       const poseName = cartoonPoseNames.has(cue.pose) ? cue.pose : "neutral";
       if (guideCharacter) {

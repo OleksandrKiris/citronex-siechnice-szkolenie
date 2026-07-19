@@ -81,6 +81,11 @@ if (!appSource.includes("contextLink.hidden = !target")) errors.push("irrelevant
 if (!appSource.includes("card.dataset.motionBeat")) errors.push("independent motion beat is not synchronized with audio");
 if (!appSource.includes("rms < .014")) errors.push("voice-energy mouth gate is missing");
 if (!appSource.includes("useHumanVideo") || !appSource.includes(humanVideoAsset)) errors.push("human video mode is not wired into the presenter");
+if (!appSource.includes("card.dataset.hasVisual")) errors.push("adaptive visual focus state is missing");
+const adaptiveCssSource = fs.existsSync(cleanCssPath) ? fs.readFileSync(cleanCssPath, "utf8") : "";
+if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes("presenter-human-poster-v1.jpg")) {
+  errors.push("adaptive visual focus styling is missing");
+}
 if (!appSource.includes('updateViaCache: "none"') || !appSource.includes('"controllerchange"')) errors.push("automatic Service Worker update is missing");
 if (!workerSource.includes('cache: "no-store"') || !workerSource.includes('type === "SKIP_WAITING"')) errors.push("fresh navigation cache policy is missing");
 
@@ -151,6 +156,7 @@ console.log(`Expected audio files: ${expectedLanguages.length * expectedSections
 console.log(`Independent rig layers: ${rigAssets.length}`);
 console.log(`Human video mode: ${humanVideoAsset}`);
 console.log(`Human video poster: ${humanPosterAsset}`);
+console.log("Adaptive visual focus: presenter / instruction priority");
 console.log("Service Worker freshness: automatic reload + network-first HTML");
 console.log(`Warnings: ${warnings.length}`);
 console.log(`Errors: ${errors.length}`);
