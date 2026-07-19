@@ -738,11 +738,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-head" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-torso" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-arm-left" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-arm-right" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master13" alt="" width="512" height="512">
+              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-head" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-torso" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-arm-left" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-arm-right" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
               <span class="guide-eyes" aria-hidden="true"><i></i><i></i></span>
               <span class="guide-mouth" aria-hidden="true"></span>
             </div>
@@ -813,7 +813,11 @@
             <button type="button" class="btn presenter-play" data-presenter-play><span data-presenter-play-icon>▶</span> <span data-presenter-play-label>${esc(labels.start)}</span></button>
             <button type="button" class="btn secondary presenter-control-small" data-presenter-next><span>${esc(labels.next)}</span> →</button>
             <button type="button" class="btn secondary presenter-stop" data-presenter-stop>■ ${esc(stop)}</button>
-            <a class="btn secondary" href="${esc(href("mapa"))}">${esc(map)}</a>
+            <a class="btn secondary presenter-context-link" data-presenter-context-link href="${esc(href("mapa"))}">
+              <span class="presenter-context-icon" data-presenter-context-icon aria-hidden="true">🗺️</span>
+              <span data-presenter-context-label>${esc(map)}</span>
+              <span class="presenter-context-arrow" aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
         <nav class="presenter-chapters" data-presenter-chapters aria-label="${esc(fullText)}"><span class="presenter-loading">${esc(loading)}</span></nav>
@@ -2771,6 +2775,9 @@
     const previousButton = card.querySelector("[data-presenter-previous]");
     const nextButton = card.querySelector("[data-presenter-next]");
     const stopButton = card.querySelector("[data-presenter-stop]");
+    const contextLink = card.querySelector("[data-presenter-context-link]");
+    const contextLinkIcon = card.querySelector("[data-presenter-context-icon]");
+    const contextLinkLabel = card.querySelector("[data-presenter-context-label]");
     const trackOverlay = card.querySelector("[data-presenter-path-overlay]");
     const trackGrid = card.querySelector("[data-presenter-path-grid]");
     const trackButton = card.querySelector("[data-presenter-track-button]");
@@ -3575,6 +3582,32 @@
       if (quizContinue) quizContinue.hidden = false;
     };
 
+    const chapterContextTargets = {
+      start: { page: "mapa", icon: "🗺️" },
+      arrival: { page: "mapa", icon: "🗺️" },
+      warehouse: { page: "magazyn", icon: "📦" },
+      greenhouse: { page: "szklarnia", icon: "🌿" },
+      reader: { page: "reader", icon: "📟" },
+      tablet: { page: "tablet", icon: "📱" },
+      safety: { page: "zakazy", icon: "⛔" },
+      documents: { page: "miasto", icon: "🏙️" },
+      help: { page: "lekarz", icon: "🏥" },
+      finish: { page: "test", icon: "✅" }
+    };
+
+    const updateContextLink = (chapter) => {
+      if (!contextLink) return;
+      const target = chapterContextTargets[chapter?.group] || chapterContextTargets.start;
+      const pageData = DATA.pages[target.page] || DATA.pages.mapa;
+      const label = `${text(DATA.ui.open)}: ${text(pageData.title)}`;
+      contextLink.href = href(target.page);
+      contextLink.dataset.contextPage = target.page;
+      contextLink.setAttribute("aria-label", label);
+      contextLink.title = label;
+      if (contextLinkIcon) contextLinkIcon.textContent = target.icon;
+      if (contextLinkLabel) contextLinkLabel.textContent = label;
+    };
+
     const activateChapter = (index, autoplay = true) => {
       chapterIndex = Math.max(0, Math.min(chapters.length - 1, Number(index) || 0));
       const chapter = chapters[chapterIndex];
@@ -3593,6 +3626,7 @@
       timeLabel.textContent = "0:00";
       durationLabel.textContent = "0:00";
       seek.value = "0";
+      updateContextLink(chapter);
       updateChapterButtons();
       updateProgress();
       prepareVideo(chapter, chapterIndex, token);

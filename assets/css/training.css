@@ -10036,6 +10036,32 @@ body[data-page="home"] .tile {
   grid-column: span 3;
 }
 
+.presenter-context-link {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  background: linear-gradient(135deg, #fff9dd, #ffffff) !important;
+  border-color: #d7ad22 !important;
+  color: #173f2a !important;
+  font-weight: 800;
+}
+
+.presenter-context-icon {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 9px;
+  background: #fff0a6;
+  font-size: 17px;
+}
+
+.presenter-context-arrow {
+  color: #19713f;
+  font-size: 18px;
+}
+
 .presenter-controls button:disabled {
   cursor: not-allowed;
   opacity: .42;
@@ -10758,6 +10784,12 @@ body[data-page="pomocnik"] .home-return-cta {
   body[data-page="pomocnik"] .presenter-controls a {
     grid-column: 2 / 4;
     grid-row: 2;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  body[data-page="pomocnik"] .presenter-context-link [data-presenter-context-label] {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
