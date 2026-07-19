@@ -1,4 +1,4 @@
-/* master34: professional cartoon presenter, visual-first course and connected fallback.
+/* master35: professional cartoon presenter, visual-first course and connected fallback.
    This file intentionally loads last so old cached layout rules cannot win. */
 
 /* The wrapper must stay fixed. Only the head, torso, arms, eyes and mouth move.
@@ -274,7 +274,7 @@
   body[data-page="pomocnik"] .presenter-path-overlay {
     background:
       linear-gradient(180deg, rgba(3, 42, 28, .72), rgba(3, 52, 34, .9)),
-      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master34") center 31% / min(72vh, 620px) auto no-repeat;
+      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master35") center 31% / min(72vh, 620px) auto no-repeat;
   }
 
   body[data-page="pomocnik"] .presenter-path-dialog h3 {
@@ -976,4 +976,35 @@
   }
 
   .presenter-card-v2.is-speaking [data-viseme-frame="mid"] { opacity: 1; }
+}
+
+/* Master 35: one short idea per scene, reinforced with a universal action
+   symbol. This keeps the lesson understandable even with limited literacy. */
+.presenter-card-v2 .presenter-caption::before {
+  content: attr(data-icon) "  " attr(data-label) " · ";
+}
+
+.presenter-card-v2 .presenter-caption[data-icon="⛔"]::before,
+.presenter-card-v2 .presenter-caption[data-icon="☎"]::before {
+  color: #ffb8ad;
+}
+
+.presenter-card-v2 .presenter-caption[data-icon="⚠"]::before {
+  color: #ffe06b;
+}
+
+.presenter-card-v2 .presenter-caption[data-icon="✓"]::before {
+  color: #bdf6cd;
+}
+
+.presenter-card-v2 .presenter-complete-toast small {
+  max-width: 28ch;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+@media (max-width: 620px) {
+  body[data-page="pomocnik"] .presenter-caption {
+    max-height: 88px;
+  }
 }

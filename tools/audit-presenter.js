@@ -100,8 +100,11 @@ if (!appSource.includes("card.dataset.hasVisual")) errors.push("adaptive visual 
 if (!["actionLabel", "urgentLabel", "listenLabel", "stageCaption.dataset.label"].every((token) => appSource.includes(token))) {
   errors.push("plain-language action labels are not wired into every chapter");
 }
+if (!["sceneCharacterLimit", "stageCaption.dataset.icon", "data-presenter-complete-next", "2200", "50 short steps"].every((token) => appSource.includes(token))) {
+  errors.push("short-scene accessibility and readable chapter transition are missing");
+}
 const adaptiveCssSource = fs.existsSync(cleanCssPath) ? fs.readFileSync(cleanCssPath, "utf8") : "";
-if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(professionalCartoonFrames[0]) || !adaptiveCssSource.includes("Master 34") || !adaptiveCssSource.includes("professional-viseme-ah") || !adaptiveCssSource.includes("professional-eye-blink") || !adaptiveCssSource.includes("attr(data-label)")) {
+if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(professionalCartoonFrames[0]) || !adaptiveCssSource.includes("Master 35") || !adaptiveCssSource.includes("professional-viseme-ah") || !adaptiveCssSource.includes("professional-eye-blink") || !adaptiveCssSource.includes("attr(data-icon)") || !adaptiveCssSource.includes("attr(data-label)")) {
   errors.push("adaptive visual focus styling is missing");
 }
 if (!appSource.includes('updateViaCache: "none"') || !appSource.includes('"controllerchange"')) errors.push("automatic Service Worker update is missing");

@@ -608,11 +608,11 @@
       "आउनुअघि वा कागजात कुर्दै गर्दा पूर्ण निर्देशन सुन्नुहोस्।"
     ));
     const chapters = text(tx(
-      "10 rozdziałów · głos męski · Twój język", "10 chapters · male voice · your language",
-      "10 розділів · чоловічий голос · ваша мова", "10 глав · мужской голос · ваш язык",
-      "10 bölmə · kişi səsi · sizin diliniz", "10 capítulos · voz masculina · tu idioma",
-      "10 kabanata · boses ng lalaki · iyong wika", "10 bab · suara pria · bahasa Anda",
-      "१० अध्याय · पुरुष आवाज · तपाईंको भाषा"
+      "50 krótkich kroków · głos męski · Twój język", "50 short steps · male voice · your language",
+      "50 коротких кроків · чоловічий голос · ваша мова", "50 коротких шагов · мужской голос · ваш язык",
+      "50 qısa addım · kişi səsi · sizin diliniz", "50 pasos breves · voz masculina · tu idioma",
+      "50 maiikling hakbang · boses ng lalaki · iyong wika", "50 langkah singkat · suara pria · bahasa Anda",
+      "५० छोटा चरण · पुरुष आवाज · तपाईंको भाषा"
     ));
     return `
       <a class="assistant-entry-tile" href="${esc(href("pomocnik"))}" aria-label="${esc(`${tap}. ${title}`)}">
@@ -752,11 +752,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master34" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master34" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master34" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master35" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master35" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master35" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master34" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master35" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -815,15 +815,15 @@
               <button type="button" class="btn presenter-understand-return" data-presenter-help-return>${esc(experience.helpClose)}</button>
             </div>
           </div>
-          <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master34" hidden></video>
+          <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small data-presenter-complete-next>${esc(experience.continuing)}</small></div>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260719-siechnice-master35" hidden></video>
           <div class="presenter-professional-head" data-professional-head aria-hidden="true">
-            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master34" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260719-siechnice-master34" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260719-siechnice-master34" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260719-siechnice-master34" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master35" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260719-siechnice-master35" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260719-siechnice-master35" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260719-siechnice-master35" alt="" width="512" height="512">
           </div>
-          <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
+          <p class="presenter-caption" data-presenter-caption role="status" aria-live="polite" aria-atomic="true"></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
           <div class="presenter-overall-progress" aria-hidden="true"><span data-presenter-overall-progress></span></div>
@@ -2875,6 +2875,7 @@
     const quizRepeat = card.querySelector("[data-presenter-quiz-repeat]");
     const quizContinue = card.querySelector("[data-presenter-quiz-continue]");
     const completeToast = card.querySelector("[data-presenter-complete-toast]");
+    const completeNext = card.querySelector("[data-presenter-complete-next]");
     if (!recording || !playButton) return;
 
     const engineQuery = new URLSearchParams(location.search).get("engine");
@@ -3485,17 +3486,18 @@
     const splitNarration = (value) => {
       const normalized = String(value || "").replace(/\s+/g, " ").trim();
       if (!normalized) return [];
+      const sceneCharacterLimit = phoneLayout ? 96 : 122;
       const sentences = normalized.match(/[^.!?…！？।]+(?:[.!?…！？।]+|$)/g)?.map((item) => item.trim()).filter(Boolean) || [normalized];
       return sentences.flatMap((sentence) => {
-        if (sentence.length <= 150) return [sentence];
+        if (sentence.length <= sceneCharacterLimit) return [sentence];
         const clauses = sentence.match(/[^,:;，；]+(?:[,:;，；]+|$)/g)?.map((item) => item.trim()).filter(Boolean) || [sentence];
         const pieces = clauses.flatMap((clause) => {
-          if (clause.length <= 150) return [clause];
+          if (clause.length <= sceneCharacterLimit) return [clause];
           const parts = [];
           let part = "";
           clause.split(/\s+/).forEach((word) => {
             const combined = part ? `${part} ${word}` : word;
-            if (combined.length <= 150 || !part) part = combined;
+            if (combined.length <= sceneCharacterLimit || !part) part = combined;
             else {
               parts.push(part);
               part = word;
@@ -3508,7 +3510,7 @@
         let current = "";
         pieces.forEach((piece) => {
           const combined = current ? `${current} ${piece}` : piece;
-          if (combined.length <= 150 || !current) current = combined;
+          if (combined.length <= sceneCharacterLimit || !current) current = combined;
           else {
             chunks.push(current);
             current = piece;
@@ -3535,6 +3537,16 @@
               : chapter.tone === "required"
                 ? experience.actionLabel
                 : experience.listenLabel;
+        const clarityIcon = chapter.group === "safety" && chapter.tone === "danger"
+          ? "⛔"
+          : chapter.group === "help" && chapter.tone === "danger"
+            ? "☎"
+            : chapter.tone === "caution"
+              ? "⚠"
+              : chapter.tone === "required"
+                ? "✓"
+                : "▶";
+        stageCaption.dataset.icon = clarityIcon;
         stageCaption.dataset.label = clarityLabel;
         stageCaption.textContent = chapterSentences[safeIndex];
       }
@@ -4119,11 +4131,13 @@
       if (!quizItem && chapterIndex < chapters.length - 1) {
         markChapterCompleted();
         quizOverlay.hidden = true;
+        const nextChapter = chapters[chapterIndex + 1];
+        if (completeNext) completeNext.textContent = nextChapter ? `${labels.next}: ${nextChapter.title}` : experience.continuing;
         if (completeToast) completeToast.hidden = false;
         const completedIndex = chapterIndex;
         autoAdvanceTimer = window.setTimeout(() => {
           if (chapterIndex === completedIndex) activateFreshChapter(chapterIndex + 1, true);
-        }, 1150);
+        }, 2200);
         return;
       }
       quizOverlay.hidden = false;
