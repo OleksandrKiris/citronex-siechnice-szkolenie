@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260719-siechnice-master19";
+const CACHE_NAME = CACHE_PREFIX + "20260719-siechnice-master22";
 
 const CORE_ASSETS = [
   "./",
@@ -20,19 +20,18 @@ const CORE_ASSETS = [
   "./zakazy.html",
   "./test.html",
   "./manifest.webmanifest",
-  "./assets/css/training.css?v=20260719-siechnice-master19",
-  "./assets/css/editor.css?v=20260719-siechnice-master19",
-  "./assets/js/training-data.js?v=20260719-siechnice-master19",
-  "./assets/js/training-app.js?v=20260719-siechnice-master19",
-  "./assets/js/editor.js?v=20260719-siechnice-master19",
+  "./assets/css/training.css?v=20260719-siechnice-master22",
+  "./assets/css/presenter-rig.css?v=20260719-siechnice-master22",
+  "./assets/css/editor.css?v=20260719-siechnice-master22",
+  "./assets/js/training-data.js?v=20260719-siechnice-master22",
+  "./assets/js/training-app.js?v=20260719-siechnice-master22",
+  "./assets/js/editor.js?v=20260719-siechnice-master22",
   "./assets/logo-citronex.svg",
-  "./assets/content/presenter-guide.json?v=20260719-siechnice-master19",
-  "./assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master19",
-  "./assets/avatar/cartoon/pose-right-v5.png?v=20260719-siechnice-master19",
-  "./assets/avatar/cartoon/pose-left-v4.png?v=20260719-siechnice-master19",
-  "./assets/avatar/cartoon/pose-warning-v5.png?v=20260719-siechnice-master19",
-  "./assets/avatar/cartoon/pose-reader-v5.png?v=20260719-siechnice-master19",
-  "./assets/avatar/cartoon/pose-tablet-v5.png?v=20260719-siechnice-master19",
+  "./assets/content/presenter-guide.json?v=20260719-siechnice-master22",
+  "./assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master22",
+  "./assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master22",
+  "./assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master22",
+  "./assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master22",
   "./assets/guide/arrival-route-v1.svg",
   "./assets/warehouse/magazyn-wejscie-1.jpg",
   "./assets/warehouse/magazyn-wejscie-2.jpg",
@@ -56,15 +55,15 @@ const CORE_ASSETS = [
   "./assets/tablet/tablet-after-break-activity.jpg",
   "./assets/tablet/tablet-work-end.jpg",
   "./assets/tablet/tablet-logout.jpg",
-  "./assets/audio/guide/pl/01-welcome.mp3?v=20260719-siechnice-master19",
-  "./assets/audio/guide/en/01-welcome.mp3?v=20260719-siechnice-master19",
-  "./assets/audio/guide/ua/01-welcome.mp3?v=20260719-siechnice-master19",
-  "./assets/audio/guide/ru/01-welcome.mp3?v=20260719-siechnice-master19",
-  "./assets/audio/guide/az/01-welcome.mp3?v=20260719-siechnice-master19",
-  "./assets/audio/guide/es/01-welcome.mp3?v=20260719-siechnice-master19",
-  "./assets/audio/guide/fil/01-welcome.mp3?v=20260719-siechnice-master19",
-  "./assets/audio/guide/id/01-welcome.mp3?v=20260719-siechnice-master19",
-  "./assets/audio/guide/ne/01-welcome.mp3?v=20260719-siechnice-master19",
+  "./assets/audio/guide/pl/01-welcome.mp3?v=20260719-siechnice-master22",
+  "./assets/audio/guide/en/01-welcome.mp3?v=20260719-siechnice-master22",
+  "./assets/audio/guide/ua/01-welcome.mp3?v=20260719-siechnice-master22",
+  "./assets/audio/guide/ru/01-welcome.mp3?v=20260719-siechnice-master22",
+  "./assets/audio/guide/az/01-welcome.mp3?v=20260719-siechnice-master22",
+  "./assets/audio/guide/es/01-welcome.mp3?v=20260719-siechnice-master22",
+  "./assets/audio/guide/fil/01-welcome.mp3?v=20260719-siechnice-master22",
+  "./assets/audio/guide/id/01-welcome.mp3?v=20260719-siechnice-master22",
+  "./assets/audio/guide/ne/01-welcome.mp3?v=20260719-siechnice-master22",
   "./assets/audio/male/intro-pl.mp3?v=20260718-siechnice-helper10",
   "./assets/audio/male/intro-en.mp3?v=20260718-siechnice-helper10",
   "./assets/audio/male/intro-ua.mp3?v=20260718-siechnice-helper10",
@@ -135,6 +134,19 @@ async function networkFirst(request, fallback = null) {
   }
 }
 
+async function networkFirstVersioned(request) {
+  const cache = await caches.open(CACHE_NAME);
+  const exact = await cache.match(request);
+  try {
+    const response = await Promise.race([fetch(request, { cache: "reload" }), networkTimeout(3500)]);
+    if (!response) return exact || await matchCached(request, null) || Response.error();
+    await putInCache(request, response);
+    return response;
+  } catch (error) {
+    return exact || await matchCached(request, null) || Response.error();
+  }
+}
+
 async function cacheFirst(request) {
   const cached = await matchCached(request, null);
   if (cached) {
@@ -172,7 +184,7 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (["script", "style", "worker"].includes(request.destination)) {
-    event.respondWith(networkFirst(request));
+    event.respondWith(networkFirstVersioned(request));
     return;
   }
 

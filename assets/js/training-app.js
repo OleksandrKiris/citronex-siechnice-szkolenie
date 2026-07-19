@@ -748,10 +748,18 @@
               <small data-cartoon-prop-counter aria-hidden="true"></small>
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
-            <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master19" alt="" width="512" height="512">
-              <span class="guide-eyes" aria-hidden="true"><i></i><i></i></span>
-              <span class="guide-mouth" aria-hidden="true"></span>
+            <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master22" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master22" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master22" alt="" width="538" height="634">
+              <div class="cartoon-head">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master22" alt="" width="405" height="542">
+                <span class="cartoon-brow cartoon-brow-left"></span>
+                <span class="cartoon-brow cartoon-brow-right"></span>
+                <span class="cartoon-eye cartoon-eye-left"></span>
+                <span class="cartoon-eye cartoon-eye-right"></span>
+                <span class="cartoon-mouth"><i></i></span>
+              </div>
             </div>
           </div>
           <button type="button" class="presenter-stage-hit" data-presenter-stage-hit aria-label="${esc(labels.start)}"></button>
@@ -2785,7 +2793,6 @@
     const photoTitle = card.querySelector("[data-presenter-photo-title]");
     const photoSource = card.querySelector("[data-presenter-photo-source]");
     const cartoonRuleBadge = card.querySelector("[data-cartoon-rule-badge]");
-    const cartoonPose = card.querySelector("[data-cartoon-pose]");
     const guideCharacter = card.querySelector("[data-guide-character]");
     const guideFocusRing = card.querySelector("[data-guide-focus-ring]");
     const guideComparison = card.querySelector("[data-guide-comparison]");
@@ -3156,14 +3163,13 @@
         { badge: "रोक्नुहोस्", label: "दिइएको उपकरण र आफ्नै डाटा मात्र प्रयोग गर्नुहोस्", tone: "stop" }
       ]
     };
-    const cartoonPoseFiles = {
-      neutral: "assets/avatar/cartoon/pose-neutral-v4.png",
-      right: "assets/avatar/cartoon/pose-right-v5.png",
-      left: "assets/avatar/cartoon/pose-left-v4.png",
-      warning: "assets/avatar/cartoon/pose-warning-v5.png",
-      reader: "assets/avatar/cartoon/pose-reader-v5.png",
-      tablet: "assets/avatar/cartoon/pose-tablet-v5.png"
-    };
+    const cartoonPoseNames = new Set(["neutral", "right", "left", "warning", "reader", "tablet"]);
+    const cartoonRigFiles = [
+      "assets/avatar/cartoon/head-v1.png",
+      "assets/avatar/cartoon/torso-v1.png",
+      "assets/avatar/cartoon/arm-left-v2.png",
+      "assets/avatar/cartoon/arm-right-v3.png"
+    ];
     const cueVerdicts = {
       welcome: ["info", "correct", "correct", "correct", "correct", "correct", "wrong", "info"],
       arrival: ["info", "correct", "correct", "info"],
@@ -3206,7 +3212,7 @@
       return preload;
     };
     const preloadPresenterVisuals = () => {
-      const paths = new Set(Object.values(cartoonPoseFiles));
+      const paths = new Set(cartoonRigFiles);
       if (engineMode === "full") {
         Object.entries(cartoonCueSequences).forEach(([chapterId, sequence]) => {
           sequence.forEach((cue, cueIndex) => {
@@ -3300,20 +3306,16 @@
       cartoon.dataset.tone = cue.tone || (cue.verdict === "wrong" ? "danger" : cue.verdict === "correct" ? "required" : "neutral");
       cartoon.dataset.visual = cue.image && (/^https?:\/\//i.test(cue.image) || /\.(?:jpe?g|png|webp)(?:\?|$)/i.test(cue.image)) ? "photo" : "diagram";
       card.dataset.gesture = cue.gesture || "show-right";
-      const poseName = cartoonPoseFiles[cue.pose] ? cue.pose : "neutral";
+      const poseName = cartoonPoseNames.has(cue.pose) ? cue.pose : "neutral";
       if (guideCharacter) {
         guideCharacter.dataset.pose = poseName;
-        guideCharacter.dataset.rig = "whole";
-      }
-      if (cartoonPose) {
-        const poseSrc = visualAsset(cartoonPoseFiles[poseName]);
-        if (cartoonPose.getAttribute("src") !== poseSrc) {
-          cartoonPose.classList.remove("is-changing");
-          void cartoonPose.offsetWidth;
-          cartoonPose.src = poseSrc;
-          cartoonPose.classList.add("is-changing");
-          window.setTimeout(() => cartoonPose.classList.remove("is-changing"), 420);
-        }
+        guideCharacter.dataset.rig = "parts";
+        guideCharacter.dataset.expression = cue.gesture === "warning" || cue.verdict === "wrong" || ["danger", "caution", "stop"].includes(cue.tone)
+          ? "warning"
+          : cue.verdict === "correct" || cue.tone === "required"
+            ? "positive"
+            : "friendly";
+        guideCharacter.dataset.look = cue.side === "left" ? "left" : "right";
       }
       const sentenceLabel = chapterSentences[sentenceIndex] || chapter.title;
       const liveLabel = cue.label && cue.label !== chapter.title ? cue.label : sentenceLabel;

@@ -9076,7 +9076,246 @@ body[data-page="home"] .tile {
   }
 }
 
-/* master19: sentence-driven motion and an accessible "I don't understand" flow. */
+/* master22: a true four-part character rig. The torso masks its printed sleeves,
+   so only the two animated arms can ever be visible. */
+.guide-character[data-rig="parts"] {
+  --rig-mouth: calc(.34 + var(--voice-level, 0));
+  bottom: -3%;
+  width: min(108%, 520px);
+  max-width: none;
+  isolation: isolate;
+}
+
+.guide-character[data-rig="parts"] .guide-pose,
+.guide-character[data-rig="parts"] .guide-eyes,
+.guide-character[data-rig="parts"] > .guide-mouth {
+  display: none !important;
+}
+
+.guide-character[data-rig="parts"] .cartoon-torso {
+  left: 50%;
+  top: 13%;
+  bottom: auto;
+  z-index: 3;
+  width: 58%;
+  max-width: none;
+  clip-path: inset(0 10% 0 10% round 20% 20% 8% 8%);
+  filter: drop-shadow(0 10px 10px rgba(17, 59, 39, .14));
+}
+
+.guide-character[data-rig="parts"] .cartoon-arm {
+  top: 16%;
+  bottom: auto;
+  z-index: 2;
+  max-width: none;
+}
+
+.guide-character[data-rig="parts"] .cartoon-arm-left {
+  left: -4%;
+  width: 42%;
+  transform-origin: 92% 17%;
+}
+
+.guide-character[data-rig="parts"] .cartoon-arm-right {
+  right: -2%;
+  width: 38%;
+  transform-origin: 8% 14%;
+}
+
+.guide-character[data-rig="parts"] .cartoon-head {
+  top: 0;
+  bottom: auto;
+  z-index: 5;
+  width: 31%;
+  max-width: none;
+  transform-origin: 50% 86%;
+}
+
+.guide-character[data-rig="parts"] .cartoon-head::after {
+  position: absolute;
+  left: 50%;
+  bottom: -2%;
+  z-index: -1;
+  width: 38%;
+  height: 11%;
+  content: "";
+  border-radius: 0 0 45% 45%;
+  background: #e3aa82;
+  transform: translateX(-50%);
+}
+
+.guide-character[data-rig="parts"] .cartoon-brow {
+  position: absolute;
+  top: 34.5%;
+  z-index: 6;
+  width: 13%;
+  height: 1.8%;
+  border-radius: 999px;
+  background: #4b2d24;
+  opacity: 0;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.guide-character[data-rig="parts"] .cartoon-brow-left { left: 30.5%; }
+.guide-character[data-rig="parts"] .cartoon-brow-right { right: 30.5%; }
+
+.guide-character[data-expression="warning"] .cartoon-brow { opacity: .62; }
+.guide-character[data-expression="warning"] .cartoon-brow-left { transform: rotate(9deg) translateY(1px); }
+.guide-character[data-expression="warning"] .cartoon-brow-right { transform: rotate(-9deg) translateY(1px); }
+.guide-character[data-expression="positive"] .cartoon-brow { opacity: .25; transform: translateY(-1px); }
+
+.guide-character[data-rig="parts"] .cartoon-mouth {
+  top: 62.5%;
+  width: 15.5%;
+  height: 4.8%;
+  overflow: hidden;
+  border: 1.5px solid rgba(64, 25, 27, .92);
+  border-radius: 40% 40% 52% 52%;
+  background: #54282b;
+  box-shadow: 0 1px 0 rgba(255, 213, 188, .55) inset;
+  transform: translateX(-50%) scaleX(.82) scaleY(.28);
+  transform-origin: 50% 0;
+  transition: transform 55ms linear, border-radius 120ms ease;
+}
+
+.guide-character[data-rig="parts"] .cartoon-mouth i {
+  position: absolute;
+  left: 13%;
+  right: 13%;
+  top: 8%;
+  height: 32%;
+  border-radius: 0 0 999px 999px;
+  background: rgba(255, 248, 239, .95);
+}
+
+.presenter-card-v2.is-speaking .guide-character[data-rig="parts"] .cartoon-mouth {
+  animation: none !important;
+  transform: translateX(-50%) scaleX(.78) scaleY(var(--rig-mouth));
+}
+
+.guide-character[data-expression="warning"] .cartoon-mouth {
+  border-radius: 48% 48% 38% 38%;
+  transform: translateX(-50%) scaleX(.72) scaleY(.36);
+}
+
+.guide-character[data-expression="positive"] .cartoon-mouth {
+  border-radius: 30% 30% 70% 70%;
+  transform: translateX(-50%) scaleX(.92) scaleY(.24);
+}
+
+.guide-character[data-look="left"] .cartoon-head img { transform: translateX(-.8%) rotate(-.25deg); }
+.guide-character[data-look="right"] .cartoon-head img { transform: translateX(.8%) rotate(.25deg); }
+
+.presenter-card-v2[data-scene-phase="1"].is-speaking .guide-character[data-rig="parts"] .cartoon-head { animation-delay: -.45s; }
+.presenter-card-v2[data-scene-phase="2"].is-speaking .guide-character[data-rig="parts"] .cartoon-head { animation-duration: 1.05s; }
+.presenter-card-v2[data-scene-phase="3"].is-speaking .guide-character[data-rig="parts"] .cartoon-head { animation-delay: -.85s; }
+
+.presenter-card-v2[data-gesture="warning"].is-speaking .guide-character[data-rig="parts"] .cartoon-arm-left {
+  animation: cartoon-left-open 1.9s ease-in-out infinite;
+}
+
+.presenter-card-v2[data-gesture="nod"].is-speaking .guide-character[data-rig="parts"] .cartoon-arm-left,
+.presenter-card-v2[data-gesture="nod"].is-speaking .guide-character[data-rig="parts"] .cartoon-arm-right {
+  animation-duration: 3.6s;
+}
+
+@media (max-width: 620px) {
+  body[data-page="pomocnik"] .guide-character[data-rig="parts"] {
+    bottom: -5%;
+    width: min(112%, 490px);
+  }
+
+  body[data-page="pomocnik"] .guide-character[data-rig="parts"] .cartoon-head { width: 30%; }
+  body[data-page="pomocnik"] .guide-character[data-rig="parts"] .cartoon-torso { top: 13%; width: 57%; }
+  body[data-page="pomocnik"] .guide-character[data-rig="parts"] .cartoon-arm { top: 16%; }
+}
+
+@media (max-width: 620px) and (orientation: landscape) {
+  body[data-page="pomocnik"] .guide-character[data-rig="parts"] {
+    bottom: -8%;
+    width: min(93%, 455px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-character[data-rig="parts"] .cartoon-head,
+  .guide-character[data-rig="parts"] .cartoon-torso,
+  .guide-character[data-rig="parts"] .cartoon-arm,
+  .guide-character[data-rig="parts"] .cartoon-eye,
+  .guide-character[data-rig="parts"] .cartoon-mouth {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Keep the explanation and the presenter visible at the same time. */
+.presenter-card-v2 .presenter-cartoon .cartoon-prop-card {
+  width: min(57%, 400px);
+  height: 70%;
+}
+
+.presenter-card-v2 .presenter-cartoon .cartoon-prop-card strong {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.presenter-card-v2 .presenter-cartoon .cartoon-character.guide-character[data-rig="parts"] {
+  left: 0;
+  right: auto;
+  bottom: -4%;
+  z-index: 5;
+  width: min(56%, 365px);
+}
+
+.presenter-card-v2 .presenter-cartoon[data-side="left"] .cartoon-character.guide-character[data-rig="parts"] {
+  right: 0;
+  left: auto;
+}
+
+@media (max-width: 620px) {
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-cartoon .cartoon-prop-card {
+    width: 52%;
+    height: 68%;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-cartoon[data-prop="safety"] .cartoon-prop-card {
+    width: 53%;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-cartoon .cartoon-character.guide-character[data-rig="parts"] {
+    left: 0;
+    right: auto;
+    bottom: -5%;
+    width: 64%;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-cartoon[data-side="left"] .cartoon-character.guide-character[data-rig="parts"] {
+    right: 0;
+    left: auto;
+  }
+}
+
+@media (max-width: 620px) and (orientation: landscape) {
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-cartoon .cartoon-character.guide-character[data-rig="parts"] {
+    bottom: -8%;
+    width: min(58%, 300px);
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-cartoon .cartoon-prop-card {
+    width: 55%;
+    height: 72%;
+  }
+}
+
+/* master22: sentence-driven motion and an accessible "I don't understand" flow. */
 .presenter-help-tool {
   max-width: 138px;
   font-size: 17px;

@@ -10,6 +10,7 @@ const guide = JSON.parse(fs.readFileSync(guidePath, "utf8"));
 const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"];
 const errors = [];
 const warnings = [];
+const rigAssets = ["head-v1.png", "torso-v1.png", "arm-left-v2.png", "arm-right-v3.png"];
 const expectedQuizById = {
   welcome: 1, "arrival-wait": 2, "warehouse-no-reader": 0,
   "greenhouse-sides": 19, "greenhouse-nave": 20, "greenhouse-section": 22,
@@ -42,6 +43,16 @@ if (!Array.isArray(reference)) errors.push("Polish reference sections are missin
 const expectedSections = Array.isArray(reference) ? reference.map((section) => section.id) : [];
 if (guide.chapterCount !== expectedSections.length) errors.push(`chapterCount differs (${guide.chapterCount} vs ${expectedSections.length})`);
 if (expectedSections.length < 40) errors.push(`briefing has too few granular chapters (${expectedSections.length})`);
+
+const appSource = fs.readFileSync(path.join(root, "assets", "js", "training-app.js"), "utf8");
+const rigCssPath = path.join(root, "assets", "css", "presenter-rig.css");
+if (!fs.existsSync(rigCssPath)) errors.push("independent presenter rig stylesheet is missing");
+rigAssets.forEach((asset) => {
+  if (!fs.existsSync(path.join(root, "assets", "avatar", "cartoon", asset))) errors.push(`rig asset is missing (${asset})`);
+  const occurrences = (appSource.match(new RegExp(asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length;
+  if (occurrences !== 2) errors.push(`rig asset must be referenced once in markup and once in preload data (${asset}: ${occurrences})`);
+});
+if (/guide-pose-whole|data-cartoon-pose/.test(appSource)) errors.push("legacy whole-pose avatar is still rendered");
 
 for (const language of expectedLanguages) {
   const localized = guide.languages && guide.languages[language];
@@ -106,6 +117,7 @@ console.log("Citronex presenter audit");
 console.log(`Languages: ${expectedLanguages.length}`);
 console.log(`Granular chapters per language: ${expectedSections.length}`);
 console.log(`Expected audio files: ${expectedLanguages.length * expectedSections.length}`);
+console.log(`Independent rig layers: ${rigAssets.length}`);
 console.log(`Warnings: ${warnings.length}`);
 console.log(`Errors: ${errors.length}`);
 warnings.forEach((warning) => console.log(`WARNING: ${warning}`));

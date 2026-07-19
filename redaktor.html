@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#166534">
   <title>Редактор инструктажа — CITRONEX</title>
   <link rel="icon" href="assets/logo-citronex.svg">
-  <link rel="stylesheet" href="assets/css/editor.css?v=20260719-siechnice-master19">
+  <link rel="stylesheet" href="assets/css/editor.css?v=20260719-siechnice-master22">
 </head>
 <body data-page="redaktor" data-standalone-tool="editor">
   <header class="editor-header">
@@ -36,7 +36,7 @@
     <section class="editor-workspace">
       <div class="editor-workspace-head">
         <div><span data-editor-group></span><h1 data-editor-heading>Выберите главу</h1></div>
-        <div class="editor-metrics"><b data-editor-position>0 / 0</b><span data-editor-chars>0 знаков</span></div>
+        <div class="editor-metrics"><b data-editor-position>0 / 0</b><span data-editor-chars>0 знаков</span><span data-editor-words>0 слов</span><span data-editor-duration>Аудио: —</span></div>
       </div>
 
       <form data-editor-form>
@@ -45,11 +45,46 @@
           <label>Группа<input data-editor-group-input readonly></label>
           <label>ID главы<input data-editor-id readonly></label>
           <label class="editor-wide">Текст, который слышит человек<textarea data-editor-text rows="10" required></textarea></label>
-          <label class="editor-wide">Путь к изображению<input data-editor-image placeholder="assets/inline/example.jpg"></label>
+          <label class="editor-wide">Путь к изображению<input data-editor-image list="editorImageAssets" placeholder="assets/inline/example.jpg"></label>
+          <datalist id="editorImageAssets">
+            <option value="assets/guide/arrival-route-v1.svg"></option>
+            <option value="assets/warehouse/magazyn-wejscie-1.jpg"></option>
+            <option value="assets/warehouse/magazyn-wejscie-2.jpg"></option>
+            <option value="assets/greenhouse-orientation/orientacja-ogolna.svg"></option>
+            <option value="assets/greenhouse-orientation/lewa-prawa-strona.svg"></option>
+            <option value="assets/greenhouse-orientation/nawa.svg"></option>
+            <option value="assets/greenhouse-orientation/przejscie.svg"></option>
+            <option value="assets/greenhouse-orientation/przeslo.svg"></option>
+            <option value="assets/inline/reader_start.jpg"></option>
+            <option value="assets/inline/stage12_1.jpg"></option>
+            <option value="assets/inline/stage12_2.jpg"></option>
+            <option value="assets/inline/cart_pl.jpg"></option>
+            <option value="assets/inline/stage34_1.jpg"></option>
+            <option value="assets/inline/restart_1.jpg"></option>
+            <option value="assets/tablet/tablet-login-pin.jpg"></option>
+            <option value="assets/tablet/tablet-start-work.jpg"></option>
+            <option value="assets/tablet/tablet-activity.jpg"></option>
+            <option value="assets/tablet/tablet-change-activity.jpg"></option>
+            <option value="assets/tablet/tablet-break-start.jpg"></option>
+            <option value="assets/tablet/tablet-work-end.jpg"></option>
+            <option value="assets/tablet/tablet-logout.jpg"></option>
+          </datalist>
+          <fieldset class="editor-focus editor-wide">
+            <legend>Подсветка важного места на фотографии, в процентах</legend>
+            <label>X<input type="number" min="0" max="100" step="0.1" data-editor-focus-x></label>
+            <label>Y<input type="number" min="0" max="100" step="0.1" data-editor-focus-y></label>
+            <label>Ширина<input type="number" min="1" max="100" step="0.1" data-editor-focus-w></label>
+            <label>Высота<input type="number" min="1" max="100" step="0.1" data-editor-focus-h></label>
+          </fieldset>
           <label>Поза<select data-editor-pose><option>neutral</option><option>right</option><option>left</option><option>warning</option><option>reader</option><option>tablet</option></select></label>
           <label>Тип сообщения<select data-editor-tone><option>neutral</option><option>required</option><option>caution</option><option>danger</option></select></label>
           <label>Название источника<input data-editor-source-label></label>
           <label>Ссылка на источник<input type="url" data-editor-source-url placeholder="https://…"></label>
+        </div>
+
+        <div class="editor-audio-player">
+          <div><strong>Готовая аудиозапись</strong><small data-editor-audio-path></small></div>
+          <audio controls preload="metadata" data-editor-audio-player></audio>
         </div>
 
         <div class="editor-audio-check" data-editor-audio-check>
@@ -73,6 +108,6 @@
   </main>
 
   <div class="editor-toast" data-editor-toast hidden></div>
-  <script src="assets/js/editor.js?v=20260719-siechnice-master19" defer></script>
+  <script src="assets/js/editor.js?v=20260719-siechnice-master22" defer></script>
 </body>
 </html>

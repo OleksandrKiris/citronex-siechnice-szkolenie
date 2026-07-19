@@ -9,7 +9,9 @@
     text: $("[data-editor-text]"), image: $("[data-editor-image]"), pose: $("[data-editor-pose]"), tone: $("[data-editor-tone]"),
     group: $("[data-editor-group-input]"), id: $("[data-editor-id]"), sourceLabel: $("[data-editor-source-label]"),
     sourceUrl: $("[data-editor-source-url]"), heading: $("[data-editor-heading]"), groupName: $("[data-editor-group]"),
-    position: $("[data-editor-position]"), chars: $("[data-editor-chars]"), audio: $("[data-editor-audio-check]"),
+    position: $("[data-editor-position]"), chars: $("[data-editor-chars]"), words: $("[data-editor-words]"), duration: $("[data-editor-duration]"), audio: $("[data-editor-audio-check]"),
+    audioPlayer: $("[data-editor-audio-player]"), audioPath: $("[data-editor-audio-path]"),
+    focusX: $("[data-editor-focus-x]"), focusY: $("[data-editor-focus-y]"), focusW: $("[data-editor-focus-w]"), focusH: $("[data-editor-focus-h]"),
     previewImage: $("[data-editor-preview-image]"), previewTitle: $("[data-editor-preview-title]"), previewText: $("[data-editor-preview-text]"),
     importButton: $("[data-editor-import]"), file: $("[data-editor-file]"), reset: $("[data-editor-reset]"),
     preview: $("[data-editor-preview]"), copy: $("[data-editor-copy]"), download: $("[data-editor-download]"), toast: $("[data-editor-toast]")
@@ -57,6 +59,32 @@
     return original?.languages?.[activeLanguage]?.sections?.find((section) => section.id === id) || null;
   }
 
+  function audioPath(section = current()) {
+    if (!section) return "";
+    return `assets/audio/guide/${activeLanguage}/${String(activeIndex + 1).padStart(2, "0")}-${section.id}.mp3`;
+  }
+
+  function formatDuration(seconds) {
+    if (!Number.isFinite(seconds) || seconds <= 0) return "—";
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes}:${String(Math.round(seconds % 60)).padStart(2, "0")}`;
+  }
+
+  function updateTextMetrics(value = "") {
+    const clean = value.trim();
+    const words = clean ? clean.split(/\s+/u).length : 0;
+    controls.chars.textContent = `${value.length} знаков`;
+    controls.words.textContent = `${words} слов`;
+  }
+
+  function loadChapterAudio(section = current()) {
+    const path = audioPath(section);
+    controls.audioPath.textContent = path;
+    controls.duration.textContent = "Аудио: загрузка…";
+    controls.audioPlayer.src = path;
+    controls.audioPlayer.load();
+  }
+
   function renderLanguages() {
     controls.language.innerHTML = Object.keys(guide.languages).map((language) => `<option value="${language}">${languageLabels[language] || language}</option>`).join("");
     if (!guide.languages[activeLanguage]) activeLanguage = Object.keys(guide.languages)[0];
@@ -86,6 +114,14 @@
     controls.previewText.textContent = section.text;
     const image = String(section.image || "").trim();
     controls.previewImage.style.backgroundImage = image ? `url("${image.replace(/["\\]/g, "")}")` : "none";
+    const focus = Array.isArray(section.focus) ? section.focus : [];
+    controls.previewImage.dataset.hasFocus = focus.length === 4 ? "true" : "false";
+    if (focus.length === 4) {
+      controls.previewImage.style.setProperty("--preview-focus-x", `${focus[0]}%`);
+      controls.previewImage.style.setProperty("--preview-focus-y", `${focus[1]}%`);
+      controls.previewImage.style.setProperty("--preview-focus-w", `${focus[2]}%`);
+      controls.previewImage.style.setProperty("--preview-focus-h", `${focus[3]}%`);
+    }
   }
 
   function updateAudioStatus() {
@@ -109,10 +145,16 @@
     controls.id.value = section.id || "";
     controls.sourceLabel.value = section.sourceLabel || "";
     controls.sourceUrl.value = section.sourceUrl || "";
+    const focus = Array.isArray(section.focus) ? section.focus : [];
+    controls.focusX.value = focus[0] ?? "";
+    controls.focusY.value = focus[1] ?? "";
+    controls.focusW.value = focus[2] ?? "";
+    controls.focusH.value = focus[3] ?? "";
     controls.heading.textContent = section.title;
     controls.groupName.textContent = section.groupTitle || section.group || "";
     controls.position.textContent = `${activeIndex + 1} / ${sections().length}`;
-    controls.chars.textContent = `${section.text.length} знаков`;
+    updateTextMetrics(section.text);
+    loadChapterAudio(section);
     updatePreview(section);
     updateAudioStatus();
   }
@@ -125,6 +167,9 @@
     section.image = controls.image.value.trim();
     section.pose = controls.pose.value;
     section.tone = controls.tone.value;
+    const focus = [controls.focusX, controls.focusY, controls.focusW, controls.focusH].map((input) => Number(input.value));
+    if (focus.every(Number.isFinite) && focus[2] > 0 && focus[3] > 0) section.focus = focus;
+    else delete section.focus;
     const sourceLabel = controls.sourceLabel.value.trim();
     const sourceUrl = controls.sourceUrl.value.trim();
     if (sourceLabel && sourceUrl) {
@@ -175,10 +220,11 @@
   controls.search.addEventListener("input", () => { renderChapterList(); renderForm(); });
   controls.chapter.addEventListener("change", () => { activeIndex = Number(controls.chapter.value) || 0; renderForm(); });
   controls.form.addEventListener("submit", (event) => { event.preventDefault(); applyForm(); notify("Черновик сохранён в этом браузере."); });
-  [controls.title, controls.text, controls.image, controls.pose, controls.tone, controls.sourceLabel, controls.sourceUrl].forEach((control) => {
+  [controls.title, controls.text, controls.image, controls.pose, controls.tone, controls.sourceLabel, controls.sourceUrl, controls.focusX, controls.focusY, controls.focusW, controls.focusH].forEach((control) => {
     control.addEventListener("input", () => {
-      const draft = { ...current(), title: controls.title.value, text: controls.text.value, image: controls.image.value };
-      controls.chars.textContent = `${controls.text.value.length} знаков`;
+      const focus = [controls.focusX, controls.focusY, controls.focusW, controls.focusH].map((input) => Number(input.value));
+      const draft = { ...current(), title: controls.title.value, text: controls.text.value, image: controls.image.value, focus: focus[2] > 0 && focus[3] > 0 ? focus : undefined };
+      updateTextMetrics(controls.text.value);
       updatePreview(draft);
       updateAudioStatus();
     });
@@ -186,6 +232,12 @@
   controls.preview.addEventListener("click", () => { applyForm(); window.open(`pomocnik.html?lang=${encodeURIComponent(activeLanguage)}&draft=1`, "_blank", "noopener"); });
   controls.copy.addEventListener("click", async () => { applyForm(); await navigator.clipboard.writeText(JSON.stringify(guide, null, 2)); notify("JSON скопирован."); });
   controls.download.addEventListener("click", downloadGuide);
+  controls.audioPlayer.addEventListener("loadedmetadata", () => {
+    controls.duration.textContent = `Аудио: ${formatDuration(controls.audioPlayer.duration)}`;
+  });
+  controls.audioPlayer.addEventListener("error", () => {
+    controls.duration.textContent = "Аудио: файл не найден";
+  });
   controls.importButton.addEventListener("click", () => controls.file.click());
   controls.file.addEventListener("change", async () => {
     const file = controls.file.files?.[0];
