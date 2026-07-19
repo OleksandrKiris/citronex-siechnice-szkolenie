@@ -267,7 +267,7 @@ function buildGuide(lang) {
 }
 
 const output = {
-  version: "20260719-siechnice-guide4",
+  version: "20260719-siechnice-guide5",
   chapterCount: 0,
   languages: Object.fromEntries(languages.map((lang) => [lang, buildGuide(lang)]))
 };

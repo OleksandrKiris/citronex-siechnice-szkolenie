@@ -1,9 +1,9 @@
 {
-  "version": "20260719-siechnice-guide4",
+  "version": "20260719-siechnice-guide5",
   "chapterCount": 50,
   "languages": {
     "pl": {
-      "totalCharacters": 7976,
+      "totalCharacters": 8356,
       "sections": [
         {
           "id": "welcome",
@@ -866,7 +866,7 @@
             "all"
           ],
           "title": "Przychodnia - GOZ Siechnice",
-          "text": "Przychodnia - GOZ Siechnice.\n\nAdres: ul. Jana Pawła II 23, 55-011 Siechnice.\n\nZapisy są od godziny 8:00.\n\nPrzyjdź o 8:00, nie później, bo może nie być miejsc.\n\nWeź PESEL, paszport i telefon.",
+          "text": "Przychodnia - GOZ Siechnice.\n\nAdres: ul. Jana Pawła II 23, 55-011 Siechnice.\n\nRejestracja ogólna: poniedziałek-piątek, 8:00-18:00. Przed wizytą zadzwoń i potwierdź termin oraz potrzebne dokumenty.\n\nWeź dokument tożsamości, PESEL, jeśli go masz, oraz telefon. Rejestracja wskaże, co jeszcze jest potrzebne.",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -885,7 +885,7 @@
             "all"
           ],
           "title": "SOR - nagłe przypadki",
-          "text": "SOR - nagłe przypadki.\n\nJedź na SOR przy silnym bólu, urazie, gorączce, problemach z oddychaniem, omdleniu albo poważnym pogorszeniu zdrowia.",
+          "text": "SOR - nagłe przypadki.\n\nSOR jest dla nagłego zagrożenia życia lub zdrowia, na przykład: utrata przytomności, poważne problemy z oddychaniem, silne krwawienie, podejrzenie zawału lub udaru, ciężki uraz albo nagłe poważne pogorszenie stanu.\n\nJeśli sytuacja wymaga natychmiastowej pomocy służb, dzwoń 112. Przy problemie niebędącym nagłym zagrożeniem skontaktuj się z przychodnią albo zadzwoń do NFZ 800 190 590.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -904,7 +904,7 @@
             "all"
           ],
           "title": "Pogotowie dentystyczne",
-          "text": "Pogotowie dentystyczne.\n\nDyżury NFZ mogą się zmieniać. Najpierw sprawdź aktualny dyżur albo zadzwoń na całodobową infolinię NFZ 800 190 590.\n\nQ-Clinic jest prywatna i przyjmuje od poniedziałku do piątku 8:00-20:00. Dental-Art prowadzi prywatny ostry dyżur; po 21:00 wymaga potwierdzenia telefonicznego.\n\nPrzy dużej opuchliźnie twarzy, gorączce, problemie z oddychaniem albo połykaniem jedź na SOR albo dzwoń 112.",
+          "text": "Pogotowie dentystyczne.\n\nDyżury NFZ mogą się zmieniać. Najpierw sprawdź aktualny dyżur albo zadzwoń na całodobową infolinię NFZ 800 190 590.\n\nKonsultant NFZ może wskazać aktualną pomoc stomatologiczną, najbliższy SOR oraz nocną i świąteczną opiekę. Infolinia działa bezpłatnie 24 godziny na dobę, 7 dni w tygodniu.\n\nGdy obrzęk twarzy utrudnia oddychanie lub połykanie albo stan szybko się pogarsza, dzwoń 112.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -931,7 +931,7 @@
       ]
     },
     "en": {
-      "totalCharacters": 7877,
+      "totalCharacters": 8342,
       "sections": [
         {
           "id": "welcome",
@@ -1794,7 +1794,7 @@
             "all"
           ],
           "title": "Clinic - GOZ Siechnice",
-          "text": "Clinic - GOZ Siechnice.\n\nAddress: Jana Pawła II 23, 55-011 Siechnice.\n\nRegistration starts at 8:00.\n\nCome at 8:00, not later, because places may run out.\n\nTake PESEL, passport and phone.",
+          "text": "Clinic - GOZ Siechnice.\n\nAddress: Jana Pawła II 23, 55-011 Siechnice.\n\nGeneral registration: Monday-Friday, 8:00-18:00. Call before visiting to confirm the appointment and required documents.\n\nTake an identity document, your PESEL if you have one, and a phone. Registration will tell you what else is required.",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -1813,7 +1813,7 @@
             "all"
           ],
           "title": "Emergency room",
-          "text": "Emergency room.\n\nGo to emergency for severe pain, injury, fever, breathing problems, fainting or serious worsening.",
+          "text": "Emergency room.\n\nAn emergency department is for a sudden threat to life or health, for example loss of consciousness, serious breathing difficulty, heavy bleeding, suspected heart attack or stroke, severe injury, or sudden serious deterioration.\n\nIf emergency services are needed immediately, call 112. For a problem that is not an immediate threat, contact a clinic or call the NFZ helpline on 800 190 590.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -1832,7 +1832,7 @@
             "all"
           ],
           "title": "Dental emergency",
-          "text": "Dental emergency.\n\nNFZ duty locations may change. First check the current duty clinic or call the 24-hour NFZ helpline 800 190 590.\n\nQ-Clinic is private and open Monday to Friday 8:00-20:00. Dental-Art provides a private urgent service; after 21:00 you must confirm by phone.\n\nWith large face swelling, fever, breathing or swallowing problems, go to emergency or call 112.",
+          "text": "Dental emergency.\n\nNFZ duty locations may change. First check the current duty clinic or call the 24-hour NFZ helpline 800 190 590.\n\nThe NFZ consultant can identify current dental care, the nearest emergency department, and night or holiday care. The helpline is free and operates 24 hours a day, 7 days a week.\n\nIf facial swelling makes breathing or swallowing difficult, or the condition is rapidly worsening, call 112.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -1859,7 +1859,7 @@
       ]
     },
     "ua": {
-      "totalCharacters": 7744,
+      "totalCharacters": 8124,
       "sections": [
         {
           "id": "welcome",
@@ -2722,7 +2722,7 @@
             "all"
           ],
           "title": "Поліклініка - GOZ Siechnice",
-          "text": "Поліклініка - GOZ Siechnice.\n\nАдреса: вул. Jana Pawła II 23, 55-011 Siechnice.\n\nЗапис з 8:00.\n\nПрийдіть о 8:00, не пізніше, бо місць може не бути.\n\nВізьміть PESEL, паспорт і телефон.",
+          "text": "Поліклініка - GOZ Siechnice.\n\nАдреса: вул. Jana Pawła II 23, 55-011 Siechnice.\n\nЗагальна реєстрація: понеділок-п’ятниця, 8:00-18:00. Перед візитом зателефонуйте, щоб підтвердити час і потрібні документи.\n\nВізьміть документ, що посвідчує особу, PESEL, якщо маєте, і телефон. У реєстратурі скажуть, що ще потрібно.",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -2741,7 +2741,7 @@
             "all"
           ],
           "title": "SOR - термінові випадки",
-          "text": "SOR - термінові випадки.\n\nЇдьте на SOR при сильному болю, травмі, температурі, проблемах з диханням, непритомності або різкому погіршенні.",
+          "text": "SOR - термінові випадки.\n\nSOR призначений для раптової загрози життю або здоров’ю, наприклад: втрата свідомості, серйозні проблеми з диханням, сильна кровотеча, підозра на інфаркт чи інсульт, тяжка травма або раптове значне погіршення стану.\n\nЯкщо потрібна негайна допомога служб, телефонуйте 112. Якщо немає безпосередньої загрози, зверніться до поліклініки або зателефонуйте до NFZ 800 190 590.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -2760,7 +2760,7 @@
             "all"
           ],
           "title": "Стоматологічна допомога",
-          "text": "Стоматологічна допомога.\n\nЧергові стоматології NFZ можуть змінюватися. Спочатку перевірте актуальний пункт або зателефонуйте на цілодобову лінію NFZ 800 190 590.\n\nQ-Clinic є приватною і працює з понеділка до п'ятниці 8:00-20:00. Dental-Art має приватний гострий черговий прийом; після 21:00 потрібне підтвердження телефоном.\n\nПри великому набряку обличчя, температурі, проблемі з диханням або ковтанням їдьте на SOR або дзвоніть 112.",
+          "text": "Стоматологічна допомога.\n\nЧергові стоматології NFZ можуть змінюватися. Спочатку перевірте актуальний пункт або зателефонуйте на цілодобову лінію NFZ 800 190 590.\n\nКонсультант NFZ може вказати актуальну стоматологічну допомогу, найближчий SOR і нічну та святкову допомогу. Лінія безплатна й працює цілодобово, 7 днів на тиждень.\n\nЯкщо набряк обличчя ускладнює дихання чи ковтання або стан швидко погіршується, телефонуйте 112.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -2787,7 +2787,7 @@
       ]
     },
     "ru": {
-      "totalCharacters": 7808,
+      "totalCharacters": 8217,
       "sections": [
         {
           "id": "welcome",
@@ -3650,7 +3650,7 @@
             "all"
           ],
           "title": "Поликлиника - GOZ Siechnice",
-          "text": "Поликлиника - GOZ Siechnice.\n\nАдрес: ул. Jana Pawła II 23, 55-011 Siechnice.\n\nЗапись с 8:00.\n\nПриходите в 8:00, не позже, потому что мест может не быть.\n\nВозьмите PESEL, паспорт и телефон.",
+          "text": "Поликлиника - GOZ Siechnice.\n\nАдрес: ул. Jana Pawła II 23, 55-011 Siechnice.\n\nОбщая регистратура: понедельник-пятница, 8:00-18:00. Перед визитом позвоните и уточните время и необходимые документы.\n\nВозьмите документ, удостоверяющий личность, PESEL, если он у вас есть, и телефон. В регистратуре скажут, что ещё необходимо.",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -3669,7 +3669,7 @@
             "all"
           ],
           "title": "SOR - срочные случаи",
-          "text": "SOR - срочные случаи.\n\nЕзжайте на SOR при сильной боли, травме, температуре, проблемах с дыханием, обмороке или сильном ухудшении.",
+          "text": "SOR - срочные случаи.\n\nSOR предназначен для внезапной угрозы жизни или здоровью, например: потеря сознания, серьёзные проблемы с дыханием, сильное кровотечение, подозрение на инфаркт или инсульт, тяжёлая травма либо внезапное серьёзное ухудшение состояния.\n\nЕсли экстренная помощь нужна немедленно, звоните 112. Если непосредственной угрозы нет, обратитесь в поликлинику или позвоните в NFZ 800 190 590.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -3688,7 +3688,7 @@
             "all"
           ],
           "title": "Стоматологическая помощь",
-          "text": "Стоматологическая помощь.\n\nДежурные стоматологии NFZ могут меняться. Сначала проверьте актуальный пункт или позвоните на круглосуточную линию NFZ 800 190 590.\n\nQ-Clinic частная и работает с понедельника по пятницу 8:00-20:00. Dental-Art ведет частный острый дежурный прием; после 21:00 нужно подтверждение по телефону.\n\nПри сильном отеке лица, температуре, проблеме с дыханием или глотанием езжайте на SOR или звоните 112.",
+          "text": "Стоматологическая помощь.\n\nДежурные стоматологии NFZ могут меняться. Сначала проверьте актуальный пункт или позвоните на круглосуточную линию NFZ 800 190 590.\n\nКонсультант NFZ подскажет актуальную стоматологическую помощь, ближайший SOR и ночную или праздничную помощь. Линия бесплатная и работает круглосуточно, 7 дней в неделю.\n\nЕсли отёк лица затрудняет дыхание или глотание либо состояние быстро ухудшается, звоните 112.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -3715,7 +3715,7 @@
       ]
     },
     "az": {
-      "totalCharacters": 7492,
+      "totalCharacters": 7895,
       "sections": [
         {
           "id": "welcome",
@@ -4578,7 +4578,7 @@
             "all"
           ],
           "title": "Poliklinika - GOZ Siechnice",
-          "text": "Poliklinika - GOZ Siechnice.\n\nÜnvan: Jana Pawła II 23, 55-011 Siechnice.\n\nQeydiyyat saat 8:00-dan başlayır.\n\nSaat 8:00-da gəlin, gecikməyin, yer qalmaya bilər.\n\nPESEL, pasport və telefonu götürün.",
+          "text": "Poliklinika - GOZ Siechnice.\n\nÜnvan: Jana Pawła II 23, 55-011 Siechnice.\n\nÜmumi qeydiyyat: bazar ertəsi-cümə, 8:00-18:00. Getməzdən əvvəl zəng edib vaxtı və lazım olan sənədləri təsdiqləyin.\n\nŞəxsiyyət sənədini, varsa PESEL-i və telefonu götürün. Qeydiyyat sizə başqa nə lazım olduğunu deyəcək.",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -4597,7 +4597,7 @@
             "all"
           ],
           "title": "Təcili yardım şöbəsi",
-          "text": "Təcili yardım şöbəsi.\n\nGüclü ağrı, zədə, qızdırma, nəfəs problemi, huş itirmə və ya ciddi pisləşmə varsa təciliyə gedin.",
+          "text": "Təcili yardım şöbəsi.\n\nTəcili yardım şöbəsi həyat və ya sağlamlıq üçün qəfil təhlükə halları üçündür: huşun itməsi, ciddi nəfəs darlığı, güclü qanaxma, infarkt və ya insult şübhəsi, ağır zədə və ya vəziyyətin qəfil ciddi pisləşməsi.\n\nTəcili xidmətlərin dərhal köməyi lazımdırsa, 112-yə zəng edin. Dərhal təhlükə yoxdursa, poliklinika ilə əlaqə saxlayın və ya NFZ 800 190 590 nömrəsinə zəng edin.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -4616,7 +4616,7 @@
             "all"
           ],
           "title": "Təcili diş yardımı",
-          "text": "Təcili diş yardımı.\n\nNFZ növbətçi stomatoloji məntəqələri dəyişə bilər. Əvvəl cari məntəqəni yoxlayın və ya 24 saatlıq NFZ xəttinə 800 190 590 zəng edin.\n\nQ-Clinic özəldir və bazar ertəsi-cümə 8:00-20:00 işləyir. Dental-Art özəl təcili qəbul aparır; 21:00-dan sonra telefonla təsdiq lazımdır.\n\nÜzdə böyük şiş, qızdırma, nəfəs və ya udma problemi varsa təciliyə gedin və ya 112-yə zəng edin.",
+          "text": "Təcili diş yardımı.\n\nNFZ növbətçi stomatoloji məntəqələri dəyişə bilər. Əvvəl cari məntəqəni yoxlayın və ya 24 saatlıq NFZ xəttinə 800 190 590 zəng edin.\n\nNFZ məsləhətçisi cari stomatoloji yardımı, ən yaxın təcili şöbəni və gecə-bayram yardımını göstərə bilər. Xətt pulsuzdur və həftənin 7 günü, 24 saat işləyir.\n\nÜz şişməsi nəfəs almağı və ya udmağı çətinləşdirirsə, yaxud vəziyyət sürətlə pisləşirsə, 112-yə zəng edin.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -4643,7 +4643,7 @@
       ]
     },
     "es": {
-      "totalCharacters": 7873,
+      "totalCharacters": 8267,
       "sections": [
         {
           "id": "welcome",
@@ -5506,7 +5506,7 @@
             "all"
           ],
           "title": "Clínica - GOZ Siechnice",
-          "text": "Clínica - GOZ Siechnice.\n\nDirección: Jana Pawła II 23, 55-011 Siechnice.\n\nEl registro empieza a las 8:00.\n\nVen a las 8:00, no más tarde, porque puede no haber plazas.\n\nLleva PESEL, pasaporte y teléfono.",
+          "text": "Clínica - GOZ Siechnice.\n\nDirección: Jana Pawła II 23, 55-011 Siechnice.\n\nRegistro general: lunes-viernes, 8:00-18:00. Llama antes de ir para confirmar la cita y los documentos necesarios.\n\nLleva un documento de identidad, PESEL si lo tienes y el teléfono. En registro te dirán qué más necesitas.",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -5525,7 +5525,7 @@
             "all"
           ],
           "title": "Urgencias",
-          "text": "Urgencias.\n\nVe a urgencias por dolor fuerte, lesión, fiebre, problemas respiratorios, desmayo o empeoramiento serio.",
+          "text": "Urgencias.\n\nUrgencias es para una amenaza repentina para la vida o la salud, por ejemplo pérdida de conciencia, dificultad grave para respirar, hemorragia intensa, sospecha de infarto o ictus, lesión grave o empeoramiento repentino importante.\n\nSi necesitas ayuda inmediata de emergencias, llama al 112. Si no existe una amenaza inmediata, contacta con una clínica o llama al NFZ 800 190 590.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -5544,7 +5544,7 @@
             "all"
           ],
           "title": "Urgencia dental",
-          "text": "Urgencia dental.\n\nLos centros dentales de guardia NFZ pueden cambiar. Comprueba el centro actual o llama a la línea NFZ 24 h 800 190 590.\n\nQ-Clinic es privada y abre de lunes a viernes 8:00-20:00. Dental-Art ofrece urgencias privadas; después de las 21:00 hay que confirmar por teléfono.\n\nCon mucha hinchazón de cara, fiebre, problemas para respirar o tragar, ve a urgencias o llama 112.",
+          "text": "Urgencia dental.\n\nLos centros dentales de guardia NFZ pueden cambiar. Comprueba el centro actual o llama a la línea NFZ 24 h 800 190 590.\n\nEl asesor de NFZ puede indicar la atención dental actual, el SOR más cercano y la atención nocturna o festiva. La línea es gratuita y funciona las 24 horas, los 7 días.\n\nSi la hinchazón de la cara dificulta respirar o tragar, o el estado empeora rápidamente, llama al 112.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -5571,7 +5571,7 @@
       ]
     },
     "fil": {
-      "totalCharacters": 8221,
+      "totalCharacters": 8626,
       "sections": [
         {
           "id": "welcome",
@@ -6434,7 +6434,7 @@
             "all"
           ],
           "title": "Klinika - GOZ Siechnice",
-          "text": "Klinika - GOZ Siechnice.\n\nTirahan: Jana Pawła II 23, 55-011 Siechnice.\n\nNagsisimula ang pagpaparehistro ng 8:00.\n\nDumating ng 8:00, huwag mas late, baka maubos ang lugar.\n\nDalhin ang PESEL, pasaporte at telepono.",
+          "text": "Klinika - GOZ Siechnice.\n\nTirahan: Jana Pawła II 23, 55-011 Siechnice.\n\nPangkalahatang pagpaparehistro: Lunes-Biyernes, 8:00-18:00. Tumawag bago pumunta para kumpirmahin ang oras at kailangang dokumento.\n\nDalhin ang ID, PESEL kung mayroon, at telepono. Sasabihin ng pagpaparehistro kung ano pa ang kailangan.",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -6453,7 +6453,7 @@
             "all"
           ],
           "title": "Silid pang-emerhensiya",
-          "text": "Silid pang-emerhensiya.\n\nPumunta sa emerhensiya kung matinding sakit, injury, lagnat, hirap huminga, nahimatay o malubhang lumala.",
+          "text": "Silid pang-emerhensiya.\n\nAng emerhensiya department ay para sa biglaang panganib sa buhay o kalusugan, gaya ng pagkawala ng malay, malubhang hirap huminga, matinding pagdurugo, hinalang atake sa puso o stroke, malubhang pinsala, o biglaang malubhang paglala.\n\nKung kailangan agad ang emerhensiya services, tumawag sa 112. Kung hindi agarang panganib, kontakin ang klinika o tumawag sa NFZ 800 190 590.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -6472,7 +6472,7 @@
             "all"
           ],
           "title": "Agarang tulong sa ngipin",
-          "text": "Agarang tulong sa ngipin.\n\nMaaaring magbago ang NFZ dental duty clinic. Tingnan muna ang kasalukuyang duty clinic o tumawag sa 24-hour NFZ helpline 800 190 590.\n\nPribado ang Q-Clinic at bukas Lunes-Biyernes 8:00-20:00. May pribadong urgent duty ang Dental-Art; pagkatapos ng 21:00 kailangan ang kumpirmasyon sa telepono.\n\nKung malaking pamamaga ng mukha, lagnat, hirap huminga o lumunok, pumunta sa emerhensiya o tumawag 112.",
+          "text": "Agarang tulong sa ngipin.\n\nMaaaring magbago ang NFZ dental duty clinic. Tingnan muna ang kasalukuyang duty clinic o tumawag sa 24-hour NFZ helpline 800 190 590.\n\nMaaaring ituro ng NFZ consultant ang kasalukuyang dental care, pinakamalapit na emerhensiya department, at night o holiday care. Libre ang linya at bukas 24 oras, 7 araw sa isang linggo.\n\nKung nahihirapang huminga o lumunok dahil sa pamamaga ng mukha, o mabilis lumalala ang kondisyon, tumawag sa 112.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -6499,7 +6499,7 @@
       ]
     },
     "id": {
-      "totalCharacters": 7502,
+      "totalCharacters": 7921,
       "sections": [
         {
           "id": "welcome",
@@ -7362,7 +7362,7 @@
             "all"
           ],
           "title": "Klinik - GOZ Siechnice",
-          "text": "Klinik - GOZ Siechnice.\n\nAlamat: Jana Pawła II 23, 55-011 Siechnice.\n\nPendaftaran mulai pukul 8:00.\n\nDatang pukul 8:00, jangan terlambat, kuota bisa habis.\n\nBawa PESEL, paspor, dan telepon.",
+          "text": "Klinik - GOZ Siechnice.\n\nAlamat: Jana Pawła II 23, 55-011 Siechnice.\n\nPendaftaran umum: Senin-Jumat, 8:00-18:00. Telepon sebelum datang untuk memastikan jadwal dan dokumen yang diperlukan.\n\nBawa dokumen identitas, PESEL jika ada, dan telepon. Bagian pendaftaran akan memberi tahu apa lagi yang diperlukan.",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -7381,7 +7381,7 @@
             "all"
           ],
           "title": "IGD",
-          "text": "IGD.\n\nKe IGD jika nyeri berat, cedera, demam, sesak napas, pingsan, atau kondisi memburuk.",
+          "text": "IGD.\n\nIGD adalah untuk ancaman mendadak terhadap nyawa atau kesehatan, misalnya kehilangan kesadaran, sesak napas berat, perdarahan hebat, dugaan serangan jantung atau stroke, cedera berat, atau kondisi yang tiba-tiba memburuk serius.\n\nJika layanan darurat dibutuhkan segera, hubungi 112. Jika bukan ancaman langsung, hubungi klinik atau layanan NFZ 800 190 590.",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -7400,7 +7400,7 @@
             "all"
           ],
           "title": "Darurat gigi",
-          "text": "Darurat gigi.\n\nKlinik gigi jaga NFZ dapat berubah. Periksa klinik yang bertugas atau hubungi layanan NFZ 24 jam 800 190 590.\n\nQ-Clinic adalah klinik swasta dan buka Senin-Jumat 8:00-20:00. Dental-Art menyediakan layanan darurat swasta; setelah 21:00 wajib konfirmasi lewat telepon.\n\nJika wajah bengkak besar, demam, sulit bernapas/menelan, ke IGD atau hubungi 112.",
+          "text": "Darurat gigi.\n\nKlinik gigi jaga NFZ dapat berubah. Periksa klinik yang bertugas atau hubungi layanan NFZ 24 jam 800 190 590.\n\nKonsultan NFZ dapat menunjukkan layanan gigi terbaru, IGD terdekat, serta layanan malam atau hari libur. Layanan ini gratis dan aktif 24 jam sehari, 7 hari seminggu.\n\nJika pembengkakan wajah membuat sulit bernapas atau menelan, atau kondisi memburuk cepat, hubungi 112.",
           "image": "",
           "icon": "🦷",
           "pose": "right",
@@ -7427,7 +7427,7 @@
       ]
     },
     "ne": {
-      "totalCharacters": 7077,
+      "totalCharacters": 7419,
       "sections": [
         {
           "id": "welcome",
@@ -8290,7 +8290,7 @@
             "all"
           ],
           "title": "क्लिनिक - GOZ Siechnice",
-          "text": "क्लिनिक - GOZ Siechnice.\n\nठेगाना: Jana Pawła II 23, 55-011 Siechnice।\n\nदर्ता बिहान ८:०० देखि हुन्छ।\n\n८:०० बजे आउनुहोस्, ढिलो भए ठाउँ नहुन सक्छ।\n\nPESEL, पासपोर्ट र फोन लैजानुहोस्।",
+          "text": "क्लिनिक - GOZ Siechnice.\n\nठेगाना: Jana Pawła II 23, 55-011 Siechnice।\n\nसामान्य दर्ता: सोमबार-शुक्रबार, 8:00-18:00। जानुअघि फोन गरेर समय र चाहिने कागजात पुष्टि गर्नुहोस्।\n\nपहिचान कागजात, भएमा PESEL, र फोन लैजानुहोस्। दर्ता कक्षले अरू के चाहिन्छ बताउनेछ।",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -8309,7 +8309,7 @@
             "all"
           ],
           "title": "आपतकालीन",
-          "text": "आपतकालीन.\n\nधेरै दुखाइ, चोट, ज्वरो, सास समस्या, बेहोस वा स्वास्थ्य धेरै बिग्रिए आपतकालीन जानुहोस्।",
+          "text": "आपतकालीन.\n\nआपतकालीन विभाग जीवन वा स्वास्थ्यमा अचानक गम्भीर खतरा हुँदा हो, जस्तै बेहोस हुनु, गम्भीर सास समस्या, धेरै रगत बग्नु, हृदयाघात वा स्ट्रोकको शंका, गम्भीर चोट वा अवस्था अचानक धेरै बिग्रनु।\n\nतत्काल आपतकालीन सेवा चाहिन्छ भने 112 मा फोन गर्नुहोस्। तत्काल खतरा नभए क्लिनिकमा सम्पर्क गर्नुहोस् वा NFZ 800 190 590 मा फोन गर्नुहोस्।",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -8328,7 +8328,7 @@
             "all"
           ],
           "title": "दन्त आपतकालीन",
-          "text": "दन्त आपतकालीन.\n\nNFZ को ड्युटी दन्त क्लिनिक बदलिन सक्छ। पहिले हालको क्लिनिक जाँच गर्नुहोस् वा २४ घण्टे NFZ नम्बर 800 190 590 मा फोन गर्नुहोस्।\n\nQ-Clinic निजी हो र सोमबार-शुक्रबार 8:00-20:00 खुल्छ। Dental-Art मा निजी आकस्मिक सेवा छ; 21:00 पछि फोनबाट पुष्टि गर्नुपर्छ।\n\nअनुहार धेरै सुन्निए, ज्वरो, सास/निल्न समस्या भए आपतकालीन जानुहोस् वा 112 फोन गर्नुहोस्।",
+          "text": "दन्त आपतकालीन.\n\nNFZ को ड्युटी दन्त क्लिनिक बदलिन सक्छ। पहिले हालको क्लिनिक जाँच गर्नुहोस् वा २४ घण्टे NFZ नम्बर 800 190 590 मा फोन गर्नुहोस्।\n\nNFZ सल्लाहकारले हालको दन्त सेवा, नजिकको आपतकालीन विभाग र राति वा बिदाको सेवा बताउन सक्छ। फोन सेवा निःशुल्क र हप्ताको 7 दिन, 24 घण्टा खुला हुन्छ।\n\nअनुहार सुन्निँदा सास फेर्न वा निल्न गाह्रो हुन्छ वा अवस्था छिटो बिग्रन्छ भने 112 मा फोन गर्नुहोस्।",
           "image": "",
           "icon": "🦷",
           "pose": "right",

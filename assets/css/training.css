@@ -12045,3 +12045,297 @@ body.presenter-presentation-open {
     animation: none !important;
   }
 }
+
+/* Master 16: verified-information labels and a faster phone player. */
+.fact-review-stamp {
+  width: fit-content;
+  margin: 0 0 14px;
+  padding: 7px 11px;
+  border: 1px solid #adddc2;
+  border-radius: 999px;
+  background: #eefbf3;
+  color: #0b6a41;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.fact-source-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.fact-source-link {
+  width: fit-content;
+  color: #096b43;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.3;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.contact-freshness {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.presenter-card-v2[data-engine="mobile"] .presenter-media img.guide-pose,
+.presenter-card-v2[data-engine="lite"] .presenter-media img.guide-pose {
+  will-change: auto;
+}
+
+.presenter-card-v2[data-engine="lite"] .guide-focus-ring,
+.presenter-card-v2[data-engine="lite"] .presenter-cartoon .cartoon-prop-icon {
+  animation-duration: 2.8s;
+}
+
+@media (max-width: 620px) {
+  body[data-page="pomocnik"] {
+    --phone-header-height: calc(54px + env(safe-area-inset-top));
+    touch-action: manipulation;
+  }
+
+  body[data-page="pomocnik"] .app-header {
+    height: var(--phone-header-height);
+    min-height: var(--phone-header-height);
+    padding-top: env(safe-area-inset-top);
+  }
+
+  body[data-page="pomocnik"] .header-inner {
+    height: 54px;
+    padding-right: max(8px, env(safe-area-inset-right));
+    padding-left: max(8px, env(safe-area-inset-left));
+  }
+
+  body[data-page="pomocnik"] #app {
+    height: calc(100svh - var(--phone-header-height));
+    height: calc(100dvh - var(--phone-header-height));
+  }
+
+  body[data-page="pomocnik"] .assistant-page {
+    padding-right: max(5px, env(safe-area-inset-right));
+    padding-bottom: max(5px, env(safe-area-inset-bottom));
+    padding-left: max(5px, env(safe-area-inset-left));
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 {
+    grid-template-rows: minmax(185px, 57%) minmax(0, 1fr);
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-content {
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .btn,
+  body[data-page="pomocnik"] .presenter-mobile-chapter select {
+    min-height: 40px;
+  }
+
+  body[data-page="pomocnik"] .presenter-path-overlay {
+    inset: var(--phone-header-height) 0 0;
+    padding-right: max(7px, env(safe-area-inset-right));
+    padding-bottom: max(7px, env(safe-area-inset-bottom));
+    padding-left: max(7px, env(safe-area-inset-left));
+  }
+
+  body[data-page="pomocnik"] .presenter-path-grid {
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+
+  body[data-page="pomocnik"] .presenter-path-option {
+    min-height: 46px;
+  }
+}
+
+@media (max-width: 620px) and (max-height: 700px) {
+  body[data-page="pomocnik"] .presenter-card-v2 {
+    grid-template-rows: minmax(168px, 47%) minmax(0, 1fr);
+  }
+
+  body[data-page="pomocnik"] .presenter-controls .btn,
+  body[data-page="pomocnik"] .presenter-mobile-chapter select {
+    min-height: 36px;
+  }
+
+  body[data-page="pomocnik"] .presenter-path-option {
+    min-height: 42px;
+  }
+}
+
+/* Phones held sideways: keep the stage, sentence and controls visible without page scroll. */
+@media (orientation: landscape) and (max-height: 520px) {
+  html,
+  body[data-page="pomocnik"] {
+    width: 100%;
+    height: 100svh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body[data-page="pomocnik"] .app-header,
+  body[data-page="pomocnik"] .assistant-page-intro,
+  body[data-page="pomocnik"] .home-return-cta,
+  body[data-page="pomocnik"] .app-version-footer,
+  body[data-page="pomocnik"] .app-to-top,
+  body[data-page="pomocnik"] .app-scroll-progress {
+    display: none !important;
+  }
+
+  body[data-page="pomocnik"] #app,
+  body[data-page="pomocnik"] .assistant-page {
+    width: 100%;
+    height: 100svh;
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  body[data-page="pomocnik"] .assistant-page {
+    max-width: none;
+    padding: max(4px, env(safe-area-inset-top)) max(4px, env(safe-area-inset-right)) max(4px, env(safe-area-inset-bottom)) max(4px, env(safe-area-inset-left));
+    overflow: hidden;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2,
+  body[data-page="pomocnik"] .presenter-card-v2.is-presentation {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 58%) minmax(300px, 42%);
+    grid-template-rows: minmax(0, 1fr);
+    margin: 0;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-stage {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  body[data-page="pomocnik"] .presenter-card-v2 .presenter-content {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+    display: flex;
+    justify-content: flex-start;
+    padding: 7px 9px max(7px, env(safe-area-inset-bottom));
+    overflow: hidden;
+  }
+
+  body[data-page="pomocnik"] .presenter-badge,
+  body[data-page="pomocnik"] .presenter-content h2,
+  body[data-page="pomocnik"] .presenter-chapter-counter,
+  body[data-page="pomocnik"] .presenter-chapter-title,
+  body[data-page="pomocnik"] .presenter-note,
+  body[data-page="pomocnik"] .presenter-step-rail,
+  body[data-page="pomocnik"] .presenter-chapters,
+  body[data-page="pomocnik"] .presenter-transcript {
+    display: none !important;
+  }
+
+  body[data-page="pomocnik"] .presenter-mobile-chapter {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+    color: var(--accent);
+    font-size: 9px;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+
+  body[data-page="pomocnik"] .presenter-mobile-chapter select {
+    width: 100%;
+    min-width: 0;
+    min-height: 32px;
+    padding: 3px 25px 3px 7px;
+    border: 1px solid var(--green-line);
+    border-radius: 9px;
+    background: var(--green-soft);
+    color: var(--text);
+    font: inherit;
+    font-size: 10px;
+    font-weight: 850;
+    text-transform: none;
+  }
+
+  body[data-page="pomocnik"] .presenter-script {
+    min-height: 42px;
+    max-height: 56px;
+    display: flex;
+    align-items: center;
+    margin: 4px 0 0;
+    padding: 5px 7px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--surface-soft);
+    font-size: clamp(10px, 2.4vh, 12px);
+    line-height: 1.22;
+  }
+
+  body[data-page="pomocnik"] .presenter-script [data-presenter-sentence]:not(.is-current) { display: none; }
+  body[data-page="pomocnik"] .presenter-script [data-presenter-sentence].is-current {
+    display: -webkit-box;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  body[data-page="pomocnik"] .presenter-timeline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 20px 10px;
+    gap: 0 5px;
+    margin-top: 3px;
+  }
+
+  body[data-page="pomocnik"] .presenter-timeline input[type="range"] { grid-column: 1; grid-row: 1; height: 20px; }
+  body[data-page="pomocnik"] .presenter-times { grid-column: 1; grid-row: 2; margin-top: -3px; font-size: 8px; }
+  body[data-page="pomocnik"] .presenter-speed { grid-column: 2; grid-row: 1 / 3; margin: 0; }
+  body[data-page="pomocnik"] .presenter-speed > span { display: none; }
+  body[data-page="pomocnik"] .presenter-speed select { min-height: 28px; padding: 2px 22px 2px 6px; font-size: 9px; }
+
+  body[data-page="pomocnik"] .presenter-actions { gap: 4px; margin-top: 4px; }
+  body[data-page="pomocnik"] .presenter-controls { grid-template-columns: 37px minmax(0, 1fr) 37px; }
+  body[data-page="pomocnik"] .presenter-controls .btn { min-height: 31px; padding: 3px 5px; border-radius: 8px; font-size: 10px; }
+  body[data-page="pomocnik"] .presenter-controls .presenter-control-small { grid-row: 1; font-size: 15px; }
+  body[data-page="pomocnik"] .presenter-controls .presenter-control-small span { display: none; }
+  body[data-page="pomocnik"] .presenter-controls .presenter-play { grid-column: 2; grid-row: 1; }
+  body[data-page="pomocnik"] .presenter-controls .presenter-stop { grid-column: 1; grid-row: 2; font-size: 0; }
+  body[data-page="pomocnik"] .presenter-controls .presenter-stop::after { content: "\25A0"; font-size: 13px; }
+  body[data-page="pomocnik"] .presenter-controls a { grid-column: 2 / 4; grid-row: 2; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+  body[data-page="pomocnik"] .presenter-path-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1400;
+    padding: max(5px, env(safe-area-inset-top)) max(5px, env(safe-area-inset-right)) max(5px, env(safe-area-inset-bottom)) max(5px, env(safe-area-inset-left));
+  }
+
+  body[data-page="pomocnik"] .presenter-path-dialog { width: min(100%, 760px); height: 100%; padding: 8px; }
+  body[data-page="pomocnik"] .presenter-path-dialog h3 { font-size: 18px; }
+  body[data-page="pomocnik"] .presenter-path-dialog > p { margin: 3px 0 5px; font-size: 10px; }
+  body[data-page="pomocnik"] .presenter-path-grid { grid-template-columns: 1fr 1fr; gap: 4px; overflow: auto; }
+  body[data-page="pomocnik"] .presenter-path-option { min-height: 44px; padding: 4px 6px; }
+  body[data-page="pomocnik"] .presenter-path-option small { display: none; }
+}

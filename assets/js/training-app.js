@@ -739,11 +739,7 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-head" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-torso" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-arm-left" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-arm-right" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
+              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master16" alt="" width="512" height="512">
               <span class="guide-eyes" aria-hidden="true"><i></i><i></i></span>
               <span class="guide-mouth" aria-hidden="true"></span>
             </div>
@@ -1602,10 +1598,17 @@
   }
 
   function renderMedical() {
+    const sourceTitle = text(tx("Sprawdzone źródło", "Verified source", "Перевірене джерело", "Проверенный источник", "Yoxlanmış mənbə", "Fuente verificada", "Na-verify na source", "Sumber terverifikasi", "प्रमाणित स्रोत"));
+    const reviewDate = DATA.meta?.externalInformationReviewed || "";
     const cards = DATA.medical.map((item) => {
       const notes = item.body.map((note) => `<li>${esc(text(note))}</li>`).join("");
       const maps = (item.maps || []).map((map) => mapActionGroup({ ...item, ...map, title: map.label || item.title, address: map.address || item.address }, ui("openMap") + " - " + map.label, item.tone)).join("");
       const oneMap = item.map ? mapActionGroup(item, ui("openMap"), item.tone) : "";
+      const sources = [
+        item.sourceUrl ? { url: item.sourceUrl, label: text(item.sourceLabel) || sourceTitle } : null,
+        ...(item.maps || []).filter((map) => map.sourceUrl).map((map) => ({ url: map.sourceUrl, label: `${sourceTitle}: ${map.label}` }))
+      ].filter(Boolean);
+      const sourceLinks = sources.map((source) => `<a class="fact-source-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">✓ ${esc(source.label)}</a>`).join("");
       const phones = (item.phones || []).map((phone) => `
         <article class="person">
           <div class="person-name">${esc(phone.label)}</div>
@@ -1622,12 +1625,14 @@
             <ul class="list">${notes}</ul>
             ${maps || oneMap ? '<div class="map-action-list">' + oneMap + maps + '</div>' : ""}
             ${phones ? `<div class="section contact-group">${phones}</div>` : ""}
+            ${sourceLinks ? `<div class="fact-source-list">${sourceLinks}</div>` : ""}
           </div>
         </details>
       `;
     }).join("");
 
-    app.innerHTML = `<main class="page">${pageHero()}<div class="module-grid">${cards}</div><section class="card red section"><h2>112</h2><p>${esc(text(tx("W sytuacji zagrożenia życia dzwoń pod numer 112.", "In a life-threatening situation call 112.", "У ситуації загрози життю телефонуйте 112.", "В ситуации угрозы жизни звоните 112.", "Həyat təhlükəsi olduqda 112-yə zəng edin.", "En peligro de vida llama al 112.", "Kung buhay ay nasa panganib, tumawag sa 112.", "Jika mengancam nyawa, hubungi 112.", "जीवन जोखिममा भए 112 मा फोन गर्नुहोस्।")))}</p><div class="btn-row"><a class="btn red" href="tel:112">112</a></div></section></main>`;
+    const reviewed = text(tx("Informacje zewnętrzne sprawdzono", "External information checked", "Зовнішню інформацію перевірено", "Внешняя информация проверена", "Xarici məlumat yoxlanılıb", "Información externa verificada", "Na-check ang external information", "Informasi eksternal diperiksa", "बाह्य जानकारी जाँच गरिएको"));
+    app.innerHTML = `<main class="page">${pageHero()}${reviewDate ? `<p class="fact-review-stamp">✓ ${esc(reviewed)}: ${esc(reviewDate)}</p>` : ""}<div class="module-grid">${cards}</div><section class="card red section"><h2>112</h2><p>${esc(text(tx("Dzwoń pod numer 112 tylko wtedy, gdy potrzebna jest natychmiastowa pomoc służb z powodu zagrożenia życia, zdrowia lub bezpieczeństwa.", "Call 112 only when immediate emergency-service help is needed because life, health or safety is at risk.", "Телефонуйте 112 лише тоді, коли через загрозу життю, здоров’ю чи безпеці потрібна негайна допомога служб.", "Звоните 112 только тогда, когда из-за угрозы жизни, здоровью или безопасности нужна немедленная помощь служб.", "Həyat, sağlamlıq və ya təhlükəsizlik üçün təhlükə səbəbindən təcili xidmətlərin dərhal köməyi lazım olduqda yalnız 112-yə zəng edin.", "Llama al 112 solo cuando sea necesaria la ayuda inmediata de emergencias por riesgo para la vida, la salud o la seguridad.", "Tumawag lamang sa 112 kapag kailangan agad ang emergency services dahil may panganib sa buhay, kalusugan, o kaligtasan.", "Hubungi 112 hanya jika bantuan layanan darurat diperlukan segera karena nyawa, kesehatan, atau keselamatan terancam.", "जीवन, स्वास्थ्य वा सुरक्षामा खतरा भएर तत्काल आपतकालीन सेवा चाहिँदा मात्र 112 मा फोन गर्नुहोस्।")))}</p><div class="btn-row"><a class="btn red" href="tel:112">112</a></div></section></main>`;
     app.querySelectorAll(".medical-accordion").forEach((group) => {
       group.addEventListener("toggle", () => {
         if (!group.open) return;
@@ -1669,6 +1674,7 @@
     app.innerHTML = `
       <main class="page">
         ${pageHero()}
+        <div class="notice yellow contact-freshness"><strong>${esc(text(tx("Sprawdź aktualność", "Check current details", "Перевірте актуальність", "Проверьте актуальность", "Cari məlumatı yoxlayın", "Comprueba los datos actuales", "Tingnan ang kasalukuyang detalye", "Periksa data terbaru", "हालको विवरण जाँच्नुहोस्")))}:</strong> ${esc(text(tx("Kontakty wewnętrzne mogą się zmieniać. Jeśli numer różni się od wiadomości startowej, użyj nowszej wiadomości albo zapytaj koordynatora na miejscu.", "Internal contacts may change. If a number differs from your start message, use the newer message or ask the on-site coordinator.", "Внутрішні контакти можуть змінюватися. Якщо номер відрізняється від стартового повідомлення, використовуйте новіше повідомлення або запитайте координатора на місці.", "Внутренние контакты могут меняться. Если номер отличается от стартового сообщения, используйте более новое сообщение или спросите координатора на месте.", "Daxili əlaqələr dəyişə bilər. Nömrə başlanğıc mesajından fərqlənirsə, daha yeni mesajdan istifadə edin və ya yerində koordinatora müraciət edin.", "Los contactos internos pueden cambiar. Si un número es distinto al mensaje inicial, usa el mensaje más reciente o pregunta al coordinador en el lugar.", "Maaaring magbago ang internal contacts. Kung iba ang numero sa start message, gamitin ang mas bagong mensahe o tanungin ang on-site coordinator.", "Kontak internal dapat berubah. Jika nomor berbeda dari pesan awal, gunakan pesan terbaru atau tanyakan koordinator di lokasi.", "आन्तरिक सम्पर्क बदलिन सक्छ। नम्बर सुरुको सन्देशभन्दा फरक भए नयाँ सन्देश प्रयोग गर्नुहोस् वा स्थलको संयोजकलाई सोध्नुहोस्।")))}</div>
         <section class="section">
           <div class="pill-row">${pills}</div>
           <h2>${esc(current.label)}</h2>
@@ -1716,21 +1722,21 @@
           icon: "document",
           title: tx("Urząd i dokumenty", "Office and documents", "Установа і документи", "Учреждение и документы", "İdarə və sənədlər", "Oficina y documentos", "Opisina at dokumento", "Kantor dan dokumen", "कार्यालय र कागजात"),
           lead: tx("Karta pobytu, PESEL, urząd i aplikacje urzędowe.", "Residence card, PESEL, office and official apps.", "Карта побиту, PESEL, установа і державні додатки.", "Карта побыту, PESEL, учреждение и официальные приложения.", "Yaşayış kartı, PESEL, idarə və rəsmi tətbiqlər.", "Residencia, PESEL, oficina y apps oficiales.", "Residence card, PESEL, opisina at official apps.", "Kartu tinggal, PESEL, kantor dan aplikasi resmi.", "Residence card, PESEL, कार्यालय र सरकारी एपहरू।"),
-          items: [cityMain[0], cityMain[1], cityMain[5]].filter(Boolean)
+          items: [cityMain[0], cityMain[1], cityMain[4]].filter(Boolean)
         },
         {
           tone: "yellow",
           icon: "bank",
           title: tx("Banki i bankomaty", "Banks and ATMs", "Банки і банкомати", "Банки и банкоматы", "Banklar və bankomatlar", "Bancos y cajeros", "Bangko at ATM", "Bank dan ATM", "बैंक र ATM"),
           lead: tx("Mapy do banków i najbliższych bankomatów.", "Maps to banks and nearby ATMs.", "Карти до банків і найближчих банкоматів.", "Карты к банкам и ближайшим банкоматам.", "Banklara və yaxın bankomatlara xəritələr.", "Mapas a bancos y cajeros cercanos.", "Mapa papuntang bangko at malapit na ATM.", "Peta ke bank dan ATM terdekat.", "बैंक र नजिकका ATM का नक्सा।"),
-          items: [cityMain[2], cityMain[3], cityMain[4]].filter(Boolean)
+          items: [cityMain[2], cityMain[3]].filter(Boolean)
         },
         {
           tone: "blue",
           icon: "map",
           title: tx("Transport", "Transport", "Транспорт", "Транспорт", "Nəqliyyat", "Transporte", "Transport", "Transportasi", "यातायात"),
           lead: tx("Aplikacje do jazdy po mieście i pociągów.", "Apps for city travel and trains.", "Додатки для міста і поїздів.", "Приложения для города и поездов.", "Şəhər və qatar üçün tətbiqlər.", "Apps para ciudad y trenes.", "Apps para sa city at tren.", "Aplikasi untuk kota dan kereta.", "शहर र रेलका एपहरू।"),
-          items: [cityMain[6], cityMain[7]].filter(Boolean)
+          items: [cityMain[5], cityMain[6]].filter(Boolean)
         }
       ];
       const citySimpleItem = (item) => `
@@ -2750,7 +2756,6 @@
     const photoSource = card.querySelector("[data-presenter-photo-source]");
     const cartoonRuleBadge = card.querySelector("[data-cartoon-rule-badge]");
     const cartoonPose = card.querySelector("[data-cartoon-pose]");
-    const cartoonLayers = Array.from(card.querySelectorAll("[data-cartoon-layer]"));
     const guideCharacter = card.querySelector("[data-guide-character]");
     const guideFocusRing = card.querySelector("[data-guide-focus-ring]");
     const guideComparison = card.querySelector("[data-guide-comparison]");
@@ -2795,6 +2800,20 @@
     const quizContinue = card.querySelector("[data-presenter-quiz-continue]");
     const completeToast = card.querySelector("[data-presenter-complete-toast]");
     if (!recording || !playButton) return;
+
+    const engineQuery = new URLSearchParams(location.search).get("engine");
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const phoneLayout = window.matchMedia && window.matchMedia("(max-width: 620px), (max-height: 520px)").matches;
+    const constrainedDevice = Boolean(
+      reducedMotion || connection?.saveData ||
+      (Number(navigator.deviceMemory) > 0 && Number(navigator.deviceMemory) <= 2) ||
+      (Number(navigator.hardwareConcurrency) > 0 && Number(navigator.hardwareConcurrency) <= 2)
+    );
+    const engineMode = engineQuery === "lite" || engineQuery === "full"
+      ? engineQuery
+      : constrainedDevice ? "lite" : phoneLayout ? "mobile" : "full";
+    card.dataset.engine = engineMode;
 
     const touchToStart = text(tx(
       "Dotknij, aby włączyć głos", "Touch to enable voice", "Торкніться, щоб увімкнути голос",
@@ -2856,8 +2875,10 @@
     let audioAnalyser = null;
     let audioWave = null;
     let audioMotionFrame = 0;
+    let lastAudioMotionSample = 0;
     let activeFocus = null;
     let autoAdvanceTimer = 0;
+    let focusResizeObserver = null;
 
     const formatTime = (seconds) => {
       const safe = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
@@ -3122,20 +3143,31 @@
       };
     };
     const presenterPreloads = [];
+    const presenterPreloadPaths = new Set();
+    const preloadVisual = (path, priority = "auto") => {
+      if (!path) return null;
+      const resolvedPath = visualAsset(path);
+      if (presenterPreloadPaths.has(resolvedPath)) return null;
+      presenterPreloadPaths.add(resolvedPath);
+      const preload = new Image();
+      preload.decoding = "async";
+      preload.fetchPriority = priority;
+      preload.src = resolvedPath;
+      if (typeof preload.decode === "function") preload.decode().catch(() => {});
+      presenterPreloads.push(preload);
+      return preload;
+    };
     const preloadPresenterVisuals = () => {
       const paths = new Set(Object.values(cartoonPoseFiles));
-      Object.entries(cartoonCueSequences).forEach(([chapterId, sequence]) => {
-        sequence.forEach((cue, cueIndex) => {
-          const enhanced = enhancedCartoonCue(chapterId, cueIndex, cue);
-          if (enhanced.image) paths.add(enhanced.image);
+      if (engineMode === "full") {
+        Object.entries(cartoonCueSequences).forEach(([chapterId, sequence]) => {
+          sequence.forEach((cue, cueIndex) => {
+            const enhanced = enhancedCartoonCue(chapterId, cueIndex, cue);
+            if (enhanced.image) paths.add(enhanced.image);
+          });
         });
-      });
-      paths.forEach((path) => {
-        const preload = new Image();
-        preload.decoding = "async";
-        preload.src = visualAsset(path);
-        presenterPreloads.push(preload);
-      });
+      }
+      paths.forEach((path) => preloadVisual(path));
     };
     if ("requestIdleCallback" in window) window.requestIdleCallback(preloadPresenterVisuals, { timeout: 1200 });
     else window.setTimeout(preloadPresenterVisuals, 350);
@@ -3201,7 +3233,6 @@
           cartoonPose.classList.remove("is-changing");
           void cartoonPose.offsetWidth;
           cartoonPose.src = poseSrc;
-          cartoonLayers.forEach((layer) => { layer.src = poseSrc; });
           cartoonPose.classList.add("is-changing");
           window.setTimeout(() => cartoonPose.classList.remove("is-changing"), 420);
         }
@@ -3303,7 +3334,8 @@
         }
       });
       if ("ResizeObserver" in window && cartoonPropImage.parentElement) {
-        new ResizeObserver(updateGuideFocusPosition).observe(cartoonPropImage.parentElement);
+        focusResizeObserver = new ResizeObserver(updateGuideFocusPosition);
+        focusResizeObserver.observe(cartoonPropImage.parentElement);
       }
     }
     const closePhotoOverlay = () => {
@@ -3414,12 +3446,18 @@
       if (stageHit) stageHit.setAttribute("aria-label", playing ? labels.pause : labels.resume);
     };
 
-    const animateAudioMotion = () => {
+    const animateAudioMotion = (timestamp = performance.now()) => {
       window.cancelAnimationFrame(audioMotionFrame);
-      if (!audioAnalyser || !audioWave || recording.paused) {
+      if (!audioAnalyser || !audioWave || recording.paused || document.hidden) {
         card.style.setProperty("--voice-level", "0");
         return;
       }
+      const sampleInterval = engineMode === "lite" ? 55 : engineMode === "mobile" ? 40 : 32;
+      if (timestamp - lastAudioMotionSample < sampleInterval) {
+        audioMotionFrame = window.requestAnimationFrame(animateAudioMotion);
+        return;
+      }
+      lastAudioMotionSample = timestamp;
       audioAnalyser.getByteTimeDomainData(audioWave);
       let energy = 0;
       for (let index = 0; index < audioWave.length; index += 1) {
@@ -3641,6 +3679,13 @@
       if (contextLinkLabel) contextLinkLabel.textContent = label;
     };
 
+    const prefetchChapterVisuals = (index) => {
+      const candidates = [chapters[index], chapters[index + 1]].filter(Boolean);
+      candidates.forEach((chapter, offset) => {
+        if (chapter.image) preloadVisual(chapter.image, offset === 0 ? "high" : "low");
+      });
+    };
+
     const activateChapter = (index, autoplay = true) => {
       window.clearTimeout(autoAdvanceTimer);
       autoAdvanceTimer = 0;
@@ -3664,6 +3709,7 @@
       updateContextLink(chapter);
       updateChapterButtons();
       updateProgress();
+      prefetchChapterVisuals(chapterIndex);
       prepareVideo(chapter, chapterIndex, token);
       if (autoplay) requestPlayback();
       else setPlaying(false);
@@ -3944,6 +3990,14 @@
       setPlaying(false);
       playLabel.textContent = labels.unavailable;
     });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        window.cancelAnimationFrame(audioMotionFrame);
+        card.style.setProperty("--voice-level", "0");
+      } else if (!recording.paused) {
+        animateAudioMotion();
+      }
+    });
 
     try {
       const response = await fetch(fullGuideUrl, { cache: "no-cache" });
@@ -3975,6 +4029,7 @@
     if (trackOverlay) trackOverlay.hidden = false;
     window.addEventListener("pagehide", () => {
       window.cancelAnimationFrame(audioMotionFrame);
+      if (focusResizeObserver) focusResizeObserver.disconnect();
       recording.pause();
       if (video) video.pause();
       if (audioContext && audioContext.state !== "closed") audioContext.close().catch(() => {});

@@ -62,7 +62,13 @@ async def save_with_retry(script: str, voice: str, profile: dict[str, str], targ
     raise RuntimeError(f"failed to generate {target.name}") from error
 
 
-async def generate(guide_path: Path, output_dir: Path, force: bool, concurrency: int) -> None:
+async def generate(
+    guide_path: Path,
+    output_dir: Path,
+    force: bool,
+    concurrency: int,
+    section_ids: set[str],
+) -> None:
     guide = json.loads(guide_path.read_text(encoding="utf-8"))
     languages = guide.get("languages", {})
     missing = sorted(set(VOICE_JOBS) - set(languages))
@@ -78,6 +84,8 @@ async def generate(guide_path: Path, output_dir: Path, force: bool, concurrency:
         sections = languages[language].get("sections", [])
         for index, section in enumerate(sections, start=1):
             section_id = section.get("id", f"chapter-{index}")
+            if section_ids and section_id not in section_ids:
+                continue
             mp3_path = language_dir / f"{index:02d}-{section_id}.mp3"
             if mp3_path.exists() and not force:
                 print(f"kept {language}/{mp3_path.name}", flush=True)
@@ -103,10 +111,11 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--concurrency", type=int, default=4)
+    parser.add_argument("--section", action="append", default=[], help="Regenerate only this section id; may be repeated.")
     args = parser.parse_args()
     if not args.guide.is_file():
         parser.error(f"guide not found: {args.guide}")
-    asyncio.run(generate(args.guide, args.output, args.force, args.concurrency))
+    asyncio.run(generate(args.guide, args.output, args.force, args.concurrency, set(args.section)))
 
 
 if __name__ == "__main__":
