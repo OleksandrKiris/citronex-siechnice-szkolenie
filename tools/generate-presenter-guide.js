@@ -181,12 +181,12 @@ function buildGuide(lang) {
     quizIndex: index === 0 ? 0 : null
   }));
 
-  add({ id: "greenhouse-overview", group: "greenhouse", title: DATA.pages.szklarnia.title, parts: [DATA.pages.szklarnia.lead], image: "assets/greenhouse-orientation/orientacja-ogolna.svg", icon: "🌿", pose: "right", tone: "required", quizIndex: 19 });
+  add({ id: "greenhouse-overview", group: "greenhouse", title: DATA.pages.szklarnia.title, parts: [DATA.pages.szklarnia.lead], image: "assets/greenhouse-orientation/orientacja-ogolna.svg", icon: "🌿", pose: "right", tone: "required" });
   add({ id: "greenhouse-sides", group: "greenhouse", title: shortTitle(DATA.test[19].text), parts: [DATA.test[19].text, DATA.test[21].text], image: "assets/greenhouse-orientation/lewa-prawa-strona.svg", icon: "↔️", pose: "left", tone: "required", quizIndex: 19 });
   add({ id: "greenhouse-nave", group: "greenhouse", title: shortTitle(DATA.test[20].text), parts: [DATA.test[20].text, DATA.test[24].text], image: "assets/greenhouse-orientation/nawa.svg", icon: "🌿", pose: "right", tone: "required", quizIndex: 20 });
   add({ id: "greenhouse-section", group: "greenhouse", title: shortTitle(DATA.test[22].text), parts: [DATA.test[22].text], image: "assets/greenhouse-orientation/przeslo.svg", icon: "🔢", pose: "left", tone: "required", quizIndex: 22 });
 
-  add({ id: "reader-overview", group: "reader", title: startReader.title, parts: [startReader.lead, startReader.tips], image: startReader.image, icon: "📟", pose: "reader", tone: "caution", quizIndex: 4 });
+  add({ id: "reader-overview", group: "reader", title: startReader.title, parts: [startReader.lead, startReader.tips], image: startReader.image, icon: "📟", pose: "reader", tone: "caution" });
   const readerStartIds = ["reader-take", "reader-personal-tag", "reader-work-start", "reader-activity", "reader-assigned-row", "reader-break-start", "reader-break-end", "reader-work-end", "reader-charge"];
   const readerFocus = [[25, 14, 42, 18], [76, 14, 36, 18], [50, 32, 90, 17], [25, 47, 40, 17], [76, 47, 36, 17], [25, 63, 40, 17], [76, 63, 36, 17], [25, 80, 40, 17], [76, 80, 36, 17]];
   startReader.steps.forEach((step, index) => add({
@@ -198,18 +198,20 @@ function buildGuide(lang) {
     icon: "📟",
     pose: "reader",
     tone: index === 4 || index === 7 ? "caution" : "required",
-    focus: readerFocus[index]
+    focus: readerFocus[index],
+    quizIndex: index === 8 ? 8 : null
   }));
 
   add({ id: "reader-row-entry", group: "reader", title: rowStart.title, parts: [rowsReader.lead, rowStart.steps[3]], image: "assets/greenhouse-orientation/przejscie.svg", icon: "➡️", pose: "left", tone: "caution" });
-  add({ id: "reader-row-exit", group: "reader", title: rowExit.title, parts: [rowExit.steps], image: "assets/greenhouse-orientation/lewa-prawa-strona.svg", icon: "⬅️", pose: "reader", tone: "required" });
+  add({ id: "reader-row-exit", group: "reader", title: rowExit.title, parts: [rowExit.steps], image: "assets/greenhouse-orientation/lewa-prawa-strona.svg", icon: "⬅️", pose: "reader", tone: "required", quizIndex: 4 });
   add({ id: "reader-cart", group: "reader", title: cartsReader.title, parts: [cartsReader.lead, cartsReader.steps.slice(0, 3)], image: cartsReader.images[0], icon: "🛒", pose: "reader", tone: "required" });
-  add({ id: "reader-cart-send", group: "reader", title: shortTitle(cartsReader.steps[3]), parts: [cartsReader.steps.slice(3)], image: cartsReader.images[0], icon: "✓", pose: "reader", tone: "required" });
-  add({ id: "reader-break", group: "reader", title: rowBreak.title, parts: [rowBreak.steps], image: startReader.image, icon: "☕", pose: "reader", tone: "caution", focus: readerFocus[5] });
-  add({ id: "reader-change-end", group: "reader", title: rowEnd.title, parts: [rowEnd.steps], image: startReader.image, icon: "🏁", pose: "reader", tone: "required", focus: readerFocus[7] });
+  add({ id: "reader-cart-send", group: "reader", title: shortTitle(cartsReader.steps[3]), parts: [cartsReader.steps.slice(3)], image: cartsReader.images[0], icon: "✓", pose: "reader", tone: "required", quizIndex: 10 });
+  add({ id: "reader-break", group: "reader", title: rowBreak.title, parts: [rowBreak.steps], image: startReader.image, icon: "☕", pose: "reader", tone: "caution", focus: readerFocus[5], quizIndex: 26 });
+  add({ id: "reader-change-end", group: "reader", title: rowEnd.title, parts: [rowEnd.steps], image: startReader.image, icon: "🏁", pose: "reader", tone: "required", focus: readerFocus[7], quizIndex: 25 });
   add({ id: "reader-restart-buttons", group: "reader", title: restartReader.title, parts: [restartReader.lead, restartReader.steps.slice(0, 3)], image: restartReader.images[0], icon: "🔄", pose: "reader", tone: "caution" });
-  add({ id: "reader-restart-menu", group: "reader", title: shortTitle(restartReader.steps[3]), parts: [restartReader.steps.slice(3)], image: restartReader.images[1], icon: "🔄", pose: "reader", tone: "caution" });
+  add({ id: "reader-restart-menu", group: "reader", title: shortTitle(restartReader.steps[3]), parts: [restartReader.steps.slice(3)], image: restartReader.images[1], icon: "🔄", pose: "reader", tone: "caution", quizIndex: 12 });
 
+  const tabletFocus = [[68, 51, 58, 82], [52, 58, 18, 24], [52, 58, 18, 24], [65, 58, 18, 24], [65, 58, 18, 24], [52, 58, 18, 24], [79, 58, 18, 24], [71, 86, 20, 24]];
   tablet.steps.forEach((step, index) => add({
     id: ["tablet-login", "tablet-start", "tablet-activity", "tablet-change", "tablet-break-start", "tablet-break-end", "tablet-work-end", "tablet-logout"][index],
     group: "tablet",
@@ -219,7 +221,8 @@ function buildGuide(lang) {
     icon: "📱",
     pose: "tablet",
     tone: index === 7 ? "caution" : "required",
-    quizIndex: index === 0 ? 25 : null
+    focus: tabletFocus[index],
+    quizIndex: index === 0 ? 17 : index === 3 ? 25 : null
   }));
 
   const safetySets = [[0, 1, 2, 3, 7], [10, 11, 12], [16, 17, 18], [13, 14, 15], [4, 5, 6, 9]];
@@ -232,7 +235,7 @@ function buildGuide(lang) {
     icon: index === 4 ? "🧼" : "⛔",
     pose: "warning",
     tone: index === 4 ? "required" : "danger",
-    quizIndex: index === 1 ? 16 : null
+    quizIndex: [16, 18, 17, 2, null][index]
   }));
 
   DATA.cityRules.forEach((rule, index) => add({
@@ -243,11 +246,11 @@ function buildGuide(lang) {
     icon: ["🪪", "🎫", "📦"][index],
     pose: index === 2 ? "warning" : "right",
     tone: index === 1 ? "danger" : "caution",
-    quizIndex: index === 1 ? 15 : null
+    quizIndex: null
   }));
 
-  add({ id: "help-clinic", group: "help", title: clinic.title, parts: [clinic.title, clinic.body], icon: "🏥", pose: "right", tone: "caution", quizIndex: 27 });
-  add({ id: "help-emergency", group: "help", title: emergency.title, parts: [emergency.title, emergency.body], icon: "🆘 112", pose: "warning", tone: "danger" });
+  add({ id: "help-clinic", group: "help", title: clinic.title, parts: [clinic.title, clinic.body], icon: "🏥", pose: "right", tone: "caution", quizIndex: 15 });
+  add({ id: "help-emergency", group: "help", title: emergency.title, parts: [emergency.title, emergency.body], icon: "🆘 112", pose: "warning", tone: "danger", quizIndex: 27 });
   add({ id: "help-dental", group: "help", title: dental.title, parts: [dental.title, dental.body], icon: "🦷", pose: "right", tone: "caution" });
   add({ id: "finish", group: "finish", title: completionTitles[lang], parts: [topicLead(completionTitles[lang], lang), DATA.pages.test.lead, endings[lang]], icon: "✅", pose: "neutral", tone: "required" });
 
@@ -264,7 +267,7 @@ function buildGuide(lang) {
 }
 
 const output = {
-  version: "20260719-siechnice-guide3",
+  version: "20260719-siechnice-guide4",
   chapterCount: 0,
   languages: Object.fromEntries(languages.map((lang) => [lang, buildGuide(lang)]))
 };

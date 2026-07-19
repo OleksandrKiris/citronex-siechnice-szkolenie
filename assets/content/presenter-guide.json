@@ -1,5 +1,5 @@
 {
-  "version": "20260719-siechnice-guide3",
+  "version": "20260719-siechnice-guide4",
   "chapterCount": 50,
   "languages": {
     "pl": {
@@ -152,8 +152,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -216,8 +215,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -406,7 +404,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -436,7 +435,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -466,7 +466,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -487,7 +488,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -508,7 +510,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -538,7 +541,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -555,7 +559,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -571,7 +581,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -587,7 +603,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -603,7 +625,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -619,7 +648,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -635,7 +670,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -651,7 +692,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -667,7 +714,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -683,7 +736,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -700,7 +754,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -716,7 +770,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -732,7 +787,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -780,8 +836,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -816,7 +871,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -834,7 +889,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",
@@ -1024,8 +1080,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -1088,8 +1143,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -1278,7 +1332,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -1308,7 +1363,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -1338,7 +1394,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -1359,7 +1416,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -1380,7 +1438,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -1410,7 +1469,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -1427,7 +1487,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -1443,7 +1509,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -1459,7 +1531,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -1475,7 +1553,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -1491,7 +1576,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -1507,7 +1598,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -1523,7 +1620,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -1539,7 +1642,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -1555,7 +1664,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -1572,7 +1682,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -1588,7 +1698,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -1604,7 +1715,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -1652,8 +1764,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -1688,7 +1799,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -1706,7 +1817,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",
@@ -1896,8 +2008,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -1960,8 +2071,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -2150,7 +2260,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -2180,7 +2291,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -2210,7 +2322,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -2231,7 +2344,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -2252,7 +2366,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -2282,7 +2397,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -2299,7 +2415,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -2315,7 +2437,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -2331,7 +2459,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -2347,7 +2481,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -2363,7 +2504,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -2379,7 +2526,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -2395,7 +2548,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -2411,7 +2570,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -2427,7 +2592,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -2444,7 +2610,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -2460,7 +2626,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -2476,7 +2643,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -2524,8 +2692,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -2560,7 +2727,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -2578,7 +2745,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",
@@ -2768,8 +2936,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -2832,8 +2999,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -3022,7 +3188,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -3052,7 +3219,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -3082,7 +3250,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -3103,7 +3272,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -3124,7 +3294,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -3154,7 +3325,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -3171,7 +3343,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -3187,7 +3365,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -3203,7 +3387,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -3219,7 +3409,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -3235,7 +3432,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -3251,7 +3454,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -3267,7 +3476,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -3283,7 +3498,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -3299,7 +3520,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -3316,7 +3538,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -3332,7 +3554,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -3348,7 +3571,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -3396,8 +3620,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -3432,7 +3655,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -3450,7 +3673,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",
@@ -3640,8 +3864,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -3704,8 +3927,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -3894,7 +4116,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -3924,7 +4147,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -3954,7 +4178,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -3975,7 +4200,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -3996,7 +4222,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -4026,7 +4253,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -4043,7 +4271,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -4059,7 +4293,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -4075,7 +4315,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -4091,7 +4337,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -4107,7 +4360,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -4123,7 +4382,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -4139,7 +4404,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -4155,7 +4426,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -4171,7 +4448,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -4188,7 +4466,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -4204,7 +4482,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -4220,7 +4499,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -4268,8 +4548,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -4304,7 +4583,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -4322,7 +4601,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",
@@ -4512,8 +4792,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -4576,8 +4855,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -4766,7 +5044,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -4796,7 +5075,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -4826,7 +5106,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -4847,7 +5128,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -4868,7 +5150,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -4898,7 +5181,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -4915,7 +5199,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -4931,7 +5221,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -4947,7 +5243,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -4963,7 +5265,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -4979,7 +5288,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -4995,7 +5310,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -5011,7 +5332,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -5027,7 +5354,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -5043,7 +5376,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -5060,7 +5394,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -5076,7 +5410,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -5092,7 +5427,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -5140,8 +5476,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -5176,7 +5511,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -5194,7 +5529,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",
@@ -5384,8 +5720,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -5448,8 +5783,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -5638,7 +5972,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -5668,7 +6003,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -5698,7 +6034,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -5719,7 +6056,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -5740,7 +6078,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -5770,7 +6109,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -5787,7 +6127,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -5803,7 +6149,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -5819,7 +6171,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -5835,7 +6193,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -5851,7 +6216,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -5867,7 +6238,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -5883,7 +6260,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -5899,7 +6282,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -5915,7 +6304,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -5932,7 +6322,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -5948,7 +6338,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -5964,7 +6355,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -6012,8 +6404,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -6048,7 +6439,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -6066,7 +6457,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",
@@ -6256,8 +6648,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -6320,8 +6711,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -6510,7 +6900,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -6540,7 +6931,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -6570,7 +6962,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -6591,7 +6984,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -6612,7 +7006,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -6642,7 +7037,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -6659,7 +7055,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -6675,7 +7077,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -6691,7 +7099,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -6707,7 +7121,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -6723,7 +7144,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -6739,7 +7166,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -6755,7 +7188,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -6771,7 +7210,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -6787,7 +7232,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -6804,7 +7250,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -6820,7 +7266,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -6836,7 +7283,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -6884,8 +7332,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -6920,7 +7367,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -6938,7 +7385,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",
@@ -7128,8 +7576,7 @@
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
-          "tone": "required",
-          "quizIndex": 19
+          "tone": "required"
         },
         {
           "id": "greenhouse-sides",
@@ -7192,8 +7639,7 @@
           "image": "assets/inline/reader_start.jpg",
           "icon": "📟",
           "pose": "reader",
-          "tone": "caution",
-          "quizIndex": 4
+          "tone": "caution"
         },
         {
           "id": "reader-take",
@@ -7382,7 +7828,8 @@
             80,
             36,
             17
-          ]
+          ],
+          "quizIndex": 8
         },
         {
           "id": "reader-row-entry",
@@ -7412,7 +7859,8 @@
           "image": "assets/greenhouse-orientation/lewa-prawa-strona.svg",
           "icon": "⬅️",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 4
         },
         {
           "id": "reader-cart",
@@ -7442,7 +7890,8 @@
           "image": "",
           "icon": "✓",
           "pose": "reader",
-          "tone": "required"
+          "tone": "required",
+          "quizIndex": 10
         },
         {
           "id": "reader-break",
@@ -7463,7 +7912,8 @@
             63,
             40,
             17
-          ]
+          ],
+          "quizIndex": 26
         },
         {
           "id": "reader-change-end",
@@ -7484,7 +7934,8 @@
             80,
             40,
             17
-          ]
+          ],
+          "quizIndex": 25
         },
         {
           "id": "reader-restart-buttons",
@@ -7514,7 +7965,8 @@
           "image": "",
           "icon": "🔄",
           "pose": "reader",
-          "tone": "caution"
+          "tone": "caution",
+          "quizIndex": 12
         },
         {
           "id": "tablet-login",
@@ -7531,7 +7983,13 @@
           "icon": "📱",
           "pose": "tablet",
           "tone": "required",
-          "quizIndex": 25
+          "focus": [
+            68,
+            51,
+            58,
+            82
+          ],
+          "quizIndex": 17
         },
         {
           "id": "tablet-start",
@@ -7547,7 +8005,13 @@
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-activity",
@@ -7563,7 +8027,13 @@
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-change",
@@ -7579,7 +8049,14 @@
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ],
+          "quizIndex": 25
         },
         {
           "id": "tablet-break-start",
@@ -7595,7 +8072,13 @@
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            65,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-break-end",
@@ -7611,7 +8094,13 @@
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            52,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-work-end",
@@ -7627,7 +8116,13 @@
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "required"
+          "tone": "required",
+          "focus": [
+            79,
+            58,
+            18,
+            24
+          ]
         },
         {
           "id": "tablet-logout",
@@ -7643,7 +8138,13 @@
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
-          "tone": "caution"
+          "tone": "caution",
+          "focus": [
+            71,
+            86,
+            20,
+            24
+          ]
         },
         {
           "id": "safety-food-items",
@@ -7659,7 +8160,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 16
         },
         {
           "id": "safety-phone-photo",
@@ -7676,7 +8178,7 @@
           "icon": "⛔",
           "pose": "warning",
           "tone": "danger",
-          "quizIndex": 16
+          "quizIndex": 18
         },
         {
           "id": "safety-personal-data",
@@ -7692,7 +8194,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 17
         },
         {
           "id": "safety-zones",
@@ -7708,7 +8211,8 @@
           "image": "",
           "icon": "⛔",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 2
         },
         {
           "id": "safety-hygiene",
@@ -7756,8 +8260,7 @@
           "image": "",
           "icon": "🎫",
           "pose": "right",
-          "tone": "danger",
-          "quizIndex": 15
+          "tone": "danger"
         },
         {
           "id": "documents-parcels",
@@ -7792,7 +8295,7 @@
           "icon": "🏥",
           "pose": "right",
           "tone": "caution",
-          "quizIndex": 27
+          "quizIndex": 15
         },
         {
           "id": "help-emergency",
@@ -7810,7 +8313,8 @@
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
-          "tone": "danger"
+          "tone": "danger",
+          "quizIndex": 27
         },
         {
           "id": "help-dental",

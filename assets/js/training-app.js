@@ -671,6 +671,7 @@
       presentation: text(tx("Tryb prezentacji", "Presentation mode", "Режим презентації", "Режим презентации", "Təqdimat rejimi", "Modo presentación", "Presentation mode", "Mode presentasi", "प्रस्तुति मोड")),
       exitPresentation: text(tx("Wyjdź z prezentacji", "Exit presentation", "Вийти з презентації", "Выйти из презентации", "Təqdimatdan çıx", "Salir de presentación", "Lumabas sa presentation", "Keluar dari presentasi", "प्रस्तुतिबाट निस्कनुहोस्")),
       completed: text(tx("Ukończono", "Completed", "Завершено", "Пройдено", "Tamamlandı", "Completado", "Natapos", "Selesai", "पूरा भयो")),
+      continuing: text(tx("Za chwilę następny krok", "Next step is starting", "Далі буде наступний крок", "Дальше — следующий шаг", "Növbəti addım başlayır", "Empieza el siguiente paso", "Susunod na ang kasunod na hakbang", "Langkah berikutnya dimulai", "अब अर्को चरण सुरु हुन्छ")),
       quizTitle: text(tx("Sprawdź, czy rozumiesz", "Check your understanding", "Перевірте, чи зрозуміли", "Проверьте, всё ли понятно", "Başa düşdüyünüzü yoxlayın", "Comprueba lo aprendido", "Tingnan kung naintindihan", "Periksa pemahaman Anda", "बुझेको जाँच गर्नुहोस्")),
       correct: text(tx("Dobrze. Możesz przejść dalej.", "Correct. You can continue.", "Правильно. Можна продовжувати.", "Правильно. Можно продолжать.", "Düzdür. Davam edə bilərsiniz.", "Correcto. Puedes continuar.", "Tama. Maaari kang magpatuloy.", "Benar. Anda dapat melanjutkan.", "सही। अब अगाडि जान सक्नुहुन्छ।")),
       wrong: text(tx("Nieprawidłowo. Posłuchaj zasady jeszcze raz.", "Not correct. Listen to the rule again.", "Неправильно. Прослухайте правило ще раз.", "Неправильно. Послушайте правило ещё раз.", "Səhvdir. Qaydanı yenidən dinləyin.", "Incorrecto. Escucha la regla otra vez.", "Mali. Pakinggan muli ang patakaran.", "Belum benar. Dengarkan aturannya lagi.", "गलत। नियम फेरि सुन्नुहोस्।")),
@@ -738,11 +739,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral">
-              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-head" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-torso" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-arm-left" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
-              <img class="guide-pose guide-rig-layer guide-rig-arm-right" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master14" alt="" width="512" height="512">
+              <img class="guide-pose guide-pose-whole" data-cartoon-pose src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-head" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-torso" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-arm-left" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
+              <img class="guide-pose guide-rig-layer guide-rig-arm-right" data-cartoon-layer src="assets/avatar/cartoon/pose-neutral-v4.png?v=20260719-siechnice-master15" alt="" width="512" height="512">
               <span class="guide-eyes" aria-hidden="true"><i></i><i></i></span>
               <span class="guide-mouth" aria-hidden="true"></span>
             </div>
@@ -779,6 +780,7 @@
             <img data-presenter-photo-image alt="">
             <div class="presenter-photo-caption"><strong data-presenter-photo-title></strong><a data-presenter-photo-source target="_blank" rel="noopener noreferrer" hidden></a></div>
           </div>
+          <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small>${esc(experience.continuing)}</small></div>
           <video class="presenter-video" data-presenter-video playsinline muted preload="metadata" hidden></video>
           <p class="presenter-caption" data-presenter-caption aria-hidden="true"></p>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -811,7 +813,7 @@
           <div class="presenter-actions presenter-controls">
             <button type="button" class="btn secondary presenter-control-small" data-presenter-previous aria-label="${esc(previous)}">← <span>${esc(previous)}</span></button>
             <button type="button" class="btn presenter-play" data-presenter-play><span data-presenter-play-icon>▶</span> <span data-presenter-play-label>${esc(labels.start)}</span></button>
-            <button type="button" class="btn secondary presenter-control-small" data-presenter-next><span>${esc(labels.next)}</span> →</button>
+            <button type="button" class="btn secondary presenter-control-small" data-presenter-next><span data-presenter-next-label>${esc(labels.next)}</span> →</button>
             <button type="button" class="btn secondary presenter-stop" data-presenter-stop>■ ${esc(stop)}</button>
             <a class="btn secondary presenter-context-link" data-presenter-context-link href="${esc(href("mapa"))}">
               <span class="presenter-context-icon" data-presenter-context-icon aria-hidden="true">🗺️</span>
@@ -2774,6 +2776,7 @@
     const playLabel = card.querySelector("[data-presenter-play-label]");
     const previousButton = card.querySelector("[data-presenter-previous]");
     const nextButton = card.querySelector("[data-presenter-next]");
+    const nextButtonLabel = card.querySelector("[data-presenter-next-label]");
     const stopButton = card.querySelector("[data-presenter-stop]");
     const contextLink = card.querySelector("[data-presenter-context-link]");
     const contextLinkIcon = card.querySelector("[data-presenter-context-icon]");
@@ -2790,6 +2793,7 @@
     const quizNext = card.querySelector("[data-presenter-quiz-next]");
     const quizRepeat = card.querySelector("[data-presenter-quiz-repeat]");
     const quizContinue = card.querySelector("[data-presenter-quiz-continue]");
+    const completeToast = card.querySelector("[data-presenter-complete-toast]");
     if (!recording || !playButton) return;
 
     const touchToStart = text(tx(
@@ -2852,6 +2856,8 @@
     let audioAnalyser = null;
     let audioWave = null;
     let audioMotionFrame = 0;
+    let activeFocus = null;
+    let autoAdvanceTimer = 0;
 
     const formatTime = (seconds) => {
       const safe = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
@@ -3136,10 +3142,25 @@
     let activeCueKey = "";
     let cueAnimationTimer = 0;
 
+    const updateGuideFocusPosition = () => {
+      if (!guideFocusRing || !cartoonPropImage || !activeFocus || cartoonPropImage.hidden || !cartoonPropImage.naturalWidth) return;
+      const frame = cartoonPropImage.parentElement;
+      if (!frame || !frame.clientWidth || !frame.clientHeight) return;
+      const scale = Math.min(frame.clientWidth / cartoonPropImage.naturalWidth, frame.clientHeight / cartoonPropImage.naturalHeight);
+      const renderedWidth = cartoonPropImage.naturalWidth * scale;
+      const renderedHeight = cartoonPropImage.naturalHeight * scale;
+      const offsetX = (frame.clientWidth - renderedWidth) / 2;
+      const offsetY = (frame.clientHeight - renderedHeight) / 2;
+      guideFocusRing.style.setProperty("--focus-x", `${offsetX + (activeFocus[0] / 100) * renderedWidth}px`);
+      guideFocusRing.style.setProperty("--focus-y", `${offsetY + (activeFocus[1] / 100) * renderedHeight}px`);
+      guideFocusRing.style.setProperty("--focus-w", `${Math.max(18, (activeFocus[2] / 100) * renderedWidth)}px`);
+      guideFocusRing.style.setProperty("--focus-h", `${Math.max(18, (activeFocus[3] / 100) * renderedHeight)}px`);
+    };
+
     const applyCartoonCue = (sentenceIndex = 0, force = false) => {
       if (!cartoon || !chapters[chapterIndex]) return;
       const chapter = chapters[chapterIndex];
-      const chapterHasVisual = Boolean(chapter.image || chapter.icon);
+      const chapterHasVisual = Boolean(chapter.image);
       const metadataCue = {
         image: chapter.image || "",
         icon: chapter.icon || "•",
@@ -3147,21 +3168,23 @@
         tone: chapter.tone || "neutral",
         focus: chapter.focus || null,
         side: chapter.pose === "left" ? "left" : "right",
+        gesture: chapter.pose === "left" ? "show-left" : chapter.pose === "warning" ? "warning" : chapter.pose === "neutral" ? "nod" : "show-right",
         label: chapter.title,
         verdict: chapter.tone === "danger" ? "wrong" : chapter.tone === "required" ? "correct" : "info"
       };
-      const sequence = chapterHasVisual ? [metadataCue] : (cartoonCueSequences[chapter.id] || cartoonCueSequences.welcome);
+      const cueGroup = chapter.group === "start" ? "welcome" : chapter.group;
+      const sequence = chapterHasVisual ? [metadataCue] : (cartoonCueSequences[cueGroup] || cartoonCueSequences.welcome);
       const sentenceTotal = Math.max(1, chapterSentences.length);
       const fraction = sentenceTotal <= 1 ? 0 : sentenceIndex / (sentenceTotal - 1);
       const cueIndex = Math.min(sequence.length - 1, Math.floor(fraction * sequence.length));
       const cue = chapterHasVisual
         ? (sequence[cueIndex] || sequence[0])
-        : enhancedCartoonCue(chapter.id, cueIndex, sequence[cueIndex] || sequence[0]);
-      const cueKey = `${chapter.id}:${cueIndex}`;
+        : enhancedCartoonCue(cueGroup, cueIndex, sequence[cueIndex] || sequence[0]);
+      const cueKey = `${chapter.id}:${cueIndex}:${sentenceIndex}`;
       if (!force && cueKey === activeCueKey) return;
       activeCueKey = cueKey;
 
-      cartoon.dataset.prop = chapter.id;
+      cartoon.dataset.prop = cueGroup;
       cartoon.dataset.cue = String(cueIndex);
       cartoon.dataset.side = cue.side || "right";
       cartoon.dataset.tone = cue.tone || (cue.verdict === "wrong" ? "danger" : cue.verdict === "correct" ? "required" : "neutral");
@@ -3170,7 +3193,7 @@
       const poseName = cartoonPoseFiles[cue.pose] ? cue.pose : "neutral";
       if (guideCharacter) {
         guideCharacter.dataset.pose = poseName;
-        guideCharacter.dataset.rig = poseName === "neutral" ? "limbs" : "head";
+        guideCharacter.dataset.rig = "whole";
       }
       if (cartoonPose) {
         const poseSrc = visualAsset(cartoonPoseFiles[poseName]);
@@ -3183,8 +3206,10 @@
           window.setTimeout(() => cartoonPose.classList.remove("is-changing"), 420);
         }
       }
-      if (cartoonPropLabel) cartoonPropLabel.textContent = cue.label || chapter.title;
-      if (cartoonPropCounter) cartoonPropCounter.textContent = `${cueIndex + 1}/${sequence.length}`;
+      const sentenceLabel = chapterSentences[sentenceIndex] || chapter.title;
+      const liveLabel = cue.label && cue.label !== chapter.title ? cue.label : sentenceLabel;
+      if (cartoonPropLabel) cartoonPropLabel.textContent = liveLabel;
+      if (cartoonPropCounter) cartoonPropCounter.textContent = `${sentenceIndex + 1}/${sentenceTotal}`;
       if (cartoonRuleBadge) {
         const verdictBadge = cue.verdict === "wrong" ? experience.forbidden : cue.verdict === "correct" ? experience.correctBadge : experience.important;
         cartoonRuleBadge.hidden = false;
@@ -3246,12 +3271,10 @@
       if (photoTitle) photoTitle.textContent = chapter.title;
       if (guideFocusRing) {
         const focus = Array.isArray(cue.focus) ? cue.focus : null;
+        activeFocus = focus;
         guideFocusRing.hidden = !focus || !cue.image;
         if (focus) {
-          guideFocusRing.style.setProperty("--focus-x", `${focus[0]}%`);
-          guideFocusRing.style.setProperty("--focus-y", `${focus[1]}%`);
-          guideFocusRing.style.setProperty("--focus-w", `${focus[2]}%`);
-          guideFocusRing.style.setProperty("--focus-h", `${focus[3]}%`);
+          window.requestAnimationFrame(updateGuideFocusPosition);
         }
       }
       if (cartoonPropCard) {
@@ -3269,6 +3292,7 @@
       cartoonPropImage.addEventListener("load", () => {
         cartoonPropImage.hidden = false;
         if (cartoonPropIcon) cartoonPropIcon.hidden = true;
+        window.requestAnimationFrame(updateGuideFocusPosition);
       });
       cartoonPropImage.addEventListener("error", () => {
         cartoonPropImage.hidden = true;
@@ -3278,6 +3302,9 @@
           cartoonPropIcon.textContent = cartoonPropImage.dataset.fallbackIcon || "\u2022";
         }
       });
+      if ("ResizeObserver" in window && cartoonPropImage.parentElement) {
+        new ResizeObserver(updateGuideFocusPosition).observe(cartoonPropImage.parentElement);
+      }
     }
     const closePhotoOverlay = () => {
       if (photoOverlay) photoOverlay.hidden = true;
@@ -3461,6 +3488,11 @@
       }
       previousButton.disabled = chapterIndex === 0;
       nextButton.disabled = chapterIndex >= chapters.length - 1;
+      const nextChapter = chapters[chapterIndex + 1];
+      const nextLabel = nextChapter ? `${labels.next}: ${nextChapter.title}` : experience.completed;
+      if (nextButtonLabel) nextButtonLabel.textContent = nextLabel;
+      nextButton.setAttribute("aria-label", nextLabel);
+      nextButton.title = nextLabel;
       if (chapterSelect) chapterSelect.value = String(chapterIndex);
     };
 
@@ -3580,6 +3612,7 @@
       if (quizNext) quizNext.hidden = true;
       if (quizRepeat) quizRepeat.hidden = false;
       if (quizContinue) quizContinue.hidden = false;
+      if (completeToast) completeToast.hidden = true;
     };
 
     const chapterContextTargets = {
@@ -3609,6 +3642,8 @@
     };
 
     const activateChapter = (index, autoplay = true) => {
+      window.clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = 0;
       chapterIndex = Math.max(0, Math.min(chapters.length - 1, Number(index) || 0));
       const chapter = chapters[chapterIndex];
       const token = ++loadToken;
@@ -3737,6 +3772,16 @@
       const quizItem = Number.isInteger(quizIndex) && Array.isArray(DATA.test) ? DATA.test[quizIndex] : null;
       currentQuizItem = quizItem || null;
       quizResolved = false;
+      if (!quizItem && chapterIndex < chapters.length - 1) {
+        markChapterCompleted();
+        quizOverlay.hidden = true;
+        if (completeToast) completeToast.hidden = false;
+        const completedIndex = chapterIndex;
+        autoAdvanceTimer = window.setTimeout(() => {
+          if (chapterIndex === completedIndex) activateChapter(chapterIndex + 1, true);
+        }, 1150);
+        return;
+      }
       quizOverlay.hidden = false;
       quizOverlay.classList.remove("is-correct", "is-wrong", "is-complete");
       if (!quizItem) {
@@ -3849,6 +3894,9 @@
       if (chapterIndex < chapters.length - 1) activateChapter(chapterIndex + 1, true);
     });
     stopButton.addEventListener("click", () => {
+      window.clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = 0;
+      if (completeToast) completeToast.hidden = true;
       recording.pause();
       recording.currentTime = 0;
       if (video) {

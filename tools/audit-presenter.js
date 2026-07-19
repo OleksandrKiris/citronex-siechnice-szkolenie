@@ -10,6 +10,15 @@ const guide = JSON.parse(fs.readFileSync(guidePath, "utf8"));
 const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"];
 const errors = [];
 const warnings = [];
+const expectedQuizById = {
+  welcome: 1, "arrival-wait": 2, "warehouse-no-reader": 0,
+  "greenhouse-sides": 19, "greenhouse-nave": 20, "greenhouse-section": 22,
+  "reader-charge": 8, "reader-row-exit": 4, "reader-cart-send": 10,
+  "reader-break": 26, "reader-change-end": 25, "reader-restart-menu": 12,
+  "tablet-login": 17, "tablet-change": 25,
+  "safety-food-items": 16, "safety-phone-photo": 18, "safety-personal-data": 17, "safety-zones": 2,
+  "help-clinic": 15, "help-emergency": 27
+};
 
 function normalizeDigits(value) {
   return String(value).replace(/[०-९]/g, (digit) => String("०१२३४५६७८९".indexOf(digit)));
@@ -60,6 +69,20 @@ for (const language of expectedLanguages) {
     if (section.image && !/^https?:\/\//i.test(section.image)) {
       const visualPath = path.join(root, section.image);
       if (!fs.existsSync(visualPath)) errors.push(`${language}/${section.id}: visual is missing (${section.image})`);
+    }
+    const focusRequired = /^(?:tablet-|reader-(?:take|personal-tag|work-start|activity|assigned-row|break-start|break-end|work-end|charge))/.test(section.id);
+    if (focusRequired && (!Array.isArray(section.focus) || section.focus.length !== 4 || section.focus.some((value) => !Number.isFinite(value) || value < 0 || value > 100))) {
+      errors.push(`${language}/${section.id}: visual focus is missing or invalid`);
+    }
+    if (section.quizIndex != null && (!Number.isInteger(section.quizIndex) || section.quizIndex < 0 || section.quizIndex >= 30)) {
+      errors.push(`${language}/${section.id}: quizIndex is invalid (${section.quizIndex})`);
+    }
+    const expectedQuiz = expectedQuizById[section.id];
+    if (expectedQuiz != null && section.quizIndex !== expectedQuiz) {
+      errors.push(`${language}/${section.id}: quizIndex ${section.quizIndex} does not match expected ${expectedQuiz}`);
+    }
+    if (section.quizIndex != null && expectedQuiz == null) {
+      errors.push(`${language}/${section.id}: unexpected quizIndex ${section.quizIndex}`);
     }
     if (/[ÃÂ]|â(?:€|™|œ)|ðŸ/u.test(`${section.title} ${section.text}`)) {
       errors.push(`${language}/${expectedSections[index]}: possible broken UTF-8 text`);
