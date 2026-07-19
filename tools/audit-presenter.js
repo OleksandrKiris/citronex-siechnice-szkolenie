@@ -11,6 +11,7 @@ const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"
 const errors = [];
 const warnings = [];
 const rigAssets = ["head-v1.png", "torso-v1.png", "arm-left-v2.png", "arm-right-v3.png"];
+const humanVideoAsset = "presenter-human-gesture-v1.mp4";
 const expectedQuizById = {
   welcome: 1, "arrival-wait": 2, "warehouse-no-reader": 0,
   "greenhouse-sides": 19, "greenhouse-nave": 20, "greenhouse-section": 22,
@@ -63,10 +64,16 @@ rigAssets.forEach((asset) => {
   const occurrences = (appSource.match(new RegExp(asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length;
   if (occurrences !== 2) errors.push(`rig asset must be referenced once in markup and once in preload data (${asset}: ${occurrences})`);
 });
+const humanVideoPath = path.join(root, "assets", "avatar", humanVideoAsset);
+if (!fs.existsSync(humanVideoPath)) errors.push(`human presenter video is missing (${humanVideoAsset})`);
+else if (fs.statSync(humanVideoPath).size < 500000 || fs.statSync(humanVideoPath).size > 3000000) {
+  errors.push(`human presenter video size is outside the mobile budget (${fs.statSync(humanVideoPath).size})`);
+}
 if (/guide-pose-whole|data-cartoon-pose/.test(appSource)) errors.push("legacy whole-pose avatar is still rendered");
 if (!appSource.includes("contextLink.hidden = !target")) errors.push("irrelevant context action is not hidden per chapter");
 if (!appSource.includes("card.dataset.motionBeat")) errors.push("independent motion beat is not synchronized with audio");
 if (!appSource.includes("rms < .014")) errors.push("voice-energy mouth gate is missing");
+if (!appSource.includes("useHumanVideo") || !appSource.includes(humanVideoAsset)) errors.push("human video mode is not wired into the presenter");
 
 for (const language of expectedLanguages) {
   const localized = guide.languages && guide.languages[language];
@@ -133,6 +140,7 @@ console.log(`Languages: ${expectedLanguages.length}`);
 console.log(`Granular chapters per language: ${expectedSections.length}`);
 console.log(`Expected audio files: ${expectedLanguages.length * expectedSections.length}`);
 console.log(`Independent rig layers: ${rigAssets.length}`);
+console.log(`Human video mode: ${humanVideoAsset}`);
 console.log(`Warnings: ${warnings.length}`);
 console.log(`Errors: ${errors.length}`);
 warnings.forEach((warning) => console.log(`WARNING: ${warning}`));

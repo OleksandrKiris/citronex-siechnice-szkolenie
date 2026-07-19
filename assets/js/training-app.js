@@ -749,11 +749,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master26" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master26" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master26" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260719-siechnice-master28" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260719-siechnice-master28" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260719-siechnice-master28" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master26" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260719-siechnice-master28" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -2862,6 +2862,11 @@
       ? engineQuery
       : constrainedDevice ? "lite" : phoneLayout ? "mobile" : "full";
     card.dataset.engine = engineMode;
+    const avatarQuery = new URLSearchParams(location.search).get("avatar");
+    const humanVideoPath = "assets/avatar/presenter-human-gesture-v1.mp4";
+    const supportsHumanVideo = Boolean(video && video.canPlayType && video.canPlayType('video/mp4; codecs="avc1.42E01E"'));
+    const useHumanVideo = avatarQuery !== "cartoon" && engineMode !== "lite" && !reducedMotion && supportsHumanVideo;
+    card.dataset.avatarPreference = useHumanVideo ? "human" : "cartoon";
 
     const touchToStart = text(tx(
       "Dotknij, aby włączyć głos", "Touch to enable voice", "Торкніться, щоб увімкнути голос",
@@ -2934,6 +2939,7 @@
     let focusResizeObserver = null;
     let pendingResumeSeconds = 0;
     let lastProgressSave = 0;
+    let activeVideoOffset = 0;
 
     const formatTime = (seconds) => {
       const safe = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
@@ -3590,8 +3596,13 @@
       overallProgress.style.width = `${Math.min(100, Math.max(0, totalFraction * 100)).toFixed(2)}%`;
       const nextSentence = sentenceBreakpoints.findIndex((breakpoint) => fraction < breakpoint);
       showSentence(nextSentence < 0 ? chapterSentences.length - 1 : nextSentence);
-      if (video && card.dataset.avatarMode === "video" && !video.hidden && Number.isFinite(video.currentTime) && Math.abs(video.currentTime - current) > .35) {
-        try { video.currentTime = current; } catch (error) { /* Metadata may still be loading. */ }
+      if (video && card.dataset.avatarMode === "video" && !video.hidden && Number.isFinite(video.duration) && video.duration > 0) {
+        const targetVideoTime = (current + activeVideoOffset) % video.duration;
+        const directDelta = Math.abs(video.currentTime - targetVideoTime);
+        const loopDelta = Math.min(directDelta, Math.max(0, video.duration - directDelta));
+        if (loopDelta > .65) {
+          try { video.currentTime = targetVideoTime; } catch (error) { /* Metadata may still be loading. */ }
+        }
       }
     };
 
@@ -3627,7 +3638,7 @@
         video.pause();
         video.loop = false;
         video.hidden = true;
-        video.removeAttribute("src");
+        if (!useHumanVideo) video.removeAttribute("src");
       }
       if (cartoon) cartoon.hidden = false;
       card.dataset.avatarMode = "cartoon";
@@ -3638,13 +3649,29 @@
       if (token !== loadToken || !cartoon) return;
       cartoon.hidden = false;
       applyCartoonCue(activeSentenceIndex >= 0 ? activeSentenceIndex : 0, true);
-      if (video) {
-        video.pause();
-        video.hidden = true;
-        video.removeAttribute("src");
+      if (!video || !useHumanVideo) {
+        showStaticPortrait();
+        return;
       }
-      card.dataset.avatarMode = "cartoon";
-      card.dataset.avatarVariant = "cartoon";
+      const source = visualAsset(humanVideoPath);
+      if (video.getAttribute("src") !== source) {
+        video.src = source;
+        video.load();
+      }
+      activeVideoOffset = (index * 1.73) % 8.4;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.playbackRate = recording.playbackRate || 1;
+      video.hidden = false;
+      card.dataset.avatarMode = "video";
+      card.dataset.avatarVariant = "human";
+      const alignVideo = () => {
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+        try { video.currentTime = ((recording.currentTime || 0) + activeVideoOffset) % video.duration; } catch (error) { /* Metadata may still be loading. */ }
+      };
+      if (video.readyState >= 1) alignVideo();
+      else video.addEventListener("loadedmetadata", alignVideo, { once: true });
     };
 
     const requestPlayback = () => {
@@ -3654,7 +3681,10 @@
         setPlaying(true);
         animateAudioMotion();
         if (video && !video.hidden) {
-          if (card.dataset.avatarMode === "video") video.currentTime = recording.currentTime || 0;
+          if (card.dataset.avatarMode === "video" && Number.isFinite(video.duration) && video.duration > 0) {
+            video.currentTime = ((recording.currentTime || 0) + activeVideoOffset) % video.duration;
+          }
+          video.playbackRate = recording.playbackRate || 1;
           video.play().catch(() => {});
         }
       }).catch((error) => {
@@ -3873,6 +3903,11 @@
       else setPlaying(false);
     };
 
+    const activateFreshChapter = (index, autoplay = true) => {
+      pendingResumeSeconds = 0;
+      activateChapter(index, autoplay);
+    };
+
     if (stageHit) {
       stageHit.addEventListener("click", () => {
         if (recording.paused) requestPlayback();
@@ -3904,7 +3939,7 @@
         ).join("");
         stepRail.onclick = (event) => {
           const button = event.target.closest("[data-presenter-rail-step]");
-          if (button) activateChapter(Number(button.dataset.presenterRailStep), true);
+          if (button) activateFreshChapter(Number(button.dataset.presenterRailStep), true);
         };
       }
       if (chapterSelect) {
@@ -3912,7 +3947,7 @@
           `<option value="${index}">${String(index + 1).padStart(2, "0")} · ${esc(chapter.groupTitle || "")} · ${esc(chapter.title)}</option>`
         ).join("");
         chapterSelect.value = String(chapterIndex);
-        chapterSelect.onchange = () => activateChapter(Number(chapterSelect.value), true);
+        chapterSelect.onchange = () => activateFreshChapter(Number(chapterSelect.value), true);
       }
       transcript.innerHTML = chapters.map((chapter, index) => `
         <article class="presenter-transcript-chapter">
@@ -3923,7 +3958,7 @@
       chaptersNav.onclick = (event) => {
         const button = event.target.closest("[data-presenter-chapter]");
         if (!button) return;
-        activateChapter(Number(button.dataset.presenterChapter), true);
+        activateFreshChapter(Number(button.dataset.presenterChapter), true);
       };
       updateTrackStatus();
     };
@@ -3984,7 +4019,7 @@
         if (completeToast) completeToast.hidden = false;
         const completedIndex = chapterIndex;
         autoAdvanceTimer = window.setTimeout(() => {
-          if (chapterIndex === completedIndex) activateChapter(chapterIndex + 1, true);
+          if (chapterIndex === completedIndex) activateFreshChapter(chapterIndex + 1, true);
         }, 1150);
         return;
       }
@@ -4049,9 +4084,9 @@
         }
       });
     }
-    if (quizRepeat) quizRepeat.addEventListener("click", () => activateChapter(chapterIndex, true));
+    if (quizRepeat) quizRepeat.addEventListener("click", () => activateFreshChapter(chapterIndex, true));
     if (quizContinue) quizContinue.addEventListener("click", () => {
-      if (chapterIndex < chapters.length - 1) activateChapter(chapterIndex + 1, true);
+      if (chapterIndex < chapters.length - 1) activateFreshChapter(chapterIndex + 1, true);
       else hideQuiz();
     });
 
@@ -4094,11 +4129,11 @@
       }
     });
     previousButton.addEventListener("click", () => {
-      if (recording.currentTime > 4 || chapterIndex === 0) activateChapter(chapterIndex, true);
-      else activateChapter(chapterIndex - 1, true);
+      if (recording.currentTime > 4 || chapterIndex === 0) activateFreshChapter(chapterIndex, true);
+      else activateFreshChapter(chapterIndex - 1, true);
     });
     nextButton.addEventListener("click", () => {
-      if (chapterIndex < chapters.length - 1) activateChapter(chapterIndex + 1, true);
+      if (chapterIndex < chapters.length - 1) activateFreshChapter(chapterIndex + 1, true);
     });
     stopButton.addEventListener("click", () => {
       window.clearTimeout(autoAdvanceTimer);
