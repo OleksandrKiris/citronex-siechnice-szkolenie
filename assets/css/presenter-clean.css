@@ -274,7 +274,7 @@
   body[data-page="pomocnik"] .presenter-path-overlay {
     background:
       linear-gradient(180deg, rgba(3, 42, 28, .72), rgba(3, 52, 34, .9)),
-      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master38") center 31% / min(72vh, 620px) auto no-repeat;
+      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master39") center 31% / min(72vh, 620px) auto no-repeat;
   }
 
   body[data-page="pomocnik"] .presenter-path-dialog h3 {
@@ -685,6 +685,8 @@
 .content-review-card strong { color: #08753f; }
 .content-review-card small { color: #597266; }
 
+.presenter-path-select { display: none; }
+
 .presenter-sound-start {
   width: 100%;
   min-height: 70px;
@@ -801,6 +803,31 @@
 @media (max-width: 620px) {
   .content-review-card { margin-top: 9px; padding: 9px 11px; font-size: .76rem; }
   .content-review-card small { display: none; }
+  body[data-page="pomocnik"] .presenter-path-grid { display: none !important; }
+  .presenter-path-select {
+    display: grid;
+    gap: 4px;
+    margin: 0 0 8px;
+    color: rgba(255, 255, 255, .88);
+    font-size: .68rem;
+    font-weight: 850;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .presenter-path-select select {
+    width: 100%;
+    min-height: 48px;
+    padding: 8px 38px 8px 12px;
+    border: 2px solid rgba(255, 255, 255, .72);
+    border-radius: 14px;
+    background: #fff;
+    color: #173629;
+    font: inherit;
+    font-size: .88rem;
+    font-weight: 850;
+    text-transform: none;
+  }
+  .presenter-path-select select:disabled { opacity: .64; }
   .presenter-sound-start { min-height: 62px; margin-bottom: 7px; padding: 9px 11px; }
   .presenter-sound-start small { font-size: .65rem; }
   .presenter-audio-state {
@@ -1147,6 +1174,39 @@
 
 /* Master 35: one short idea per scene, reinforced with a universal action
    symbol. This keeps the lesson understandable even with limited literacy. */
+.presenter-card-v2 .presenter-caption {
+  padding-right: 46px;
+  border: 1px solid rgba(255, 255, 255, .26);
+  font: inherit;
+  text-align: center;
+  cursor: help;
+  pointer-events: auto;
+  appearance: none;
+}
+
+.presenter-card-v2 .presenter-caption::after {
+  content: "?";
+  position: absolute;
+  top: 50%;
+  right: 9px;
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 950;
+  transform: translateY(-50%);
+}
+
+.presenter-card-v2 .presenter-caption:focus-visible {
+  outline: 3px solid #ffd34f;
+  outline-offset: 2px;
+}
+
 .presenter-card-v2 .presenter-caption::before {
   content: attr(data-icon) "  " attr(data-label) " · ";
 }

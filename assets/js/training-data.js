@@ -5,7 +5,7 @@
 
   window.CX_DATA = {
     meta: {
-      version: "20260720-siechnice-master38",
+      version: "20260720-siechnice-master39",
       externalInformationReviewed: "2026-07-19",
       externalInformationSources: [
         "https://www.siechnice.gmina.pl/strona-78-ochrona_zdrowia.html",

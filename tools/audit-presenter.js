@@ -108,6 +108,9 @@ if (!["preferDirectAudio", "recording.muted = false", "data-presenter-sound-star
 if (!["const preferDirectAudio = true", "fetchJsonWithTimeout", "setPresenterReady", "audioRetryCount", "prefetchNextChapterAudio", "updateMediaSession", "data-presenter-audio-state"].every((token) => appSource.includes(token))) {
   errors.push("resilient voice startup, retry or phone media controls are missing");
 }
+if (!["data-presenter-track-select", 'stageCaption.addEventListener("click"', 'stageCaption.setAttribute("aria-label"', 'cache: "force-cache"'].every((token) => appSource.includes(token))) {
+  errors.push("compact mobile route selection, sentence help or next-audio caching is missing");
+}
 if (!appSource.includes('tabindex="-1" aria-hidden="true"')) errors.push("duplicate accessible stage control is not suppressed");
 if (!appSource.includes("card.dataset.hasVisual")) errors.push("adaptive visual focus state is missing");
 if (!["actionLabel", "urgentLabel", "listenLabel", "stageCaption.dataset.label"].every((token) => appSource.includes(token))) {
@@ -117,7 +120,7 @@ if (!["sceneCharacterLimit", "stageCaption.dataset.icon", "data-presenter-comple
   errors.push("short-scene accessibility and readable chapter transition are missing");
 }
 const adaptiveCssSource = fs.existsSync(cleanCssPath) ? fs.readFileSync(cleanCssPath, "utf8") : "";
-if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(professionalCartoonFrames[0]) || !adaptiveCssSource.includes("Master 35") || !adaptiveCssSource.includes("professional-viseme-ah") || !adaptiveCssSource.includes("professional-eye-blink") || !adaptiveCssSource.includes("attr(data-icon)") || !adaptiveCssSource.includes("attr(data-label)") || !adaptiveCssSource.includes("presenter-sound-start") || !adaptiveCssSource.includes("presenter-audio-state") || !adaptiveCssSource.includes('data-lipsync="timed"')) {
+if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(professionalCartoonFrames[0]) || !adaptiveCssSource.includes("Master 35") || !adaptiveCssSource.includes("professional-viseme-ah") || !adaptiveCssSource.includes("professional-eye-blink") || !adaptiveCssSource.includes("attr(data-icon)") || !adaptiveCssSource.includes("attr(data-label)") || !adaptiveCssSource.includes("presenter-sound-start") || !adaptiveCssSource.includes("presenter-audio-state") || !adaptiveCssSource.includes("presenter-path-select") || !adaptiveCssSource.includes("presenter-caption::after") || !adaptiveCssSource.includes('data-lipsync="timed"')) {
   errors.push("adaptive visual focus styling is missing");
 }
 if (!appSource.includes('updateViaCache: "none"') || !appSource.includes('"controllerchange"')) errors.push("automatic Service Worker update is missing");
