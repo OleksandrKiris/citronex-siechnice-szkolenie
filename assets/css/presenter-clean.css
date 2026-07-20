@@ -274,7 +274,7 @@
   body[data-page="pomocnik"] .presenter-path-overlay {
     background:
       linear-gradient(180deg, rgba(3, 42, 28, .72), rgba(3, 52, 34, .9)),
-      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master40") center 31% / min(72vh, 620px) auto no-repeat;
+      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master41") center 31% / min(72vh, 620px) auto no-repeat;
   }
 
   body[data-page="pomocnik"] .presenter-path-dialog h3 {
@@ -1224,6 +1224,24 @@
   color: #bdf6cd;
 }
 
+.presenter-card-v2 .presenter-caption[data-icon="🔊"]::before {
+  color: #bfeaff;
+}
+
+/* Master 41: the head makes small conversational movements only while the
+   recording is speaking. The face remains stable and does not slide as one
+   flat photograph. */
+.presenter-card-v2.is-speaking[data-avatar-mode="cartoon"] .presenter-professional-head {
+  animation: professional-head-speaking 3.4s ease-in-out infinite;
+}
+
+@keyframes professional-head-speaking {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--head-tilt)); }
+  22% { transform: translate3d(1px, -2px, 0) rotate(calc(var(--head-tilt) + .65deg)); }
+  48% { transform: translate3d(0, -1px, 0) rotate(calc(var(--head-tilt) - .45deg)); }
+  72% { transform: translate3d(-1px, -2px, 0) rotate(calc(var(--head-tilt) - .7deg)); }
+}
+
 .presenter-card-v2 .presenter-complete-toast small {
   max-width: 28ch;
   font-size: 12px;
@@ -1231,6 +1249,10 @@
 }
 
 @media (max-width: 620px) {
+  body[data-page="pomocnik"] .presenter-review-chip {
+    display: none;
+  }
+
   body[data-page="pomocnik"] .presenter-caption {
     max-height: 88px;
   }

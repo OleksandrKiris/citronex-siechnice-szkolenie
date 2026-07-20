@@ -163,7 +163,7 @@ for (const language of expectedLanguages) {
       if (!fs.existsSync(visualPath)) errors.push(`${language}/${section.id}: visual is missing (${section.image})`);
     }
     if (section.image && (!section.visualHint || !section.visualOrigin)) errors.push(`${language}/${section.id}: real-material guidance is incomplete`);
-    if (!["action", "forbidden", "important", "help"].includes(section.category) || !section.keyPoint) errors.push(`${language}/${section.id}: clarity metadata is incomplete`);
+    if (!["listen", "action", "forbidden", "important", "help"].includes(section.category) || !section.keyPoint) errors.push(`${language}/${section.id}: clarity metadata is incomplete`);
     if (section.critical && !Number.isInteger(section.quizIndex)) errors.push(`${language}/${section.id}: critical rule has no understanding check`);
     const focusRequired = /^(?:tablet-|reader-(?:take|personal-tag|work-start|activity|assigned-row|break-start|break-end|work-end|charge))/.test(section.id);
     if (focusRequired && (!Array.isArray(section.focus) || section.focus.length !== 4 || section.focus.some((value) => !Number.isFinite(value) || value < 0 || value > 100))) {

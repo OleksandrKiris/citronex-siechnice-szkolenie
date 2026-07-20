@@ -1,19 +1,19 @@
 {
-  "version": "2026-07-20.2",
+  "version": "2026-07-20.3",
   "reviewedAt": "2026-07-20",
   "sourceLanguage": "pl",
-  "reviewScope": "Cross-language meaning, critical numbers, workplace terminology and narration consistency",
+  "reviewScope": "Cross-language meaning, critical numbers, workplace and interface terminology, visual hints and narration consistency",
   "technicalStatus": "passed",
   "humanReviewStatus": "native-speaker-approval-pending",
   "languages": {
-    "pl": { "locale": "pl-PL", "reader": "reader (ręczny czytnik)", "greenhouseBay": "nawa" },
-    "en": { "locale": "en-GB", "reader": "reader (handheld scanner)", "greenhouseBay": "bay called a nave" },
-    "ua": { "locale": "uk-UA", "reader": "рідер (ручний сканер)", "greenhouseBay": "нава (секція теплиці)" },
-    "ru": { "locale": "ru-RU", "reader": "ридер (ручной сканер)", "greenhouseBay": "нава (секция теплицы)" },
-    "az": { "locale": "az-AZ", "reader": "reader (əl skaneri)", "greenhouseBay": "nava (istixana bölməsi)" },
-    "es": { "locale": "es-ES", "reader": "reader (lector portátil)", "greenhouseBay": "nave (sección del invernadero)" },
-    "fil": { "locale": "fil-PH", "reader": "reader (handheld scanner)", "greenhouseBay": "nawa (seksyon ng bahay-taniman)" },
-    "id": { "locale": "id-ID", "reader": "reader (pemindai genggam)", "greenhouseBay": "nave (bagian rumah kaca)" },
-    "ne": { "locale": "ne-NP", "reader": "रिडर (हातमा समात्ने स्क्यानर)", "greenhouseBay": "नावा (ग्रीनहाउसको खण्ड)" }
+    "pl": { "locale": "pl-PL", "reader": "ręczny czytnik (reader)", "greenhouseBay": "nawa" },
+    "en": { "locale": "en-GB", "reader": "handheld scanner (reader)", "greenhouseBay": "bay called a nave" },
+    "ua": { "locale": "uk-UA", "reader": "ручний сканер (рідер)", "greenhouseBay": "нава (секція теплиці)" },
+    "ru": { "locale": "ru-RU", "reader": "ручной сканер (ридер)", "greenhouseBay": "нава (секция теплицы)" },
+    "az": { "locale": "az-AZ", "reader": "əl skaneri (reader)", "greenhouseBay": "nava (istixana bölməsi)" },
+    "es": { "locale": "es-ES", "reader": "lector portátil (reader)", "greenhouseBay": "nave (sección del invernadero)" },
+    "fil": { "locale": "fil-PH", "reader": "handheld scanner (reader)", "greenhouseBay": "nawa (seksyon ng bahay-taniman)" },
+    "id": { "locale": "id-ID", "reader": "pemindai genggam (reader)", "greenhouseBay": "nave (bagian rumah kaca)" },
+    "ne": { "locale": "ne-NP", "reader": "हातमा समात्ने स्क्यानर (रिडर)", "greenhouseBay": "नावा (ग्रीनहाउसको खण्ड)" }
   }
 }

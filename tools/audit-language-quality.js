@@ -70,6 +70,12 @@ const ambiguousArrivalTerms = {
   es: /\betapa\b/i, fil: /\betap\b/i, id: /\btahap\b/i, ne: /चरण/u
 };
 
+const readerVisualTerms = {
+  pl: "przycisk readera", en: "reader button", ua: "кнопку рідера", ru: "кнопку ридера",
+  az: "əl skanerindəki", es: "botón del lector", fil: "scanner (reader)",
+  id: "pemindai (reader)", ne: "स्क्यानरको (रिडर)"
+};
+
 function sha256(value) {
   return crypto.createHash("sha256").update(value).digest("hex");
 }
@@ -115,6 +121,10 @@ for (const language of expectedLanguages) {
     if (mojibake.test(`${title} ${text}`)) errors.push(`${label}: damaged character encoding detected`);
     if (placeholders.test(`${title} ${text}`)) errors.push(`${label}: placeholder text detected`);
     if (!Array.isArray(section.tracks) || !section.tracks.length) errors.push(`${label}: course route is missing`);
+    if (section.id === "welcome" && section.category !== "listen") errors.push(`${label}: welcome must be marked as listening, not as a work command`);
+    if (section.id === "reader-overview" && !String(section.visualHint || "").toLocaleLowerCase().includes(readerVisualTerms[language].toLocaleLowerCase())) {
+      errors.push(`${label}: reader visual hint is not localized clearly`);
+    }
 
     if (section.image && !/^https?:\/\//i.test(section.image)) {
       const imagePath = path.join(root, section.image.replace(/^\.\//, ""));

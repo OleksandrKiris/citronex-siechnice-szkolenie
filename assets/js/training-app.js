@@ -741,7 +741,7 @@
       scene: text(tx("Scena", "Scene", "Сцена", "Сцена", "Səhnə", "Escena", "Eksena", "Adegan", "दृश्य")),
       tracks: {
         warehouse: { icon: "📦", title: text(tx("Praca w magazynie", "Warehouse work", "Робота на складі", "Работа на складе", "Anbar işi", "Trabajo en almacén", "Trabaho sa bodega", "Kerja di gudang", "गोदामको काम")), lead: text(tx("Wejście, tablet, zakazy i pomoc", "Entrance, tablet, rules and help", "Вхід, планшет, заборони і допомога", "Вход, планшет, запреты и помощь", "Giriş, tablet, qaydalar və kömək", "Entrada, tablet, reglas y ayuda", "Pasukan, tablet, mga bawal at tulong", "Pintu masuk, tablet, larangan dan bantuan", "प्रवेश, ट्याब्लेट, निषेध र सहायता")) },
-        greenhouse: { icon: "🌿", title: text(tx("Praca w szklarni", "Greenhouse work", "Робота в теплиці", "Работа в теплице", "İstixana işi", "Trabajo en invernadero", "Trabaho sa bahay-taniman", "Kerja di rumah kaca", "ग्रीनहाउसको काम")), lead: text(tx("Orientacja, reader, tablet i bezpieczeństwo", "Orientation, reader, tablet and safety", "Орієнтація, рідер, планшет і безпека", "Ориентация, ридер, планшет и безопасность", "İstiqamət, reader, tablet və təhlükəsizlik", "Orientación, reader, tablet y seguridad", "Oryentasyon, reader, tablet at kaligtasan", "Orientasi, reader, tablet dan keselamatan", "दिशा, reader, tablet र सुरक्षा")) },
+        greenhouse: { icon: "🌿", title: text(tx("Praca w szklarni", "Greenhouse work", "Робота в теплиці", "Работа в теплице", "İstixana işi", "Trabajo en invernadero", "Trabaho sa bahay-taniman", "Kerja di rumah kaca", "ग्रीनहाउसको काम")), lead: text(tx("Orientacja, reader (ręczny czytnik), tablet i bezpieczeństwo", "Orientation, handheld scanner (reader), tablet and safety", "Орієнтація, ручний сканер (рідер), планшет і безпека", "Ориентация, ручной сканер (ридер), планшет и безопасность", "İstiqamət, əl skaneri (reader), planşet və təhlükəsizlik", "Orientación, lector portátil (reader), tableta y seguridad", "Oryentasyon, handheld scanner (reader), tablet at kaligtasan", "Orientasi, pemindai genggam (reader), tablet dan keselamatan", "दिशा, हातमा समात्ने स्क्यानर (रिडर), ट्याब्लेट र सुरक्षा")) },
         before: { icon: "🗺️", title: text(tx("Przed przyjazdem", "Before arrival", "До приїзду", "До приезда", "Gəlməzdən əvvəl", "Antes de llegar", "Bago dumating", "Sebelum datang", "आउनुअघि")), lead: text(tx("Droga, pierwszy dzień, dokumenty i kontakt", "Route, first day, documents and contact", "Дорога, перший день, документи і контакт", "Дорога, первый день, документы и связь", "Yol, ilk gün, sənədlər və əlaqə", "Ruta, primer día, documentos y contacto", "Daan, unang araw, dokumento at contact", "Rute, hari pertama, dokumen dan kontak", "बाटो, पहिलो दिन, कागजात र सम्पर्क")) },
         waiting: { icon: "⏳", title: text(tx("Czekam na dokumenty", "Waiting for documents", "Чекаю на документи", "Жду документы", "Sənədləri gözləyirəm", "Espero documentos", "Naghihintay ng dokumento", "Menunggu dokumen", "कागजात कुर्दैछु")), lead: text(tx("Urzędy, bank, lekarz i ważne kontakty", "Offices, bank, doctor and key contacts", "Установи, банк, лікар і важливі контакти", "Учреждения, банк, врач и важные контакты", "Qurumlar, bank, həkim və vacib əlaqələr", "Oficinas, banco, médico y contactos", "Mga opisina, bangko, doktor at contact", "Kantor, bank, dokter dan kontak penting", "कार्यालय, बैंक, डाक्टर र महत्त्वपूर्ण सम्पर्क")) },
         all: { icon: "✅", title: text(tx("Pełny instruktaż", "Full briefing", "Повний інструктаж", "Полный инструктаж", "Tam təlimat", "Formación completa", "Buong pagsasanay", "Pengarahan lengkap", "पूर्ण निर्देशन")), lead: text(tx("Wszystkie rozdziały po kolei", "Every chapter in order", "Усі розділи по черзі", "Все главы по порядку", "Bütün bölmələr ardıcıllıqla", "Todos los capítulos en orden", "Lahat ng kabanata nang sunod-sunod", "Semua bab secara berurutan", "सबै अध्याय क्रमशः")) }
@@ -792,11 +792,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260720-siechnice-master40" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260720-siechnice-master40" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260720-siechnice-master40" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260720-siechnice-master41" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260720-siechnice-master41" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260720-siechnice-master41" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260720-siechnice-master40" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260720-siechnice-master41" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -859,16 +859,16 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small data-presenter-complete-next>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260720-siechnice-master40" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260720-siechnice-master41" hidden></video>
           <div class="presenter-professional-head" data-professional-head aria-hidden="true">
-            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="ee" src="assets/avatar/presenter-cartoon-professional-ee-v3.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="fv" src="assets/avatar/presenter-cartoon-professional-fv-v3.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="l" src="assets/avatar/presenter-cartoon-professional-l-v3.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="mbp" src="assets/avatar/presenter-cartoon-professional-mbp-v3.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master41" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260720-siechnice-master41" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260720-siechnice-master41" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260720-siechnice-master41" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="ee" src="assets/avatar/presenter-cartoon-professional-ee-v3.png?v=20260720-siechnice-master41" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="fv" src="assets/avatar/presenter-cartoon-professional-fv-v3.png?v=20260720-siechnice-master41" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="l" src="assets/avatar/presenter-cartoon-professional-l-v3.png?v=20260720-siechnice-master41" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="mbp" src="assets/avatar/presenter-cartoon-professional-mbp-v3.png?v=20260720-siechnice-master41" alt="" width="512" height="512">
           </div>
           <button type="button" class="presenter-caption" data-presenter-caption aria-live="polite" aria-atomic="true"></button>
           <p class="presenter-audio-state" data-presenter-audio-state data-state="loading" role="status" aria-live="polite"><span data-presenter-audio-state-icon aria-hidden="true">⏳</span><span data-presenter-audio-state-text>${esc(experience.voiceLoading)}</span></p>
@@ -919,7 +919,7 @@
           <summary>${esc(fullText)}</summary>
           <div class="presenter-transcript-body" data-presenter-transcript></div>
         </details>
-        <audio data-presenter-audio preload="metadata" playsinline></audio>
+        <audio data-presenter-audio preload="auto" playsinline></audio>
       </section>`;
   }
 
@@ -3321,7 +3321,7 @@
       az: [
         { badge: "VACİB", label: "Qaydalar istixanada və anbarda qüvvədədir", tone: "caution" },
         { badge: "QADAĞANDIR", label: "Yemək, içki və şəxsi əşyalar iş zonasından kənarda qalmalıdır", tone: "danger" },
-        { badge: "QADAĞANDIR", label: "Başqasının PIN-i, tagı və reader-indən istifadə etməyin", tone: "danger" },
+        { badge: "QADAĞANDIR", label: "Başqasının PIN-indən, tagından və ya əl skanerindən (reader) istifadə etməyin", tone: "danger" },
         { badge: "QADAĞANDIR", label: "Tapşırıq olmadan başqa zonaya girməyin", tone: "danger" },
         { badge: "MÜTLƏQDİR", label: "Əlləri və əlcəkləri təmiz saxlayın", tone: "required" },
         { badge: "QADAĞANDIR", label: "İşdə telefon, foto və qulaqlıqdan istifadə etməyin", tone: "danger" },
@@ -3330,7 +3330,7 @@
       es: [
         { badge: "IMPORTANTE", label: "Las reglas se aplican en el invernadero y el almacén", tone: "caution" },
         { badge: "PROHIBIDO", label: "Comida, bebidas y objetos personales fuera de la zona de trabajo", tone: "danger" },
-        { badge: "PROHIBIDO", label: "No uses el PIN, tag ni reader de otra persona", tone: "danger" },
+        { badge: "PROHIBIDO", label: "No uses el PIN, la etiqueta ni el lector (reader) de otra persona", tone: "danger" },
         { badge: "PROHIBIDO", label: "No entres en otra zona sin indicación", tone: "danger" },
         { badge: "OBLIGATORIO", label: "Mantén limpias las manos y los guantes", tone: "required" },
         { badge: "PROHIBIDO", label: "Sin teléfono, fotos ni auriculares en el trabajo", tone: "danger" },
@@ -3339,7 +3339,7 @@
       fil: [
         { badge: "MAHALAGA", label: "Ang mga patakaran ay para sa bahay-taniman at bodega", tone: "caution" },
         { badge: "BAWAL", label: "Pagkain, inumin at personal na gamit ay sa labas ng work zone", tone: "danger" },
-        { badge: "BAWAL", label: "Huwag gamitin ang PIN, tag o reader ng ibang tao", tone: "danger" },
+        { badge: "BAWAL", label: "Huwag gamitin ang PIN, tag o scanner (reader) ng ibang tao", tone: "danger" },
         { badge: "BAWAL", label: "Huwag pumasok sa ibang zone kung walang utos", tone: "danger" },
         { badge: "KAILANGAN", label: "Panatilihing malinis ang kamay at guwantes", tone: "required" },
         { badge: "BAWAL", label: "Walang telepono, larawan o headphone sa trabaho", tone: "danger" },
@@ -3348,7 +3348,7 @@
       id: [
         { badge: "PENTING", label: "Aturan berlaku di rumah kaca dan gudang", tone: "caution" },
         { badge: "DILARANG", label: "Makanan, minuman dan barang pribadi di luar area kerja", tone: "danger" },
-        { badge: "DILARANG", label: "Jangan gunakan PIN, tag atau reader milik orang lain", tone: "danger" },
+        { badge: "DILARANG", label: "Jangan gunakan PIN, tag, atau pemindai (reader) milik orang lain", tone: "danger" },
         { badge: "DILARANG", label: "Jangan masuk ke zona lain tanpa instruksi", tone: "danger" },
         { badge: "WAJIB", label: "Jaga tangan dan sarung tangan tetap bersih", tone: "required" },
         { badge: "DILARANG", label: "Tanpa telepon, foto atau headphone saat bekerja", tone: "danger" },
@@ -3357,7 +3357,7 @@
       ne: [
         { badge: "महत्त्वपूर्ण", label: "नियम ग्रीनहाउस र गोदाम दुवैमा लागू हुन्छन्", tone: "caution" },
         { badge: "निषेध", label: "खाना, पेय र निजी सामान काम क्षेत्र बाहिर राख्नुहोस्", tone: "danger" },
-        { badge: "निषेध", label: "अरूको PIN, tag वा reader प्रयोग नगर्नुहोस्", tone: "danger" },
+        { badge: "निषेध", label: "अरूको PIN, ट्याग वा स्क्यानर (रिडर) प्रयोग नगर्नुहोस्", tone: "danger" },
         { badge: "निषेध", label: "निर्देशन बिना अर्को क्षेत्रमा नजानुहोस्", tone: "danger" },
         { badge: "अनिवार्य", label: "हात र पञ्जा सफा राख्नुहोस्", tone: "required" },
         { badge: "निषेध", label: "काममा फोन, फोटो वा हेडफोन प्रयोग नगर्नुहोस्", tone: "danger" },
@@ -3693,9 +3693,9 @@
       activeSentenceIndex = safeIndex;
       if (stageCaption) {
         const chapter = chapters[chapterIndex] || {};
-        const category = chapter.category || (chapter.tone === "danger" ? "forbidden" : chapter.tone === "caution" ? "important" : "action");
-        const clarityLabel = category === "forbidden" ? experience.forbidden : category === "help" ? experience.urgentLabel : category === "important" ? experience.important : experience.actionLabel;
-        const clarityIcon = category === "forbidden" ? "⛔" : category === "help" ? "☎" : category === "important" ? "⚠" : "✓";
+        const category = chapter.category || (chapter.group === "start" ? "listen" : chapter.tone === "danger" ? "forbidden" : chapter.tone === "caution" ? "important" : "action");
+        const clarityLabel = category === "listen" ? experience.listenLabel : category === "forbidden" ? experience.forbidden : category === "help" ? experience.urgentLabel : category === "important" ? experience.important : experience.actionLabel;
+        const clarityIcon = category === "listen" ? "🔊" : category === "forbidden" ? "⛔" : category === "help" ? "☎" : category === "important" ? "⚠" : "✓";
         stageCaption.dataset.icon = clarityIcon;
         stageCaption.dataset.label = clarityLabel;
         stageCaption.textContent = chapterSentences[safeIndex];
@@ -4216,13 +4216,14 @@
       recording.pause();
       showStaticPortrait();
       const audioUrl = chapterAudioUrl(chapter, chapterIndex);
+      const reuseLoadedAudio = recording.dataset.baseSrc === audioUrl && Boolean(recording.getAttribute("src"));
       recording.dataset.baseSrc = audioUrl;
       if (presenterReady) updateVoiceState("loading");
-      recording.src = audioUrl;
+      if (!reuseLoadedAudio) recording.src = audioUrl;
       recording.muted = false;
       recording.volume = 1;
-      recording.load();
-      recording.currentTime = 0;
+      if (!reuseLoadedAudio) recording.load();
+      try { recording.currentTime = 0; } catch (error) { /* Metadata may still be loading. */ }
       chapterTitle.textContent = chapter.title;
       if (groupLabel) groupLabel.textContent = chapter.groupTitle || chapter.title;
       closePhotoOverlay();
@@ -4284,16 +4285,23 @@
           if (button) activateFreshChapter(Number(button.dataset.presenterRailStep), true);
         };
       }
+      const compactChapterLabel = (chapter) => {
+        const groupTitle = String(chapter.groupTitle || "").trim();
+        const title = String(chapter.title || "").trim();
+        return groupTitle && groupTitle.toLocaleLowerCase() !== title.toLocaleLowerCase()
+          ? `${groupTitle} · ${title}`
+          : title || groupTitle;
+      };
       if (chapterSelect) {
         chapterSelect.innerHTML = chapters.map((chapter, index) =>
-          `<option value="${index}">${String(index + 1).padStart(2, "0")} · ${esc(chapter.groupTitle || "")} · ${esc(chapter.title)}</option>`
+          `<option value="${index}">${String(index + 1).padStart(2, "0")} · ${esc(compactChapterLabel(chapter))}</option>`
         ).join("");
         chapterSelect.value = String(chapterIndex);
         chapterSelect.onchange = () => activateFreshChapter(Number(chapterSelect.value), true);
       }
       transcript.innerHTML = chapters.map((chapter, index) => `
         <article class="presenter-transcript-chapter">
-          <h4>${index + 1}. ${esc(chapter.groupTitle || "")} — ${esc(chapter.title)}</h4>
+          <h4>${index + 1}. ${esc(compactChapterLabel(chapter))}</h4>
           <p>${esc(chapter.text)}</p>
         </article>`).join("");
       totalLabel.textContent = String(chapters.length);

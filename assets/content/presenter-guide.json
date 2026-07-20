@@ -22,7 +22,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "Najważniejsze informacje przed rozpoczęciem",
           "critical": false,
           "visualHint": "Porównaj drogę, budynek i wejście. Idź tylko trasą wskazaną przez koordynatora.",
@@ -1216,7 +1216,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "Important information before you start",
           "critical": false,
           "visualHint": "Compare the road, building and entrance. Use only the route confirmed by the coordinator.",
@@ -2410,7 +2410,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "Важлива інформація перед початком",
           "critical": false,
           "visualHint": "Порівняйте дорогу, будівлю і вхід. Ідіть лише маршрутом, підтвердженим координатором.",
@@ -3604,7 +3604,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "Главное перед началом",
           "critical": false,
           "visualHint": "Сравните дорогу, здание и вход. Идите только по маршруту, подтверждённому координатором.",
@@ -4798,7 +4798,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "Başlamazdan əvvəl əsas məlumat",
           "critical": false,
           "visualHint": "Yolu, binanı və girişi müqayisə edin. Yalnız koordinatorun təsdiqlədiyi marşrutla gedin.",
@@ -4912,7 +4912,7 @@
           "category": "forbidden",
           "keyPoint": "Anbarda reader istifadə olunmur",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-supplied-site-photo",
           "quizIndex": 0
         },
@@ -5057,7 +5057,7 @@
           "category": "important",
           "keyPoint": "Tam ardıcıllıq",
           "critical": false,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo"
         },
         {
@@ -5077,7 +5077,7 @@
           "category": "action",
           "keyPoint": "Reader-i nömrəli təyin olunmuş şarj yerindən götürün",
           "critical": false,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -5103,7 +5103,7 @@
           "category": "action",
           "keyPoint": "Şəxsi tagınızı start məlumatına uyğun reader-in orta düyməsi ilə vurun",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -5130,7 +5130,7 @@
           "category": "action",
           "keyPoint": "Lövhədə 'işin başlanğıcı' tagını vurun",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             50,
@@ -5157,7 +5157,7 @@
           "category": "action",
           "keyPoint": "Lövhədə təyin olunan fəaliyyəti vurun",
           "critical": false,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -5183,7 +5183,7 @@
           "category": "important",
           "keyPoint": "Sırada işləyirsinizsə, təyin olunan sıraya girin",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -5210,7 +5210,7 @@
           "category": "action",
           "keyPoint": "Fasiləyə başlayanda əvvəl sıradan çıxın və sıra tagını vurun, sonra 'fasi…",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -5237,7 +5237,7 @@
           "category": "action",
           "keyPoint": "Fasilədən qayıdanda 'fasilə sonu' vurun və prosedurunuza uyğun davam edin",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -5264,7 +5264,7 @@
           "category": "important",
           "keyPoint": "İşin sonunda 'işin sonu' vurun",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -5291,7 +5291,7 @@
           "category": "action",
           "keyPoint": "Reader-i nömrəli təyin olunmuş şarj yerinə qoyun",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -5318,7 +5318,7 @@
           "category": "important",
           "keyPoint": "Sıralarda işin başlanğıcı",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -5339,7 +5339,7 @@
           "category": "action",
           "keyPoint": "Sıradan çıxış",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -5401,7 +5401,7 @@
           "category": "important",
           "keyPoint": "Adi fasilə",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -5428,7 +5428,7 @@
           "category": "action",
           "keyPoint": "Fəaliyyət dəyişikliyi və işin sonu",
           "critical": true,
-          "visualHint": "İşarələnmiş nömrəyə və məhz həmin reader düyməsinə baxın.",
+          "visualHint": "İşarələnmiş nömrəyə və əl skanerindəki (reader) məhz həmin düyməyə baxın.",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -5992,7 +5992,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "Información importante antes de empezar",
           "critical": false,
           "visualHint": "Compara la carretera, el edificio y la entrada. Usa solo la ruta confirmada por el coordinador.",
@@ -6106,7 +6106,7 @@
           "category": "forbidden",
           "keyPoint": "En almacén no se usa reader",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-supplied-site-photo",
           "quizIndex": 0
         },
@@ -6251,7 +6251,7 @@
           "category": "important",
           "keyPoint": "Orden completo",
           "critical": false,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo"
         },
         {
@@ -6271,7 +6271,7 @@
           "category": "action",
           "keyPoint": "Toma el reader del cargador numerado en el lugar asignado",
           "critical": false,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -6297,7 +6297,7 @@
           "category": "action",
           "keyPoint": "Marca tu tag personal con el botón central según la información de inicio",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -6324,7 +6324,7 @@
           "category": "action",
           "keyPoint": "En el tablero, marca el tag 'inicio de trabajo'",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             50,
@@ -6351,7 +6351,7 @@
           "category": "action",
           "keyPoint": "En el tablero, marca la actividad asignada",
           "critical": false,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -6377,7 +6377,7 @@
           "category": "important",
           "keyPoint": "Si trabajas en una fila, entra en la fila asignada",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -6404,7 +6404,7 @@
           "category": "action",
           "keyPoint": "Al empezar descanso, primero sal de la fila y marca el tag de fila, luego…",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -6431,7 +6431,7 @@
           "category": "action",
           "keyPoint": "Al volver del descanso, marca 'fin de descanso' y continúa según tu proce…",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -6458,7 +6458,7 @@
           "category": "important",
           "keyPoint": "Al terminar el trabajo, marca 'fin de trabajo'",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -6485,7 +6485,7 @@
           "category": "action",
           "keyPoint": "Deja el reader en el cargador numerado asignado",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -6512,7 +6512,7 @@
           "category": "important",
           "keyPoint": "Inicio en filas",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -6533,7 +6533,7 @@
           "category": "action",
           "keyPoint": "Salida de la fila",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -6595,7 +6595,7 @@
           "category": "important",
           "keyPoint": "Descanso normal",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -6622,7 +6622,7 @@
           "category": "action",
           "keyPoint": "Cambio de actividad y fin de trabajo",
           "critical": true,
-          "visualHint": "Mira el número marcado y exactamente ese botón del reader.",
+          "visualHint": "Mira el número resaltado y exactamente ese botón del lector (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -7186,7 +7186,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "Mahahalagang impormasyon bago magsimula",
           "critical": false,
           "visualHint": "Ihambing ang daan, gusali at pasukan. Sundin lamang ang rutang kinumpirma ng coordinator.",
@@ -7300,7 +7300,7 @@
           "category": "forbidden",
           "keyPoint": "Walang reader sa bodega",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-supplied-site-photo",
           "quizIndex": 0
         },
@@ -7445,7 +7445,7 @@
           "category": "important",
           "keyPoint": "Buong pagkakasunod",
           "critical": false,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo"
         },
         {
@@ -7465,7 +7465,7 @@
           "category": "action",
           "keyPoint": "Kunin ang reader sa may numerong charger sa nakatalagang lugar",
           "critical": false,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -7491,7 +7491,7 @@
           "category": "action",
           "keyPoint": "I-scan ang personal mong tag gamit ang gitnang pindutan ayon sa panimulan…",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -7518,7 +7518,7 @@
           "category": "action",
           "keyPoint": "Sa pisara, i-scan ang tag na 'Simula ng trabaho'",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             50,
@@ -7545,7 +7545,7 @@
           "category": "action",
           "keyPoint": "Sa pisara, i-scan ang nakatalagang gawain",
           "critical": false,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -7571,7 +7571,7 @@
           "category": "important",
           "keyPoint": "Kung sa hanay ka nagtatrabaho, pumasok sa nakatalagang hanay",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -7598,7 +7598,7 @@
           "category": "action",
           "keyPoint": "Bago magpahinga, lumabas muna sa hanay at i-scan ang tag ng hanay",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -7625,7 +7625,7 @@
           "category": "action",
           "keyPoint": "Pagbalik mula sa pahinga, i-scan ang 'Tapos ng pahinga' at ipagpatuloy an…",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -7652,7 +7652,7 @@
           "category": "important",
           "keyPoint": "Sa pagtatapos ng trabaho, i-scan ang 'Tapos ng trabaho'",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -7679,7 +7679,7 @@
           "category": "action",
           "keyPoint": "Ibalik ang reader sa may numerong charger sa nakatalagang lugar",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -7706,7 +7706,7 @@
           "category": "important",
           "keyPoint": "Simula sa mga hanay",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -7727,7 +7727,7 @@
           "category": "action",
           "keyPoint": "Paglabas sa hanay",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -7789,7 +7789,7 @@
           "category": "important",
           "keyPoint": "Karaniwang pahinga",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -7816,7 +7816,7 @@
           "category": "action",
           "keyPoint": "Pagpalit ng gawain at pagtatapos ng trabaho",
           "critical": true,
-          "visualHint": "Tingnan ang markadong numero at ang mismong button na iyon sa reader.",
+          "visualHint": "Tingnan ang minarkahang numero at ang mismong button na iyon sa scanner (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -8380,7 +8380,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "Informasi penting sebelum mulai",
           "critical": false,
           "visualHint": "Cocokkan jalan, gedung, dan pintu masuk. Ikuti hanya rute yang dikonfirmasi koordinator.",
@@ -8494,7 +8494,7 @@
           "category": "forbidden",
           "keyPoint": "Di gudang tidak memakai reader",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-supplied-site-photo",
           "quizIndex": 0
         },
@@ -8639,7 +8639,7 @@
           "category": "important",
           "keyPoint": "Urutan lengkap",
           "critical": false,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo"
         },
         {
@@ -8659,7 +8659,7 @@
           "category": "action",
           "keyPoint": "Ambil reader dari charger bernomor di tempat yang ditentukan",
           "critical": false,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -8685,7 +8685,7 @@
           "category": "action",
           "keyPoint": "Scan tag pribadi dengan tombol tengah sesuai info awal",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -8712,7 +8712,7 @@
           "category": "action",
           "keyPoint": "Di papan, scan tag 'mulai kerja'",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             50,
@@ -8739,7 +8739,7 @@
           "category": "action",
           "keyPoint": "Di papan, scan aktivitas yang ditugaskan",
           "critical": false,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -8765,7 +8765,7 @@
           "category": "important",
           "keyPoint": "Jika bekerja di baris, masuk ke baris yang ditentukan",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -8792,7 +8792,7 @@
           "category": "action",
           "keyPoint": "Saat mulai istirahat, keluar dulu dari baris dan scan tag baris, lalu sca…",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -8819,7 +8819,7 @@
           "category": "action",
           "keyPoint": "Setelah kembali dari istirahat, scan 'selesai istirahat' dan lanjut sesua…",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -8846,7 +8846,7 @@
           "category": "important",
           "keyPoint": "Di akhir kerja, scan 'selesai kerja'",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -8873,7 +8873,7 @@
           "category": "action",
           "keyPoint": "Taruh reader kembali di charger bernomor yang ditentukan",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -8900,7 +8900,7 @@
           "category": "important",
           "keyPoint": "Mulai kerja di baris",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -8921,7 +8921,7 @@
           "category": "action",
           "keyPoint": "Keluar dari baris",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -8983,7 +8983,7 @@
           "category": "important",
           "keyPoint": "Istirahat biasa",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -9010,7 +9010,7 @@
           "category": "action",
           "keyPoint": "Ganti aktivitas dan selesai kerja",
           "critical": true,
-          "visualHint": "Lihat nomor yang ditandai dan tombol reader yang tepat itu.",
+          "visualHint": "Lihat nomor yang disorot dan tombol yang tepat pada pemindai (reader).",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -9574,7 +9574,7 @@
           "icon": "👋",
           "pose": "neutral",
           "tone": "neutral",
-          "category": "action",
+          "category": "listen",
           "keyPoint": "सुरु गर्नुअघि महत्त्वपूर्ण जानकारी",
           "critical": false,
           "visualHint": "बाटो, भवन र प्रवेशद्वार तुलना गर्नुहोस्। संयोजकले पुष्टि गरेको मार्ग मात्र प्रयोग गर्नुहोस्।",
@@ -9688,7 +9688,7 @@
           "category": "forbidden",
           "keyPoint": "गोदाममा reader प्रयोग हुँदैन",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-supplied-site-photo",
           "quizIndex": 0
         },
@@ -9833,7 +9833,7 @@
           "category": "important",
           "keyPoint": "पूरा क्रम",
           "critical": false,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo"
         },
         {
@@ -9853,7 +9853,7 @@
           "category": "action",
           "keyPoint": "तोकिएको नम्बर भएको चार्जरबाट reader लिनुहोस्",
           "critical": false,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -9879,7 +9879,7 @@
           "category": "action",
           "keyPoint": "सुरु जानकारी अनुसार बीचको बटनले आफ्नो व्यक्तिगत tag स्क्यान गर्नुहोस्",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -9906,7 +9906,7 @@
           "category": "action",
           "keyPoint": "बोर्डमा 'काम सुरु' tag स्क्यान गर्नुहोस्",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             50,
@@ -9933,7 +9933,7 @@
           "category": "action",
           "keyPoint": "बोर्डमा तोकेको गतिविधि स्क्यान गर्नुहोस्",
           "critical": false,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -9959,7 +9959,7 @@
           "category": "important",
           "keyPoint": "यदि पङ्क्तिमा काम गर्नुहुन्छ भने तोकिएको पङ्क्तिमा जानुहोस्",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -9986,7 +9986,7 @@
           "category": "action",
           "keyPoint": "ब्रेक सुरु गर्दा पहिले पङ्क्तिबाट निस्केर row tag स्क्यान गर्नुहोस्, त्यस…",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -10013,7 +10013,7 @@
           "category": "action",
           "keyPoint": "ब्रेकबाट फर्केपछि 'ब्रेक समाप्त' स्क्यान गरेर आफ्नो प्रक्रियाअनुसार जारी…",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -10040,7 +10040,7 @@
           "category": "important",
           "keyPoint": "काम सकिँदा 'काम समाप्त' स्क्यान गर्नुहोस्",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -10067,7 +10067,7 @@
           "category": "action",
           "keyPoint": "reader लाई तोकिएको नम्बर भएको चार्जरमा राख्नुहोस्",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             76,
@@ -10094,7 +10094,7 @@
           "category": "important",
           "keyPoint": "पङ्क्तिमा काम सुरु",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -10115,7 +10115,7 @@
           "category": "action",
           "keyPoint": "पङ्क्तिबाट निस्कने",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "training-diagram",
           "quizIndex": 4
         },
@@ -10177,7 +10177,7 @@
           "category": "important",
           "keyPoint": "सामान्य ब्रेक",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
@@ -10204,7 +10204,7 @@
           "category": "action",
           "keyPoint": "गतिविधि परिवर्तन र काम समाप्त",
           "critical": true,
-          "visualHint": "देखाइएको नम्बर र रिडरको ठीक त्यही बटन हेर्नुहोस्।",
+          "visualHint": "देखाइएको नम्बर र स्क्यानरको (रिडर) ठीक त्यही बटन हेर्नुहोस्।",
           "visualOrigin": "company-screen-or-training-photo",
           "focus": [
             25,
