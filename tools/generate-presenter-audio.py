@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import json
 import re
 import sys
@@ -42,6 +43,18 @@ VOICE_PROFILES = {
     "ne": {"rate": "-9%", "pitch": "-2Hz", "volume": "+8%"},
 }
 
+SECTION_RANGE_SPEECH = {
+    "pl": "od E jeden do E sześć",
+    "en": "E one to E six",
+    "ua": "від E один до E шість",
+    "ru": "от E один до E шесть",
+    "az": "E birdən E altıya qədər",
+    "es": "de E uno a E seis",
+    "fil": "E one hanggang E six",
+    "id": "E satu sampai E enam",
+    "ne": "E एकदेखि E छसम्म",
+}
+
 
 def speech_script(script: str, language: str) -> str:
     """Turn display copy into calmer narration without changing its meaning."""
@@ -71,6 +84,7 @@ def speech_script(script: str, language: str) -> str:
         }
         for source, replacement in replacements.items():
             prepared = re.sub(rf"\b{source}\b", replacement, prepared, flags=re.IGNORECASE)
+    prepared = prepared.replace("E1-E6", SECTION_RANGE_SPEECH[language])
     return prepared
 
 
@@ -110,7 +124,7 @@ async def generate(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     semaphore = asyncio.Semaphore(max(1, concurrency))
-    jobs: list[tuple[str, str, dict[str, str], str, Path]] = []
+    jobs: list[tuple[str, str, str, dict[str, str], str, str, Path]] = []
     for language, voice in VOICE_JOBS.items():
         if selected_languages and language not in selected_languages:
             continue
@@ -125,12 +139,21 @@ async def generate(
             if mp3_path.exists() and not force:
                 print(f"kept {language}/{mp3_path.name}", flush=True)
                 continue
-            jobs.append((language, voice, VOICE_PROFILES[language], speech_script(section["text"], language), mp3_path))
+            jobs.append((language, section_id, voice, VOICE_PROFILES[language], section["text"], speech_script(section["text"], language), mp3_path))
 
-    async def render(job: tuple[str, str, dict[str, str], str, Path]) -> None:
-        language, voice, profile, script, mp3_path = job
+    rendered_entries: dict[str, dict[str, object]] = {}
+
+    async def render(job: tuple[str, str, str, dict[str, str], str, str, Path]) -> None:
+        language, section_id, voice, profile, source_text, script, mp3_path = job
         async with semaphore:
             await save_with_retry(script, voice, profile, mp3_path)
+        audio_bytes = mp3_path.read_bytes()
+        rendered_entries[f"{language}/{section_id}"] = {
+            "sourceTextSha256": hashlib.sha256(source_text.encode("utf-8")).hexdigest(),
+            "audioSha256": hashlib.sha256(audio_bytes).hexdigest(),
+            "bytes": len(audio_bytes),
+            "voice": voice,
+        }
         print(
             f"generated {language}/{mp3_path.name}: {voice}, "
             f"rate {profile['rate']}, pitch {profile['pitch']}",
@@ -138,6 +161,16 @@ async def generate(
         )
 
     await asyncio.gather(*(render(job) for job in jobs))
+    manifest_path = output_dir.parent.parent / "content" / "narration-manifest.json"
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    else:
+        manifest = {"version": 1, "entries": {}}
+    manifest["guideVersion"] = guide.get("version", "")
+    manifest["renderedEntries"] = len(languages) * len(next(iter(languages.values())).get("sections", []))
+    manifest.setdefault("entries", {}).update(rendered_entries)
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"updated {manifest_path}: {len(rendered_entries)} narration entries", flush=True)
 
 
 def main() -> None:

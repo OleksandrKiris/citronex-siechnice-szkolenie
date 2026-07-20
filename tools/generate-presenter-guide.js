@@ -36,15 +36,15 @@ function visualHintFor(id, image, lang) {
 }
 
 const introductions = {
-  pl: "Dzień dobry. Nazywam się Aleksandr i pomogę Ci spokojnie przygotować się do pracy w Citronex Siechnice. Obejrzyj ten instruktaż przed przyjazdem albo włącz go podczas oczekiwania na dokumenty. Przejdziemy po kolei przez dojazd, różnice między magazynem i szklarnią, reader, tablet, zasady bezpieczeństwa oraz miejsca, w których możesz uzyskać pomoc. Nie spiesz się. W każdej chwili możesz zatrzymać nagranie, powtórzyć rozdział lub otworzyć pełny tekst.",
-  en: "Hello. My name is Aleksandr, and I will help you prepare calmly for work at Citronex Siechnice. Watch this briefing before you arrive, or play it while you wait for your documents. We will go step by step through arrival, the differences between the warehouse and greenhouse, the reader, the tablet, safety rules, and where to ask for help. There is no need to rush. You can pause the recording, repeat a chapter, or open the full text at any time.",
-  ua: "Добрий день. Мене звати Олександр, і я допоможу вам спокійно підготуватися до роботи в Citronex Siechnice. Перегляньте цей інструктаж до приїзду або увімкніть його, поки очікуєте на документи. Ми послідовно розберемо приїзд, різницю між складом і теплицею, рідер, планшет, правила безпеки та до кого звертатися по допомогу. Не поспішайте. Ви можете будь-коли зупинити запис, повторити розділ або відкрити повний текст.",
-  ru: "Здравствуйте. Меня зовут Александр, и я помогу вам спокойно подготовиться к работе в Citronex Siechnice. Посмотрите этот инструктаж до приезда или включите его, пока ожидаете документы. Мы пройдём всё по порядку: куда приехать, чем отличаются склад и теплица, как пользоваться ридером и планшетом, какие правила безопасности обязательны и к кому обращаться за помощью. Не спешите. Вы можете в любой момент поставить запись на паузу, повторить главу или открыть полный текст.",
-  az: "Salam. Mənim adım Aleksandrdır və Citronex Siechnice-də işə sakit şəkildə hazırlaşmağınıza kömək edəcəyəm. Bu təlimata gəlməzdən əvvəl baxın və ya sənədləri gözləyərkən qoşun. Biz gəlişi, anbarla istixananın fərqini, readeri, planşeti, təhlükəsizlik qaydalarını və kömək üçün kimə müraciət etməyi addım-addım izah edəcəyik. Tələsməyin. Yazını istənilən vaxt dayandıra, bölməni təkrar edə və ya tam mətni aça bilərsiniz.",
-  es: "Hola. Me llamo Aleksandr y te ayudaré a prepararte con calma para trabajar en Citronex Siechnice. Mira esta formación antes de llegar o reprodúcela mientras esperas tus documentos. Explicaremos paso a paso la llegada, la diferencia entre el almacén y el invernadero, el lector, la tableta, las normas de seguridad y a quién pedir ayuda. No tengas prisa. Puedes pausar la grabación, repetir un capítulo o abrir el texto completo en cualquier momento.",
-  fil: "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang pagsasanay na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Tatalakayin natin nang sunod-sunod ang pagdating, ang pagkakaiba ng bodega at bahay-taniman, ang reader, tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang rekording, ulitin ang kabanata, o buksan ang buong teksto anumang oras.",
-  id: "Halo. Nama saya Aleksandr, dan saya akan membantu Anda mempersiapkan diri dengan tenang untuk bekerja di Citronex Siechnice. Tonton pengarahan ini sebelum tiba, atau putar sambil menunggu dokumen. Kita akan membahas secara berurutan tentang kedatangan, perbedaan gudang dan rumah kaca, reader, tablet, aturan keselamatan, serta siapa yang harus dihubungi untuk meminta bantuan. Tidak perlu terburu-buru. Anda dapat menjeda rekaman, mengulang bab, atau membuka teks lengkap kapan saja.",
-  ne: "नमस्कार। मेरो नाम अलेक्जेन्डर हो, र म तपाईंलाई Citronex Siechnice मा कामका लागि शान्त रूपमा तयार हुन मद्दत गर्नेछु। यो निर्देशन आइपुग्नुअघि हेर्नुहोस्, वा कागजात पर्खँदा चलाउनुहोस्। हामी आगमन, गोदाम र हरितगृहबीचको फरक, रिडर, ट्याब्लेट, सुरक्षा नियम र मद्दतका लागि कसलाई सम्पर्क गर्ने भन्ने कुरा क्रमसँग बुझ्नेछौँ। हतार नगर्नुहोस्। तपाईंले कुनै पनि बेला रेकर्डिङ रोक्न, अध्याय दोहोर्‍याउन वा पूरा पाठ खोल्न सक्नुहुन्छ।"
+  pl: "Dzień dobry. Nazywam się Aleksandr i pomogę Ci spokojnie przygotować się do pracy w Citronex Siechnice. Obejrzyj ten instruktaż przed przyjazdem albo włącz go podczas oczekiwania na dokumenty. Przejdziemy po kolei przez dojazd, różnice między magazynem i szklarnią, reader, czyli ręczny czytnik, tablet, zasady bezpieczeństwa oraz miejsca, w których możesz uzyskać pomoc. Nie spiesz się. W każdej chwili możesz zatrzymać nagranie, powtórzyć rozdział lub otworzyć pełny tekst.",
+  en: "Hello. My name is Aleksandr, and I will help you prepare calmly for work at Citronex Siechnice. Watch this briefing before you arrive, or play it while you wait for your documents. We will go step by step through arrival, the differences between the warehouse and greenhouse, the reader, which is a handheld scanner, the tablet, safety rules, and where to ask for help. There is no need to rush. You can pause the recording, repeat a chapter, or open the full text at any time.",
+  ua: "Добрий день. Мене звати Олександр, і я допоможу вам спокійно підготуватися до роботи в Citronex Siechnice. Перегляньте цей інструктаж до приїзду або увімкніть його, поки очікуєте на документи. Ми послідовно розберемо приїзд, різницю між складом і теплицею, рідер — тобто ручний сканер, планшет, правила безпеки та до кого звертатися по допомогу. Не поспішайте. Ви можете будь-коли зупинити запис, повторити розділ або відкрити повний текст.",
+  ru: "Здравствуйте. Меня зовут Александр, и я помогу вам спокойно подготовиться к работе в Citronex Siechnice. Посмотрите этот инструктаж до приезда или включите его, пока ожидаете документы. Мы пройдём всё по порядку: куда приехать, чем отличаются склад и теплица, как пользоваться ридером — ручным сканером — и планшетом, какие правила безопасности обязательны и к кому обращаться за помощью. Не спешите. Вы можете в любой момент поставить запись на паузу, повторить главу или открыть полный текст.",
+  az: "Salam. Mənim adım Aleksandrdır və Citronex Siechnice-də işə sakit şəkildə hazırlaşmağınıza kömək edəcəyəm. Bu təlimata gəlməzdən əvvəl baxın və ya sənədləri gözləyərkən qoşun. Biz gəlişi, anbarla istixananın fərqini, readeri, yəni əl skanerini, planşeti, təhlükəsizlik qaydalarını və kömək üçün kimə müraciət etməyi addım-addım izah edəcəyik. Tələsməyin. Yazını istənilən vaxt dayandıra, bölməni təkrar edə və ya tam mətni aça bilərsiniz.",
+  es: "Hola. Me llamo Aleksandr y te ayudaré a prepararte con calma para trabajar en Citronex Siechnice. Mira esta formación antes de llegar o reprodúcela mientras esperas tus documentos. Explicaremos paso a paso la llegada, la diferencia entre el almacén y el invernadero, el reader, es decir, el lector portátil, la tableta, las normas de seguridad y a quién pedir ayuda. No tengas prisa. Puedes pausar la grabación, repetir un capítulo o abrir el texto completo en cualquier momento.",
+  fil: "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang pagsasanay na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Tatalakayin natin nang sunod-sunod ang pagdating, ang pagkakaiba ng bodega at bahay-taniman, ang reader o handheld scanner, ang tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang rekording, ulitin ang kabanata, o buksan ang buong teksto anumang oras.",
+  id: "Halo. Nama saya Aleksandr, dan saya akan membantu Anda mempersiapkan diri dengan tenang untuk bekerja di Citronex Siechnice. Tonton pengarahan ini sebelum tiba, atau putar sambil menunggu dokumen. Kita akan membahas secara berurutan tentang kedatangan, perbedaan gudang dan rumah kaca, reader atau pemindai genggam, tablet, aturan keselamatan, serta siapa yang harus dihubungi untuk meminta bantuan. Tidak perlu terburu-buru. Anda dapat menjeda rekaman, mengulang bab, atau membuka teks lengkap kapan saja.",
+  ne: "नमस्कार। मेरो नाम अलेक्जेन्डर हो, र म तपाईंलाई Citronex Siechnice मा कामका लागि शान्त रूपमा तयार हुन मद्दत गर्नेछु। यो निर्देशन आइपुग्नुअघि हेर्नुहोस्, वा कागजात पर्खँदा चलाउनुहोस्। हामी आगमन, गोदाम र ग्रीनहाउसबीचको फरक, रिडर अर्थात् हातमा समात्ने स्क्यानर, ट्याब्लेट, सुरक्षा नियम र मद्दतका लागि कसलाई सम्पर्क गर्ने भन्ने कुरा क्रमसँग बुझ्नेछौँ। हतार नगर्नुहोस्। तपाईंले कुनै पनि बेला रेकर्डिङ रोक्न, अध्याय दोहोर्‍याउन वा पूरा पाठ खोल्न सक्नुहुन्छ।"
 };
 
 const topicLeadTemplates = {
@@ -97,7 +97,7 @@ function valueFor(value, lang) {
 function sentence(value, lang) {
   const text = valueFor(value, lang).replace(/\s+/g, " ").trim();
   if (!text) return "";
-  return /[.!?…。！？।]$/.test(text) ? text : `${text}.`;
+  return /[.!?…。！？।]$/.test(text) ? text : `${text}${lang === "ne" ? "।" : "."}`;
 }
 
 function join(parts, lang) {
@@ -214,7 +214,7 @@ function buildGuide(lang) {
     id: ["warehouse-no-reader", "warehouse-entrance", "warehouse-contact"][index],
     group: "warehouse",
     title: shortTitle(rule),
-    parts: [rule, index === 0 ? startReader.tips[1] : []],
+    parts: [rule, index === 0 ? tablet.lead : []],
     image: `assets/warehouse/magazyn-wejscie-${index === 2 ? 2 : 1}.jpg`,
     icon: index === 0 ? "🚫📟" : index === 1 ? "🚪" : "☎️",
     pose: index === 0 ? "warning" : "right",
@@ -257,7 +257,7 @@ function buildGuide(lang) {
     id: ["tablet-login", "tablet-start", "tablet-activity", "tablet-change", "tablet-break-start", "tablet-break-end", "tablet-work-end", "tablet-logout"][index],
     group: "tablet",
     title: step.title,
-    parts: [index === 0 ? tablet.important : [], step.title, step.note, index === 7 ? tablet.tips : []],
+    parts: [index === 0 ? tablet.important : [], step.note, index === 7 ? tablet.tips : []],
     image: step.image,
     icon: "📱",
     pose: "tablet",

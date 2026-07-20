@@ -10,6 +10,8 @@ const guide = JSON.parse(fs.readFileSync(guidePath, "utf8"));
 const lipSync = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "lipsync-cues.json"), "utf8"));
 const review = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "content-review.json"), "utf8"));
 const voices = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "voice-manifest.json"), "utf8"));
+const translationReview = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "translation-review.json"), "utf8"));
+const narrationManifest = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "narration-manifest.json"), "utf8"));
 const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"];
 const errors = [];
 const warnings = [];
@@ -128,6 +130,8 @@ if (!workerSource.includes('cache: "no-store"') || !workerSource.includes('type 
 if (review.reviewedAt !== "2026-07-19" || !review.contentAuthor || !review.operationalApprovalOwner) errors.push("dated content ownership record is incomplete");
 if (!Array.isArray(review.checks) || review.checks.filter((item) => item.status === "verified-official").length < 4) errors.push("official fact review is incomplete");
 if (voices.renderedChapters !== 450 || Object.keys(voices.voices || {}).length !== 9 || Object.values(voices.voices || {}).some((item) => item.gender !== "male")) errors.push("male multilingual voice manifest is incomplete");
+if (translationReview.technicalStatus !== "passed" || translationReview.humanReviewStatus !== "native-speaker-approval-pending") errors.push("translation review status is incomplete");
+if (narrationManifest.guideVersion !== guide.version || narrationManifest.renderedEntries !== 450 || Object.keys(narrationManifest.entries || {}).length !== 450) errors.push("text-to-narration manifest is incomplete or stale");
 if (!sameArray([...(lipSync.visemes || [])].sort(), ["closed", "mid", "ah", "oh", "ee", "fv", "l", "mbp"].sort())) errors.push("the eight-viseme timing set is incomplete");
 
 for (const language of expectedLanguages) {
@@ -200,6 +204,8 @@ console.log(`Expected audio files: ${expectedLanguages.length * expectedSections
 console.log(`Independent rig layers: ${rigAssets.length}`);
 console.log(`Professional cartoon frames: ${professionalCartoonFrames.join(", ")}`);
 console.log("Lip sync: audio-reactive multi-viseme + fallback animation");
+console.log("Narration consistency: 450 source-text and MP3 hashes");
+console.log(`Translation review: ${translationReview.technicalStatus}; ${translationReview.humanReviewStatus}`);
 console.log("Adaptive visual focus: presenter / instruction priority");
 console.log("Service Worker freshness: automatic reload + network-first HTML");
 console.log(`Warnings: ${warnings.length}`);

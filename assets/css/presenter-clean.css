@@ -274,7 +274,7 @@
   body[data-page="pomocnik"] .presenter-path-overlay {
     background:
       linear-gradient(180deg, rgba(3, 42, 28, .72), rgba(3, 52, 34, .9)),
-      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master39") center 31% / min(72vh, 620px) auto no-repeat;
+      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master40") center 31% / min(72vh, 620px) auto no-repeat;
   }
 
   body[data-page="pomocnik"] .presenter-path-dialog h3 {

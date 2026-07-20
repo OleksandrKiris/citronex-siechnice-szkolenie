@@ -1,9 +1,9 @@
 {
-  "version": "2026-07-19.1",
+  "version": "2026-07-20.2",
   "engine": "Microsoft Edge neural speech",
   "renderedChapters": 450,
   "runtimeProcessing": "warmth, presence and gentle compression",
-  "reviewStatus": "automated technical audit complete; native-speaker approval pending",
+  "reviewStatus": "cross-language consistency audit complete; native-speaker approval pending",
   "voices": {
     "pl": { "voice": "pl-PL-MarekNeural", "gender": "male", "rate": "-10%", "pitch": "-2Hz", "volume": "+8%" },
     "en": { "voice": "en-GB-RyanNeural", "gender": "male", "rate": "-7%", "pitch": "-2Hz", "volume": "+7%" },

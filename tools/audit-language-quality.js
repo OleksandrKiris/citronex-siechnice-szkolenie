@@ -3,15 +3,19 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
+const crypto = require("node:crypto");
 
 const root = path.resolve(__dirname, "..");
 const guide = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "presenter-guide.json"), "utf8"));
+const translationReview = JSON.parse(fs.readFileSync(path.join(root, "assets", "content", "translation-review.json"), "utf8"));
+const narrationManifestPath = path.join(root, "assets", "content", "narration-manifest.json");
+const narrationManifest = fs.existsSync(narrationManifestPath) ? JSON.parse(fs.readFileSync(narrationManifestPath, "utf8")) : null;
 const expectedLanguages = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"];
 const errors = [];
 const warnings = [];
 const report = [];
 const mojibake = /\uFFFD|Ã.|Â.|Ð.|Ñ.|â.|рџ|а¤/u;
-const placeholders = /\b(?:TODO|TBD|MISSING|lorem ipsum)\b/i;
+const placeholders = /\b(?:TODO|TBD|MISSING)\b|\b[Ll]orem [Ii]psum\b/;
 
 const disclaimerTokens = {
   pl: ["nie zastępuje", "instruktażu"],
@@ -36,6 +40,40 @@ const restartFiveWords = {
   es: "cinco", fil: "limang", id: "lima", ne: "पाँच"
 };
 
+const semanticTerms = {
+  welcome: {
+    pl: ["ręczny czytnik"], en: ["handheld scanner"], ua: ["ручний сканер"], ru: ["ручным сканером"],
+    az: ["əl skaner"], es: ["lector portátil"], fil: ["handheld scanner"], id: ["pemindai genggam"], ne: ["हातमा समात्ने स्क्यानर"]
+  },
+  "arrival-place": {
+    pl: ["E1-E6", "etap szklarni"], en: ["E1-E6", "greenhouse section"], ua: ["E1-E6", "сектор теплиці"],
+    ru: ["E1-E6", "сектор теплицы"], az: ["E1-E6", "istixana bölməsini"], es: ["E1-E6", "sección del invernadero"],
+    fil: ["E1-E6", "seksyon ng bahay-taniman"], id: ["E1-E6", "bagian rumah kaca"], ne: ["E1-E6", "ग्रीनहाउस खण्ड"]
+  },
+  "greenhouse-overview": {
+    pl: ["wydzielona część szklarni"], en: ["bay called a nave"], ua: ["секція теплиці"], ru: ["секция теплицы"],
+    az: ["nava adlanan"], es: ["una sección"], fil: ["seksyon ng bahay-taniman"], id: ["bagian rumah kaca"], ne: ["ग्रीनहाउसको खण्ड"]
+  },
+  "reader-row-exit": {
+    pl: ["jeden raz", "dwa razy"], en: ["once", "twice"], ua: ["один раз", "два рази"], ru: ["один раз", "два раза"],
+    az: ["bir dəfə", "iki dəfə"], es: ["una vez", "dos veces"], fil: ["isang beses", "dalawang beses"], id: ["sekali", "dua kali"], ne: ["एक पटक", "दुई पटक"]
+  },
+  "reader-restart-buttons": {
+    pl: ["LEWY", "PRAWY", "ŚRODKOWY"], en: ["LEFT", "RIGHT", "MIDDLE"], ua: ["ЛІВУ", "ПРАВА", "СЕРЕДНЯ"],
+    ru: ["ЛЕВУЮ", "ПРАВАЯ", "СРЕДНЯЯ"], az: ["SOL", "SAĞ", "ORTA"], es: ["IZQUIERDO", "DERECHO", "CENTRAL"],
+    fil: ["KALIWANG", "KANAN", "GITNA"], id: ["KIRI", "KANAN", "TENGAH"], ne: ["बायाँ", "दायाँ", "बीच"]
+  }
+};
+
+const ambiguousArrivalTerms = {
+  en: /\bstage\b/i, ua: /\bетап\b/i, ru: /\bэтап\b/i, az: /\betap\b/i,
+  es: /\betapa\b/i, fil: /\betap\b/i, id: /\btahap\b/i, ne: /चरण/u
+};
+
+function sha256(value) {
+  return crypto.createHash("sha256").update(value).digest("hex");
+}
+
 function normalizeDigits(value) {
   return String(value).replace(/[०-९]/g, (digit) => String("०१२३४५६७८९".indexOf(digit)));
 }
@@ -49,6 +87,12 @@ function scriptRatio(value, expression) {
 const reference = guide.languages?.pl?.sections;
 if (!Array.isArray(reference) || reference.length !== 50) errors.push("Polish reference must contain exactly 50 chapters");
 const referenceIds = Array.isArray(reference) ? reference.map((section) => section.id) : [];
+if (translationReview.reviewedAt !== "2026-07-20" || translationReview.technicalStatus !== "passed") errors.push("translation review metadata is incomplete");
+if (translationReview.humanReviewStatus !== "native-speaker-approval-pending") errors.push("native-speaker review status must be explicit");
+for (const language of expectedLanguages) {
+  if (!translationReview.languages?.[language]?.locale) errors.push(`${language}: translation review locale is missing`);
+}
+if (narrationManifest && narrationManifest.guideVersion !== guide.version) errors.push("narration manifest guide version is stale");
 
 for (const language of expectedLanguages) {
   const localized = guide.languages?.[language];
@@ -85,11 +129,26 @@ for (const language of expectedLanguages) {
     if (section.id === "reader-restart-menu" && !text.toLocaleLowerCase().includes(restartFiveWords[language])) {
       errors.push(`${label}: the instruction to press DOWN five times is missing`);
     }
+    const requiredTerms = semanticTerms[section.id]?.[language] || [];
+    requiredTerms.forEach((term) => {
+      if (!text.toLocaleLowerCase().includes(term.toLocaleLowerCase())) errors.push(`${label}: required meaning is missing (${term})`);
+    });
+    if (section.id === "arrival-place" && ambiguousArrivalTerms[language]?.test(text)) {
+      errors.push(`${label}: ambiguous literal translation of the workplace sector remains`);
+    }
 
     const audioName = `${String(index + 1).padStart(2, "0")}-${section.id}.mp3`;
     const audioPath = path.join(root, "assets", "audio", "guide", language, audioName);
     if (!fs.existsSync(audioPath)) errors.push(`${label}: narration is missing (${audioName})`);
     else if (fs.statSync(audioPath).size < 4096) errors.push(`${label}: narration is too small (${audioName})`);
+    if (narrationManifest) {
+      const manifestEntry = narrationManifest.entries?.[`${language}/${section.id}`];
+      if (!manifestEntry) errors.push(`${label}: narration manifest entry is missing`);
+      else {
+        if (manifestEntry.sourceTextSha256 !== sha256(text)) errors.push(`${label}: narration was not regenerated after translation changed`);
+        if (fs.existsSync(audioPath) && manifestEntry.audioSha256 !== sha256(fs.readFileSync(audioPath))) errors.push(`${label}: narration file differs from its manifest`);
+      }
+    }
   });
 
   const finishText = String(sections.find((section) => section.id === "finish")?.text || "").toLocaleLowerCase(language === "ua" ? "uk" : language);
@@ -117,6 +176,8 @@ if (unknownLanguages.length) warnings.push(`unexpected languages: ${unknownLangu
 console.log("Citronex language quality audit");
 report.forEach((line) => console.log(line));
 console.log(`Critical language checks: ${expectedLanguages.length * 50}`);
+console.log(`Translation review: ${translationReview.technicalStatus}; ${translationReview.humanReviewStatus}`);
+console.log(`Narration manifest: ${narrationManifest ? "verified" : "not created yet"}`);
 console.log(`Warnings: ${warnings.length}`);
 console.log(`Errors: ${errors.length}`);
 warnings.forEach((warning) => console.log(`WARNING: ${warning}`));

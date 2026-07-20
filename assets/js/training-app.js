@@ -792,11 +792,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260720-siechnice-master39" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260720-siechnice-master39" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260720-siechnice-master39" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260720-siechnice-master40" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260720-siechnice-master40" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260720-siechnice-master40" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260720-siechnice-master39" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260720-siechnice-master40" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -859,16 +859,16 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small data-presenter-complete-next>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260720-siechnice-master39" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260720-siechnice-master40" hidden></video>
           <div class="presenter-professional-head" data-professional-head aria-hidden="true">
-            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master39" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260720-siechnice-master39" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260720-siechnice-master39" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260720-siechnice-master39" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="ee" src="assets/avatar/presenter-cartoon-professional-ee-v3.png?v=20260720-siechnice-master39" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="fv" src="assets/avatar/presenter-cartoon-professional-fv-v3.png?v=20260720-siechnice-master39" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="l" src="assets/avatar/presenter-cartoon-professional-l-v3.png?v=20260720-siechnice-master39" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="mbp" src="assets/avatar/presenter-cartoon-professional-mbp-v3.png?v=20260720-siechnice-master39" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="ee" src="assets/avatar/presenter-cartoon-professional-ee-v3.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="fv" src="assets/avatar/presenter-cartoon-professional-fv-v3.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="l" src="assets/avatar/presenter-cartoon-professional-l-v3.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="mbp" src="assets/avatar/presenter-cartoon-professional-mbp-v3.png?v=20260720-siechnice-master40" alt="" width="512" height="512">
           </div>
           <button type="button" class="presenter-caption" data-presenter-caption aria-live="polite" aria-atomic="true"></button>
           <p class="presenter-audio-state" data-presenter-audio-state data-state="loading" role="status" aria-live="polite"><span data-presenter-audio-state-icon aria-hidden="true">⏳</span><span data-presenter-audio-state-text>${esc(experience.voiceLoading)}</span></p>

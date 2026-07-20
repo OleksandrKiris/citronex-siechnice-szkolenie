@@ -3,7 +3,7 @@
   "chapterCount": 50,
   "languages": {
     "pl": {
-      "totalCharacters": 8356,
+      "totalCharacters": 8307,
       "sections": [
         {
           "id": "welcome",
@@ -17,7 +17,7 @@
             "all"
           ],
           "title": "Najważniejsze informacje przed rozpoczęciem",
-          "text": "Dzień dobry. Nazywam się Aleksandr i pomogę Ci spokojnie przygotować się do pracy w Citronex Siechnice. Obejrzyj ten instruktaż przed przyjazdem albo włącz go podczas oczekiwania na dokumenty. Przejdziemy po kolei przez dojazd, różnice między magazynem i szklarnią, reader, tablet, zasady bezpieczeństwa oraz miejsca, w których możesz uzyskać pomoc. Nie spiesz się. W każdej chwili możesz zatrzymać nagranie, powtórzyć rozdział lub otworzyć pełny tekst.",
+          "text": "Dzień dobry. Nazywam się Aleksandr i pomogę Ci spokojnie przygotować się do pracy w Citronex Siechnice. Obejrzyj ten instruktaż przed przyjazdem albo włącz go podczas oczekiwania na dokumenty. Przejdziemy po kolei przez dojazd, różnice między magazynem i szklarnią, reader, czyli ręczny czytnik, tablet, zasady bezpieczeństwa oraz miejsca, w których możesz uzyskać pomoc. Nie spiesz się. W każdej chwili możesz zatrzymać nagranie, powtórzyć rozdział lub otworzyć pełny tekst.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -40,7 +40,7 @@
             "all"
           ],
           "title": "Wybierz miejsce",
-          "text": "Wybierz miejsce.\n\nEtap, magazyn albo punkt spotkania wybierasz zgodnie z wiadomością startową.",
+          "text": "Wybierz miejsce.\n\nWybierz etap szklarni E1-E6, magazyn albo punkt spotkania wskazany w wiadomości startowej.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -128,7 +128,7 @@
             "all"
           ],
           "title": "Na magazynie nie używa się readerów",
-          "text": "Na magazynie nie używa się readerów.\n\nMagazyn nie używa readerów. Tablet ma jedną wspólną instrukcję dla magazynu i szklarni.",
+          "text": "Na magazynie nie używa się readerów.\n\nTablet działa tak samo na szklarni i na magazynie. Używaj swojego nazwiska i PIN-u, a potem wybieraj tylko czynność, którą naprawdę wykonujesz.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -190,7 +190,7 @@
             "all"
           ],
           "title": "Orientacja w szklarni",
-          "text": "Szklarnia jest pokazana w 3 prostych krokach: całość, jedna nawa, wejście do rzędu.",
+          "text": "Szklarnię pokazujemy w trzech prostych krokach: całość, jedna nawa i wejście do rzędu. Nawa to wydzielona część szklarni.",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -713,7 +713,7 @@
             "all"
           ],
           "title": "Znajdź swoje nazwisko i zaloguj się",
-          "text": "Używaj tylko swojego nazwiska i swojego PIN-u. Nie wolno używać danych innej osoby.\n\nZnajdź swoje nazwisko i zaloguj się.\n\nRozpoczynając pracę znajdź swoje imię i nazwisko. Zaloguj się swoim numerem PIN.",
+          "text": "Używaj tylko swojego nazwiska i swojego PIN-u. Nie wolno używać danych innej osoby.\n\nRozpoczynając pracę znajdź swoje imię i nazwisko. Zaloguj się swoim numerem PIN.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -741,7 +741,7 @@
             "all"
           ],
           "title": "Kliknij „Początek pracy”",
-          "text": "Kliknij „Początek pracy”.\n\nZnajdź czynność „Początek pracy” i kliknij ją.",
+          "text": "Znajdź czynność „Początek pracy” i kliknij ją.",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -769,7 +769,7 @@
             "all"
           ],
           "title": "Wybierz wykonywaną czynność",
-          "text": "Wybierz wykonywaną czynność.\n\nZaloguj się ponownie i wybierz wykonywaną czynność.",
+          "text": "Zaloguj się ponownie i wybierz wykonywaną czynność.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -796,7 +796,7 @@
             "all"
           ],
           "title": "Zmiana czynności",
-          "text": "Zmiana czynności.\n\nJeśli zmieniasz wykonywaną czynność, zaloguj się ponownie i wybierz nową czynność.",
+          "text": "Jeśli zmieniasz wykonywaną czynność, zaloguj się ponownie i wybierz nową czynność.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -824,7 +824,7 @@
             "all"
           ],
           "title": "Początek przerwy",
-          "text": "Początek przerwy.\n\nZaczynając przerwę zaloguj się i wybierz „Przerwa”.",
+          "text": "Zaczynając przerwę zaloguj się i wybierz „Przerwa”.",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -852,7 +852,7 @@
             "all"
           ],
           "title": "Koniec przerwy",
-          "text": "Koniec przerwy.\n\nKończąc przerwę zaloguj się i wybierz wykonywaną czynność.",
+          "text": "Kończąc przerwę zaloguj się i wybierz wykonywaną czynność.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -880,7 +880,7 @@
             "all"
           ],
           "title": "Koniec pracy",
-          "text": "Koniec pracy.\n\nKończąc pracę zaloguj się ponownie i wybierz „Koniec pracy”.",
+          "text": "Kończąc pracę zaloguj się ponownie i wybierz „Koniec pracy”.",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -908,7 +908,7 @@
             "all"
           ],
           "title": "Wyloguj się",
-          "text": "Wyloguj się.\n\nZaloguj się ponownie i wybierz „Wyloguj się”.\n\nJeśli tablet nie działa, nie widzisz swojego nazwiska albo nie znasz PIN-u, zgłoś to swojemu brygadziście.\n\nNie zostawiaj swojej sesji zalogowanej dla kolejnej osoby.",
+          "text": "Zaloguj się ponownie i wybierz „Wyloguj się”.\n\nJeśli tablet nie działa, nie widzisz swojego nazwiska albo nie znasz PIN-u, zgłoś to swojemu brygadziście.\n\nNie zostawiaj swojej sesji zalogowanej dla kolejnej osoby.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -1197,7 +1197,7 @@
       ]
     },
     "en": {
-      "totalCharacters": 8349,
+      "totalCharacters": 8315,
       "sections": [
         {
           "id": "welcome",
@@ -1211,7 +1211,7 @@
             "all"
           ],
           "title": "Important information before you start",
-          "text": "Hello. My name is Aleksandr, and I will help you prepare calmly for work at Citronex Siechnice. Watch this briefing before you arrive, or play it while you wait for your documents. We will go step by step through arrival, the differences between the warehouse and greenhouse, the reader, the tablet, safety rules, and where to ask for help. There is no need to rush. You can pause the recording, repeat a chapter, or open the full text at any time.",
+          "text": "Hello. My name is Aleksandr, and I will help you prepare calmly for work at Citronex Siechnice. Watch this briefing before you arrive, or play it while you wait for your documents. We will go step by step through arrival, the differences between the warehouse and greenhouse, the reader, which is a handheld scanner, the tablet, safety rules, and where to ask for help. There is no need to rush. You can pause the recording, repeat a chapter, or open the full text at any time.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -1234,7 +1234,7 @@
             "all"
           ],
           "title": "Choose the place",
-          "text": "Choose the place.\n\nChoose the stage, warehouse or meeting point according to the start message.",
+          "text": "Choose the place.\n\nChoose the greenhouse section E1-E6, warehouse or meeting point shown in the start message.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -1322,7 +1322,7 @@
             "all"
           ],
           "title": "Readers are not used in the warehouse",
-          "text": "Readers are not used in the warehouse.\n\nThe warehouse does not use readers. The tablet has one shared instruction for warehouse and greenhouse.",
+          "text": "Readers are not used in the warehouse.\n\nThe tablet works the same in the greenhouse and warehouse. Use your surname and PIN, then choose only the activity you are really doing.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -1384,7 +1384,7 @@
             "all"
           ],
           "title": "Greenhouse orientation",
-          "text": "The greenhouse is shown in 3 simple steps: whole greenhouse, one nave, one passage.",
+          "text": "The greenhouse is shown in three simple steps: the whole greenhouse, one bay called a nave, and the entrance to a row.",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -1907,7 +1907,7 @@
             "all"
           ],
           "title": "Find your surname and log in",
-          "text": "Use only your own surname and your own PIN. Do not use another person's data.\n\nFind your surname and log in.\n\nWhen starting work, find your first name and surname. Log in with your PIN number.",
+          "text": "Use only your own surname and your own PIN. Do not use another person's data.\n\nWhen starting work, find your first name and surname. Log in with your PIN number.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -1935,7 +1935,7 @@
             "all"
           ],
           "title": "Tap “Work start”",
-          "text": "Tap “Work start”.\n\nFind the activity “Work start” and tap it.",
+          "text": "Find the activity “Work start” and tap it.",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -1963,7 +1963,7 @@
             "all"
           ],
           "title": "Choose the activity you do",
-          "text": "Choose the activity you do.\n\nLog in again and choose the activity you are doing.",
+          "text": "Log in again and choose the activity you are doing.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -1990,7 +1990,7 @@
             "all"
           ],
           "title": "Changing activity",
-          "text": "Changing activity.\n\nIf you change the activity, log in again and choose the new activity.",
+          "text": "If you change the activity, log in again and choose the new activity.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -2018,7 +2018,7 @@
             "all"
           ],
           "title": "Break start",
-          "text": "Break start.\n\nWhen starting a break, log in and choose “Break”.",
+          "text": "When starting a break, log in and choose “Break”.",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -2046,7 +2046,7 @@
             "all"
           ],
           "title": "Break end",
-          "text": "Break end.\n\nWhen ending a break, log in and choose the activity you are doing.",
+          "text": "When ending a break, log in and choose the activity you are doing.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -2074,7 +2074,7 @@
             "all"
           ],
           "title": "Work end",
-          "text": "Work end.\n\nWhen finishing work, log in again and choose “Work end”.",
+          "text": "When finishing work, log in again and choose “Work end”.",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -2102,7 +2102,7 @@
             "all"
           ],
           "title": "Log out",
-          "text": "Log out.\n\nLog in again and choose “Log out”.\n\nIf the tablet does not work, you do not see your surname or you do not know your PIN, report it to your team leader.\n\nDo not leave your session logged in for the next person.",
+          "text": "Log in again and choose “Log out”.\n\nIf the tablet does not work, you do not see your surname or you do not know your PIN, report it to your team leader.\n\nDo not leave your session logged in for the next person.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -2391,7 +2391,7 @@
       ]
     },
     "ua": {
-      "totalCharacters": 8124,
+      "totalCharacters": 8053,
       "sections": [
         {
           "id": "welcome",
@@ -2405,7 +2405,7 @@
             "all"
           ],
           "title": "Важлива інформація перед початком",
-          "text": "Добрий день. Мене звати Олександр, і я допоможу вам спокійно підготуватися до роботи в Citronex Siechnice. Перегляньте цей інструктаж до приїзду або увімкніть його, поки очікуєте на документи. Ми послідовно розберемо приїзд, різницю між складом і теплицею, рідер, планшет, правила безпеки та до кого звертатися по допомогу. Не поспішайте. Ви можете будь-коли зупинити запис, повторити розділ або відкрити повний текст.",
+          "text": "Добрий день. Мене звати Олександр, і я допоможу вам спокійно підготуватися до роботи в Citronex Siechnice. Перегляньте цей інструктаж до приїзду або увімкніть його, поки очікуєте на документи. Ми послідовно розберемо приїзд, різницю між складом і теплицею, рідер — тобто ручний сканер, планшет, правила безпеки та до кого звертатися по допомогу. Не поспішайте. Ви можете будь-коли зупинити запис, повторити розділ або відкрити повний текст.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -2428,7 +2428,7 @@
             "all"
           ],
           "title": "Оберіть місце",
-          "text": "Оберіть місце.\n\nЕтап, склад або пункт зустрічі обирайте згідно зі стартовим повідомленням.",
+          "text": "Оберіть місце.\n\nОберіть сектор теплиці E1-E6, склад або місце зустрічі, вказане у стартовому повідомленні.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -2516,7 +2516,7 @@
             "all"
           ],
           "title": "На складі рідер не використовується",
-          "text": "На складі рідер не використовується.\n\nНа складі рідер не використовується. Планшет має одну спільну інструкцію для складу і теплиці.",
+          "text": "На складі рідер не використовується.\n\nПланшет працює однаково в теплиці і на складі. Використовуйте своє прізвище і PIN, потім обирайте тільки дію, яку справді виконуєте.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -2578,7 +2578,7 @@
             "all"
           ],
           "title": "Орієнтація в теплиці",
-          "text": "Теплиця показана у 3 простих кроках: вся теплиця, одна нава, вхід у ряд.",
+          "text": "Теплицю показано у трьох простих кроках: уся теплиця, одна нава — тобто секція теплиці — та вхід у ряд.",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -3101,7 +3101,7 @@
             "all"
           ],
           "title": "Знайдіть своє прізвище і увійдіть",
-          "text": "Використовуйте тільки своє прізвище і свій PIN. Не можна використовувати дані іншої людини.\n\nЗнайдіть своє прізвище і увійдіть.\n\nПочинаючи роботу, знайдіть своє ім'я та прізвище. Увійдіть своїм PIN-кодом.",
+          "text": "Використовуйте тільки своє прізвище і свій PIN. Не можна використовувати дані іншої людини.\n\nПочинаючи роботу, знайдіть своє ім'я та прізвище. Увійдіть своїм PIN-кодом.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -3129,7 +3129,7 @@
             "all"
           ],
           "title": "Натисніть «Початок роботи»",
-          "text": "Натисніть «Початок роботи».\n\nЗнайдіть дію «Початок роботи» і натисніть її.",
+          "text": "Знайдіть дію «Початок роботи» і натисніть її.",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -3157,7 +3157,7 @@
             "all"
           ],
           "title": "Оберіть дію, яку виконуєте",
-          "text": "Оберіть дію, яку виконуєте.\n\nУвійдіть знову і виберіть дію, яку виконуєте.",
+          "text": "Увійдіть знову і виберіть дію, яку виконуєте.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -3184,7 +3184,7 @@
             "all"
           ],
           "title": "Зміна дії",
-          "text": "Зміна дії.\n\nЯкщо змінюєте дію, увійдіть знову і виберіть нову дію.",
+          "text": "Якщо змінюєте дію, увійдіть знову і виберіть нову дію.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -3212,7 +3212,7 @@
             "all"
           ],
           "title": "Початок перерви",
-          "text": "Початок перерви.\n\nПочинаючи перерву, увійдіть і виберіть «Перерва».",
+          "text": "Починаючи перерву, увійдіть і виберіть «Перерва».",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -3240,7 +3240,7 @@
             "all"
           ],
           "title": "Кінець перерви",
-          "text": "Кінець перерви.\n\nЗакінчуючи перерву, увійдіть і виберіть дію, яку виконуєте.",
+          "text": "Закінчуючи перерву, увійдіть і виберіть дію, яку виконуєте.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -3268,7 +3268,7 @@
             "all"
           ],
           "title": "Кінець роботи",
-          "text": "Кінець роботи.\n\nЗакінчуючи роботу, увійдіть знову і виберіть «Кінець роботи».",
+          "text": "Закінчуючи роботу, увійдіть знову і виберіть «Кінець роботи».",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -3296,7 +3296,7 @@
             "all"
           ],
           "title": "Вийдіть із системи",
-          "text": "Вийдіть із системи.\n\nУвійдіть знову і виберіть «Вийти».\n\nЯкщо планшет не працює, не бачите свого прізвища або не знаєте PIN, повідомте свого бригадира.\n\nНе залишайте свою сесію відкритою для наступної людини.",
+          "text": "Увійдіть знову і виберіть «Вийти».\n\nЯкщо планшет не працює, не бачите свого прізвища або не знаєте PIN, повідомте свого бригадира.\n\nНе залишайте свою сесію відкритою для наступної людини.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -3585,7 +3585,7 @@
       ]
     },
     "ru": {
-      "totalCharacters": 8217,
+      "totalCharacters": 8172,
       "sections": [
         {
           "id": "welcome",
@@ -3599,7 +3599,7 @@
             "all"
           ],
           "title": "Главное перед началом",
-          "text": "Здравствуйте. Меня зовут Александр, и я помогу вам спокойно подготовиться к работе в Citronex Siechnice. Посмотрите этот инструктаж до приезда или включите его, пока ожидаете документы. Мы пройдём всё по порядку: куда приехать, чем отличаются склад и теплица, как пользоваться ридером и планшетом, какие правила безопасности обязательны и к кому обращаться за помощью. Не спешите. Вы можете в любой момент поставить запись на паузу, повторить главу или открыть полный текст.",
+          "text": "Здравствуйте. Меня зовут Александр, и я помогу вам спокойно подготовиться к работе в Citronex Siechnice. Посмотрите этот инструктаж до приезда или включите его, пока ожидаете документы. Мы пройдём всё по порядку: куда приехать, чем отличаются склад и теплица, как пользоваться ридером — ручным сканером — и планшетом, какие правила безопасности обязательны и к кому обращаться за помощью. Не спешите. Вы можете в любой момент поставить запись на паузу, повторить главу или открыть полный текст.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -3622,7 +3622,7 @@
             "all"
           ],
           "title": "Выберите место",
-          "text": "Выберите место.\n\nЭтап, склад или место встречи выбирайте по стартовому сообщению.",
+          "text": "Выберите место.\n\nВыберите сектор теплицы E1-E6, склад или место встречи, указанное в стартовом сообщении.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -3710,7 +3710,7 @@
             "all"
           ],
           "title": "На складе ридер не используется",
-          "text": "На складе ридер не используется.\n\nНа складе ридер не используется. У планшета одна общая инструкция для склада и теплицы.",
+          "text": "На складе ридер не используется.\n\nПланшет работает одинаково в теплице и на складе. Используйте свою фамилию и PIN, затем выбирайте только деятельность, которую реально выполняете.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -3772,7 +3772,7 @@
             "all"
           ],
           "title": "Ориентация в теплице",
-          "text": "Теплица показана в 3 шагах: вся теплица, одна нава, вход в ряд.",
+          "text": "Теплица показана в трёх простых шагах: вся теплица, одна нава — то есть секция теплицы — и вход в ряд.",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -4295,7 +4295,7 @@
             "all"
           ],
           "title": "Найдите свою фамилию и войдите",
-          "text": "Используйте только свою фамилию и свой PIN. Нельзя использовать данные другого человека.\n\nНайдите свою фамилию и войдите.\n\nНачиная работу, найдите свое имя и фамилию. Войдите своим PIN-кодом.",
+          "text": "Используйте только свою фамилию и свой PIN. Нельзя использовать данные другого человека.\n\nНачиная работу, найдите свое имя и фамилию. Войдите своим PIN-кодом.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -4323,7 +4323,7 @@
             "all"
           ],
           "title": "Нажмите «Начало работы»",
-          "text": "Нажмите «Начало работы».\n\nНайдите действие «Начало работы» и нажмите его.",
+          "text": "Найдите действие «Начало работы» и нажмите его.",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -4351,7 +4351,7 @@
             "all"
           ],
           "title": "Выберите выполняемую деятельность",
-          "text": "Выберите выполняемую деятельность.\n\nВойдите снова и выберите выполняемую деятельность.",
+          "text": "Войдите снова и выберите выполняемую деятельность.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -4378,7 +4378,7 @@
             "all"
           ],
           "title": "Смена деятельности",
-          "text": "Смена деятельности.\n\nЕсли меняете деятельность, войдите снова и выберите новую деятельность.",
+          "text": "Если меняете деятельность, войдите снова и выберите новую деятельность.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -4406,7 +4406,7 @@
             "all"
           ],
           "title": "Начало перерыва",
-          "text": "Начало перерыва.\n\nНачиная перерыв, войдите и выберите «Перерыв».",
+          "text": "Начиная перерыв, войдите и выберите «Перерыв».",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -4434,7 +4434,7 @@
             "all"
           ],
           "title": "Конец перерыва",
-          "text": "Конец перерыва.\n\nЗаканчивая перерыв, войдите и выберите выполняемую деятельность.",
+          "text": "Заканчивая перерыв, войдите и выберите выполняемую деятельность.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -4462,7 +4462,7 @@
             "all"
           ],
           "title": "Конец работы",
-          "text": "Конец работы.\n\nЗаканчивая работу, войдите снова и выберите «Конец работы».",
+          "text": "Заканчивая работу, войдите снова и выберите «Конец работы».",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -4490,7 +4490,7 @@
             "all"
           ],
           "title": "Выйдите из системы",
-          "text": "Выйдите из системы.\n\nВойдите снова и выберите «Выйти».\n\nЕсли планшет не работает, вы не видите свою фамилию или не знаете PIN, сообщите своему бригадиру.\n\nНе оставляйте свою сессию открытой для следующего человека.",
+          "text": "Войдите снова и выберите «Выйти».\n\nЕсли планшет не работает, вы не видите свою фамилию или не знаете PIN, сообщите своему бригадиру.\n\nНе оставляйте свою сессию открытой для следующего человека.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -4779,7 +4779,7 @@
       ]
     },
     "az": {
-      "totalCharacters": 7903,
+      "totalCharacters": 7844,
       "sections": [
         {
           "id": "welcome",
@@ -4793,7 +4793,7 @@
             "all"
           ],
           "title": "Başlamazdan əvvəl əsas məlumat",
-          "text": "Salam. Mənim adım Aleksandrdır və Citronex Siechnice-də işə sakit şəkildə hazırlaşmağınıza kömək edəcəyəm. Bu təlimata gəlməzdən əvvəl baxın və ya sənədləri gözləyərkən qoşun. Biz gəlişi, anbarla istixananın fərqini, readeri, planşeti, təhlükəsizlik qaydalarını və kömək üçün kimə müraciət etməyi addım-addım izah edəcəyik. Tələsməyin. Yazını istənilən vaxt dayandıra, bölməni təkrar edə və ya tam mətni aça bilərsiniz.",
+          "text": "Salam. Mənim adım Aleksandrdır və Citronex Siechnice-də işə sakit şəkildə hazırlaşmağınıza kömək edəcəyəm. Bu təlimata gəlməzdən əvvəl baxın və ya sənədləri gözləyərkən qoşun. Biz gəlişi, anbarla istixananın fərqini, readeri, yəni əl skanerini, planşeti, təhlükəsizlik qaydalarını və kömək üçün kimə müraciət etməyi addım-addım izah edəcəyik. Tələsməyin. Yazını istənilən vaxt dayandıra, bölməni təkrar edə və ya tam mətni aça bilərsiniz.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -4816,7 +4816,7 @@
             "all"
           ],
           "title": "Yeri seçin",
-          "text": "Yeri seçin.\n\nEtap, anbar və ya görüş yerini başlanğıc mesajına görə seçin.",
+          "text": "Yeri seçin.\n\nBaşlanğıc mesajında göstərilən E1-E6 istixana bölməsini, anbarı və ya görüş yerini seçin.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -4904,7 +4904,7 @@
             "all"
           ],
           "title": "Anbarda reader istifadə olunmur",
-          "text": "Anbarda reader istifadə olunmur.\n\nAnbarda reader istifadə olunmur. Planşet üçün anbar və istixana üzrə bir ümumi təlimat var.",
+          "text": "Anbarda reader istifadə olunmur.\n\nPlanşet istixanada və anbarda eyni işləyir. Öz soyadınızı və PIN-inizi istifadə edin, sonra yalnız həqiqətən etdiyiniz fəaliyyəti seçin.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -4966,7 +4966,7 @@
             "all"
           ],
           "title": "İstixanada istiqamət",
-          "text": "İstixana 3 sadə addımda göstərilir: hamısı, bir nava, sıraya giriş.",
+          "text": "İstixana üç sadə addımda göstərilir: bütün istixana, nava adlanan bir bölmə və sıraya giriş.",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -5489,7 +5489,7 @@
             "all"
           ],
           "title": "Soyadınızı tapın və daxil olun",
-          "text": "Yalnız öz soyadınızı və öz PIN-inizi istifadə edin. Başqa şəxsin məlumatlarından istifadə etmək olmaz.\n\nSoyadınızı tapın və daxil olun.\n\nİşə başlayanda adınızı və soyadınızı tapın. Öz PIN kodunuzla daxil olun.",
+          "text": "Yalnız öz soyadınızı və öz PIN-inizi istifadə edin. Başqa şəxsin məlumatlarından istifadə etmək olmaz.\n\nİşə başlayanda adınızı və soyadınızı tapın. Öz PIN kodunuzla daxil olun.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -5517,7 +5517,7 @@
             "all"
           ],
           "title": "“İşin başlanğıcı” seçin",
-          "text": "“İşin başlanğıcı” seçin.\n\n“İşin başlanğıcı” fəaliyyətini tapın və seçin.",
+          "text": "“İşin başlanğıcı” fəaliyyətini tapın və seçin.",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -5545,7 +5545,7 @@
             "all"
           ],
           "title": "Gördüyünüz fəaliyyəti seçin",
-          "text": "Gördüyünüz fəaliyyəti seçin.\n\nYenidən daxil olun və gördüyünüz fəaliyyəti seçin.",
+          "text": "Yenidən daxil olun və gördüyünüz fəaliyyəti seçin.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -5572,7 +5572,7 @@
             "all"
           ],
           "title": "Fəaliyyəti dəyişmək",
-          "text": "Fəaliyyəti dəyişmək.\n\nFəaliyyəti dəyişirsinizsə, yenidən daxil olun və yeni fəaliyyəti seçin.",
+          "text": "Fəaliyyəti dəyişirsinizsə, yenidən daxil olun və yeni fəaliyyəti seçin.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -5600,7 +5600,7 @@
             "all"
           ],
           "title": "Fasilənin başlanğıcı",
-          "text": "Fasilənin başlanğıcı.\n\nFasiləyə başlayanda daxil olun və “Fasilə” seçin.",
+          "text": "Fasiləyə başlayanda daxil olun və “Fasilə” seçin.",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -5628,7 +5628,7 @@
             "all"
           ],
           "title": "Fasilənin sonu",
-          "text": "Fasilənin sonu.\n\nFasiləni bitirəndə daxil olun və gördüyünüz fəaliyyəti seçin.",
+          "text": "Fasiləni bitirəndə daxil olun və gördüyünüz fəaliyyəti seçin.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -5656,7 +5656,7 @@
             "all"
           ],
           "title": "İşin sonu",
-          "text": "İşin sonu.\n\nİşi bitirəndə yenidən daxil olun və “İşin sonu” seçin.",
+          "text": "İşi bitirəndə yenidən daxil olun və “İşin sonu” seçin.",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -5684,7 +5684,7 @@
             "all"
           ],
           "title": "Çıxış edin",
-          "text": "Çıxış edin.\n\nYenidən daxil olun və “Çıxış” seçin.\n\nPlanşet işləmirsə, soyadınızı görmürsünüzsə və ya PIN bilmirsinizsə, öz briqadirinizə deyin.\n\nSessiyanızı növbəti şəxs üçün açıq saxlamayın.",
+          "text": "Yenidən daxil olun və “Çıxış” seçin.\n\nPlanşet işləmirsə, soyadınızı görmürsünüzsə və ya PIN bilmirsinizsə, öz briqadirinizə deyin.\n\nSessiyanızı növbəti şəxs üçün açıq saxlamayın.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -5973,7 +5973,7 @@
       ]
     },
     "es": {
-      "totalCharacters": 8302,
+      "totalCharacters": 8266,
       "sections": [
         {
           "id": "welcome",
@@ -5987,7 +5987,7 @@
             "all"
           ],
           "title": "Información importante antes de empezar",
-          "text": "Hola. Me llamo Aleksandr y te ayudaré a prepararte con calma para trabajar en Citronex Siechnice. Mira esta formación antes de llegar o reprodúcela mientras esperas tus documentos. Explicaremos paso a paso la llegada, la diferencia entre el almacén y el invernadero, el lector, la tableta, las normas de seguridad y a quién pedir ayuda. No tengas prisa. Puedes pausar la grabación, repetir un capítulo o abrir el texto completo en cualquier momento.",
+          "text": "Hola. Me llamo Aleksandr y te ayudaré a prepararte con calma para trabajar en Citronex Siechnice. Mira esta formación antes de llegar o reprodúcela mientras esperas tus documentos. Explicaremos paso a paso la llegada, la diferencia entre el almacén y el invernadero, el reader, es decir, el lector portátil, la tableta, las normas de seguridad y a quién pedir ayuda. No tengas prisa. Puedes pausar la grabación, repetir un capítulo o abrir el texto completo en cualquier momento.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -6010,7 +6010,7 @@
             "all"
           ],
           "title": "Elige el lugar",
-          "text": "Elige el lugar.\n\nElige etapa, almacén o punto de encuentro según el mensaje inicial.",
+          "text": "Elige el lugar.\n\nElige la sección del invernadero E1-E6, el almacén o el punto de encuentro indicado en el mensaje inicial.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -6098,7 +6098,7 @@
             "all"
           ],
           "title": "En almacén no se usa reader",
-          "text": "En almacén no se usa reader.\n\nEn almacén no se usa reader. La tablet tiene una instrucción común para almacén e invernadero.",
+          "text": "En almacén no se usa reader.\n\nLa tablet funciona igual en invernadero y almacén. Usa tu apellido y PIN, después elige solo la actividad que realmente haces.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -6160,7 +6160,7 @@
             "all"
           ],
           "title": "Orientación en el invernadero",
-          "text": "El invernadero se muestra en 3 pasos: completo, una nave, entrada al pasillo.",
+          "text": "El invernadero se explica en tres pasos sencillos: todo el invernadero, una nave —es decir, una sección— y la entrada a una fila.",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -6683,7 +6683,7 @@
             "all"
           ],
           "title": "Busca tu apellido e inicia sesión",
-          "text": "Usa solo tu apellido y tu PIN. No se pueden usar datos de otra persona.\n\nBusca tu apellido e inicia sesión.\n\nAl empezar el trabajo, busca tu nombre y apellido. Entra con tu PIN.",
+          "text": "Usa solo tu apellido y tu PIN. No se pueden usar datos de otra persona.\n\nAl empezar el trabajo, busca tu nombre y apellido. Entra con tu PIN.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6711,7 +6711,7 @@
             "all"
           ],
           "title": "Pulsa “Inicio de trabajo”",
-          "text": "Pulsa “Inicio de trabajo”.\n\nBusca la actividad “Inicio de trabajo” y selecciónala.",
+          "text": "Busca la actividad “Inicio de trabajo” y selecciónala.",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6739,7 +6739,7 @@
             "all"
           ],
           "title": "Elige la actividad que haces",
-          "text": "Elige la actividad que haces.\n\nInicia sesión otra vez y elige la actividad que realizas.",
+          "text": "Inicia sesión otra vez y elige la actividad que realizas.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6766,7 +6766,7 @@
             "all"
           ],
           "title": "Cambio de actividad",
-          "text": "Cambio de actividad.\n\nSi cambias de actividad, inicia sesión otra vez y elige la nueva actividad.",
+          "text": "Si cambias de actividad, inicia sesión otra vez y elige la nueva actividad.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6794,7 +6794,7 @@
             "all"
           ],
           "title": "Inicio de descanso",
-          "text": "Inicio de descanso.\n\nAl empezar descanso, inicia sesión y elige “Descanso”.",
+          "text": "Al empezar descanso, inicia sesión y elige “Descanso”.",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6822,7 +6822,7 @@
             "all"
           ],
           "title": "Fin de descanso",
-          "text": "Fin de descanso.\n\nAl terminar descanso, inicia sesión y elige la actividad que realizas.",
+          "text": "Al terminar descanso, inicia sesión y elige la actividad que realizas.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6850,7 +6850,7 @@
             "all"
           ],
           "title": "Fin de trabajo",
-          "text": "Fin de trabajo.\n\nAl terminar el trabajo, inicia sesión otra vez y elige “Fin de trabajo”.",
+          "text": "Al terminar el trabajo, inicia sesión otra vez y elige “Fin de trabajo”.",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -6878,7 +6878,7 @@
             "all"
           ],
           "title": "Cerrar sesión",
-          "text": "Cerrar sesión.\n\nInicia sesión otra vez y elige “Cerrar sesión”.\n\nSi la tablet no funciona, no ves tu apellido o no sabes el PIN, avisa a tu encargado.\n\nNo dejes tu sesión abierta para otra persona.",
+          "text": "Inicia sesión otra vez y elige “Cerrar sesión”.\n\nSi la tablet no funciona, no ves tu apellido o no sabes el PIN, avisa a tu encargado.\n\nNo dejes tu sesión abierta para otra persona.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -7167,7 +7167,7 @@
       ]
     },
     "fil": {
-      "totalCharacters": 9282,
+      "totalCharacters": 9273,
       "sections": [
         {
           "id": "welcome",
@@ -7181,7 +7181,7 @@
             "all"
           ],
           "title": "Mahahalagang impormasyon bago magsimula",
-          "text": "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang pagsasanay na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Tatalakayin natin nang sunod-sunod ang pagdating, ang pagkakaiba ng bodega at bahay-taniman, ang reader, tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang rekording, ulitin ang kabanata, o buksan ang buong teksto anumang oras.",
+          "text": "Magandang araw. Ako si Aleksandr at tutulungan kitang maghanda nang maayos para sa trabaho sa Citronex Siechnice. Panoorin ang pagsasanay na ito bago dumating, o i-play ito habang naghihintay ng mga dokumento. Tatalakayin natin nang sunod-sunod ang pagdating, ang pagkakaiba ng bodega at bahay-taniman, ang reader o handheld scanner, ang tablet, mga tuntunin sa kaligtasan, at kung kanino hihingi ng tulong. Huwag magmadali. Maaari mong i-pause ang rekording, ulitin ang kabanata, o buksan ang buong teksto anumang oras.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -7204,7 +7204,7 @@
             "all"
           ],
           "title": "Piliin ang lugar",
-          "text": "Piliin ang lugar.\n\nPiliin ang etap, bodega o lugar ng pagkikita ayon sa unang mensahe.",
+          "text": "Piliin ang lugar.\n\nPiliin ang seksyon ng bahay-taniman E1-E6, ang bodega, o ang lugar ng pagkikita na nakasaad sa unang mensahe.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -7292,7 +7292,7 @@
             "all"
           ],
           "title": "Walang reader sa bodega",
-          "text": "Walang reader sa bodega.\n\nWalang reader sa bodega. Iisa ang gabay sa tablet para sa bodega at bahay-taniman.",
+          "text": "Walang reader sa bodega.\n\nPareho ang gamit ng tablet sa bahay-taniman at bodega. Gamitin ang sariling apelyido at PIN, pagkatapos piliin lang ang gawain na ginagawa mo talaga.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -7354,7 +7354,7 @@
             "all"
           ],
           "title": "Pagkilala sa bahay-taniman",
-          "text": "Ipinapakita ang bahay-taniman sa 3 hakbang: buong lugar, isang nawa, pasukan sa hanay.",
+          "text": "Ipinapakita ang bahay-taniman sa tatlong simpleng hakbang: buong bahay-taniman, isang nawa —seksyon ng bahay-taniman— at pasukan sa isang hanay.",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -7877,7 +7877,7 @@
             "all"
           ],
           "title": "Hanapin ang apelyido at mag-log in",
-          "text": "Gamitin lang ang sariling apelyido at sariling PIN. Bawal gumamit ng data ng ibang tao.\n\nHanapin ang apelyido at mag-log in.\n\nSa simula ng trabaho, hanapin ang iyong pangalan at apelyido. Mag-log in gamit ang sarili mong PIN.",
+          "text": "Gamitin lang ang sariling apelyido at sariling PIN. Bawal gumamit ng data ng ibang tao.\n\nSa simula ng trabaho, hanapin ang iyong pangalan at apelyido. Mag-log in gamit ang sarili mong PIN.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -7905,7 +7905,7 @@
             "all"
           ],
           "title": "Pindutin ang “Simula ng trabaho”",
-          "text": "Pindutin ang “Simula ng trabaho”.\n\nHanapin ang gawain na “Simula ng trabaho” at pindutin.",
+          "text": "Hanapin ang gawain na “Simula ng trabaho” at pindutin.",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -7933,7 +7933,7 @@
             "all"
           ],
           "title": "Piliin ang ginagawa mong gawain",
-          "text": "Piliin ang ginagawa mong gawain.\n\nMag-log in muli at piliin ang kasalukuyan mong gawain.",
+          "text": "Mag-log in muli at piliin ang kasalukuyan mong gawain.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -7960,7 +7960,7 @@
             "all"
           ],
           "title": "Pagpalit ng gawain",
-          "text": "Pagpalit ng gawain.\n\nKapag magpapalit ng gawain, mag-log in muli at piliin ang bagong gawain.",
+          "text": "Kapag magpapalit ng gawain, mag-log in muli at piliin ang bagong gawain.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -7988,7 +7988,7 @@
             "all"
           ],
           "title": "Simula ng pahinga",
-          "text": "Simula ng pahinga.\n\nBago magpahinga, mag-log in at piliin ang 'Pahinga'.",
+          "text": "Bago magpahinga, mag-log in at piliin ang 'Pahinga'.",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -8016,7 +8016,7 @@
             "all"
           ],
           "title": "Tapos ng pahinga",
-          "text": "Tapos ng pahinga.\n\nPagkatapos ng pahinga, mag-log in at piliin ang kasalukuyan mong gawain.",
+          "text": "Pagkatapos ng pahinga, mag-log in at piliin ang kasalukuyan mong gawain.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -8044,7 +8044,7 @@
             "all"
           ],
           "title": "Tapos ng trabaho",
-          "text": "Tapos ng trabaho.\n\nKapag tapos na ang trabaho, mag-log in muli at piliin ang 'Tapos ng trabaho'.",
+          "text": "Kapag tapos na ang trabaho, mag-log in muli at piliin ang 'Tapos ng trabaho'.",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -8072,7 +8072,7 @@
             "all"
           ],
           "title": "Mag-log out",
-          "text": "Mag-log out.\n\nMag-log in muli at piliin ang 'Mag-log out'.\n\nKung hindi gumagana ang tablet, hindi mo makita ang apelyido mo, o hindi mo alam ang PIN, ipaalam ito sa iyong pinuno ng pangkat.\n\nHuwag iwanang naka-log in ang iyong account para sa susunod na tao.",
+          "text": "Mag-log in muli at piliin ang 'Mag-log out'.\n\nKung hindi gumagana ang tablet, hindi mo makita ang apelyido mo, o hindi mo alam ang PIN, ipaalam ito sa iyong pinuno ng pangkat.\n\nHuwag iwanang naka-log in ang iyong account para sa susunod na tao.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -8361,7 +8361,7 @@
       ]
     },
     "id": {
-      "totalCharacters": 7921,
+      "totalCharacters": 7899,
       "sections": [
         {
           "id": "welcome",
@@ -8375,7 +8375,7 @@
             "all"
           ],
           "title": "Informasi penting sebelum mulai",
-          "text": "Halo. Nama saya Aleksandr, dan saya akan membantu Anda mempersiapkan diri dengan tenang untuk bekerja di Citronex Siechnice. Tonton pengarahan ini sebelum tiba, atau putar sambil menunggu dokumen. Kita akan membahas secara berurutan tentang kedatangan, perbedaan gudang dan rumah kaca, reader, tablet, aturan keselamatan, serta siapa yang harus dihubungi untuk meminta bantuan. Tidak perlu terburu-buru. Anda dapat menjeda rekaman, mengulang bab, atau membuka teks lengkap kapan saja.",
+          "text": "Halo. Nama saya Aleksandr, dan saya akan membantu Anda mempersiapkan diri dengan tenang untuk bekerja di Citronex Siechnice. Tonton pengarahan ini sebelum tiba, atau putar sambil menunggu dokumen. Kita akan membahas secara berurutan tentang kedatangan, perbedaan gudang dan rumah kaca, reader atau pemindai genggam, tablet, aturan keselamatan, serta siapa yang harus dihubungi untuk meminta bantuan. Tidak perlu terburu-buru. Anda dapat menjeda rekaman, mengulang bab, atau membuka teks lengkap kapan saja.",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -8398,7 +8398,7 @@
             "all"
           ],
           "title": "Pilih tempat",
-          "text": "Pilih tempat.\n\nPilih tahap, gudang, atau titik temu sesuai pesan awal.",
+          "text": "Pilih tempat.\n\nPilih bagian rumah kaca E1-E6, gudang, atau titik temu yang tertulis dalam pesan awal.",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -8486,7 +8486,7 @@
             "all"
           ],
           "title": "Di gudang tidak memakai reader",
-          "text": "Di gudang tidak memakai reader.\n\nGudang tidak memakai reader. Tablet punya satu instruksi bersama untuk gudang dan rumah kaca.",
+          "text": "Di gudang tidak memakai reader.\n\nTablet bekerja sama di rumah kaca dan gudang. Gunakan nama keluarga dan PIN sendiri, lalu pilih hanya aktivitas yang benar-benar dikerjakan.",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -8548,7 +8548,7 @@
             "all"
           ],
           "title": "Orientasi rumah kaca",
-          "text": "Rumah kaca ditampilkan dalam 3 langkah: keseluruhan, satu nave, pintu masuk baris.",
+          "text": "Rumah kaca dijelaskan dalam tiga langkah sederhana: seluruh rumah kaca, satu nave —bagian rumah kaca— dan pintu masuk ke baris.",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -9071,7 +9071,7 @@
             "all"
           ],
           "title": "Cari nama keluarga dan login",
-          "text": "Gunakan hanya nama keluarga sendiri dan PIN sendiri. Tidak boleh memakai data orang lain.\n\nCari nama keluarga dan login.\n\nSaat mulai kerja, cari nama depan dan nama keluarga Anda. Login dengan PIN sendiri.",
+          "text": "Gunakan hanya nama keluarga sendiri dan PIN sendiri. Tidak boleh memakai data orang lain.\n\nSaat mulai kerja, cari nama depan dan nama keluarga Anda. Login dengan PIN sendiri.",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -9099,7 +9099,7 @@
             "all"
           ],
           "title": "Klik “Mulai kerja”",
-          "text": "Klik “Mulai kerja”.\n\nCari aktivitas “Mulai kerja” lalu klik.",
+          "text": "Cari aktivitas “Mulai kerja” lalu klik.",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -9127,7 +9127,7 @@
             "all"
           ],
           "title": "Pilih aktivitas yang dikerjakan",
-          "text": "Pilih aktivitas yang dikerjakan.\n\nLogin lagi dan pilih aktivitas yang dikerjakan.",
+          "text": "Login lagi dan pilih aktivitas yang dikerjakan.",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -9154,7 +9154,7 @@
             "all"
           ],
           "title": "Ganti aktivitas",
-          "text": "Ganti aktivitas.\n\nJika ganti aktivitas, login lagi dan pilih aktivitas baru.",
+          "text": "Jika ganti aktivitas, login lagi dan pilih aktivitas baru.",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -9182,7 +9182,7 @@
             "all"
           ],
           "title": "Mulai istirahat",
-          "text": "Mulai istirahat.\n\nSaat mulai istirahat, login dan pilih “Istirahat”.",
+          "text": "Saat mulai istirahat, login dan pilih “Istirahat”.",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -9210,7 +9210,7 @@
             "all"
           ],
           "title": "Selesai istirahat",
-          "text": "Selesai istirahat.\n\nSaat selesai istirahat, login dan pilih aktivitas yang dikerjakan.",
+          "text": "Saat selesai istirahat, login dan pilih aktivitas yang dikerjakan.",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -9238,7 +9238,7 @@
             "all"
           ],
           "title": "Selesai kerja",
-          "text": "Selesai kerja.\n\nSaat selesai kerja, login lagi dan pilih “Selesai kerja”.",
+          "text": "Saat selesai kerja, login lagi dan pilih “Selesai kerja”.",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -9266,7 +9266,7 @@
             "all"
           ],
           "title": "Logout",
-          "text": "Logout.\n\nLogin lagi lalu pilih “Logout”.\n\nJika tablet tidak berfungsi, nama Anda tidak terlihat atau tidak tahu PIN, laporkan ke mandor Anda.\n\nJangan tinggalkan sesi Anda masih login untuk orang berikutnya.",
+          "text": "Login lagi lalu pilih “Logout”.\n\nJika tablet tidak berfungsi, nama Anda tidak terlihat atau tidak tahu PIN, laporkan ke mandor Anda.\n\nJangan tinggalkan sesi Anda masih login untuk orang berikutnya.",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -9555,7 +9555,7 @@
       ]
     },
     "ne": {
-      "totalCharacters": 7419,
+      "totalCharacters": 7397,
       "sections": [
         {
           "id": "welcome",
@@ -9569,7 +9569,7 @@
             "all"
           ],
           "title": "सुरु गर्नुअघि महत्त्वपूर्ण जानकारी",
-          "text": "नमस्कार। मेरो नाम अलेक्जेन्डर हो, र म तपाईंलाई Citronex Siechnice मा कामका लागि शान्त रूपमा तयार हुन मद्दत गर्नेछु। यो निर्देशन आइपुग्नुअघि हेर्नुहोस्, वा कागजात पर्खँदा चलाउनुहोस्। हामी आगमन, गोदाम र हरितगृहबीचको फरक, रिडर, ट्याब्लेट, सुरक्षा नियम र मद्दतका लागि कसलाई सम्पर्क गर्ने भन्ने कुरा क्रमसँग बुझ्नेछौँ। हतार नगर्नुहोस्। तपाईंले कुनै पनि बेला रेकर्डिङ रोक्न, अध्याय दोहोर्‍याउन वा पूरा पाठ खोल्न सक्नुहुन्छ।",
+          "text": "नमस्कार। मेरो नाम अलेक्जेन्डर हो, र म तपाईंलाई Citronex Siechnice मा कामका लागि शान्त रूपमा तयार हुन मद्दत गर्नेछु। यो निर्देशन आइपुग्नुअघि हेर्नुहोस्, वा कागजात पर्खँदा चलाउनुहोस्। हामी आगमन, गोदाम र ग्रीनहाउसबीचको फरक, रिडर अर्थात् हातमा समात्ने स्क्यानर, ट्याब्लेट, सुरक्षा नियम र मद्दतका लागि कसलाई सम्पर्क गर्ने भन्ने कुरा क्रमसँग बुझ्नेछौँ। हतार नगर्नुहोस्। तपाईंले कुनै पनि बेला रेकर्डिङ रोक्न, अध्याय दोहोर्‍याउन वा पूरा पाठ खोल्न सक्नुहुन्छ।",
           "image": "assets/inline/stage34_1.jpg",
           "icon": "👋",
           "pose": "neutral",
@@ -9592,7 +9592,7 @@
             "all"
           ],
           "title": "ठाउँ छान्नुहोस्",
-          "text": "ठाउँ छान्नुहोस्.\n\nसुरुको सन्देश अनुसार चरण, गोदाम वा भेट्ने ठाउँ छान्नुहोस्।",
+          "text": "ठाउँ छान्नुहोस्।\n\nसुरुको सन्देशमा दिइएको ग्रीनहाउस खण्ड E1-E6, गोदाम वा भेट्ने ठाउँ छान्नुहोस्।",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "📍",
           "pose": "right",
@@ -9615,7 +9615,7 @@
             "all"
           ],
           "title": "नक्सा खोल्नुहोस्",
-          "text": "नक्सा खोल्नुहोस्.\n\nबटनले Google Maps वा छानेको ठाउँसम्मको बाटो खोल्छ।",
+          "text": "नक्सा खोल्नुहोस्।\n\nबटनले Google Maps वा छानेको ठाउँसम्मको बाटो खोल्छ।",
           "image": "assets/guide/arrival-route-v1.svg",
           "icon": "🗺️",
           "pose": "right",
@@ -9637,7 +9637,7 @@
             "all"
           ],
           "title": "प्रवेशतिर जानुहोस्",
-          "text": "प्रवेशतिर जानुहोस्.\n\nयसको अर्थ गाडी चलाउनु होइन। केवल बाटो पछ्याएर ठाउँसम्म जानुहोस्।",
+          "text": "प्रवेशतिर जानुहोस्।\n\nयसको अर्थ गाडी चलाउनु होइन। केवल बाटो पछ्याएर ठाउँसम्म जानुहोस्।",
           "image": "assets/inline/stage12_1.jpg",
           "icon": "🚶",
           "pose": "right",
@@ -9659,7 +9659,7 @@
             "all"
           ],
           "title": "पुगेपछि पर्खनुहोस्",
-          "text": "पुगेपछि पर्खनुहोस्.\n\nप्रवेशमा वा सन्देशमा दिएको ठाउँमा पर्खनुहोस्। ग्रीनहाउस वा गोदाममा एक्लै नजानुहोस्।",
+          "text": "पुगेपछि पर्खनुहोस्।\n\nप्रवेशमा वा सन्देशमा दिएको ठाउँमा पर्खनुहोस्। ग्रीनहाउस वा गोदाममा एक्लै नजानुहोस्।",
           "image": "assets/inline/stage12_2.jpg",
           "icon": "⏳",
           "pose": "neutral",
@@ -9680,7 +9680,7 @@
             "all"
           ],
           "title": "गोदाममा reader प्रयोग हुँदैन",
-          "text": "गोदाममा reader प्रयोग हुँदैन।\n\nगोदाममा reader प्रयोग हुँदैन। ट्याबलेटको गोदाम र ग्रीनहाउसका लागि एउटै साझा निर्देशन छ।",
+          "text": "गोदाममा reader प्रयोग हुँदैन।\n\nट्याबलेट ग्रीनहाउस र गोदाममा उस्तै चल्छ। आफ्नै थर र PIN प्रयोग गर्नुहोस्, अनि आफूले साँच्चै गर्ने गतिविधि मात्र छान्नुहोस्।",
           "image": "assets/warehouse/magazyn-wejscie-1.jpg",
           "icon": "🚫📟",
           "pose": "warning",
@@ -9742,7 +9742,7 @@
             "all"
           ],
           "title": "ग्रीनहाउसमा बाटो बुझ्ने",
-          "text": "ग्रीनहाउस ३ चरणमा देखाइएको छ: पूरै, एउटा नावा, पङ्क्तिमा प्रवेश।",
+          "text": "ग्रीनहाउसलाई तीन सरल चरणमा देखाइएको छ: पूरा ग्रीनहाउस, एउटा नावा अर्थात् ग्रीनहाउसको खण्ड, र पङ्क्तिमा जाने प्रवेशद्वार।",
           "image": "assets/greenhouse-orientation/orientacja-ogolna.svg",
           "icon": "🌿",
           "pose": "right",
@@ -10265,7 +10265,7 @@
             "all"
           ],
           "title": "आफ्नो थर खोजेर लगइन गर्नुहोस्",
-          "text": "आफ्नै थर र आफ्नै PIN मात्र प्रयोग गर्नुहोस्। अरूको डाटा प्रयोग गर्न पाइँदैन।\n\nआफ्नो थर खोजेर लगइन गर्नुहोस्.\n\nकाम सुरु गर्दा आफ्नो नाम र थर खोज्नुहोस्। आफ्नै PIN बाट लगइन गर्नुहोस्।",
+          "text": "आफ्नै थर र आफ्नै PIN मात्र प्रयोग गर्नुहोस्। अरूको डाटा प्रयोग गर्न पाइँदैन।\n\nकाम सुरु गर्दा आफ्नो नाम र थर खोज्नुहोस्। आफ्नै PIN बाट लगइन गर्नुहोस्।",
           "image": "assets/tablet/tablet-login-pin.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -10293,7 +10293,7 @@
             "all"
           ],
           "title": "“काम सुरु” थिच्नुहोस्",
-          "text": "“काम सुरु” थिच्नुहोस्.\n\n“काम सुरु” गतिविधि खोजेर थिच्नुहोस्।",
+          "text": "“काम सुरु” गतिविधि खोजेर थिच्नुहोस्।",
           "image": "assets/tablet/tablet-start-work.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -10321,7 +10321,7 @@
             "all"
           ],
           "title": "आफूले गर्ने गतिविधि छान्नुहोस्",
-          "text": "आफूले गर्ने गतिविधि छान्नुहोस्.\n\nफेरि लगइन गरेर आफूले गर्ने गतिविधि छान्नुहोस्।",
+          "text": "फेरि लगइन गरेर आफूले गर्ने गतिविधि छान्नुहोस्।",
           "image": "assets/tablet/tablet-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -10348,7 +10348,7 @@
             "all"
           ],
           "title": "गतिविधि बदल्ने",
-          "text": "गतिविधि बदल्ने.\n\nगतिविधि बदल्दा फेरि लगइन गरेर नयाँ गतिविधि छान्नुहोस्।",
+          "text": "गतिविधि बदल्दा फेरि लगइन गरेर नयाँ गतिविधि छान्नुहोस्।",
           "image": "assets/tablet/tablet-change-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -10376,7 +10376,7 @@
             "all"
           ],
           "title": "ब्रेक सुरु",
-          "text": "ब्रेक सुरु.\n\nब्रेक सुरु गर्दा लगइन गरेर “ब्रेक” छान्नुहोस्।",
+          "text": "ब्रेक सुरु गर्दा लगइन गरेर “ब्रेक” छान्नुहोस्।",
           "image": "assets/tablet/tablet-break-start.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -10404,7 +10404,7 @@
             "all"
           ],
           "title": "ब्रेक अन्त्य",
-          "text": "ब्रेक अन्त्य.\n\nब्रेक सकेपछि लगइन गरेर आफूले गर्ने गतिविधि छान्नुहोस्।",
+          "text": "ब्रेक सकेपछि लगइन गरेर आफूले गर्ने गतिविधि छान्नुहोस्।",
           "image": "assets/tablet/tablet-after-break-activity.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -10432,7 +10432,7 @@
             "all"
           ],
           "title": "काम अन्त्य",
-          "text": "काम अन्त्य.\n\nकाम सकेपछि फेरि लगइन गरेर “काम अन्त्य” छान्नुहोस्।",
+          "text": "काम सकेपछि फेरि लगइन गरेर “काम अन्त्य” छान्नुहोस्।",
           "image": "assets/tablet/tablet-work-end.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -10460,7 +10460,7 @@
             "all"
           ],
           "title": "Logout गर्नुहोस्",
-          "text": "Logout गर्नुहोस्.\n\nफेरि लगइन गरेर “Logout” छान्नुहोस्।\n\nट्याबलेट चलेन, आफ्नो थर देखिएन वा PIN थाहा छैन भने आफ्नो ब्रिगेडियरलाई भन्नुहोस्।\n\nअर्को व्यक्तिका लागि आफ्नो session खुला नछोड्नुहोस्।",
+          "text": "फेरि लगइन गरेर “Logout” छान्नुहोस्।\n\nट्याबलेट चलेन, आफ्नो थर देखिएन वा PIN थाहा छैन भने आफ्नो ब्रिगेडियरलाई भन्नुहोस्।\n\nअर्को व्यक्तिका लागि आफ्नो session खुला नछोड्नुहोस्।",
           "image": "assets/tablet/tablet-logout.jpg",
           "icon": "📱",
           "pose": "tablet",
@@ -10488,7 +10488,7 @@
             "all"
           ],
           "title": "काम क्षेत्रमा खाना",
-          "text": "काम क्षेत्रमा खाना.\n\nकाम गर्ने ठाउँमा खाना नखानुहोस् र नल्याउनुहोस्।\n\nकाम क्षेत्रमा पेय.\n\nपेय काम क्षेत्र बाहिर राख्नुहोस्। देखाइएको ठाउँ मात्र प्रयोग गर्नुहोस्।\n\nचुइंगम, मिठाई, नट्स.\n\nचुइंगम नचपाउनुहोस् र काम ठाउँमा खाजा नराख्नुहोस्।\n\nचुरोट र vape.\n\nकाम क्षेत्रमा चुरोट, vape वा लाइटर नल्याउनुहोस्।\n\nनिजी सामान.\n\nझोला, कपडा र निजी सामान काम गर्ने ठाउँमा राख्न पाइँदैन।",
+          "text": "काम क्षेत्रमा खाना।\n\nकाम गर्ने ठाउँमा खाना नखानुहोस् र नल्याउनुहोस्।\n\nकाम क्षेत्रमा पेय।\n\nपेय काम क्षेत्र बाहिर राख्नुहोस्। देखाइएको ठाउँ मात्र प्रयोग गर्नुहोस्।\n\nचुइंगम, मिठाई, नट्स।\n\nचुइंगम नचपाउनुहोस् र काम ठाउँमा खाजा नराख्नुहोस्।\n\nचुरोट र vape।\n\nकाम क्षेत्रमा चुरोट, vape वा लाइटर नल्याउनुहोस्।\n\nनिजी सामान।\n\nझोला, कपडा र निजी सामान काम गर्ने ठाउँमा राख्न पाइँदैन।",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -10510,7 +10510,7 @@
             "all"
           ],
           "title": "अनुमति बिना फोन",
-          "text": "अनुमति बिना फोन.\n\nउत्पादन क्षेत्रमा सुपरभाइजरको अनुमति बिना फोन प्रयोग नगर्नुहोस्।\n\nफोटो र भिडियो.\n\nकाममा अनुमति बिना फोटो वा भिडियो नखिच्नुहोस्।\n\nहेडफोन.\n\nसुरक्षा वा कुराकानीमा बाधा भए काममा हेडफोन प्रयोग नगर्नुहोस्।",
+          "text": "अनुमति बिना फोन।\n\nउत्पादन क्षेत्रमा सुपरभाइजरको अनुमति बिना फोन प्रयोग नगर्नुहोस्।\n\nफोटो र भिडियो।\n\nकाममा अनुमति बिना फोटो वा भिडियो नखिच्नुहोस्।\n\nहेडफोन।\n\nसुरक्षा वा कुराकानीमा बाधा भए काममा हेडफोन प्रयोग नगर्नुहोस्।",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -10532,7 +10532,7 @@
             "all"
           ],
           "title": "अरूको PIN",
-          "text": "अरूको PIN.\n\nअरूको PIN प्रयोग नगर्नुहोस्। यसले कामको रेकर्ड गलत बनाउँछ।\n\nअरूको tag वा reader.\n\nतपाईंलाई दिइएको वा देखाइएको कुरा मात्र प्रयोग गर्नुहोस्।\n\nअरूको डाटा.\n\nअरूको डाटामा लगइन वा काम रेकर्ड नगर्नुहोस्।",
+          "text": "अरूको PIN।\n\nअरूको PIN प्रयोग नगर्नुहोस्। यसले कामको रेकर्ड गलत बनाउँछ।\n\nअरूको tag वा reader।\n\nतपाईंलाई दिइएको वा देखाइएको कुरा मात्र प्रयोग गर्नुहोस्।\n\nअरूको डाटा।\n\nअरूको डाटामा लगइन वा काम रेकर्ड नगर्नुहोस्।",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -10554,7 +10554,7 @@
             "all"
           ],
           "title": "गलत क्षेत्रमा प्रवेश",
-          "text": "गलत क्षेत्रमा प्रवेश.\n\nनिर्देशन बिना ग्रीनहाउस, गोदाम, बाटो वा क्षेत्रमा नजानुहोस्।\n\nअरूको ठाउँमा जानु.\n\nब्रिगेडियरको जानकारी बिना लाइन, साइड वा काम नबदल्नुहोस्।\n\nकाम बिना गोदाम.\n\nत्यहाँ काम वा निर्देशन हुँदा मात्र गोदाम जानुहोस्।",
+          "text": "गलत क्षेत्रमा प्रवेश।\n\nनिर्देशन बिना ग्रीनहाउस, गोदाम, बाटो वा क्षेत्रमा नजानुहोस्।\n\nअरूको ठाउँमा जानु।\n\nब्रिगेडियरको जानकारी बिना लाइन, साइड वा काम नबदल्नुहोस्।\n\nकाम बिना गोदाम।\n\nत्यहाँ काम वा निर्देशन हुँदा मात्र गोदाम जानुहोस्।",
           "image": "",
           "icon": "⛔",
           "pose": "warning",
@@ -10576,7 +10576,7 @@
             "all"
           ],
           "title": "गहना",
-          "text": "गहना.\n\nनियमले रोक्छ भने काम क्षेत्रमा गहना नल्याउनुहोस्।\n\nकृत्रिम नङ र परेला.\n\nस्वच्छता नियमले रोक्छ भने काम क्षेत्रमा प्रयोग नगर्नुहोस्।\n\nफोहोर हात वा पञ्जा.\n\nकाम अघि र फोहोर भएपछि हात वा पञ्जा सफा राख्नुहोस्।\n\nनिजी कागजात.\n\nपासपोर्ट, residence card वा पैसा काम ठाउँमा नछोड्नुहोस्।",
+          "text": "गहना।\n\nनियमले रोक्छ भने काम क्षेत्रमा गहना नल्याउनुहोस्।\n\nकृत्रिम नङ र परेला।\n\nस्वच्छता नियमले रोक्छ भने काम क्षेत्रमा प्रयोग नगर्नुहोस्।\n\nफोहोर हात वा पञ्जा।\n\nकाम अघि र फोहोर भएपछि हात वा पञ्जा सफा राख्नुहोस्।\n\nनिजी कागजात।\n\nपासपोर्ट, residence card वा पैसा काम ठाउँमा नछोड्नुहोस्।",
           "image": "",
           "icon": "🧼",
           "pose": "warning",
@@ -10597,7 +10597,7 @@
             "all"
           ],
           "title": "महत्त्वपूर्ण - कागजात साथमा",
-          "text": "महत्त्वपूर्ण - कागजात साथमा.\n\nशहर जाँदा पासपोर्ट वा residence card साथमा राख्नुहोस्।\n\nजाँच, कार्यालय वा बैंकमा कागजात चाहिन सक्छ।",
+          "text": "महत्त्वपूर्ण - कागजात साथमा।\n\nशहर जाँदा पासपोर्ट वा residence card साथमा राख्नुहोस्।\n\nजाँच, कार्यालय वा बैंकमा कागजात चाहिन सक्छ।",
           "image": "",
           "icon": "🪪",
           "pose": "right",
@@ -10619,7 +10619,7 @@
             "all"
           ],
           "title": "कम्पनी क्षेत्रमा प्रवेश",
-          "text": "कम्पनी क्षेत्रमा प्रवेश.\n\nप्रवेशमा पास चाहिन्छ। पास बिना सुरक्षा भित्र छिर्न दिँदैन।",
+          "text": "कम्पनी क्षेत्रमा प्रवेश।\n\nप्रवेशमा पास चाहिन्छ। पास बिना सुरक्षा भित्र छिर्न दिँदैन।",
           "image": "",
           "icon": "🎫",
           "pose": "right",
@@ -10641,7 +10641,7 @@
             "all"
           ],
           "title": "अर्डर र पार्सल",
-          "text": "अर्डर र पार्सल.\n\nAliExpress, Allegro र अरू पार्सल Paczkomat मा मात्र मगाउनुहोस्। कम्पनी ठेगानामा नमगाउनुहोस्।\n\nकम्पनीमा आएको पार्सल सुरक्षा लेिँदैन।",
+          "text": "अर्डर र पार्सल।\n\nAliExpress, Allegro र अरू पार्सल Paczkomat मा मात्र मगाउनुहोस्। कम्पनी ठेगानामा नमगाउनुहोस्।\n\nकम्पनीमा आएको पार्सल सुरक्षा लेिँदैन।",
           "image": "",
           "icon": "📦",
           "pose": "warning",
@@ -10664,7 +10664,7 @@
             "all"
           ],
           "title": "क्लिनिक - GOZ Siechnice",
-          "text": "क्लिनिक - GOZ Siechnice.\n\nठेगाना: Jana Pawła II 23, 55-011 Siechnice।\n\nसामान्य दर्ता: सोमबार-शुक्रबार, 8:00-18:00। जानुअघि फोन गरेर समय र चाहिने कागजात पुष्टि गर्नुहोस्।\n\nपहिचान कागजात, भएमा PESEL, र फोन लैजानुहोस्। दर्ता कक्षले अरू के चाहिन्छ बताउनेछ।",
+          "text": "क्लिनिक - GOZ Siechnice।\n\nठेगाना: Jana Pawła II 23, 55-011 Siechnice।\n\nसामान्य दर्ता: सोमबार-शुक्रबार, 8:00-18:00। जानुअघि फोन गरेर समय र चाहिने कागजात पुष्टि गर्नुहोस्।\n\nपहिचान कागजात, भएमा PESEL, र फोन लैजानुहोस्। दर्ता कक्षले अरू के चाहिन्छ बताउनेछ।",
           "image": "",
           "icon": "🏥",
           "pose": "right",
@@ -10688,7 +10688,7 @@
             "all"
           ],
           "title": "आपतकालीन",
-          "text": "आपतकालीन.\n\nआपतकालीन विभाग जीवन वा स्वास्थ्यमा अचानक गम्भीर खतरा हुँदा हो, जस्तै बेहोस हुनु, गम्भीर सास समस्या, धेरै रगत बग्नु, हृदयाघात वा स्ट्रोकको शंका, गम्भीर चोट वा अवस्था अचानक धेरै बिग्रनु।\n\nतत्काल आपतकालीन सेवा चाहिन्छ भने 112 मा फोन गर्नुहोस्। तत्काल खतरा नभए क्लिनिकमा सम्पर्क गर्नुहोस् वा NFZ 800 190 590 मा फोन गर्नुहोस्।",
+          "text": "आपतकालीन।\n\nआपतकालीन विभाग जीवन वा स्वास्थ्यमा अचानक गम्भीर खतरा हुँदा हो, जस्तै बेहोस हुनु, गम्भीर सास समस्या, धेरै रगत बग्नु, हृदयाघात वा स्ट्रोकको शंका, गम्भीर चोट वा अवस्था अचानक धेरै बिग्रनु।\n\nतत्काल आपतकालीन सेवा चाहिन्छ भने 112 मा फोन गर्नुहोस्। तत्काल खतरा नभए क्लिनिकमा सम्पर्क गर्नुहोस् वा NFZ 800 190 590 मा फोन गर्नुहोस्।",
           "image": "",
           "icon": "🆘 112",
           "pose": "warning",
@@ -10712,7 +10712,7 @@
             "all"
           ],
           "title": "दन्त आपतकालीन",
-          "text": "दन्त आपतकालीन.\n\nNFZ को ड्युटी दन्त क्लिनिक बदलिन सक्छ। पहिले हालको क्लिनिक जाँच गर्नुहोस् वा २४ घण्टे NFZ नम्बर 800 190 590 मा फोन गर्नुहोस्।\n\nNFZ सल्लाहकारले हालको दन्त सेवा, नजिकको आपतकालीन विभाग र राति वा बिदाको सेवा बताउन सक्छ। फोन सेवा निःशुल्क र हप्ताको 7 दिन, 24 घण्टा खुला हुन्छ।\n\nअनुहार सुन्निँदा सास फेर्न वा निल्न गाह्रो हुन्छ वा अवस्था छिटो बिग्रन्छ भने 112 मा फोन गर्नुहोस्।",
+          "text": "दन्त आपतकालीन।\n\nNFZ को ड्युटी दन्त क्लिनिक बदलिन सक्छ। पहिले हालको क्लिनिक जाँच गर्नुहोस् वा २४ घण्टे NFZ नम्बर 800 190 590 मा फोन गर्नुहोस्।\n\nNFZ सल्लाहकारले हालको दन्त सेवा, नजिकको आपतकालीन विभाग र राति वा बिदाको सेवा बताउन सक्छ। फोन सेवा निःशुल्क र हप्ताको 7 दिन, 24 घण्टा खुला हुन्छ।\n\nअनुहार सुन्निँदा सास फेर्न वा निल्न गाह्रो हुन्छ वा अवस्था छिटो बिग्रन्छ भने 112 मा फोन गर्नुहोस्।",
           "image": "",
           "icon": "🦷",
           "pose": "right",
