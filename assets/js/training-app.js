@@ -690,6 +690,13 @@
       chooseLead: text(tx("Po wyborze głos uruchomi się automatycznie. Trasę można zmienić.", "After selection, the voice starts automatically. You can change the path.", "Після вибору голос увімкнеться автоматично. Маршрут можна змінити.", "После выбора голос включится автоматически. Маршрут можно изменить.", "Seçimdən sonra səs avtomatik başlayacaq. Marşrutu dəyişmək olar.", "Después de elegir, la voz empezará automáticamente. Puedes cambiar la ruta.", "Pagkapili, awtomatikong magsisimula ang boses. Maaari mong baguhin ang ruta.", "Setelah memilih, suara akan mulai otomatis. Jalur dapat diubah.", "छानेपछि आवाज स्वतः सुरु हुन्छ। मार्ग बदल्न सकिन्छ।")),
       soundStart: text(tx("NACIŚNIJ — WŁĄCZ GŁOS", "TAP — START WITH SOUND", "НАТИСНІТЬ — УВІМКНУТИ ГОЛОС", "НАЖМИТЕ — ВКЛЮЧИТЬ ГОЛОС", "TOXUNUN — SƏSİ AÇIN", "PULSA — ACTIVAR EL SONIDO", "PINDUTIN — I-ON ANG BOSES", "TEKAN — NYALAKAN SUARA", "थिच्नुहोस् — आवाज खोल्नुहोस्")),
       soundHint: text(tx("Jedno naciśnięcie jest wymagane przez telefon. Potem nagrania przechodzą dalej automatycznie.", "Phones require one tap. After that, recordings continue automatically.", "Телефон вимагає одного натискання. Далі записи продовжуються автоматично.", "Телефон требует одного нажатия. Дальше записи продолжаются автоматически.", "Telefon bir toxunuş tələb edir. Sonra yazılar avtomatik davam edir.", "El teléfono requiere una pulsación. Después, las grabaciones continúan automáticamente.", "Kailangan ng isang pindot sa telepono. Pagkatapos, awtomatikong magpapatuloy ang mga recording.", "Ponsel memerlukan satu kali tekan. Setelah itu rekaman berlanjut otomatis.", "फोनमा एक पटक थिच्नुपर्छ। त्यसपछि रेकर्डिङ स्वतः अगाडि बढ्छ।")),
+      voiceLoading: text(tx("Ładowanie głosu…", "Loading voice…", "Завантаження голосу…", "Загрузка голоса…", "Səs yüklənir…", "Cargando la voz…", "Nilo-load ang boses…", "Memuat suara…", "आवाज लोड हुँदैछ…")),
+      voiceReady: text(tx("Głos gotowy", "Voice ready", "Голос готовий", "Голос готов", "Səs hazırdır", "Voz preparada", "Handa na ang boses", "Suara siap", "आवाज तयार छ")),
+      voicePlaying: text(tx("Aleksandr mówi", "Aleksandr is speaking", "Олександр говорить", "Александр говорит", "Aleksandr danışır", "Aleksandr está hablando", "Nagsasalita si Aleksandr", "Aleksandr sedang berbicara", "अलेक्जेन्डर बोल्दै हुनुहुन्छ")),
+      voicePaused: text(tx("Pauza", "Paused", "Пауза", "Пауза", "Pauza", "Pausa", "Naka-pause", "Dijeda", "रोकिएको छ")),
+      voiceRetrying: text(tx("Ponowne ładowanie głosu…", "Reloading voice…", "Повторне завантаження голосу…", "Повторная загрузка голоса…", "Səs yenidən yüklənir…", "Volviendo a cargar la voz…", "Nilo-load muli ang boses…", "Memuat ulang suara…", "आवाज फेरि लोड हुँदैछ…")),
+      voiceOffline: text(tx("Brak internetu — użyj pobranych nagrań", "Offline — using downloaded recordings", "Немає інтернету — використовую завантажені записи", "Нет интернета — используются загруженные записи", "İnternet yoxdur — yüklənmiş yazılar istifadə olunur", "Sin internet — se usan las grabaciones descargadas", "Walang internet — gagamitin ang na-download na recording", "Offline — memakai rekaman yang sudah diunduh", "इन्टरनेट छैन — डाउनलोड गरिएको रेकर्डिङ प्रयोग हुन्छ")),
+      voiceError: text(tx("Nie udało się uruchomić głosu. Naciśnij ponownie.", "Voice could not start. Tap again.", "Не вдалося запустити голос. Натисніть ще раз.", "Не удалось запустить голос. Нажмите ещё раз.", "Səsi başlatmaq olmadı. Yenidən toxunun.", "No se pudo iniciar la voz. Pulsa de nuevo.", "Hindi nagsimula ang boses. Pindutin muli.", "Suara gagal dimulai. Tekan lagi.", "आवाज सुरु भएन। फेरि थिच्नुहोस्।")),
       changePath: text(tx("Zmień trasę", "Change path", "Змінити маршрут", "Сменить маршрут", "Marşrutu dəyiş", "Cambiar ruta", "Baguhin ang ruta", "Ganti jalur", "मार्ग बदल्नुहोस्")),
       presentation: text(tx("Tryb prezentacji", "Presentation mode", "Режим презентації", "Режим презентации", "Təqdimat rejimi", "Modo presentación", "Mode ng presentasyon", "Mode presentasi", "प्रस्तुति मोड")),
       exitPresentation: text(tx("Wyjdź z prezentacji", "Exit presentation", "Вийти з презентації", "Выйти из презентации", "Təqdimatdan çıx", "Salir de presentación", "Lumabas sa presentasyon", "Keluar dari presentasi", "प्रस्तुतिबाट निस्कनुहोस्")),
@@ -784,11 +791,11 @@
               <a class="cartoon-photo-source" data-cartoon-photo-source target="_blank" rel="noopener noreferrer" hidden></a>
             </div>
             <div class="cartoon-character guide-character" data-guide-character data-pose="neutral" data-rig="parts" data-expression="friendly" aria-hidden="true">
-              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260720-siechnice-master37" alt="" width="1536" height="864">
-              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260720-siechnice-master37" alt="" width="1010" height="720">
-              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260720-siechnice-master37" alt="" width="538" height="634">
+              <img class="cartoon-arm cartoon-arm-left" src="assets/avatar/cartoon/arm-left-v2.png?v=20260720-siechnice-master38" alt="" width="1536" height="864">
+              <img class="cartoon-arm cartoon-arm-right" src="assets/avatar/cartoon/arm-right-v3.png?v=20260720-siechnice-master38" alt="" width="1010" height="720">
+              <img class="cartoon-torso" src="assets/avatar/cartoon/torso-v1.png?v=20260720-siechnice-master38" alt="" width="538" height="634">
               <div class="cartoon-head">
-                <img src="assets/avatar/cartoon/head-v1.png?v=20260720-siechnice-master37" alt="" width="405" height="542">
+                <img src="assets/avatar/cartoon/head-v1.png?v=20260720-siechnice-master38" alt="" width="405" height="542">
                 <span class="cartoon-brow cartoon-brow-left"></span>
                 <span class="cartoon-brow cartoon-brow-right"></span>
                 <span class="cartoon-eye cartoon-eye-left"></span>
@@ -807,7 +814,7 @@
             <div class="presenter-path-dialog" role="dialog" aria-modal="true" aria-labelledby="presenterPathTitle">
               <h3 id="presenterPathTitle">${esc(experience.chooseTitle)}</h3>
               <p>${esc(experience.chooseLead)}</p>
-              <button type="button" class="presenter-sound-start" data-presenter-sound-start><b aria-hidden="true">🔊</b><span><strong>${esc(experience.soundStart)}</strong><small>${esc(experience.soundHint)}</small></span></button>
+              <button type="button" class="presenter-sound-start is-loading" data-presenter-sound-start disabled aria-busy="true"><b aria-hidden="true" data-presenter-sound-start-icon>⏳</b><span><strong data-presenter-sound-start-label>${esc(experience.voiceLoading)}</strong><small>${esc(experience.soundHint)}</small></span></button>
               <div class="presenter-path-grid" data-presenter-path-grid></div>
             </div>
           </div>
@@ -850,18 +857,19 @@
             </div>
           </div>
           <div class="presenter-complete-toast" data-presenter-complete-toast hidden><b aria-hidden="true">✓</b><span>${esc(experience.completed)}</span><small data-presenter-complete-next>${esc(experience.continuing)}</small></div>
-          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260720-siechnice-master37" hidden></video>
+          <video class="presenter-video" data-presenter-video playsinline muted preload="none" poster="assets/avatar/presenter-talking-head-poster-v1.jpg?v=20260720-siechnice-master38" hidden></video>
           <div class="presenter-professional-head" data-professional-head aria-hidden="true">
-            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master37" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260720-siechnice-master37" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260720-siechnice-master37" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260720-siechnice-master37" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="ee" src="assets/avatar/presenter-cartoon-professional-ee-v3.png?v=20260720-siechnice-master37" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="fv" src="assets/avatar/presenter-cartoon-professional-fv-v3.png?v=20260720-siechnice-master37" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="l" src="assets/avatar/presenter-cartoon-professional-l-v3.png?v=20260720-siechnice-master37" alt="" width="512" height="512">
-            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="mbp" src="assets/avatar/presenter-cartoon-professional-mbp-v3.png?v=20260720-siechnice-master37" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-closed" src="assets/avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master38" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-open" data-viseme-frame="mid" src="assets/avatar/presenter-cartoon-professional-open-v1.png?v=20260720-siechnice-master38" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-ah" data-viseme-frame="ah" src="assets/avatar/presenter-cartoon-professional-ah-v2.png?v=20260720-siechnice-master38" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme presenter-professional-head-oh" data-viseme-frame="oh" src="assets/avatar/presenter-cartoon-professional-oh-v2.png?v=20260720-siechnice-master38" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="ee" src="assets/avatar/presenter-cartoon-professional-ee-v3.png?v=20260720-siechnice-master38" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="fv" src="assets/avatar/presenter-cartoon-professional-fv-v3.png?v=20260720-siechnice-master38" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="l" src="assets/avatar/presenter-cartoon-professional-l-v3.png?v=20260720-siechnice-master38" alt="" width="512" height="512">
+            <img class="presenter-professional-head-frame presenter-professional-head-viseme" data-viseme-frame="mbp" src="assets/avatar/presenter-cartoon-professional-mbp-v3.png?v=20260720-siechnice-master38" alt="" width="512" height="512">
           </div>
           <p class="presenter-caption" data-presenter-caption role="status" aria-live="polite" aria-atomic="true"></p>
+          <p class="presenter-audio-state" data-presenter-audio-state data-state="loading" role="status" aria-live="polite"><span data-presenter-audio-state-icon aria-hidden="true">⏳</span><span data-presenter-audio-state-text>${esc(experience.voiceLoading)}</span></p>
           <div class="presenter-scene-status" aria-live="polite"><span>${esc(experience.scene)}</span> <b data-presenter-scene-current>1</b>/<span data-presenter-scene-total>1</span></div>
           <span class="presenter-speaking" aria-hidden="true"><span></span><span></span><span></span></span>
           <div class="presenter-overall-progress" aria-hidden="true"><span data-presenter-overall-progress></span></div>
@@ -2896,6 +2904,11 @@
     const trackOverlay = card.querySelector("[data-presenter-path-overlay]");
     const trackGrid = card.querySelector("[data-presenter-path-grid]");
     const soundStartButton = card.querySelector("[data-presenter-sound-start]");
+    const soundStartIcon = card.querySelector("[data-presenter-sound-start-icon]");
+    const soundStartLabel = card.querySelector("[data-presenter-sound-start-label]");
+    const audioState = card.querySelector("[data-presenter-audio-state]");
+    const audioStateIcon = card.querySelector("[data-presenter-audio-state-icon]");
+    const audioStateText = card.querySelector("[data-presenter-audio-state-text]");
     const trackButton = card.querySelector("[data-presenter-track-button]");
     const trackIcon = card.querySelector("[data-presenter-track-icon]");
     const trackProgress = card.querySelector("[data-presenter-track-progress]");
@@ -2925,7 +2938,10 @@
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const phoneLayout = window.matchMedia && window.matchMedia("(max-width: 620px), (max-height: 520px)").matches;
-    const preferDirectAudio = phoneLayout || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
+    // Native media playback is the most reliable path across iOS, Android and
+    // embedded browsers. Lip motion comes from prepared timing cues, so routing
+    // the voice through Web Audio is unnecessary and can never silence it.
+    const preferDirectAudio = true;
     const constrainedDevice = Boolean(
       reducedMotion || connection?.saveData ||
       (Number(navigator.deviceMemory) > 0 && Number(navigator.deviceMemory) <= 2) ||
@@ -3027,10 +3043,60 @@
     let pendingResumeSeconds = 0;
     let lastProgressSave = 0;
     let activeVideoOffset = 0;
+    let presenterReady = false;
+    let hasPlaybackIntent = false;
+    let audioRetryCount = 0;
+    let audioRetryTimer = 0;
+    let nextAudioPrefetch = null;
 
     const formatTime = (seconds) => {
       const safe = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
       return `${Math.floor(safe / 60)}:${String(safe % 60).padStart(2, "0")}`;
+    };
+
+    const voiceStates = {
+      loading: { icon: "⏳", label: experience.voiceLoading },
+      ready: { icon: "🔊", label: experience.voiceReady },
+      playing: { icon: "●", label: experience.voicePlaying },
+      paused: { icon: "Ⅱ", label: experience.voicePaused },
+      retrying: { icon: "↻", label: experience.voiceRetrying },
+      offline: { icon: "⌁", label: experience.voiceOffline },
+      error: { icon: "!", label: experience.voiceError }
+    };
+
+    const updateVoiceState = (stateName, overrideLabel = "") => {
+      const state = voiceStates[stateName] || voiceStates.ready;
+      const label = overrideLabel || state.label;
+      if (audioState) {
+        audioState.dataset.state = stateName;
+        audioState.hidden = false;
+      }
+      if (audioStateIcon) audioStateIcon.textContent = state.icon;
+      if (audioStateText) audioStateText.textContent = label;
+      card.dataset.voiceState = stateName;
+    };
+
+    const setPresenterReady = (ready) => {
+      presenterReady = Boolean(ready);
+      if (!soundStartButton) return;
+      soundStartButton.disabled = !presenterReady;
+      soundStartButton.setAttribute("aria-busy", presenterReady ? "false" : "true");
+      soundStartButton.classList.toggle("is-loading", !presenterReady);
+      if (soundStartIcon) soundStartIcon.textContent = presenterReady ? "🔊" : "⏳";
+      if (soundStartLabel) soundStartLabel.textContent = presenterReady ? experience.soundStart : experience.voiceLoading;
+      updateVoiceState(presenterReady ? (navigator.onLine === false ? "offline" : "ready") : "loading");
+    };
+
+    const fetchJsonWithTimeout = async (url, timeoutMs) => {
+      const controller = typeof AbortController === "function" ? new AbortController() : null;
+      const timer = window.setTimeout(() => controller?.abort(), timeoutMs);
+      try {
+        const response = await fetch(url, { cache: "no-cache", signal: controller?.signal });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return await response.json();
+      } finally {
+        window.clearTimeout(timer);
+      }
     };
 
     const chapterAudioUrl = (chapter, index) => chapter.legacyAudio ||
@@ -3038,6 +3104,29 @@
     const visualAsset = (path) => {
       if (!path || !assetVersion) return path || "";
       return `${path}${path.includes("?") ? "&" : "?"}v=${encodeURIComponent(assetVersion)}`;
+    };
+
+    const prefetchNextChapterAudio = () => {
+      const nextChapter = chapters[chapterIndex + 1];
+      if (!nextChapter || connection?.saveData) return;
+      if (!nextAudioPrefetch) {
+        nextAudioPrefetch = new Audio();
+        nextAudioPrefetch.preload = "metadata";
+      }
+      const nextUrl = chapterAudioUrl(nextChapter, chapterIndex + 1);
+      if (nextAudioPrefetch.src !== new URL(nextUrl, location.href).href) nextAudioPrefetch.src = nextUrl;
+    };
+
+    const updateMediaSession = (chapter) => {
+      if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined" || !chapter) return;
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: chapter.title,
+          artist: "Aleksandr Kiris",
+          album: "Citronex Siechnice",
+          artwork: [{ src: visualAsset("assets/avatar/presenter-cartoon-professional-closed-v1.png"), sizes: "512x512", type: "image/png" }]
+        });
+      } catch (error) { /* Media Session is optional. */ }
     };
     const cartoonCueSequences = {
       welcome: [
@@ -3864,14 +3953,24 @@
     };
 
     const requestPlayback = () => {
+      if (!presenterReady) {
+        updateVoiceState("loading");
+        return;
+      }
+      hasPlaybackIntent = true;
       recording.muted = false;
       recording.volume = 1;
       if (soundStartButton) soundStartButton.classList.remove("is-error");
+      if (soundStartIcon) soundStartIcon.textContent = "🔊";
+      if (soundStartLabel) soundStartLabel.textContent = experience.soundStart;
       if (preferDirectAudio) card.dataset.lipsync = "timed";
       else ensureAudioMotion();
+      updateVoiceState("loading");
       recording.play().then(() => {
         waitingForGesture = false;
         setPlaying(true);
+        updateVoiceState("playing");
+        prefetchNextChapterAudio();
         animateAudioMotion();
         if (video && !video.hidden) {
           if (card.dataset.avatarMode === "video" && Number.isFinite(video.duration) && video.duration > 0) {
@@ -3883,6 +3982,7 @@
       }).catch((error) => {
         setPlaying(false);
         if (error && error.name === "NotAllowedError") {
+          updateVoiceState("ready", touchToStart);
           card.classList.add("is-autoplay-blocked");
           playLabel.textContent = touchToStart;
           if (stage) stage.setAttribute("aria-label", touchToStart);
@@ -3899,6 +3999,7 @@
             document.addEventListener("keydown", unlock, { once: true, capture: true });
           }
         } else {
+          updateVoiceState(navigator.onLine === false ? "offline" : "error");
           playLabel.textContent = labels.unavailable;
           card.classList.add("is-autoplay-blocked");
           if (soundStartButton) soundStartButton.classList.add("is-error");
@@ -4078,6 +4179,9 @@
     const activateChapter = (index, autoplay = true) => {
       window.clearTimeout(autoAdvanceTimer);
       autoAdvanceTimer = 0;
+      window.clearTimeout(audioRetryTimer);
+      audioRetryTimer = 0;
+      audioRetryCount = 0;
       chapterIndex = Math.max(0, Math.min(chapters.length - 1, Number(index) || 0));
       const chapter = chapters[chapterIndex];
       const token = ++loadToken;
@@ -4086,7 +4190,10 @@
       closeHelpOverlay();
       recording.pause();
       showStaticPortrait();
-      recording.src = chapterAudioUrl(chapter, chapterIndex);
+      const audioUrl = chapterAudioUrl(chapter, chapterIndex);
+      recording.dataset.baseSrc = audioUrl;
+      if (presenterReady) updateVoiceState("loading");
+      recording.src = audioUrl;
       recording.muted = false;
       recording.volume = 1;
       recording.load();
@@ -4101,12 +4208,16 @@
       durationLabel.textContent = "0:00";
       seek.value = "0";
       updateContextLink(chapter);
+      updateMediaSession(chapter);
       updateChapterButtons();
       updateProgress();
       prefetchChapterVisuals(chapterIndex);
       prepareVideo(chapter, chapterIndex, token);
       if (autoplay) requestPlayback();
-      else setPlaying(false);
+      else {
+        setPlaying(false);
+        if (presenterReady) updateVoiceState(navigator.onLine === false ? "offline" : "ready");
+      }
     };
 
     const activateFreshChapter = (index, autoplay = true) => {
@@ -4373,6 +4484,24 @@
     nextButton.addEventListener("click", () => {
       if (chapterIndex < chapters.length - 1) activateFreshChapter(chapterIndex + 1, true);
     });
+    if ("mediaSession" in navigator && typeof navigator.mediaSession.setActionHandler === "function") {
+      const mediaActions = {
+        play: () => requestPlayback(),
+        pause: () => recording.pause(),
+        previoustrack: () => activateFreshChapter(Math.max(0, chapterIndex - 1), true),
+        nexttrack: () => {
+          if (chapterIndex < chapters.length - 1) activateFreshChapter(chapterIndex + 1, true);
+        },
+        seekto: (details) => {
+          if (Number.isFinite(details?.seekTime) && Number.isFinite(recording.duration)) {
+            recording.currentTime = Math.max(0, Math.min(recording.duration, details.seekTime));
+          }
+        }
+      };
+      Object.entries(mediaActions).forEach(([action, handler]) => {
+        try { navigator.mediaSession.setActionHandler(action, handler); } catch (error) { /* Unsupported action. */ }
+      });
+    }
     stopButton.addEventListener("click", () => {
       window.clearTimeout(autoAdvanceTimer);
       autoAdvanceTimer = 0;
@@ -4407,6 +4536,7 @@
         pendingResumeSeconds = 0;
       }
       updateProgress();
+      if (presenterReady && recording.paused) updateVoiceState(navigator.onLine === false ? "offline" : "ready");
     });
     recording.addEventListener("durationchange", updateProgress);
     recording.addEventListener("timeupdate", () => {
@@ -4420,17 +4550,22 @@
     recording.addEventListener("play", () => {
       ensureAudioMotion();
       setPlaying(true);
+      updateVoiceState("playing");
       animateAudioMotion();
     });
     recording.addEventListener("pause", () => {
       window.cancelAnimationFrame(audioMotionFrame);
       card.style.setProperty("--voice-level", "0");
-      if (!recording.ended) setPlaying(false);
+      if (!recording.ended) {
+        setPlaying(false);
+        if (presenterReady && !card.classList.contains("is-help-open")) updateVoiceState(navigator.onLine === false ? "offline" : "paused");
+      }
       saveProgress();
     });
     recording.addEventListener("ended", () => {
       if (video) video.pause();
       setPlaying(false);
+      updateVoiceState(navigator.onLine === false ? "offline" : "ready");
       playLabel.textContent = labels.repeat;
       seek.value = "1000";
       showChapterQuiz();
@@ -4438,7 +4573,34 @@
     recording.addEventListener("error", () => {
       if (video) video.pause();
       setPlaying(false);
+      window.clearTimeout(audioRetryTimer);
+      const baseUrl = recording.dataset.baseSrc || "";
+      if (baseUrl && audioRetryCount < 2 && navigator.onLine !== false) {
+        audioRetryCount += 1;
+        updateVoiceState("retrying");
+        audioRetryTimer = window.setTimeout(() => {
+          const separator = baseUrl.includes("?") ? "&" : "?";
+          recording.src = `${baseUrl}${separator}retry=${audioRetryCount}-${Date.now()}`;
+          recording.muted = false;
+          recording.volume = 1;
+          recording.load();
+          if (hasPlaybackIntent) requestPlayback();
+        }, 450 * audioRetryCount);
+        return;
+      }
+      updateVoiceState(navigator.onLine === false ? "offline" : "error");
       playLabel.textContent = labels.unavailable;
+      if (soundStartButton) {
+        soundStartButton.classList.add("is-error");
+        soundStartButton.disabled = false;
+      }
+      if (soundStartIcon) soundStartIcon.textContent = "↻";
+      if (soundStartLabel) soundStartLabel.textContent = experience.voiceError;
+      if (trackOverlay) trackOverlay.hidden = false;
+    });
+    window.addEventListener("offline", () => updateVoiceState("offline"));
+    window.addEventListener("online", () => {
+      if (recording.paused) updateVoiceState(presenterReady ? "ready" : "loading");
     });
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
@@ -4449,32 +4611,22 @@
       }
     });
 
+    const cueDataPromise = fetchJsonWithTimeout(lipSyncUrl, 6500).catch(() => null);
     try {
       const useEditorDraft = new URLSearchParams(location.search).get("draft") === "1";
       let guide = null;
       if (useEditorDraft) {
         try { guide = JSON.parse(localStorage.getItem("cx-editor-guide-draft-v1") || "null"); } catch (error) { guide = null; }
       }
-      if (!guide) {
-        const response = await fetch(fullGuideUrl, { cache: "no-cache" });
-        if (!response.ok) throw new Error("presenter-guide");
-        guide = await response.json();
-      }
+      if (!guide) guide = await fetchJsonWithTimeout(fullGuideUrl, 8000);
       const localized = guide.languages && guide.languages[lang];
       if (!localized || !Array.isArray(localized.sections) || !localized.sections.length) throw new Error("presenter-language");
       allChapters = localized.sections.map((chapter, sourceIndex) => ({ ...chapter, sourceIndex }));
     } catch (error) {
       allChapters = [fallbackChapter];
     }
-    try {
-      const cueResponse = await fetch(lipSyncUrl, { cache: "no-cache" });
-      if (cueResponse.ok) {
-        const cueData = await cueResponse.json();
-        lipSyncCues = cueData.languages?.[lang] || {};
-      }
-    } catch (error) {
-      lipSyncCues = {};
-    }
+    const cueData = await cueDataPromise;
+    lipSyncCues = cueData?.languages?.[lang] || {};
 
     Object.keys(trackOrders).forEach((trackKey) => {
       trackOrders[trackKey] = allChapters
@@ -4494,10 +4646,12 @@
     renderTrackGrid();
     renderGuide();
     activateChapter(chapterIndex, false);
+    setPresenterReady(true);
     if (trackOverlay) trackOverlay.hidden = false;
     window.addEventListener("pagehide", () => {
       saveProgress();
       window.cancelAnimationFrame(audioMotionFrame);
+      window.clearTimeout(audioRetryTimer);
       if (focusResizeObserver) focusResizeObserver.disconnect();
       recording.pause();
       if (video) video.pause();
