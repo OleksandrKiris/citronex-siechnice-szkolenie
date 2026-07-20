@@ -274,7 +274,7 @@
   body[data-page="pomocnik"] .presenter-path-overlay {
     background:
       linear-gradient(180deg, rgba(3, 42, 28, .72), rgba(3, 52, 34, .9)),
-      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260719-siechnice-master36") center 31% / min(72vh, 620px) auto no-repeat;
+      url("../avatar/presenter-cartoon-professional-closed-v1.png?v=20260720-siechnice-master37") center 31% / min(72vh, 620px) auto no-repeat;
   }
 
   body[data-page="pomocnik"] .presenter-path-dialog h3 {
@@ -685,6 +685,31 @@
 .content-review-card strong { color: #08753f; }
 .content-review-card small { color: #597266; }
 
+.presenter-sound-start {
+  width: 100%;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  border: 3px solid #fff;
+  border-radius: 17px;
+  background: #ffd34f;
+  color: #173629;
+  box-shadow: 0 8px 0 #b58100, 0 14px 28px rgba(0, 0, 0, .26);
+  cursor: pointer;
+  text-align: left;
+}
+
+.presenter-sound-start > b { font-size: 1.85rem; }
+.presenter-sound-start > span { display: grid; gap: 2px; }
+.presenter-sound-start strong { font-size: clamp(.95rem, 3.7vw, 1.12rem); line-height: 1.05; }
+.presenter-sound-start small { color: #4d4520; font-size: .72rem; line-height: 1.25; }
+.presenter-sound-start:active { transform: translateY(4px); box-shadow: 0 4px 0 #b58100, 0 8px 18px rgba(0, 0, 0, .2); }
+.presenter-sound-start.is-error { border-color: #ffb0a9; background: #ffe0dc; color: #7a1710; }
+
 .presenter-review-chip {
   float: right;
   margin: 0 0 4px 8px;
@@ -724,6 +749,8 @@
 @media (max-width: 620px) {
   .content-review-card { margin-top: 9px; padding: 9px 11px; font-size: .76rem; }
   .content-review-card small { display: none; }
+  .presenter-sound-start { min-height: 62px; margin-bottom: 7px; padding: 9px 11px; }
+  .presenter-sound-start small { font-size: .65rem; }
   .presenter-review-chip { margin-top: 2px; font-size: .61rem; }
   .cartoon-prop-hint { margin-top: 5px; padding: 6px 8px; }
   .presenter-stage-tools .presenter-tool[data-presenter-fullscreen] { display: none; }
@@ -953,13 +980,13 @@
   transition: opacity 45ms linear;
 }
 
-.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="mid"] [data-viseme-frame="mid"],
-.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="ah"] [data-viseme-frame="ah"],
-.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="oh"] [data-viseme-frame="oh"],
-.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="ee"] [data-viseme-frame="ee"],
-.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="fv"] [data-viseme-frame="fv"],
-.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="l"] [data-viseme-frame="l"],
-.presenter-card-v2.is-speaking[data-lipsync="audio"][data-viseme="mbp"] [data-viseme-frame="mbp"] {
+.presenter-card-v2.is-speaking:is([data-lipsync="audio"], [data-lipsync="timed"])[data-viseme="mid"] [data-viseme-frame="mid"],
+.presenter-card-v2.is-speaking:is([data-lipsync="audio"], [data-lipsync="timed"])[data-viseme="ah"] [data-viseme-frame="ah"],
+.presenter-card-v2.is-speaking:is([data-lipsync="audio"], [data-lipsync="timed"])[data-viseme="oh"] [data-viseme-frame="oh"],
+.presenter-card-v2.is-speaking:is([data-lipsync="audio"], [data-lipsync="timed"])[data-viseme="ee"] [data-viseme-frame="ee"],
+.presenter-card-v2.is-speaking:is([data-lipsync="audio"], [data-lipsync="timed"])[data-viseme="fv"] [data-viseme-frame="fv"],
+.presenter-card-v2.is-speaking:is([data-lipsync="audio"], [data-lipsync="timed"])[data-viseme="l"] [data-viseme-frame="l"],
+.presenter-card-v2.is-speaking:is([data-lipsync="audio"], [data-lipsync="timed"])[data-viseme="mbp"] [data-viseme-frame="mbp"] {
   opacity: 1;
 }
 

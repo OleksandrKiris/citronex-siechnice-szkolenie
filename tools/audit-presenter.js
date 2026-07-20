@@ -102,6 +102,9 @@ if (!professionalCartoonFrames.every((asset) => appSource.includes(asset)) || !a
 if (!["audioSpectrum", "getByteFrequencyData", "card.dataset.viseme", "card.dataset.lipsync"].every((token) => appSource.includes(token))) {
   errors.push("audio-reactive multi-viseme lip sync is missing");
 }
+if (!["preferDirectAudio", "recording.muted = false", "data-presenter-sound-start", 'card.dataset.lipsync = "timed"'].every((token) => appSource.includes(token))) {
+  errors.push("mobile direct-audio unlock path is missing");
+}
 if (!appSource.includes('tabindex="-1" aria-hidden="true"')) errors.push("duplicate accessible stage control is not suppressed");
 if (!appSource.includes("card.dataset.hasVisual")) errors.push("adaptive visual focus state is missing");
 if (!["actionLabel", "urgentLabel", "listenLabel", "stageCaption.dataset.label"].every((token) => appSource.includes(token))) {
@@ -111,7 +114,7 @@ if (!["sceneCharacterLimit", "stageCaption.dataset.icon", "data-presenter-comple
   errors.push("short-scene accessibility and readable chapter transition are missing");
 }
 const adaptiveCssSource = fs.existsSync(cleanCssPath) ? fs.readFileSync(cleanCssPath, "utf8") : "";
-if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(professionalCartoonFrames[0]) || !adaptiveCssSource.includes("Master 35") || !adaptiveCssSource.includes("professional-viseme-ah") || !adaptiveCssSource.includes("professional-eye-blink") || !adaptiveCssSource.includes("attr(data-icon)") || !adaptiveCssSource.includes("attr(data-label)")) {
+if (!adaptiveCssSource.includes('[data-has-visual="true"]') || !adaptiveCssSource.includes(professionalCartoonFrames[0]) || !adaptiveCssSource.includes("Master 35") || !adaptiveCssSource.includes("professional-viseme-ah") || !adaptiveCssSource.includes("professional-eye-blink") || !adaptiveCssSource.includes("attr(data-icon)") || !adaptiveCssSource.includes("attr(data-label)") || !adaptiveCssSource.includes("presenter-sound-start") || !adaptiveCssSource.includes('data-lipsync="timed"')) {
   errors.push("adaptive visual focus styling is missing");
 }
 if (!appSource.includes('updateViaCache: "none"') || !appSource.includes('"controllerchange"')) errors.push("automatic Service Worker update is missing");
