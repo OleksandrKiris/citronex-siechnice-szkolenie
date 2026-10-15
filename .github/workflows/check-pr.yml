@@ -1,0 +1,27 @@
+name: Check training pull request
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check JavaScript and original training audits
+        run: |
+          find . -type f -name "*.js" -not -path "./.git/*" -not -path "./wersje/*" -print0 | xargs -0 -n1 node --check
+          node tools/audit-project.js
+          node tools/audit-buttons.js
+          node tools/audit-map-links.js
+          node tools/audit-presenter.js
+          node tools/audit-information.js
+          node tools/audit-language-quality.js
+          node --test tools/primserv-navigation.test.mjs

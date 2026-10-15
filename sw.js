@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20260720-siechnice-master41";
+const CACHE_NAME = CACHE_PREFIX + "20261016-siechnice-primserv42";
 
 const CORE_ASSETS = [
   "./",
@@ -25,7 +25,10 @@ const CORE_ASSETS = [
   "./assets/css/presenter-clean.css?v=20260720-siechnice-master41",
   "./assets/css/editor.css?v=20260720-siechnice-master41",
   "./assets/js/training-data.js?v=20260720-siechnice-master41",
-  "./assets/js/training-app.js?v=20260720-siechnice-master41",
+  "./assets/js/training-app.js?v=20261016-siechnice-primserv42",
+  "./assets/css/primserv.css?v=20261016-siechnice-primserv42",
+  "./assets/primserv-logo.svg",
+  "./assets/primserv-icon-192.png",
   "./assets/js/editor.js?v=20260720-siechnice-master41",
   "./assets/logo-citronex.svg",
   "./assets/content/presenter-guide.json?v=20260720-siechnice-master41",
@@ -94,7 +97,11 @@ self.addEventListener("install", (event) => {
     const cache = await caches.open(CACHE_NAME);
     await Promise.all(CORE_ASSETS.map(async (asset) => {
       try {
-        await cache.add(new Request(asset, { cache: "reload" }));
+        const request = new Request(asset, { cache: "reload" });
+        const refresh = asset === "./" || asset.endsWith(".html") || asset.endsWith("manifest.webmanifest");
+        const existing = refresh ? null : await caches.match(request);
+        if (existing) await cache.put(request, existing);
+        else await cache.add(request);
       } catch (error) {
         // Offline cache stays resilient if a non-critical asset fails.
       }
