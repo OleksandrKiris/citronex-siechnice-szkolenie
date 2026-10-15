@@ -1,6 +1,6 @@
 {
-  "name": "CITRONEX hydra S.R.Z.B. - Siechnice",
-  "short_name": "CITRONEX hydra",
+  "name": "PrimServ · HYDRA · Siechnice",
+  "short_name": "PrimServ",
   "description": "Szkolenie CITRONEX hydra S.R.Z.B. dla Siechnic",
   "start_url": "./index.html",
   "scope": "./",
@@ -9,9 +9,9 @@
   "theme_color": "#166534",
   "icons": [
     {
-      "src": "assets/logo-citronex.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "assets/primserv-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

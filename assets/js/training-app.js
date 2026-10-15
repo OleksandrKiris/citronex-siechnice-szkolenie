@@ -1,7 +1,7 @@
 (() => {
   const DATA = window.CX_DATA;
   const tx = (pl, en, ua, ru, az, es, fil, id, ne) => ({ pl, en, ua, ru, az, es, fil, id, ne });
-  const hydraBrand = "CITRONEX hydra S.R.Z.B.";
+  const hydraBrand = "PrimServ · HYDRA";
   const validLangs = new Set(DATA.languages.map((item) => item.id));
   const page = document.body.dataset.page || "home";
   const app = document.getElementById("app");
@@ -39,8 +39,11 @@
 
   function getLang() {
     const params = new URLSearchParams(location.search);
-    const fromUrl = (params.get("lang") || "").toLowerCase();
-    const fromStorage = (localStorage.getItem("cx-lang") || "").toLowerCase();
+    const requested = (params.get("lang") || "").toLowerCase();
+    const fromUrl = requested === "uk" ? "ua" : requested;
+    if (["ka", "hy"].includes(fromUrl)) return "en";
+    let fromStorage = "";
+    try { fromStorage = (localStorage.getItem("cx-lang") || "").toLowerCase(); } catch { /* Storage is optional. */ }
     const browserLanguages = [navigator.language, ...(Array.isArray(navigator.languages) ? navigator.languages : [])];
     const fromBrowser = browserLanguages.map((value) => String(value || "").toLowerCase().split(/[-_]/)[0]).map((value) => value === "uk" ? "ua" : value).find((value) => validLangs.has(value));
     if (validLangs.has(fromUrl)) return fromUrl;
@@ -412,6 +415,14 @@
         <span>${esc(hydraLabel)}</span>
       </a>
     `;
+    const jobsHref = `https://oleksandrkiris.github.io/kiris-jobs/?lang=${encodeURIComponent(lang === "ua" ? "uk" : lang)}`;
+    const serviceLinks = [
+      ["https://www.primserv.pl/", tx("Firma PrimServ", "Company PrimServ", "Компанія PrimServ", "Компания PrimServ", "PrimServ şirkəti", "Empresa PrimServ", "Kumpanya PrimServ", "Perusahaan PrimServ", "PrimServ कम्पनी")],
+      [jobsHref, tx("Oferty pracy", "Vacancies", "Вакансії", "Вакансии", "Vakansiyalar", "Vacantes", "Mga bakanteng trabaho", "Lowongan kerja", "रिक्त पदहरू")],
+      ["https://t.me/KirisWorkPoland_bot", tx("Bot Telegram", "Telegram bot", "Telegram-бот", "Telegram-бот", "Telegram botu", "Bot de Telegram", "Telegram bot", "Bot Telegram", "Telegram बोट")]
+    ].map(([url, label]) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(text(label))}</a>`).join("");
+    const fallback = ["ka", "hy"].includes((new URLSearchParams(location.search).get("lang") || "").toLowerCase())
+      ? '<p class="primserv-language-fallback">English (EN)</p>' : "";
     const homeReturn = isHome ? "" : `
       <a class="home-return-cta" href="${esc(href("home"))}">
         <span class="home-return-icon">${iconMap.home}</span>
@@ -422,9 +433,9 @@
     document.body.insertAdjacentHTML("afterbegin", `
       <header class="app-header">
         <div class="header-inner">
-          ${isHome ? `<span class="back-link" aria-hidden="true">CX</span>` : `<a class="back-link" href="${esc(href("home"))}" aria-label="${esc(ui("back"))}">‹</a>`}
+          ${isHome ? `<span class="back-link" aria-hidden="true">PS</span>` : `<a class="back-link" href="${esc(href("home"))}" aria-label="${esc(ui("back"))}">‹</a>`}
           <div class="brand">
-            <img src="assets/logo-citronex.svg" alt="Citronex">
+            <img src="assets/primserv-logo.svg" width="40" height="56" alt="PrimServ">
             <div>
               <p class="brand-title">${esc(hydraBrand)}</p>
               <p class="brand-subtitle">${esc(ui("subtitle"))}</p>
@@ -437,6 +448,8 @@
         </nav>
         ${homeReturn}
       </header>
+      <nav class="primserv-services" aria-label="PrimServ">${serviceLinks}</nav>
+      ${fallback}
     `);
 
     document.getElementById("langSelect").addEventListener("change", (event) => {
@@ -447,7 +460,7 @@
   function reloadWithLanguage(nextLang) {
     if (!validLangs.has(nextLang)) return;
     lang = nextLang;
-    localStorage.setItem("cx-lang", lang);
+    try { localStorage.setItem("cx-lang", lang); } catch { /* The URL preserves the selected language. */ }
     const url = new URL(location.href);
     url.searchParams.set("lang", lang);
     url.searchParams.delete("welcome");
@@ -467,9 +480,9 @@
   function showHydraEntrySplash() {
     const params = new URLSearchParams(location.search);
     if (params.get("from") !== "hydra" || document.querySelector(".location-splash")) return;
-    const appTitle = DATA.meta && DATA.meta.appTitle ? DATA.meta.appTitle : hydraBrand;
-    const logoSrc = DATA.meta && DATA.meta.logo ? DATA.meta.logo : "assets/logo-citronex.svg";
-    const logoAlt = DATA.meta && DATA.meta.logoAlt ? DATA.meta.logoAlt : appTitle;
+    const appTitle = `${hydraBrand} · Siechnice`;
+    const logoSrc = "assets/primserv-logo.svg";
+    const logoAlt = "PrimServ";
     const cleanUrl = new URL(location.href);
     cleanUrl.searchParams.delete("from");
     history.replaceState(null, "", cleanUrl.toString());
@@ -497,7 +510,7 @@
 
   function pageHero(pageName = page) {
     const info = DATA.pages[pageName] || DATA.pages.home;
-    document.title = `${text(info.title)} - ${text(ui("brand"))}`;
+    document.title = `${text(info.title)} · Siechnice · PrimServ`;
     return `
       <section class="hero">
         <p class="eyebrow">${esc(hydraBrand)}</p>
