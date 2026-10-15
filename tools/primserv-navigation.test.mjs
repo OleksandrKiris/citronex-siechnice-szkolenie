@@ -71,7 +71,9 @@ test("official logo and every production page use the new worker/UI entry", asyn
   for (const file of (await fs.readdir(root)).filter(p => p.endsWith(".html"))) {
     const html = await fs.readFile(new URL(file, root), "utf8");
     assert.ok(html.includes('href="assets/primserv-logo.svg"'), file);
+    assert.match(html, /<title>[^<]*PrimServ<\/title>/, file);
     if (html.includes('data-standalone-tool=')) continue;
+    assert.ok(html.includes('property="og:title"'), file);
     assert.ok(html.includes("assets/js/training-app.js?v=20261016-siechnice-primserv42"), file);
     assert.ok(html.includes("assets/css/primserv.css?v=20261016-siechnice-primserv42"), file);
     assert.match(html, /assets\/js\/training-data\.js\?v=[^\"\s]+/, file);
