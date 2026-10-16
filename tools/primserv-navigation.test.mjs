@@ -74,7 +74,7 @@ test("official logo and every production page use the new worker/UI entry", asyn
     assert.match(html, /<title>[^<]*PrimServ<\/title>/, file);
     if (html.includes('data-standalone-tool=')) continue;
     assert.ok(html.includes('property="og:title"'), file);
-    assert.ok(html.includes("assets/js/training-app.js?v=20261016-recording1"), file);
+    assert.ok(html.includes("assets/js/training-app.js?v=20261016-focus1"), file);
     assert.ok(html.includes("assets/css/primserv.css?v=20261016-siechnice-primserv42"), file);
     assert.match(html, /assets\/js\/training-data\.js\?v=[^\"\s]+/, file);
   }
@@ -91,7 +91,7 @@ function workerHarness() {
     self: { location: { origin }, addEventListener(name, handler) { handlers[name] = handler; }, skipWaiting() { lifecycle.push("skip"); }, clients: { claim() { lifecycle.push("claim"); } } },
     caches: {
       async open() { return { async add(request) { added.push(request.url); }, async put(request) { copied.push(request.url); } }; },
-      async match(request) { return (request.url.includes("primserv") || request.url.includes("20261016-language1") || request.url.includes("20261016-recording1")) ? null : new Response("old valid asset"); },
+      async match(request) { return (request.url.includes("primserv") || request.url.includes("20261016-focus1") || request.url.includes("20261016-language1") || request.url.includes("20261016-recording1")) ? null : new Response("old valid asset"); },
       async keys() { return ["unrelated", "citronex-siechnice-modular-old", "citronex-siechnice-training-old", vm.runInContext("CACHE_NAME", context)]; },
       async delete(name) { deleted.push(name); }
     },
@@ -110,7 +110,7 @@ test("worker migrates exact unchanged cached media but refreshes documents and c
   assert.ok(w.copied.some(url => url.endsWith("/assets/css/training.css?v=20260720-siechnice-master41")));
   assert.ok(w.added.some(url => url.endsWith("/index.html")));
   assert.ok(w.added.some(url => url.endsWith("/manifest.webmanifest")));
-  assert.ok(w.added.some(url => url.endsWith("/assets/js/training-app.js?v=20261016-recording1")));
+  assert.ok(w.added.some(url => url.endsWith("/assets/js/training-app.js?v=20261016-focus1")));
   assert.ok(w.added.some(url => url.endsWith("/assets/js/instruction-update.js?v=20261016-language1")));
   assert.ok(w.added.some(url => url.endsWith("/assets/primserv-logo.svg")));
   assert.equal(w.added.some(url => url.includes(".mp3")), false);
@@ -370,4 +370,109 @@ test('automatic chapter changes pause outdated recordings, clear stale playback 
     assert.equal(c.instructionUpdate.hidden, !updated, id);
     if (updated) assert.equal(c.hasPlaybackIntent,false,id);
   }
+});
+
+function fullscreenFixture(languageIndex = 0) {
+  const handlers = {}, controls = [], copies = [];
+  let modal;
+  const document = {activeElement: null, addEventListener(type, handler) {handlers[type] = handler;}};
+  function element() {
+    const classes = new Set(), attributes = {}, listeners = {};
+    return {
+      dataset: {}, isConnected: true, attributes, listeners,
+      classList: {add(v) {classes.add(v);}, remove(v) {classes.delete(v);}, contains(v) {return classes.has(v);}},
+      setAttribute(name, value) {attributes[name] = value;}, removeAttribute(name) {delete attributes[name];},
+      addEventListener(type, handler) {listeners[type] = handler;},
+      focus() {document.activeElement = this;}, getClientRects() {return [{}];},
+      closest() {return null;}, appendChild() {}, remove() {}
+    };
+  }
+  const close = element(), inside = element(), hidden = element(), content = element();
+  hidden.getClientRects = () => [];
+  controls.push(close, inside, hidden);
+  const schema = element();
+  const step = {querySelector: () => schema, cloneNode() {
+    const copySchema = element();
+    ['role','tabindex','aria-label','title'].forEach(name => copySchema.setAttribute(name, 'copied'));
+    copies.push(copySchema);
+    return {querySelectorAll(selector) {return selector === '.schema[role="button"]' ? [copySchema] : [];}};
+  }};
+  document.body = element();
+  document.querySelectorAll = () => [step];
+  document.querySelector = () => null;
+  document.createElement = tag => {
+    if (tag !== 'div') return element();
+    modal = element();
+    modal.querySelector = selector => selector === '.orientation-modal-close' ? close : content;
+    modal.querySelectorAll = () => controls;
+    modal.contains = node => controls.includes(node);
+    return modal;
+  };
+  const start = source.indexOf('  function setupGreenhouseFullscreen()');
+  const end = source.indexOf('  function readerTabButton', start);
+  assert.ok(start >= 0 && end > start);
+  const context = vm.createContext({document, text: v => v, tx: (...values) => values[languageIndex], esc: v => v, setupGreenhouseNavePicker() {}});
+  vm.runInContext(source.slice(start, end) + '\nsetupGreenhouseFullscreen();', context);
+  function event(key, target = schema, shiftKey = false) {
+    return {key, target, shiftKey, prevented: false, preventDefault() {this.prevented = true;}};
+  }
+  function key(value, shiftKey = false) {
+    const e = event(value, document.activeElement, shiftKey);handlers.keydown(e);return e;
+  }
+  return {document, modal, schema, close, inside, copies, controls, key,
+    open(method = 'click') {
+      const e = event(method === 'click' ? '' : method);
+      schema.listeners[method === 'click' ? 'click' : 'keydown'](e);
+      return e;
+    }};
+}
+
+langs.forEach((lang, index) => test(`${lang}: full-screen diagram has a localized name and returns to its originating diagram`, () => {
+  for (const method of ['click','Enter',' ']) {
+    const f = fullscreenFixture(index);
+    const e = f.open(method);
+    assert.equal(f.modal.classList.contains('is-open'), true);
+    assert.equal(f.document.activeElement, f.close);
+    assert.equal(f.modal.attributes['aria-label'], f.schema.attributes['aria-label']);
+    assert.ok(f.modal.attributes['aria-label']);
+    assert.deepEqual(Object.keys(f.copies[0].attributes), []);
+    if (method !== 'click') assert.equal(e.prevented, true);
+    f.close.listeners.click();
+    assert.equal(f.document.activeElement, f.schema);
+    assert.equal(f.modal.attributes['aria-hidden'], 'true');
+  }
+}));
+test('diagram Tab stays within visible controls in both directions and recovers escaped focus', () => {
+  const f = fullscreenFixture();f.open();
+  assert.equal(f.key('Tab', true).prevented, true);
+  assert.equal(f.document.activeElement, f.inside);
+  assert.equal(f.key('Tab').prevented, true);
+  assert.equal(f.document.activeElement, f.close);
+  assert.equal(f.key('Tab').prevented, false, 'normal navigation between controls is left to the browser');
+  f.document.activeElement = f.schema;
+  assert.equal(f.key('Tab').prevented, true);
+  assert.equal(f.document.activeElement, f.close);
+  f.document.activeElement = f.schema;
+  f.key('Tab', true);assert.equal(f.document.activeElement, f.inside);
+});
+test('Escape and backdrop close restore focus; closed dialog does not capture page keyboard events', () => {
+  const f = fullscreenFixture();f.open();
+  assert.equal(f.key('Escape').prevented, true);
+  assert.equal(f.document.activeElement, f.schema);
+  assert.equal(f.key('Tab').prevented, false);
+  assert.equal(f.key('Escape').prevented, false);
+  f.open();f.modal.listeners.click({target:f.inside});
+  assert.equal(f.modal.classList.contains('is-open'), true);
+  f.modal.listeners.click({target:f.modal});
+  assert.equal(f.document.activeElement, f.schema);
+  assert.equal(f.modal.classList.contains('is-open'), false);
+});
+test('single-control diagram wraps to Close and safely closes after its trigger is removed', () => {
+  const f = fullscreenFixture();f.controls.splice(1);f.open();
+  assert.equal(f.key('Tab').prevented, true);
+  assert.equal(f.document.activeElement, f.close);
+  assert.equal(f.key('Tab', true).prevented, true);
+  f.schema.isConnected = false;
+  assert.doesNotThrow(() => f.close.listeners.click());
+  assert.equal(f.modal.classList.contains('is-open'), false);
 });
