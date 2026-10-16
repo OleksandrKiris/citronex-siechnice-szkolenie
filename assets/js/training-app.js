@@ -59,6 +59,7 @@
 
   let lang = getLang();
   let readerTopic = "";
+  let contactGroup = "";
   document.documentElement.lang = lang === "ua" ? "uk" : lang;
 
   const visibleTranslationFixes = {
@@ -472,6 +473,7 @@
     const url = new URL(location.href);
     url.searchParams.set("lang", lang);
     if (page === "reader" && readerTopic) url.searchParams.set("topic", readerTopic);
+    if (page === "kontakty" && contactGroup) url.searchParams.set("group", contactGroup);
     url.searchParams.delete("welcome");
     location.href = url.toString();
   }
@@ -1848,7 +1850,7 @@
     });
   }
 
-  function renderContacts(activeGroup = "coordinators") {
+  function renderContacts(activeGroup = new URLSearchParams(location.search).get("group") || "coordinators") {
     function personCard(person, groupLabel = "") {
       const role = person.role || groupLabel;
       const message = `${role ? role + " " : ""}${person.name}`;
@@ -1873,7 +1875,8 @@
     ];
 
     const current = groups.find((group) => group.id === activeGroup) || groups[0];
-    const pills = groups.map((group) => `<button class="pill${group.id === current.id ? " active" : ""}" type="button" data-contact-group="${esc(group.id)}">${esc(group.label)}</button>`).join("");
+    contactGroup = current.id;
+    const pills = groups.map((group) => `<button class="pill${group.id === current.id ? " active" : ""}" type="button" data-contact-group="${esc(group.id)}" aria-pressed="${group.id === current.id}">${esc(group.label)}</button>`).join("");
     const people = current.people.map((person) => personCard(person, current.tag)).join("");
 
     app.innerHTML = `
@@ -1889,7 +1892,15 @@
     `;
 
     app.querySelectorAll("[data-contact-group]").forEach((button) => {
-      button.addEventListener("click", () => renderContacts(button.dataset.contactGroup));
+      button.addEventListener("click", () => {
+        renderContacts(button.dataset.contactGroup);
+        const url = new URL(location.href);
+        url.searchParams.set("group", contactGroup);
+        try { history.replaceState(history.state, "", url); }
+        catch { /* The selected group still survives a language change without history access. */ }
+        Array.from(app.querySelectorAll("[data-contact-group]"))
+          .find(item => item.dataset.contactGroup === contactGroup)?.focus({ preventScroll: true });
+      });
     });
   }
 
