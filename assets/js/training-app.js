@@ -771,6 +771,44 @@
     };
   }
 
+  // These recorded chapters predate the owner-confirmed instructions of 2026-10-16.
+  // Keep the original audio/transcript, but route the learner to the current procedure.
+  function recordingInstructionTopic(chapter) {
+    return ({
+      "reader-personal-tag": "start",
+      "reader-break-end": "rows",
+      "reader-work-end": "outside",
+      "reader-break": "rows",
+      "reader-restart-buttons": "restart",
+      "reader-restart-menu": "restart"
+    })[chapter?.id] || "";
+  }
+
+  function recordingUpdateCopy() {
+    return {
+      notice: text(tx(
+        "To starsze nagranie nie uwzględnia wszystkich zmian z 16.10.2026. Korzystaj z aktualnej instrukcji poniżej.",
+        "This earlier recording does not include all changes from 16 October 2026. Use the current instructions below.",
+        "Цей старіший запис не враховує всіх змін від 16.10.2026. Користуйтеся актуальною інструкцією нижче.",
+        "Эта старая запись не учитывает все изменения от 16.10.2026. Используйте актуальную инструкцию ниже.",
+        "Bu əvvəlki səs yazısı 16.10.2026 tarixli bütün dəyişiklikləri əhatə etmir. Aşağıdakı aktual təlimatdan istifadə edin.",
+        "Esta grabación anterior no incluye todos los cambios del 16 de octubre de 2026. Consulta las instrucciones actuales a continuación.",
+        "Hindi kasama sa naunang recording na ito ang lahat ng pagbabago noong 16 Oktubre 2026. Sundin ang kasalukuyang mga tagubilin sa ibaba.",
+        "Rekaman lama ini belum mencakup semua perubahan tanggal 16 Oktober 2026. Gunakan petunjuk terbaru di bawah ini.",
+        "यस पुरानो रेकर्डिङमा १६ अक्टोबर २०२६ का सबै परिवर्तन समावेश छैनन्। तलका अद्यावधिक निर्देशनहरू पालना गर्नुहोस्।"
+      )),
+      open: text(tx("Aktualna instrukcja", "Current instructions", "Актуальна інструкція", "Актуальная инструкция", "Aktual təlimat", "Instrucciones actuales", "Kasalukuyang mga tagubilin", "Petunjuk terbaru", "अद्यावधिक निर्देशनहरू")),
+      play: text(tx("Odtwórz starsze nagranie", "Play earlier recording", "Відтворити старіший запис", "Воспроизвести старую запись", "Əvvəlki səs yazısını dinlə", "Reproducir grabación anterior", "I-play ang naunang recording", "Putar rekaman lama", "पुरानो रेकर्डिङ सुन्नुहोस्"))
+    };
+  }
+
+  function renderRecordingUpdate(chapter) {
+    const topic = recordingInstructionTopic(chapter);
+    if (!topic) return "";
+    const copy = recordingUpdateCopy();
+    return `<p>${esc(copy.notice)}</p><a class="btn blue" href="${esc(href("reader") + "&topic=" + topic)}">${esc(copy.open)}</a>`;
+  }
+
   function renderDigitalPresenter() {
     const labels = welcomeGuideUi[lang] || welcomeGuideUi.pl;
     const experience = presenterExperienceCopy();
@@ -909,6 +947,7 @@
             <select data-presenter-chapter-select aria-label="${esc(fullText)}"></select>
           </label>
           <h3 class="presenter-chapter-title" data-presenter-chapter-title>${esc(badge)}</h3>
+          <div class="notice yellow" data-presenter-instruction-update role="status" hidden></div>
           <p class="presenter-script" data-presenter-script aria-live="polite">${esc(sentences.join(" "))}</p>
           <div class="presenter-timeline">
             <input type="range" min="0" max="1000" value="0" step="1" data-presenter-seek aria-label="${esc(labels.speaking)}">
@@ -2937,6 +2976,7 @@
     const sceneTotal = card.querySelector("[data-presenter-scene-total]");
     const script = card.querySelector("[data-presenter-script]");
     const chapterTitle = card.querySelector("[data-presenter-chapter-title]");
+    const instructionUpdate = card.querySelector("[data-presenter-instruction-update]");
     const chaptersNav = card.querySelector("[data-presenter-chapters]");
     const chapterSelect = card.querySelector("[data-presenter-chapter-select]");
     const stepRail = card.querySelector("[data-presenter-step-rail]");
@@ -3171,7 +3211,7 @@
 
     const prefetchNextChapterAudio = () => {
       const nextChapter = chapters[chapterIndex + 1];
-      if (!nextChapter || connection?.saveData || navigator.onLine === false) return;
+      if (!nextChapter || recordingInstructionTopic(nextChapter) || connection?.saveData || navigator.onLine === false) return;
       if (!nextAudioPrefetch) {
         nextAudioPrefetch = new Audio();
         nextAudioPrefetch.preload = "metadata";
@@ -3796,13 +3836,14 @@
         card.dataset.viseme = "closed";
       }
       playIcon.textContent = playing ? "Ⅱ" : "▶";
-      playLabel.textContent = playing ? labels.pause : labels.resume;
+      const idleLabel = recordingInstructionTopic(chapters[chapterIndex]) ? recordingUpdateCopy().play : labels.resume;
+      playLabel.textContent = playing ? labels.pause : idleLabel;
       playButton.setAttribute("aria-pressed", playing ? "true" : "false");
       if (stage) {
         stage.setAttribute("aria-pressed", playing ? "true" : "false");
-        stage.setAttribute("aria-label", playing ? labels.pause : labels.resume);
+        stage.setAttribute("aria-label", playing ? labels.pause : idleLabel);
       }
-      if (stageHit) stageHit.setAttribute("aria-label", playing ? labels.pause : labels.resume);
+      if (stageHit) stageHit.setAttribute("aria-label", playing ? labels.pause : idleLabel);
     };
 
     const applyTimedViseme = () => {
@@ -4242,7 +4283,8 @@
       if (!target) return;
       const pageData = DATA.pages[target.page] || DATA.pages.mapa;
       const label = `${text(DATA.ui.open)}: ${text(pageData.title)}`;
-      contextLink.href = href(target.page);
+      const updatedTopic = recordingInstructionTopic(chapter);
+      contextLink.href = href(target.page) + (updatedTopic ? "&topic=" + updatedTopic : "");
       contextLink.dataset.contextPage = target.page;
       contextLink.setAttribute("aria-label", label);
       contextLink.title = label;
@@ -4265,6 +4307,15 @@
       audioRetryCount = 0;
       chapterIndex = Math.max(0, Math.min(chapters.length - 1, Number(index) || 0));
       const chapter = chapters[chapterIndex];
+      const updatedTopic = recordingInstructionTopic(chapter);
+      if (updatedTopic) {
+        autoplay = false;
+        hasPlaybackIntent = false;
+      }
+      if (instructionUpdate) {
+        instructionUpdate.hidden = !updatedTopic;
+        instructionUpdate.innerHTML = renderRecordingUpdate(chapter);
+      }
       const token = ++loadToken;
       currentLipCueIndex = 0;
       hideQuiz();
@@ -4358,6 +4409,7 @@
       transcript.innerHTML = chapters.map((chapter, index) => `
         <article class="presenter-transcript-chapter">
           <h4>${index + 1}. ${esc(compactChapterLabel(chapter))}</h4>
+          ${recordingInstructionTopic(chapter) ? `<div class="notice yellow">${renderRecordingUpdate(chapter)}</div>` : ""}
           <p>${esc(chapter.text)}</p>
         </article>`).join("");
       totalLabel.textContent = String(chapters.length);
@@ -4617,7 +4669,7 @@
         try { video.currentTime = 0; } catch (error) { /* No metadata yet. */ }
       }
       setPlaying(false);
-      playLabel.textContent = labels.start;
+      playLabel.textContent = recordingInstructionTopic(chapters[chapterIndex]) ? recordingUpdateCopy().play : labels.start;
       updateProgress();
     });
     seek.addEventListener("input", () => {
@@ -4670,7 +4722,7 @@
       if (video) video.pause();
       setPlaying(false);
       updateVoiceState(navigator.onLine === false ? "offline" : "ready");
-      playLabel.textContent = labels.repeat;
+      playLabel.textContent = recordingInstructionTopic(chapters[chapterIndex]) ? recordingUpdateCopy().play : labels.repeat;
       seek.value = "1000";
       showChapterQuiz();
     });
