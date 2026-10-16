@@ -8,7 +8,7 @@ const root = new URL("../", import.meta.url);
 const source = await fs.readFile(new URL("assets/js/training-app.js", root), "utf8");
 const data = await fs.readFile(new URL("assets/js/training-data.js", root), "utf8");
 const worker = await fs.readFile(new URL("sw.js", root), "utf8");
-const instrumented = source.replace(/  renderPage\(\);\n  upgradeCache\(\);\n\}\)\(\);\s*$/, "  window.navigationTest = { renderHeader, reloadWithLanguage, href };\n})();");
+const instrumented = source.replace(/  renderPage\(\);\n  upgradeCache\(\);\n\}\)\(\);\s*$/, "  window.navigationTest = { renderHeader, reloadWithLanguage, href, recordingInstructionTopic, recordingUpdateCopy, renderRecordingUpdate };\n})();");
 assert.notEqual(source, instrumented, "Only instrument startup; never execute operational UI, audio or network actions");
 const langs = ["pl", "en", "ua", "ru", "az", "es", "fil", "id", "ne"];
 
@@ -74,7 +74,7 @@ test("official logo and every production page use the new worker/UI entry", asyn
     assert.match(html, /<title>[^<]*PrimServ<\/title>/, file);
     if (html.includes('data-standalone-tool=')) continue;
     assert.ok(html.includes('property="og:title"'), file);
-    assert.ok(html.includes("assets/js/training-app.js?v=20261016-language1"), file);
+    assert.ok(html.includes("assets/js/training-app.js?v=20261016-recording1"), file);
     assert.ok(html.includes("assets/css/primserv.css?v=20261016-siechnice-primserv42"), file);
     assert.match(html, /assets\/js\/training-data\.js\?v=[^\"\s]+/, file);
   }
@@ -91,7 +91,7 @@ function workerHarness() {
     self: { location: { origin }, addEventListener(name, handler) { handlers[name] = handler; }, skipWaiting() { lifecycle.push("skip"); }, clients: { claim() { lifecycle.push("claim"); } } },
     caches: {
       async open() { return { async add(request) { added.push(request.url); }, async put(request) { copied.push(request.url); } }; },
-      async match(request) { return (request.url.includes("primserv") || request.url.includes("20261016-language1")) ? null : new Response("old valid asset"); },
+      async match(request) { return (request.url.includes("primserv") || request.url.includes("20261016-language1") || request.url.includes("20261016-recording1")) ? null : new Response("old valid asset"); },
       async keys() { return ["unrelated", "citronex-siechnice-modular-old", "citronex-siechnice-training-old", vm.runInContext("CACHE_NAME", context)]; },
       async delete(name) { deleted.push(name); }
     },
@@ -110,7 +110,7 @@ test("worker migrates exact unchanged cached media but refreshes documents and c
   assert.ok(w.copied.some(url => url.endsWith("/assets/css/training.css?v=20260720-siechnice-master41")));
   assert.ok(w.added.some(url => url.endsWith("/index.html")));
   assert.ok(w.added.some(url => url.endsWith("/manifest.webmanifest")));
-  assert.ok(w.added.some(url => url.endsWith("/assets/js/training-app.js?v=20261016-language1")));
+  assert.ok(w.added.some(url => url.endsWith("/assets/js/training-app.js?v=20261016-recording1")));
   assert.ok(w.added.some(url => url.endsWith("/assets/js/instruction-update.js?v=20261016-language1")));
   assert.ok(w.added.some(url => url.endsWith("/assets/primserv-logo.svg")));
   assert.equal(w.added.some(url => url.includes(".mp3")), false);
@@ -318,3 +318,56 @@ langs.forEach((lang,index) => test(`${lang}: language picker and return control 
   assert.ok(h.html.includes(expectedReturnLabels[index]));
   assert.match(h.html,/<option value="id"[^>]*>Bahasa Indonesia<\/option>/);
 }));
+
+const updatedRecordingTopics = {
+  'reader-personal-tag': 'start', 'reader-break-end': 'rows',
+  'reader-work-end': 'outside', 'reader-break': 'rows',
+  'reader-restart-buttons': 'restart', 'reader-restart-menu': 'restart'
+};
+for (const language of langs) test(`${language}: earlier recordings are labelled and point to the current matching procedure`, () => {
+  const {window} = header(language, 'pomocnik');
+  const helpers = window.navigationTest;
+  const copy = helpers.recordingUpdateCopy();
+  assert.ok(copy.notice.length > 50 && copy.open && copy.play);
+  assert.ok(!copy.notice.includes('[English]'));
+  if (language !== 'en') assert.ok(!copy.notice.startsWith('This earlier'));
+  for (const [id, topic] of Object.entries(updatedRecordingTopics)) {
+    assert.equal(helpers.recordingInstructionTopic({id}), topic);
+    const html = helpers.renderRecordingUpdate({id});
+    assert.ok(html.includes(`reader.html?lang=${language}&amp;topic=${topic}`));
+    assert.ok(html.includes(copy.notice));
+  }
+  for (const id of ['welcome', 'tablet-login', 'reader-row-exit']) {
+    assert.equal(helpers.recordingInstructionTopic({id}), '');
+    assert.equal(helpers.renderRecordingUpdate({id}), '');
+  }
+});
+
+test('automatic chapter changes pause outdated recordings, clear stale playback intent and show the update; other chapters still play', () => {
+  const body = source.slice(source.indexOf('    const activateChapter = '), source.indexOf('    const activateFreshChapter = '));
+  assert.ok(body.includes('const activateChapter ='));
+  const helpers = header('en', 'pomocnik').window.navigationTest;
+  for (const id of [...Object.keys(updatedRecordingTopics), 'welcome']) {
+    let plays = 0;
+    const node = () => ({textContent:'',value:'',hidden:true,innerHTML:''});
+    const c = vm.createContext({
+      window: {clearTimeout(){}}, Math, Number, String, navigator: {onLine:true},
+      autoAdvanceTimer:0, audioRetryTimer:0, audioRetryCount:0, chapterIndex:0,
+      chapters:[{id,title:id}], hasPlaybackIntent:true, instructionUpdate:node(),
+      loadToken:0, currentLipCueIndex:0, presenterReady:true,
+      recording:{dataset:{},getAttribute:()=>'',pause(){},load(){}},
+      chapterTitle:node(),groupLabel:node(),currentLabel:node(),totalLabel:node(),
+      timeLabel:node(),durationLabel:node(),seek:node(),
+      recordingInstructionTopic:helpers.recordingInstructionTopic,renderRecordingUpdate:helpers.renderRecordingUpdate,
+      hideQuiz(){},closeHelpOverlay(){},showStaticPortrait(){},updateVoiceState(){},
+      chapterAudioUrl:()=> 'unchanged.mp3',closePhotoOverlay(){},prepareChapterText(){},
+      updateContextLink(){},updateMediaSession(){},updateChapterButtons(){},updateProgress(){},
+      prefetchChapterVisuals(){},prepareVideo(){},setPlaying(){},requestPlayback(){plays++;}
+    });
+    vm.runInContext(body + '\nactivateChapter(0, true);',c);
+    const updated = Boolean(updatedRecordingTopics[id]);
+    assert.equal(plays, updated ? 0 : 1, id);
+    assert.equal(c.instructionUpdate.hidden, !updated, id);
+    if (updated) assert.equal(c.hasPlaybackIntent,false,id);
+  }
+});
