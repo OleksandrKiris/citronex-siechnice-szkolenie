@@ -74,6 +74,79 @@ test('completion reviews wrong answers against existing keys and keeps source li
 });
 test('finish with unanswered questions returns to the first missing answer',()=>{const h=harness();h.render();for(let i=0;i<30;i++){if(i!==2)h.answer(true);h.click('testNext');}assert.match(h.nodes.get('testProgressText').textContent,/3\/30/);assert.equal(h.document.activeElement.id,'testQuestionTitle');assert.ok(h.nodes.get('testResult').html.includes('notice'));});
 test('every entry has static recovery and every review link resolves to an existing page',()=>{
- for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html'))){const html=fs.readFileSync(new URL(name,root),'utf8');if(!html.includes('assets/js/training-app.js?'))continue;const fallback=html.match(/<section id="trainingFallback"[\s\S]*?<\/section>/)?.[0];assert.ok(fallback,name);for(const dest of ['https://www.primserv.pl/','https://oleksandrkiris.github.io/citronex-hydra-project/','https://oleksandrkiris.github.io/kiris-jobs/','https://t.me/KirisWorkPoland_bot?start=flow_contacts','tel:+48502251384'])assert.ok(fallback.includes(dest),name+dest);assert.ok(html.includes('training-app.js?v=20261016-reader-context1'));}
+ for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html'))){const html=fs.readFileSync(new URL(name,root),'utf8');if(!html.includes('assets/js/training-app.js?'))continue;const fallback=html.match(/<section id="trainingFallback"[\s\S]*?<\/section>/)?.[0];assert.ok(fallback,name);for(const dest of ['https://www.primserv.pl/','https://oleksandrkiris.github.io/citronex-hydra-project/','https://oleksandrkiris.github.io/kiris-jobs/','https://t.me/KirisWorkPoland_bot?start=flow_contacts','tel:+48502251384'])assert.ok(fallback.includes(dest),name+dest);assert.ok(html.includes('training-app.js?v=20261016-quiz-retry1'));}
  const paths=JSON.parse(source.match(/const sourcePages = (\[[^;]+\]);/)[1]);assert.equal(paths.length,30);for(const p of paths)assert.ok(fs.existsSync(new URL((p==='home'?'index':p)+'.html',root)),p);
+});
+
+function finishAttempt(h, wrong = [2, 17]) {
+ h.render();
+ for (let i = 0; i < h.window.CX_DATA.test.length; i++) {
+  const correct = h.window.CX_DATA.test[i].ok;
+  h.answer(wrong.includes(i) ? !correct : correct); h.click('testNext');
+ }
+}
+for (const lang of langs) test(`${lang}: retry only mistakes, preserve correct answers and resume after language/reload`, () => {
+ const h = harness({lang}); finishAttempt(h);
+ assert.match(h.nodes.get('testResult').html, /28\/30/);
+ assert.match(h.nodes.get('testResult').html, /id="testRetry"/);
+ h.click('testRetry');
+ assert.equal(h.document.activeElement.id, 'testQuestionTitle');
+ let state = h.api.createTestSession().state;
+ assert.deepEqual(Array.from(state.retryIndices), [2,17]);
+ assert.equal(state.answers.filter(x => x !== null).length, 28);
+ assert.equal(state.completed, false);
+ assert.match(h.nodes.get('testProgressText').textContent, /3\/30/);
+ h.answer(h.window.CX_DATA.test[2].ok); h.click('testNext');
+ assert.match(h.nodes.get('testProgressText').textContent, /18\/30/);
+ h.click('testPrev'); assert.match(h.nodes.get('testProgressText').textContent, /3\/30/);
+ h.click('testNext'); h.api.reloadWithLanguage('ua');
+ const resumed = harness({lang:'ua', saved:h.saved}); resumed.render(); resumed.click('testResume');
+ assert.match(resumed.nodes.get('testProgressText').textContent, /18\/30/);
+ assert.match(resumed.nodes.get('testForm').html, /Повторити помилкові питання: 2\/2/);
+ resumed.answer(resumed.window.CX_DATA.test[17].ok); resumed.click('testNext');
+ assert.match(resumed.nodes.get('testResult').html, /30\/30/);
+ assert.doesNotMatch(resumed.nodes.get('testResult').html, /id="testRetry"/);
+ resumed.click('testRestart');
+ assert.equal(resumed.api.createTestSession().restored, false);
+ assert.match(resumed.nodes.get('testProgressText').textContent, /1\/30/);
+});
+test('a second retry includes only remaining errors; missing answers stay in the retry queue', () => {
+ const h = harness(); finishAttempt(h); h.click('testRetry'); h.click('testNext'); h.click('testNext');
+ assert.match(h.nodes.get('testProgressText').textContent, /3\/30/);
+ h.answer(h.window.CX_DATA.test[2].ok); h.click('testNext');
+ h.answer(!h.window.CX_DATA.test[17].ok); h.click('testNext');
+ assert.match(h.nodes.get('testResult').html, /29\/30/); h.click('testRetry');
+ assert.deepEqual(Array.from(h.api.createTestSession().state.retryIndices), [17]);
+ h.answer(h.window.CX_DATA.test[17].ok); h.click('testNext');
+ assert.match(h.nodes.get('testResult').html, /30\/30/);
+});
+test('retry still works when storage is denied and perfect attempts offer no retry', () => {
+ const h = harness({blocked:true}); finishAttempt(h, [0]); h.click('testRetry');
+ h.answer(h.window.CX_DATA.test[0].ok); h.click('testNext');
+ assert.match(h.nodes.get('testResult').html, /30\/30/);
+ const perfect = harness(); finishAttempt(perfect, []);
+ assert.doesNotMatch(perfect.nodes.get('testResult').html, /id="testRetry"/);
+});
+test('retrying an all-wrong attempt can resume even before answering the first retry', () => {
+ const h = harness(); finishAttempt(h, Array.from({length:30}, (_,i)=>i)); h.click('testRetry');
+ const resumed = harness({saved:h.saved}); assert.equal(resumed.api.createTestSession().restored, true);
+ resumed.render(); resumed.click('testResume');
+ assert.match(resumed.nodes.get('testForm').html, /Retry incorrect questions: 1\/30/);
+});
+test('legacy saves retain answers and malformed retry metadata cannot hide unanswered questions', () => {
+ for (const retryIndices of [undefined, [], [2,2], [17,2], [-1], [30], ['2'], [17]]) {
+  const h = harness(); finishAttempt(h); h.click('testRetry');
+  const key = [...h.saved.keys()].find(k=>k.startsWith('primserv:training-test:'));
+  const saved = JSON.parse(h.saved.get(key)); saved.retryIndices = retryIndices;
+  h.saved.set(key, JSON.stringify(saved)); const before = h.saved.get(key);
+  const resumed = harness({saved:h.saved}); const state = resumed.api.createTestSession().state;
+  assert.deepEqual(Array.from(state.answers), saved.answers);
+  assert.equal(state.retryIndices, undefined);
+  assert.equal(h.saved.get(key), before, 'reading an incompatible extension never overwrites the old save');
+ }
+});
+test('unsupported Georgian uses the existing English fallback for retry controls', () => {
+ const h = harness({lang:'ka'}); finishAttempt(h, [1]);
+ assert.match(h.nodes.get('testResult').html, /Retry incorrect questions/);
+ h.click('testRetry'); assert.match(h.nodes.get('testForm').html, /Retry incorrect questions: 1\/1/);
 });
