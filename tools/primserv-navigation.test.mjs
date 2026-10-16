@@ -122,3 +122,85 @@ test("activation clears only old location caches", async () => {
   assert.deepEqual(w.deleted, ["citronex-siechnice-modular-old", "citronex-siechnice-training-old"]);
   assert.ok(w.lifecycle.includes("claim"));
 });
+
+function timeoutHarness({ network = async () => new Response("fresh"), cached = () => undefined } = {}) {
+  const handlers = {}, timers = [], cleared = [], calls = [], writes = [];
+  const origin = "https://oleksandrkiris.github.io";
+  const cache = {
+    async match(request) { return cached(request); },
+    async put(request, response) { writes.push({ request, body: await response.text() }); }
+  };
+  vm.runInNewContext(worker, {
+    self: { location: { origin }, addEventListener(name, handler) { handlers[name] = handler; } },
+    URL, Response, caches: { async open() { return cache; }, async match(request) { return cached(request); } },
+    fetch(request, options) { calls.push({ request, options }); return network(request); },
+    setTimeout(callback, delay) { timers.push({ callback, delay }); return timers.length; },
+    clearTimeout(id) { cleared.push(id); }
+  });
+  return { timers, cleared, calls, writes,
+    request({ path = "assets/new.png", destination = "image", html = false, range = false, method = "GET" } = {}) {
+      const request = { url: new URL(path, `${origin}/citronex-siechnice-szkolenie/`).href, method, destination,
+        mode: html ? "navigate" : "cors", headers: new Headers({ accept: html ? "text/html" : "*/*", ...(range ? { range: "bytes=0-1023" } : {}) }) };
+      let result; handlers.fetch({ request, respondWith(value) { result = value; } }); return result;
+    }
+  };
+}
+const timedRoutes = [
+  { label: "navigation", request: { html: true }, ms: 6000, cache: "no-store" },
+  { label: "versioned script", request: { path: "assets/js/training-app.js?v=fixture", destination: "script" }, ms: 3500, cache: "reload" },
+  { label: "instruction JSON", request: { path: "assets/content/presenter-guide.json", destination: "" }, ms: 4000, cache: "no-store" },
+  { label: "uncached image", request: {}, ms: 1400, cache: undefined }
+];
+for (const route of timedRoutes) {
+  for (const status of [200, 404, 503]) test(`${route.label}: HTTP ${status} releases its unused timer`, async () => {
+    const h = timeoutHarness({ network: async () => new Response("result", { status }) });
+    assert.equal((await h.request(route.request)).status, status);
+    assert.deepEqual(h.timers.map(timer => timer.delay), [route.ms]);
+    assert.deepEqual(h.cleared, [1]);
+    assert.equal(h.calls.length, 1);
+    assert.equal(h.calls[0].options?.cache, route.cache);
+    assert.equal(h.calls[0].options?.signal, undefined, "Do not introduce request cancellation");
+    assert.equal(h.writes.length, status === 200 ? 1 : 0);
+  });
+  test(`${route.label}: network rejection releases the timer and preserves error fallback`, async () => {
+    const h = timeoutHarness({ network: async () => { throw Error("offline"); } });
+    assert.equal((await h.request(route.request)).type, "error");
+    assert.deepEqual(h.cleared, [1]); assert.equal(h.writes.length, 0);
+  });
+  test(`${route.label}: timeout retains fallback and late-response policy`, async () => {
+    let complete, expired = false;
+    const h = timeoutHarness({ network: () => new Promise(resolve => { complete = resolve; }),
+      cached: () => expired ? new Response("appeared while waiting") : undefined });
+    const result = h.request(route.request); await new Promise(setImmediate);
+    assert.equal(h.timers[0].delay, route.ms); expired = true; h.timers[0].callback();
+    assert.equal(await (await result).text(), "appeared while waiting"); assert.deepEqual(h.cleared, [1]);
+    complete(new Response("late")); await new Promise(setImmediate);
+    assert.equal(h.calls.length, 1); assert.equal(h.writes.length, 0);
+  });
+}
+test("concurrent request timers remain independent", async () => {
+  const pending = [], h = timeoutHarness({ network: () => new Promise(resolve => pending.push(resolve)) });
+  const first = h.request({ html: true }), second = h.request(); await new Promise(setImmediate);
+  pending[0](new Response("first")); assert.equal(await (await first).text(), "first"); assert.deepEqual(h.cleared, [1]);
+  h.timers[1].callback(); assert.equal((await second).type, "error"); assert.deepEqual(h.cleared, [1, 2]);
+  pending[1](new Response("late")); await new Promise(setImmediate); assert.equal(h.writes.length, 1);
+});
+test("byte-range audio remains a direct 206 response without timers or cache writes", async () => {
+  const h = timeoutHarness({ network: async () => new Response("partial", { status: 206 }) });
+  assert.equal((await h.request({ path: "assets/audio/guide/ua/01-welcome.mp3", range: true })).status, 206);
+  assert.equal(h.calls.length, 1); assert.equal(h.timers.length, 0); assert.equal(h.writes.length, 0);
+});
+test("cached images still return immediately and refresh without a timeout", async () => {
+  const h = timeoutHarness({ cached: () => new Response("cached") });
+  assert.equal(await (await h.request()).text(), "cached"); await new Promise(setImmediate);
+  assert.equal(h.timers.length, 0); assert.equal(h.calls.length, 1); assert.equal(h.writes[0].body, "fresh");
+});
+test("only navigation may receive the HTML shell; unrelated requests stay outside the worker", async () => {
+  for (const html of [true, false]) {
+    const h = timeoutHarness({ network: async () => { throw Error("offline"); }, cached: request => request === "./index.html" ? new Response("shell") : undefined });
+    const response = await h.request({ html }); assert.equal(html ? await response.text() : response.type, html ? "shell" : "error");
+    assert.equal(h.request({ method: "POST" }), undefined);
+    assert.equal(h.request({ path: "https://www.primserv.pl/" }), undefined);
+    assert.equal(h.calls.length, 1);
+  }
+});
