@@ -133,10 +133,16 @@ async function putInCache(request, response) {
   await cache.put(request, response.clone());
 }
 
-function networkTimeout(ms = 1400) {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(null), ms);
-  });
+async function fetchWithTimeout(request, options, ms = 1400) {
+  let timer;
+  try {
+    return await Promise.race([
+      fetch(request, options),
+      new Promise((resolve) => { timer = setTimeout(() => resolve(null), ms); })
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 async function matchCached(request, fallback = null) {
@@ -150,7 +156,7 @@ async function matchCached(request, fallback = null) {
 async function networkFirst(request, fallback = null, timeoutMs = 5000) {
   const cached = await matchCached(request, null);
   try {
-    const response = await Promise.race([fetch(request, { cache: "no-store" }), networkTimeout(timeoutMs)]);
+    const response = await fetchWithTimeout(request, { cache: "no-store" }, timeoutMs);
     if (!response) return cached || await matchCached(request, fallback) || Response.error();
     await putInCache(request, response);
     return response;
@@ -163,7 +169,7 @@ async function networkFirstVersioned(request) {
   const cache = await caches.open(CACHE_NAME);
   const exact = await cache.match(request);
   try {
-    const response = await Promise.race([fetch(request, { cache: "reload" }), networkTimeout(3500)]);
+    const response = await fetchWithTimeout(request, { cache: "reload" }, 3500);
     if (!response) return exact || await matchCached(request, null) || Response.error();
     await putInCache(request, response);
     return response;
@@ -179,7 +185,7 @@ async function cacheFirst(request) {
     return cached;
   }
   try {
-    const response = await Promise.race([fetch(request), networkTimeout()]);
+    const response = await fetchWithTimeout(request);
     if (!response) return await matchCached(request, null) || Response.error();
     await putInCache(request, response);
     return response;
