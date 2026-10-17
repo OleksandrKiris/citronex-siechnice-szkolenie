@@ -1,20 +1,28 @@
 name: Check training pull request
-
 on:
   pull_request:
-
 permissions:
   contents: read
-
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      TESTED_HEAD: ${{ github.event.pull_request.head.sha }}
+      TESTED_BASE: ${{ github.event.pull_request.base.sha }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TESTED_HEAD }}
+          fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Verify head and base ancestry
+        run: |
+          test "$(git rev-parse HEAD)" = "$TESTED_HEAD"
+          git merge-base --is-ancestor "$TESTED_BASE" "$TESTED_HEAD"
       - name: Check JavaScript and original training audits
         run: |
           find . -type f -name "*.js" -not -path "./.git/*" -not -path "./wersje/*" -print0 | xargs -0 -n1 node --check
@@ -25,3 +33,18 @@ jobs:
           node tools/audit-information.js
           node tools/audit-language-quality.js
           node --test tools/primserv-navigation.test.mjs tools/instruction-update.test.mjs tools/quiz-progress.test.mjs
+      - name: Install isolated browser test dependency
+        run: |
+          npm install --prefix "$RUNNER_TEMP/siechnice-browser" --no-package-lock --no-audit --no-fund playwright@1.56.1
+          "$RUNNER_TEMP/siechnice-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Quiz retry browser and offline acceptance
+        run: |
+          export PLAYWRIGHT_PACKAGE="$RUNNER_TEMP/siechnice-browser/node_modules/playwright"
+          export BROWSER_REPORT="$RUNNER_TEMP/siechnice-acceptance"
+          node .github/browser/quiz-retry.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: siechnice-acceptance-${{ env.TESTED_HEAD }}
+          path: ${{ runner.temp }}/siechnice-acceptance
+          retention-days: 14
