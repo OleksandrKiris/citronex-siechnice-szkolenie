@@ -129,11 +129,17 @@ try{
         && controller===registration.active && controller.state==='activated'
         && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
     },cache);
-    const cachedScript=await page.evaluate(async name=>{
-      const response=await (await caches.open(name)).match('./assets/js/training-app.js?v=20261016-quiz-retry1');
-      return response?await response.text():null;
-    },cache);
-    assert.ok(cachedScript,'new script must already be cached');
+    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261016-quiz-retry1',url).href;
+    const cacheProbe=await page.evaluate(async ({name,scriptURL})=>{
+      const installed=await caches.open(name);
+      const keys=(await installed.keys()).map(request=>request.url);
+      const response=await installed.match(scriptURL);
+      return {keys,documentBase:document.baseURI,script:response?await response.text():null};
+    },{name:cache,scriptURL:expectedScriptURL});
+    report.upgradeProbe={cacheKeys:cacheProbe.keys,documentBase:cacheProbe.documentBase,expectedScriptURL,
+      updateRequests:requests.filter(request=>request.path.includes('training-app')||request.path==='sw.js')};
+    const cachedScript=cacheProbe.script;
+    assert.ok(cachedScript,'new script must already be cached: '+JSON.stringify(report.upgradeProbe));
     assert.equal(createHash('sha256').update(cachedScript).digest('hex'),report.files['assets/js/training-app.js'].sha256);
     await page.reload();
     await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261016-quiz-retry1'));

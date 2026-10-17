@@ -56,3 +56,9 @@ or immediate replacement of an already open document has been implemented.
 The complete suite will run again on the new exact head. Read its final artifact
 and inspect screenshots before changing this PR from draft. The previous bwrap
 preview issue is historical; authorized CI Chromium is available.
+
+Run 39018837618 reached the activated new controller, then the exact-cache
+script probe returned no response before reload. The next run records installed
+cache keys and update request paths and resolves the probe with the explicit
+fixture origin/scope URL. It retains the same strict SHA and progress assertions;
+this follow-up adds diagnosis and does not weaken acceptance or alter runtime.
