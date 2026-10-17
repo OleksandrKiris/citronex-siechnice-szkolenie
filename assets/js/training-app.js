@@ -2341,7 +2341,16 @@
         && Date.now() - saved.savedAt >= 0 && Date.now() - saved.savedAt < 7 * 86400000
         && (!saved.completed || saved.answers.every(answer => answer !== null))) {
         state = { answers: saved.answers, current: saved.current, completed: saved.completed };
-        restored = state.answers.some(answer => answer !== null);
+        // Optional v1 extension: older attempts keep all their answers unchanged.
+        // Reject only an invalid retry queue, never the otherwise valid attempt.
+        if (Array.isArray(saved.retryIndices) && saved.retryIndices.length > 0
+          && saved.retryIndices.every((index, position, indices) => Number.isInteger(index)
+            && index >= 0 && index < DATA.test.length && (position === 0 || index > indices[position - 1]))
+          && saved.retryIndices.includes(saved.current)
+          && saved.answers.every((answer, index) => saved.retryIndices.includes(index) || answer === DATA.test[index].ok)) {
+          state.retryIndices = saved.retryIndices;
+        }
+        restored = state.answers.some(answer => answer !== null) || Boolean(state.retryIndices);
       }
     } catch { /* Optional storage must never block the test. */ }
     return {
@@ -2364,6 +2373,7 @@
     let current = session.state.current;
 
     const label = {
+      retry: tx("Powtórz błędne pytania", "Retry incorrect questions", "Повторити помилкові питання", "Повторить ошибочные вопросы", "Səhv cavablandırılan sualları təkrarla", "Repetir las preguntas incorrectas", "Ulitin ang mga tanong na mali ang sagot", "Ulangi pertanyaan yang salah", "गलत उत्तर दिएका प्रश्नहरू फेरि प्रयास गर्नुहोस्"),
       resume: tx("Kontynuuj test", "Continue test", "Продовжити тест", "Продолжить тест", "Testə davam et", "Continuar el test", "Ipagpatuloy ang pagsusulit", "Lanjutkan tes", "परीक्षण जारी राख्नुहोस्"),
       restart: tx("Zacznij od nowa", "Start again", "Почати заново", "Начать заново", "Yenidən başla", "Empezar de nuevo", "Magsimula muli", "Mulai lagi", "फेरि सुरु गर्नुहोस्"),
       saved: tx("Znaleziono zapisany test na tym urządzeniu.", "A saved test was found on this device.", "На цьому пристрої знайдено збережений тест.", "На этом устройстве найден сохранённый тест.", "Bu cihazda saxlanmış test tapıldı.", "Se encontró un test guardado en este dispositivo.", "May naka-save na pagsusulit sa device na ito.", "Tes tersimpan ditemukan di perangkat ini.", "यस उपकरणमा सुरक्षित गरिएको परीक्षण भेटियो।"),
@@ -2416,6 +2426,8 @@
     function renderQuestion(moveFocus = false) {
       const item = DATA.test[current];
       const selected = answers[current];
+      const sequence = session.state.retryIndices || DATA.test.map((_, index) => index);
+      const position = sequence.indexOf(current);
       const answered = answers.filter((answer) => answer !== null).length;
       document.getElementById("testProgressText").textContent = `${text(label.progress)} ${current + 1}/${total}`;
       document.getElementById("testAnsweredText").textContent = `${answered}/${total}`;
@@ -2423,7 +2435,7 @@
 
       form.innerHTML = `
         <article class="test-question is-single" data-q="${current}" data-ok="${item.ok ? "1" : "0"}">
-          <p class="test-helper">${esc(text(label.choose))}</p>
+          <p class="test-helper">${session.state.retryIndices ? `${esc(text(label.retry))}: ${position + 1}/${sequence.length}. ` : ""}${esc(text(label.choose))}</p>
           <h3 id="testQuestionTitle" tabindex="-1">${current + 1}. ${esc(text(item.text))}</h3>
           <div class="test-answer-grid" role="radiogroup" aria-labelledby="testQuestionTitle">
             <label class="${selected === true ? "is-picked" : ""}">
@@ -2437,8 +2449,8 @@
           </div>
         </article>
         <div class="test-nav-row">
-          <button class="btn secondary" type="button" id="testPrev"${current === 0 ? " disabled" : ""}>${esc(text(label.prev))}</button>
-          <button class="btn yellow" type="button" id="testNext">${esc(text(current === total - 1 ? label.finish : label.next))}</button>
+          <button class="btn secondary" type="button" id="testPrev"${position === 0 ? " disabled" : ""}>${esc(text(label.prev))}</button>
+          <button class="btn yellow" type="button" id="testNext">${esc(text(position === sequence.length - 1 ? label.finish : label.next))}</button>
         </div>
       `;
 
@@ -2455,8 +2467,8 @@
       });
       document.getElementById("testPrev").addEventListener("click", () => {
         result.innerHTML = "";
-        if (current > 0) {
-          current -= 1;
+        if (position > 0) {
+          current = sequence[position - 1];
           persist();
           renderQuestion(true);
           form.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -2464,8 +2476,8 @@
       });
       document.getElementById("testNext").addEventListener("click", () => {
         result.innerHTML = "";
-        if (current < total - 1) {
-          current += 1;
+        if (position < sequence.length - 1) {
+          current = sequence[position + 1];
           persist();
           renderQuestion(true);
           form.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -2502,6 +2514,7 @@
         <section class="result-box">
           <h2>${esc(ui("score"))}: ${score}/${total}</h2>
           ${review}
+          ${mistakes.length ? `<button type="button" class="btn yellow" id="testRetry">${esc(text(label.retry))} (${mistakes.length})</button>` : ""}
           <button type="button" class="btn secondary" id="testRestart">${esc(text(label.restart))}</button>
           <p>${esc(text(label.send))}</p>
           <div class="btn-row">
@@ -2510,6 +2523,15 @@
           </div>
         </section>
       `;
+      document.getElementById("testRetry")?.addEventListener("click", () => {
+        session.state.retryIndices = mistakes.map(({ index }) => index);
+        session.state.retryIndices.forEach(index => { answers[index] = null; });
+        current = session.state.retryIndices[0];
+        persist();
+        result.innerHTML = "";
+        renderQuestion(true);
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
       document.getElementById("testRestart").addEventListener("click", restart);
       result.focus({ preventScroll: true });
       result.scrollIntoView({ behavior: "smooth", block: "start" });
