@@ -111,19 +111,38 @@ try{
   // Actual previous worker and legacy v1 save, without a destructive migration.
   serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${base}:${file}`],{maxBuffer:4*1024*1024})]));
   const ctx=await make(320),page=await ctx.newPage();
+  await ctx.tracing.start({screenshots:true,snapshots:true});
   try{
     await firstLoad(page,'ua');await answer(page,true);await press(page,'testNext');
     const before=await stored(page);assert.equal(before.retryIndices,undefined);
     await page.evaluate(async()=>{localStorage.setItem('unrelated-fixture','keep');await (await caches.open('foreign-fixture')).put('./foreign-fixture',new Response('keep'));});
+    // Capture the old controller before updating. Cache creation/deletion can
+    // precede clients.claim(), and the app intentionally reloads once per asset
+    // version per session. An explicit user reload must load the accepted build.
+    await page.evaluate(()=>{window.previousQuizController=navigator.serviceWorker.controller;});
     serving=current;await page.evaluate(async()=>await (await navigator.serviceWorker.getRegistration()).update());
-    await page.waitForFunction(async name=>{const keys=await caches.keys();return keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);},cache);
+    await page.waitForFunction(async name=>{
+      const registration=await navigator.serviceWorker.getRegistration();
+      const controller=navigator.serviceWorker.controller;
+      const keys=await caches.keys();
+      return controller && controller!==window.previousQuizController
+        && controller===registration.active && controller.state==='activated'
+        && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
+    },cache);
+    const cachedScript=await page.evaluate(async name=>{
+      const response=await (await caches.open(name)).match('./assets/js/training-app.js?v=20261016-quiz-retry1');
+      return response?await response.text():null;
+    },cache);
+    assert.ok(cachedScript,'new script must already be cached');
+    assert.equal(createHash('sha256').update(cachedScript).digest('hex'),report.files['assets/js/training-app.js'].sha256);
+    await page.reload();
     await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261016-quiz-retry1'));
-    await page.reload();await resume(page);assert.deepEqual((await stored(page)).answers,before.answers);assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
+    await resume(page);assert.deepEqual((await stored(page)).answers,before.answers);assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     await ctx.setOffline(true);await stop();await page.reload();await resume(page);await language(page,'ua');assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     assert.equal(await page.evaluate(()=>localStorage.getItem('unrelated-fixture')),'keep');assert.equal(await page.evaluate(async()=>await (await (await caches.open('foreign-fixture')).match('./foreign-fixture')).text()),'keep');
     const entries=await page.evaluate(async name=>{const c=await caches.open(name),r=[];for(const req of await c.keys())r.push({url:req.url,bytes:(await (await c.match(req)).arrayBuffer()).byteLength});return r;},cache);
     await page.screenshot({path:join(output,'cache-upgrade-offline.png')});report.results.push({scenario:'base-worker upgrade / legacy progress / offline',status:'passed',cache:entries});
-  }finally{serving=current;if(!server.listening)await listen();await ctx.close();}
+  }finally{serving=current;if(!server.listening)await listen();await page.screenshot({path:join(output,'cache-upgrade-last.png')}).catch(()=>{});await ctx.tracing.stop({path:join(output,'cache-upgrade-trace.zip')});await ctx.close();}
   assert.deepEqual(blocked,[]);assert.ok(requests.every(r=>['GET','HEAD'].includes(r.method)));
   report.requests={count:requests.length,servedPaths:[...new Set(requests.filter(r=>allowed.includes(r.path)).map(r=>r.path))],unservedMediaRequests:requests.filter(r=>!allowed.includes(r.path)).length};report.status='passed';
 }catch(error){report.status='failed';report.error=error.stack;process.exitCode=1;}

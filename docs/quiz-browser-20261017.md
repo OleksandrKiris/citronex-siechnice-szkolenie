@@ -35,3 +35,24 @@ then `http://127.0.0.1:8080/test.html?lang=en`; stop with Ctrl+C. This is not a 
 preview. Last production base: 31ce4ab72866659bea7b0adbdf6efa0cc8e5b31e.
 Only owner10 releases. Rollback: separate tested revert PR with fresh cache
 version and fresh main/head guards, never delete saved progress or media.
+
+## Cache-upgrade acceptance correction — 17 October 2026
+
+Run 39015458906 passed both viewport scenarios, nine languages, keyboard,
+reload/Back, offline replay and corrupt/denied storage, then timed out waiting
+for the document's script URL to change before an explicit reload. The old
+document's existing controllerchange handler suppresses repeat reloads for its
+assetVersion in this session; it does not promise another automatic reload.
+
+The corrected scenario waits for a different activated controller that matches
+registration.active, verifies the exact new cached JS SHA-256, then explicitly
+reloads as a returning user would. The old answers, unrelated key/cache and UA
+language must still survive both that reload and the next offline reload with
+the HTTP listener stopped. Upgrade screenshot/trace are now retained on failure.
+No runtime, cache policy, translations, instructions or media were modified.
+This is a test ordering correction, not a claim that an automatic update prompt
+or immediate replacement of an already open document has been implemented.
+
+The complete suite will run again on the new exact head. Read its final artifact
+and inspect screenshots before changing this PR from draft. The previous bwrap
+preview issue is historical; authorized CI Chromium is available.
