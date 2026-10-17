@@ -40,6 +40,14 @@ let browser;
 const layout=async page=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'horizontal overflow');
 const language=async(page,lang)=>{await page.waitForFunction(lang=>document.documentElement.lang===(lang==='ua'?'uk':lang),lang);await layout(page);};
 const activate=page=>page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller));
+const firstLoad=async(page,lang)=>{
+  await page.goto(url+'test.html?lang='+lang);
+  // The app reloads once on its first controllerchange. Observe the completed
+  // reload document rather than racing it with a second explicit navigation.
+  await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller)
+    && performance.getEntriesByType('navigation')[0]?.type==='reload');
+  await language(page,lang);
+};
 const resume=async page=>{if(await page.locator('#testResume').count())await page.locator('#testResume').click();};
 const stored=page=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)),key);
 const answer=async(page,value)=>{const radio=page.locator(`input[name="testAnswer"][value="${value?'1':'0'}"]`);await radio.focus();await page.keyboard.press('Space');assert.equal(await radio.isChecked(),true);assert.equal(await radio.evaluate(el=>el===document.activeElement),true);};
@@ -59,7 +67,7 @@ try{
     const ctx=await make(width),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await ctx.tracing.start({screenshots:true,snapshots:true});
     try{
-      await page.goto(url+'test.html?lang=en');await activate(page);await page.reload();await language(page,'en');await finish(page);
+      await firstLoad(page,'en');await finish(page);
       assert.match(await page.locator('#testResult h2').innerText(),/28\/30/);assert.equal(await page.locator('.test-review-item').count(),2);
       await page.locator('#testRetry').scrollIntoViewIfNeeded();await page.screenshot({path:join(output,`${width}-review.png`)});
       await press(page,'testRetry');assert.equal(await page.locator('#testQuestionTitle').evaluate(el=>el===document.activeElement),true);
@@ -93,10 +101,7 @@ try{
   }
   for(const mode of ['corrupt','denied']){
     const ctx=await make(320,mode),page=await ctx.newPage();
-    try{await page.goto(url+'test.html?lang=en');await activate(page);
-      // First installation legitimately reloads the document. Start the storage
-      // fixture attempt only after that controller transition has settled.
-      await page.reload();await language(page,'en');await resume(page);
+    try{await firstLoad(page,'en');await resume(page);
       if(mode==='corrupt')assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),'{broken','read must not overwrite old bytes');
       await finish(page,[2]);await press(page,'testRetry');await answer(page,(await page.locator('.test-question').getAttribute('data-ok'))==='1');await press(page,'testNext');
       assert.match(await page.locator('#testResult h2').innerText(),/30\/30/);await page.screenshot({path:join(output,`${mode}.png`)});
@@ -107,11 +112,12 @@ try{
   serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${base}:${file}`],{maxBuffer:4*1024*1024})]));
   const ctx=await make(320),page=await ctx.newPage();
   try{
-    await page.goto(url+'test.html?lang=ua');await language(page,'ua');await answer(page,true);await press(page,'testNext');await activate(page);
+    await firstLoad(page,'ua');await answer(page,true);await press(page,'testNext');
     const before=await stored(page);assert.equal(before.retryIndices,undefined);
     await page.evaluate(async()=>{localStorage.setItem('unrelated-fixture','keep');await (await caches.open('foreign-fixture')).put('./foreign-fixture',new Response('keep'));});
     serving=current;await page.evaluate(async()=>await (await navigator.serviceWorker.getRegistration()).update());
     await page.waitForFunction(async name=>{const keys=await caches.keys();return keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);},cache);
+    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261016-quiz-retry1'));
     await page.reload();await resume(page);assert.deepEqual((await stored(page)).answers,before.answers);assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     await ctx.setOffline(true);await stop();await page.reload();await resume(page);await language(page,'ua');assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     assert.equal(await page.evaluate(()=>localStorage.getItem('unrelated-fixture')),'keep');assert.equal(await page.evaluate(async()=>await (await (await caches.open('foreign-fixture')).match('./foreign-fixture')).text()),'keep');
