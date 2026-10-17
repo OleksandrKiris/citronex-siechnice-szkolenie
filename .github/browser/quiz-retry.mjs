@@ -59,7 +59,7 @@ try{
     const ctx=await make(width),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await ctx.tracing.start({screenshots:true,snapshots:true});
     try{
-      await page.goto(url+'test.html?lang=en');await language(page,'en');await finish(page);
+      await page.goto(url+'test.html?lang=en');await activate(page);await page.reload();await language(page,'en');await finish(page);
       assert.match(await page.locator('#testResult h2').innerText(),/28\/30/);assert.equal(await page.locator('.test-review-item').count(),2);
       await page.locator('#testRetry').scrollIntoViewIfNeeded();await page.screenshot({path:join(output,`${width}-review.png`)});
       await press(page,'testRetry');assert.equal(await page.locator('#testQuestionTitle').evaluate(el=>el===document.activeElement),true);
@@ -93,12 +93,15 @@ try{
   }
   for(const mode of ['corrupt','denied']){
     const ctx=await make(320,mode),page=await ctx.newPage();
-    try{await page.goto(url+'test.html?lang=en');await language(page,'en');
+    try{await page.goto(url+'test.html?lang=en');await activate(page);
+      // First installation legitimately reloads the document. Start the storage
+      // fixture attempt only after that controller transition has settled.
+      await page.reload();await language(page,'en');await resume(page);
       if(mode==='corrupt')assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),'{broken','read must not overwrite old bytes');
       await finish(page,[2]);await press(page,'testRetry');await answer(page,(await page.locator('.test-question').getAttribute('data-ok'))==='1');await press(page,'testNext');
       assert.match(await page.locator('#testResult h2').innerText(),/30\/30/);await page.screenshot({path:join(output,`${mode}.png`)});
       report.results.push({mode,status:'passed',steps:['usable fresh attempt','retry in memory','corrupt bytes untouched on read']});
-    }finally{await ctx.close();}
+    }finally{await page.screenshot({path:join(output,`${mode}-last.png`)}).catch(()=>{});await ctx.close();}
   }
   // Actual previous worker and legacy v1 save, without a destructive migration.
   serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${base}:${file}`],{maxBuffer:4*1024*1024})]));
