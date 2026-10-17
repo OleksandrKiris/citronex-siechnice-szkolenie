@@ -23,6 +23,7 @@ const allowed=names.filter(path=>/^[\w-]+\.html$/.test(path)||path==='sw.js'||pa
 const current={};
 for(const file of allowed){const bytes=await readFile(file);assert.ok(bytes.equals(execFileSync('git',['show',`${head}:${file}`],{maxBuffer:4*1024*1024})),file);current[file]=bytes;report.files[file]={bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};}
 let serving=current;const requests=[],blocked=[];
+const failedRequests=[];
 const server=createServer((req,res)=>{
   const path=new URL(req.url,'http://localhost').pathname.replace(/^\/citronex-siechnice-szkolenie\//,'')||'index.html';
   requests.push({path,method:req.method});
@@ -57,6 +58,7 @@ try{
   browser=await chromium.launch({headless:true});report.browser=browser.version();
   const make=async(width,mode='normal')=>{
     const ctx=await browser.newContext({viewport:{width,height:900},locale:'en-GB',reducedMotion:'reduce'});
+    ctx.on('requestfailed',request=>failedRequests.push({url:request.url(),failure:request.failure()?.errorText,worker:Boolean(request.serviceWorker())}));
     await ctx.route('**/*',route=>{const req=route.request();if(new URL(req.url()).origin===new URL(url).origin&&['GET','HEAD'].includes(req.method()))return route.continue();blocked.push({url:req.url(),method:req.method()});return route.abort();});
     await ctx.addInitScript(({mode,key})=>{
       if(mode==='denied')Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Fixture denial','SecurityError');}});
@@ -137,7 +139,7 @@ try{
       return {keys,documentBase:document.baseURI,script:response?await response.text():null};
     },{name:cache,scriptURL:expectedScriptURL});
     report.upgradeProbe={cacheKeys:cacheProbe.keys,documentBase:cacheProbe.documentBase,expectedScriptURL,
-      updateRequests:requests.filter(request=>request.path.includes('training-app')||request.path==='sw.js')};
+      failedRequests,updateRequests:requests.filter(request=>request.path.includes('training-app')||request.path==='sw.js')};
     const cachedScript=cacheProbe.script;
     assert.ok(cachedScript,'new script must already be cached: '+JSON.stringify(report.upgradeProbe));
     assert.equal(createHash('sha256').update(cachedScript).digest('hex'),report.files['assets/js/training-app.js'].sha256);
