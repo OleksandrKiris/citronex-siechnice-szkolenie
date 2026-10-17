@@ -132,6 +132,11 @@ try{
         && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
     },cache);
     const expectedScriptURL=new URL('assets/js/training-app.js?v=20261016-quiz-retry1',url).href;
+    // Cache writes can still become observable after the controller lifecycle
+    // check. Wait for the exact required entry; missing/wrong bytes still fail.
+    await page.waitForFunction(async ({name,scriptURL})=>
+      Boolean(await (await caches.open(name)).match(scriptURL)),
+      {name:cache,scriptURL:expectedScriptURL});
     const cacheProbe=await page.evaluate(async ({name,scriptURL})=>{
       const installed=await caches.open(name);
       const keys=(await installed.keys()).map(request=>request.url);
