@@ -26,7 +26,7 @@ let serving=current;const requests=[],blocked=[];
 const failedRequests=[];
 const server=createServer((req,res)=>{
   const path=new URL(req.url,'http://localhost').pathname.replace(/^\/citronex-siechnice-szkolenie\//,'')||'index.html';
-  requests.push({path,method:req.method});
+  requests.push({path,method:req.method,search:new URL(req.url,'http://localhost').search,phase:serving===current?'candidate':'base'});
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405).end();return;}
   if(!allowed.includes(path)){res.writeHead(404).end();return;}
   const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.webmanifest':'application/manifest+json'}[extname(path)];
