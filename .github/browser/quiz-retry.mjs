@@ -142,18 +142,24 @@ try{
         && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
     },cache);
     const expectedScriptURL=new URL('assets/js/training-app.js?v=20261018-3d-language1',url).href;
-    // Take the required body and metadata in the same observation. A page
-    // controllerchange can reload between a Boolean readiness probe and a
-    // separate read; the offline reload below still verifies lasting storage.
-    const cacheProbeHandle=await page.waitForFunction(async ({name,scriptURL})=>{
-      const installed=await caches.open(name);
-      const response=await installed.match(scriptURL);
-      if(!response)return false;
-      const script=await response.text();
-      if(!script)return false;
-      return {keys:(await installed.keys()).map(request=>request.url),documentBase:document.baseURI,script};
-    },{name:cache,scriptURL:expectedScriptURL},{timeout:30000,polling:100});
-    const cacheProbe=await cacheProbeHandle.jsonValue();
+    // The app may reload on controllerchange. Read the exact cached bytes
+    // directly; polling a separate readiness flag can race that document.
+    let cacheProbe;
+    const upgradeDeadline=Date.now()+30000;
+    do {
+      try {
+        cacheProbe=await page.evaluate(async ({name,scriptURL})=>{
+          const installed=await caches.open(name);
+          const response=await installed.match(scriptURL);
+          return {keys:(await installed.keys()).map(request=>request.url),documentBase:document.baseURI,script:response?await response.text():null};
+        },{name:cache,scriptURL:expectedScriptURL});
+      } catch(error) {
+        if(!/Execution context was destroyed/.test(error.message))throw error;
+      }
+      if(cacheProbe?.script)break;
+      await new Promise(resolve=>setTimeout(resolve,250));
+    } while(Date.now()<upgradeDeadline);
+    assert.ok(cacheProbe,'upgrade cache observation must resolve');
     report.upgradeProbe={cacheKeys:cacheProbe.keys,documentBase:cacheProbe.documentBase,expectedScriptURL,
       failedRequests,updateRequests:requests.filter(request=>request.path.includes('training-app')||request.path==='sw.js')};
     const cachedScript=cacheProbe.script;
