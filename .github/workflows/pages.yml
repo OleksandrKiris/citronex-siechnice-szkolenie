@@ -39,7 +39,7 @@ jobs:
           node tools/audit-presenter.js
           node tools/audit-information.js
           node tools/audit-language-quality.js
-          node --test tools/primserv-navigation.test.mjs tools/instruction-update.test.mjs tools/quiz-progress.test.mjs
+          node --test tools/primserv-navigation.test.mjs tools/instruction-update.test.mjs tools/quiz-progress.test.mjs tools/three-d-language-link.test.mjs
 
       - name: Prepare public site
         run: |

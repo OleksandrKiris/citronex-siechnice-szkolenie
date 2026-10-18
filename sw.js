@@ -26,7 +26,7 @@ const CORE_ASSETS = [
   "./assets/css/presenter-clean.css?v=20260720-siechnice-master41",
   "./assets/css/editor.css?v=20260720-siechnice-master41",
   "./assets/js/training-data.js?v=20260720-siechnice-master41",
-  "./assets/js/training-app.js?v=20261016-quiz-retry1",
+  "./assets/js/training-app.js?v=20261018-3d-language1",
   "./assets/css/primserv.css?v=20261016-progress1",
   "./assets/primserv-logo.svg",
   "./assets/primserv-icon-192.png",

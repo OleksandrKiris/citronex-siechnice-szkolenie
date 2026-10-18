@@ -98,7 +98,7 @@ test('instruction update is loaded after local data and before renderer only on 
     if (custom) assert.ok(html.indexOf('location-custom.js') < html.indexOf('instruction-update.js'));
     assert.ok(html.indexOf('instruction-update.js') < html.indexOf('training-app.js'));
     assert.match(html,/instruction-update.js\?v=20261016-language1/);
-    assert.match(html,/training-app.js\?v=20261016-quiz-retry1/);
+    assert.match(html,/training-app.js\?v=20261018-3d-language1/);
   }
   assert.ok(!read('index.html').includes('instruction-update.js'));
   assert.match(read('sw.js'),/instruction-update.js\?v=20261016-language1/);
