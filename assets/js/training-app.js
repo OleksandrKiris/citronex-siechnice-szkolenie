@@ -2503,12 +2503,19 @@
       const message = `Wynik testu Citronex Siechnice: ${score}/${total}. Odpowiedzi: ${answered}/${total}. Jezyk: ${lang.toUpperCase()}.`;
       persist(true);
       const sourcePages = ["magazyn", "home", "szklarnia", "kontakty", "reader", "reader", "reader", "reader", "reader", "reader", "reader", "reader", "reader", "lekarz", "lekarz", "lekarz", "zakazy", "zakazy", "zakazy", "szklarnia", "szklarnia", "szklarnia", "szklarnia", "szklarnia", "szklarnia", "reader", "reader", "lekarz", "kontakty", "kontakty"];
+      // Open the procedure that explains the answer, retaining language and mode.
+      const readerTopics = { 4: "rows", 5: "rows", 6: "rows", 7: "rows", 8: "start", 9: "start", 10: "carts", 11: "carts", 12: "restart", 25: "rows", 26: "rows" };
+      const materialHref = (index) => {
+        const target = new URL(href(sourcePages[index] || "home"), location.href);
+        if (readerTopics[index]) target.searchParams.set("topic", readerTopics[index]);
+        return target.href;
+      };
       const mistakes = DATA.test.map((item, index) => ({ item, index })).filter(({ item, index }) => answers[index] !== item.ok);
       const review = mistakes.length ? `<section class="test-review"><h3>${esc(text(label.review))} (${mistakes.length})</h3>${mistakes.map(({ item, index }) => `
         <article class="test-review-item">
           <h4>${index + 1}. ${esc(text(item.text))}</h4>
           <p>${esc(text(label.your))}: ${esc(ui(answers[index] ? "yes" : "no"))}. <strong>${esc(text(label.correct))}: ${esc(ui(item.ok ? "yes" : "no"))}.</strong></p>
-          <a class="btn secondary" href="${esc(href(sourcePages[index] || "home"))}">${esc(text(label.material))}</a>
+          <a class="btn secondary" href="${esc(materialHref(index))}">${esc(text(label.material))}</a>
         </article>`).join("")}</section>` : "";
       result.innerHTML = `
         <section class="result-box">
