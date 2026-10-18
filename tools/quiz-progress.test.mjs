@@ -74,7 +74,7 @@ test('completion reviews wrong answers against existing keys and keeps source li
 });
 test('finish with unanswered questions returns to the first missing answer',()=>{const h=harness();h.render();for(let i=0;i<30;i++){if(i!==2)h.answer(true);h.click('testNext');}assert.match(h.nodes.get('testProgressText').textContent,/3\/30/);assert.equal(h.document.activeElement.id,'testQuestionTitle');assert.ok(h.nodes.get('testResult').html.includes('notice'));});
 test('every entry has static recovery and every review link resolves to an existing page',()=>{
- for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html'))){const html=fs.readFileSync(new URL(name,root),'utf8');if(!html.includes('assets/js/training-app.js?'))continue;const fallback=html.match(/<section id="trainingFallback"[\s\S]*?<\/section>/)?.[0];assert.ok(fallback,name);for(const dest of ['https://www.primserv.pl/','https://oleksandrkiris.github.io/citronex-hydra-project/','https://oleksandrkiris.github.io/kiris-jobs/','https://t.me/KirisWorkPoland_bot?start=flow_contacts','tel:+48502251384'])assert.ok(fallback.includes(dest),name+dest);assert.ok(html.includes('training-app.js?v=20261018-3d-language1'));}
+ for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html'))){const html=fs.readFileSync(new URL(name,root),'utf8');if(!html.includes('assets/js/training-app.js?'))continue;const fallback=html.match(/<section id="trainingFallback"[\s\S]*?<\/section>/)?.[0];assert.ok(fallback,name);for(const dest of ['https://www.primserv.pl/','https://oleksandrkiris.github.io/citronex-hydra-project/','https://oleksandrkiris.github.io/kiris-jobs/','https://t.me/KirisWorkPoland_bot?start=flow_contacts','tel:+48502251384'])assert.ok(fallback.includes(dest),name+dest);assert.ok(html.includes('training-app.js?v=20261018-learning-topics1'));}
  const paths=JSON.parse(source.match(/const sourcePages = (\[[^;]+\]);/)[1]);assert.equal(paths.length,30);for(const p of paths)assert.ok(fs.existsSync(new URL((p==='home'?'index':p)+'.html',root)),p);
 });
 
@@ -149,4 +149,19 @@ test('unsupported Georgian uses the existing English fallback for retry controls
  const h = harness({lang:'ka'}); finishAttempt(h, [1]);
  assert.match(h.nodes.get('testResult').html, /Retry incorrect questions/);
  h.click('testRetry'); assert.match(h.nodes.get('testForm').html, /Retry incorrect questions: 1\/1/);
+});
+
+for (const lang of langs) test(`${lang}: incorrect picking/restart answers open the matching reader topic without changing saved answers`, () => {
+ const h=harness({lang}); finishAttempt(h,[10,12]);
+ const before=[...h.saved.entries()];
+ const links=[...h.nodes.get('testResult').html.matchAll(/href="([^"]*reader\.html[^"]*)"/g)].map(match=>new URL(match[1].replaceAll('&amp;','&'),'https://example.test/'));
+ assert.equal(links.length,2);
+ assert.equal(links[0].searchParams.get('topic'),'carts','picking material must show trolley/row/send, not before-work setup');
+ assert.equal(links[1].searchParams.get('topic'),'restart','restart material must show the reader button sequence');
+ for(const link of links) assert.equal(link.searchParams.get('lang'),lang);
+ assert.deepEqual([...h.saved.entries()],before);
+ const resumed=harness({lang,saved:h.saved}); resumed.render(); resumed.click('testResume');
+ assert.match(resumed.nodes.get('testResult').html,/28\/30/);
+ resumed.click('testRetry');
+ assert.deepEqual(Array.from(resumed.api.createTestSession().state.retryIndices),[10,12]);
 });

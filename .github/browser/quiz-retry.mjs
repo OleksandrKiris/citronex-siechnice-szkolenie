@@ -12,14 +12,15 @@ const output=resolve(process.env.BROWSER_REPORT),head=process.env.TESTED_HEAD,ba
 await mkdir(output,{recursive:true});
 const report={head,base,checkout:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),files:{},results:[],limits:[
   '1280x900 and 320x900 Chromium viewports, not a physical phone or screen reader.',
-  'Only quiz/text shell is accepted offline; audio/photos/presenter and external services are not accepted by this suite.',
-  'Media are not downloaded by the fixture server. Existing SW media requests receive 404, not fabricated replacements.',
+  'Offline acceptance covers quiz/text shell and the selected reader images only; audio/presenter, all other photos and external services are not accepted.',
+  'Fixture server serves exact checked-in reader/tablet images and nine supplied PDFs. Other media preload requests receive 404, not fabricated replacements.',
   'First successful HTTP/HTTPS load and worker installation are required. No file:// SW claim.'
 ]};
 assert.equal(report.checkout,head);
 const names=execFileSync('git',['ls-tree','-r','--name-only',head],{encoding:'utf8'}).trim().split('\n');
 const allowed=names.filter(path=>/^[\w-]+\.html$/.test(path)||path==='sw.js'||path==='manifest.webmanifest'||
-  /^assets\/(?:js|css|content)\/[\w.-]+\.(?:js|css|json)$/.test(path)||['assets/primserv-logo.svg','assets/logo-citronex.svg','assets/primserv-icon-192.png'].includes(path));
+  /^assets\/(?:js|css|content)\/[\w.-]+\.(?:js|css|json)$/.test(path)||['assets/primserv-logo.svg','assets/logo-citronex.svg','assets/primserv-icon-192.png'].includes(path)||
+  /^assets\/inline\/(?:cart_pl|cart_ua|restart_1|restart_2|reader_start)\.jpg$/.test(path)||/^assets\/tablet\/[\w.-]+\.jpg$/.test(path)||/^assets\/instructions\/[\w.-]+\.pdf$/.test(path));
 const current={};
 for(const file of allowed){const bytes=await readFile(file);assert.ok(bytes.equals(execFileSync('git',['show',`${head}:${file}`],{maxBuffer:4*1024*1024})),file);current[file]=bytes;report.files[file]={bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};}
 let serving=current;const requests=[],blocked=[];
@@ -29,14 +30,14 @@ const server=createServer((req,res)=>{
   requests.push({path,method:req.method,search:new URL(req.url,'http://localhost').search,phase:serving===current?'candidate':'base'});
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405).end();return;}
   if(!allowed.includes(path)){res.writeHead(404).end();return;}
-  const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.webmanifest':'application/manifest+json'}[extname(path)];
+  const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.pdf':'application/pdf','.webmanifest':'application/manifest+json'}[extname(path)];
   res.writeHead(200,{'Content-Type':mime,'Cache-Control':'no-store'});res.end(serving[path]);
 });
 const listen=()=>new Promise(done=>server.listen(4175,'127.0.0.1',done));
 const stop=async()=>{if(server.listening){server.closeAllConnections();await new Promise(done=>server.close(done));}};
 await listen();
 const url='http://127.0.0.1:4175/citronex-siechnice-szkolenie/',key='primserv:training-test:v1:/citronex-siechnice-szkolenie/:';
-const cache='citronex-siechnice-modular-20261016-quiz-retry1';
+const cache='citronex-siechnice-modular-20261018-learning-topics1';
 let browser;
 const layout=async page=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'horizontal overflow');
 const language=async(page,lang)=>{await page.waitForFunction(lang=>document.documentElement.lang===(lang==='ua'?'uk':lang),lang);await layout(page);};
@@ -65,6 +66,20 @@ try{
       else if(mode==='corrupt'&&!sessionStorage.getItem('seeded')){localStorage.setItem(key,'{broken');sessionStorage.setItem('seeded','1');}
     },{mode,key});return ctx;
   };
+  // Observe the old wrong destination using exact base files in a separate,
+  // worker-free anonymous context; no employee origin or saved progress is used.
+  serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${base}:${file}`],{maxBuffer:4*1024*1024})]));
+  const oldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),oldPage=await oldCtx.newPage();
+  try{
+    await oldPage.goto(url+'test.html?lang=en');await finish(oldPage,[10,12]);
+    const oldLinks=await oldPage.locator('.test-review-item a').evaluateAll(links=>links.map(a=>a.href));
+    assert.equal(oldLinks.length,2);assert.ok(oldLinks.every(href=>new URL(href).searchParams.get('topic')===null));
+    for(const index of [0,1]){
+      await oldPage.goto(oldLinks[index]);assert.equal(await oldPage.locator('[data-reader-tab="prepare"]').getAttribute('aria-pressed'),'true');
+      await oldPage.screenshot({path:join(output,`old-${index===0?'carts':'restart'}-wrong-prepare.png`),fullPage:true});
+    }
+    report.results.push({scenario:'old exact-base RED learning links',base,status:'expected regression reproduced',oldLinks});
+  }finally{await oldCtx.close();serving=current;}
   for(const width of [1280,320]){
     const ctx=await make(width),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await ctx.tracing.start({screenshots:true,snapshots:true});
@@ -109,6 +124,32 @@ try{
       await press(page,'testRetry');await answer(page,(await page.locator('.test-question').getAttribute('data-ok'))==='1');await press(page,'testNext');
       assert.match(await page.locator('#testResult h2').innerText(),/30\/30/);assert.deepEqual(errors,[]);
       report.results.push({width,status:'passed',steps:['30 actual UI answers / 2 errors','keyboard/focus','retry preserves 28 answers','9 languages / ka fallback','Back/Next','offline listener stopped + reload + persisted 30/30','learning link / Back','single remaining error']});
+      for(const lang of ['pl','en','ua','ru','az','es','fil','id','ne']){
+        await page.goto(url+'test.html?lang='+lang);await resume(page);await press(page,'testRestart');await finish(page,[10,12]);
+        const before=await stored(page);await page.locator('#testResult').scrollIntoViewIfNeeded();
+        await page.screenshot({path:join(output,`${width}-${lang}-learning-review.png`),fullPage:true});
+        for(const [index,topic] of [[0,'carts'],[1,'restart']]){
+          const link=page.locator('.test-review-item a').nth(index),target=new URL(await link.getAttribute('href'),url);
+          assert.equal(target.searchParams.get('lang'),lang);assert.equal(target.searchParams.get('topic'),topic);
+          await link.click();await language(page,lang);assert.equal(await page.locator(`[data-reader-tab="${topic}"]`).getAttribute('aria-pressed'),'true');
+          await page.locator('.media-details summary').click();
+          await page.waitForFunction(()=>[...document.querySelectorAll('.reader-visual img')].every(img=>img.complete&&img.naturalWidth>0));
+          await layout(page);assert.deepEqual((await stored(page)).answers,before.answers);
+          if(topic==='restart'){
+            const pdf=page.locator('a[href*="assets/instructions/restart-"]'),documentLang=['pl','en','ua'].includes(lang)?lang:'en';
+            assert.equal(await pdf.getAttribute('href'),`assets/instructions/restart-${documentLang}.pdf`);
+          }
+          await page.screenshot({path:join(output,`${width}-${lang}-${topic}-material.png`),fullPage:true});
+          await page.locator('#langSelect').selectOption(lang==='en'?'ua':'en');
+          await language(page,lang==='en'?'ua':'en');assert.equal(await page.locator(`[data-reader-tab="${topic}"]`).getAttribute('aria-pressed'),'true');
+          await page.goBack();await page.goBack();await language(page,lang);await resume(page);
+          assert.match(await page.locator('#testResult h2').innerText(),/28\/30/);assert.deepEqual((await stored(page)).answers,before.answers);
+        }
+        await press(page,'testRetry');
+        for(const index of [10,12]){assert.equal((await stored(page)).current,index);await answer(page,true);await press(page,'testNext');}
+        assert.match(await page.locator('#testResult h2').innerText(),/30\/30/);
+        report.results.push({width,lang,status:'passed',scenario:'two exact-topic learning links, real original images, language/topic, Back preserves 28 answers, retry 30/30'});
+      }
     }finally{if(!server.listening)await listen();await page.screenshot({path:join(output,`${width}-last.png`)}).catch(()=>{});await ctx.tracing.stop({path:join(output,`${width}-trace.zip`)});await ctx.close();}
   }
   for(const mode of ['corrupt','denied']){
@@ -141,7 +182,7 @@ try{
         && controller===registration.active && controller.state==='activated'
         && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
     },cache);
-    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261018-3d-language1',url).href;
+    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261018-learning-topics1',url).href;
     // The app may reload on controllerchange. Read the exact cached bytes
     // directly; polling a separate readiness flag can race that document.
     let cacheProbe;
@@ -166,7 +207,7 @@ try{
     assert.ok(cachedScript,'new script must already be cached: '+JSON.stringify(report.upgradeProbe));
     assert.equal(createHash('sha256').update(cachedScript).digest('hex'),report.files['assets/js/training-app.js'].sha256);
     await page.reload();
-    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261018-3d-language1'));
+    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261018-learning-topics1'));
     await resume(page);assert.deepEqual((await stored(page)).answers,before.answers);assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     await ctx.setOffline(true);await stop();await page.reload();await resume(page);await language(page,'ua');assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     assert.equal(await page.evaluate(()=>localStorage.getItem('unrelated-fixture')),'keep');assert.equal(await page.evaluate(async()=>await (await (await caches.open('foreign-fixture')).match('./foreign-fixture')).text()),'keep');
