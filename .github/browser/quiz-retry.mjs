@@ -36,7 +36,7 @@ const listen=()=>new Promise(done=>server.listen(4175,'127.0.0.1',done));
 const stop=async()=>{if(server.listening){server.closeAllConnections();await new Promise(done=>server.close(done));}};
 await listen();
 const url='http://127.0.0.1:4175/citronex-siechnice-szkolenie/',key='primserv:training-test:v1:/citronex-siechnice-szkolenie/:';
-const cache='citronex-siechnice-modular-20261016-quiz-retry1';
+const cache='citronex-siechnice-modular-20261018-3d-language1';
 let browser;
 const layout=async page=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'horizontal overflow');
 const language=async(page,lang)=>{await page.waitForFunction(lang=>document.documentElement.lang===(lang==='ua'?'uk':lang),lang);await layout(page);};
@@ -69,7 +69,17 @@ try{
     const ctx=await make(width),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await ctx.tracing.start({screenshots:true,snapshots:true});
     try{
-      await firstLoad(page,'en');await finish(page);
+      await firstLoad(page,'en');
+      for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
+        for (const entry of ['index.html','szklarnia.html']) {
+          await page.goto(url+entry+'?lang='+lang);await language(page,lang);
+          const links=page.locator('a[href*="citronex-szklarnia-3d/"]');
+          assert.equal(await links.count(),1);
+          assert.equal(await links.getAttribute('href'),'https://oleksandrkiris.github.io/citronex-szklarnia-3d/?lang='+lang);
+        }
+      }
+      report.results.push({width,scenario:'3D language links from home and greenhouse',status:'passed',languages:9,entries:2});
+      await page.goto(url+'test.html?lang=en');await finish(page);
       assert.match(await page.locator('#testResult h2').innerText(),/28\/30/);assert.equal(await page.locator('.test-review-item').count(),2);
       await page.locator('#testRetry').scrollIntoViewIfNeeded();await page.screenshot({path:join(output,`${width}-review.png`)});
       await press(page,'testRetry');assert.equal(await page.locator('#testQuestionTitle').evaluate(el=>el===document.activeElement),true);
@@ -131,7 +141,7 @@ try{
         && controller===registration.active && controller.state==='activated'
         && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
     },cache);
-    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261016-quiz-retry1',url).href;
+    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261018-3d-language1',url).href;
     // Cache writes can still become observable after the controller lifecycle
     // check. Wait for the exact required entry; missing/wrong bytes still fail.
     await page.waitForFunction(async ({name,scriptURL})=>
@@ -149,7 +159,7 @@ try{
     assert.ok(cachedScript,'new script must already be cached: '+JSON.stringify(report.upgradeProbe));
     assert.equal(createHash('sha256').update(cachedScript).digest('hex'),report.files['assets/js/training-app.js'].sha256);
     await page.reload();
-    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261016-quiz-retry1'));
+    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261018-3d-language1'));
     await resume(page);assert.deepEqual((await stored(page)).answers,before.answers);assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     await ctx.setOffline(true);await stop();await page.reload();await resume(page);await language(page,'ua');assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     assert.equal(await page.evaluate(()=>localStorage.getItem('unrelated-fixture')),'keep');assert.equal(await page.evaluate(async()=>await (await (await caches.open('foreign-fixture')).match('./foreign-fixture')).text()),'keep');

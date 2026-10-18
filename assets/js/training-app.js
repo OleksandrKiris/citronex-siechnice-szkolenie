@@ -248,7 +248,7 @@
   }
 
   function href(pageName) {
-    if (pageName === "szklarnia3d") return "https://oleksandrkiris.github.io/citronex-szklarnia-3d/";
+    if (pageName === "szklarnia3d") return `https://oleksandrkiris.github.io/citronex-szklarnia-3d/?lang=${encodeURIComponent(lang)}`;
     const base = pageName === "home" ? "index.html" : `${pageName}.html`;
     return `${base}?lang=${encodeURIComponent(lang)}`;
   }

@@ -32,7 +32,7 @@ jobs:
           node tools/audit-presenter.js
           node tools/audit-information.js
           node tools/audit-language-quality.js
-          node --test tools/primserv-navigation.test.mjs tools/instruction-update.test.mjs tools/quiz-progress.test.mjs
+          node --test tools/primserv-navigation.test.mjs tools/instruction-update.test.mjs tools/quiz-progress.test.mjs tools/three-d-language-link.test.mjs
       - name: Install isolated browser test dependency
         run: |
           npm install --prefix "$RUNNER_TEMP/siechnice-browser" --no-package-lock --no-audit --no-fund playwright@1.56.1
