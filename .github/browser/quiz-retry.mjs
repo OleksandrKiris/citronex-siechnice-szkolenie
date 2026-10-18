@@ -134,6 +134,14 @@ try{
           await link.click();await language(page,lang);assert.equal(await page.locator(`[data-reader-tab="${topic}"]`).getAttribute('aria-pressed'),'true');
           await page.locator('.media-details summary').click();
           await page.waitForFunction(()=>[...document.querySelectorAll('.reader-visual img')].every(img=>img.complete&&img.naturalWidth>0));
+          // content-visibility can leave decoded off-screen photos blank in a
+          // full-page capture. Inspect each original image in the viewport.
+          const images=page.locator('.reader-visual img');
+          for(let imageIndex=0;imageIndex<await images.count();imageIndex++){
+            const image=images.nth(imageIndex);await image.scrollIntoViewIfNeeded();
+            await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
+            await image.screenshot({path:join(output,`${width}-${lang}-${topic}-image-${imageIndex}.png`)});
+          }
           await layout(page);assert.deepEqual((await stored(page)).answers,before.answers);
           if(topic==='restart'){
             const pdf=page.locator('a[href*="assets/instructions/restart-"]'),documentLang=['pl','en','ua'].includes(lang)?lang:'en';
