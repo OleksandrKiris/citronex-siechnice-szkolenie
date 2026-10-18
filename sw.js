@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20261018-3d-language1";
+const CACHE_NAME = CACHE_PREFIX + "20261016-quiz-retry1";
 
 const CORE_ASSETS = [
   "./assets/js/instruction-update.js?v=20261016-language1",

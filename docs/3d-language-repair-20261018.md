@@ -4,7 +4,7 @@ Published English training opened a Polish 3D view because both entry points omi
 
 Both home and greenhouse now pass the effective training language to the fixed 3D URL. Existing nine translations and uk alias are covered; this change does not add Turkish, Georgian or Armenian translations. Other query parameters, location context and fragments are not sent to the separate project.
 
-All fifteen training HTML entries and the worker use a new app revision. Existing network-first worker logic and quiz storage remain unchanged. Regression checks include actual rendered hrefs, 320/1280 CI layout, the published-base worker upgrade and preservation of quiz answers offline.
+All fifteen training HTML entries and the worker use a new app revision. The existing cache generation is retained: network-first versioned app requests and exact new precache keys deliver the revision without replacing the working cache generation. The first candidate failed the base-worker exact-cache check before release and was corrected; that failure is retained as evidence. Existing network-first worker logic and quiz storage remain unchanged. Regression checks include actual rendered hrefs, 320/1280 CI layout, the published-base worker upgrade and preservation of quiz answers offline.
 
 Original map/data/instruction files remain byte-identical to the base. No Google, OSM or Apple replacement map links are included. The reported physical iPhone map failure remains unresolved by this separate language repair. No real result/contact is sent.
 

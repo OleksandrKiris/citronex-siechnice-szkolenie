@@ -36,7 +36,7 @@ const listen=()=>new Promise(done=>server.listen(4175,'127.0.0.1',done));
 const stop=async()=>{if(server.listening){server.closeAllConnections();await new Promise(done=>server.close(done));}};
 await listen();
 const url='http://127.0.0.1:4175/citronex-siechnice-szkolenie/',key='primserv:training-test:v1:/citronex-siechnice-szkolenie/:';
-const cache='citronex-siechnice-modular-20261018-3d-language1';
+const cache='citronex-siechnice-modular-20261016-quiz-retry1';
 let browser;
 const layout=async page=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'horizontal overflow');
 const language=async(page,lang)=>{await page.waitForFunction(lang=>document.documentElement.lang===(lang==='ua'?'uk':lang),lang);await layout(page);};
