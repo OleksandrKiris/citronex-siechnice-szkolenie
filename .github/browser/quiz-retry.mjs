@@ -58,10 +58,13 @@ const finish=async(page,wrong=[2,17])=>{for(let i=0;i<30;i++){const correct=(awa
 const photoGuide=async(page,width,lang,topic)=>{
   const currentSteps=await page.locator('.reader-panel .reader-step p').allTextContents();
   assert.ok(currentSteps.length>=5);
-  const overlays=page.locator('.reader-image-translation');assert.ok(await overlays.count()>0);
+  const overlays=page.locator('.reader-image-translation');assert.equal(await overlays.count(),1,'One shared current guide, not one duplicate per photo');
   for(const overlay of await overlays.all())assert.deepEqual(await overlay.locator('li').allTextContents(),currentSteps,'Photo guidance must match current visible steps');
   assert.ok((await page.locator('[data-reader-source-note]').innerText()).trim());
   const guide=overlays.first();await guide.scrollIntoViewIfNeeded();
+  const typography=await guide.evaluate(el=>({width:el.getBoundingClientRect().width,fontSize:parseFloat(getComputedStyle(el.querySelector('li')).fontSize)}));
+  assert.ok(typography.width>=200,'Current guidance must use the readable full topic width');
+  assert.ok(typography.fontSize>=14,'Current guidance must remain readable on a narrow screen');
   await guide.screenshot({path:join(output,`${width}-${lang}-${topic}-current-guidance.png`)});
   report.results.push({width,lang,topic,scenario:'current photo guidance equals visible steps',steps:currentSteps.length,status:'passed'});
 };

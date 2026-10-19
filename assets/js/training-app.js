@@ -1756,23 +1756,20 @@
       : `<div class="steps">${readerStepList(active.steps)}</div>`;
     const tips = (active.tips || []).map((tip) => `<li>${esc(text(tip))}</li>`).join("");
     const imageOverlaySteps = (active.steps || active.imageSteps || []).map(readerStepValue).filter(Boolean);
+    const currentPhotoGuidance = imageOverlaySteps.length ? `
+      <div class="reader-image-translation reader-current-guidance">
+        <strong>${esc(text(photoLabels.title))}</strong>
+        <ol>${imageOverlaySteps.map(step => `<li>${esc(text(step))}</li>`).join("")}</ol>
+      </div>` : "";
     const imageBlocks = [
       active.image ? { src: active.image, caption: active.imageCaption } : null,
       ...(active.images || [])
     ].filter(Boolean).map((image) => {
-      const overlaySteps = (image.steps || imageOverlaySteps).map(readerStepValue).filter(Boolean);
-      const overlay = overlaySteps.length ? `
-        <div class="reader-image-translation${overlaySteps.length > 5 ? " compact" : ""}">
-          <strong>${esc(text(photoLabels.title))}</strong>
-          <ol>${overlaySteps.map((step) => `<li>${esc(text(step))}</li>`).join("")}</ol>
-        </div>
-      ` : "";
       return `
       <figure class="media reader-visual">
         <div class="reader-visual-frame">
           <img loading="eager" src="${esc(image.src)}" alt="${esc(text(image.caption))}">
         </div>
-        ${overlay}
         <figcaption>${esc(text(image.caption))}</figcaption>
       </figure>
     `;
@@ -1799,7 +1796,7 @@
             ${active.id === "restart" ? instructionDocumentMarkup("restart") : ""}
             ${tips ? `<div class="reader-tips"><strong>${esc(ui("important"))}</strong><ul>${tips}</ul></div>` : ""}
           </section>
-          ${imageBlocks ? `<details class="card section media-details"><summary>${esc(text(photoLabels.summary))}</summary><p class="notice yellow" data-reader-source-note>${esc(text(photoLabels.note))}</p><div class="details-body photo-grid">${imageBlocks}</div></details>` : ""}
+          ${imageBlocks ? `<details class="card section media-details"><summary>${esc(text(photoLabels.summary))}</summary><p class="notice yellow" data-reader-source-note>${esc(text(photoLabels.note))}</p><div class="details-body photo-grid">${imageBlocks}</div>${currentPhotoGuidance}</details>` : ""}
         </section>
       </main>
     `;

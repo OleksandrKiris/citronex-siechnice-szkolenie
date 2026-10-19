@@ -164,7 +164,7 @@ for(const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) test(`${lang}
   const html=f.node.innerHTML;
   const current=[...html.matchAll(/<article class="step-card reader-step[\s\S]*?<div><p>([\s\S]*?)<\/p>/g)].map(m=>m[1]);
   const overlays=[...html.matchAll(/<div class="reader-image-translation[^"]*">([\s\S]*?)<\/div>/g)].map(m=>m[1]);
-  assert.ok(overlays.length>0);
+  assert.equal(overlays.length,1,'Only one shared current guide is needed for all original photos');
   for(const overlay of overlays){
    const steps=[...overlay.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(m=>m[1]);
    assert.deepEqual(steps,current,'Photo guidance must retain current timing, scan order and troubleshooting instructions');

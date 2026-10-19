@@ -1,0 +1,12 @@
+/* The current procedure is shared by the original illustrations in a topic. */
+body[data-page="reader"] .reader-current-guidance {
+  margin: 12px 0 0;
+  padding: 14px;
+  min-width: 0;
+}
+
+body[data-page="reader"] .reader-current-guidance strong,
+body[data-page="reader"] .reader-current-guidance li {
+  font-size: 14px;
+  line-height: 1.45;
+}
