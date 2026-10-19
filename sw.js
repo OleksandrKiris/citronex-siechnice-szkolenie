@@ -1,8 +1,8 @@
 const CACHE_PREFIX = "citronex-siechnice-modular-";
-const CACHE_NAME = CACHE_PREFIX + "20261019-reader-related-procedures1";
+const CACHE_NAME = CACHE_PREFIX + "20261019-tablet-procedure-links1";
 
 const CORE_ASSETS = [
-  "./assets/css/reader-guidance.css?v=20261019-reader-related-procedures1",
+  "./assets/css/reader-guidance.css?v=20261019-tablet-procedure-links1",
   "./assets/js/instruction-update.js?v=20261016-language1",
   "./",
   "./index.html",
@@ -27,7 +27,7 @@ const CORE_ASSETS = [
   "./assets/css/presenter-clean.css?v=20260720-siechnice-master41",
   "./assets/css/editor.css?v=20260720-siechnice-master41",
   "./assets/js/training-data.js?v=20260720-siechnice-master41",
-  "./assets/js/training-app.js?v=20261019-reader-related-procedures1",
+  "./assets/js/training-app.js?v=20261019-tablet-procedure-links1",
   "./assets/css/primserv.css?v=20261016-progress1",
   "./assets/primserv-logo.svg",
   "./assets/primserv-icon-192.png",

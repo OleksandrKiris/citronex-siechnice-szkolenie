@@ -25,6 +25,15 @@ function fixture(lang = 'pl', page = 'reader', mode = '') {
   return {context, before, D: context.window.CX_DATA, node};
 }
 for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
+  test(`${lang}: tablet procedure links have unique focusable destinations and existing localized titles`, () => {
+    const f=fixture(lang,'tablet');f.context.window.testInstructions.renderTablet();
+    const html=f.node.innerHTML;
+    for(const [id,title] of [['tablet-priva',f.D.tabletStartup.title],['tablet-work',f.D.tabletGuide.title],['tablet-workshop',f.D.tabletWorkshop.title]]){
+      const name=f.context.window.testInstructions.text(title);assert.ok(html.includes(`href="#${id}">${name}</a>`));
+      assert.equal((html.match(new RegExp(`id="${id}"`,'g'))||[]).length,1);assert.ok(html.includes(`id="${id}" tabindex="-1"`));
+    }
+    assert.equal((html.match(/class="tablet-step"/g)||[]).length,13);
+  });
   test(`${lang}: related reader procedures have real localized links beside the relevant guidance`, () => {
     const f=fixture(lang,'reader','fixture');
     for(const [origin,expected] of [['prepare',['restart']],['rows',['carts','outside']]]){
@@ -114,11 +123,11 @@ test('instruction update is loaded after local data and before renderer only on 
     if (custom) assert.ok(html.indexOf('location-custom.js') < html.indexOf('instruction-update.js'));
     assert.ok(html.indexOf('instruction-update.js') < html.indexOf('training-app.js'));
     assert.match(html,/instruction-update.js\?v=20261016-language1/);
-    assert.match(html,/training-app.js\?v=20261019-reader-related-procedures1/);
+    assert.match(html,/training-app.js\?v=20261019-tablet-procedure-links1/);
   }
   assert.ok(!read('index.html').includes('instruction-update.js'));
   assert.match(read('sw.js'),/instruction-update.js\?v=20261016-language1/);
-  assert.match(read('sw.js'),/CACHE_PREFIX \+ "20261019-reader-related-procedures1"/);
+  assert.match(read('sw.js'),/CACHE_PREFIX \+ "20261019-tablet-procedure-links1"/);
 });
 
 for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
