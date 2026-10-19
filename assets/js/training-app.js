@@ -1181,6 +1181,17 @@
         ${DATA.tabletWorkshop ? tabletInstructionMarkup(DATA.tabletWorkshop, "tablet-workshop") : ""}
       </main>
     `;
+    // The sticky header changes height with language and viewport size.
+    // Native fragment navigation must leave the procedure heading exposed.
+    const header = document.querySelector?.(".app-header");
+    const updateProcedureMargin = () => {
+      const margin = Math.ceil(header?.getBoundingClientRect().height || 0) + 12;
+      app.querySelectorAll("#tablet-priva, #tablet-work, #tablet-workshop").forEach(section => {
+        section.style.scrollMarginTop = `${margin}px`;
+      });
+    };
+    updateProcedureMargin();
+    if (header && typeof ResizeObserver === "function") new ResizeObserver(updateProcedureMargin).observe(header);
   }
 
   function renderGreenhouseGuide() {

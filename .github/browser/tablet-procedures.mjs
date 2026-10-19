@@ -14,9 +14,9 @@ export async function auditTabletProcedures({page,width,lang,url,output,key,repo
   assert.equal((await link.innerText()).trim(),(await section.locator('h2,h3').first().innerText()).trim());
   await link.focus();await page.keyboard.press('Enter');await page.waitForURL(u=>u.hash==='#'+id);
   assert.equal(new URL(page.url()).searchParams.get('lang'),lang);assert.equal(new URL(page.url()).searchParams.get('mode'),'fixture');
-  await page.waitForFunction(id=>{const r=document.getElementById(id).getBoundingClientRect();return r.top>=-1&&r.top<innerHeight;},id);
+  await page.waitForFunction(id=>{const h=document.getElementById(id).querySelector('h2,h3'),r=h.getBoundingClientRect(),header=document.querySelector('.app-header').getBoundingClientRect(),hit=document.elementFromPoint((r.left+r.right)/2,(r.top+r.bottom)/2);return r.top>=header.bottom&&r.bottom<=innerHeight&&h.contains(hit);},id);
   assert.equal(await page.evaluate(()=>document.activeElement.id),id);
-  await section.locator('h2,h3').first().screenshot({path:join(output,`${width}-${lang}-${id}-destination.png`)});
+  await page.screenshot({path:join(output,`${width}-${lang}-${id}-destination.png`)});
   await page.goBack();assert.equal(new URL(page.url()).hash,'');await language(page,lang);
   report.tabletNavigationRows.push({width,lang,id,passed:true});
  }
