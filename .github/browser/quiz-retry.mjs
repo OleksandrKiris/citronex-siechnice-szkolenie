@@ -41,7 +41,7 @@ const listen=()=>new Promise(done=>server.listen(4175,'127.0.0.1',done));
 const stop=async()=>{if(server.listening){server.closeAllConnections();await new Promise(done=>server.close(done));}};
 await listen();
 const url='http://127.0.0.1:4175/citronex-siechnice-szkolenie/',key='primserv:training-test:v1:/citronex-siechnice-szkolenie/:';
-const cache='citronex-siechnice-modular-20261019-reader-photo-guidance1';
+const cache='citronex-siechnice-modular-20261019-reader-related-procedures1';
 let browser;
 const layout=async page=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'horizontal overflow');
 const language=async(page,lang)=>{await page.waitForFunction(lang=>document.documentElement.lang===(lang==='ua'?'uk':lang),lang);await layout(page);};
@@ -98,7 +98,8 @@ try{
     }
     report.results.push({scenario:'old pinned-base RED learning links',base:oldLearningBase,status:'expected regression reproduced',oldLinks});
   }finally{await oldCtx.close();serving=current;}
-  serving=loadRevision(base);
+  const oldPhotoBase='63240cd7aef812a7a07d535d9d6e82c335dfff83';
+  serving=loadRevision(oldPhotoBase);
   const photoOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),photoOldPage=await photoOldCtx.newPage();
   try{
     for(const topic of ['start','restart']){
@@ -108,9 +109,18 @@ try{
       assert.notDeepEqual(await overlay.locator('li').allTextContents(),currentSteps);
       assert.equal(await photoOldPage.locator('[data-reader-source-note]').count(),0);
       await overlay.scrollIntoViewIfNeeded();await overlay.screenshot({path:join(output,`old-${topic}-abbreviated-guidance.png`)});
-      report.results.push({scenario:'old photo guidance differs from current steps',base,topic,status:'expected regression reproduced'});
+      report.results.push({scenario:'old photo guidance differs from current steps',base:oldPhotoBase,topic,status:'expected regression reproduced'});
     }
   }finally{await photoOldCtx.close();serving=current;}
+  serving=loadRevision(base);
+  const relatedOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),relatedOldPage=await relatedOldCtx.newPage();
+  try{
+    for(const origin of ['prepare','rows']){
+      await relatedOldPage.goto(url+`reader.html?lang=en&topic=${origin}`);
+      assert.equal(await relatedOldPage.locator('[data-reader-related]').count(),0);
+      report.results.push({scenario:'old reader has no contextual procedure links',base,origin,status:'prior capability absence observed'});
+    }
+  }finally{await relatedOldCtx.close();serving=current;}
   for(const width of [1280,320]){
     const ctx=await make(width),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await ctx.tracing.start({screenshots:true,snapshots:true});
@@ -192,6 +202,30 @@ try{
         await page.goto(url+'reader.html?lang='+lang+'&topic=start');await language(page,lang);
         await page.locator('.media-details summary').click();await photoGuide(page,width,lang,'start');
         await layout(page);
+        const savedBefore=await stored(page);
+        for(const [origin,targets] of [['prepare',['restart']],['rows',['carts','outside']]]){
+          for(const topic of targets){
+            await page.goto(url+`reader.html?lang=${lang}&topic=${origin}&mode=fixture`);await language(page,lang);
+            const link=page.locator(`[data-reader-related="${topic}"]`),target=new URL(await link.getAttribute('href'));
+            assert.equal(target.searchParams.get('lang'),lang);assert.equal(target.searchParams.get('topic'),topic);assert.equal(target.searchParams.get('mode'),'fixture');
+            const title=await page.locator(`[data-reader-tab="${topic}"]`).innerText();assert.equal(await link.innerText(),title);
+            if(origin==='rows')assert.equal(await link.locator('..').locator('..').locator('h3').count(),1,'Link must be inside the relevant procedure section');
+            // Focus and paint the actual control after scrolling. A deferred
+            // off-screen ancestor can yield a blank parent-only screenshot.
+            await link.focus();await link.scrollIntoViewIfNeeded();
+            await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
+            await link.screenshot({path:join(output,`${width}-${lang}-${origin}-to-${topic}-link.png`)});
+            await page.keyboard.press('Enter');await page.waitForURL(target.href);await language(page,lang);
+            assert.equal(await page.locator(`[data-reader-tab="${topic}"]`).getAttribute('aria-pressed'),'true');assert.equal(await page.locator('.reader-panel-head h2').innerText(),title);
+            await page.locator('.reader-panel-head').screenshot({path:join(output,`${width}-${lang}-${origin}-to-${topic}-destination.png`)});
+            assert.deepEqual((await stored(page)).answers,savedBefore.answers);
+            await page.goBack();assert.equal(new URL(page.url()).searchParams.get('topic'),origin);assert.equal(new URL(page.url()).searchParams.get('mode'),'fixture');assert.equal(await page.locator(`[data-reader-tab="${origin}"]`).getAttribute('aria-pressed'),'true');
+            const offlineRequests=requests.length;await ctx.setOffline(true);await stop();await page.reload();await language(page,lang);await page.locator(`[data-reader-related="${topic}"]`).click();await page.waitForURL(target.href);await language(page,lang);
+            assert.equal(await page.locator(`[data-reader-tab="${topic}"]`).getAttribute('aria-pressed'),'true');assert.equal(requests.length,offlineRequests,'Related procedure must work with listener stopped');assert.deepEqual((await stored(page)).answers,savedBefore.answers);
+            await listen();await ctx.setOffline(false);
+            report.results.push({scenario:'contextual procedure link / keyboard / Back / stopped-server offline / progress unchanged',width,lang,origin,topic,status:'passed'});
+          }
+        }
       }
     }finally{if(!server.listening)await listen();await page.screenshot({path:join(output,`${width}-last.png`)}).catch(()=>{});await ctx.tracing.stop({path:join(output,`${width}-trace.zip`)});await ctx.close();}
   }
@@ -225,7 +259,7 @@ try{
         && controller===registration.active && controller.state==='activated'
         && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
     },cache);
-    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261019-reader-photo-guidance1',url).href;
+    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261019-reader-related-procedures1',url).href;
     // The app may reload on controllerchange. Read the exact cached bytes
     // directly; polling a separate readiness flag can race that document.
     let cacheProbe;
@@ -250,7 +284,7 @@ try{
     assert.ok(cachedScript,'new script must already be cached: '+JSON.stringify(report.upgradeProbe));
     assert.equal(createHash('sha256').update(cachedScript).digest('hex'),report.files['assets/js/training-app.js'].sha256);
     await page.reload();
-    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261019-reader-photo-guidance1'));
+    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261019-reader-related-procedures1'));
     await resume(page);assert.deepEqual((await stored(page)).answers,before.answers);assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     await ctx.setOffline(true);await stop();await page.reload();await resume(page);await language(page,'ua');assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     assert.equal(await page.evaluate(()=>localStorage.getItem('unrelated-fixture')),'keep');assert.equal(await page.evaluate(async()=>await (await (await caches.open('foreign-fixture')).match('./foreign-fixture')).text()),'keep');

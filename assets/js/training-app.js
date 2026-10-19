@@ -1732,12 +1732,25 @@
     return (steps || []).map((item, index) => readerStep(item, index)).join("");
   }
 
-  function readerSection(section) {
+  function readerRelatedLinks(topics) {
+    const links = topics.map(id => DATA.readerTabs.find(tab => tab.id === id)).filter(Boolean);
+    return links.length ? `<div class="btn-row reader-related-procedures">${links.map(tab => {
+      const target = new URL(href("reader"), location.href);
+      target.searchParams.set("topic", tab.id);
+      const mode = new URLSearchParams(location.search).get("mode");
+      if (mode) target.searchParams.set("mode", mode);
+      return `<a class="btn secondary" data-reader-related="${esc(tab.id)}" href="${esc(target.href)}">${esc(text(tab.title))}</a>`;
+    }).join("")}</div>` : "";
+  }
+
+  function readerSection(section, index, topic) {
+    const related = topic === "rows" ? ({ 1: ["carts"], 4: ["outside"] }[index] || []) : [];
     return `
       <section class="reader-section">
         <h3>${esc(text(section.title))}</h3>
         ${section.lead ? `<p class="reader-section-lead">${esc(text(section.lead))}</p>` : ""}
         <div class="steps">${readerStepList(section.steps)}</div>
+        ${readerRelatedLinks(related)}
       </section>
     `;
   }
@@ -1752,7 +1765,7 @@
     readerTopic = active.id;
     const tabs = [...DATA.readerTabs].sort((a, b) => Number(b.id === "prepare") - Number(a.id === "prepare")).map((tab) => readerTabButton(tab, tab.id === active.id)).join("");
     const steps = active.sections
-      ? active.sections.map(readerSection).join("")
+      ? active.sections.map((section, index) => readerSection(section, index, active.id)).join("")
       : `<div class="steps">${readerStepList(active.steps)}</div>`;
     const tips = (active.tips || []).map((tip) => `<li>${esc(text(tip))}</li>`).join("");
     const imageOverlaySteps = (active.steps || active.imageSteps || []).map(readerStepValue).filter(Boolean);
@@ -1793,6 +1806,7 @@
               </div>
             </div>
             ${steps}
+            ${active.id === "prepare" ? readerRelatedLinks(["restart"]) : ""}
             ${active.id === "restart" ? instructionDocumentMarkup("restart") : ""}
             ${tips ? `<div class="reader-tips"><strong>${esc(ui("important"))}</strong><ul>${tips}</ul></div>` : ""}
           </section>

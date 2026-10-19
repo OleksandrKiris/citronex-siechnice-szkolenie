@@ -10,10 +10,10 @@ const update = read('assets/js/instruction-update.js');
 const app = read('assets/js/training-app.js');
 const instrumented = app.replace(/  renderPage\(\);\n  upgradeCache\(\);\n\}\)\(\);\s*$/, '  window.testInstructions = { renderReader, renderTablet, reloadWithLanguage, text };\n})();');
 assert.notEqual(instrumented, app);
-function fixture(lang = 'pl', page = 'reader') {
+function fixture(lang = 'pl', page = 'reader', mode = '') {
   const node = {innerHTML: '', querySelectorAll: () => []};
   const context = vm.createContext({
-    window: {}, location: new URL(`https://example.test/${page}.html?lang=${lang}`), URL, URLSearchParams,
+    window: {}, location: new URL(`https://example.test/${page}.html?lang=${lang}${mode?'&mode='+mode:''}`), URL, URLSearchParams,
     navigator: {language: lang, languages: [lang]}, localStorage: {getItem: () => null},
     document: {documentElement: {}, body: {dataset: {page}}, getElementById: () => node}
   });
@@ -23,6 +23,22 @@ function fixture(lang = 'pl', page = 'reader') {
   vm.runInContext(update, context);
   vm.runInContext(instrumented, context);
   return {context, before, D: context.window.CX_DATA, node};
+}
+for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
+  test(`${lang}: related reader procedures have real localized links beside the relevant guidance`, () => {
+    const f=fixture(lang,'reader','fixture');
+    for(const [origin,expected] of [['prepare',['restart']],['rows',['carts','outside']]]){
+      f.context.window.testInstructions.renderReader(origin);
+      const links=[...f.node.innerHTML.matchAll(/<a[^>]+data-reader-related="([^"]+)" href="([^"]+)"[^>]*>([^<]+)<\/a>/g)];
+      assert.deepEqual(links.map(m=>m[1]),expected);
+      for(const m of links){
+        const target=new URL(m[2].replaceAll('&amp;','&'),'https://example.test/');
+        assert.equal(target.pathname,'/reader.html');assert.equal(target.searchParams.get('lang'),lang);assert.equal(target.searchParams.get('mode'),'fixture');assert.equal(target.searchParams.get('topic'),m[1]);
+        assert.equal(m[3],f.context.window.testInstructions.text(f.D.readerTabs.find(t=>t.id===m[1]).title));
+      }
+    }
+    for(const topic of ['start','outside','carts','restart']){f.context.window.testInstructions.renderReader(topic);assert.doesNotMatch(f.node.innerHTML,/data-reader-related=/);}
+  });
 }
 for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
   test(`${lang}: every reader section and tablet procedure renders without network or operational actions`, () => {
@@ -98,11 +114,11 @@ test('instruction update is loaded after local data and before renderer only on 
     if (custom) assert.ok(html.indexOf('location-custom.js') < html.indexOf('instruction-update.js'));
     assert.ok(html.indexOf('instruction-update.js') < html.indexOf('training-app.js'));
     assert.match(html,/instruction-update.js\?v=20261016-language1/);
-    assert.match(html,/training-app.js\?v=20261019-reader-photo-guidance1/);
+    assert.match(html,/training-app.js\?v=20261019-reader-related-procedures1/);
   }
   assert.ok(!read('index.html').includes('instruction-update.js'));
   assert.match(read('sw.js'),/instruction-update.js\?v=20261016-language1/);
-  assert.match(read('sw.js'),/CACHE_PREFIX \+ "20261019-reader-photo-guidance1"/);
+  assert.match(read('sw.js'),/CACHE_PREFIX \+ "20261019-reader-related-procedures1"/);
 });
 
 for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
