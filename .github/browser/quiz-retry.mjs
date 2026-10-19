@@ -114,13 +114,14 @@ try{
       report.results.push({scenario:'old photo guidance differs from current steps',base:oldPhotoBase,topic,status:'expected regression reproduced'});
     }
   }finally{await photoOldCtx.close();serving=current;}
-  serving=loadRevision(base);
+  const oldRelatedBase='2faa9e0df06607c81267c5830ca9d65f5369cec6';
+  serving=loadRevision(oldRelatedBase);
   const relatedOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),relatedOldPage=await relatedOldCtx.newPage();
   try{
     for(const origin of ['prepare','rows']){
       await relatedOldPage.goto(url+`reader.html?lang=en&topic=${origin}`);
       assert.equal(await relatedOldPage.locator('[data-reader-related]').count(),0);
-      report.results.push({scenario:'old reader has no contextual procedure links',base,origin,status:'prior capability absence observed'});
+      report.results.push({scenario:'old reader has no contextual procedure links',base:oldRelatedBase,origin,status:'prior capability absence observed'});
     }
   }finally{await relatedOldCtx.close();serving=current;}
   for(const width of [1280,320]){
