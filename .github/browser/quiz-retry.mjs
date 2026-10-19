@@ -24,12 +24,16 @@ const allowed=names.filter(path=>/^[\w-]+\.html$/.test(path)||path==='sw.js'||pa
 const current={};
 for(const file of allowed){const bytes=await readFile(file);assert.ok(bytes.equals(execFileSync('git',['show',`${head}:${file}`],{maxBuffer:4*1024*1024})),file);current[file]=bytes;report.files[file]={bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};}
 let serving=current;const requests=[],blocked=[];
+const loadRevision=revision=>{
+  const existing=new Set(execFileSync('git',['ls-tree','-r','--name-only',revision],{encoding:'utf8'}).trim().split('\n'));
+  return Object.fromEntries(allowed.filter(file=>existing.has(file)).map(file=>[file,execFileSync('git',['show',`${revision}:${file}`],{maxBuffer:4*1024*1024})]));
+};
 const failedRequests=[];
 const server=createServer((req,res)=>{
   const path=new URL(req.url,'http://localhost').pathname.replace(/^\/citronex-siechnice-szkolenie\//,'')||'index.html';
   requests.push({path,method:req.method,search:new URL(req.url,'http://localhost').search,phase:serving===current?'candidate':'base'});
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405).end();return;}
-  if(!allowed.includes(path)){res.writeHead(404).end();return;}
+  if(!allowed.includes(path)||!Object.hasOwn(serving,path)){res.writeHead(404).end();return;}
   const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.pdf':'application/pdf','.webmanifest':'application/manifest+json'}[extname(path)];
   res.writeHead(200,{'Content-Type':mime,'Cache-Control':'no-store'});res.end(serving[path]);
 });
@@ -37,7 +41,7 @@ const listen=()=>new Promise(done=>server.listen(4175,'127.0.0.1',done));
 const stop=async()=>{if(server.listening){server.closeAllConnections();await new Promise(done=>server.close(done));}};
 await listen();
 const url='http://127.0.0.1:4175/citronex-siechnice-szkolenie/',key='primserv:training-test:v1:/citronex-siechnice-szkolenie/:';
-const cache='citronex-siechnice-modular-20261018-learning-topics1';
+const cache='citronex-siechnice-modular-20261019-reader-photo-guidance1';
 let browser;
 const layout=async page=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'horizontal overflow');
 const language=async(page,lang)=>{await page.waitForFunction(lang=>document.documentElement.lang===(lang==='ua'?'uk':lang),lang);await layout(page);};
@@ -55,6 +59,19 @@ const stored=page=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)),key)
 const answer=async(page,value)=>{const radio=page.locator(`input[name="testAnswer"][value="${value?'1':'0'}"]`);await radio.focus();await page.keyboard.press('Space');assert.equal(await radio.isChecked(),true);assert.equal(await radio.evaluate(el=>el===document.activeElement),true);};
 const press=async(page,id)=>{await page.locator('#'+id).focus();await page.keyboard.press('Enter');};
 const finish=async(page,wrong=[2,17])=>{for(let i=0;i<30;i++){const correct=(await page.locator('.test-question').getAttribute('data-ok'))==='1';await answer(page,wrong.includes(i)?!correct:correct);await press(page,'testNext');}};
+const photoGuide=async(page,width,lang,topic)=>{
+  const currentSteps=await page.locator('.reader-panel .reader-step p').allTextContents();
+  assert.ok(currentSteps.length>=5);
+  const overlays=page.locator('.reader-image-translation');assert.equal(await overlays.count(),1,'One shared current guide, not one duplicate per photo');
+  for(const overlay of await overlays.all())assert.deepEqual(await overlay.locator('li').allTextContents(),currentSteps,'Photo guidance must match current visible steps');
+  assert.ok((await page.locator('[data-reader-source-note]').innerText()).trim());
+  const guide=overlays.first();await guide.scrollIntoViewIfNeeded();
+  const typography=await guide.evaluate(el=>({width:el.getBoundingClientRect().width,fontSize:parseFloat(getComputedStyle(el.querySelector('li')).fontSize)}));
+  assert.ok(typography.width>=200,'Current guidance must use the readable full topic width');
+  assert.ok(typography.fontSize>=14,'Current guidance must remain readable on a narrow screen');
+  await guide.screenshot({path:join(output,`${width}-${lang}-${topic}-current-guidance.png`)});
+  report.results.push({width,lang,topic,scenario:'current photo guidance equals visible steps',steps:currentSteps.length,status:'passed'});
+};
 try{
   browser=await chromium.launch({headless:true});report.browser=browser.version();
   const make=async(width,mode='normal')=>{
@@ -68,7 +85,8 @@ try{
   };
   // Observe the old wrong destination using exact base files in a separate,
   // worker-free anonymous context; no employee origin or saved progress is used.
-  serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${base}:${file}`],{maxBuffer:4*1024*1024})]));
+  const oldLearningBase='b071f20b32d5741318df8b95829bd385e2512da3';
+  serving=loadRevision(oldLearningBase);
   const oldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),oldPage=await oldCtx.newPage();
   try{
     await oldPage.goto(url+'test.html?lang=en');await finish(oldPage,[10,12]);
@@ -78,8 +96,21 @@ try{
       await oldPage.goto(oldLinks[index]);assert.equal(await oldPage.locator('[data-reader-tab="prepare"]').getAttribute('aria-pressed'),'true');
       await oldPage.screenshot({path:join(output,`old-${index===0?'carts':'restart'}-wrong-prepare.png`),fullPage:true});
     }
-    report.results.push({scenario:'old exact-base RED learning links',base,status:'expected regression reproduced',oldLinks});
+    report.results.push({scenario:'old pinned-base RED learning links',base:oldLearningBase,status:'expected regression reproduced',oldLinks});
   }finally{await oldCtx.close();serving=current;}
+  serving=loadRevision(base);
+  const photoOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),photoOldPage=await photoOldCtx.newPage();
+  try{
+    for(const topic of ['start','restart']){
+      await photoOldPage.goto(url+`reader.html?lang=en&topic=${topic}`);await photoOldPage.locator('.media-details summary').click();
+      const currentSteps=await photoOldPage.locator('.reader-panel .reader-step p').allTextContents();
+      const overlay=photoOldPage.locator('.reader-image-translation').first();
+      assert.notDeepEqual(await overlay.locator('li').allTextContents(),currentSteps);
+      assert.equal(await photoOldPage.locator('[data-reader-source-note]').count(),0);
+      await overlay.scrollIntoViewIfNeeded();await overlay.screenshot({path:join(output,`old-${topic}-abbreviated-guidance.png`)});
+      report.results.push({scenario:'old photo guidance differs from current steps',base,topic,status:'expected regression reproduced'});
+    }
+  }finally{await photoOldCtx.close();serving=current;}
   for(const width of [1280,320]){
     const ctx=await make(width),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await ctx.tracing.start({screenshots:true,snapshots:true});
@@ -134,6 +165,7 @@ try{
           await link.click();await language(page,lang);assert.equal(await page.locator(`[data-reader-tab="${topic}"]`).getAttribute('aria-pressed'),'true');
           await page.locator('.media-details summary').click();
           await page.waitForFunction(()=>[...document.querySelectorAll('.reader-visual img')].every(img=>img.complete&&img.naturalWidth>0));
+          await photoGuide(page,width,lang,topic);
           // content-visibility can leave decoded off-screen photos blank in a
           // full-page capture. Inspect each original image in the viewport.
           const images=page.locator('.reader-visual img');
@@ -157,6 +189,9 @@ try{
         for(const index of [10,12]){assert.equal((await stored(page)).current,index);await answer(page,true);await press(page,'testNext');}
         assert.match(await page.locator('#testResult h2').innerText(),/30\/30/);
         report.results.push({width,lang,status:'passed',scenario:'two exact-topic learning links, real original images, language/topic, Back preserves 28 answers, retry 30/30'});
+        await page.goto(url+'reader.html?lang='+lang+'&topic=start');await language(page,lang);
+        await page.locator('.media-details summary').click();await photoGuide(page,width,lang,'start');
+        await layout(page);
       }
     }finally{if(!server.listening)await listen();await page.screenshot({path:join(output,`${width}-last.png`)}).catch(()=>{});await ctx.tracing.stop({path:join(output,`${width}-trace.zip`)});await ctx.close();}
   }
@@ -170,7 +205,7 @@ try{
     }finally{await page.screenshot({path:join(output,`${mode}-last.png`)}).catch(()=>{});await ctx.close();}
   }
   // Actual previous worker and legacy v1 save, without a destructive migration.
-  serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${base}:${file}`],{maxBuffer:4*1024*1024})]));
+  serving=loadRevision(base);
   const ctx=await make(320),page=await ctx.newPage();
   await ctx.tracing.start({screenshots:true,snapshots:true});
   try{
@@ -190,7 +225,7 @@ try{
         && controller===registration.active && controller.state==='activated'
         && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
     },cache);
-    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261018-learning-topics1',url).href;
+    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261019-reader-photo-guidance1',url).href;
     // The app may reload on controllerchange. Read the exact cached bytes
     // directly; polling a separate readiness flag can race that document.
     let cacheProbe;
@@ -215,7 +250,7 @@ try{
     assert.ok(cachedScript,'new script must already be cached: '+JSON.stringify(report.upgradeProbe));
     assert.equal(createHash('sha256').update(cachedScript).digest('hex'),report.files['assets/js/training-app.js'].sha256);
     await page.reload();
-    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261018-learning-topics1'));
+    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261019-reader-photo-guidance1'));
     await resume(page);assert.deepEqual((await stored(page)).answers,before.answers);assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     await ctx.setOffline(true);await stop();await page.reload();await resume(page);await language(page,'ua');assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     assert.equal(await page.evaluate(()=>localStorage.getItem('unrelated-fixture')),'keep');assert.equal(await page.evaluate(async()=>await (await (await caches.open('foreign-fixture')).match('./foreign-fixture')).text()),'keep');

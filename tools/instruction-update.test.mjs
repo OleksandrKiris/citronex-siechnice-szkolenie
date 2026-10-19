@@ -98,11 +98,11 @@ test('instruction update is loaded after local data and before renderer only on 
     if (custom) assert.ok(html.indexOf('location-custom.js') < html.indexOf('instruction-update.js'));
     assert.ok(html.indexOf('instruction-update.js') < html.indexOf('training-app.js'));
     assert.match(html,/instruction-update.js\?v=20261016-language1/);
-    assert.match(html,/training-app.js\?v=20261018-learning-topics1/);
+    assert.match(html,/training-app.js\?v=20261019-reader-photo-guidance1/);
   }
   assert.ok(!read('index.html').includes('instruction-update.js'));
   assert.match(read('sw.js'),/instruction-update.js\?v=20261016-language1/);
-  assert.match(read('sw.js'),/CACHE_PREFIX \+ "20261018-learning-topics1"/);
+  assert.match(read('sw.js'),/CACHE_PREFIX \+ "20261019-reader-photo-guidance1"/);
 });
 
 for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
@@ -155,4 +155,20 @@ test('explicit English fallback remains readable rather than being partly rewrit
     const original='[English] Check the warehouse instruction near the office.';
     assert.equal(f.context.window.testInstructions.text(original),original);
   }
+});
+
+for(const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) test(`${lang}: photo guidance repeats current visible steps rather than obsolete abbreviated image text`,()=>{
+ const f=fixture(lang);
+ for(const topic of ['start','carts','restart']){
+  f.context.window.testInstructions.renderReader(topic);
+  const html=f.node.innerHTML;
+  const current=[...html.matchAll(/<article class="step-card reader-step[\s\S]*?<div><p>([\s\S]*?)<\/p>/g)].map(m=>m[1]);
+  const overlays=[...html.matchAll(/<div class="reader-image-translation[^"]*">([\s\S]*?)<\/div>/g)].map(m=>m[1]);
+  assert.equal(overlays.length,1,'Only one shared current guide is needed for all original photos');
+  for(const overlay of overlays){
+   const steps=[...overlay.matchAll(/<li>([\s\S]*?)<\/li>/g)].map(m=>m[1]);
+   assert.deepEqual(steps,current,'Photo guidance must retain current timing, scan order and troubleshooting instructions');
+  }
+  assert.match(html,/data-reader-source-note/,'Original illustration must be distinguished from current instructions');
+ }
 });
