@@ -24,12 +24,16 @@ const allowed=names.filter(path=>/^[\w-]+\.html$/.test(path)||path==='sw.js'||pa
 const current={};
 for(const file of allowed){const bytes=await readFile(file);assert.ok(bytes.equals(execFileSync('git',['show',`${head}:${file}`],{maxBuffer:4*1024*1024})),file);current[file]=bytes;report.files[file]={bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};}
 let serving=current;const requests=[],blocked=[];
+const loadRevision=revision=>{
+  const existing=new Set(execFileSync('git',['ls-tree','-r','--name-only',revision],{encoding:'utf8'}).trim().split('\n'));
+  return Object.fromEntries(allowed.filter(file=>existing.has(file)).map(file=>[file,execFileSync('git',['show',`${revision}:${file}`],{maxBuffer:4*1024*1024})]));
+};
 const failedRequests=[];
 const server=createServer((req,res)=>{
   const path=new URL(req.url,'http://localhost').pathname.replace(/^\/citronex-siechnice-szkolenie\//,'')||'index.html';
   requests.push({path,method:req.method,search:new URL(req.url,'http://localhost').search,phase:serving===current?'candidate':'base'});
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405).end();return;}
-  if(!allowed.includes(path)){res.writeHead(404).end();return;}
+  if(!allowed.includes(path)||!Object.hasOwn(serving,path)){res.writeHead(404).end();return;}
   const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.pdf':'application/pdf','.webmanifest':'application/manifest+json'}[extname(path)];
   res.writeHead(200,{'Content-Type':mime,'Cache-Control':'no-store'});res.end(serving[path]);
 });
@@ -82,7 +86,7 @@ try{
   // Observe the old wrong destination using exact base files in a separate,
   // worker-free anonymous context; no employee origin or saved progress is used.
   const oldLearningBase='b071f20b32d5741318df8b95829bd385e2512da3';
-  serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${oldLearningBase}:${file}`],{maxBuffer:4*1024*1024})]));
+  serving=loadRevision(oldLearningBase);
   const oldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),oldPage=await oldCtx.newPage();
   try{
     await oldPage.goto(url+'test.html?lang=en');await finish(oldPage,[10,12]);
@@ -94,7 +98,7 @@ try{
     }
     report.results.push({scenario:'old pinned-base RED learning links',base:oldLearningBase,status:'expected regression reproduced',oldLinks});
   }finally{await oldCtx.close();serving=current;}
-  serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${base}:${file}`],{maxBuffer:4*1024*1024})]));
+  serving=loadRevision(base);
   const photoOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),photoOldPage=await photoOldCtx.newPage();
   try{
     for(const topic of ['start','restart']){
@@ -201,7 +205,7 @@ try{
     }finally{await page.screenshot({path:join(output,`${mode}-last.png`)}).catch(()=>{});await ctx.close();}
   }
   // Actual previous worker and legacy v1 save, without a destructive migration.
-  serving=Object.fromEntries(allowed.map(file=>[file,execFileSync('git',['show',`${base}:${file}`],{maxBuffer:4*1024*1024})]));
+  serving=loadRevision(base);
   const ctx=await make(320),page=await ctx.newPage();
   await ctx.tracing.start({screenshots:true,snapshots:true});
   try{
