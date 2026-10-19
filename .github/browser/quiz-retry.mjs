@@ -1,5 +1,6 @@
 // CI-only, anonymous fixture attempts. Never clicks send-result or contact links.
 import assert from 'node:assert/strict';
+import {readerSections,remainingReviewCases,assertReaderSection,assertReaderSections,assertRemainingReviews} from './reader-procedures.mjs';
 import {createServer} from 'node:http';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -16,6 +17,7 @@ const report={head,base,checkout:execFileSync('git',['rev-parse','HEAD'],{encodi
   'Fixture server serves exact checked-in reader/tablet images and nine supplied PDFs. Other media preload requests receive 404, not fabricated replacements.',
   'First successful HTTP/HTTPS load and worker installation are required. No file:// SW claim.'
 ]};
+report.readerSectionRows=[];report.remainingReviewRows=[];
 assert.equal(report.checkout,head);
 const names=execFileSync('git',['ls-tree','-r','--name-only',head],{encoding:'utf8'}).trim().split('\n');
 const allowed=names.filter(path=>/^[\w-]+\.html$/.test(path)||path==='sw.js'||path==='manifest.webmanifest'||
@@ -112,13 +114,14 @@ try{
       report.results.push({scenario:'old photo guidance differs from current steps',base:oldPhotoBase,topic,status:'expected regression reproduced'});
     }
   }finally{await photoOldCtx.close();serving=current;}
-  serving=loadRevision(base);
+  const oldRelatedBase='2faa9e0df06607c81267c5830ca9d65f5369cec6';
+  serving=loadRevision(oldRelatedBase);
   const relatedOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),relatedOldPage=await relatedOldCtx.newPage();
   try{
     for(const origin of ['prepare','rows']){
       await relatedOldPage.goto(url+`reader.html?lang=en&topic=${origin}`);
       assert.equal(await relatedOldPage.locator('[data-reader-related]').count(),0);
-      report.results.push({scenario:'old reader has no contextual procedure links',base,origin,status:'prior capability absence observed'});
+      report.results.push({scenario:'old reader has no contextual procedure links',base:oldRelatedBase,origin,status:'prior capability absence observed'});
     }
   }finally{await relatedOldCtx.close();serving=current;}
   for(const width of [1280,320]){
@@ -226,7 +229,29 @@ try{
             report.results.push({scenario:'contextual procedure link / keyboard / Back / stopped-server offline / progress unchanged',width,lang,origin,topic,status:'passed'});
           }
         }
+        await page.goto(url+'test.html?lang='+lang);await resume(page);await press(page,'testRestart');await finish(page,remainingReviewCases.map(([i])=>i));
+        const preserved=await stored(page);assert.match(await page.locator('#testResult h2').innerText(),/21\/30/);
+        for(const [position,[question,topic]] of remainingReviewCases.entries()){
+          const item=page.locator('.test-review-item').nth(position),link=item.locator('a'),target=new URL(await link.getAttribute('href'));
+          assert.equal(target.searchParams.get('lang'),lang);assert.equal(target.searchParams.get('topic'),topic);
+          await link.focus();await link.scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
+          await item.screenshot({path:join(output,`${width}-${lang}-question-${question}-review.png`)});
+          await page.keyboard.press('Enter');await page.waitForURL(target.href);await language(page,lang);assert.equal(await page.locator(`[data-reader-tab="${topic}"]`).getAttribute('aria-pressed'),'true');
+          await page.goBack();await resume(page);assert.match(await page.locator('#testResult h2').innerText(),/21\/30/);assert.deepEqual((await stored(page)).answers,preserved.answers);
+          report.remainingReviewRows.push({width,lang,question,topic,passed:true});
+        }
+        await press(page,'testRetry');for(const [question]of remainingReviewCases){assert.equal((await stored(page)).current,question);await answer(page,(await page.locator('.test-question').getAttribute('data-ok'))==='1');await press(page,'testNext');}assert.match(await page.locator('#testResult h2').innerText(),/30\/30/);
+        for(const [topic,sections]of Object.entries(readerSections)){
+          await page.goto(url+`reader.html?lang=${lang}&topic=${topic}`);await language(page,lang);assert.equal(await page.locator('.reader-section').count(),sections.length);
+          for(const index of sections.keys()){
+            const section=page.locator('.reader-section').nth(index);await section.locator('h3').click();await section.scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
+            const steps=(await section.locator('.reader-step p').allTextContents()).map(s=>s.trim());
+            const geometry=await section.evaluate(el=>{const root=document.documentElement,r=el.getBoundingClientRect();return {clientWidth:root.clientWidth,scrollWidth:root.scrollWidth,left:r.left,right:r.right,cards:[...el.querySelectorAll('.reader-step')].map(card=>{const r=card.getBoundingClientRect(),p=card.querySelector('p'),t=p.getBoundingClientRect(),s=getComputedStyle(p);return {visible:s.display!=='none'&&s.visibility==='visible'&&Number(s.opacity)>0,width:r.width,height:r.height,left:r.left,right:r.right,bottom:r.bottom,textBottom:t.bottom,textClientWidth:p.clientWidth,textScrollWidth:p.scrollWidth};})};});
+            const row={width,lang,topic,index,steps,geometry,passed:true};assertReaderSection(row);await section.screenshot({path:join(output,`${width}-${lang}-${topic}-section-${index}.png`)});report.readerSectionRows.push(row);
+          }
+        }
       }
+      assert.deepEqual(errors,[]);
     }finally{if(!server.listening)await listen();await page.screenshot({path:join(output,`${width}-last.png`)}).catch(()=>{});await ctx.tracing.stop({path:join(output,`${width}-trace.zip`)});await ctx.close();}
   }
   for(const mode of ['corrupt','denied']){
@@ -239,7 +264,9 @@ try{
     }finally{await page.screenshot({path:join(output,`${mode}-last.png`)}).catch(()=>{});await ctx.close();}
   }
   // Actual previous worker and legacy v1 save, without a destructive migration.
-  serving=loadRevision(base);
+  const workerUpgradeBase='2faa9e0df06607c81267c5830ca9d65f5369cec6';
+  report.workerUpgradeSource={ref:workerUpgradeBase,reason:'Pinned previous photo-guidance worker; test-only heads share the event-base worker bytes and cannot generate a new controller.'};
+  serving=loadRevision(workerUpgradeBase);
   const ctx=await make(320),page=await ctx.newPage();
   await ctx.tracing.start({screenshots:true,snapshots:true});
   try{
@@ -291,6 +318,7 @@ try{
     const entries=await page.evaluate(async name=>{const c=await caches.open(name),r=[];for(const req of await c.keys())r.push({url:req.url,bytes:(await (await c.match(req)).arrayBuffer()).byteLength});return r;},cache);
     await page.screenshot({path:join(output,'cache-upgrade-offline.png')});report.results.push({scenario:'base-worker upgrade / legacy progress / offline',status:'passed',cache:entries});
   }finally{serving=current;if(!server.listening)await listen();await page.screenshot({path:join(output,'cache-upgrade-last.png')}).catch(()=>{});await ctx.tracing.stop({path:join(output,'cache-upgrade-trace.zip')});await ctx.close();}
+  assertReaderSections(report.readerSectionRows);assertRemainingReviews(report.remainingReviewRows);
   assert.deepEqual(blocked,[]);assert.ok(requests.every(r=>['GET','HEAD'].includes(r.method)));
   report.requests={count:requests.length,servedPaths:[...new Set(requests.filter(r=>allowed.includes(r.path)).map(r=>r.path))],unservedMediaRequests:requests.filter(r=>!allowed.includes(r.path)).length};report.status='passed';
 }catch(error){report.status='failed';report.error=error.stack;process.exitCode=1;}
