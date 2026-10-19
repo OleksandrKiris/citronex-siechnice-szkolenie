@@ -210,8 +210,12 @@ try{
             assert.equal(target.searchParams.get('lang'),lang);assert.equal(target.searchParams.get('topic'),topic);assert.equal(target.searchParams.get('mode'),'fixture');
             const title=await page.locator(`[data-reader-tab="${topic}"]`).innerText();assert.equal(await link.innerText(),title);
             if(origin==='rows')assert.equal(await link.locator('..').locator('..').locator('h3').count(),1,'Link must be inside the relevant procedure section');
-            await link.scrollIntoViewIfNeeded();await link.locator('..').screenshot({path:join(output,`${width}-${lang}-${origin}-to-${topic}-link.png`)});
-            await link.focus();await page.keyboard.press('Enter');await page.waitForURL(target.href);await language(page,lang);
+            // Focus and paint the actual control after scrolling. A deferred
+            // off-screen ancestor can yield a blank parent-only screenshot.
+            await link.focus();await link.scrollIntoViewIfNeeded();
+            await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
+            await link.screenshot({path:join(output,`${width}-${lang}-${origin}-to-${topic}-link.png`)});
+            await page.keyboard.press('Enter');await page.waitForURL(target.href);await language(page,lang);
             assert.equal(await page.locator(`[data-reader-tab="${topic}"]`).getAttribute('aria-pressed'),'true');assert.equal(await page.locator('.reader-panel-head h2').innerText(),title);
             await page.locator('.reader-panel-head').screenshot({path:join(output,`${width}-${lang}-${origin}-to-${topic}-destination.png`)});
             assert.deepEqual((await stored(page)).answers,savedBefore.answers);
