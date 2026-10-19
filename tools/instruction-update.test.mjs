@@ -27,6 +27,7 @@ function fixture(lang = 'pl', page = 'reader', mode = '') {
 for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
   test(`${lang}: tablet procedure links have unique focusable destinations and existing localized titles`, () => {
     const f=fixture(lang,'tablet');f.context.window.testInstructions.renderTablet();
+    assert.equal(f.D.readerTabs.find(tab=>tab.id==='prepare').steps.length,5);
     const html=f.node.innerHTML;
     for(const [id,title] of [['tablet-priva',f.D.tabletStartup.title],['tablet-work',f.D.tabletGuide.title],['tablet-workshop',f.D.tabletWorkshop.title]]){
       const name=f.context.window.testInstructions.text(title);assert.ok(html.includes(`href="#${id}">${name}</a>`));

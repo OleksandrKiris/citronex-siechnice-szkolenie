@@ -3,7 +3,7 @@ import {join} from 'node:path';
 export async function auditTabletProcedures({page,width,lang,url,output,key,report,language}){
  const saved=await page.evaluate(key=>localStorage.getItem(key),key);
  await page.goto(url+`reader.html?lang=${lang}&topic=prepare`);await language(page,lang);
- const prepare=page.locator('.reader-panel');assert.equal(await prepare.locator('.reader-step').count(),4);
+ const prepare=page.locator('.reader-panel');assert.equal(await prepare.locator('.reader-step').count(),5);
  await prepare.screenshot({path:join(output,`${width}-${lang}-prepare-complete.png`)});
  await page.goto(url+`tablet.html?lang=${lang}&mode=fixture`);await language(page,lang);
  const nav=page.locator('[data-tablet-procedures]');assert.equal(await nav.locator('a').count(),3);
