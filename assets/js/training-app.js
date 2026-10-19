@@ -1743,6 +1743,11 @@
   }
 
   function renderReader(activeId = new URLSearchParams(location.search).get("topic") || (DATA.instructionRevision ? "prepare" : "start")) {
+    const photoLabels = {
+      summary: tx("Zdjęcia i aktualne kroki", "Photos and current steps", "Фото й актуальні кроки", "Фото и актуальные шаги", "Şəkillər və aktual addımlar", "Fotos y pasos actuales", "Mga larawan at kasalukuyang hakbang", "Foto dan langkah terbaru", "फोटो र अद्यावधिक चरणहरू"),
+      title: tx("Aktualne kroki do zdjęcia", "Current steps for this image", "Актуальні кроки до зображення", "Актуальные шаги к изображению", "Şəkil üçün aktual addımlar", "Pasos actuales para esta imagen", "Mga kasalukuyang hakbang para sa larawan", "Langkah terbaru untuk gambar ini", "यस तस्वीरका लागि अद्यावधिक चरणहरू"),
+      note: tx("Oryginalna ilustracja. Podczas pracy korzystaj z aktualnych kroków powyżej.", "Original illustration. For work, follow the current steps above.", "Оригінальна ілюстрація. Під час роботи дотримуйтеся актуальних кроків вище.", "Оригинальная иллюстрация. Во время работы следуйте актуальным шагам выше.", "Orijinal şəkil. İş zamanı yuxarıdakı aktual addımlara əməl edin.", "Ilustración original. Para trabajar, sigue los pasos actuales de arriba.", "Orihinal na larawan. Sa trabaho, sundin ang mga kasalukuyang hakbang sa itaas.", "Ilustrasi asli. Saat bekerja, ikuti langkah terbaru di atas.", "मूल चित्र। काम गर्दा माथिका अद्यावधिक चरणहरू पालना गर्नुहोस्।")
+    };
     const active = DATA.readerTabs.find((tab) => tab.id === activeId) || DATA.readerTabs.find(tab => tab.id === "prepare") || DATA.readerTabs[0];
     readerTopic = active.id;
     const tabs = [...DATA.readerTabs].sort((a, b) => Number(b.id === "prepare") - Number(a.id === "prepare")).map((tab) => readerTabButton(tab, tab.id === active.id)).join("");
@@ -1750,7 +1755,7 @@
       ? active.sections.map(readerSection).join("")
       : `<div class="steps">${readerStepList(active.steps)}</div>`;
     const tips = (active.tips || []).map((tip) => `<li>${esc(text(tip))}</li>`).join("");
-    const imageOverlaySteps = (active.imageSteps || active.steps || []).map(readerStepValue).filter(Boolean);
+    const imageOverlaySteps = (active.steps || active.imageSteps || []).map(readerStepValue).filter(Boolean);
     const imageBlocks = [
       active.image ? { src: active.image, caption: active.imageCaption } : null,
       ...(active.images || [])
@@ -1758,7 +1763,7 @@
       const overlaySteps = (image.steps || imageOverlaySteps).map(readerStepValue).filter(Boolean);
       const overlay = overlaySteps.length ? `
         <div class="reader-image-translation${overlaySteps.length > 5 ? " compact" : ""}">
-          <strong>${esc(text(tx("Tłumaczenie do zdjęcia", "Translation for the image", "Переклад до зображення", "Перевод к изображению", "Şəkil üçün tərcümə", "Traducción de la imagen", "Salin para sa larawan", "Terjemahan untuk gambar", "तस्वीरको अनुवाद")))}</strong>
+          <strong>${esc(text(photoLabels.title))}</strong>
           <ol>${overlaySteps.map((step) => `<li>${esc(text(step))}</li>`).join("")}</ol>
         </div>
       ` : "";
@@ -1794,7 +1799,7 @@
             ${active.id === "restart" ? instructionDocumentMarkup("restart") : ""}
             ${tips ? `<div class="reader-tips"><strong>${esc(ui("important"))}</strong><ul>${tips}</ul></div>` : ""}
           </section>
-          ${imageBlocks ? `<details class="card section media-details"><summary>${esc(text(tx("Zdj\u0119cia i t\u0142umaczenia", "Photos and translations", "\u0424\u043e\u0442\u043e \u0456 \u043f\u0435\u0440\u0435\u043a\u043b\u0430\u0434", "\u0424\u043e\u0442\u043e \u0438 \u043f\u0435\u0440\u0435\u0432\u043e\u0434", "\u015e\u0259kill\u0259r v\u0259 t\u0259rc\u00fcm\u0259l\u0259r", "Fotos y traducciones", "Mga larawan at salin", "Foto dan terjemahan", "\u092b\u094b\u091f\u094b \u0930 \u0905\u0928\u0941\u0935\u093e\u0926")))}</summary><div class="details-body photo-grid">${imageBlocks}</div></details>` : ""}
+          ${imageBlocks ? `<details class="card section media-details"><summary>${esc(text(photoLabels.summary))}</summary><p class="notice yellow" data-reader-source-note>${esc(text(photoLabels.note))}</p><div class="details-body photo-grid">${imageBlocks}</div></details>` : ""}
         </section>
       </main>
     `;
