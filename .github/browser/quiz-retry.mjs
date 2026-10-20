@@ -1,5 +1,6 @@
 // CI-only, anonymous fixture attempts. Never clicks send-result or contact links.
 import assert from 'node:assert/strict';
+import {auditTabletProcedures} from './tablet-procedures.mjs';
 import {readerSections,remainingReviewCases,assertReaderSection,assertReaderSections,assertRemainingReviews} from './reader-procedures.mjs';
 import {createServer} from 'node:http';
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
@@ -17,7 +18,7 @@ const report={head,base,checkout:execFileSync('git',['rev-parse','HEAD'],{encodi
   'Fixture server serves exact checked-in reader/tablet images and nine supplied PDFs. Other media preload requests receive 404, not fabricated replacements.',
   'First successful HTTP/HTTPS load and worker installation are required. No file:// SW claim.'
 ]};
-report.readerSectionRows=[];report.remainingReviewRows=[];
+report.readerSectionRows=[];report.remainingReviewRows=[];report.tabletNavigationRows=[];report.tabletStepRows=[];report.tabletTitleRows=[];
 assert.equal(report.checkout,head);
 const names=execFileSync('git',['ls-tree','-r','--name-only',head],{encoding:'utf8'}).trim().split('\n');
 const allowed=names.filter(path=>/^[\w-]+\.html$/.test(path)||path==='sw.js'||path==='manifest.webmanifest'||
@@ -43,7 +44,7 @@ const listen=()=>new Promise(done=>server.listen(4175,'127.0.0.1',done));
 const stop=async()=>{if(server.listening){server.closeAllConnections();await new Promise(done=>server.close(done));}};
 await listen();
 const url='http://127.0.0.1:4175/citronex-siechnice-szkolenie/',key='primserv:training-test:v1:/citronex-siechnice-szkolenie/:';
-const cache='citronex-siechnice-modular-20261019-reader-related-procedures1';
+const cache='citronex-siechnice-modular-20261019-tablet-procedure-links1';
 let browser;
 const layout=async page=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'horizontal overflow');
 const language=async(page,lang)=>{await page.waitForFunction(lang=>document.documentElement.lang===(lang==='ua'?'uk':lang),lang);await layout(page);};
@@ -124,6 +125,14 @@ try{
       report.results.push({scenario:'old reader has no contextual procedure links',base:oldRelatedBase,origin,status:'prior capability absence observed'});
     }
   }finally{await relatedOldCtx.close();serving=current;}
+  serving=loadRevision(base);
+  const tabletOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),tabletOldPage=await tabletOldCtx.newPage();
+  try{await tabletOldPage.goto(url+'tablet.html?lang=en');assert.equal(await tabletOldPage.locator('[data-tablet-procedures]').count(),0);assert.equal(await tabletOldPage.locator('.tablet-step').count(),13);await tabletOldPage.screenshot({path:join(output,'old-tablet-without-procedure-links.png')});report.results.push({scenario:'base tablet has no procedure links',base,status:'prior capability absence observed'});}
+  finally{await tabletOldCtx.close();serving=current;}
+  const oldTabletLayout='574a4fcc5f9f49ce36a3dae28e4b35125e9acc38';serving=loadRevision(oldTabletLayout);
+  const oldLayoutCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),oldLayoutPage=await oldLayoutCtx.newPage();
+  try{await oldLayoutPage.goto(url+'tablet.html?lang=pl');const summary=oldLayoutPage.locator('.tablet-step summary').first();await summary.scrollIntoViewIfNeeded();const g=await summary.evaluate(el=>{const r=el.getBoundingClientRect(),t=el.querySelector('.tablet-step-title')||el.querySelector('span:nth-child(2)'),s=getComputedStyle(el,'::after');return {padding:parseFloat(getComputedStyle(el).paddingInlineEnd),right:t.getBoundingClientRect().right,iconLeft:r.right-parseFloat(s.right)-parseFloat(s.width),visibility:getComputedStyle(el.parentElement).contentVisibility};});assert.equal(g.padding,12);assert.ok(g.right>g.iconLeft);assert.equal(g.visibility,'auto');await summary.screenshot({path:join(output,'old-tablet-summary-overlaps-toggle.png')});report.results.push({scenario:'old tablet summary enters toggle area and uses deferred content painting',base:oldTabletLayout,geometry:g,status:'expected regression reproduced'});}
+  finally{await oldLayoutCtx.close();serving=current;}
   for(const width of [1280,320]){
     const ctx=await make(width),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await ctx.tracing.start({screenshots:true,snapshots:true});
@@ -251,6 +260,7 @@ try{
           }
         }
       }
+      for(const tabletLang of ['pl','en','ua','ru','az','es','fil','id','ne'])await auditTabletProcedures({page,width,lang:tabletLang,url,output,key,report,language});
       assert.deepEqual(errors,[]);
     }finally{if(!server.listening)await listen();await page.screenshot({path:join(output,`${width}-last.png`)}).catch(()=>{});await ctx.tracing.stop({path:join(output,`${width}-trace.zip`)});await ctx.close();}
   }
@@ -286,7 +296,7 @@ try{
         && controller===registration.active && controller.state==='activated'
         && keys.includes(name)&&!keys.some(k=>k.startsWith('citronex-siechnice-modular-')&&k!==name);
     },cache);
-    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261019-reader-related-procedures1',url).href;
+    const expectedScriptURL=new URL('assets/js/training-app.js?v=20261019-tablet-procedure-links1',url).href;
     // The app may reload on controllerchange. Read the exact cached bytes
     // directly; polling a separate readiness flag can race that document.
     let cacheProbe;
@@ -311,7 +321,7 @@ try{
     assert.ok(cachedScript,'new script must already be cached: '+JSON.stringify(report.upgradeProbe));
     assert.equal(createHash('sha256').update(cachedScript).digest('hex'),report.files['assets/js/training-app.js'].sha256);
     await page.reload();
-    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261019-reader-related-procedures1'));
+    await page.waitForFunction(()=>document.querySelector('script[src*="training-app.js"]').src.includes('20261019-tablet-procedure-links1'));
     await resume(page);assert.deepEqual((await stored(page)).answers,before.answers);assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     await ctx.setOffline(true);await stop();await page.reload();await resume(page);await language(page,'ua');assert.match(await page.locator('#testProgressText').innerText(),/2\/30/);
     assert.equal(await page.evaluate(()=>localStorage.getItem('unrelated-fixture')),'keep');assert.equal(await page.evaluate(async()=>await (await (await caches.open('foreign-fixture')).match('./foreign-fixture')).text()),'keep');
@@ -319,6 +329,9 @@ try{
     await page.screenshot({path:join(output,'cache-upgrade-offline.png')});report.results.push({scenario:'base-worker upgrade / legacy progress / offline',status:'passed',cache:entries});
   }finally{serving=current;if(!server.listening)await listen();await page.screenshot({path:join(output,'cache-upgrade-last.png')}).catch(()=>{});await ctx.tracing.stop({path:join(output,'cache-upgrade-trace.zip')});await ctx.close();}
   assertReaderSections(report.readerSectionRows);assertRemainingReviews(report.remainingReviewRows);
+  assert.equal(report.tabletNavigationRows.length,54);assert.equal(new Set(report.tabletNavigationRows.map(r=>`${r.width}:${r.lang}:${r.id}`)).size,54);
+  assert.equal(report.tabletStepRows.length,234);assert.equal(new Set(report.tabletStepRows.map(r=>`${r.width}:${r.lang}:${r.index}`)).size,234);
+  assert.equal(report.tabletTitleRows.length,234);assert.equal(new Set(report.tabletTitleRows.map(r=>`${r.width}:${r.lang}:${r.index}`)).size,234);
   assert.deepEqual(blocked,[]);assert.ok(requests.every(r=>['GET','HEAD'].includes(r.method)));
   report.requests={count:requests.length,servedPaths:[...new Set(requests.filter(r=>allowed.includes(r.path)).map(r=>r.path))],unservedMediaRequests:requests.filter(r=>!allowed.includes(r.path)).length};report.status='passed';
 }catch(error){report.status='failed';report.error=error.stack;process.exitCode=1;}

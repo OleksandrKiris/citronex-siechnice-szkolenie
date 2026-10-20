@@ -1,0 +1,18 @@
+/* Keep the thirteen native disclosure controls painted during fragment jumps.
+   The general content-visibility placeholder is unsuitable for this short list. */
+body[data-page="tablet"] .tablet-step {
+  content-visibility: visible;
+  contain-intrinsic-size: none;
+}
+
+/* The compact common stylesheet resets summary padding to 12px. Reserve a
+   separate area for the +/- control so translated titles can wrap in full. */
+body[data-page="tablet"] .tablet-step > summary {
+  padding-inline-end: 52px;
+}
+
+body[data-page="tablet"] .tablet-step-title {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}

@@ -1104,13 +1104,13 @@
     `;
   }
 
-  function tabletInstructionMarkup(tablet = DATA.tabletGuide) {
+  function tabletInstructionMarkup(tablet = DATA.tabletGuide, procedureId = "") {
     const stepsSource = tablet.steps || [];
     const steps = stepsSource.map((item, index) => `
       <details class="tablet-step">
         <summary>
           <span class="step-number">${index + 1}</span>
-          <span>${esc(text(item.title))}</span>
+          <span class="tablet-step-title">${esc(text(item.title))}</span>
         </summary>
         <div class="tablet-step-body">
           <p>${esc(text(item.note))}</p>
@@ -1130,7 +1130,7 @@
     `).join("");
     const tips = (tablet.tips || []).map((item) => `<li>${esc(text(item))}</li>`).join("");
     return `
-      <section class="card yellow section tablet-guide">
+      <section class="card yellow section tablet-guide"${procedureId ? ` id="${esc(procedureId)}" tabindex="-1" style="scroll-margin-top:88px"` : ""}>
         <div class="city-card-head">
           <span class="city-card-icon">${iconMap.tablet}</span>
           <div>
@@ -1167,15 +1167,31 @@
       <main class="page">
         ${pageHero()}
         ${instructionUpdateNotice()}
-        ${DATA.tabletStartup ? `<section class="card section">${readerSection(DATA.tabletStartup)}${instructionDocumentMarkup("priva")}</section>` : ""}
+        <nav class="pill-row section" data-tablet-procedures aria-label="${esc(text(DATA.pages.tablet.title))}">
+          ${DATA.tabletStartup ? `<a class="btn secondary" href="#tablet-priva">${esc(text(DATA.tabletStartup.title))}</a>` : ""}
+          <a class="btn secondary" href="#tablet-work">${esc(text(DATA.tabletGuide.title))}</a>
+          ${DATA.tabletWorkshop ? `<a class="btn secondary" href="#tablet-workshop">${esc(text(DATA.tabletWorkshop.title))}</a>` : ""}
+        </nav>
+        ${DATA.tabletStartup ? `<section class="card section" id="tablet-priva" tabindex="-1" style="scroll-margin-top:88px">${readerSection(DATA.tabletStartup)}${instructionDocumentMarkup("priva")}</section>` : ""}
         <section class="card blue">
           <h2>${esc(text(tx("Jedna instrukcja dla szklarni i magazynu", "One instruction for greenhouse and warehouse", "Одна інструкція для теплиці і складу", "Одна инструкция для теплицы и склада", "İstixana və anbar üçün bir təlimat", "Una instrucción para invernadero y almacén", "Isang instruction para sa greenhouse at bodega", "Satu instruksi untuk rumah kaca dan gudang", "ग्रीनहाउस र गोदामका लागि एउटै निर्देशन")))}</h2>
           <p>${esc(text(DATA.pages.tablet.lead))}</p>
         </section>
-        ${tabletInstructionMarkup()}
-        ${DATA.tabletWorkshop ? tabletInstructionMarkup(DATA.tabletWorkshop) : ""}
+        ${tabletInstructionMarkup(DATA.tabletGuide, "tablet-work")}
+        ${DATA.tabletWorkshop ? tabletInstructionMarkup(DATA.tabletWorkshop, "tablet-workshop") : ""}
       </main>
     `;
+    // The sticky header changes height with language and viewport size.
+    // Native fragment navigation must leave the procedure heading exposed.
+    const header = document.querySelector?.(".app-header");
+    const updateProcedureMargin = () => {
+      const margin = Math.ceil(header?.getBoundingClientRect().height || 0) + 12;
+      app.querySelectorAll("#tablet-priva, #tablet-work, #tablet-workshop").forEach(section => {
+        section.style.scrollMarginTop = `${margin}px`;
+      });
+    };
+    updateProcedureMargin();
+    if (header && typeof ResizeObserver === "function") new ResizeObserver(updateProcedureMargin).observe(header);
   }
 
   function renderGreenhouseGuide() {
