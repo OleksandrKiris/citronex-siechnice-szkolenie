@@ -1,10 +1,20 @@
 import assert from 'node:assert/strict';
 import {join} from 'node:path';
 export async function auditTabletProcedures({page,width,lang,url,output,key,report,language}){
+ const centerReadable=async locator=>{
+  await locator.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest'}));
+  await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
+  assert.ok(await locator.evaluate(el=>{
+   const nodes=el.matches('p,h2,h3')?[el]:[...el.querySelectorAll('p,h2,h3')];
+   return nodes.length>0&&nodes.every(node=>{const range=document.createRange();range.selectNodeContents(node);return [...range.getClientRects()].filter(r=>r.width&&r.height).every(r=>[.05,.5,.95].every(ratio=>{const x=r.left+r.width*ratio,y=(r.top+r.bottom)/2;return x>=0&&x<innerWidth&&y>=0&&y<innerHeight&&node.contains(document.elementFromPoint(x,y));}));});
+  }),'Captured instruction text must be exposed, including the last line');
+ };
  const saved=await page.evaluate(key=>localStorage.getItem(key),key);
  await page.goto(url+`reader.html?lang=${lang}&topic=prepare`);await language(page,lang);
  const prepare=page.locator('.reader-panel');assert.equal(await prepare.locator('.reader-step').count(),5);
  await prepare.screenshot({path:join(output,`${width}-${lang}-prepare-complete.png`)});
+ const prepareHead=prepare.locator('.reader-panel-head');await centerReadable(prepareHead);await prepareHead.screenshot({path:join(output,`${width}-${lang}-prepare-heading.png`)});
+ for(let i=0;i<5;i++){const step=prepare.locator('.reader-step').nth(i);await centerReadable(step);await step.screenshot({path:join(output,`${width}-${lang}-prepare-step-${i}.png`)});}
  await page.goto(url+`tablet.html?lang=${lang}&mode=fixture`);await language(page,lang);
  const nav=page.locator('[data-tablet-procedures]');assert.equal(await nav.locator('a').count(),3);
  await nav.screenshot({path:join(output,`${width}-${lang}-tablet-navigation.png`)});
@@ -27,7 +37,7 @@ export async function auditTabletProcedures({page,width,lang,url,output,key,repo
  for(let i=0;i<13;i++){
   const step=steps.nth(i);await step.locator('summary').click();assert.equal(await step.getAttribute('open'),'');
   const note=step.locator('.tablet-step-body > p'),text=(await note.innerText()).trim();assert.ok(text&&!text.includes('undefined'));
-  await note.scrollIntoViewIfNeeded();const g=await note.evaluate(el=>{const r=el.getBoundingClientRect(),root=document.documentElement;return {left:r.left,right:r.right,width:root.clientWidth,scroll:el.scrollWidth,client:el.clientWidth,rootScroll:root.scrollWidth};});
+  await centerReadable(note);const g=await note.evaluate(el=>{const r=el.getBoundingClientRect(),root=document.documentElement;return {left:r.left,right:r.right,width:root.clientWidth,scroll:el.scrollWidth,client:el.clientWidth,rootScroll:root.scrollWidth};});
   assert.ok(g.left>=-1&&g.right<=g.width+1&&g.scroll<=g.client+1&&g.rootScroll<=g.width+1);
   const img=step.locator('img');assert.equal(await img.count(),1);await img.evaluate(el=>el.decode());assert.ok(await img.evaluate(el=>el.naturalWidth>0&&el.getBoundingClientRect().width>0));
   await note.screenshot({path:join(output,`${width}-${lang}-tablet-note-${i}.png`)});
