@@ -1110,7 +1110,7 @@
       <details class="tablet-step">
         <summary>
           <span class="step-number">${index + 1}</span>
-          <span>${esc(text(item.title))}</span>
+          <span class="tablet-step-title">${esc(text(item.title))}</span>
         </summary>
         <div class="tablet-step-body">
           <p>${esc(text(item.note))}</p>

@@ -34,6 +34,9 @@ for (const lang of ['pl','en','ua','ru','az','es','fil','id','ne']) {
       assert.equal((html.match(new RegExp(`id="${id}"`,'g'))||[]).length,1);assert.ok(html.includes(`id="${id}" tabindex="-1"`));
     }
     assert.equal((html.match(/class="tablet-step"/g)||[]).length,13);
+    assert.equal((html.match(/class="tablet-step-title"/g)||[]).length,13);
+    assert.ok(read('tablet.html').includes('assets/css/tablet-procedures.css?v=20261019-tablet-procedure-links1'));
+    assert.ok(read('sw.js').includes('assets/css/tablet-procedures.css?v=20261019-tablet-procedure-links1'));
   });
   test(`${lang}: related reader procedures have real localized links beside the relevant guidance`, () => {
     const f=fixture(lang,'reader','fixture');

@@ -2,6 +2,7 @@ const CACHE_PREFIX = "citronex-siechnice-modular-";
 const CACHE_NAME = CACHE_PREFIX + "20261019-tablet-procedure-links1";
 
 const CORE_ASSETS = [
+  "./assets/css/tablet-procedures.css?v=20261019-tablet-procedure-links1",
   "./assets/css/reader-guidance.css?v=20261019-tablet-procedure-links1",
   "./assets/js/instruction-update.js?v=20261016-language1",
   "./",

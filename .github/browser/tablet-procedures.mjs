@@ -5,7 +5,7 @@ export async function auditTabletProcedures({page,width,lang,url,output,key,repo
   await locator.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest'}));
   await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
   assert.ok(await locator.evaluate(el=>{
-   const nodes=el.matches('p,h2,h3')?[el]:[...el.querySelectorAll('p,h2,h3')];
+   const nodes=el.matches('p,h2,h3,.tablet-step-title')?[el]:[...el.querySelectorAll('p,h2,h3,.tablet-step-title')];
    return nodes.length>0&&nodes.every(node=>{const range=document.createRange();range.selectNodeContents(node);return [...range.getClientRects()].filter(r=>r.width&&r.height).every(r=>[.05,.5,.95].every(ratio=>{const x=r.left+r.width*ratio,y=(r.top+r.bottom)/2;return x>=0&&x<innerWidth&&y>=0&&y<innerHeight&&node.contains(document.elementFromPoint(x,y));}));});
   }),'Captured instruction text must be exposed, including the last line');
  };
@@ -35,7 +35,14 @@ export async function auditTabletProcedures({page,width,lang,url,output,key,repo
  // production photos are captured once in the narrow English context.
  const steps=page.locator('.tablet-step');assert.equal(await steps.count(),13);
  for(let i=0;i<13;i++){
-  const step=steps.nth(i);await step.locator('summary').click();assert.equal(await step.getAttribute('open'),'');
+  const step=steps.nth(i),summary=step.locator('summary'),title=step.locator('.tablet-step-title');
+  assert.equal(await step.evaluate(el=>getComputedStyle(el).contentVisibility),'visible');
+  await centerReadable(title);
+  const titleGeometry=await summary.evaluate(el=>{const r=el.getBoundingClientRect(),t=el.querySelector('.tablet-step-title').getBoundingClientRect(),plus=getComputedStyle(el,'::after');return {summaryRight:r.right,titleRight:t.right,iconLeft:r.right-parseFloat(plus.right)-parseFloat(plus.width),paddingEnd:parseFloat(getComputedStyle(el).paddingInlineEnd)};});
+  assert.ok(titleGeometry.paddingEnd>=52&&titleGeometry.titleRight<=titleGeometry.iconLeft-8);
+  await summary.screenshot({path:join(output,`${width}-${lang}-tablet-title-${i}.png`)});
+  report.tabletTitleRows.push({width,lang,index:i,geometry:titleGeometry,passed:true});
+  await summary.click();assert.equal(await step.getAttribute('open'),'');
   const note=step.locator('.tablet-step-body > p'),text=(await note.innerText()).trim();assert.ok(text&&!text.includes('undefined'));
   await centerReadable(note);const g=await note.evaluate(el=>{const r=el.getBoundingClientRect(),root=document.documentElement;return {left:r.left,right:r.right,width:root.clientWidth,scroll:el.scrollWidth,client:el.clientWidth,rootScroll:root.scrollWidth};});
   assert.ok(g.left>=-1&&g.right<=g.width+1&&g.scroll<=g.client+1&&g.rootScroll<=g.width+1);
@@ -52,6 +59,8 @@ export async function auditTabletProcedures({page,width,lang,url,output,key,repo
  await page.context().setOffline(true);
  try{
   await page.reload();await language(page,lang);
+  assert.equal(await page.locator('.tablet-step').first().evaluate(el=>getComputedStyle(el).contentVisibility),'visible');
+  assert.ok(await page.locator('.tablet-step summary').first().evaluate(el=>parseFloat(getComputedStyle(el).paddingInlineEnd)>=52));
   for(const id of ids){await page.locator(`[data-tablet-procedures] a[href="#${id}"]`).focus();await page.keyboard.press('Enter');assert.equal(new URL(page.url()).hash,'#'+id);assert.equal(await page.evaluate(()=>document.activeElement.id),id);}
  }finally{await page.context().setOffline(false);}
  assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),saved,'Material navigation must preserve completed quiz answers');

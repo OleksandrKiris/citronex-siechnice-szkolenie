@@ -18,7 +18,7 @@ const report={head,base,checkout:execFileSync('git',['rev-parse','HEAD'],{encodi
   'Fixture server serves exact checked-in reader/tablet images and nine supplied PDFs. Other media preload requests receive 404, not fabricated replacements.',
   'First successful HTTP/HTTPS load and worker installation are required. No file:// SW claim.'
 ]};
-report.readerSectionRows=[];report.remainingReviewRows=[];report.tabletNavigationRows=[];report.tabletStepRows=[];
+report.readerSectionRows=[];report.remainingReviewRows=[];report.tabletNavigationRows=[];report.tabletStepRows=[];report.tabletTitleRows=[];
 assert.equal(report.checkout,head);
 const names=execFileSync('git',['ls-tree','-r','--name-only',head],{encoding:'utf8'}).trim().split('\n');
 const allowed=names.filter(path=>/^[\w-]+\.html$/.test(path)||path==='sw.js'||path==='manifest.webmanifest'||
@@ -129,6 +129,10 @@ try{
   const tabletOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),tabletOldPage=await tabletOldCtx.newPage();
   try{await tabletOldPage.goto(url+'tablet.html?lang=en');assert.equal(await tabletOldPage.locator('[data-tablet-procedures]').count(),0);assert.equal(await tabletOldPage.locator('.tablet-step').count(),13);await tabletOldPage.screenshot({path:join(output,'old-tablet-without-procedure-links.png')});report.results.push({scenario:'base tablet has no procedure links',base,status:'prior capability absence observed'});}
   finally{await tabletOldCtx.close();serving=current;}
+  const oldTabletLayout='574a4fcc5f9f49ce36a3dae28e4b35125e9acc38';serving=loadRevision(oldTabletLayout);
+  const oldLayoutCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),oldLayoutPage=await oldLayoutCtx.newPage();
+  try{await oldLayoutPage.goto(url+'tablet.html?lang=pl');const summary=oldLayoutPage.locator('.tablet-step summary').first();await summary.scrollIntoViewIfNeeded();const g=await summary.evaluate(el=>{const r=el.getBoundingClientRect(),t=el.querySelector('.tablet-step-title')||el.querySelector('span:nth-child(2)'),s=getComputedStyle(el,'::after');return {padding:parseFloat(getComputedStyle(el).paddingInlineEnd),right:t.getBoundingClientRect().right,iconLeft:r.right-parseFloat(s.right)-parseFloat(s.width),visibility:getComputedStyle(el.parentElement).contentVisibility};});assert.equal(g.padding,12);assert.ok(g.right>g.iconLeft);assert.equal(g.visibility,'auto');await summary.screenshot({path:join(output,'old-tablet-summary-overlaps-toggle.png')});report.results.push({scenario:'old tablet summary enters toggle area and uses deferred content painting',base:oldTabletLayout,geometry:g,status:'expected regression reproduced'});}
+  finally{await oldLayoutCtx.close();serving=current;}
   for(const width of [1280,320]){
     const ctx=await make(width),page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await ctx.tracing.start({screenshots:true,snapshots:true});
@@ -327,6 +331,7 @@ try{
   assertReaderSections(report.readerSectionRows);assertRemainingReviews(report.remainingReviewRows);
   assert.equal(report.tabletNavigationRows.length,54);assert.equal(new Set(report.tabletNavigationRows.map(r=>`${r.width}:${r.lang}:${r.id}`)).size,54);
   assert.equal(report.tabletStepRows.length,234);assert.equal(new Set(report.tabletStepRows.map(r=>`${r.width}:${r.lang}:${r.index}`)).size,234);
+  assert.equal(report.tabletTitleRows.length,234);assert.equal(new Set(report.tabletTitleRows.map(r=>`${r.width}:${r.lang}:${r.index}`)).size,234);
   assert.deepEqual(blocked,[]);assert.ok(requests.every(r=>['GET','HEAD'].includes(r.method)));
   report.requests={count:requests.length,servedPaths:[...new Set(requests.filter(r=>allowed.includes(r.path)).map(r=>r.path))],unservedMediaRequests:requests.filter(r=>!allowed.includes(r.path)).length};report.status='passed';
 }catch(error){report.status='failed';report.error=error.stack;process.exitCode=1;}
