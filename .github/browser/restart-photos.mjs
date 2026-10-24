@@ -32,7 +32,7 @@ try{
   const initial=lang==='pl'?'en':'pl';ctx=await browser.newContext({viewport:{width,height:900}});ctx.setDefaultTimeout(12000);await ctx.tracing.start({screenshots:true,snapshots:true});
   await ctx.route('**/*',route=>{const r=route.request();if(new URL(r.url()).origin!==origin||!['GET','HEAD'].includes(r.method())){report.blocked.push({url:r.url(),method:r.method()});return route.abort();}return route.continue();});
   page=await ctx.newPage();page.on('pageerror',e=>report.errors.push(e.message));
-  await page.goto(url+`test.html?lang=${lang}`);await page.locator('input[name="testAnswer"][value="1"]').check();await page.locator('#testNext').click();const saved=await answers(page);assert(Object.values(saved).some(s=>JSON.parse(s).answers?.some(a=>typeof a==='boolean')));
+  await page.goto(url+`test.html?lang=${lang}`);await page.waitForFunction(()=>Boolean(navigator.serviceWorker.controller)&&performance.getEntriesByType('navigation')[0]?.type==='reload');await page.locator('input[name="testAnswer"][value="1"]').check();await page.locator('#testNext').click();const saved=await answers(page);assert(Object.values(saved).some(s=>JSON.parse(s).answers?.some(a=>typeof a==='boolean')));
   await page.goto(url+`reader.html?lang=${initial}`);await page.locator('[data-reader-tab="restart"]').click();
   await Promise.all([page.waitForURL(u=>u.searchParams.get('lang')===lang&&u.searchParams.get('topic')==='restart'),page.locator('#langSelect').selectOption(lang)]);
   await page.locator('[data-reader-tab="restart"][aria-pressed="true"]').waitFor();assert.equal(await page.locator('#langSelect').inputValue(),lang);assert.equal(await page.locator('html').getAttribute('lang'),lang==='ua'?'uk':lang);assert.deepEqual(await answers(page),saved);
