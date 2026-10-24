@@ -48,3 +48,34 @@ jobs:
           name: siechnice-acceptance-${{ env.TESTED_HEAD }}
           path: ${{ runner.temp }}/siechnice-acceptance
           retention-days: 14
+
+  restart-photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TESTED_HEAD: ${{ github.event.pull_request.head.sha }}
+      TESTED_BASE: ${{ github.event.pull_request.base.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TESTED_HEAD }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install isolated photo acceptance browser
+        run: |
+          npm install --prefix "$RUNNER_TEMP/siechnice-photos" --no-package-lock --no-audit --no-fund playwright@1.56.1
+          "$RUNNER_TEMP/siechnice-photos/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Original restart photos and real home quiz return
+        env:
+          PLAYWRIGHT_PACKAGE: ${{ runner.temp }}/siechnice-photos/node_modules/playwright
+          BROWSER_REPORT: ${{ runner.temp }}/siechnice-photo-report
+        run: node .github/browser/restart-photos.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: restart-photos-${{ env.TESTED_HEAD }}
+          path: ${{ runner.temp }}/siechnice-photo-report
+          retention-days: 14

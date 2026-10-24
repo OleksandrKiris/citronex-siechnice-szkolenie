@@ -125,9 +125,10 @@ try{
       report.results.push({scenario:'old reader has no contextual procedure links',base:oldRelatedBase,origin,status:'prior capability absence observed'});
     }
   }finally{await relatedOldCtx.close();serving=current;}
-  serving=loadRevision(base);
+  const oldTabletNavigationBase='c5f94eb3c4f1473a68efe9772f9a59e71ea591ba';
+  serving=loadRevision(oldTabletNavigationBase);
   const tabletOldCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),tabletOldPage=await tabletOldCtx.newPage();
-  try{await tabletOldPage.goto(url+'tablet.html?lang=en');assert.equal(await tabletOldPage.locator('[data-tablet-procedures]').count(),0);assert.equal(await tabletOldPage.locator('.tablet-step').count(),13);await tabletOldPage.screenshot({path:join(output,'old-tablet-without-procedure-links.png')});report.results.push({scenario:'base tablet has no procedure links',base,status:'prior capability absence observed'});}
+  try{await tabletOldPage.goto(url+'tablet.html?lang=en');assert.equal(await tabletOldPage.locator('[data-tablet-procedures]').count(),0);assert.equal(await tabletOldPage.locator('.tablet-step').count(),13);await tabletOldPage.screenshot({path:join(output,'old-tablet-without-procedure-links.png')});report.results.push({scenario:'original pre23 tablet has no procedure links',base:oldTabletNavigationBase,eventBase:base,status:'prior capability absence observed'});}
   finally{await tabletOldCtx.close();serving=current;}
   const oldTabletLayout='574a4fcc5f9f49ce36a3dae28e4b35125e9acc38';serving=loadRevision(oldTabletLayout);
   const oldLayoutCtx=await browser.newContext({viewport:{width:320,height:900},serviceWorkers:'block'}),oldLayoutPage=await oldLayoutCtx.newPage();
